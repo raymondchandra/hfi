@@ -8,6 +8,11 @@ class AnggotaController extends BaseController {
 	{
 		return View::make('pages.anggota');
 	}
+	
+	public function view_ketentuandanperjanjiananggota()
+	{
+		return View::make('pages.ketentuandanperjanjiananggota');
+	}
 
 }
 

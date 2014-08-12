@@ -1,40 +1,50 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
+//model binding
+//Route::model('post', 'Post');
 
-Route::get('/', function()
-{
-	return View::make('pages.home');
+//view
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@view_index']);
+Route::get('/organisasi', ['as' => 'organisasi', 'uses' => 'OrganisasiController@view_index']);
+Route::get('/kegiatan', ['as' => 'kegiatan', 'uses' => 'KegiatanController@view_index']);
+Route::get('/publikasi', ['as' => 'publikasi', 'uses' => 'PublikasiController@view_index']);
+Route::get('/anggota', ['as' => 'anggota', 'uses' => 'AnggotaController@view_index']);
+Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index']);
+
+//account view
+Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login']);
+Route::get('/registrasi', ['as' => 'registrasi', 'uses' => 'AccountController@view_registrasi']);
+    
+//user view
+Route::group(['prefix' => 'user', 'before' => 'auth'], function () {
+	Route::get('/berkas', ['as' => 'berkas', 'uses' => 'BerkasController@view_index']);
 });
 
-Route::get('about', function()
-{
-	return View::make('pages.about');
-}
-);
-
-Route::get('projects', function()
-{
-	return View::make('pages.projects');
-}
-);
-
-Route::get('contact', function()
-{
-	return View::make('pages.contact');
-}
-);
+//admin route
+Route::group(['prefix' => 'admin', 'before' => 'auth'], function () {
+	Route::get('/home', ['as' => 'admin.home', 'uses' => 'HomeAdminController@view_index']);
+	Route::get('/organisasi', ['as' => 'admin.organisasi', 'uses' => 'OrganisasiAdminController@view_index']);
+	Route::get('/kegiatan', ['as' => 'admin.kegiatan', 'uses' => 'KegiatanAdminController@view_index']);
+	Route::get('/publikasi', ['as' => 'admin.publikasi', 'uses' => 'PublikasiAdminController@view_index']);
+	Route::get('/anggota', ['as' => 'admin.anggota', 'uses' => 'AnggotaAdminController@view_index']);
+	Route::get('/berkas', ['as' => 'admin.berkas', 'uses' => 'BerkasAdminController@view_index']);
+	//Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index']);
+});
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+//yg d bawah ini harus d ganti...
 Route::get('laravelregistrasianggota',function()
 {
 	return View::make('pages.laravelregistrasianggota');

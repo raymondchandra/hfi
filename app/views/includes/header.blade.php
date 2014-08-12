@@ -14,13 +14,10 @@
 					</span>
 				</div>
 				<div class="grid_2 ">
-					<a href="#" class="daftar_dan_login">
-						Daftar
-					</a>
+					{{ HTML::linkRoute('registrasi', 'Daftar', array(), array('class' => 'daftar_dan_login')) }}
 					<span> | </span>
-					<a href="#" class="daftar_dan_login">
-						Login
-					</a>
+					{{ HTML::linkRoute('login', 'Login', array(), array('class' => 'daftar_dan_login')) }}
+					
 				</div>
 			</div>
 		</div>
@@ -30,22 +27,22 @@
 				<div class="grid_12">
 					<ul>
 						<li>
-							<a href="/laravel/public">Home</a>
+							{{HTML::linkRoute('home','Home')}}
 						</li>
 						<li>
-							<a href="javascript:void(0)">Organisasi</a>
+							{{HTML::linkRoute('organisasi','Organisasi')}}
 						</li>
 						<li>
-							<a href="kegiatan">Kegiatan</a>
+							{{HTML::linkRoute('kegiatan','Kegiatan')}}
 						</li>
 						<li>
-							<a href="publikasi">Publikasi</a>
+							{{HTML::linkRoute('publikasi','Publikasi')}}
 						</li>
 						<li>
-							<a href="javascript:void(0)">Anggota</a>
+							{{HTML::linkRoute('anggota','Anggota')}}
 						</li>
 						<li>
-							<a href="javascript:void(0)">Kontak</a>
+							{{HTML::linkRoute('kontak','Kontak')}}
 						</li>
 						
 					</ul>

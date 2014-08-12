@@ -1,6 +1,5 @@
-<!-- home halaman anggota-->
 @extends('layouts.default')
-@section('content')	
+@section('content')
 	<h1 style="text-align:center;">Anggota</h1>
 	<p>
 		Anda bisa melihat daftar anggota HFI saat ini atau melakukan 
@@ -123,5 +122,4 @@
 		data Anda dihapus. Pada saat yang sama Anda kemudian bisa melakukan 
 		registrasi baru.
 	</p>
-	<!-- kotak pengingat password-->
 @stop

@@ -1,58 +1,6 @@
+<!-- home halaman anggota-->
 @extends('layouts.default')
 @section('content')	
-<div class="container_12">
-	<div class="grid_12">
-		<div class="main_content">
-			<div class="side_panel_hfi">
-				<div class="side_panel_hfi_background">
-				<ul>
-					<li>				
-						<a href="anggota">Beranda</a> 				
-					</li>
-					<span class="white_space">&nbsp;</span>
-					<li>
-						<a href="ketentuandanperjanjiananggota">Ketentuan dan Perjanjian</a>
-					</li>
-				</ul>
-				</div>
-			</div>
-			
-			<div class="content_hfi" id="contentfield">
-				<p>
-					Anda bisa melihat daftar anggota HFI saat ini atau melakukan 
-					registrasi baru secara online dalam laman ini. Keanggotaan ini 
-					berlaku untuk seluruh kalangan komunitas fisika. Sistem keanggotaan 
-					ini secara bersama-sama dipakai juga sebagai database anggota 
-					Himpunan Fisika Indonesia. Guna menjaga privasi anggota seluruh 
-					data tersebut tidak dibuka untuk umum. Pada daftar anggota yang 
-					bisa diakses oleh umum hanya data anggota minimal saja yang 
-					ditampilkan. Hanya anggota yang telah membayar iuran pada tahun 
-					yang berjalan yang mendapatkan kartu anggota yang ditandatangani 
-					oleh Ketua HFI Pusat. Kartu anggota HFI akan muncul secara otomatis 
-					ketika keanggotaan anda telah divalidasi oleh pengurus HFI Pusat 
-					atau Pengurus HFI cabang yang diberi kewenangan. Jika kartu anggota 
-					HFI telah muncul, maka lakukan 3 hal berikut:
-				</p>
-					<ol>
-						<li><b>Cetak halaman ini pada kertas putih polos tebal dengan 
-						menekan tombol Ctrl + P bersama-sama dengan color printer.</b></li>
-						<li><b>Potong sesuai dengan garis bagian luar yang tergambar.</b></li>
-						<li><b>Lipat menjadi dua persis pada garis tengah, dan kartu anggota 
-						siap dilaminasi dengan tipe plastik keras.</b></li>
-					</ol>
-				<p>
-					Jika anda sudah mendaftar secara online, ada akan mendapatkan 
-					nomor anggota. Catat password yang buat saat registrasi onlie. 
-					Dengan login ke dalam website HFI anda dapat mengedit data anda 
-					dan juga mencetak kartu anggota HFI anda.
-				</p>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-<!--
 	<h1 style="text-align:center;">Anggota</h1>
 	<p>
 		Anda bisa melihat daftar anggota HFI saat ini atau melakukan 
@@ -144,9 +92,8 @@
 		baik secara individu maupun kolektif, atau dapat juga dibayarkan secara 
 		langsung ke Bendahara HFI Pusat melalui rekening HFI Pusat :
 	</p>
-	-->
-	<!--<p>gambar rekening </p> -->
-	<!--<p>
+	<p><!-- gambar rekening --></p>
+	<p>
 		Segera setelah melakukan pembayaran, kirimkan pesan konfirmasi ke Bendahara 
 		melalui halaman <b>KONTAK</b>. Jangan lupa menuliskan <b>nomor transfer</b>, 
 		<b>tujuan pembayaran</b> (untuk iuran, pembelian produk HFI, dst), <b>tanggal 
@@ -161,9 +108,9 @@
 		<li>Bila Anda tidak yakin apakah data Anda sudah masuk / belum, bisa 
 		dilakukan pengecekan sendiri dengan melihat DAFTAR ANGGOTA, atau lakukan 
 		pencarian melalui sarana pencarian yang ada di bagian atas.</li>
-	</ul> -->
+	</ul>
 	<!-- href link ke yang lain, ada 3 -->
-	<!--<hr>
+	<hr>
 	<p>
 		Lupa <i>username</i> ? Silahkan akses <a href="">DAFTAR ANGGOTA</a> atau 
 		lakukan pencarian atas nama Anda di database anggota... <i>Username</i> 
@@ -175,6 +122,6 @@
 		Anda, maka Anda bisa mengirimkan pesan melalui halaman KONTAK untuk meminta 
 		data Anda dihapus. Pada saat yang sama Anda kemudian bisa melakukan 
 		registrasi baru.
-	</p> -->
+	</p>
 	<!-- kotak pengingat password-->
 @stop

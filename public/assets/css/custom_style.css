@@ -163,6 +163,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5252ac', end
 	float: left;
 }
 
+	/*newcode ber*/
+	.content_hfi ul li {		
+		list-style: disc;
+		display: list-item;
+	}
+	
+	.content_hfi ol li {
+		list-style: decimal;
+		display: list-item;
+	}
+	/*endnewcode ber*/
+	
+
 
 /*------------------------
 -------- Login Page ------

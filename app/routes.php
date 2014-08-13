@@ -9,6 +9,7 @@ Route::get('/organisasi', ['as' => 'organisasi', 'uses' => 'OrganisasiController
 Route::get('/kegiatan', ['as' => 'kegiatan', 'uses' => 'KegiatanController@view_index']);
 Route::get('/publikasi', ['as' => 'publikasi', 'uses' => 'PublikasiController@view_index']);
 Route::get('/anggota', ['as' => 'anggota', 'uses' => 'AnggotaController@view_index']);
+	//route ke sidebar
 	Route::get('/ketentuandanperjanjiananggota', ['as' => 'ketentuandanperjanjiananggota', 'uses' => 'AnggotaController@view_ketentuandanperjanjiananggota']);
 Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index']);
 
@@ -33,9 +34,20 @@ Route::group(['prefix' => 'admin', 'before' => 'auth'], function () {
 });
 
 
+//coba register 
+/*Route::get('/tes', function()
+{
+	$acc = new Account();
+    $acc->username = 'tes3';
+    $acc->password = Hash::make('creed');
+	$acc->status = 1;
+    $acc->save();
+});*/
 
-
-
+//cobacode
+//Route::get('/upload', 'AccountController@view_getUploadForm');
+//Route::post('/upload/image','AccountController@postUpload');
+//endcobacode
 
 
 

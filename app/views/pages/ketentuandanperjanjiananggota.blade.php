@@ -17,7 +17,77 @@
 	</div>
 	
 	<div class="content_hfi" id="contentfield">
-		blablablablablablablabllablablablab
+		<!--{{ HTML::ol(array('a','b','c'))}}-->
+		<!--{{ HTML::ul(array(
+			'Setiap anggota aktif HFI (yang telah membayar iuran pada 
+				tahun berjalan) akan mendapatkan aneka kemudahan, antara lain :',
+			array(
+				'Pembebasan biaya penerbitan karya ilmiahnya di 
+						jurnal-jurnalyang dikelola HFI Pusat.',
+				'Diskon khusus untuk biaya registrasi semua kegiatan 
+						(simposium, dll) yang diselenggarakan oleh HFI Pusat.',
+				'Diskon 20 persen untuk semua produk di toko maya 
+						HFI Pusat.'),
+			'Prosedur pendaftaran anggota baru :'			
+			)
+		)
+		}}-->
+		<ul>
+			<li>
+				Setiap <b>anggota aktif HFI</b> (yang telah membayar iuran pada 
+				tahun berjalan) akan mendapatkan aneka kemudahan, antara lain :
+				<ul>
+					<li><b>Pembebasan biaya</b> penerbitan karya ilmiahnya di 
+					jurnal-jurnalyang dikelola HFI Pusat.</li>
+					<li><b>Diskon khusus</b> untuk biaya registrasi semua kegiatan 
+					(simposium, dll) yang diselenggarakan oleh HFI Pusat.</li>
+					<li><b>Diskon 20 persen</b> untuk semua produk di toko maya 
+					HFI Pusat.</li>
+				</ul>
+			</li>
+			<li>
+				<b>Prosedur pendaftaran anggota baru :</b>
+				<ol>
+					<li>Sangat dianjurkan untuk melakukan pendaftaran secara 
+					online melalui fasilitas ini, karena kelak Anda bisa merevisi 
+					sendiri data Anda dengan mudah.</li>
+					<li>Untuk pendaftaran secara online, bila Anda belum pernah 
+					melakukan registrasi sebelumnya, pertama lakukan proses registrasi 
+					melalui link REGISTRASI ANGGOTA BARU di bawah !</li>
+					<li>Selanjutnya, isi seluruh kolom pada formulir dengan lengkap 
+					dan benar. Untuk kenyamanan Anda selanjutnya, pastikan bahwa Anda 
+					telah memiliki surat elektronik sebelumnya.</li>
+					<li>Setelah memastikan semua kolom diisi dengan benar dan lengkap, 
+					tekan tombol SIMPAN.</li>
+					<li>Registrasi baru akan dicek oleh Sekretariat HFI. Sampai dengan 
+					registrasi disetujui, maka data Anda belum akan ditampilkan.</li>
+					<li>Segera setelah registrasi Anda disetujui, maka secara otomatis 
+					surat elektronik Anda akan didaftarkan sebagai anggota mailing-list 
+					HFI.</li>
+					<li>Sebelum proses otorisasi dilakukan, status Anda menjadi anggota 
+					non-aktif.</li>				
+				</ol>
+			</li>
+			<li>
+				<b>Proses otorisasi untuk menjadi anggota aktif :</b>
+				<ol>
+					<li>Tidak adanya keberatan dari HFI Cabang terdekat sesuai dengan 
+					kewenangan Pengurus HFI Cabang tersebut. Penilaian didasarkan 
+					pada pemenuhan syarat keanggotaan seperti yang telah ditentukan.</li>
+					<li>Pelunasan iuran tahunan untuk tahun berjalan. Sebaliknya 
+					keanggotaan akan langsung dibekukan (di-non-aktif-kan) bila 
+					terjadi tunggakan iuran tahunan berjalan. Untuk itu pelunasan 
+					iuran tahunan mohon diperhatikan ! </li>
+				</ol>
+			</li>
+			<li>
+				Besar iuran tahunan adalah <b>Rp. 100.000 / tahun</b>. Iuran ini 
+				didistribusikan ke HFI Cabang yang bersangkutan sebesar 60 persen 
+				dan sisanya (40 persen) dimasuk ke kas HFI Pusat. Iuran harus 
+				dilunasi <b>paling lambat bulan Februari</b> untuk tahun berjalan, 
+				atau segera setelah pendaftaran untuk anggota baru.
+			</li>
+		</ul>
 	</div>
 </div>
 

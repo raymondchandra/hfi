@@ -163,6 +163,94 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5252ac', end
 	float: left;
 }
 
+
+/*------------------------
+-------- Login Page ------
+------------------------*/
+.table {
+	width: 100%;
+	height: inherit;
+	display: table;
+}
+
+.table_cell {
+	width: 100%;
+	height: inherit;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+.logintitle {
+	margin-bottom: 0px !important;
+background: #6e70bd; /* Old browsers */
+	background: -moz-linear-gradient(top,  #6e70bd 0%, #37379b 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6e70bd), color-stop(100%,#37379b)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #6e70bd 0%,#37379b 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #6e70bd 0%,#37379b 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #6e70bd 0%,#37379b 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #6e70bd 0%,#37379b 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6e70bd', endColorstr='#37379b',GradientType=0 ); /* IE6-9 */
+line-height: 50px;
+color: #fff;
+
+	}
+
+.login_content {
+	display: block;
+}
+
+.login_container {
+	background-color: #fff;
+	overflow: hidden;
+}
+
+.login_container form{
+	padding: 20px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.login_container input{
+	display: block;
+	
+}
+.login_container .login{
+	display: block;
+	float:left;
+	height: 30px;
+	width: 144px;
+}
+
+.login_container input[type="checkbox"], .login_container input[type="button"]{
+	display: inline-block !important;
+}
+
+.login_container input[type="text"], .login_container input[type="password"]{
+	display: block;
+	width: 100%;
+	margin-bottom: 10px;
+	line-height: 22px;
+	text-indent:10px;
+}
+
+.lupa_pass {
+margin-top: 10px;
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
+.rememberme {
+	margin-bottom: 30px;position: absolute;
+margin-top: 9px;
+margin-left: 26px;
+}
+
+
 /*
 -------- Footer Section ------
 */

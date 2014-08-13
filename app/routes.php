@@ -10,6 +10,7 @@ Route::get('/organisasi', ['as' => 'organisasi', 'uses' => 'OrganisasiController
 Route::get('/kegiatan', ['as' => 'kegiatan', 'uses' => 'KegiatanController@view_index']);
 Route::get('/publikasi', ['as' => 'publikasi', 'uses' => 'PublikasiController@view_index']);
 Route::get('/anggota', ['as' => 'anggota', 'uses' => 'AnggotaController@view_index']);
+	Route::get('/ketentuandanperjanjiananggota', ['as' => 'ketentuandanperjanjiananggota', 'uses' => 'AnggotaController@view_ketentuandanperjanjiananggota']);
 Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index']);
 
 //account view

@@ -12,11 +12,11 @@
 								Login
 							</h1>
 							<div class="form">
-								{{ Form::open(array('url' => 'foo/bar')) }}
+								{{ Form::open(array('url' => '/signin')) }}
 								<form>
-									<input type="text"  placeholder="Username"/>
-									{{ Form::text('nama', Input::old('nama')) }}
-									<input type="password" placeholder="Password"/>
+									<!--<input type="text"  placeholder="Username"/>-->
+									{{ Form::text('username', Input::old('username')) }}
+									<!--<input type="password" placeholder="Password"/>-->
 									{{ Form::password('password', Input::old('password')) }}
 									<!--<input type="button" value="Log In" class="login"/>-->
 									{{ Form::submit('Login') }}

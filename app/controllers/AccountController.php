@@ -7,6 +7,7 @@ class AccountController extends BaseController {
 	public function postSignIn()
 	{
 		$data = array('username'=>Input::get('username'), 'password'=>Input::get('password'));
+	
 		if(Auth::attempt($data))
 		{
 			var_dump("success");

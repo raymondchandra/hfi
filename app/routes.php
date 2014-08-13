@@ -3,7 +3,15 @@
 
 //model binding
 //Route::model('post', 'Post');
-
+Route::get('/tes', function()
+{
+	$acc = new Account();
+	$acc->timestamps = false;
+    $acc->username = 'tes3';
+    $acc->password = Hash::make('creed');
+	$acc->status = 1;
+    $acc->save();
+});
 //view
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@view_index']);
 Route::get('/organisasi', ['as' => 'organisasi', 'uses' => 'OrganisasiController@view_index']);
@@ -37,7 +45,8 @@ Route::group(['prefix' => 'admin', 'before' => 'auth'], function () {
 
 
 //controller
-Route::controller('acc', 'AccountController');
+//Route::controller('acc', 'AccountController');
+Route::post('/signin', ['as' => 'signin', 'uses' => 'AccountController@postSignIn']);
 
 
 

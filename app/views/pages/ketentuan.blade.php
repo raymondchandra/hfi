@@ -11,7 +11,7 @@
 					</li>
 					<span class="white_space">&nbsp;</span>
 					<li>
-						<a href="ketentuandanperjanjiananggota">Ketentuan dan Perjanjian</a>
+						<a href="ketentuan">Ketentuan dan Perjanjian</a>
 					</li>				
 				</ul>
 				</div>

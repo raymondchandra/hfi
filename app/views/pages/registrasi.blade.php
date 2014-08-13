@@ -2,7 +2,11 @@
 @section('content')	
 <div class="grid_12">
 <div class="main_content">
+<<<<<<< HEAD
+	<h1 style="text-align:center;">Registrasi Keanggota</h1>
+=======
 	<h1 style="text-align:center;">Anggota</h1>
+>>>>>>> 4f853865ec82bbe9201bddf20de600684baa8599
 	<p>	
 		Silahkan mengisi formulir di bawah ini untuk registrasi anggota.
 		Pastikan untuk mengisi minimal semua kolom dengan tanda bintang! 
@@ -339,7 +343,13 @@
 	{{ Form::submit('Segister') }}
 	{{ Form::button('Batal') }}
 	{{ Form::token() . Form::close() }}
+<<<<<<< HEAD
+	<p>
+		*) harus diisi!
+	</p>
+=======
 	
+>>>>>>> 4f853865ec82bbe9201bddf20de600684baa8599
 	
 	<!-- PAKE FORM HTML BIASA-->
 	<!--<h1 style="text-align:center;">Anggota</h1>
@@ -696,6 +706,7 @@
 	<p>
 		*) harus diisi!
 	</p>
+
 	<hr>
 	<p>
 		Dengan melakukan registrasi secara <i>online</i> ini saya
@@ -711,7 +722,10 @@
 	<p style="text-align:center;">
 	{{ Form::radio('setuju','setuju') }}setuju    {{ Form::radio('tidaksetuju','tidaksetuju') }}tidak setuju
 	</p>
+<<<<<<< HEAD
+=======
 	
+>>>>>>> 4f853865ec82bbe9201bddf20de600684baa8599
 	</div>
 	</div>
 @stop

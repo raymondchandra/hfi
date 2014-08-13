@@ -12,6 +12,7 @@ Route::get('/tes', function()
 	$acc->status = 0;
     $acc->save();
 });
+
 //view
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@view_index']);
 Route::get('/organisasi', ['as' => 'organisasi', 'uses' => 'OrganisasiController@view_index']);
@@ -19,7 +20,7 @@ Route::get('/kegiatan', ['as' => 'kegiatan', 'uses' => 'KegiatanController@view_
 Route::get('/publikasi', ['as' => 'publikasi', 'uses' => 'PublikasiController@view_index']);
 Route::get('/anggota', ['as' => 'anggota', 'uses' => 'AnggotaController@view_index']);
 	//route ke sidebar
-	Route::get('/ketentuandanperjanjiananggota', ['as' => 'ketentuandanperjanjiananggota', 'uses' => 'AnggotaController@view_ketentuandanperjanjiananggota']);
+	Route::get('/ketentuan', ['as' => 'ketentuan', 'uses' => 'AnggotaController@view_ketentuan']);
 Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index']);
 
 //account view

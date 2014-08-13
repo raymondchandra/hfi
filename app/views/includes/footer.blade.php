@@ -41,6 +41,7 @@
 			//$('.landing_spc').height(height - navHeight);
 			$('.content_container, .login_content').css('min-height',height);
 			$('.login_content').css('height',height);
+			$('.pdf_viewer').css('height',height*1);
 			$('.main_content').css('min-height',height);
 			
 		};
@@ -50,6 +51,21 @@
 		$(function() {
 		  $('#carousel').carousel();
 		});
+		
+		/*external container area exit trigger*/
+		$('.exit').click(function() {$( ".pop_up_super_c" ).fadeOut( 200, function(){});});	
+		
+		$('.pop_up_super_c').click(function (e)
+		{
+			var container = $('.pop_up_cell');
 
+			if (container.is(e.target) )// if the target of the click is the container...
+			{
+				$( ".pop_up_super_c" ).fadeOut( 200, function(){});
+				$('html').css('overflow-y', 'auto');
+			}
+		});
+		
+		
 		
 	</script>

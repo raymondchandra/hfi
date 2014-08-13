@@ -20,6 +20,7 @@ class CreateBerkas extends Migration {
             $table->string('uploaded_by');
 			$table->dateTime('uploaded_date');
 			$table->string('kategori');
+			$table->string('deskripsi');
 
 			$table->foreign('uploaded_by')->references('id')->on('profile');
         });

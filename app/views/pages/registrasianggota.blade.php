@@ -14,21 +14,7 @@
 		kombinasi aneka karakter serta dibedakan antara huruf besar dan
 		kecil.
 	</p>
-	<hr>
-	<p>
-		Dengan melakukan registrasi secara <i>online</i> ini saya
-		menyatakan bahwa saya telah membaca dan memahami
-		<a href="" alt="ketentuan dan perjanjian anggota">
-		ketentuan dan perjanjian untuk anggota</a>
-		,serta bersedia menyetujui segala isi dan konsekuensinya :				
-	</p>
 	
-	<!-- Form::open(array('action' => array('Controller@method', $user->id)))-->
-	<!-- -->
-	{{ Form::open(array('url' => 'foo/bar')) }}	<!-- default post-->	
-	<p style="text-align:center;">
-	{{ Form::radio('setuju','setuju') }}setuju    {{ Form::radio('tidaksetuju','tidaksetuju') }}tidak setuju
-	</p>
 	<hr>
 	
 	<table border="0">		
@@ -706,6 +692,21 @@
 		<input type="submit" value="simpan"><button>batal</button>
 	</form>
 	-->
+	<hr>
+	<p>
+		Dengan melakukan registrasi secara <i>online</i> ini saya
+		menyatakan bahwa saya telah membaca dan memahami
+		<a href="" alt="ketentuan dan perjanjian anggota">
+		ketentuan dan perjanjian untuk anggota</a>
+		,serta bersedia menyetujui segala isi dan konsekuensinya :				
+	</p>
+	
+	<!-- Form::open(array('action' => array('Controller@method', $user->id)))-->
+	<!-- -->
+	{{ Form::open(array('url' => 'foo/bar')) }}	<!-- default post-->	
+	<p style="text-align:center;">
+	{{ Form::radio('setuju','setuju') }}setuju    {{ Form::radio('tidaksetuju','tidaksetuju') }}tidak setuju
+	</p>
 	<p>
 		*) harus diisi!
 	</p>

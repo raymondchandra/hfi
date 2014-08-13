@@ -1,23 +1,33 @@
 @extends('layouts.default')
 @section('content')	
-<div class="container_12">
+
+
+
+<div class="grid_3">
 	<div class="side_panel_hfi">
-		<div class="side_panel_hfi_background">
-		<ul>
-			<li>				
-				<a href="anggota">Home Anggota</a> 				
-			</li>
-			<span class="white_space">&nbsp;</span>
-			<li>
-				<a href="ketentuandanperjanjiananggota">Ketentuan dan Perjanjian Anggota</a>
-			</li>
-		
-		</ul>
+		<div class="side_panel_hfi">
+			<div class="side_panel_hfi_background">
+				<ul>
+					<li>				
+						<a href="anggota">Home Anggota</a> 				
+					</li>
+					<span class="white_space">&nbsp;</span>
+					<li>
+						<a href="ketentuandanperjanjiananggota">Ketentuan dan Perjanjian Anggota</a>
+					</li>
+				
+			</ul>
+			</div>
 		</div>
+		
 	</div>
+</div>
 	
-	<div class="content_hfi" id="contentfield">
-		blablablablablablablabllablablablab
+<div class="grid_9">	
+	<div class="main_content">
+		<div class="content_hfi" id="contentfield">
+				blablablablablablablabllablablablab
+		</div>
 	</div>
 </div>
 

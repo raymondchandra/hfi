@@ -2,41 +2,42 @@
 @section('content')
 	<div class="grid_12">
 		<div class="main_content">
-			<div id="carousel" class="carousel">
+			<div id="carousel" class="carousel" style="width: 400px; float: right; margin-top: 56px;
+">
 
-			  <div class="carousel-inner">
+			  <div class="carousel-inner" style="width: 400px;">
 
 
 				<div class="item active">
-				  <img src="assets/img/w1.jpg" alt="Some Alt Text" width="900" />
+				  <img src="assets/img/w1.jpg" alt="Some Alt Text" width="400" />
 				  <div class="carousel-caption">
 					Some caption
 				  </div>
 				</div>
 
 				<div class="item">
-				  <img src="assets/img/w2.jpg" alt="Some Alt Text" width="900"/>
+				  <img src="assets/img/w2.jpg" alt="Some Alt Text" width="400"/>
 				  <div class="carousel-caption">
 					Some caption
 				  </div>
 				</div>
 				
 				<div class="item">
-				  <img src="assets/img/w3.jpg" alt="Some Alt Text" width="900"/>
+				  <img src="assets/img/w3.jpg" alt="Some Alt Text" width="400"/>
 				  <div class="carousel-caption">
 					Some caption
 				  </div>
 				</div>
 
 				<div class="item">
-				  <img src="assets/img/w4.jpg" alt="Some Alt Text" width="900"/>
+				  <img src="assets/img/w4.jpg" alt="Some Alt Text" width="400"/>
 				  <div class="carousel-caption">
 					Some caption
 				  </div>
 				</div>
 				
 				<div class="item">
-				  <img src="assets/img/w5.jpg" alt="Some Alt Text" width="900"/>
+				  <img src="assets/img/w5.jpg" alt="Some Alt Text" width="400"/>
 				  <div class="carousel-caption">
 					Some caption
 				  </div>
@@ -179,7 +180,7 @@
 				<div class="container_12">
 				
 				<div class="grid_12" style="background: #fff;">
-					<h3 style="padding-top: 20px;padding-left: 20px;">
+					<h3 style="padding-top: 5px;padding-left: 20px; margin-bottom: 5px !important; text-align: center;">
 						Regulasi AD / ART 2001 - sekarang
 					</h3>
 					<object data="assets/img/Chapter_4.pdf" type="application/pdf" width="100%" class="pdf_viewer"></object>

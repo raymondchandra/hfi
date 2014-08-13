@@ -41,7 +41,7 @@
 			//$('.landing_spc').height(height - navHeight);
 			$('.content_container, .login_content').css('min-height',height);
 			$('.login_content').css('height',height);
-			$('.pdf_viewer').css('height',height*1);
+			$('.pdf_viewer').css('height',$(window).height());
 			$('.main_content').css('min-height',height);
 			
 		};

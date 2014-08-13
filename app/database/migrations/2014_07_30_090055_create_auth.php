@@ -15,9 +15,8 @@ class CreateAuth extends Migration {
 		Schema::table('auth', function (Blueprint $table) {
             $table->create();
             $table->increments('id');
-            $table->string('username');
+            $table->string('username')->unique();
             $table->string('password');
-            $table->integer('status');
         });
 	}
 

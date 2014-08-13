@@ -12,7 +12,8 @@ class CreateCabang extends Migration {
 	 */
 	public function up()
 	{
-
+		//schema ada di profile.php
+		//harus dibuat sblm buat tabel profile...
 	}
 
 	/**

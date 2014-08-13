@@ -12,18 +12,7 @@ class CreateSlideshow extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('gallery', function (Blueprint $table) {
-				$table->create();
-				$table->increments('id');
-				$table->integer('id_kegiatan')->unsigned();
-				$table->string('nama_file');
-				$table->string('file_path');
-				$table->string('uploaded_by');
-				$table->dateTime('tanggal_upload');
-				
-				$table->foreign('uploaded_by')->references('id')->on('profile');
-				$table->foreign('id_kegiatan')->references('id')->on('kegiatan');			
-			});
+		
 			
 		Schema::table('slideshow', function (Blueprint $table) {
             $table->create();

@@ -1,5 +1,6 @@
 <?php
 
+
 //model binding
 //Route::model('post', 'Post');
 
@@ -16,6 +17,7 @@ Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index'
 //account view
 Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login']);
 Route::get('/registrasi', ['as' => 'registrasi', 'uses' => 'AccountController@view_registrasi']);
+
     
 //user view
 Route::group(['prefix' => 'user', 'before' => 'auth'], function () {
@@ -34,21 +36,8 @@ Route::group(['prefix' => 'admin', 'before' => 'auth'], function () {
 });
 
 
-//coba register 
-/*Route::get('/tes', function()
-{
-	$acc = new Account();
-    $acc->username = 'tes3';
-    $acc->password = Hash::make('creed');
-	$acc->status = 1;
-    $acc->save();
-});*/
-
-//cobacode
-//Route::get('/upload', 'AccountController@view_getUploadForm');
-//Route::post('/upload/image','AccountController@postUpload');
-//endcobacode
-
+//controller
+Route::controller('acc', 'AccountController');
 
 
 

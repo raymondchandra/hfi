@@ -11,13 +11,10 @@
 
 	<section class="content_container">
 		<div class="container_12">
-			<div class="grid_12">
-				<div class="main_content">
+			
 
-				@yield('content')
+			@yield('content')
 
-				</div>
-			</div>
 		</div>
 	</section>
 

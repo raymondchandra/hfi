@@ -36,9 +36,9 @@
 			
 			//$('#landing_sec').height(height);
 			//$('.landing_spc').height(height - navHeight);
-			$('.content_container').css('min-height',height);
+			$('.content_container, .login_content').css('min-height',height);
+			$('.login_content').css('height',height);
 			$('.main_content').css('min-height',height);
-			
 			
 		};
 		$(document).ready(updateSize);

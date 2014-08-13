@@ -17,6 +17,21 @@
 	</div>
 	
 	<div class="content_hfi" id="contentfield">
+		<!--{{ HTML::ol(array('a','b','c'))}}-->
+		<!--{{ HTML::ul(array(
+			'Setiap anggota aktif HFI (yang telah membayar iuran pada 
+				tahun berjalan) akan mendapatkan aneka kemudahan, antara lain :',
+			array(
+				'Pembebasan biaya penerbitan karya ilmiahnya di 
+						jurnal-jurnalyang dikelola HFI Pusat.',
+				'Diskon khusus untuk biaya registrasi semua kegiatan 
+						(simposium, dll) yang diselenggarakan oleh HFI Pusat.',
+				'Diskon 20 persen untuk semua produk di toko maya 
+						HFI Pusat.'),
+			'Prosedur pendaftaran anggota baru :'			
+			)
+		)
+		}}-->
 		<ul>
 			<li>
 				Setiap <b>anggota aktif HFI</b> (yang telah membayar iuran pada 
@@ -53,7 +68,6 @@
 					non-aktif.</li>				
 				</ol>
 			</li>
-			<!--
 			<li>
 				<b>Proses otorisasi untuk menjadi anggota aktif :</b>
 				<ol>
@@ -72,7 +86,7 @@
 				dan sisanya (40 persen) dimasuk ke kas HFI Pusat. Iuran harus 
 				dilunasi <b>paling lambat bulan Februari</b> untuk tahun berjalan, 
 				atau segera setelah pendaftaran untuk anggota baru.
-			</li>-->
+			</li>
 		</ul>
 	</div>
 </div>

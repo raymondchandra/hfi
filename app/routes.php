@@ -1,5 +1,6 @@
 <?php
 
+
 //model binding
 //Route::model('post', 'Post');
 
@@ -14,6 +15,7 @@ Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index'
 //account view
 Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login']);
 Route::get('/registrasi', ['as' => 'registrasi', 'uses' => 'AccountController@view_registrasi']);
+
     
 //user view
 Route::group(['prefix' => 'user', 'before' => 'auth'], function () {
@@ -33,7 +35,8 @@ Route::group(['prefix' => 'admin', 'before' => 'auth'], function () {
 
 
 
-
+//controller
+Route::controller('acc', 'AccountController');
 
 
 

@@ -4,8 +4,10 @@
     <title>HFI</title>
 
     <link href="assets/css/all.css" rel="stylesheet">
+    <link href="assets/css/carousel.css" rel="stylesheet">
 	
 	<script type="text/javascript" src="assets/js/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
 	
+
 	

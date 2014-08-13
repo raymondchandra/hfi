@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		
-		<div class="site_nav">
+		<nav class="site_nav">
 			<div class="container_12">
 				<div class="grid_12">
 					<ul>
@@ -48,5 +48,5 @@
 					</ul>
 				</div>
 			</div>
-		</div>
+		</nav>
     </section>

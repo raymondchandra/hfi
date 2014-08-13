@@ -4,6 +4,8 @@
 		<div class="login_content">
 			<div class="table">
 				<div class="table_cell">
+
+
 						
 						<div class="login_container">
 							<h1 class="logintitle">
@@ -28,8 +30,7 @@
 								{{ Form::close() }}
 							</div>
 						</div>
-						
-						
+					</div>
 				</div>
 			</div>
 		</div>

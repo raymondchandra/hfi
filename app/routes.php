@@ -7,9 +7,9 @@ Route::get('/tes', function()
 {
 	$acc = new Account();
 	$acc->timestamps = false;
-    $acc->username = 'tes3';
+    $acc->username = 'tes4';
     $acc->password = Hash::make('creed');
-	$acc->status = 1;
+	$acc->status = 0;
     $acc->save();
 });
 //view

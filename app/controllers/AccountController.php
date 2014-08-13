@@ -6,16 +6,31 @@ class AccountController extends BaseController {
 	
 	public function postSignIn()
 	{
-		$data = array('username'=>Input::get('username'), 'password'=>Input::get('password'));
+		$username = Input::get('username');
+		$password = Input::get('password');
+		$data = array('username'=>$username, 'password'=>$password);
 	
 		if(Auth::attempt($data))
 		{
-			var_dump("success");
+			$user = Account::where('username', '=', $username)->first();
+			
+			echo($user->status);
+			
+			if($user->status == 1)
+			{
+				echo("success");
+			}
+			else
+			{
+				echo("need to re activated");
+			}
 		}
 		else
 		{
-			var_dump("fail");
+			echo("fail");
 		}
+		
+		
 	}
 	
 	

@@ -234,6 +234,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5252ac', end
 	cursor: pointer;
 }
 
+
+
 /*------------------------
 -------- Login Page ------
 ------------------------*/
@@ -435,4 +437,163 @@ margin-left: 26px;
 	display:inline-block;
 }
 
+/*----------------------------------------------------------------------------------------------------------
+-------- Admin Page -------------------------------------- Admin Page --------------------------------------
+----------------------------------------------------------------------------------------------------------*/
 
+.header_admin {
+	height: 50px;
+	overflow: hidden;
+	width: 100%;
+	display: block;
+}
+
+.admin_logo {
+	width: 240px;
+	float: left;
+	display: block;
+	height: inherit;
+	background: #353299;
+}
+
+.admin_id {
+	float: left;
+	display: block;
+	height: inherit;
+	background: #5757af;
+	line-height: 50px;
+	color: #fff;
+	padding-left:20px;
+	padding-right:20px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	text-align: right;
+}
+
+.admin_id .sep {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.admin_id a {
+	color: #fff;
+}
+.admin_id a:hover {
+	color: #00f;
+}
+
+.logo_admin {
+	float: left;
+	display: block;
+	background: url('../img/hfi_admin.png') no-repeat;
+	width: 50px;
+	height: 50px;
+	
+}
+
+.admin_logo p {
+	height: 50px; 
+	color: #fff;
+	word-wrap:break-word;
+	font-size: 14px;
+	line-height: 50px
+}
+
+/**/
+
+.sidebar_admin {
+	width: 240px;
+	display: block;
+	float: left;
+	overflow-y: auto;
+	background: #444446;
+}
+
+.sidebar_admin ul {
+	display: block;
+}
+
+.sidebar_admin ul li {
+	display: block;
+	width: 100%;
+	margin: 0 !important;
+	position: relative;
+}
+
+.sidebar_admin ul li a {
+	height: 38px;
+	width: 100%;
+	display: block;
+	line-height: 38px;
+	color: #fff;
+	text-decoration: none;
+	text-indent: 20px;
+	border-bottom: #343436 1px solid;
+	border-top: #59595c 1px solid;
+}	
+
+.sidebar_admin > ul > li > a:before {
+	content: "";
+	background: url('../img/arrow.png') no-repeat;
+	width: 10px;
+	height: 10px;
+	display: block;
+	position: absolute;
+	right:12px;
+	top: 14px;
+}	
+
+li:hover ._home_tombol:before,
+li:hover ._organisasi_tombol:before,
+li:hover ._publikasi_tombol:before,
+li:hover ._anggota_tombol:before,
+li:hover ._kontak_tombol:before
+{
+-webkit-transition: all 100ms linear 100ms; /* For Safari 3.1 to 6.0 */
+    transition: all 100ms linear 100ms;
+transform:rotate(90deg);
+-ms-transform:rotate(90deg); /* IE 9 */
+-webkit-transform:rotate(90deg); /* Opera, Chrome, and Safari */
+
+}
+
+.sidebar_admin ul li a:hover {
+	background: #212121;
+}	
+.sidebar_admin ul li a:active {
+	background: #000;
+}	
+
+
+
+.sidebar_admin > ul > li > ul > li > a  {
+	height: 38px;
+	width: 100%;
+	display: block;
+	line-height: 38px;
+	color: #fff;
+	text-decoration: none;
+	text-indent: 44px;
+	border-bottom: #343436 1px solid;
+	border-top: #59595c 1px solid;
+}	
+.sidebar_admin > ul > li > ul {
+	margin: 0 !important;
+	
+}	
+
+/**/
+
+.admin_content_container {
+	display: block;
+	width: 100%;
+}
+
+.admin_control_panel {
+	display: block;
+	float: left;
+	overflow-y: auto;
+	background: #fff;
+}

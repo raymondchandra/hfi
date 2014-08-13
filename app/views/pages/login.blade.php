@@ -4,21 +4,31 @@
 		<div class="login_content">
 			<div class="table">
 				<div class="table_cell">
-					<div class="login_container">
-						<h1 class="logintitle">
-							Login
-						</h1>
-						<div class="form">
-							<form>
-								<input type="text"  placeholder="Username"/>
-								<input type="password" placeholder="Password"/>
-								<input type="button" value="Log In" class="login"/>
-								<input type="checkbox" name="vehicle" value="true" class="rememberme">
-								<span style="line-height: 30px; margin-left: 27px;">Remember Me</span>
-								<a href="#" class="lupa_pass">
-									Lupa Password?
-								</a>
-							</form>
+
+
+						
+						<div class="login_container">
+							<h1 class="logintitle">
+								Login
+							</h1>
+							<div class="form">
+								{{ Form::open(array('url' => 'foo/bar')) }}
+								<form>
+									<input type="text"  placeholder="Username"/>
+									{{ Form::text('nama', Input::old('nama')) }}
+									<input type="password" placeholder="Password"/>
+									{{ Form::password('password', Input::old('password')) }}
+									<!--<input type="button" value="Log In" class="login"/>-->
+									{{ Form::submit('Login') }}
+									<input type="checkbox" name="vehicle" value="true" class="rememberme">
+									<span style="line-height: 30px; margin-left: 27px;">Remember Me</span>
+									<a href="#" class="lupa_pass">
+										Lupa Password?
+									</a>
+								</form>								
+								{{ Form::token() }}
+								{{ Form::close() }}
+							</div>
 						</div>
 					</div>
 				</div>

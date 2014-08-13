@@ -1,5 +1,8 @@
 @extends('layouts.default')
 @section('content')
+
+<div class="container_12">
+
 	<div class="grid_12">
 		<div class="main_content">
 			<div class="side_panel_hfi">
@@ -12,6 +15,7 @@
 					<span class="white_space">&nbsp;</span>
 					<li>
 						<a href="#">Publikasi Ilmiah Populer</a>
+
 					</li>
 				
 				</ul>
@@ -26,4 +30,5 @@
 			</div>
 		</div>
 	</div>
+
 @stop

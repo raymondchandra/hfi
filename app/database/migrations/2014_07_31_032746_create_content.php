@@ -15,8 +15,8 @@ class CreateContent extends Migration {
 		Schema::table('konten', function (Blueprint $table) {
             $table->create();
             $table->increments('id');
-            $table->string('konten');
-            $table->string('judul_konten');
+            $table->longText('konten');
+            $table->string('tipe_konten');
 			$table->dateTime('tanggal_edit');
 			$table->string('edited_by');
 			

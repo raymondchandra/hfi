@@ -18,6 +18,13 @@ class CreateProfile extends Migration {
             $table->increments('id');
             $table->integer('tipe');
             $table->string('kode');
+			$table->string('nama');
+			$table->string('alamat');
+			$table->string('telp');
+			$table->string('fax');
+			$table->string('email');
+			$table->string('link');
+			
         });
 		
 		Schema::table('profile', function (Blueprint $table) {

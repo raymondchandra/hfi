@@ -2,11 +2,8 @@
 @section('content')	
 <div class="grid_12">
 <div class="main_content">
-<<<<<<< HEAD
-	<h1 style="text-align:center;">Registrasi Keanggota</h1>
-=======
-	<h1 style="text-align:center;">Anggota</h1>
->>>>>>> 4f853865ec82bbe9201bddf20de600684baa8599
+	<h1 style="text-align:center;">Registrasi Keanggotaan</h1>
+
 	<p>	
 		Silahkan mengisi formulir di bawah ini untuk registrasi anggota.
 		Pastikan untuk mengisi minimal semua kolom dengan tanda bintang! 
@@ -21,19 +18,19 @@
 	</p>
 	
 	<hr>
-	
-	<table border="0">		
+	<form>
+	<table border="0" class="form_registrasi">		
 		<tr>
 			<td>Nama</td>
 			<td>:</td>
-			<td>{{ Form::text('nama', Input::old('nama')) }} *</td>
-			<td><span id="val_nama" style="color:red"></span></td>			
+			<td>{{ Form::text('nama', Input::old('nama')) }} <span class="red">*</span></td>
+			<td></td>			
 		</tr>
 		<tr>
 			<td><i>Password</i></td>
 			<td>:</td>
-			<td>{{ Form::password('password', Input::old('password')) }} *</td>
-			<td><span id="val_password" style="color:red"></span></td>
+			<td>{{ Form::password('password', Input::old('password')) }} <span class="red">*</span></td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>Registrasi</td>			
@@ -67,9 +64,11 @@
 		<tr>
 			<td>Tempat, tanggal lahir</td>
 			<td>:</td>
-			<td>{{ Form::text('tempatlahir', Input::old('tempatlahir')) }}, 
+			<td>{{ Form::text('tempatlahir', Input::old('tempatlahir')) }}<span class="red">*</span>
+				<div class="clear">
+				</div>
 				{{ Form::select('tanggallahir', array(
-					'0' => 'pilih!',
+					'pilih' => 'pilih!',
 					'1' => '1',
 					'2' => '2',
 					'3' => '3',
@@ -103,22 +102,22 @@
 					'31' => '31'))
 				}}
 				{{ Form::select('bulanlahir',array(
-					'0' => 'pilih!',
-					'januari' => 'Januari',
-					'februari' => 'Februari',
-					'maret' => 'Maret',
-					'april' => 'April',
-					'mei' => 'Mei',
-					'juni' => 'Juni',
-					'juli' => 'Juli',
-					'agustus' => 'Agustus',
-					'september' => 'September',
-					'oktober' => 'Oktober',
-					'november' => 'November',
-					'desember' => 'Desember'))
+					'pilih' => 'pilih!',
+					'1' => 'Januari',
+					'2' => 'Februari',
+					'3' => 'Maret',
+					'4' => 'April',
+					'5' => 'Mei',
+					'6' => 'Juni',
+					'7' => 'Juli',
+					'8' => 'Agustus',
+					'9' => 'September',
+					'10' => 'Oktober',
+					'11' => 'November',
+					'12' => 'Desember'))
 				}}
 				{{ Form::select('tahunlahir', array(
-					'0' => 'pilih!',
+					'pilih' => 'pilih!',
 					'2007' => '2007',
 					'2006' => '2006',
 					'2005' => '2005',
@@ -227,19 +226,19 @@
 					'1902' => '1902',
 					'1901' => '1901',
 					'1900' => '1900'))
-				}} *</td>
+				}} <span class="red">*</span></td>
 			<td><span id="tempattanggallahir" style="color:red"></span></td>
 		</tr>
 		<tr>
 			<td>Jenis kelamin</td>
 			<td>:</td>
-			<td>{{ Form::radio('pria','pria') }}pria    {{ Form::radio('wanita','wanita') }}wanita *</td>
+			<td>{{ Form::radio('gender','pria') }}pria    {{ Form::radio('gender','wanita') }}wanita <span class="red">*</span></td>
 			<td><span id="val_jeniskelamin" style="color:red"></span></td>		
 		</tr>
 		<tr>
 			<td>Tema penelitian	</td>
 			<td>:</td>
-			<td>{{ Form::textarea('temapenelitian', Input::old('temapenelitian')) }} *</td>
+			<td>{{ Form::textarea('temapenelitian', Input::old('temapenelitian')) }} <span class="red">*</span></td>
 			<td><span id="val_temapenelitian" style="color:red"></span></td>			
 		</tr>		
 		<tr>
@@ -247,7 +246,7 @@
 			<td>:</td>
 			<td>
 				{{ Form::select('spesialisasi',array(
-					'0' => 'pilih!',
+					'' => 'pilih!',
 					'astro' => 'astro',
 					'hayati' => 'hayati',
 					'komputasi' => 'komputasi',
@@ -263,13 +262,13 @@
 					'nuklir' => 'nuklir',
 					'parkikel' => 'partikel',
 					'lainlain' => 'lain-lain'))
-				}} *</td>
+				}} <span class="red">*</span></td>
 			<td><span id="val_spesialisasi" style="color:red"></span></td>			
 		</tr>
 		<tr>
 			<td>Pendidikan</td>
 			<td>:</td>
-			<td>{{ Form::textarea('pendidikan', Input::old('pendidikan')) }} *</td>
+			<td>{{ Form::textarea('pendidikan', Input::old('pendidikan')) }} <span class="red">*</span></td>
 			<td><span id="val_pendidikan" style="color:red"></span></td>		
 		</tr>
 		<tr>
@@ -277,34 +276,34 @@
 			<td>:</td>
 			<td>
 				{{ Form::select('profesi',array(
-					'0' => 'pilih!',
+					'' => 'pilih!',
 					'mahasiswa' => 'mahasiswa',
 					'guru' => 'guru',
 					'dosen' => 'dosen',
 					'peneliti' => 'peneliti',
 					'karyawan' => 'karyawan',
 					'lainlain' => 'lain-lain'))
-				}} *</td>			
+				}} <span class="red">*</span></td>			
 			<td><span id="val_profesi" style="color:red"></span></td>			
 		</tr>
 		<tr>
 			<td>Institusi</td>
 			<td>:</td>
-			<td>{{ Form::text('institusi', Input::old('institusi')) }} *</td>
+			<td>{{ Form::text('institusi', Input::old('institusi')) }} <span class="red">*</span></td>
 			<td><span id="val_institusi" style="color:red"></span></td>			
 		</tr>
 		<tr>
 			<td>Alamat kontak</td>
 			<td>:</td>
-			<td>{{ Form::textarea('alamatkontak', Input::old('alamatkontak')) }} *</td>
+			<td>{{ Form::textarea('alamatkontak', Input::old('alamatkontak')) }} <span class="red">*</span></td>
 			<td><span id="val_alamatkontak" style="color:red"></span></td>			
 		</tr>
 		<tr>
 			<td>Kota - kodepos, negara</td>
 			<td>:</td>
-			<td>{{ Form::text('kota', Input::old('kota')) }} - 
-			{{ Form::text('kodepos', Input::old('kodepos')) }} , 
-			{{ Form::text('negara', Input::old('negara')) }} *</td>
+			<td>{{ Form::text('kota', Input::old('kota'), array('class' => 'form_kota')) }} - 
+			{{ Form::text('kodepos', Input::old('kodepos'), array('class' => 'form_kota')) }} , 
+			{{ Form::text('negara', Input::old('negara'), array('class' => 'form_kota')) }} <span class="red">*</span></td>
 			<td><span id="val_kotakodeposnegara" style="color:red"></span></td>
 		</tr>		
 		<tr>
@@ -340,16 +339,73 @@
 			<td></td><!--ga pake span-->		
 		</tr>		
 	</table>
-	{{ Form::submit('Segister') }}
+	{{ Form::submit('Register') }}
 	{{ Form::button('Batal') }}
 	{{ Form::token() . Form::close() }}
-<<<<<<< HEAD
-	<p>
-		*) harus diisi!
-	</p>
-=======
-	
->>>>>>> 4f853865ec82bbe9201bddf20de600684baa8599
+	</form>
+	<script>
+		jQuery.validator.setDefaults({
+		  debug: true,
+		  success: "valid"
+		});
+		$( "form" ).validate({
+		  rules: {
+			nama: {
+			  required: true
+			},
+			password: {
+			  required: true
+			},
+			tempatlahir: {
+			  required: true
+			},
+			tanggallahir: {
+			  required: true,
+				number: true
+			},
+			bulanlahir: {
+			  required: true,
+				number: true
+			},
+			tahunlahir: {
+			  required: true,
+				number: true
+			},
+			gender: {
+			  required: true
+			},
+			temapenelitian: {
+			  required: true
+			},
+			spesialisasi: {
+			  required: true
+			},
+			pendidikan: {
+			  required: true
+			},
+			profesi: {
+			  required: true
+			},
+			institusi: {
+			  required: true
+			},
+			alamatkontak: {
+			  required: true
+			},
+			kota: {
+			  required: true
+			},
+			kodepos: {
+			  required: true
+			},
+			negara: {
+			  required: true
+			}
+			
+		  }
+		});
+	</script>
+
 	
 	<!-- PAKE FORM HTML BIASA-->
 	<!--<h1 style="text-align:center;">Anggota</h1>
@@ -704,7 +760,7 @@
 	</form>
 	-->
 	<p>
-		*) harus diisi!
+		<span class="red">*</span> ) harus diisi!
 	</p>
 
 	<hr>
@@ -722,10 +778,7 @@
 	<p style="text-align:center;">
 	{{ Form::radio('setuju','setuju') }}setuju    {{ Form::radio('tidaksetuju','tidaksetuju') }}tidak setuju
 	</p>
-<<<<<<< HEAD
-=======
-	
->>>>>>> 4f853865ec82bbe9201bddf20de600684baa8599
+
 	</div>
 	</div>
 @stop

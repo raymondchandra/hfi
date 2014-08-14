@@ -99,3 +99,11 @@ Route::get('pascaregistrasi',function()
 	return View::make('pages.pascaregistrasi');
 }
 );*/
+
+
+//route ke halaman ketentuananggota -> redirect ke folder pages, file ketentuananggota.blade.php
+Route::get('adminpanel', function()
+{
+	return View::make('pages.adminpanel');
+}
+);

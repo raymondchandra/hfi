@@ -14,9 +14,9 @@ class AccountController extends BaseController {
 		{
 			$user = Account::where('username', '=', $username)->first();
 			
-			echo($user->status);
+			//echo($user);
 			
-			if($user->status == 1)
+			if($user->status_aktif == 1)
 			{
 				echo("success");
 			}

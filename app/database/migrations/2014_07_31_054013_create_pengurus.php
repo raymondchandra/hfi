@@ -19,8 +19,10 @@ class CreatePengurus extends Migration {
             $table->string('file_path');
 			$table->string('uploaded_by');
 			$table->dateTime('tanggal_upload');
+			$table->integer('id_cabang')->unsigned();
 			
 			$table->foreign('uploaded_by')->references('id')->on('profile');
+			$table->foreign('id_cabang')->references('id')->on('cabang');
         });
 	}
 

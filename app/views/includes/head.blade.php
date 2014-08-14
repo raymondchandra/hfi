@@ -8,5 +8,6 @@
 	
 	<script type="text/javascript" src="assets/js/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
 
 	

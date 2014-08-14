@@ -309,7 +309,7 @@
 		<tr>
 			<td>Telepon / fax</td>
 			<td>:</td>
-			<td>{{ Form::text('telepon', Input::old('telepon')) }} - 
+			<td>{{ Form::text('telepon', Input::old('telepon')) }}<span class="red">*</span> - 
 			{{ Form::text('telepon2', Input::old('telepon')) }} / 
 			{{ Form::text('fax', Input::old('fax')) }}</td>
 			<td><span id="val_teleponfax" style="color:red"></span></td>
@@ -323,7 +323,7 @@
 		<tr>
 			<td>Surat elektronik</td>
 			<td>:</td>
-			<td>{{ Form::text('email', Input::old('email')) }}</td>
+			<td>{{ Form::text('email', Input::old('email')) }}<span class="red">*</span></td>
 			<td></td><!--ga pake span-->		
 		</tr>
 		<tr>
@@ -339,10 +339,7 @@
 			<td></td><!--ga pake span-->		
 		</tr>		
 	</table>
-	{{ Form::submit('Register') }}
-	{{ Form::button('Batal') }}
-	{{ Form::token() . Form::close() }}
-	</form>
+	
 	<script>
 		jQuery.validator.setDefaults({
 		  debug: true,
@@ -400,6 +397,14 @@
 			},
 			negara: {
 			  required: true
+			},
+			telepon: {
+			  required: true,
+				number: true
+			},
+			email: {
+			  required: true,
+				email: true
 			}
 			
 		  }
@@ -760,7 +765,7 @@
 	</form>
 	-->
 	<p>
-		<span class="red">*</span> ) harus diisi!
+		<span class="red" style="position: relative; right:0; top: 0;">*</span> ) harus diisi!
 	</p>
 
 	<hr>
@@ -776,8 +781,35 @@
 	<!-- -->
 	{{ Form::open(array('url' => 'foo/bar')) }}	<!-- default post-->	
 	<p style="text-align:center;">
-	{{ Form::radio('setuju','setuju') }}setuju    {{ Form::radio('tidaksetuju','tidaksetuju') }}tidak setuju
+		<div style="text-align: center;" class="tempat_radio">
+			{{ Form::radio('persetujuan','setuju')}}setuju    {{ Form::radio('persetujuan','tidaksetuju') }}tidak setuju
+		</div>
+	
 	</p>
+		<div style="width: 100%; text-align: center;" class="de_tombol">
+			{{ Form::submit('Register', array('class' => 'regreg reg_submit_off')) }}
+			{{ Form::button('Batal') }}
+			{{ Form::token() . Form::close() }}
+			<script>
+				
+					// set hidden form field with selected timeslot
+					$('input[name="persetujuan"]').live("click", (function () {
+						var valu = $(this).val();
+						if(valu === 'setuju'){
+							$('.regreg').removeClass('reg_submit_off');
+							$('.regreg').addClass('reg_submit_on');
+						}else{
+							$('.regreg').addClass('reg_submit_off');
+							$('.regreg').removeClass('reg_submit_on');
+						}
+						
+					}));
+					
+				
+			</script>
+		</div>
+
+	</form>
 
 	</div>
 	</div>

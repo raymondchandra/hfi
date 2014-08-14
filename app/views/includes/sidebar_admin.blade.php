@@ -38,7 +38,7 @@
 			</li>
 			
 			<li>
-				<a href="#">Kegiatan</a>
+				<a href="#" class="no_arrow">Kegiatan</a>
 			</li>
 			
 			<li>
@@ -75,7 +75,7 @@
 			</li>
 			
 			<li>
-				<a href="#">e-Berkas</a>
+				<a href="#" class="no_arrow">e-Berkas</a>
 			</li>
 			
 			<li>

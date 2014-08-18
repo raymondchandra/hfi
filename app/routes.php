@@ -109,3 +109,9 @@ Route::get('adminpanel', function()
 	return View::make('pages.adminpanel');
 }
 );
+//route ke halaman profileanggota -> redirect ke folder pages, file profileanggota.blade.php
+Route::get('profileanggota', function()
+{
+	return View::make('pages.profileanggota');
+}
+);

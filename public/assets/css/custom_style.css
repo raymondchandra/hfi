@@ -488,6 +488,51 @@ label.error {
 }
 
 /*----------------------------------------------------------------------------------------------------------
+-------- Profile Page -------------------------------------- Profile Page ----------------------------------
+----------------------------------------------------------------------------------------------------------*/
+.foto_pp_container {
+	width: 200px;
+	display: block;
+	float: left;
+	
+}
+
+.foto_pp_container img {
+	display: block;
+}
+
+.foto_pp_container a {
+	display: block;
+	text-decoration: none;
+	text-indent: 20px;
+	color: #000;
+	margin-top:3px;
+}
+
+.foto_pp_container a:hover {
+	display: block;
+	text-decoration: none;
+	text-indent: 20px;
+	color: #00e;
+	margin-top:3px;
+}
+
+.foto_pp_container a:before {
+	content:">";
+	display: block;
+	width: 20px;
+	height: 19px;
+	line-height:17px;
+	position: absolute;
+	margin-left: -18px;
+	color: #0000ee;
+}
+
+.label_pp {
+	width: 150px;
+}
+
+/*----------------------------------------------------------------------------------------------------------
 -------- Admin Page -------------------------------------- Admin Page --------------------------------------
 ----------------------------------------------------------------------------------------------------------*/
 

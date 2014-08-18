@@ -32,7 +32,7 @@ Route::get('/registrasi', ['as' => 'registrasi', 'uses' => 'AccountController@vi
 Route::group(['prefix' => 'user', 'before' => 'auth'], function () {
 Route::get('/berkas', ['as' => 'berkas', 'uses' => 'BerkasController@view_index']);	
 	//route sementara buat setelah login ---->> ntar masuk ke route ini lewat nama profile di bagian kanan atas 
-	Route::get('/')
+	//Route::get('/')
 });
 
 //admin route

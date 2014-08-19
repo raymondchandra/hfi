@@ -14,11 +14,17 @@ class AccountController extends BaseController {
 		{
 			$user = Account::where('username', '=', $username)->first();
 			
-			//echo($user);
 			
 			if($user->status_aktif == 1)
 			{
-				echo("success");
+				if($user->role == 0)
+				{
+					echo("success user normal");
+				}
+				else
+				{
+					echo("success user admin");
+				}
 			}
 			else
 			{

@@ -21,3 +21,8 @@ $('body').on('click','#home_misi',function(){
 $('body').on('click','#home_regulasi',function(){
 	 $('.admin_control_panel').load('admin/home/regulasi'); 
 });
+
+
+$('body').on('click','#anggota_aturan',function(){
+	 $('.admin_control_panel').load('admin/anggota/aturan');
+});

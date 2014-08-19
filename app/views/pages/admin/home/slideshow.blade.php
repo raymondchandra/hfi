@@ -1,26 +1,33 @@
-<div class='admin_title'>Regulasi</div>
-<div class='regulasi_container'>
-</div>
-	<div id='list_regulasi'>
-		<ul>
-			<li><a href='javascript:void(0)'>List1</a><div class='delete'><a href='javascript:void(0)'>x</a></div></li>
-			<li><a href='javascript:void(0)'>List2</a><div class='delete'><a href='javascript:void(0)'>x</a></div></li>
-			<li><a href='javascript:void(0)'>List3</a><div class='delete'><a href='javascript:void(0)'>x</a></div></li>
-			<li><a href='javascript:void(0)'>List4</a><div class='delete'><a href='javascript:void(0)'>x</a></div></li>
-		</ul>
-		<input type='button' id='unggah' value='Unggah'></input>
+<div class='admin_title'>Slideshow</div>
 
-		<input type='file' id='upload_file' style="display:none;"></input>
-	</div>
-	<div id='preview_pdf'>
-		<object data="assets/img/Chapter_4.pdf" type="application/pdf" width="100%" class="pdf_viewer"></object>
-	</div>
+<div class='slide_container'>
+	<ul>
+		<li>
+			<div><img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/></div><input type='text' placeholder='caption 1'> <input type='button' /><input type='button' />
+		</li>
+		<li>
+			<div><img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/> <input type='text' placeholder='caption 2'> <input type='button' /><input type='button' />
+		</li>
+		<li>
+			<div><img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/> <input type='text' placeholder='caption 3'> <input type='button' /><input type='button' />
+		</li>
+		<li>
+			<div><img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/> <input type='text' placeholder='caption 4'> <input type='button' /><input type='button' />
+		</li>
+		<li>
+			<div><img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/> <input type='text' placeholder='caption 5'> <input type='button' /><input type='button' />
+		</li>
+	</ul>
+</div>
 
 
 
 <script>
+$('body').on('mouseenter','.slide_image',function(){
+	$('.change_photo').fadeIn(10);
+});
 
-$('#unggah').click(function(){
-	$('#upload_file').click();
+$('body').on('mouseleave','.slide_image',function(){
+	$('.change_photo').fadeOut(100);
 });
 </script>

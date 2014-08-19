@@ -1,5 +1,7 @@
 @extends('layouts.adminlayout')
 @section('content')
+
+
 	Lorem ipsum dolor sit amet, in cibo duis sale sit, in ludus virtute sea. In odio officiis mel, in illum augue vivendo nam, alterum scripserit eu sea. Mel nobis delicata suavitate ea, sed nemore doctus volutpat ei. Solum copiosae no sea, justo omittam appareat at mel. Sea dicat semper suscipiantur in, sed et viderer adolescens disputationi.
 
 Duo sumo albucius et, ad eam alii nibh. Mollis impetus apeirian ad vel, tritani diceret consetetur mei eu. Mea ut eros mollis consetetur, in sit liber patrioque. Eum ex fierent electram, ei qui unum libris. Ei graece senserit efficiendi eum, cu diceret vulputate disputationi usu, accusata conceptam at vel.

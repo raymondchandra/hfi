@@ -1,0 +1,22 @@
+.slide_container{
+	margin-left:50px;
+	margin-top:20px;
+
+}
+
+.slide_container ul li{
+	height: 200px;
+}
+
+.slide_container ul li img{
+	width:150px;
+	height:150px;
+	margin-right: 15px;
+}
+
+.slide_container ul li input[type='text']{
+	width:500px;
+	height:30px;
+	font-size: 14px;
+	margin-right: 15px;
+}

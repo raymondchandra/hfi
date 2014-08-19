@@ -35,7 +35,7 @@ class CreateProfile extends Migration {
 			$table->date('tanggal_lahir');
 			$table->string('tempat_lahir');
 			$table->tinyInteger('gender');
-			$table->dateTime('tanggal_revisi');
+			$table->date('tanggal_revisi');
             $table->integer('id_cabang')->unsigned();
             $table->string('tema_penelitian');
 			$table->string('spesialisasi');

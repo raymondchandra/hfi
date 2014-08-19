@@ -20,6 +20,7 @@ class CreateAuth extends Migration {
 			$table->dateTime('batas_aktif');
 			$table->string('status_aktif');
 			$table->string('rememberToken')->nullable();
+			$table->tinyInteger('role');
         });
 	}
 

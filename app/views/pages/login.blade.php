@@ -8,7 +8,7 @@
 
 						
 						<div class="login_container">
-							<div class="alert_wrong_pass" style="display: none;">
+							<div class="alert_wrong_pass">
 								Password Salah! Mohon Coba Kembali
 							</div>
 							

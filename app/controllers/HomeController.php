@@ -5,13 +5,13 @@ class HomeController extends BaseController {
 	public function view_index()
 	{
 		//bikin variable
-		$deskripsi_selamat_datang = $this->get_welcome();
+		$deskripsi_selamat_datang = $this->get_konten('welcome');
 		
-		$tentang_hfi = $this->get_tentang();
+		$tentang_hfi = $this->get_konten('tentang');
 		
-		$visi_hfi = $this->get_visi();
+		$visi_hfi = $this->get_konten('visi');
 		
-		$misi_hfi = $this->get_misi();
+		$misi_hfi = $this->get_konten('misi');
 		
 		return View::make('pages.home', compact('deskripsi_selamat_datang', 'tentang_hfi', 'visi_hfi', 'misi_hfi'));
 		
@@ -22,27 +22,16 @@ class HomeController extends BaseController {
 		//);
 	}
 	
-	public function get_welcome()
+	public static function get_konten($tipe)
 	{
-		$konten_welcome = Konten::where('tipe_konten', '=', 'welcome')->first()->konten;
-		return $konten_welcome;
-	}
-	
-	public function get_tentang()
-	{
-		$konten_tentang = Konten::where('tipe_konten', '=', 'tentang')->first()->konten;
-		return $konten_tentang;
-	}
-	
-	public function get_visi()
-	{
-		$konten_visi = Konten::where('tipe_konten', '=', 'visi')->first()->konten;
-		return $konten_visi;
-	}
-	
-	public function get_misi()
-	{
-		$konten_misi = Konten::where('tipe_konten', '=', 'misi')->first()->konten;
-		return $konten_misi;
+		$konten_welcome = Konten::where('tipe_konten', '=', $tipe)->first();
+		if(count($konten_welcome) != 0)
+		{
+			
+			return $konten_welcome->konten;
+		}else
+		{
+			return "";
+		}
 	}
 }

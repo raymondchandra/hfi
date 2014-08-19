@@ -60,10 +60,10 @@
 			</li>
 			
 			<li>
-				<a href="#" class="_anggota_tombol">Anggota</a>
+				<a href="javascript:void(0)" class="_anggota_tombol">Anggota</a>
 				<ul style="display: none;" class="_anggota_list">
-					<li>
-						<a href="#">Aturan Menjadi Anggota</a>
+					<li>					
+						<a href="javascript:void(0)" id='anggota_aturan'>Aturan Menjadi Anggota</a>
 					</li>
 					<li>
 						<a href="#">Daftar Anggota</a>

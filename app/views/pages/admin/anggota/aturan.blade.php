@@ -1,7 +1,7 @@
-<div class='admin_title'>Welcome Message</div>
+<div class='admin_title'>Aturan Menjadi Anggota HFI</div>
 <div class='editor_container'>
-<textarea name="textarea" class="editor">
-{{$deskripsi_selamat_datang}}
+<textarea name="textarea" class="editor"> 
+
 </textarea>
 </div>
 <input type='button' id='submit_change' value='Rubah'></input>

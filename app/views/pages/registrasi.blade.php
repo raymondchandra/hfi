@@ -21,16 +21,22 @@
 	<form>
 	<table border="0" class="form_registrasi">		
 		<tr>
-			<td>Nama</td>
+			<td>Username</td>
 			<td>:</td>
-			<td>{{ Form::text('nama', Input::old('nama')) }} <span class="red">*</span></td>
-			<td></td>			
-		</tr>
+			<td>{{ Form::text('username', Input::old('username')) }} <span class="red">*</span></td>
+			<td></td>
+		</tr>		
 		<tr>
 			<td><i>Password</i></td>
 			<td>:</td>
 			<td>{{ Form::password('password', Input::old('password')) }} <span class="red">*</span></td>
 			<td></td>
+		</tr>
+		<tr>
+			<td>Nama</td>
+			<td>:</td>
+			<td>{{ Form::text('nama', Input::old('nama')) }} <span class="red">*</span></td>
+			<td></td>			
 		</tr>
 		<tr>
 			<td>Registrasi</td>			

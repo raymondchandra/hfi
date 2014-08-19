@@ -22,26 +22,31 @@
 			</div>
 			
 			<div class="content_hfi" id="contentfield">
+				
+				<h1> Cari Member</h1>
 				{{ Form::open(array('url' => 'foo/bar')) }}	<!-- default post-->	
-				<table border="0">
+						
+					<table border="0">
+						<tr>
+							<td>
+							{{ Form::text('katakunci', Input::old('katakunci'), array('style' => 'width:300px')) }}
+							</td>
+							<td>
+							{{ HTML::image('assets/img/lupicon.png') }}
+							</td>
+					</table>
+											
+				<h4>Pencarian Lengkap</h4>
+				<table border="0">					
 					<tr>
-						<td><b>Kata kunci</td>			
+						<td>Status</td>
+						<td>:</td>
+						<td>{{ Form::checkbox('anggotaaktif','anggotaaktif') }} Anggota Aktif</td>
+					</tr>						
+					<tr>
+						<td>Cabang</td>
 						<td>:</td>
 						<td>
-							{{ Form::text('katakunci', Input::old('katakunci')) }}
-						</td>
-					</tr>	
-					<tr>
-						<td></td>
-						<td></td>
-						<td>(misal : nama, tema penelitian, pendidikan, institusi, dll)</td>
-					</tr>	
-					<tr>
-						<td><b>Status</b></td>
-						<td>:</td>
-						<td>
-							{{ Form::checkbox('anggotaaktif','anggotaaktif') }}anggota aktif,				
-							Cabang 
 							{{ Form::select('cabang', array(
 								'0' => 'pilih!',
 								'aceh' => 'Aceh',
@@ -64,11 +69,11 @@
 								'luarnegeri' => 'luar negeri'))
 							}}				
 						</td>
-					</tr>	
+					</tr>
 					<tr>
-						<td><b>Jenis kelamin</b></td>
+						<td>Jenis Kelamin</td>
 						<td>:</td>
-						<td>{{ Form::radio('pria','pria') }}pria    {{ Form::radio('wanita','wanita') }}wanita</td>			
+						<td>{{ Form::radio('jeniskelamin','pria') }}pria    {{ Form::radio('jeniskelamin','wanita') }}wanita</td>			
 					</tr>	
 					<tr>
 						<td>Spesialisasi</td>
@@ -107,9 +112,7 @@
 								'lainlain' => 'lain-lain'))
 							}}</td>						
 					</tr>		
-				</table>
-				{{ Form::submit('Cari') }} atau 
-				{{ Form::button('Batal') }}
+				</table>				
 				{{ Form::token() . Form::close() }}
 			</div>
 		</div>

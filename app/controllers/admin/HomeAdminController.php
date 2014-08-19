@@ -37,7 +37,7 @@ class HomeAdminController extends BaseController {
 	
 	public function view_regulasi()
 	{
-		return View::make('pages.admin.home.regulasi');
+		return View::make('pages.admin.home.regulasi'); 
 	}
 	
 	

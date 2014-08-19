@@ -7,7 +7,7 @@
 					<li>
 						<a href="javascript:void(0)" id='home_slideshow'>Slideshow</a>
 					</li>
-					<li>
+					<li> 
 						<a href="javascript:void(0)" id='home_welcome'>Welcome Message</a>
 					</li>
 					<li>

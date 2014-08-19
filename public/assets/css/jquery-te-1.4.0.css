@@ -417,7 +417,7 @@
 }
 
 /* title box */
-.jqte_title {
+.jqte_title { 
 	display:none;
 	position:absolute;
 	z-index:9999;

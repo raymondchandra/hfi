@@ -19,5 +19,5 @@ $('body').on('click','#home_misi',function(){
 });
 
 $('body').on('click','#home_regulasi',function(){
-	 $('.admin_control_panel').load('admin/home/regulasi');
+	 $('.admin_control_panel').load('admin/home/regulasi'); 
 });

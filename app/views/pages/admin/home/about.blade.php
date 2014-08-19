@@ -6,7 +6,7 @@
 </div>
 <input type='button' id='submit_change' value='Rubah'></input>
 
-<script>
+<script> 
 	$('.editor').jqte();
 	
 	$('#submit_change').click(function(){

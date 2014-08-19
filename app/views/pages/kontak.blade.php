@@ -33,7 +33,7 @@
 				</div>
 			</div>
 		</div>
-
+ 
 			<?php 
 					use Gregwar\Captcha\CaptchaBuilder;
 

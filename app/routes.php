@@ -51,6 +51,8 @@ Route::group(['prefix' => 'admin', 'before' => 'auth'], function () {
 	//Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index']);
 });
 
+//Route::get('/admin_slideshow', ['as' => 'admin_slideshow', 'uses' => 'HomeAdminController@view_index']);
+
 
 Route::get('/adminpanel', function()
 {

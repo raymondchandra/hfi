@@ -2,25 +2,25 @@
 	<nav class="sidebar_admin">
 		<ul>
 			<li>
-				<a href="#" class="_home_tombol">Home</a>
+				<a href="javascript:void(0)" class="_home_tombol">Home</a>
 				<ul style="display: none;" class="_home_list">
 					<li>
-						<a href="#">Slideshow</a>
+						{{HTML::linkRoute('admin.home','Slideshow')}}
 					</li>
 					<li>
-						<a href="#">Welcome Message</a>
+						<a href="admin_welcome_message">Welcome Message</a>
 					</li>
 					<li>
-						<a href="#">Tentang HFI</a>
+						<a href="admin_tentang_hfi">Tentang HFI</a>
 					</li>
 					<li>
-						<a href="#">Visi</a>
+						<a href="admin_visi">Visi</a>
 					</li>
 					<li>
-						<a href="#">Misi</a>
+						<a href="admin_misi">Misi</a>
 					</li>
 					<li>
-						<a href="#">Regulasi</a>
+						<a href="admin_regulasi">Regulasi</a>
 					</li>
 				</ul>
 			</li>

@@ -1,0 +1,27 @@
+.regulasi_container{
+	height:25px;
+}
+
+#list_regulasi{
+	margin-top;10px;
+	width:300px;
+	float:left;
+	display:inline;
+}
+
+#preview_pdf{
+	margin-top;10px;
+	float:left;
+	display:inline;
+	width: 700px;
+}
+
+#unggah{
+	width:100%;
+}
+
+.pdf_viewer{
+	margin-left:40px;
+	height:500px;;
+
+}

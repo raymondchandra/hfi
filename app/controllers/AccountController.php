@@ -35,10 +35,29 @@ class AccountController extends BaseController {
 					
 					$siteUrl = "//".$profile->situs;
 					
+					$foto_profile = $profile->foto_profile;
+					$nama = $profile->nama;
+					$id = $profile->id;
+					$revisi = $profile->tanggal_revisi;
+					$penelitian = $profile->tema_penelitian;
+					$spesialisasi = $profile->spesialisasi;
+					$profesi = $profile->profesi;
+					$institusi = $profile->institusi;
+					$pendidikan = $profile->pendidikan;
+					$alamat = $profile;
+					$telepon = $profile->telepon;
+					$hp = $profile->hp;
+					$fax = $profile->fax;
+					$email = $profile->email;
+					$situs_show = $profile->situs;
+					$keterangan = $profile->keterangan;
+					
 					$tanggal_aktif = $user->batas_aktif;
-					$result = array('profile' => $profile, 'cabang' => $cabang->nama, 'status_aktif' => $status_aktif, 'batas_aktif' => $tanggal_aktif, 'siteUrl' => $siteUrl);
+					$result = array('foto' => $foto_profile, 'nama' => $nama, 'id' => $id, 'revisi' => $revisi, 'penelitian' => $penelitian, 'spesialisasi' => $spesialisasi, 'profesi' => $profesi, 'institusi'=> $institusi, 'pendidikan' => $pendidikan, 'telepon' => $telepon, 'hp' => $hp, 'fax' => $fax, 'email' => $email, 'situs_show' => $situs_show, 'keterangan' => $keterangan, 'cabang' => $cabang->nama, 'status_aktif' => $status_aktif, 'batas_aktif' => $tanggal_aktif, 'siteUrl' => $siteUrl);
 					//var_dump($result);
-					return View::make('pages.profileanggota')->with('data', $result);
+					
+					Session::put('data', $result);
+					return Redirect::to('/profile')->with('data', $result);
 					
 				}
 				else
@@ -48,12 +67,12 @@ class AccountController extends BaseController {
 			}
 			else
 			{
-				echo("need to re activated");
+				return Redirect::to('/login')->with('message', "akun ini memerlukan perpanjangan aktivasi.");
 			}
 		}
 		else
 		{
-			echo("fail");
+			return Redirect::to('/login')->with('message', 'username dan password tidak tepat.');
 		}
 		
 		

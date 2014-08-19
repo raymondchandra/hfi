@@ -9,7 +9,9 @@
 						
 						<div class="login_container">
 							<div class="alert_wrong_pass">
-								Password Salah! Mohon Coba Kembali
+								@if(Session::has('message'))
+									<p class="alert">{{ Session::get('message') }}</p>
+								@endif
 							</div>
 							
 							<h1 class="logintitle">

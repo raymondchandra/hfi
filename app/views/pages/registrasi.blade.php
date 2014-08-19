@@ -803,7 +803,7 @@
 							$('.regreg').removeClass('reg_submit_on');
 						}
 						
-					}));
+					})); 
 					
 				
 			</script>

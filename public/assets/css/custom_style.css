@@ -236,9 +236,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5252ac', end
 
 
 
-/*------------------------
--------- Login Page ------
-------------------------*/
+/*----------------------------------------------------------------------------------------------------------
+-------- Login Page -------------------------------------- Login Page --------------------------------------
+----------------------------------------------------------------------------------------------------------*/
 
 .table {
 	width: 100%;
@@ -274,7 +274,8 @@ color: #fff;
 
 .login_container {
 	background-color: #fff;
-	overflow: hidden;
+	/*overflow: hidden;*/
+	position: relative;
 }
 
 .login_container form{
@@ -321,6 +322,21 @@ margin-top: 10px;
 	margin-bottom: 30px;position: absolute;
 margin-top: 9px;
 margin-left: 26px;
+}
+
+.alert_wrong_pass {
+	background: #D9262E;
+	position: absolute;
+	top: -50px;
+	left: 0;
+	line-height: 40px;
+	color: #fff;
+	width: 100%;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
 }
 
 

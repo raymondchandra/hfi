@@ -19,7 +19,25 @@ class AccountController extends BaseController {
 			{
 				if($user->role == 0)
 				{
-					echo("success user normal");
+					$authId = $user->id;
+					$profile = Anggota::where('auth_id', '=' , $authId)->first();
+					$cabang = Cabang::where('id', '=' , $profile->id_cabang)->first();
+					if($user->status_aktif == 1)
+					{
+						$status_aktif = "Anggota Aktif";
+					}
+					else
+					{
+						$status_aktif = "Anggota Tidak Aktif";
+					}
+					
+					$siteUrl = "//".$profile->situs;
+					
+					$tanggal_aktif = $user->batas_aktif;
+					$result = array('profile' => $profile, 'cabang' => $cabang->nama, 'status_aktif' => $status_aktif, 'batas_aktif' => $tanggal_aktif, 'siteUrl' => $siteUrl);
+					//var_dump($result);
+					return View::make('pages.profileanggota')->with('data', $result);
+					
 				}
 				else
 				{

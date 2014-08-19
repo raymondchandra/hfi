@@ -1,26 +1,26 @@
- <!-- sidebar nav -->
+<!-- sidebar nav -->
 	<nav class="sidebar_admin">
 		<ul>
 			<li>
-				<a href="#" class="_home_tombol">Home</a>
+				<a href="javascript:void(0)" class="_home_tombol">Home</a>
 				<ul style="display: none;" class="_home_list">
 					<li>
-						<a href="#">Slideshow</a>
+						<a href="javascript:void(0)" id='home_slideshow'>Slideshow</a>
+					</li>
+					<li> 
+						<a href="javascript:void(0)" id='home_welcome'>Welcome Message</a>
 					</li>
 					<li>
-						<a href="#">Welcome Message</a>
+						<a href="javascript:void(0)" id='home_about'>Tentang HFI</a>
 					</li>
 					<li>
-						<a href="#">Tentang HFI</a>
+						<a href="javascript:void(0)" id='home_visi'>Visi</a>
 					</li>
 					<li>
-						<a href="#">Visi</a>
+						<a href="javascript:void(0)" id='home_misi'>Misi</a>
 					</li>
 					<li>
-						<a href="#">Misi</a>
-					</li>
-					<li>
-						<a href="#">Regulasi</a>
+						<a href="javascript:void(0)" id='home_regulasi'>Regulasi</a>
 					</li>
 				</ul>
 			</li>
@@ -38,7 +38,7 @@
 			</li>
 			
 			<li>
-				<a href="#">Kegiatan</a>
+				<a href="#" class="no_arrow">Kegiatan</a>
 			</li>
 			
 			<li>
@@ -75,7 +75,7 @@
 			</li>
 			
 			<li>
-				<a href="#">e-Berkas</a>
+				<a href="#" class="no_arrow">e-Berkas</a>
 			</li>
 			
 			<li>

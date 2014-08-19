@@ -4,3 +4,8 @@
 @import 'reset.css';
 @import 'text.css';
 @import 'custom_style.css';
+
+@import 'contact.css';
+@import 'jquery-te-1.4.0.css';
+@import 'editor.css';
+@import 'admin.css'; 

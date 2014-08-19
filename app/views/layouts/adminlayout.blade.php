@@ -24,6 +24,7 @@
 
 
 </div>
+<script src="assets/js/admin/admin.js"></script>
 <script type="text/javascript">
 		
 		$('body').css('overflow','hidden');

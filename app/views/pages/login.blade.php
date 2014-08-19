@@ -8,6 +8,10 @@
 
 						
 						<div class="login_container">
+							<div class="alert_wrong_pass">
+								Password Salah! Mohon Coba Kembali
+							</div>
+							
 							<h1 class="logintitle">
 								Login
 							</h1>

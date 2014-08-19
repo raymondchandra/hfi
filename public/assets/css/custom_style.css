@@ -236,9 +236,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5252ac', end
 
 
 
-/*------------------------
--------- Login Page ------
-------------------------*/
+/*----------------------------------------------------------------------------------------------------------
+-------- Login Page -------------------------------------- Login Page --------------------------------------
+----------------------------------------------------------------------------------------------------------*/
 
 .table {
 	width: 100%;
@@ -274,7 +274,8 @@ color: #fff;
 
 .login_container {
 	background-color: #fff;
-	overflow: hidden;
+	/*overflow: hidden;*/
+	position: relative;
 }
 
 .login_container form{
@@ -321,6 +322,21 @@ margin-top: 10px;
 	margin-bottom: 30px;position: absolute;
 margin-top: 9px;
 margin-left: 26px;
+}
+
+.alert_wrong_pass {
+	background: #D9262E;
+	position: absolute;
+	top: -50px;
+	left: 0;
+	line-height: 40px;
+	color: #fff;
+	width: 100%;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
 }
 
 
@@ -442,12 +458,19 @@ margin-left: 26px;
 ----------------------------------------------------------------------------------------------------------*/
 
 .form_registrasi tr{
-	margin-bottom: 7px;
+	margin-bottom: 10px;
 	display: block;
+	width: 100%;
+	float: left;
 }
 
 .form_registrasi tr td:first-child{
 	width: 143px;
+}
+
+.form_registrasi tr td{
+	position: relative;
+	float: left;
 }
 
 .form_registrasi input[type="text"], .form_registrasi input[type="password"] {
@@ -455,12 +478,74 @@ margin-left: 26px;
 }
 
 .red {
-	color: #f00;
+	color: #f00;position: absolute;
+right: 0;right: -5px;
+top: -3px;
 }
 
 label.error {
 	background: #ea6153;
 	color: #fff;
+	border-radius: 5px;
+}
+
+.de_tombol input[type="submit"], .de_tombol button{
+	height:30px;
+}
+
+.reg_submit_off {
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+.reg_submi_on {
+	
+	opacity: 1;
+}
+
+/*----------------------------------------------------------------------------------------------------------
+-------- Profile Page -------------------------------------- Profile Page ----------------------------------
+----------------------------------------------------------------------------------------------------------*/
+.foto_pp_container {
+	width: 200px;
+	display: block;
+	float: left;
+	
+}
+
+.foto_pp_container img {
+	display: block;
+}
+
+.foto_pp_container a {
+	display: block;
+	text-decoration: none;
+	text-indent: 20px;
+	color: #000;
+	margin-top:3px;
+}
+
+.foto_pp_container a:hover {
+	display: block;
+	text-decoration: none;
+	text-indent: 20px;
+	color: #00e;
+	margin-top:3px;
+}
+
+.foto_pp_container a:before {
+	content:">";
+	display: block;
+	width: 20px;
+	height: 19px;
+	line-height:17px;
+	position: absolute;
+	margin-left: -18px;
+	color: #0000ee;
+}
+
+.label_pp {
+	width: 150px;
 }
 
 /*----------------------------------------------------------------------------------------------------------
@@ -570,6 +655,11 @@ label.error {
 	right:12px;
 	top: 14px;
 }	
+
+.no_arrow:before {
+	content: "";
+	background: none !important;
+}
 
 li:hover ._home_tombol:before,
 li:hover ._organisasi_tombol:before,

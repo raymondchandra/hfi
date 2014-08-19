@@ -2,7 +2,6 @@
 <html>
 <head>
 	@include('includes.head')
-	 s
 </head>
 <body>
 <div class="container">

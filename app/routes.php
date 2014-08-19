@@ -68,7 +68,8 @@ Route::get('/adminpanel', function()
 Route::post('/signin', ['as' => 'signin', 'uses' => 'AccountController@postSignIn']);
 Route::post('/regis', ['as' => 'regis', 'uses' => 'AccountController@postRegis']);
 
-
+//admin update konten
+Route::post('/editWelcome', ['as' => 'editWelcome', 'uses' => 'HomeAdminController@update_welcome']);
 
 
 

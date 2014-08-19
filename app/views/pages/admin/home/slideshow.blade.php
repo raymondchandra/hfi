@@ -3,19 +3,19 @@
 <div class='slide_container'>
 	<ul>
 		<li>
-			<img src="#" /> <input type='button' class='change_photo'/><input type='text' placeholder='caption 1'> <input type='button' /><input type='button' />
+			<div><img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/></div><input type='text' placeholder='caption 1'> <input type='button' /><input type='button' />
 		</li>
 		<li>
-			<img src="#" /> <input type='text' placeholder='caption 2'> <input type='button' /><input type='button' />
+			<div><img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/> <input type='text' placeholder='caption 2'> <input type='button' /><input type='button' />
 		</li>
 		<li>
-			<img src="#" /> <input type='text' placeholder='caption 3'> <input type='button' /><input type='button' />
+			<div><img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/> <input type='text' placeholder='caption 3'> <input type='button' /><input type='button' />
 		</li>
 		<li>
-			<img src="#" /> <input type='text' placeholder='caption 4'> <input type='button' /><input type='button' />
+			<div><img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/> <input type='text' placeholder='caption 4'> <input type='button' /><input type='button' />
 		</li>
 		<li>
-			<img src="#" /> <input type='text' placeholder='caption 5'> <input type='button' /><input type='button' />
+			<div><img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/> <input type='text' placeholder='caption 5'> <input type='button' /><input type='button' />
 		</li>
 	</ul>
 </div>
@@ -23,8 +23,11 @@
 
 
 <script>
+$('body').on('mouseenter','.slide_image',function(){
+	$('.change_photo').fadeIn(10);
+});
 
-$('#unggah').click(function(){
-	$('#upload_file').click();
+$('body').on('mouseleave','.slide_image',function(){
+	$('.change_photo').fadeOut(100);
 });
 </script>

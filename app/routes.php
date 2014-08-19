@@ -53,7 +53,10 @@ Route::group(['prefix' => 'admin', 'before' => 'auth'], function () {
 	Route::get('/organisasi', ['as' => 'admin.organisasi', 'uses' => 'OrganisasiAdminController@view_index']);
 	Route::get('/kegiatan', ['as' => 'admin.kegiatan', 'uses' => 'KegiatanAdminController@view_index']);
 	Route::get('/publikasi', ['as' => 'admin.publikasi', 'uses' => 'PublikasiAdminController@view_index']);
-	Route::get('/anggota', ['as' => 'admin.anggota', 'uses' => 'AnggotaAdminController@view_index']);
+	//anggota
+	//Route::get('/anggota', ['as' => 'admin.anggota', 'uses' => 'AnggotaAdminController@view_index']);
+	Route::get('/anggota/aturan', ['as' => 'admin.anggota.aturan', 'uses' => 'AnggotaAdminController@view_aturan']);
+	//end of anggota
 	Route::get('/berkas', ['as' => 'admin.berkas', 'uses' => 'BerkasAdminController@view_index']);
 	//Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index']);
 });

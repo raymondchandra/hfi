@@ -14,6 +14,10 @@ class AnggotaController extends BaseController {
 		return View::make('pages.ketentuan');
 	}
 
+	public function view_carianggota()
+	{
+		return View::make('pages.carianggota');
+	}
 }
 
 ?>

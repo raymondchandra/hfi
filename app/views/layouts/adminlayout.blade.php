@@ -2,6 +2,7 @@
 <html>
 <head>
 	@include('includes.head')
+	
 </head>
 <body>
 <div class="container">
@@ -24,6 +25,7 @@
 
 
 </div>
+<script src="assets/js/admin/admin.js"></script>
 <script type="text/javascript">
 		
 		$('body').css('overflow','hidden');

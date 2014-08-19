@@ -26,16 +26,26 @@ Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index'
 //account view
 Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login']);
 Route::get('/registrasi', ['as' => 'registrasi', 'uses' => 'AccountController@view_registrasi']);
-
+	//route sementara buat setelah login ---->> ntar masuk ke route ini lewat nama profile di bagian kanan atas 
+	Route::get('/profile', ['as' => 'profile', 'uses' => 'AccountController@view_profile']);
+	//carianggota
+	Route::get('/carianggota', ['as' => 'carianggota', 'uses' => 'AnggotaController@view_carianggota']);
     
 //user view
 Route::group(['prefix' => 'user', 'before' => 'auth'], function () {
-	Route::get('/berkas', ['as' => 'berkas', 'uses' => 'BerkasController@view_index']);
+
+Route::get('/berkas', ['as' => 'berkas', 'uses' => 'BerkasController@view_index']);	
+	//route sementara buat setelah login ---->> ntar masuk ke route ini lewat nama profile di bagian kanan atas 
+	//Route::get('/')
+
 });
 
 //admin route
 Route::group(['prefix' => 'admin', 'before' => 'auth'], function () {
-	Route::get('/home', ['as' => 'admin.home', 'uses' => 'HomeAdminController@view_index']);
+	//home
+	Route::get('/home/slide', ['as' => 'admin.home.slide', 'uses' => 'HomeAdminController@view_slide']);
+	Route::get('/home/welcome', ['as' => 'admin.home.welcome', 'uses' => 'HomeAdminController@view_welcome']);
+	//end of home
 	Route::get('/organisasi', ['as' => 'admin.organisasi', 'uses' => 'OrganisasiAdminController@view_index']);
 	Route::get('/kegiatan', ['as' => 'admin.kegiatan', 'uses' => 'KegiatanAdminController@view_index']);
 	Route::get('/publikasi', ['as' => 'admin.publikasi', 'uses' => 'PublikasiAdminController@view_index']);
@@ -43,6 +53,16 @@ Route::group(['prefix' => 'admin', 'before' => 'auth'], function () {
 	Route::get('/berkas', ['as' => 'admin.berkas', 'uses' => 'BerkasAdminController@view_index']);
 	//Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index']);
 });
+
+//Route::get('/admin_slideshow', ['as' => 'admin_slideshow', 'uses' => 'HomeAdminController@view_index']);
+
+
+Route::get('/adminpanel', function()
+{
+	return View::make('pages.adminpanel');	
+}
+);
+
 
 
 //controller
@@ -57,7 +77,7 @@ Route::post('/signin', ['as' => 'signin', 'uses' => 'AccountController@postSignI
 
 
 //yg d bawah ini harus d ganti...
-Route::get('laravelregistrasianggota',function()
+/*Route::get('laravelregistrasianggota',function()
 {
 	return View::make('pages.laravelregistrasianggota');
 }
@@ -90,7 +110,7 @@ Route::get('ketentuananggota', function()
 {
 	return View::make('pages.ketentuananggota');
 }
-);
+);*/
 
 /*
 //route ke halaman pascaregistrasi -> redirect ke folder pages, file pascaregistrasi
@@ -100,10 +120,9 @@ Route::get('pascaregistrasi',function()
 }
 );*/
 
-
-//route ke halaman ketentuananggota -> redirect ke folder pages, file ketentuananggota.blade.php
-Route::get('adminpanel', function()
+//route ke halaman profileanggota -> redirect ke folder pages, file profileanggota.blade.php
+/*Route::get('profileanggota', function()
 {
-	return View::make('pages.adminpanel');
+	return View::make('pages.profileanggota');
 }
-);
+);*/

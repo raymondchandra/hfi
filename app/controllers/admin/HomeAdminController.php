@@ -6,8 +6,22 @@ class HomeAdminController extends BaseController {
 	
 	public function view_index()
 	{
-		return View::make('hello');
+		return View::make('pages.admin.home.slideshow');
 	}
+	
+	public function view_slide()
+	{
+		return View::make('pages.admin.home.slideshow');
+	}
+	
+	
+	public function view_welcome()
+	{
+		return View::make('pages.admin.home.welcome');
+	}
+	
+	
+	
 
 }
 

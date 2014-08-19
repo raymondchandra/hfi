@@ -1,7 +1,7 @@
 <div class='admin_title'>Welcome Message</div>
 <div class='editor_container'>
 <textarea name="textarea" class="editor">
- 
+{{$deskripsi_selamat_datang}}
 </textarea>
 </div>
 <input type='button' id='submit_change' value='Rubah'></input>

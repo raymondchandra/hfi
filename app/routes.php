@@ -42,7 +42,10 @@ Route::get('/berkas', ['as' => 'berkas', 'uses' => 'BerkasController@view_index'
 
 //admin route
 Route::group(['prefix' => 'admin', 'before' => 'auth'], function () {
-	Route::get('/home', ['as' => 'admin.home', 'uses' => 'HomeAdminController@view_index']);
+	//home
+	Route::get('/home/slide', ['as' => 'admin.home.slide', 'uses' => 'HomeAdminController@view_slide']);
+	Route::get('/home/welcome', ['as' => 'admin.home.welcome', 'uses' => 'HomeAdminController@view_welcome']);
+	//end of home
 	Route::get('/organisasi', ['as' => 'admin.organisasi', 'uses' => 'OrganisasiAdminController@view_index']);
 	Route::get('/kegiatan', ['as' => 'admin.kegiatan', 'uses' => 'KegiatanAdminController@view_index']);
 	Route::get('/publikasi', ['as' => 'admin.publikasi', 'uses' => 'PublikasiAdminController@view_index']);

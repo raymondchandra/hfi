@@ -13,7 +13,7 @@ class AnggotaController extends BaseController {
 	{
 		return View::make('pages.ketentuan');
 	}
-
+	
 }
 
 ?>

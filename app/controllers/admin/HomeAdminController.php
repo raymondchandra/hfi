@@ -20,6 +20,26 @@ class HomeAdminController extends BaseController {
 		return View::make('pages.admin.home.welcome');
 	}
 	
+	public function view_about()
+	{
+		return View::make('pages.admin.home.about');
+	}
+	
+	public function view_visi()
+	{
+		return View::make('pages.admin.home.visi');
+	}
+	
+	public function view_misi()
+	{
+		return View::make('pages.admin.home.misi');
+	}
+	
+	public function view_regulasi()
+	{
+		return View::make('pages.admin.home.regulasi');
+	}
+	
 	
 	
 

@@ -1,0 +1,12 @@
+.jqte_editor ul li{
+	list-style-type:disc !important;
+}
+
+.jqte_editor ol li{
+	list-style-type:decimal !important;
+}
+
+.editor_container{
+	width:900px;
+	margin-left:90px;
+}

@@ -1,6 +1,5 @@
 @extends('layouts.default')
 @section('content')
-
 <div class="container_12">
 
 	<div class="grid_12">

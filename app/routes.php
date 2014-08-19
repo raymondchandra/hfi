@@ -1,16 +1,10 @@
 <?php
 
-
 //model binding
 //Route::model('post', 'Post');
 Route::get('/tes', function()
 {
-	$acc = new Account();
-	$acc->timestamps = false;
-    $acc->username = 'tes4';
-    $acc->password = Hash::make('creed');
-	$acc->status_aktif = 0;
-    $acc->save();
+	
 });
 
 //view
@@ -72,9 +66,7 @@ Route::get('/adminpanel', function()
 //controller
 //Route::controller('acc', 'AccountController');
 Route::post('/signin', ['as' => 'signin', 'uses' => 'AccountController@postSignIn']);
-
-
-
+Route::post('/regis', ['as' => 'regis', 'uses' => 'AccountController@postRegis']);
 
 
 

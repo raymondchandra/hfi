@@ -23,7 +23,7 @@
 			
 			<div class="content_hfi" id="contentfield">
 				<div class="foto_pp_container">
-					<img height="200" width="150" src="assets/img/no_photo.jpg"/>
+					<img height="200" width="150" src={{head($data)->foto_profile}} alt="foto profile"/>
 					<a href="#">Rubah Profil</a>
 					<a href="#">Cetak Kartu Anggota</a>
 				</div>
@@ -32,98 +32,93 @@
 					<tr>
 						<td class="label_pp">Nama</td>
 						<td>:</td>
-						<td>Member 123</td>			
+						<td>{{head($data)->nama}}</td>			
 					</tr>
 					<tr>
 						<td>Nomor Anggota</td>
 						<td>:</td>
-						<td>123456543</td>
+						<td>{{head($data)->id}}</td>
 					</tr>
 						<!-- tambahan dari design gredy, yg blom ada di profile-->
 						<tr>
 							<td>Anggota Cabang</td>
 							<td>:</td>
-							<td>Bandung</td>
+							<td>{{array_get($data, 'cabang')}}</td>
 						</tr>
 						<tr>
 							<td>Status Anggota</td>
 							<td>:</td>
-							<td>Anggota aktif (s/d 12/12/12)</td>
+							<td>{{array_get($data, 'status_aktif')}} (s/d {{array_get($data, 'batas_aktif')}})</td>
 						</tr>
 						<!-- end tambahan dari design gredy, yg blom ada di profile-->
 					<tr>
 						<td>Tanggal Revisi</td>
 						<td>:</td>
-						<td>(tanggal revisi)</td>		
+						<td>{{head($data)->tanggal_revisi}}</td>		
 					</tr>												
-					<tr>
-						<td>Status Registrasi</td>
-						<td>:</td>
-						<td>(status registrasi)</td>
-					</tr>
 					<tr>
 						<td>Tema Penelitian</td>
 						<td>:</td>
-						<td>(tema penelitian)asdasdasdasdasdasdasdasd</td>
+						<td>{{head($data)->tema_penelitian}}</td>
 					</tr>
 					<tr>
 						<td>Spesialisasi</td>
 						<td>:</td>
-						<td>(spesialisasi)</td>
+						<td>{{head($data)->spesialisasi}}</td>
 					</tr>
 					<tr>
 						<td>Profesi</td>
 						<td>:</td>
-						<td>(profesi)</td>
+						<td>{{head($data)->profesi}}</td>
 					</tr>
 					<tr>
 						<td>Institusi</td>
 						<td>:</td>
-						<td>(institusi)</td>
+						<td>{{head($data)->institusi}}</td>
 					</tr>
 					<tr>
 						<td>Pendidikan</td>
 						<td>:</td>
-						<td>(pendidikan)</td>
+						<td>{{head($data)->pendidikan}}</td>
 					</tr>
 						<!-- tambahan dari design gredy, yg blom ada di profile-->
 						<tr>
 							<td>Alamat</td>
 							<td>:</td>
-							<td>jl. lorem ipsum no. 1, 40273, bandung, indonesia</td>
+							<td>{{head($data)->alamat}}</td>
 						</tr>
 						<!-- end tambahan dari design gredy, yg blom ada di profile-->
 					<tr>
 						<td>Kontak</td>
 						<td>:</td>
-						<td>(link email profile ini)</td>
+						<td></td>
 					</tr>
 						<!-- tambahan dari design gredy, yg blom ada di profile-->
 						<tr>
 							<td>Telepon</td>
 							<td>:</td>
-							<td>2345678</td>
+							<td>{{head($data)->telepon}}</td>
 						</tr>
 						<tr>
 							<td>HP</td>
 							<td>:</td>
-							<td>123456789</td>
+							<td>{{head($data)->hp}}</td>
 						</tr>
 						<tr>
 							<td>Surat Elektronik</td>
 							<td>:</td>
-							<td>hfi@hfi.com</td>
+							<td>{{head($data)->email}}</td>
 						</tr>
 						<!-- end tambahan dari design gredy, yg blom ada di profile-->
 					<tr>				
 						<td>Situs</td>
 						<td>:</td>
-						<td>(link ke situs pribadi)</td>
+						<td><a href={{array_get($data, 'siteUrl')}}>{{head($data)->situs}}</td>
 					</tr>
 					<tr>
 						<td>Keterangan Lain</td>
 						<td>:</td>
-						<td>(keterangan lain)</td>
+						<td>{{head($data)->keterangan}}</td>
 					</tr>
 				</table>
 			</div>			

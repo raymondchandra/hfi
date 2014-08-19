@@ -17,7 +17,7 @@ class CreateAuth extends Migration {
             $table->increments('id');
             $table->string('username')->unique();
             $table->string('password');
-			$table->dateTime('batas_aktif');
+			$table->date('batas_aktif');
 			$table->string('status_aktif');
 			$table->string('rememberToken')->nullable();
 			$table->tinyInteger('role');

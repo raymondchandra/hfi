@@ -1,16 +1,10 @@
 <?php
 
-
 //model binding
 //Route::model('post', 'Post');
 Route::get('/tes', function()
 {
-	$acc = new Account();
-	$acc->timestamps = false;
-    $acc->username = 'tes4';
-    $acc->password = Hash::make('creed');
-	$acc->status_aktif = 0;
-    $acc->save();
+	
 });
 
 //view
@@ -45,6 +39,10 @@ Route::group(['prefix' => 'admin', 'before' => 'auth'], function () {
 	//home
 	Route::get('/home/slide', ['as' => 'admin.home.slide', 'uses' => 'HomeAdminController@view_slide']);
 	Route::get('/home/welcome', ['as' => 'admin.home.welcome', 'uses' => 'HomeAdminController@view_welcome']);
+	Route::get('/home/about', ['as' => 'admin.home.about', 'uses' => 'HomeAdminController@view_about']);
+	Route::get('/home/visi', ['as' => 'admin.home.visi', 'uses' => 'HomeAdminController@view_visi']);
+	Route::get('/home/misi', ['as' => 'admin.home.misi', 'uses' => 'HomeAdminController@view_misi']);
+	Route::get('/home/regulasi', ['as' => 'admin.home.regulasi', 'uses' => 'HomeAdminController@view_regulasi']); 
 	//end of home
 	Route::get('/organisasi', ['as' => 'admin.organisasi', 'uses' => 'OrganisasiAdminController@view_index']);
 	Route::get('/kegiatan', ['as' => 'admin.kegiatan', 'uses' => 'KegiatanAdminController@view_index']);
@@ -68,9 +66,7 @@ Route::get('/adminpanel', function()
 //controller
 //Route::controller('acc', 'AccountController');
 Route::post('/signin', ['as' => 'signin', 'uses' => 'AccountController@postSignIn']);
-
-
-
+Route::post('/regis', ['as' => 'regis', 'uses' => 'AccountController@postRegis']);
 
 
 

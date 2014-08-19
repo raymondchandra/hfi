@@ -309,7 +309,7 @@
 		<tr>
 			<td>Telepon / fax</td>
 			<td>:</td>
-			<td>{{ Form::text('telepon', Input::old('telepon')) }}<span class="red">*</span> - 
+			<td>{{ Form::text('telepon', Input::old('telepon'), array('style' => 'width:50px')) }}<span class="red">*</span> - 
 			{{ Form::text('telepon2', Input::old('telepon')) }} / 
 			{{ Form::text('fax', Input::old('fax')) }}</td>
 			<td><span id="val_teleponfax" style="color:red"></span></td>

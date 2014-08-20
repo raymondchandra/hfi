@@ -77,17 +77,5 @@
 			<li>
 				<a href="#" class="no_arrow">e-Berkas</a>
 			</li>
-			
-			<li>
-				<a href="#" class="_kontak_tombol">Kontak</a>
-				<ul style="display: none;" class="_kontak_list">
-					<li>
-						<a href="#">Informasi Kontak</a>
-					</li>
-					<li>
-						<a href="#">Email HFI</a>
-					</li>
-				</ul>
-			</li>
 		</ul>
 	</nav>

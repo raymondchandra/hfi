@@ -6,7 +6,7 @@ class KegiatanAdminController extends BaseController {
 	
 	public function view_index()
 	{
-		return View::make('hello');
+		return View::make('pages.admin.kegiatan.kegiatan');
 	}
 
 }

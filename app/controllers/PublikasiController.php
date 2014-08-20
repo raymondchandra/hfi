@@ -9,6 +9,8 @@ class PublikasiController extends BaseController {
 		return View::make('pages.publikasi');
 	}
 
+	//public function get_publikasi_jurnal()
+	//public function get_publikasi_populer()
 }
 
 ?>

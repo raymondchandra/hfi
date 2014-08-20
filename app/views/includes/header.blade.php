@@ -2,7 +2,7 @@
 		<div class="site_id">
 			<div class="container_12">
 				<div class="grid_10 ">
-					<img src="assets/img/hfi.png" alt="logo HFI" class="logo_hfi_header" height="110"/>
+					{{ HTML::image('assets/img/hfi.png', $alt="logo HFI", array('class' => 'logo_hfi_header', 'height' => 110)) }}
 					<h1 class="header_title">
 						Himpunan Fisika Indonesia
 					</h1>

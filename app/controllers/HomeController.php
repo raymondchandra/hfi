@@ -14,12 +14,6 @@ class HomeController extends BaseController {
 		$misi_hfi = $this->get_konten('misi');
 		
 		return View::make('pages.home', compact('deskripsi_selamat_datang', 'tentang_hfi', 'visi_hfi', 'misi_hfi'));
-		
-		//return View::make('pages.home', 
-		//	array(
-		//	'deskripsi_selamat_datang' => $getfromdbdesc
-		//	) 
-		//);
 	}
 	
 	public static function get_konten($tipe)
@@ -34,4 +28,9 @@ class HomeController extends BaseController {
 			return "";
 		}
 	}
+	
+	
+	//public function get_slideshow(){}
+	//public function get_regulasi(){}
+	
 }

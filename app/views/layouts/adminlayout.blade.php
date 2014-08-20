@@ -109,22 +109,6 @@
 				});
 			}
 		});
-		
-		$('._kontak_tombol').click(function ()
-		{
-			if ($('._kontak_list').is(':visible')) {
-				$( "._kontak_list" ).slideUp( 370, function(){
-					$('._kontak_list').css('display', 'none');
-				});
-			} else {
-				$( "._kontak_list" ).slideDown( 370, function(){
-					$('._kontak_list').css('display', 'block');
-				});
-			}
-		});
-		
-		
-		
 	</script>
 </body>
 </html>

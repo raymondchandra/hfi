@@ -163,13 +163,6 @@ class AccountController extends BaseController {
 	{
 		return View::make('pages.registrasi');
 	}
-
-	//newcode
-	public function view_profile()
-	{
-		return View::make('pages.profileanggota');
-	}
-	//endnewcode
 }
 
 ?>

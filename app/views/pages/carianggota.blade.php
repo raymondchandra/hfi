@@ -7,15 +7,15 @@
 				<div class="side_panel_hfi_background">
 				<ul>
 					<li>				
-						<a href="profile">Profile</a> 				
+						{{HTML::linkRoute('profile','Profile')}}
 					</li>
 					<span class="white_space">&nbsp;</span>
 					<li>
-						<a href="carianggota">Cari Member</a>
+						{{HTML::linkRoute('carianggota','Cari Member')}}
 					</li>	
 					<span class="white_space">&nbsp;</span>
 					<li>
-						<a href="#">e-Berkas</a>
+						{{HTML::linkRoute('berkas','e-Berkas')}}
 					</li>										
 				</ul>
 				</div>

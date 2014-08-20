@@ -9,6 +9,8 @@ class KegiatanController extends BaseController {
 		return View::make('pages.kegiatan');
 	}
 
+	//public function get_all_kegiatan()
+	//public function get_kegiatan_info()
 }
 
 ?>

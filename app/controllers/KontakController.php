@@ -9,6 +9,8 @@ class KontakController extends BaseController {
 		return View::make('pages.kontak');
 	}
 
+	//public function get_kontak()
+	//public function send_email(){}
 }
 
 ?>

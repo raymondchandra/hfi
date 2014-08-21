@@ -2,6 +2,12 @@
 
 //model binding
 //Route::model('post', 'Post');
+//Logout
+Route::get('/logout', ['as' => 'logout'], function()
+{
+	Auth::logout();
+	Redirect::to('/login');
+});
 
 //view
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@view_index']);

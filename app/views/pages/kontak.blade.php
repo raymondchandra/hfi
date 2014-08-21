@@ -11,7 +11,9 @@
 			<div id='contact_information_content'>
 				<div id='contact_information_content_header'><b>Himpunan Fisika Indonesia</b></div>
 				<div id='contact_information'>
+					<div style='width: 250px;'>
 					{{$arr['alamat_hfi']}}<span class="clear">
+					</div>
 					</span>
 					<br/><br/>
 					<table>

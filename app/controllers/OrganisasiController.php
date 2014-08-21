@@ -13,7 +13,8 @@ class OrganisasiController extends BaseController {
 	
 	public function view_cabang()
 	{
-		return View::make('pages.cabang');
+		$arr = $this->setHeader();
+		return View::make('pages.cabang', compact('arr'));
 	}
 
 	

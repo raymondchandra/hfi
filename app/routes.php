@@ -3,11 +3,7 @@
 //model binding
 //Route::model('post', 'Post');
 //Logout
-Route::get('/logout', ['as' => 'logout'], function()
-{
-	Auth::logout();
-	Redirect::to('/login');
-});
+Route::get('/logout', ['as' => 'logout' , 'uses' => 'AccountController@postLogout']);
 
 //view
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@view_index']);

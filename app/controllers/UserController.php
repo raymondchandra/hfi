@@ -37,12 +37,14 @@ class UserController extends BaseController {
 	
 	public function view_carianggota()
 	{
-		return View::make('pages.carianggota');
-	}
+		$arr = $this->setHeader();
+		return View::make('pages.carianggota', compact('arr'));
+	}	
 	
 	public function view_berkas()
-	{
-		return View::make('pages.berkas');
+	{	
+		$arr = $this->setHeader();
+		return View::make('pages.berkas', compact('arr'));
 	}
 }
 ?>

@@ -12,24 +12,25 @@
 				<div id='contact_information_content_header'><b>Himpunan Fisika Indonesia</b></div>
 				<div id='contact_information'>
 					<div style='width: 250px;'>
-					Kompleks Batan Indah Blok L No. 48
-					Serpong Tangerang Banten, 15314<br/><br/>
+					{{$arr['alamat_hfi']}}<span class="clear">
 					</div>
+					</span>
+					<br/><br/>
 					<table>
 						<tr>
 							<td class='table_head'>Telp</td>
-							<td>: </td>
-							<td>+62 21-7561609</td>
+							<td>:  </td>
+							<td>{{$arr['telp']}}</td>
 						</tr>
 						<tr>
 							<td class='table_head'>Fax</td>
-							<td>: </td>
-							<td>+62 21-7561609</td>
+							<td>:  </td>
+							<td>{{$arr['fax_hfi']}}</td>
 						</tr>
 						<tr>
 							<td class='table_head'>e-mail</td>
-							<td>: </td>
-							<td><a href='javascript:void(0)'>info@hfi.fisika.net</a></td>
+							<td>:  </td>
+							<td><a href='javascript:void(0)'>{{$arr['email_hfi']}}</a></td>
 						</tr>
 					</table>
 				</div>

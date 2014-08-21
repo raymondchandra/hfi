@@ -40,7 +40,7 @@
 		</tr>
 		<tr>
 			<td>Registrasi</td>			
-			<td>:</td>
+			<td>: </td>
 			<td>
 				anggota non-aktif, HFI Cabang 
 				{{ Form::select('hficabang', array(
@@ -70,11 +70,11 @@
 		<tr>
 			<td>Tempat, tanggal lahir</td>
 			<td>:</td>
-			<td>{{ Form::text('tempatlahir', Input::old('tempatlahir')) }}<span class="red">*</span>
+			<td style="width: 420px;">{{ Form::text('tempatlahir', Input::old('tempatlahir')) }}<span class="red">*</span>
 				<div class="clear">
 				</div>
 				{{ Form::select('tanggallahir', array(
-					'pilih' => 'pilih!',
+					'pilih' => 'pilih tanggal!',
 					'1' => '1',
 					'2' => '2',
 					'3' => '3',
@@ -108,7 +108,7 @@
 					'31' => '31'))
 				}}
 				{{ Form::select('bulanlahir',array(
-					'pilih' => 'pilih!',
+					'pilih' => 'pilih bulan!',
 					'1' => 'Januari',
 					'2' => 'Februari',
 					'3' => 'Maret',
@@ -123,7 +123,7 @@
 					'12' => 'Desember'))
 				}}
 				{{ Form::select('tahunlahir', array(
-					'pilih' => 'pilih!',
+					'pilih' => 'pilih tahun!',
 					'2007' => '2007',
 					'2006' => '2006',
 					'2005' => '2005',
@@ -307,7 +307,7 @@
 		<tr>
 			<td>Kota - kodepos, negara</td>
 			<td>:</td>
-			<td>{{ Form::text('kota', Input::old('kota'), array('class' => 'form_kota')) }} - 
+			<td style="width: 420px;">{{ Form::text('kota', Input::old('kota'), array('class' => 'form_kota')) }} - 
 			{{ Form::text('kodepos', Input::old('kodepos'), array('class' => 'form_kota')) }} , 
 			{{ Form::text('negara', Input::old('negara'), array('class' => 'form_kota')) }} <span class="red">*</span></td>
 			<td><span id="val_kotakodeposnegara" style="color:red"></span></td>

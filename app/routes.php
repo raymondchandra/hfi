@@ -33,7 +33,7 @@ Route::group(['prefix' => 'user', 'before' => 'authUser'], function () {
 
 //admin route
 Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
-	//Route::get('/', ['as' => 'adminPanel', 'uses' => 'HomeAdminController@view_adminPanel']);
+	Route::get('/', ['as' => 'adminPanel', 'uses' => 'HomeAdminController@view_adminPanel']);
 	//home
 	Route::get('/home/slide', ['as' => 'admin.home.slide', 'uses' => 'HomeAdminController@view_slide']);
 	Route::get('/home/welcome', ['as' => 'admin.home.welcome', 'uses' => 'HomeAdminController@view_welcome']);

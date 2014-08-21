@@ -55,7 +55,7 @@ class AccountController extends BaseController {
 					}
 					else
 					{
-						echo("success user admin");
+						return Redirect::to('/admin');
 					}
 				}
 				else
@@ -71,6 +71,12 @@ class AccountController extends BaseController {
 		
 		
 		
+	}
+	
+	public function postLogout()
+	{
+		Auth::logout();
+		return Redirect::to('/login')->with('message', 'Anda telah keluar.');
 	}
 	
 	public function postRegis()
@@ -151,12 +157,21 @@ class AccountController extends BaseController {
 	
 	public function view_login()
 	{
-		return View::make('pages.login');
+		if(Auth::check())
+		{
+			return Redirect::to('user');
+		}
+		else
+		{
+			$arr = $this->setHeader();
+			return View::make('pages.login', compact('arr'));
+		}
 	}
 	
 	public function view_registrasi()
 	{
-		return View::make('pages.registrasi');
+		$arr = $this->setHeader();
+		return View::make('pages.registrasi', compact('arr'));
 	}
 }
 

@@ -7,17 +7,20 @@
 						Himpunan Fisika Indonesia
 					</h1>
 					<span class="id_hfi">
-						Komplek Batan Indah Blok L No 48 Serpong Tanggerang Banten 15314 Indonesia
+						{{$arr['alamat_hfi']}}
 					</span>
 					<span class="id_hfi">
-						Telp/Fax: +62-21-7561609 Email: info@hfi.fisika.net
+						Telp: {{$arr['telp']}} Fax: {{$arr['fax_hfi']}} Email: {{$arr['email_hfi']}}
 					</span>
 				</div>
 				<div class="grid_2 ">
-					{{ HTML::linkRoute('registrasi', 'Daftar', array(), array('class' => 'daftar_dan_login')) }}
-					<span> | </span>
-					{{ HTML::linkRoute('login', 'Login', array(), array('class' => 'daftar_dan_login')) }}
-					
+					@if(Auth::check())
+						{{ HTML::linkRoute('logout', 'Keluar', array(), array('class' => 'daftar_dan_login')) }}
+					@else
+						{{ HTML::linkRoute('registrasi', 'Daftar', array(), array('class' => 'daftar_dan_login')) }}
+						<span> | </span>
+						{{ HTML::linkRoute('login', 'Login', array(), array('class' => 'daftar_dan_login')) }}
+					@endif
 				</div>
 			</div>
 		</div>

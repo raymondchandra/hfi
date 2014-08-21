@@ -6,7 +6,9 @@ class KontakController extends BaseController {
 	
 	public function view_index()
 	{
-		return View::make('pages.kontak');
+	
+		$arr = $this->setHeader();
+		return View::make('pages.kontak', compact('arr'));
 	}
 
 	//public function get_kontak()

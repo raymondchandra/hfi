@@ -6,7 +6,9 @@ class PublikasiController extends BaseController {
 	
 	public function view_index()
 	{
-		return View::make('pages.publikasi');
+	
+		$arr = $this->setHeader();
+		return View::make('pages.publikasi', compact('arr'));
 	}
 
 	//public function get_publikasi_jurnal()

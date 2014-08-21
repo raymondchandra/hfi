@@ -788,7 +788,7 @@
 	{{ Form::open(array('url' => 'foo/bar')) }}	<!-- default post-->	
 	<p style="text-align:center;">
 		<div style="text-align: center;" class="tempat_radio">
-			{{ Form::radio('persetujuan','setuju')}}setuju    {{ Form::radio('persetujuan','tidaksetuju') }}tidak setuju
+			{{ Form::radio('persetujuan','setuju')}}setuju    {{ Form::radio('persetujuan','tidaksetuju', true) }}tidak setuju
 		</div>
 	
 	</p>

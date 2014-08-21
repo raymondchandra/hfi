@@ -2,6 +2,14 @@
 
 //model binding
 //Route::model('post', 'Post');
+Route::get('/tes', function()
+{
+	$acc = new Account();
+	$acc->username = 'tes';
+	$acc->password = Hash::make('creed');
+	$timestamp = false;
+	$acc->save();
+});
 
 //view
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@view_index']);

@@ -4,10 +4,10 @@ class HomeAdminController extends BaseController {
 	
 	public $restful = true;
 	
-	/*public function view_adminPanel()
+	public function view_adminPanel()
 	{
 		return View::make('pages.adminpanel');
-	}*/
+	}
 	
 	/*public function view_index()
 	{

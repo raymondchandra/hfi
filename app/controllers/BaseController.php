@@ -14,5 +14,25 @@ class BaseController extends Controller {
 			$this->layout = View::make($this->layout);
 		}
 	}
+	
+	protected function setHeader()
+	{
+		$alamat_hfi = $this->get_cabang('alamat');
+		
+		$telepon_hfi = $this->get_cabang('telp');
+		
+		$fax_hfi = $this->get_cabang('fax');
+		
+		$email_hfi = $this->get_cabang('email');
+		
+		$arr = array('alamat_hfi' => $alamat_hfi, 'telp' => $telepon_hfi, 'fax_hfi' => $fax_hfi, 'email_hfi' => $email_hfi);
+		
+		return $arr;
+	}
+	
+	private function get_cabang($kembalian)
+	{
+		return Cabang::where('tipe','=', '1')->first()->$kembalian;
+	}
 
 }

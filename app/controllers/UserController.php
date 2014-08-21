@@ -24,8 +24,8 @@ class UserController extends BaseController {
 						
 			$tanggal_aktif = Auth::user()->batas_aktif;
 			$result = array('data' => $profile, 'cabang' => $cabang->nama, 'status_aktif' => $status_aktif, 'batas_aktif' => $tanggal_aktif, 'siteUrl' => $siteUrl);
-
-			return View::make('pages.profileanggota')->with('data' , $result);
+			$arr = $this->setHeader();
+			return View::make('pages.profileanggota', compact('arr'))->with('data' , $result);
 			
 
 		}

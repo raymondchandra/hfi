@@ -6,6 +6,8 @@
 //view
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@view_index']);
 Route::get('/organisasi', ['as' => 'organisasi', 'uses' => 'OrganisasiController@view_index']);
+	//route ke sidebar
+	Route::get('/cabang', ['as' => 'cabang', 'uses' => 'OrganisasiController@view_cabang']);
 Route::get('/kegiatan', ['as' => 'kegiatan', 'uses' => 'KegiatanController@view_index']);
 Route::get('/publikasi', ['as' => 'publikasi', 'uses' => 'PublikasiController@view_index']);
 Route::get('/anggota', ['as' => 'anggota', 'uses' => 'AnggotaController@view_index']);
@@ -32,8 +34,10 @@ Route::group(['prefix' => 'user', 'before' => 'authUser'], function () {
 });
 
 //admin route
+
+
 Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
-	//Route::get('/', ['as' => 'adminPanel', 'uses' => 'HomeAdminController@view_adminPanel']);
+	Route::get('/', ['as' => 'adminPanel', 'uses' => 'HomeAdminController@view_adminPanel']);
 	//home
 	Route::get('/home/slide', ['as' => 'admin.home.slide', 'uses' => 'HomeAdminController@view_slide']);
 	Route::get('/home/welcome', ['as' => 'admin.home.welcome', 'uses' => 'HomeAdminController@view_welcome']);

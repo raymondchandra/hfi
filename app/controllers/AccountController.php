@@ -11,69 +11,64 @@ class AccountController extends BaseController {
 		$username = Input::get('username');
 		$password = Input::get('password');
 		$data = array('username'=>$username, 'password'=>$password);
-	
-		if(Auth::attempt($data))
+		
+		if(Input::get('remember_me') === 'yes')
 		{
-			$user = Account::where('username', '=', $username)->first();
-			
-			
-			if($user->status_aktif == 1)
+			if(Auth::attempt($data, true))
 			{
-				if($user->role == 0)
+				
+				
+				if(Auth::user()->status_aktif == 1)
 				{
-					$authId = $user->id;
-					$profile = Anggota::where('auth_id', '=' , $authId)->first();
-					$cabang = Cabang::where('id', '=' , $profile->id_cabang)->first();
-					if($user->status_aktif == 1)
-					{
-						$status_aktif = "Anggota Aktif";
+					if(Auth::user()->role == 0)
+					{					
+						return Redirect::to('/user');
+						
 					}
 					else
 					{
-						$status_aktif = "Anggota Tidak Aktif";
+						echo("success user admin");
 					}
-					
-					$siteUrl = "//".$profile->situs;
-					
-					$foto_profile = $profile->foto_profile;
-					$nama = $profile->nama;
-					$id = $profile->id;
-					$revisi = $profile->tanggal_revisi;
-					$penelitian = $profile->tema_penelitian;
-					$spesialisasi = $profile->spesialisasi;
-					$profesi = $profile->profesi;
-					$institusi = $profile->institusi;
-					$pendidikan = $profile->pendidikan;
-					$alamat = $profile;
-					$telepon = $profile->telepon;
-					$hp = $profile->hp;
-					$fax = $profile->fax;
-					$email = $profile->email;
-					$situs_show = $profile->situs;
-					$keterangan = $profile->keterangan;
-					
-					$tanggal_aktif = $user->batas_aktif;
-					$result = array('foto' => $foto_profile, 'nama' => $nama, 'id' => $id, 'revisi' => $revisi, 'penelitian' => $penelitian, 'spesialisasi' => $spesialisasi, 'profesi' => $profesi, 'institusi'=> $institusi, 'pendidikan' => $pendidikan, 'telepon' => $telepon, 'hp' => $hp, 'fax' => $fax, 'email' => $email, 'situs_show' => $situs_show, 'keterangan' => $keterangan, 'cabang' => $cabang->nama, 'status_aktif' => $status_aktif, 'batas_aktif' => $tanggal_aktif, 'siteUrl' => $siteUrl);
-					//var_dump($result);
-					
-					Session::put('data', $result);
-					return Redirect::to('/profile')->with('data', $result);
-					
 				}
 				else
 				{
-					echo("success user admin");
+					return Redirect::to('/login')->with('message', "akun ini memerlukan perpanjangan aktivasi.");
 				}
 			}
 			else
 			{
-				return Redirect::to('/login')->with('message', "akun ini memerlukan perpanjangan aktivasi.");
+				return Redirect::to('/login')->with('message', 'username dan password tidak tepat.');
 			}
 		}
 		else
 		{
-			return Redirect::to('/login')->with('message', 'username dan password tidak tepat.');
+			if(Auth::attempt($data, false))
+			{
+				
+				
+				if(Auth::user()->status_aktif == 1)
+				{
+					if(Auth::user()->role == 0)
+					{					
+						return Redirect::to('/user');
+						
+					}
+					else
+					{
+						echo("success user admin");
+					}
+				}
+				else
+				{
+					return Redirect::to('/login')->with('message', "akun ini memerlukan perpanjangan aktivasi.");
+				}
+			}
+			else
+			{
+				return Redirect::to('/login')->with('message', 'username dan password tidak tepat.');
+			}
 		}
+		
 		
 		
 	}

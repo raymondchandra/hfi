@@ -26,8 +26,8 @@
 									{{ Form::password('password', Input::old('password')) }}
 									<!--<input type="button" value="Log In" class="login"/>-->
 									{{ Form::submit('Login', array('class' => 'login')) }}
-									<input type="checkbox" name="vehicle" value="true" class="rememberme">
-									<span style="line-height: 30px; margin-left: 27px;">Remember Me</span>
+									{{ Form::checkbox('remember_me', 'yes') }}
+									<span style="line-height: 30px; margin-left: 0x;">Remember Me</span>
 									<a href="#" class="lupa_pass">
 										Lupa Password?
 									</a>

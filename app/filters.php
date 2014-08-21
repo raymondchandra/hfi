@@ -35,12 +35,26 @@ App::after(function($request, $response)
 
 Route::filter('authUser', function()
 {
-	//if (Auth::guest()) return Redirect::guest('login');
+	if (Auth::guest()) 
+	{	
+		return Redirect::guest('login');
+	}
+	
 });
 
 Route::filter('authAdmin', function()
 {
-	//if (Auth::guest()) return Redirect::guest('login');
+	if (Auth::guest())
+	{
+		return Redirect::guest('login');
+	}
+	else
+	{
+		if(Auth::user()->role == 0)
+		{
+			return Redirect::guest('login');
+		}
+	}
 });
 
 Route::filter('auth.basic', function()

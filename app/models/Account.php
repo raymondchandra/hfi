@@ -7,6 +7,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class Account extends Eloquent implements UserInterface, RemindableInterface
 {
 	protected $table = 'auth';
+	public $timestamps = false;
 	protected $hidden = array('password');
 
 

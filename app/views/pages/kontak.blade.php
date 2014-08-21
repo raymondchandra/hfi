@@ -11,8 +11,10 @@
 			<div id='contact_information_content'>
 				<div id='contact_information_content_header'><b>Himpunan Fisika Indonesia</b></div>
 				<div id='contact_information'>
-					Kompleks Batan Indah Blok L No. 48<br />
+					<div style='width: 250px;'>
+					Kompleks Batan Indah Blok L No. 48
 					Serpong Tangerang Banten, 15314<br/><br/>
+					</div>
 					<table>
 						<tr>
 							<td class='table_head'>Telp</td>

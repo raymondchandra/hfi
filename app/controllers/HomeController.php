@@ -13,7 +13,17 @@ class HomeController extends BaseController {
 		
 		$misi_hfi = $this->get_konten('misi');
 		
-		return View::make('pages.home', compact('deskripsi_selamat_datang', 'tentang_hfi', 'visi_hfi', 'misi_hfi'));
+		$alamat_hfi = $this->get_cabang('alamat');
+		
+		$telepon_hfi = $this->get_cabang('telp');
+		
+		$fax_hfi = $this->get_cabang('fax');
+		
+		$email_hfi = $this->get_cabang('email');
+		
+		$arr = $this->setHeader();
+		
+		return View::make('pages.home', compact('deskripsi_selamat_datang', 'tentang_hfi', 'visi_hfi', 'misi_hfi', 'arr'));
 	}
 	
 	public static function get_konten($tipe)
@@ -29,6 +39,10 @@ class HomeController extends BaseController {
 		}
 	}
 	
+	public function get_cabang($kembalian)
+	{
+		return Cabang::where('tipe','=', '1')->first()->$kembalian;
+	}
 	
 	//public function get_slideshow(){}
 	//public function get_regulasi(){}

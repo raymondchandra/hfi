@@ -6,7 +6,9 @@ class OrganisasiController extends BaseController {
 	
 	public function view_index()
 	{
-		return View::make('pages.organisasi');
+	
+		$arr = $this->setHeader();
+		return View::make('pages.organisasi', compact('arr'));
 	}
 	
 	//pengurus

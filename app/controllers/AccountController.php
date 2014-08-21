@@ -151,12 +151,14 @@ class AccountController extends BaseController {
 	
 	public function view_login()
 	{
-		return View::make('pages.login');
+		$arr = $this->setHeader();
+		return View::make('pages.login', compact('arr'));
 	}
 	
 	public function view_registrasi()
 	{
-		return View::make('pages.registrasi');
+		$arr = $this->setHeader();
+		return View::make('pages.registrasi', compact('arr'));
 	}
 }
 

@@ -32,7 +32,14 @@ class BaseController extends Controller {
 	
 	private function get_cabang($kembalian)
 	{
-		return Cabang::where('tipe','=', '1')->first()->$kembalian;
+		$count = Cabang::where('tipe','=', '1')->first();
+		if(count($count) != 0)
+		{
+			return $count->$kembalian;
+		}else
+		{
+			return "";
+		}
 	}
 
 }

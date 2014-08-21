@@ -1,0 +1,30 @@
+
+
+.nama_cabang{
+	width: 200px;
+
+}
+
+.cabang_list{
+	margin-left: 20px;
+}
+
+.alamat_cabang{
+	width: 200px;
+}
+
+.detail_cabang{
+	margin-left:300px;
+
+}
+
+.table_cabang{
+	margin-left: 40px;
+}
+
+.list_cabang tr{
+	border-bottom-style: solid;
+    border-bottom-width: 1px;
+	height: 35px;
+	line-height:40px;
+}

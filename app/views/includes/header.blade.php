@@ -14,10 +14,13 @@
 					</span>
 				</div>
 				<div class="grid_2 ">
-					{{ HTML::linkRoute('registrasi', 'Daftar', array(), array('class' => 'daftar_dan_login')) }}
-					<span> | </span>
-					{{ HTML::linkRoute('login', 'Login', array(), array('class' => 'daftar_dan_login')) }}
-					
+					@if(Auth::check())
+						{{ HTML::linkRoute('logout', 'Keluar', array(), array('class' => 'daftar_dan_login')) }}
+					@else
+						{{ HTML::linkRoute('registrasi', 'Daftar', array(), array('class' => 'daftar_dan_login')) }}
+						<span> | </span>
+						{{ HTML::linkRoute('login', 'Login', array(), array('class' => 'daftar_dan_login')) }}
+					@endif
 				</div>
 			</div>
 		</div>

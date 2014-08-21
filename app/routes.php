@@ -2,14 +2,8 @@
 
 //model binding
 //Route::model('post', 'Post');
-Route::get('/tes', function()
-{
-	$acc = new Account();
-	$acc->username = 'tes';
-	$acc->password = Hash::make('creed');
-	$timestamp = false;
-	$acc->save();
-});
+//Logout
+Route::get('/logout', ['as' => 'logout' , 'uses' => 'AccountController@postLogout']);
 
 //view
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@view_index']);
@@ -41,10 +35,10 @@ Route::group(['prefix' => 'user', 'before' => 'authUser'], function () {
 	//ganti password
 });
 
+
 //admin route
-
-
-Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
+//Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
+Route::group(['prefix' => 'admin'], function () {
 	Route::get('/', ['as' => 'adminPanel', 'uses' => 'HomeAdminController@view_adminPanel']);
 	//home
 	Route::get('/home/slide', ['as' => 'admin.home.slide', 'uses' => 'HomeAdminController@view_slide']);

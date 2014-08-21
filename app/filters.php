@@ -39,6 +39,13 @@ Route::filter('authUser', function()
 	{	
 		return Redirect::guest('login');
 	}
+	else
+	{
+		if(Auth::user()->role == 1)
+		{
+			return Redirect::to('login');
+		}
+	}
 	
 });
 
@@ -52,7 +59,7 @@ Route::filter('authAdmin', function()
 	{
 		if(Auth::user()->role == 0)
 		{
-			return Redirect::guest('login');
+			return Redirect::to('login');
 		}
 	}
 });

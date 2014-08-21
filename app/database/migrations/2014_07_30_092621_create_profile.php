@@ -20,6 +20,8 @@ class CreateProfile extends Migration {
             $table->string('kode');
 			$table->string('nama');
 			$table->string('alamat');
+			$table->string('kode_pos');
+			$table->string('negara');
 			$table->string('telp');
 			$table->string('fax');
 			$table->string('email');

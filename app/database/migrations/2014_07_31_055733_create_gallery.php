@@ -15,15 +15,14 @@ class CreateGallery extends Migration {
 		Schema::table('gallery', function (Blueprint $table) {
 				$table->create();
 				$table->increments('id');
-				$table->integer('id_kegiatan')->unsigned()->nullable();
+				$table->string('kapsion');
 				$table->string('nama_file');
 				$table->string('file_path');
 				$table->string('uploaded_by');
 				$table->integer('type')->unsigned();
 				$table->dateTime('tanggal_upload');
 				
-				$table->foreign('uploaded_by')->references('id')->on('profile');
-				$table->foreign('id_kegiatan')->references('id')->on('kegiatan');			
+				$table->foreign('uploaded_by')->references('id')->on('profile');		
 			});
 	}
 

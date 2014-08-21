@@ -5,7 +5,7 @@
 <!-- diisi beranda yang ada di database -->
 </textarea>
 </div>
-<input type='button' id='submit_change_beranda' value='Rubah'></input>
+<input type='button' name="submit_beranda_anggota" id='submit_change' value='Rubah'></input>
 
 
 <div class='admin_title'>Aturan Menjadi Anggota HFI</div>
@@ -15,7 +15,7 @@
 <!-- diisi aturan yang ada di database-->
 </textarea>
 </div>
-<input type='button' id='submit_change_aturan' value='Rubah'></input>
+<input type='button' name="submit_aturan_anggota" id='submit_change' value='Rubah'></input>
 
 
 <script>

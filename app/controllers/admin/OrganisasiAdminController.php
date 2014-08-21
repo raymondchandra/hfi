@@ -1,6 +1,6 @@
 <?php
 
-class OrganisasiControllerController extends BaseController {
+class OrganisasiAdminController extends BaseController {
 	
 	public $restful = true;
 	

@@ -25,9 +25,11 @@
 									<!--<input type="password" placeholder="Password"/>-->
 									{{ Form::password('password', Input::old('password')) }}
 									<!--<input type="button" value="Log In" class="login"/>-->
-									{{ Form::submit('Login', array('class' => 'login')) }}
-									{{ Form::checkbox('remember_me', 'yes') }}
-									<span style="line-height: 30px; margin-left: 0x;">Remember Me</span>
+									<div style="display: block; position: relative; width: 100$; height: 30px; overflow: hidden;">
+										{{ Form::submit('Login', array('class' => 'login')) }}
+										{{ Form::checkbox('remember_me', 'yes', null, ['style' => 'margin-top: 8px;']) }}
+										<span style="line-height: 30px; margin-left: 0x; float: right;">Remember Me</span>
+									</div>
 									<a href="#" class="lupa_pass">
 										Lupa Password?
 									</a>

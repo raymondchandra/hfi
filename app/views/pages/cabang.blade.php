@@ -1,6 +1,6 @@
 @extends('layouts.default')
-@section('content')
-	<div class="container_12">
+@section('content')	
+<div class="container_12">
 	<div class="grid_12">
 		<div class="main_content">
 			<div class="side_panel_hfi">
@@ -19,13 +19,13 @@
 			
 			<div class="content_hfi" id="contentfield">
 				
-				<h2>Pengurus</h2>
+				<h2>Cabang</h2>
 				
 				<div class="pdf_container">
 					<div class="versi_pdf_container">
 						<ul>
 							<li>
-								<a href="javascript:void(0);" class="pop_the_pop_up">pengurus periode 2014-2017</a>
+								<a href="javascript:void(0);" class="pop_the_pop_up">contoh cabang</a>
 							</li>							
 						</ul>
 					</div>
@@ -35,8 +35,7 @@
 							$('html').css('overflow-y', 'hidden');
 						});
 					</script>				
-				</div>
-				
+				</div>				
 			</div>
 		</div>
 		
@@ -52,7 +51,7 @@
 			<div class="container_12">			
 			<div class="grid_12" style="background: #fff;">
 				<h3 style="padding-top: 5px;padding-left: 20px; margin-bottom: 5px !important; text-align: center;">
-					pengurus periode 2014-2017
+					contoh cabang
 				</h3>
 				<object data="assets/img/contohpengurus.pdf" type="application/pdf" width="100%" class="pdf_viewer"></object>
 			</div>

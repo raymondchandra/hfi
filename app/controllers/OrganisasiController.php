@@ -11,6 +11,12 @@ class OrganisasiController extends BaseController {
 		return View::make('pages.organisasi', compact('arr'));
 	}
 	
+	public function view_cabang()
+	{
+		return View::make('pages.cabang');
+	}
+
+	
 	//pengurus
 	//public function get_pengurus()
 	

@@ -8,6 +8,7 @@ Route::get('/tes', function(){
 });
 //Logout
 Route::get('/logout', ['as' => 'logout' , 'uses' => 'AccountController@postLogout']);
+Route::get('/viewUser', ['as' => 'viewUser' , 'uses' => 'UserController@view_profile']);
 
 //view
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@view_index']);
@@ -22,7 +23,7 @@ Route::get('/anggota', ['as' => 'anggota', 'uses' => 'AnggotaController@view_ind
 Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index']);
 
 //account view
-Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login']);
+Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login', 'before' => 'checkLogin']);
 Route::get('/registrasi', ['as' => 'registrasi', 'uses' => 'AccountController@view_registrasi']);
 	
     

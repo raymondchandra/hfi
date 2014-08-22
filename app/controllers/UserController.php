@@ -6,8 +6,6 @@ class UserController extends BaseController {
 	public function view_profile()
 	{
 
-		if(Auth::check())
-		{
 			$authId = Auth::user()->id;
 			$profile = Anggota::where('auth_id', '=' , $authId)->first();
 			$cabang = Cabang::where('id', '=' , $profile->id_cabang)->first();
@@ -26,20 +24,19 @@ class UserController extends BaseController {
 			$result = array('data' => $profile, 'cabang' => $cabang->nama, 'status_aktif' => $status_aktif, 'batas_aktif' => $tanggal_aktif, 'siteUrl' => $siteUrl);
 			$arr = $this->setHeader();
 			return View::make('pages.profileanggota', compact('arr'))->with('data' , $result);
-			
-
-		}
-		else
-		{
-			echo Redirect::to('/login')->with('message', 'mohon login terlebih dahulu.');
-		}
 	}
 	
 	public static function getHeaderName($id)
 	{
 		$profile = Anggota::where('auth_id', '=' , $id)->first();
-	
-		return $profile->nama;
+		if($profile == NULL)
+		{
+			return $profile->nama;
+		}
+		else
+		{
+			echo "error";
+		}
 	}
 	
 	public function view_carianggota()

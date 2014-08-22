@@ -22,6 +22,19 @@
 	$('.editor').jqte();
 	
 	$('#submit_change').click(function(){
-		alert($('.editor').val());
+		//alert($('.editor').val());
+		$.ajax({
+			type: 'PUT',
+			url: 'admin/editAnggotaHome',
+			data: {
+                "editAnggotaHome": $('.editor').val()
+            },
+			success: function(response){
+				alert(response);
+			},
+			error: function(jqXHR, textStatus, errorThrown){
+				alert(errorThrown);
+			}
+		},'json');
 	});
 </script>

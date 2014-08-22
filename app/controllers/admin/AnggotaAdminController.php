@@ -25,12 +25,12 @@ class AnggotaAdminController extends BaseController {
 	{
 		$konten_home = Input::get('updateWelcome');
 		$id = Auth::user()->id;
-		$konten_id = Konten::where('tipe_konten', '=', 'welcome')->first();
-		/*
-		if($konten_id == null)
+		$konten_id = Konten::where('tipe_konten', '=', 'anggota_home')->first();
+
+		if($konten_id != null)
 		{
 			$konten = Konten::find($konten_id->id);
-			$konten->konten = $konten_welcome;
+			$konten->konten = $konten_home;
 			$konten->timestamps = false;
 			$konten -> tanggal_edit = Carbon::now();
 			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
@@ -40,9 +40,13 @@ class AnggotaAdminController extends BaseController {
 		}
 		else
 		{
-		
+			$konten = new Konten();
+			$konten->tipe_konten = 'anggota_home';
+			$konten->konten = $konten_home;
+			$konten->timestamps = false;
+			$konten -> tanggal_edit = Carbon::now();
+			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
 		}
-		*/
 	}
 }
 

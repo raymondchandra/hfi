@@ -29,13 +29,13 @@
 		<tr>
 			<td><i>Password</i></td>
 			<td>:</td>
-			<td>{{ Form::password('password', Input::old('password')) }} <span class="red">*</span></td>
+			<td>{{ Form::password('password',array('id' => 'input_password'), Input::old('password')) }} <span class="red">*</span></td>
 			<td></td>
 		</tr>	
 		<tr>
 			<td><i>Ketik Ulang Password</i></td>
 			<td>:</td>
-			<td>{{ Form::password('re_password', Input::old('re_password')) }} <span class="red">*</span></td>
+			<td>{{ Form::password('password_again',array('id' => 'password_again'), Input::old('password_again')) }} <span class="red">*</span></td>
 			<td></td>
 		</tr>
 		<tr>
@@ -398,7 +398,13 @@
 			  required: true
 			},
 			password: {
-			  required: true
+			  required: true,
+			  minlength: 8
+			},
+			password_again: {
+			  required: true,
+				  equalTo: "#input_password"
+				
 			},
 			tempatlahir: {
 			  required: true

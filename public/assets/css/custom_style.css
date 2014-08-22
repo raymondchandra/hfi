@@ -614,6 +614,28 @@ label.error {
 	width: 150px;
 }
 
+.change_pp_container {
+	background: #fff;
+}
+
+.tableed{
+	
+	display: table;
+	width: 100%;
+	height: inherit;
+	
+	
+}
+
+.celled{
+		
+		width:100%; 
+		height:inherit;
+		display: table-cell;
+		vertical-align: middle;
+		text-align: center;
+		position: relative;
+	}
 /*----------------------------------------------------------------------------------------------------------
 -------- Admin Page -------------------------------------- Admin Page --------------------------------------
 ----------------------------------------------------------------------------------------------------------*/

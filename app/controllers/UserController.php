@@ -35,7 +35,7 @@ class UserController extends BaseController {
 		}
 		else
 		{
-			echo "error";
+			return "error";
 		}
 	}
 	

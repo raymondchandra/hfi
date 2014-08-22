@@ -226,7 +226,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5252ac', end
 .close_56 {
 	background: url('../img/close56.png') no-repeat;
 	width: 56px;
-	height: 56px;
+	height: 69px;
 	display: block;
 	position: absolute;
 	top: 0px;
@@ -517,6 +517,7 @@ label.error {
 
 .foto_pp_container img {
 	display: block;
+	background-color: #6766c6;
 }
 
 .foto_pp_container a {
@@ -583,7 +584,19 @@ label.error {
 	position: absolute;
 	background: url('../img/camera.png') no-repeat;
 	bottom: 8px;
-	left: 106px
+	left: 106px;
+	opacity: 0.5;
+
+}
+.foto_pp_container a.edit_pp:hover .cam{
+	width: 34px;
+	height: 34px;
+	display: block;
+	position: absolute;
+	background: url('../img/camera.png') no-repeat;
+	bottom: 8px;
+	left: 106px;
+	opacity: 1;
 
 }
 .foto_pp_container a.edit_pp p{
@@ -614,6 +627,51 @@ label.error {
 	width: 150px;
 }
 
+.change_pp_container {
+	background: #fff;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	-ms-border-radius: 6px;
+	-o-border-radius: 6px;
+	border-radius: 6px;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+.tableed{
+	
+	display: table;
+	width: 100%;
+	height: inherit;
+	
+	
+}
+
+.celled{
+		
+		width:100%; 
+		height:inherit;
+		display: table-cell;
+		vertical-align: middle;
+		text-align: center;
+		position: relative;
+	}
+	
+.saran_34 {
+	width: 150px;
+	height: 200px;
+	display: block;
+	border: #6766c6 1px solid;
+	margin-left: auto;
+	margin-right: auto;
+	color: #535353;
+	padding-top: 40px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+}
 /*----------------------------------------------------------------------------------------------------------
 -------- Admin Page -------------------------------------- Admin Page --------------------------------------
 ----------------------------------------------------------------------------------------------------------*/

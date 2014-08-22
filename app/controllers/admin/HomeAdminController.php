@@ -47,7 +47,6 @@ class HomeAdminController extends BaseController {
 	{
 		return View::make('pages.admin.home.regulasi'); 
 	}
-
 	
 	public function update_welcome()
 	{
@@ -62,6 +61,11 @@ class HomeAdminController extends BaseController {
 		//return View::make('pages.admin.home.regulasi');
 		//return "ABC";
 		return "Success";
+	}
+	
+	public function update_gallery()
+	{
+		
 	}
 	
 }

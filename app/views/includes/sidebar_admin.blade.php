@@ -66,10 +66,10 @@
 						<a href="javascript:void(0)" id='anggota_aturan'>Aturan Menjadi Anggota</a>
 					</li>
 					<li>
-						<a href="#">Daftar Anggota</a>
+						<a href="javascript:void(0)" id="anggota_daftar">Daftar Anggota</a>
 					</li>
 					<li>
-						<a href="#">Daftar Akun</a>
+						<a href="javascript:void(0)" id="anggota_akun">Daftar Akun</a>
 					</li>
 				</ul>
 			</li>

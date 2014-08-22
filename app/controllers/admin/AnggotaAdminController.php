@@ -13,12 +13,12 @@ class AnggotaAdminController extends BaseController {
 	
 	public function view_akun()
 	{
-		return View::make('pages.admin.anggota.aturan');
+		return View::make('pages.admin.anggota.daftarAkun');
 	}
 	
 	public function view_anggota()
 	{
-		return View::make('pages.admin.anggota.aturan');
+		return View::make('pages.admin.anggota.daftarAnggota');
 	}
 	
 	public function update_home()

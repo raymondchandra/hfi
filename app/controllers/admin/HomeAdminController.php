@@ -47,7 +47,6 @@ class HomeAdminController extends BaseController {
 	{
 		return View::make('pages.admin.home.regulasi'); 
 	}
-
 	
 	public function update_welcome()
 	{
@@ -59,6 +58,11 @@ class HomeAdminController extends BaseController {
 		$konten->save();
 		
 		return View::make('pages.admin.home.welcome')->with('message', 'Success');
+	}
+	
+	public function update_gallery()
+	{
+		
 	}
 	
 }

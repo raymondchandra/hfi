@@ -105,6 +105,7 @@ Route::group(['prefix' => 'admin'], function () {
 	//edit beranda anggota
 	Route::put('/editAnggotaHome', ['as' => 'admin.editAnggotaHome', 'uses' => 'AnggotaAdminController@update_home']);
 	//edit aturan anggota
+	Route::put('/editAnggotaReg', ['as' => 'admin.editAnggotaReg', 'uses' => 'AnggotaAdminController@update_regulasi']);
 	//aktivasi akun
 	//reset password
 	//edit berkas

@@ -44,3 +44,12 @@ $('body').on('click','#anggota_aturan',function(){
 	 $('.admin_control_panel').load('admin/anggota/aturan');
 });
 
+
+$('body').on('click','#anggota_akun',function(){
+	 $('.admin_control_panel').load('admin/anggota/akun');
+});
+
+$('body').on('click','#anggota_daftar',function(){
+	 $('.admin_control_panel').load('admin/anggota/daftar');
+});
+

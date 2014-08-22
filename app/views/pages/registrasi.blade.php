@@ -394,6 +394,9 @@
 		});
 		$( "form" ).validate({
 		  rules: {
+			username : {
+			  required: true
+			},
 			nama: {
 			  required: true
 			},
@@ -461,6 +464,9 @@
 			}
 			
 		  }, messages: {
+			username: {
+			  required: "Mohon isi username Anda"
+			},
 			nama: {
 			  required: "Mohon isi nama dengan lengkap"
 			},

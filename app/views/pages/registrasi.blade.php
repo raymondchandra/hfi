@@ -31,6 +31,12 @@
 			<td>:</td>
 			<td>{{ Form::password('password', Input::old('password')) }} <span class="red">*</span></td>
 			<td></td>
+		</tr>	
+		<tr>
+			<td><i>Ketik Ulang Password</i></td>
+			<td>:</td>
+			<td>{{ Form::password('re_password', Input::old('re_password')) }} <span class="red">*</span></td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>Nama</td>
@@ -70,9 +76,12 @@
 		<tr>
 			<td>Tempat, tanggal lahir</td>
 			<td>:</td>
-			<td style="width: 420px;">{{ Form::text('tempatlahir', Input::old('tempatlahir')) }}<span class="red">*</span>
+			<td style="">
+				<div style="width:600px;">
+				{{ Form::text('tempatlahir', Input::old('tempatlahir')) }}<span class="red" style="right:340px;">*</span>
 				<div class="clear">
 				</div>
+			
 				{{ Form::select('tanggallahir', array(
 					'pilih' => 'pilih tanggal!',
 					'1' => '1',
@@ -105,7 +114,9 @@
 					'28' => '28',
 					'29' => '29',
 					'30' => '30',
-					'31' => '31'))
+					'31' => '31'),'',
+						array('style' => 'width:100px; float: left; margin-top:10px;'
+					))
 				}}
 				{{ Form::select('bulanlahir',array(
 					'pilih' => 'pilih bulan!',
@@ -120,7 +131,9 @@
 					'9' => 'September',
 					'10' => 'Oktober',
 					'11' => 'November',
-					'12' => 'Desember'))
+					'12' => 'Desember'),'',
+						array('style' => 'width:100px; margin-left: 5px; float: left; margin-top:10px;'
+					))
 				}}
 				{{ Form::select('tahunlahir', array(
 					'pilih' => 'pilih tahun!',
@@ -231,8 +244,12 @@
 					'1903' => '1903',
 					'1902' => '1902',
 					'1901' => '1901',
-					'1900' => '1900'))
-				}} <span class="red">*</span></td>
+					'1900' => '1900'),'',
+						array('style' => 'width:100px; margin-left: 5px; float: left; margin-top:10px;'
+					))
+				}} <span class="red" style="right: 284px; top: 35px;">*</span>
+				</div>
+				</td>
 			<td><span id="tempattanggallahir" style="color:red"></span></td>
 		</tr>
 		<tr>
@@ -307,10 +324,14 @@
 		<tr>
 			<td>Kota - kodepos, negara</td>
 			<td>:</td>
-			<td style="width: 420px;">{{ Form::text('kota', Input::old('kota'), array('class' => 'form_kota')) }} - 
-			{{ Form::text('kodepos', Input::old('kodepos'), array('class' => 'form_kota')) }} , 
-			{{ Form::text('negara', Input::old('negara'), array('class' => 'form_kota')) }} <span class="red">*</span></td>
-			<td><span id="val_kotakodeposnegara" style="color:red"></span></td>
+			<td style="width: 420px;">
+			<div style="width: 600px;">
+			{{ Form::text('kota', Input::old('kota'), array('class' => 'form_kota', 'style' => 'width: 170px;')) }} - 
+			{{ Form::text('kodepos', Input::old('kodepos'), array('class' => 'form_kota', 'style' => 'width: 170px;')) }} , 
+			{{ Form::text('negara', Input::old('negara'), array('class' => 'form_kota', 'style' => 'width: 170px;')) }} <span class="red"style="color:red; right: -134px;">*</span></td>
+			</div>
+			<td>
+			<span id="val_kotakodeposnegara" style="color:red;"></span></td>
 		</tr>		
 		<tr>
 			<td>Telepon / fax</td>
@@ -345,6 +366,26 @@
 			<td></td><!--ga pake span-->		
 		</tr>		
 	</table>
+	
+	<style>
+		#tanggallahir-error, #tahunlahir-error, #bulanlahir-error {
+			position:absolute;
+			right:100px;
+			margin-top: 10px;
+		}
+		
+		#kota-error, #kodepos-error, #negara-error {
+			position: absolute;
+			width: 128px;
+			right: -268px;
+		}
+		
+		#gender-error {
+			position: absolute;
+			width: 128px;
+			right: -138px;
+		}
+	</style>
 	
 	<script>
 		jQuery.validator.setDefaults({

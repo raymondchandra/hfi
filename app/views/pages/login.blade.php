@@ -10,7 +10,7 @@
 						<div class="login_container">
 							<div class="alert_wrong_pass">
 								@if(Session::has('message'))
-									<p class="alert">{{ Session::get('message') }}</p>
+									<p class="alert" style="margin: 0px !important;">{{ Session::get('message') }}</p>
 								@endif
 							</div>
 							

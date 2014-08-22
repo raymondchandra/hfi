@@ -2,6 +2,10 @@
 
 //model binding
 //Route::model('post', 'Post');
+
+Route::get('/tes', function(){
+
+});
 //Logout
 Route::get('/logout', ['as' => 'logout' , 'uses' => 'AccountController@postLogout']);
 

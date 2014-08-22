@@ -23,6 +23,11 @@ $('body').on('click','#home_regulasi',function(){
 	 $('.admin_control_panel').load('admin/home/regulasi'); 
 });
 
+//ajax home
+
+
+//end of ajax home
+
 
 //sidebar organisasi
 $('body').on('click','#organisasi_pengurus',function(){
@@ -38,3 +43,4 @@ $('body').on('click','#organisasi_cabang',function(){
 $('body').on('click','#anggota_aturan',function(){
 	 $('.admin_control_panel').load('admin/anggota/aturan');
 });
+

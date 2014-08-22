@@ -32,6 +32,11 @@
 							<td>Jl. Merdeka No. 1</td>
 							<td><a href='javascript:void(0)' class="pop_the_pop_up">Lihat Detail</a><input type='hidden' value=0;></td>
 						</tr>
+						<tr>
+							<td>Bandung</td>
+							<td>Jl. Merdeka No. 1</td>
+							<td><a href='javascript:void(0)' class="pop_the_pop_up">Lihat Detail</a><input type='hidden' value=0;></td>
+						</tr>
 					</table>
 					<script>
 						$('.pop_the_pop_up').click(function() {

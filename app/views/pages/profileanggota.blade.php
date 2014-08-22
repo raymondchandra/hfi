@@ -25,6 +25,11 @@
 			<div class="content_hfi" id="contentfield">
 				<div class="foto_pp_container">
 					<img height="200" width="150" src={{array_get($data, 'data')->foto_profile}} alt="foto profile"/>
+					<a href="javascript:void(0)" class="edit_pp">
+						<p>Perbaharui Foto</p>
+						<span class="cam">
+						</span>
+					</a>
 					<a href="#">Rubah Profil</a>
 					<a href="#">Cetak Kartu Anggota</a>
 				</div>

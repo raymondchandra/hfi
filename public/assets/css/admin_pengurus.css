@@ -1,25 +1,30 @@
-.regulasi_container{
+.pengurus_container
+{
 	height:25px;
 }
 
-#list_regulasi{
+#list_pengurus
+{
 	margin-top:10px;
 	width:300px;
 	float:left;
 	display:inline;
 }
 
-#preview_pdf{
+#preview_pdf
+{
 	margin-top:10px;
-	float:left;
+	float:700px;
 	display:inline;
-	width: 700px;
+	width:700px;
 }
 
-#unggah{
+#unggah
+{
 	width:100%;
 }
 
-#pdf_viewer{
-	height:500px;;
+#pdf_viewer
+{	
+	height:500px;
 }

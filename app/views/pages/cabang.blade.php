@@ -28,7 +28,7 @@
 							<td class="alamat_cabang">Alamat Cabang</td>
 						</tr>
 						<tr>
-							<td>Jakarta Utara</td>
+							<td>{{$arr2[0]['nama']}}</td>
 							<td>Jl. Merdeka No. 1</td>
 							<td><a href='javascript:void(0)' class="pop_the_pop_up">Lihat Detail</a><input type='hidden' value=0;></td>
 						</tr>

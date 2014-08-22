@@ -460,6 +460,73 @@
 				email: true
 			}
 			
+		  }, messages: {
+			nama: {
+			  required: "Mohon isi nama dengan lengkap"
+			},
+			password: {
+			  required: "Mohon isi password dengan lengkap",
+			  minlength: "Panjang password minimal 8 karakter"
+			},
+			password_again: {
+			  required: "Mohon isi form dengan lengkap",
+				  equalTo: "Maaf password tidak cocok"
+				
+			},
+			tempatlahir: {
+			  required: "Mohon isi tempat lahir dengan lengkap"
+			},
+			tanggallahir: {
+			  required: "Mohon pilih tanggal lahir",
+				number: "Mohon pilih tanggal lahir"
+			},
+			bulanlahir: {
+			  required: "Mohon pilih tanggal lahir",
+				number: "Mohon pilih tanggal lahir"
+			},
+			tahunlahir: {
+			  required: "Mohon pilih tanggal lahir",
+				number: "Mohon pilih tanggal lahir"
+			},
+			gender: {
+			  required: "Pilih Jenis Kelamin"
+			},
+			temapenelitian: {
+			  required: "Mohon isi tempat penelitian"
+			},
+			spesialisasi: {
+			  required: "Mohon pilih spesialisasi"
+			},
+			pendidikan: {
+			  required: "Mohon isi tempat pendidikan"
+			},
+			profesi: {
+			  required: "Mohon pilih profesi"
+			},
+			institusi: {
+			  required: "Mohon masukkan nama institusi"
+			},
+			alamatkontak: {
+			  required: "Mohon tulis alaman Anda"
+			},
+			kota: {
+			  required: "Mohon tulis kota tinggal Anda"
+			},
+			kodepos: {
+			  required: "Mohon tulis kode pos Anda"
+			},
+			negara: {
+			  required: "Mohon tulis negara tinggal Anda"
+			},
+			telepon: {
+			  required: "Mohon masukkan nomer telpon",
+				number: "Mohon isi form dengan angka"
+			},
+			email: {
+			  required: "Mohon masukkan email Anda",
+				email: "Mohon tulis format dengan benar"
+			}
+			
 		  }
 		});
 	</script>

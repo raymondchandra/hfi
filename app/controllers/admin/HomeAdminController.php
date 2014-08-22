@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 class HomeAdminController extends BaseController {
 	
 	public $restful = true;
@@ -51,16 +53,121 @@ class HomeAdminController extends BaseController {
 	public function update_welcome()
 	{
 		$konten_welcome = Input::get('updateWelcome');
-		$konten_id = Konten::where('tipe_konten', '=', 'tentang')->first()->id;
-		$konten = Konten::find($konten_id);
-		$konten->konten = $konten_welcome;
-		$konten->timestamps = false;
-		$konten->save();
-		
-		//return View::make('pages.admin.home.welcome')->with('message', 'Success');
-		//return View::make('pages.admin.home.regulasi');
-		//return "ABC";
-		return "Success";
+		$id = Auth::user()->id;
+		$konten_id = Konten::where('tipe_konten', '=', 'welcome')->first();
+		if(count($konten_id) != 0)
+		{
+			$konten = Konten::find($konten_id->id);
+			$konten->konten = $konten_welcome;
+			$konten->timestamps = false;
+			$konten -> tanggal_edit = Carbon::now();
+			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			
+			$konten->save();
+			return "Success Update";
+		}else
+		{
+			$konten = new Konten();
+			$konten -> timestamps = false;
+			$konten -> konten = $konten_welcome;
+			$konten -> tipe_konten = 'welcome';
+			$konten -> tanggal_edit = Carbon::now();
+			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			
+			$konten -> save();
+			
+			return "Success Insert";
+		}
+	}
+	
+	public function update_tentang()
+	{
+		$konten_welcome = Input::get('updateAbout');
+		$id = Auth::user()->id;
+		$konten_id = Konten::where('tipe_konten', '=', 'tentang')->first();
+		if(count($konten_id) != 0)
+		{
+			$konten = Konten::find($konten_id->id);
+			$konten->konten = $konten_welcome;
+			$konten->timestamps = false;
+			$konten -> tanggal_edit = Carbon::now();
+			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			
+			$konten->save();
+			return "Success Update";
+		}else
+		{
+			$konten = new Konten();
+			$konten -> timestamps = false;
+			$konten -> konten = $konten_welcome;
+			$konten -> tipe_konten = 'tentang';
+			$konten -> tanggal_edit = Carbon::now();
+			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			
+			$konten -> save();
+			
+			return "Success Insert";
+		}
+	}
+	
+	public function update_visi()
+	{
+		$konten_welcome = Input::get('updateVisi');
+		$id = Auth::user()->id;
+		$konten_id = Konten::where('tipe_konten', '=', 'visi')->first();
+		if(count($konten_id) != 0)
+		{
+			$konten = Konten::find($konten_id->id);
+			$konten->konten = $konten_welcome;
+			$konten->timestamps = false;
+			$konten -> tanggal_edit = Carbon::now();
+			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			
+			$konten->save();
+			return "Success Update";
+		}else
+		{
+			$konten = new Konten();
+			$konten -> timestamps = false;
+			$konten -> konten = $konten_welcome;
+			$konten -> tipe_konten = 'visi';
+			$konten -> tanggal_edit = Carbon::now();
+			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			
+			$konten -> save();
+			
+			return "Success Insert";
+		}
+	}
+	
+	public function update_misi()
+	{
+		$konten_welcome = Input::get('updateMisi');
+		$id = Auth::user()->id;
+		$konten_id = Konten::where('tipe_konten', '=', 'misi')->first();
+		if(count($konten_id) != 0)
+		{
+			$konten = Konten::find($konten_id->id);
+			$konten->konten = $konten_welcome;
+			$konten->timestamps = false;
+			$konten -> tanggal_edit = Carbon::now();
+			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			
+			$konten->save();
+			return "Success Update";
+		}else
+		{
+			$konten = new Konten();
+			$konten -> timestamps = false;
+			$konten -> konten = $konten_welcome;
+			$konten -> tipe_konten = 'misi';
+			$konten -> tanggal_edit = Carbon::now();
+			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			
+			$konten -> save();
+			
+			return "Success Insert";
+		}
 	}
 	
 	public function update_gallery()

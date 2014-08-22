@@ -26,13 +26,13 @@
 			</li>
 			
 			<li>
-				<a href="#" class="_organisasi_tombol">Organisasi</a>
+				<a href="javascript:void(0)" class="_organisasi_tombol">Organisasi</a>
 				<ul style="display: none;" class="_organisasi_list">
 					<li>
-						<a href="#">Pengurus</a>
+						<a href="javascript:void(0)" id='organisasi_pengurus'>Pengurus</a>
 					</li>
 					<li>
-						<a href="#">Cabang</a>
+						<a href="javascript:void(0)" id='organisasi_cabang'>Cabang</a>
 					</li>
 				</ul>
 			</li>

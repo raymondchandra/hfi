@@ -29,7 +29,13 @@
 		<tr>
 			<td><i>Password</i></td>
 			<td>:</td>
-			<td>{{ Form::password('password', Input::old('password')) }} <span class="red">*</span></td>
+			<td>{{ Form::password('password',array('id' => 'input_password'), Input::old('password')) }} <span class="red">*</span></td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td><i>Ketik Ulang Password</i></td>
+			<td>:</td>
+			<td>{{ Form::password('password_again',array('id' => 'password_again'), Input::old('password_again')) }} <span class="red">*</span></td>
 			<td></td>
 		</tr>
 		<tr>
@@ -40,7 +46,7 @@
 		</tr>
 		<tr>
 			<td>Registrasi</td>			
-			<td>:</td>
+			<td>: </td>
 			<td>
 				anggota non-aktif, HFI Cabang 
 				{{ Form::select('hficabang', array(
@@ -70,11 +76,14 @@
 		<tr>
 			<td>Tempat, tanggal lahir</td>
 			<td>:</td>
-			<td>{{ Form::text('tempatlahir', Input::old('tempatlahir')) }}<span class="red">*</span>
+			<td style="">
+				<div style="width:600px;">
+				{{ Form::text('tempatlahir', Input::old('tempatlahir')) }}<span class="red" style="right:340px;">*</span>
 				<div class="clear">
 				</div>
+			
 				{{ Form::select('tanggallahir', array(
-					'pilih' => 'pilih!',
+					'pilih' => 'pilih tanggal!',
 					'1' => '1',
 					'2' => '2',
 					'3' => '3',
@@ -105,10 +114,12 @@
 					'28' => '28',
 					'29' => '29',
 					'30' => '30',
-					'31' => '31'))
+					'31' => '31'),'',
+						array('style' => 'width:100px; float: left; margin-top:10px;'
+					))
 				}}
 				{{ Form::select('bulanlahir',array(
-					'pilih' => 'pilih!',
+					'pilih' => 'pilih bulan!',
 					'1' => 'Januari',
 					'2' => 'Februari',
 					'3' => 'Maret',
@@ -120,10 +131,12 @@
 					'9' => 'September',
 					'10' => 'Oktober',
 					'11' => 'November',
-					'12' => 'Desember'))
+					'12' => 'Desember'),'',
+						array('style' => 'width:100px; margin-left: 5px; float: left; margin-top:10px;'
+					))
 				}}
 				{{ Form::select('tahunlahir', array(
-					'pilih' => 'pilih!',
+					'pilih' => 'pilih tahun!',
 					'2007' => '2007',
 					'2006' => '2006',
 					'2005' => '2005',
@@ -231,8 +244,12 @@
 					'1903' => '1903',
 					'1902' => '1902',
 					'1901' => '1901',
-					'1900' => '1900'))
-				}} <span class="red">*</span></td>
+					'1900' => '1900'),'',
+						array('style' => 'width:100px; margin-left: 5px; float: left; margin-top:10px;'
+					))
+				}} <span class="red" style="right: 284px; top: 35px;">*</span>
+				</div>
+				</td>
 			<td><span id="tempattanggallahir" style="color:red"></span></td>
 		</tr>
 		<tr>
@@ -307,10 +324,14 @@
 		<tr>
 			<td>Kota - kodepos, negara</td>
 			<td>:</td>
-			<td>{{ Form::text('kota', Input::old('kota'), array('class' => 'form_kota')) }} - 
-			{{ Form::text('kodepos', Input::old('kodepos'), array('class' => 'form_kota')) }} , 
-			{{ Form::text('negara', Input::old('negara'), array('class' => 'form_kota')) }} <span class="red">*</span></td>
-			<td><span id="val_kotakodeposnegara" style="color:red"></span></td>
+			<td style="width: 420px;">
+			<div style="width: 600px;">
+			{{ Form::text('kota', Input::old('kota'), array('class' => 'form_kota', 'style' => 'width: 170px;')) }} - 
+			{{ Form::text('kodepos', Input::old('kodepos'), array('class' => 'form_kota', 'style' => 'width: 170px;')) }} , 
+			{{ Form::text('negara', Input::old('negara'), array('class' => 'form_kota', 'style' => 'width: 170px;')) }} <span class="red"style="color:red; right: -134px;">*</span></td>
+			</div>
+			<td>
+			<span id="val_kotakodeposnegara" style="color:red;"></span></td>
 		</tr>		
 		<tr>
 			<td>Telepon / fax</td>
@@ -346,6 +367,26 @@
 		</tr>		
 	</table>
 	
+	<style>
+		#tanggallahir-error, #tahunlahir-error, #bulanlahir-error {
+			position:absolute;
+			right:100px;
+			margin-top: 10px;
+		}
+		
+		#kota-error, #kodepos-error, #negara-error {
+			position: absolute;
+			width: 128px;
+			right: -268px;
+		}
+		
+		#gender-error {
+			position: absolute;
+			width: 128px;
+			right: -138px;
+		}
+	</style>
+	
 	<script>
 		jQuery.validator.setDefaults({
 		  debug: true,
@@ -353,11 +394,20 @@
 		});
 		$( "form" ).validate({
 		  rules: {
+			username : {
+			  required: true
+			},
 			nama: {
 			  required: true
 			},
 			password: {
-			  required: true
+			  required: true,
+			  minlength: 8
+			},
+			password_again: {
+			  required: true,
+				  equalTo: "#input_password"
+				
 			},
 			tempatlahir: {
 			  required: true
@@ -411,6 +461,76 @@
 			email: {
 			  required: true,
 				email: true
+			}
+			
+		  }, messages: {
+			username: {
+			  required: "Mohon isi username Anda"
+			},
+			nama: {
+			  required: "Mohon isi nama dengan lengkap"
+			},
+			password: {
+			  required: "Mohon isi password dengan lengkap",
+			  minlength: "Panjang password minimal 8 karakter"
+			},
+			password_again: {
+			  required: "Mohon isi form dengan lengkap",
+				  equalTo: "Maaf password tidak cocok"
+				
+			},
+			tempatlahir: {
+			  required: "Mohon isi tempat lahir dengan lengkap"
+			},
+			tanggallahir: {
+			  required: "Mohon pilih tanggal lahir",
+				number: "Mohon pilih tanggal lahir"
+			},
+			bulanlahir: {
+			  required: "Mohon pilih tanggal lahir",
+				number: "Mohon pilih tanggal lahir"
+			},
+			tahunlahir: {
+			  required: "Mohon pilih tanggal lahir",
+				number: "Mohon pilih tanggal lahir"
+			},
+			gender: {
+			  required: "Pilih Jenis Kelamin"
+			},
+			temapenelitian: {
+			  required: "Mohon isi tempat penelitian"
+			},
+			spesialisasi: {
+			  required: "Mohon pilih spesialisasi"
+			},
+			pendidikan: {
+			  required: "Mohon isi tempat pendidikan"
+			},
+			profesi: {
+			  required: "Mohon pilih profesi"
+			},
+			institusi: {
+			  required: "Mohon masukkan nama institusi"
+			},
+			alamatkontak: {
+			  required: "Mohon tulis alaman Anda"
+			},
+			kota: {
+			  required: "Mohon tulis kota tinggal Anda"
+			},
+			kodepos: {
+			  required: "Mohon tulis kode pos Anda"
+			},
+			negara: {
+			  required: "Mohon tulis negara tinggal Anda"
+			},
+			telepon: {
+			  required: "Mohon masukkan nomer telpon",
+				number: "Mohon isi form dengan angka"
+			},
+			email: {
+			  required: "Mohon masukkan email Anda",
+				email: "Mohon tulis format dengan benar"
 			}
 			
 		  }
@@ -788,7 +908,7 @@
 	{{ Form::open(array('url' => 'foo/bar')) }}	<!-- default post-->	
 	<p style="text-align:center;">
 		<div style="text-align: center;" class="tempat_radio">
-			{{ Form::radio('persetujuan','setuju')}}setuju    {{ Form::radio('persetujuan','tidaksetuju') }}tidak setuju
+			{{ Form::radio('persetujuan','setuju')}}setuju    {{ Form::radio('persetujuan','tidaksetuju', true) }}tidak setuju
 		</div>
 	
 	</p>

@@ -2,6 +2,10 @@
 
 //model binding
 //Route::model('post', 'Post');
+
+Route::get('/tes', function(){
+
+});
 //Logout
 Route::get('/logout', ['as' => 'logout' , 'uses' => 'AccountController@postLogout']);
 Route::get('/viewUser', ['as' => 'viewUser' , 'uses' => 'UserController@view_profile']);
@@ -36,10 +40,10 @@ Route::group(['prefix' => 'user', 'before' => 'authUser'], function () {
 	//ganti password
 });
 
+
 //admin route
-
-
-Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
+//Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
+Route::group(['prefix' => 'admin'], function () {
 	Route::get('/', ['as' => 'adminPanel', 'uses' => 'HomeAdminController@view_adminPanel']);
 	//home
 	Route::get('/home/slide', ['as' => 'admin.home.slide', 'uses' => 'HomeAdminController@view_slide']);
@@ -82,7 +86,7 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	//upload berkas
 	
 	//admin put route
-	Route::put('/editWelcome', ['as' => 'editWelcome', 'uses' => 'HomeAdminController@update_welcome']);
+	Route::put('/editWelcome', ['as' => 'admin.editWelcome', 'uses' => 'HomeAdminController@update_welcome']);
 	//edit tentang
 	//edit visi
 	//edit misi

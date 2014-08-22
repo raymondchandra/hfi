@@ -1,3 +1,4 @@
+//sidebar home
 $('body').on('click','#home_slideshow',function(){
 	 $('.admin_control_panel').load('admin/home/slide');
 });
@@ -22,7 +23,24 @@ $('body').on('click','#home_regulasi',function(){
 	 $('.admin_control_panel').load('admin/home/regulasi'); 
 });
 
+//ajax home
 
+
+//end of ajax home
+
+
+//sidebar organisasi
+$('body').on('click','#organisasi_pengurus',function(){
+	 $('.admin_control_panel').load('admin/organisasi/pengurus'); 
+});
+
+$('body').on('click','#organisasi_cabang',function(){
+	 $('.admin_control_panel').load('admin/organisasi/cabang');	 
+});
+
+
+//sidebar anggota
 $('body').on('click','#anggota_aturan',function(){
 	 $('.admin_control_panel').load('admin/anggota/aturan');
 });
+

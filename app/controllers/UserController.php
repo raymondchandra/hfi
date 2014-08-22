@@ -35,6 +35,13 @@ class UserController extends BaseController {
 		}
 	}
 	
+	public static function getHeaderName($id)
+	{
+		$profile = Anggota::where('auth_id', '=' , $id)->first();
+	
+		return $profile->nama;
+	}
+	
 	public function view_carianggota()
 	{
 		$arr = $this->setHeader();

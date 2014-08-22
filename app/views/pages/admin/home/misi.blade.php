@@ -1,6 +1,6 @@
 <div class='admin_title'>Misi HFI</div>
 <div class='editor_container'>
-<textarea name="textarea" class="editor"> 
+<textarea name="misi_message" id = 'misi_message' class="editor"> 
 
 </textarea>
 </div>

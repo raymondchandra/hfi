@@ -1,6 +1,6 @@
 <div class='admin_title'>Tentang HFI</div>
 <div class='editor_container'>
-<textarea name="textarea" class="editor">
+<textarea name="about_message" id = 'about_message' class="editor">
 
 </textarea>
 </div>

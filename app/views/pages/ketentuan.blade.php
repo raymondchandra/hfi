@@ -18,41 +18,7 @@
 			</div>
 			
 			<div class="content_hfi" id="contentfield">
-				<!--{{ HTML::ol(array('a','b','c'))}}-->
-				<!--{{ HTML::ul(array(
-					'Setiap anggota aktif HFI (yang telah membayar iuran pada 
-						tahun berjalan) akan mendapatkan aneka kemudahan, antara lain :',
-					array(
-						'Pembebasan biaya penerbitan karya ilmiahnya di 
-								jurnal-jurnalyang dikelola HFI Pusat.',
-						'Diskon khusus untuk biaya registrasi semua kegiatan 
-								(simposium, dll) yang diselenggarakan oleh HFI Pusat.',
-						'Diskon 20 persen untuk semua produk di toko maya 
-								HFI Pusat.'),
-					'Prosedur pendaftaran anggota baru :'			
-					)
-				)
-				}}-->
-				<b><u>Ketentuan dan Perjanjian Anggota :</u></b>
-				<br></br>
-				<ul>
-					<li>Sarana database anggota ini disediakan oleh OPI LIPI, namun dikelola
-						oleh Himpunan Fisika Indonesia (HFI).</li>
-					<li>Seluruh isi dan pemakaian database ini sepenuhnya dilakukan dan menjadi
-						tanggung jawab HFI.</li>
-					<li>Persetujuan / penolakan atas registrasi yang dilakukan sepenuhnya menjadi
-						wewenang Pengurus Pusat HFI.</li>
-					<li>Anggota diwajibkan mengisi data seakurat mungkin dengan jujur. Kesalahan
-						pengisian baik disengaja maupun tidak dengan segala akibatnya menjadi
-						tanggung-jawab anggota.</li>
-					<li>Setiap anggota terdaftar otomatis akan dimasukkan sebagai anggota 
-						<i>mailing-list</i> HFI di :									
-						<br></br>						
-						<p align="center"><i>hfi@milis.opi.lipi.go.id</i></p>
-						Keanggotaan di <i>mailing-list</i> ini bersifat tertutup dan HANYA untuk
-						anggota yang terintegrasi di database ini. Keanggotaan pada <i>mailing-list</i>
-						ini sangat dianjurkan karena semua informasi akan dilakukan melalui <i>mailing-list</i>.</li>
-				</ul>				
+				{{$isiKonten}}
 			</div>
 		</div>
 	</div>

@@ -15,6 +15,8 @@
 				</div>
 				<div class="grid_2 ">
 					@if(Auth::check())
+						Hi {{ HTML::linkRoute('viewUser', UserController::getHeaderName(Auth::user()->id), array(), array('class' => 'daftar_dan_login')) }}
+						<span> | </span>
 						{{ HTML::linkRoute('logout', 'Keluar', array(), array('class' => 'daftar_dan_login')) }}
 					@else
 						{{ HTML::linkRoute('registrasi', 'Daftar', array(), array('class' => 'daftar_dan_login')) }}

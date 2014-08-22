@@ -2,8 +2,13 @@
 
 //model binding
 //Route::model('post', 'Post');
+
+Route::get('/tes', function(){
+
+});
 //Logout
 Route::get('/logout', ['as' => 'logout' , 'uses' => 'AccountController@postLogout']);
+Route::get('/viewUser', ['as' => 'viewUser' , 'uses' => 'UserController@view_profile']);
 
 //view
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@view_index']);
@@ -18,7 +23,7 @@ Route::get('/anggota', ['as' => 'anggota', 'uses' => 'AnggotaController@view_ind
 Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index']);
 
 //account view
-Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login']);
+Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login', 'before' => 'checkLogin']);
 Route::get('/registrasi', ['as' => 'registrasi', 'uses' => 'AccountController@view_registrasi']);
 	
     
@@ -81,7 +86,10 @@ Route::group(['prefix' => 'admin'], function () {
 	//upload berkas
 	
 	//admin put route
-	Route::put('/editWelcome', ['as' => 'editWelcome', 'uses' => 'HomeAdminController@update_welcome']);
+	Route::put('/editWelcome', ['as' => 'admin.editWelcome', 'uses' => 'HomeAdminController@update_welcome']);
+	Route::put('/editTentang', ['as' => 'admin.editTentang', 'uses' => 'HomeAdminController@update_tentang']);
+	Route::put('/editVisi', ['as' => 'admin.editVisi', 'uses' => 'HomeAdminController@update_visi']);
+	Route::put('/editMisi', ['as' => 'admin.editMisi', 'uses' => 'HomeAdminController@update_misi']);
 	//edit tentang
 	//edit visi
 	//edit misi
@@ -94,6 +102,8 @@ Route::group(['prefix' => 'admin'], function () {
 	//edit ketentuan
 	//edit karya tulis lain
 	//edit ilmiah populer
+	//edit beranda anggota
+	Route::put('/editAnggotaHome', ['as' => 'admin.editAnggotaHome', 'uses' => 'AnggotaAdminController@update_home']);
 	//edit aturan anggota
 	//aktivasi akun
 	//reset password

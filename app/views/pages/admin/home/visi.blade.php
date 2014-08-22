@@ -1,7 +1,7 @@
 <div class='admin_title'>Visi HFI</div>
 <div class='editor_container'>
-<textarea name="textarea" class="editor"> 
-
+<textarea name="visi_message" id = 'visi_message' class="editor"> 
+{{$visi_hfi}}
 </textarea>
 </div>
 <input type='button' id='submit_change' value='Rubah'></input>
@@ -10,6 +10,18 @@
 	$('.editor').jqte();
 	
 	$('#submit_change').click(function(){
-		alert($('.editor').val());
+		$.ajax({
+			type: 'PUT',
+			url: 'admin/editVisi',
+			data: {
+                "updateVisi": $('.editor').val()
+            },
+			success: function(response){
+				alert(response);
+			},
+			error: function(jqXHR, textStatus, errorThrown){
+				alert(errorThrown);
+			}
+		},'json');
 	});
 </script>

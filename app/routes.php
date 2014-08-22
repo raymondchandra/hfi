@@ -85,7 +85,7 @@ Route::group(['prefix' => 'admin'], function () {
 	//upload berkas
 	
 	//admin put route
-	Route::put('/editWelcome', ['as' => 'editWelcome', 'uses' => 'HomeAdminController@update_welcome']);
+	Route::put('/editWelcome', ['as' => 'admin.editWelcome', 'uses' => 'HomeAdminController@update_welcome']);
 	//edit tentang
 	//edit visi
 	//edit misi

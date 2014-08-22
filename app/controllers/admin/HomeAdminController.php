@@ -50,14 +50,17 @@ class HomeAdminController extends BaseController {
 	
 	public function update_welcome()
 	{
-		$konten_welcome = Input::get('textarea');
+		$konten_welcome = Input::get('updateWelcome');
 		$konten_id = Konten::where('tipe_konten', '=', 'tentang')->first()->id;
 		$konten = Konten::find($konten_id);
 		$konten->konten = $konten_welcome;
 		$konten->timestamps = false;
 		$konten->save();
 		
-		return View::make('pages.admin.home.welcome')->with('message', 'Success');
+		//return View::make('pages.admin.home.welcome')->with('message', 'Success');
+		//return View::make('pages.admin.home.regulasi');
+		//return "ABC";
+		return "Success";
 	}
 	
 	public function update_gallery()

@@ -29,13 +29,13 @@
 		<tr>
 			<td><i>Password</i></td>
 			<td>:</td>
-			<td>{{ Form::password('password', Input::old('password')) }} <span class="red">*</span></td>
+			<td>{{ Form::password('password',array('id' => 'input_password'), Input::old('password')) }} <span class="red">*</span></td>
 			<td></td>
 		</tr>	
 		<tr>
 			<td><i>Ketik Ulang Password</i></td>
 			<td>:</td>
-			<td>{{ Form::password('re_password', Input::old('re_password')) }} <span class="red">*</span></td>
+			<td>{{ Form::password('password_again',array('id' => 'password_again'), Input::old('password_again')) }} <span class="red">*</span></td>
 			<td></td>
 		</tr>
 		<tr>
@@ -394,11 +394,20 @@
 		});
 		$( "form" ).validate({
 		  rules: {
+			username : {
+			  required: true
+			},
 			nama: {
 			  required: true
 			},
 			password: {
-			  required: true
+			  required: true,
+			  minlength: 8
+			},
+			password_again: {
+			  required: true,
+				  equalTo: "#input_password"
+				
 			},
 			tempatlahir: {
 			  required: true
@@ -452,6 +461,76 @@
 			email: {
 			  required: true,
 				email: true
+			}
+			
+		  }, messages: {
+			username: {
+			  required: "Mohon isi username Anda"
+			},
+			nama: {
+			  required: "Mohon isi nama dengan lengkap"
+			},
+			password: {
+			  required: "Mohon isi password dengan lengkap",
+			  minlength: "Panjang password minimal 8 karakter"
+			},
+			password_again: {
+			  required: "Mohon isi form dengan lengkap",
+				  equalTo: "Maaf password tidak cocok"
+				
+			},
+			tempatlahir: {
+			  required: "Mohon isi tempat lahir dengan lengkap"
+			},
+			tanggallahir: {
+			  required: "Mohon pilih tanggal lahir",
+				number: "Mohon pilih tanggal lahir"
+			},
+			bulanlahir: {
+			  required: "Mohon pilih tanggal lahir",
+				number: "Mohon pilih tanggal lahir"
+			},
+			tahunlahir: {
+			  required: "Mohon pilih tanggal lahir",
+				number: "Mohon pilih tanggal lahir"
+			},
+			gender: {
+			  required: "Pilih Jenis Kelamin"
+			},
+			temapenelitian: {
+			  required: "Mohon isi tempat penelitian"
+			},
+			spesialisasi: {
+			  required: "Mohon pilih spesialisasi"
+			},
+			pendidikan: {
+			  required: "Mohon isi tempat pendidikan"
+			},
+			profesi: {
+			  required: "Mohon pilih profesi"
+			},
+			institusi: {
+			  required: "Mohon masukkan nama institusi"
+			},
+			alamatkontak: {
+			  required: "Mohon tulis alaman Anda"
+			},
+			kota: {
+			  required: "Mohon tulis kota tinggal Anda"
+			},
+			kodepos: {
+			  required: "Mohon tulis kode pos Anda"
+			},
+			negara: {
+			  required: "Mohon tulis negara tinggal Anda"
+			},
+			telepon: {
+			  required: "Mohon masukkan nomer telpon",
+				number: "Mohon isi form dengan angka"
+			},
+			email: {
+			  required: "Mohon masukkan email Anda",
+				email: "Mohon tulis format dengan benar"
 			}
 			
 		  }

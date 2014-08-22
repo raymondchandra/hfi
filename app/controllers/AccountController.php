@@ -11,13 +11,11 @@ class AccountController extends BaseController {
 		$username = Input::get('username');
 		$password = Input::get('password');
 		$data = array('username'=>$username, 'password'=>$password);
-		
-		if(Input::get('remember_me') === 'yes')
+		$remember_me = Input::get('remember_me') === 'yes';
+		if($remember_me == true)
 		{
-			if(Auth::attempt($data, true))
+			if(Auth::attempt($data, $remember_me))
 			{
-				
-				
 				if(Auth::user()->status_aktif == 1)
 				{
 					if(Auth::user()->role == 0)
@@ -27,11 +25,12 @@ class AccountController extends BaseController {
 					}
 					else
 					{
-						echo("success user admin");
+						return Redirect::to('/admin');
 					}
 				}
 				else
 				{
+					Auth::logout();
 					return Redirect::to('/login')->with('message', "akun ini memerlukan perpanjangan aktivasi.");
 				}
 			}
@@ -60,6 +59,7 @@ class AccountController extends BaseController {
 				}
 				else
 				{
+					Auth::logout();
 					return Redirect::to('/login')->with('message', "akun ini memerlukan perpanjangan aktivasi.");
 				}
 			}
@@ -157,15 +157,8 @@ class AccountController extends BaseController {
 	
 	public function view_login()
 	{
-		if(Auth::check())
-		{
-			return Redirect::to('user');
-		}
-		else
-		{
-			$arr = $this->setHeader();
-			return View::make('pages.login', compact('arr'));
-		}
+		$arr = $this->setHeader();
+		return View::make('pages.login', compact('arr'));
 	}
 	
 	public function view_registrasi()

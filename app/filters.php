@@ -43,10 +43,18 @@ Route::filter('authUser', function()
 	{
 		if(Auth::user()->role == 1)
 		{
-			return Redirect::to('login');
+			echo "not Allowed";
 		}
 	}
 	
+});
+
+Route::filter('checkLogin', function()
+{
+	if(Auth::check())
+	{
+		echo "Anda sudah login(tulisan ini bakal ilang kalo uda ada halaman lain)";
+	}
 });
 
 Route::filter('authAdmin', function()
@@ -59,7 +67,7 @@ Route::filter('authAdmin', function()
 	{
 		if(Auth::user()->role == 0)
 		{
-			return Redirect::to('login');
+			echo "not Allowed";
 		}
 	}
 });

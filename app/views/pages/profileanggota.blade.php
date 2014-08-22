@@ -49,18 +49,18 @@
 						<tr>
 							<td>Status Anggota</td>
 							<td>:</td>
-							<td>{{array_get($data, 'status_aktif')}} (s/d {{array_get($data, 'data')->batas_aktif}})</td>
+							<td>{{array_get($data, 'status_aktif')}} (s/d {{array_get($data, 'batas_aktif')}})</td>
 						</tr>
 						<!-- end tambahan dari design gredy, yg blom ada di profile-->
 					<tr>
 						<td>Tanggal Revisi</td>
 						<td>:</td>
-						<td>{{array_get($data, 'data')->revisi}}</td>		
+						<td>{{array_get($data, 'data')->tanggal_revisi}}</td>		
 					</tr>												
 					<tr>
 						<td>Tema Penelitian</td>
 						<td>:</td>
-						<td>{{array_get($data, 'data')->penelitian}}</td>
+						<td>{{array_get($data, 'data')->tema_penelitian}}</td>
 					</tr>
 					<tr>
 						<td>Spesialisasi</td>

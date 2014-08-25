@@ -72,7 +72,7 @@
 			$('#tambah_cabang').click(function() {
 				$( ".pop_up_super_c" ).fadeIn( 277, function(){});
 				$nama=$('#new_nama').val("");
-				$alamat=$('#new_alamat').val("");
+				$alamat=$('#new_alamat').val(""); 
 				$telepon=$('#new_telepon').val("");
 				$fax=$('#new_fax').val("");
 				$email=$('#new_email').val("");

@@ -28,6 +28,7 @@
 						}
 						
 						list+="<td><input type='button' value='v' class='edit_info_cabang' /><input type='hidden' class='id_cabang' value='"+$i+"'></td>";
+						list+="<td><input type='button' value='x' class='hapus_cabang' /><input type='hidden' class='id_cabang' value='"+$i+"'></td>";
 						list+="</tr>";
 					}
 					$('#daftar_semua_cabang').html(list);
@@ -84,7 +85,7 @@
 				$fax_cabang = $(this).parent().siblings('.fax_cabang').text();
 				$email_cabang = $(this).parent().siblings('.email_cabang').text();
 				$website_cabang = $(this).parent().siblings('.website_cabang').text();
-				$id_cabang = $(this).siblings(".id_cabang").val();
+				$id_cabang = $(this).next().val();
 				$string="<td class='nama_cabang'><input type='text' id='up_nama_cabang' value='"+$nama_cabang+"' /></td>";
 				$string+="<td class='alamat_cabang'><input type='text' id='up_alamat_cabang' value='"+$alamat_cabang+"' /></td>";
 				$string+="<td class='telepon_cabang'><input type='text' id='up_telepon_cabang' value="+$telepon_cabang+" /></td>";
@@ -131,6 +132,23 @@
 						alert(errorThrown);
 					}		
 				});
+			});
+			$('body').on('click','.hapus_cabang',function(){
+				/*$id = $(this).next().val();
+				//ajax delete
+				$.ajax({
+					url: 'admin/organisasi/editcabang',
+					type: 'DELETE',
+					data: {
+						'id_cabang' : $id
+					},
+					success: function(data){
+						alert(data);
+					},
+					error:function(jqXHR, textStatus, errorThrown){
+						alert(errorThrown);
+					}		
+				});*/
 			});
 			
 			$('#tambah_cabang').click(function(){

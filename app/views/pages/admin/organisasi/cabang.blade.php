@@ -55,6 +55,7 @@
 				<td class="email_cabang">E-mail</td>
 				<td class="website_cabang">Website</td>
 				<td>&nbsp;</td>
+				<td>&nbsp;</td>
 			</tr>
 		</table>
 		<table class='list_cabang' id='daftar_semua_cabang'>
@@ -105,11 +106,12 @@
 				$email_cabang = $(this).parent().siblings('.email_cabang').children('#up_email_cabang').val();
 				$website_cabang = $(this).parent().siblings('.website_cabang').children('#up_website_cabang').val();
 				//ajax update
+				//alert(arrIDCabang[$id]);
 				$.ajax({
 					url: 'admin/organisasi/editcabang',
 					type: 'PUT',
 					data: {
-						'id_cabang' : $id,
+						'id_cabang' : arrIDCabang[$id],
 						'nama_cabang':$nama_cabang,
 						'telp_cabang':$telepon_cabang,
 						'fax_cabang':$fax_cabang,

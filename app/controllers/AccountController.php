@@ -164,8 +164,22 @@ class AccountController extends BaseController {
 	public function view_registrasi()
 	{
 		$arr = $this->setHeader();
-		return View::make('pages.registrasi', compact('arr'));
+		$arr2 = $this->get_all_cabang();
+		return View::make('pages.registrasi', compact('arr', 'arr2'));
 	}
+	
+	public function get_all_cabang()
+	{
+		$count = Cabang::select('nama')->get();
+		if(count($count) != 0)
+		{
+			return $count;
+		}else
+		{
+			return "";
+		}
+	}
+	
 }
 
 ?>

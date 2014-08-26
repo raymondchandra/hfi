@@ -1,0 +1,12 @@
+.filter_kegiatan_container{
+	float: left;
+	width: 200px;
+}
+
+.filter_kegiatan input[type="text"]{
+	width: 90% !important;
+}
+
+.kegiatan_container{
+	float:left;
+}

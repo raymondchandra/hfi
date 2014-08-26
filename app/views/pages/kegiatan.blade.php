@@ -27,7 +27,10 @@
 			
 			<ul>
 				<li>
-					
+					<div>Image</div>
+					<div>Nama Kegiatan</div>
+					<div>Waktu Kegiatan</div>
+					<div>Deskripsi</div>
 				</li>
 			</ul>
 		</div>

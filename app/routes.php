@@ -76,8 +76,9 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('/berkas', ['as' => 'admin.berkas', 'uses' => 'BerkasAdminController@view_index']);
 	
 	//admin get route
-	
+	Route::get('/organisasi/daftarcabang', ['as' => 'admin.organisasi.daftarcabang', 'uses' => 'OrganisasiAdminController@get_semua_cabang']);
 	//admin post route
+	Route::post('/organisasi/tambahcabang', ['as' => 'admin.organisasi.tambahcabang', 'uses' => 'OrganisasiAdminController@tambah_cabang']);
 	//post slideshow
 	//upload regulasi
 	//upload pengurus
@@ -90,6 +91,7 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::put('/editTentang', ['as' => 'admin.editTentang', 'uses' => 'HomeAdminController@update_tentang']);
 	Route::put('/editVisi', ['as' => 'admin.editVisi', 'uses' => 'HomeAdminController@update_visi']);
 	Route::put('/editMisi', ['as' => 'admin.editMisi', 'uses' => 'HomeAdminController@update_misi']);
+	
 	//edit tentang
 	//edit visi
 	//edit misi
@@ -97,6 +99,7 @@ Route::group(['prefix' => 'admin'], function () {
 	//edit regulasi
 	//edit pengurus
 	//edit cabang
+	Route::put('/organisasi/editcabang', ['as' => 'admin.organisasi.editcabang', 'uses' => 'OrganisasiAdminController@edit_cabang']);
 	//edit kegiatan
 	//edit jenis publikasi
 	//edit ketentuan

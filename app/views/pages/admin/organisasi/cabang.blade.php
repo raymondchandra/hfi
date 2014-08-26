@@ -1,6 +1,6 @@
 <script>
 	var arrIDCabang = "";
-	$(document).ready(function() {
+	function getCabang(){
 		$.ajax({
 			url: 'admin/organisasi/daftarcabang',
 			type: 'GET',
@@ -11,7 +11,15 @@
 				else{
 					//atur
 					var length = data.length;
-					var list ="";
+					var list ="<tr><td class='nama_cabang'>Nama Cabang</td>";
+					list+="<td class='alamat_cabang'>Alamat Cabang</td>";
+					list+="<td class='telepon_cabang'>Telepon</td>";
+					list+="<td class='fax_cabang'>Fax</td>";
+					list+="<td class='email_cabang'>E-mail</td>";
+					list+="<td class='website_cabang'>Website</td>";
+					list+="<td>&nbsp;</td>";
+					list+="<td>&nbsp;</td>";
+					list+="</tr>";
 					arrIDCabang = [];
 					for($i = 0; $i<length;$i++){
 						arrIDCabang[$i] = data[$i]['id'];
@@ -31,13 +39,16 @@
 						list+="<td><input type='button' value='x' class='hapus_cabang' /><input type='hidden' class='id_cabang' value='"+$i+"'></td>";
 						list+="</tr>";
 					}
-					$('#daftar_semua_cabang').html(list);
+					$('.list_cabang').html(list);
 				}
 			},
 			error:function(errorThrown){
 				alert(errorThrown);
 			}		
 		});
+	}
+	$(document).ready(function() {
+		getCabang();
 	});
 </script>
 
@@ -47,36 +58,6 @@
 	<div id='tambah_cabang_link'><a href='javascript:void(0)' id='tambah_cabang'>Tambah Kantor Cabang Baru</a></div>
 	<div class="cabang_list">
 		<table class='list_cabang'>
-			<tr>
-				<td class="nama_cabang">Nama Cabang</td>
-				<td class="alamat_cabang">Alamat Cabang</td>
-				<td class="telepon_cabang">Telepon</td>
-				<td class="fax_cabang">Fax</td>
-				<td class="email_cabang">E-mail</td>
-				<td class="website_cabang">Website</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
-		</table>
-		<table class='list_cabang' id='daftar_semua_cabang'>
-			<tr>
-				<td class="nama_cabang">Nama Cabang</td>
-				<td class="alamat_cabang">Alamat Cabang</td>
-				<td class="telepon_cabang">081294056255</td>
-				<td class="fax_cabang">Fax</td>
-				<td class="email_cabang">E-mail</td>
-				<td class="website_cabang">hfi.fisika.net</td>
-				<td><input type="button" value="v" class="edit_info_cabang" /></td>
-			</tr>
-			<tr>
-				<td class="nama_cabang">Nama Cabang</td>
-				<td class="alamat_cabang">Alamat Cabang</td>
-				<td class="telepon_cabang">Telepon</td>
-				<td class="fax_cabang">Fax</td>
-				<td class="email_cabang">E-mail</td>
-				<td class="website_cabang">Website</td>
-				<td><input type="button" value="v" class="edit_info_cabang" /></td>
-			</tr>
 		</table>
 		<script>
 			$('body').on('click','.edit_info_cabang',function(){
@@ -120,15 +101,17 @@
 						'alamat_cabang':$alamat_cabang
 					},
 					success: function(data){
-						alert(data);
-						$string = "<td class='nama_cabang'>"+$nama_cabang+"</td>"
+						//alert(data);
+						/*$string = "<td class='nama_cabang'>"+$nama_cabang+"</td>"
 						$string += "<td class='alamat_cabang'>"+$alamat_cabang+"</td>"
 						$string += "<td class='telepon_cabang'>"+$telepon_cabang+"</td>"
 						$string += "<td class='fax_cabang'>"+$fax_cabang+"</td>"
 						$string += "<td class='email_cabang'>"+$email_cabang+"</td>"
 						$string += "<td class='website_cabang'>"+$website_cabang+"</td>"
 						$string += "<td><input type='button' value='v' class='edit_info_cabang' /></td>"
-						$(this).parent().parent().html($string);
+						$(this).parent().parent().html($string);*/
+						//$( ".pop_up_super_c" ).fadeOut( 200, function(){});
+						getCabang();
 					},
 					error:function(jqXHR, textStatus, errorThrown){
 						alert(errorThrown);
@@ -136,21 +119,21 @@
 				});
 			});
 			$('body').on('click','.hapus_cabang',function(){
-				/*$id = $(this).next().val();
+				$id = $(this).next().val();
 				//ajax delete
 				$.ajax({
-					url: 'admin/organisasi/editcabang',
+					url: 'admin/organisasi/deletecabang',
 					type: 'DELETE',
 					data: {
-						'id_cabang' : $id
+						'id_cabang' : arrIDCabang[$id]
 					},
 					success: function(data){
-						alert(data);
+						getCabang();
 					},
 					error:function(jqXHR, textStatus, errorThrown){
 						alert(errorThrown);
 					}		
-				});*/
+				});
 			});
 			
 			$('#tambah_cabang').click(function(){
@@ -195,7 +178,8 @@
 						'alamat_cabang':$alamat
 					},
 					success: function(data){
-						alert('Success');
+						$( ".pop_up_super_c" ).fadeOut( 200, function(){});
+						getCabang();
 					},
 					error:function(errorThrown){
 						alert(errorThrown);

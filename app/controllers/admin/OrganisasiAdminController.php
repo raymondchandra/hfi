@@ -6,8 +6,7 @@
 		
 		public function view_cabang()
 		{
-			$arr = $this->get_semua_cabang();
-			return View::make('pages.admin.organisasi.cabang', compact('arr'));
+			return View::make('pages.admin.organisasi.cabang');
 		}
 		
 		public function view_pengurus()

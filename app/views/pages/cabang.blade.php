@@ -26,22 +26,45 @@
 						<tr>
 							<td class="nama_cabang">Nama Cabang</td>
 							<td class="alamat_cabang">Alamat Cabang</td>
+							<td>&nbsp;</td>
 						</tr>
-						<tr>
-							<td>{{$arr2[0]['nama']}}</td>
-							<td>Jl. Merdeka No. 1</td>
-							<td><a href='javascript:void(0)' class="pop_the_pop_up">Lihat Detail</a><input type='hidden' value=0;></td>
-						</tr>
-						<tr>
-							<td>Bandung</td>
-							<td>Jl. Merdeka No. 1</td>
-							<td><a href='javascript:void(0)' class="pop_the_pop_up">Lihat Detail</a><input type='hidden' value=0;></td>
-						</tr>
+						<?php 
+							$list="";
+							$count = 0;
+							foreach ($arr2 as $value){
+								$list.="<tr>";
+								$list.="<td>".$arr2[0]['nama']."</td>";
+								$list.="<td>".$arr2[0]['alamat']."</td>";
+								$list.="<td><a href='javascript:void(0)' class='pop_the_pop_up'>Lihat Detail</a>
+									<input type='hidden' class='hidden_nama' value='".$arr2[0]['nama']."'/>
+									<input type='hidden' class='hidden_alamat' value='".$arr2[0]['alamat']."'/>
+									<input type='hidden' class='hidden_telp' value='".$arr2[0]['telp']."'/>
+									<input type='hidden' class='hidden_fax' value='".$arr2[0]['fax']."'/>
+									<input type='hidden' class='hidden_email' value='".$arr2[0]['email']."'/>
+									<input type='hidden' class='hidden_link' value='".$arr2[0]['link']."'/>
+								</td>";
+								$list.="</tr>";
+								$count++;
+							}
+							echo $list;
+						?>
 					</table>
 					<script>
 						$('.pop_the_pop_up').click(function() {
 							$( ".pop_up_super_c" ).fadeIn( 277, function(){});
 							$('html').css('overflow-y', 'hidden');
+							$('#nama_cabang_pop').text($(this).siblings('.hidden_nama').val());
+							$('#alamat_cabang_pop').text($(this).siblings('.hidden_alamat').val());
+							$('#telepon_cabang_pop').text($(this).siblings('.hidden_telp').val());
+							$('#fax_cabang_pop').text($(this).siblings('.hidden_fax').val());
+							$('#email_cabang_pop').text($(this).siblings('.hidden_email').val());
+							if($(this).siblings('.hidden_link').val()=="-"){
+								$('#website_cabang_pop').html($(this).siblings('.hidden_link').val());
+							}
+							else{
+								$('#website_cabang_pop').html("<a href='"+$(this).siblings('.hidden_link').val()+"'>"+$(this).siblings('.hidden_link').val()+"</a>");
+							}
+							
 						});
 					</script>				
 				</div>				

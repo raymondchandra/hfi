@@ -72,6 +72,16 @@
 			$cabang->save();
 			return "Success Update";
 		}
+		
+		public function delete_cabang()
+		{
+			$id_cabang = Input::get('id_cabang');
+			$cabang = Cabang::find($id_cabang);
+			
+			$cabang->delete();
+			
+			return "Success Delete";
+		}
 	}
 
 ?>

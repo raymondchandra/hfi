@@ -79,6 +79,8 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('/organisasi/daftarcabang', ['as' => 'admin.organisasi.daftarcabang', 'uses' => 'OrganisasiAdminController@get_semua_cabang']);
 	//admin post route
 	Route::post('/organisasi/tambahcabang', ['as' => 'admin.organisasi.tambahcabang', 'uses' => 'OrganisasiAdminController@tambah_cabang']);
+	//admin delete route
+	Route::post('/organisasi/deletecabang', ['as' => 'admin.organisasi.deletecabang', 'uses' => 'OrganisasiAdminController@delete_cabang']);
 	//post slideshow
 	//upload regulasi
 	//upload pengurus

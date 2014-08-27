@@ -67,6 +67,22 @@
 
 }
 
+.top_right_iden {
+	margin-top: 12px;
+}
+
+.top_right_iden * {
+	margin-top: 0px;
+}
+
+.top_right_iden *:hover {
+	margin-top: 0px;
+}
+
+.top_right_iden span {
+	float: right;
+}
+
 .site_nav * {
 	color: #fff;
 	font-family: "Lucida Console", Monaco, monospace;
@@ -159,8 +175,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5252ac', end
 }
 
 .visi_container, .misi_container {
-	width: 50%;
+	width: 100%;
 	float: left;
+	display: block;
+}
+.misi_container {
+	margin-top: 30px;
 }
 
 	/*newcode ber*/
@@ -837,3 +857,19 @@ transform:rotate(90deg);
 	overflow-y: auto;
 	background: #fff;
 }
+
+
+/*----------------------------------------------------------------------------------------------------------
+-------- Loading Animation -------------------------------------- Loading Animation ------------------------
+----------------------------------------------------------------------------------------------------------*/
+
+.loading_animation {
+	background: url('../img/loader.gif') no-repeat;
+	width: 100px;
+	height: 100px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+

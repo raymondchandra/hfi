@@ -8,7 +8,9 @@ class AnggotaAdminController extends BaseController {
 	
 	public function view_aturan()
 	{
-		return View::make('pages.admin.anggota.aturan');
+		$konten_home = Konten::where('tipe_konten', '=', 'anggota_home')->first()->konten;
+		$konten_aturan = Konten::where('tipe_konten', '=', 'anggota_ketentuan')->first()->konten;
+		return View::make('pages.admin.anggota.aturan', compact('konten_home', 'konten_aturan'));
 	}
 	
 	public function view_akun()
@@ -47,6 +49,7 @@ class AnggotaAdminController extends BaseController {
 			$konten->timestamps = false;
 			$konten -> tanggal_edit = Carbon::now();
 			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			return "Success Update";
 		}
 	}
 	
@@ -76,6 +79,7 @@ class AnggotaAdminController extends BaseController {
 			$konten->timestamps = false;
 			$konten -> tanggal_edit = Carbon::now();
 			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			return "Success Update";
 		}
 
 	}

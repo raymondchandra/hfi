@@ -15,7 +15,11 @@
 				</div>
 				<div class="grid_2 ">
 					@if(Auth::check())
-						Hi {{ HTML::linkRoute('viewUser', UserController::getHeaderName(Auth::user()->id), array(), array('class' => 'daftar_dan_login')) }}
+						@if(Auth::user()->role == 0)
+							Hi {{ HTML::linkRoute('profile', UserController::getHeaderName(Auth::user()->id), array(), array('class' => 'daftar_dan_login')) }}
+						@else
+							Hi {{UserController::getHeaderName(Auth::user()->id)}}
+						@endif	
 						<span> | </span>
 						{{ HTML::linkRoute('logout', 'Keluar', array(), array('class' => 'daftar_dan_login')) }}
 					@else

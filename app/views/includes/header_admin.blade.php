@@ -7,6 +7,6 @@
 			</p>
 		</div>
 		<div class="admin_id">
-			Selamat datang, {{ HTML::linkRoute('viewUser', UserController::getHeaderName(Auth::user()->id), array(), array('class' => 'daftar_dan_login')) }} HFI <span class="sep">|</span> {{ HTML::linkRoute('logout', 'Keluar', array(), array('class' => 'daftar_dan_login')) }}
+			Selamat datang, {{ UserController::getHeaderName(Auth::user()->id)}} HFI <span class="sep">|</span> {{ HTML::linkRoute('logout', 'Keluar', array(), array('class' => 'daftar_dan_login')) }}
 		</div>
     </section>

@@ -166,6 +166,20 @@ class AccountController extends BaseController {
 		$arr = $this->setHeader();
 		return View::make('pages.registrasi', compact('arr'));
 	}
+	
+	public function view_redirect()
+	{
+		$arr = $this->setHeader();
+
+		return View::make('pages.redirect', compact('arr'));
+	}
+	
+	public function view_redirectAdmin()
+	{
+		$arr = $this->setHeader();
+
+		return View::make('pages.redirectAdmin', compact('arr'));
+	}
 }
 
 ?>

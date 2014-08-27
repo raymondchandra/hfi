@@ -2,7 +2,7 @@
 <div class='editor_container'>
 
 <textarea name="beranda" class="editor" id="editorHome"> 
-
+	{{$konten_home}}
 </textarea>
 </div>
 <input type='button' name="submit_beranda_anggota" id='submit_change_home' value='Rubah'></input>
@@ -12,7 +12,7 @@
 <div class='editor_container'>
 
 <textarea name="textarea" class="editor" id="editorReg"> 
-
+	{{$konten_aturan}}
 </textarea>
 </div>
 <input type='button' name="submit_aturan_anggota" id='submit_change_reg' value='Rubah'></input>

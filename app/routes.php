@@ -6,9 +6,12 @@
 Route::get('/tes', function(){
 
 });
+
+//Redirect
+Route::get('/redirect', ['as' => 'redirect' , 'uses' => 'AccountController@view_redirect']);
+
 //Logout
 Route::get('/logout', ['as' => 'logout' , 'uses' => 'AccountController@postLogout']);
-Route::get('/viewUser', ['as' => 'viewUser' , 'uses' => 'UserController@view_profile']);
 
 //view
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@view_index']);

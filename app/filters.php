@@ -43,7 +43,8 @@ Route::filter('authUser', function()
 	{
 		if(Auth::user()->role == 1)
 		{
-			echo "not Allowed";
+			$message = "Anda tidak memiliki hak akses untuk halaman ini";
+			return Redirect::to('redirect')->with('message', $message);
 		}
 	}
 	
@@ -53,7 +54,16 @@ Route::filter('checkLogin', function()
 {
 	if(Auth::check())
 	{
-		echo "Anda sudah login(tulisan ini bakal ilang kalo uda ada halaman lain)";
+		$message = "Anda sudah login";
+		if(Auth::user()->role == 1)
+		{
+			return Redirect::to('redirect')->with('message', $message);
+		}
+		else
+		{
+			return Redirect::to('redirect')->with('message', $message);
+		}
+		
 	}
 });
 
@@ -67,7 +77,8 @@ Route::filter('authAdmin', function()
 	{
 		if(Auth::user()->role == 0)
 		{
-			echo "not Allowed";
+			$message = "Anda tidak memiliki hak akses untuk halaman ini";
+			return Redirect::to('redirectAdmin')->with('message', $message);
 		}
 	}
 });

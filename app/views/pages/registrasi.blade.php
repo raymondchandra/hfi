@@ -51,12 +51,12 @@
 				anggota non-aktif, HFI Cabang 				
 				<?php
 					$length = sizeof($arr2);
-					$arrCabang = array();
+					$arrCabang = array();					
 					for($i=0; $i<$length; $i++){
 						$arrCabang[] = $arr2[$i]['nama'];
 					}
 				?>
-				{{ Form::select('hficabang', $arrCabang, Input::old('xxx'))}}									
+				{{ Form::select('hficabang', $arrCabang, Input::old('hficabang'))}}									
 				<!--{{ Form::select('hficabang', array(
 					'0' => 'pilih!',
 					'aceh' => 'Aceh',
@@ -906,8 +906,9 @@
 	<p>
 		Dengan melakukan registrasi secara <i>online</i> ini saya
 		menyatakan bahwa saya telah membaca dan memahami
-		<a href="" alt="ketentuan dan perjanjian anggota">
-		ketentuan dan perjanjian untuk anggota</a>
+		{{HTML::linkRoute('ketentuan','ketentuan dan perjanjian untuk anggota')}}
+		<!--<a href="ketentuan" alt="ketentuan dan perjanjian anggota">
+		ketentuan dan perjanjian untuk anggota</a>-->
 		,serta bersedia menyetujui segala isi dan konsekuensinya :				
 	</p>
 	

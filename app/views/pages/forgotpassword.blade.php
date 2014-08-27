@@ -25,15 +25,11 @@
 									<!--<input type="text"  placeholder="Username"/>-->
 									{{ Form::text('username', Input::old('username'), array('placeholder'=>'Username')) }}
 									<!--<input type="password" placeholder="Password"/>-->
-									{{ Form::email('email', Input::old('email'), array('placeholder'=>'email')) }}
+									{{ Form::text('email', Input::old('email'), array('placeholder'=>'email')) }}
 									<!--<input type="button" value="Log In" class="login"/>-->
 									<div style="display: block; position: relative; width: 100$; height: 30px; overflow: hidden;">
-										{{ Form::submit('Login', array('class' => 'login')) }}
-										{{ Form::checkbox('remember_me', 'yes', null, ['style' => 'margin-top: 8px;']) }}
+										{{ Form::submit('Kirim Email', array('class' => 'login')) }}
 									</div>
-									<a href="#" class="lupa_pass">
-										Lupa Password?
-									</a>
 								</form>								 
 								{{ Form::token() }}
 								{{ Form::close() }}

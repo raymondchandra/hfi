@@ -6,7 +6,49 @@
 	list-style-type:decimal !important;
 }
 
+.jqte_toolbar {
+	display:block;
+}
+
 .editor_container{
 	width:900px;
 	margin-left:90px; 
+	height: 900px;
+}
+
+
+.editor {
+	display:block !important;
+	margin:0 0 10px;
+	padding:6px;
+	width:95%;
+	background:#FFF;
+	border:#AAA 1px solid;
+	font-size:13px;
+}
+textarea.editor, div.editor, span.editor {
+	min-height:100px !important;
+	resize: true !important;
+}
+
+button {
+	display:block;
+	margin:20px 0;
+	padding:6px 0 4px;
+	width:154px;
+	background:#658700;
+	border:#526E00 1px solid;
+	color:#F3FFCF !important;
+	text-align:center;
+	font-size:13px;
+	font-weight:bold;
+	border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px;
+	box-shadow:0 0 2px #000, inset 0 1px 1px #99CC00; -webkit-box-shadow:0 0 2px #000, inset 0 1px 1px #99CC00; -moz-box-shadow:0 0 2px #000, inset 0 1px 1px #99CC00;
+	cursor:pointer;
+}
+button:hover {
+	background:#78A000;
+	border-color:#658700;
+	text-decoration:none !important;
+	cursor:pointer
 }

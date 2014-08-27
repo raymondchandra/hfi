@@ -161,6 +161,7 @@ class AccountController extends BaseController {
 		return View::make('pages.login', compact('arr'));
 	}
 	
+	//return semua cabang di database
 	public function view_registrasi()
 	{
 		$arr = $this->setHeader();

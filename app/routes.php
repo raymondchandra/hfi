@@ -25,6 +25,8 @@ Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index'
 //account view
 Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login', 'before' => 'checkLogin']);
 Route::get('/registrasi', ['as' => 'registrasi', 'uses' => 'AccountController@view_registrasi']);
+//get daftar cabang buat registrasi	
+Route::get('/registrasi/daftarcabang', ['as' => 'registrasi.daftarcabang', 'uses' => 'AccountController@view_registrasi']);
 	
     
 //user view

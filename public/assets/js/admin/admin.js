@@ -23,10 +23,6 @@ $('body').on('click','#home_regulasi',function(){
 	 $('.admin_control_panel').load('admin/home/regulasi'); 
 });
 
-//ajax home
-
-
-//end of ajax home
 
 
 //sidebar organisasi
@@ -51,5 +47,33 @@ $('body').on('click','#anggota_akun',function(){
 
 $('body').on('click','#anggota_daftar',function(){
 	 $('.admin_control_panel').load('admin/anggota/daftar');
+});
+
+//sidebar kegiatan
+
+$('body').on('click','#admin_kegiatan',function(){
+	 $('.admin_control_panel').load('admin/kegiatan');
+});
+
+//sidebar publikasi
+$('body').on('click','#admin_jenis_publikasi',function(){
+	 $('.admin_control_panel').load('admin/publikasi/jenis');
+});
+
+$('body').on('click','#admin_ketentuan_publikasi',function(){
+	 $('.admin_control_panel').load('admin/publikasi/ketentuan');
+});
+
+$('body').on('click','#admin_karya_tulis',function(){
+	 $('.admin_control_panel').load('admin/publikasi/karyalain');
+});
+
+$('body').on('click','#admin_ilmiah',function(){
+	 $('.admin_control_panel').load('admin/publikasi/ilmiahpopuler');
+});
+
+//sidebar berkas
+$('body').on('click','#admin_berkas',function(){
+	 $('.admin_control_panel').load('admin/berkas');
 });
 

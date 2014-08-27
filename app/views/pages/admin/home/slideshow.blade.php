@@ -31,7 +31,7 @@
 			<input type='button' class='ok_change' value='Ok' style='display:none;' />
 			<input type='hidden' value='1' />
 			<a href="javascript:void(0)" class="edit_pp" >
-				<p>Perbaharui Foto</p>
+				<p>Perbaharui Foto</p> 
 				<span class="cam">
 				</span>
 			</a>

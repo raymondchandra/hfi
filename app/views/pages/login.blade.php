@@ -30,7 +30,7 @@
 										{{ Form::checkbox('remember_me', 'yes', null, ['style' => 'margin-top: 8px;']) }}
 										<span style="line-height: 30px; margin-left: 0x; float: right;">Remember Me</span>
 									</div>
-									<a href="#" class="lupa_pass">
+									<a href="forgotpassword" class="lupa_pass">
 										Lupa Password?
 									</a>
 								</form>								

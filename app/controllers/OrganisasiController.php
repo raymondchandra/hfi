@@ -17,7 +17,11 @@ class OrganisasiController extends BaseController {
 		$arr2 = $this->get_semua_cabang();
 		return View::make('pages.cabang', compact('arr','arr2'));
 	}
-
+	
+	//pengurus
+	//public function get_pengurus()
+	
+	//cabang
 	public function get_semua_cabang()
 	{
 		$count = Cabang::where('tipe','=', '0')->get();
@@ -31,12 +35,8 @@ class OrganisasiController extends BaseController {
 		}
 	}
 	
-	//pengurus
-	//public function get_pengurus()
 	
-	//cabang
-	//public function get_all_cabang()
-	//public function get_cabang_info()
+	
 	
 }
 

@@ -80,15 +80,18 @@
 					</h2>
 					{{$visi_hfi}}
 				</div>
+				<div class="clear"></div>
 				<div class="misi_container">
 					<h2>
-						Visi
+						Misi
 					</h2>
 					{{$misi_hfi}}
 				</div>
 				
 				
 			</div>	
+			
+			<div class="clear"></div>
 			
 			<div class="regulasi_hfi_container">	
 				<h2>

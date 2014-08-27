@@ -6,6 +6,10 @@
 	margin-left: 100px;
 }
 
+.list_cabang{
+	font-size: 14px;
+}
+
 .telepon_cabang,.fax_cabang{
 	width: 100px;
 

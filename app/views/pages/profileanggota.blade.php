@@ -166,25 +166,25 @@
 		});
 		
 		/*external container area exit trigger*/
-		// $('.pu_close').click(function(){
-			// $( ".pu_c" ).fadeOut( 200, function(){});
-			// $("body").css('overflow-x','visible');
-		// });
-		// $('.pu_c').click(function (e)
-			// {
-				// var container = $('.pu_cell');
+		 $('.pu_close').click(function(){
+			 $( ".pu_c" ).fadeOut( 200, function(){});
+			 $("body").css('overflow-x','visible');
+		 });
+		 $('.pu_c').click(function (e)
+			 {
+				 var container = $('.pu_cell');
 
-				// if (container.is(e.target) )// if the target of the click is the container...
-				// {
-					// $( ".pu_c" ).fadeOut( 200, function(){});
-					// $("body").css('overflow-x','visible');
-				// }
-			// });						
-			// Slider = $('#slider').Swipe({   <!--swipe ke detect error-->
-				// auto: 3000,  
-				// continuous: true  
-			// }).data('Swipe');  
-		// $('.pu_c').css('display','none');
+				 if (container.is(e.target) )// if the target of the click is the container...
+				 {
+					 $( ".pu_c" ).fadeOut( 200, function(){});
+					 $("body").css('overflow-x','visible');
+				 }
+			 });						
+			 Slider = $('#slider').Swipe({   <!--swipe ke detect error-->
+				 auto: 3000,  
+				 continuous: true  
+			 }).data('Swipe');  
+		 $('.pu_c').css('display','none');
 									
 	</script>
 			

@@ -179,8 +179,8 @@
 					// $( ".pu_c" ).fadeOut( 200, function(){});
 					// $("body").css('overflow-x','visible');
 				// }
-			// });			
-			// Slider = $('#slider').Swipe({  
+			// });						
+			// Slider = $('#slider').Swipe({   <!--swipe ke detect error-->
 				// auto: 3000,  
 				// continuous: true  
 			// }).data('Swipe');  
@@ -210,11 +210,11 @@
 				$situs_profile = $('.situs_profile').text();					
 				$keteranganlain_profile = $('.keteranganlain_profile').text();					
 				//change ke input type
-				$('.nama_profile').html("<input type='text' id='up_nama_profile' value='"+$nama_profile+"' />");				
-				$('.nomoranggota_profile').html("<input type='text' id='up_nomoranggota_profile' value='"+$nomoranggota_profile+"' disabled/>");					
-				$('.anggotacabang_profile').html("<select id='up_anggotacabang_profile'><option value='0' selected>pilih!</option><option value='aceh'>Aceh</option><option value='bali'>Bali</option><option value='bandung'>Bandung</option><option value='gorontalo'>Gorontalo</option><option value='jakarta'>Jakarta</option><option value='kalimantantenggara'>Kalimantan Tenggara</option><option value='kalimantanselatan'>Kalimantan Selatan</option><option value='lampung'>Lampung</option><option value='makassar'>Makassar</option><option value='palembang'>Palembang</option><option value='riau'>Riau</option><option value='sulawesiutara'>Sulawesi Utara</option><option value='sumaterautara'>Sumatera Utara</option><option value='sumaterabarat'>Sumatera Barat</option><option value='surabaya'>Surabaya</option><option value='timika'>Timika</option><option value='jawatengahdanyogyakarta'>Jawa Tengah dan Yogyakarta</option><option value='luarnegeri'>luar negeri</option></select>");	
-				$('.statusanggota_profile').html("<input type='text' id='up_nomoranggota_profile' value='"+$statusanggota_profile+"' disabled/>");
-				$('.tanggalrevisi_profile').html("<input type='text' id='up_tanggalanggota_profile' value='"+$tanggalrevisi_profile+"' disabled/>");
+				$('.nama_profile').html("<input type='text' id='up_nama_profile' value='"+$nama_profile+"' />");								
+				$('.nomoranggota_profile').html("<p id='up_nomoranggota_profile'>"+$nomoranggota_profile+"</p>");
+				$('.anggotacabang_profile').html("<select id='up_anggotacabang_profile'><option value='0' selected>pilih!</option><option value='aceh'>Aceh</option><option value='bali'>Bali</option><option value='bandung'>Bandung</option><option value='gorontalo'>Gorontalo</option><option value='jakarta'>Jakarta</option><option value='kalimantantenggara'>Kalimantan Tenggara</option><option value='kalimantanselatan'>Kalimantan Selatan</option><option value='lampung'>Lampung</option><option value='makassar'>Makassar</option><option value='palembang'>Palembang</option><option value='riau'>Riau</option><option value='sulawesiutara'>Sulawesi Utara</option><option value='sumaterautara'>Sumatera Utara</option><option value='sumaterabarat'>Sumatera Barat</option><option value='surabaya'>Surabaya</option><option value='timika'>Timika</option><option value='jawatengahdanyogyakarta'>Jawa Tengah dan Yogyakarta</option><option value='luarnegeri'>luar negeri</option></select>");									
+				$('.statusanggota_profile').html("<p id='up_statusanggota_profile'>"+$statusanggota_profile+"</p>");			
+				$('.tanggalrevisi_profile').html("<p id='up_tanggalrevisi_profile'>"+$tanggalrevisi_profile+"</p>");
 				$('.temapenelitian_profile').html("<textarea id='up_temapenelitian_profile' style='width:300px; height:70px;'>"+$temapenelitian_profile+"</textarea>");				
 				$('.spesialisasi_profile').html("<select id='up_spesialisasi_profile'><option value='0'>pilih!</option><option value='astro'>astro</option><option value='hayati'>hayati</option><option value='komputasi'>komputasi</option><option value='pendidikan'>pendidikan</option><option value='energi'>energi</option><option value='lingkungan'>lingkungan</option><option value='bumi'>bumi</option><option value='instrumentasi'>instrumentasi</option><option value='material'>material</option><option value='matematika'>matematika</option><option value='medis'>medis</option><option value='nonlinier'>non-linier</option><option value='nuklir'>nuklir</option><option value='parkikel'>partikel</option><option value='lainlain'>lain-lain</option></select>");
 				$('.profesi_profile').html("<select id='up_profesi_profile'><option value='0'>pilih!</option><option value='mahasiswa'>mahasiswa</option><option value='guru'>guru</option><option value='dosen'>dosen</option><option value='peneliti'>peneliti</option><option value='karyawan'>karyawan</option><option value='lainlain'>lain-lain</option></select>");
@@ -231,11 +231,10 @@
 			//edit_profile (save edit)
 			$('body').on('click','.ok_edit_profile',function(){
 				$nama_profile = $('#up_nama_profile').val();					
-				$nomoranggota_profile = $('#up_nomoranggota_profile').val();					
+				$nomoranggota_profile = $('#up_nomoranggota_profile').text();					
 				$anggotacabang_profile = $('#up_anggotacabang_profile').val();						
-				$statusanggota_profile = $('#up_statusanggota_profile').val();	
-					alert($statusanggota_profile);
-				$tanggalrevisi_profile = $('#up_tanggalrevisi_profile').val();
+				$statusanggota_profile = $('#up_statusanggota_profile').text();						
+				$tanggalrevisi_profile = $('#up_tanggalrevisi_profile').text();
 				$temapenelitian_profile = $('#up_temapenelitian_profile').val();
 				$spesialisasi_profile = $('#up_spesialisasi_profile').val();
 				$profesi_profile = $('#up_profesi_profile').val();

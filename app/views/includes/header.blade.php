@@ -1,7 +1,7 @@
     <section class="header">
 		<div class="site_id">
 			<div class="container_12">
-				<div class="grid_10 ">
+				<div class="grid_8 ">
 					{{ HTML::image('assets/img/hfi.png', $alt="logo HFI", array('class' => 'logo_hfi_header', 'height' => 110)) }}
 					<h1 class="header_title">
 						Himpunan Fisika Indonesia
@@ -13,15 +13,20 @@
 						Telp: {{$arr['telp']}} Fax: {{$arr['fax_hfi']}} Email: {{$arr['email_hfi']}}
 					</span>
 				</div>
-				<div class="grid_2 ">
+				<div class="grid_4 ">
 					@if(Auth::check())
-						Hi {{ HTML::linkRoute('viewUser', UserController::getHeaderName(Auth::user()->id), array(), array('class' => 'daftar_dan_login')) }}
+					<div class="top_right_iden">
+						{{ HTML::linkRoute('logout', 'Keluar', array(), array('class' => 'daftar_dan_login', 'style' => 'float: right;')) }}
 						<span> | </span>
-						{{ HTML::linkRoute('logout', 'Keluar', array(), array('class' => 'daftar_dan_login')) }}
+						{{ HTML::linkRoute('viewUser', UserController::getHeaderName(Auth::user()->id), array(), array('class' => 'daftar_dan_login', 'style' => 'float: right;')) }}
+						<span>Hi</span> 
+					</div>
 					@else
-						{{ HTML::linkRoute('registrasi', 'Daftar', array(), array('class' => 'daftar_dan_login')) }}
+					<div class="top_right_iden">
+						{{ HTML::linkRoute('login', 'Login', array(), array('class' => 'daftar_dan_login', 'style' => 'float: right;')) }}
 						<span> | </span>
-						{{ HTML::linkRoute('login', 'Login', array(), array('class' => 'daftar_dan_login')) }}
+						{{ HTML::linkRoute('registrasi', 'Daftar', array(), array('class' => 'daftar_dan_login', 'style' => 'float: right;')) }}
+					</div>
 					@endif
 				</div>
 			</div>

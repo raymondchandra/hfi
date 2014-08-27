@@ -4,9 +4,11 @@ class AnggotaController extends BaseController {
 	
 	public $restful = true;
 	
-	public function view_index()
-	{
-		$isiKonten = getKonten('anggota_home');
+
+	public function view_index() 
+	{		
+		$isiKonten = getKonten('anggota_home');	
+
 		$arr = $this->setHeader();
 		return View::make('pages.anggota', compact('arr', 'isiKonten'));		
 	}
@@ -15,7 +17,7 @@ class AnggotaController extends BaseController {
 	{
 		$isiKonten = getKonten('anggota_ketentuan');
 		$arr = $this->setHeader();
-		return View::make('pages.ketentuan', compact('arr', 'isiKonten'));
+		return View::make('pages.ketentuan', compact('arr', 'isiKonten'));	
 	}
 	
 	public static getKonten($tipe)

@@ -18,7 +18,7 @@
 			</div>
 			
 			<div class="content_hfi" id="contentfield">
-				{{$isiKonten}}
+				{{ $isiKonten }}
 			</div>
 		</div>
 		

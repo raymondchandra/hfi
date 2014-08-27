@@ -6,7 +6,7 @@
 @import 'custom_style.css';
 
 @import 'contact.css';
-@import 'jquery-te-1.4.0.css';
+
 @import 'editor.css';
 @import 'admin.css';
 
@@ -15,5 +15,7 @@
 
 @import 'slideshow.css';
 @import 'cabang.css';
-@import 'admin_cabang.css';
+@import 'admin_cabang.css'; 
+@import 'kegiatan.css'; 
+@import 'jquery-te-1.4.0.css';
 

@@ -48,8 +48,16 @@
 			<td>Registrasi</td>			
 			<td>: </td>
 			<td>
-				anggota non-aktif, HFI Cabang 
-				{{ Form::select('hficabang', array(
+				anggota non-aktif, HFI Cabang 				
+				<?php
+					$length = sizeof($arr2);
+					$arrCabang = array();					
+					for($i=0; $i<$length; $i++){
+						$arrCabang[] = $arr2[$i]['nama'];
+					}
+				?>
+				{{ Form::select('hficabang', $arrCabang, Input::old('hficabang'))}}									
+				<!--{{ Form::select('hficabang', array(
 					'0' => 'pilih!',
 					'aceh' => 'Aceh',
 					'bali' => 'Bali',
@@ -68,8 +76,8 @@
 					'surabaya' => 'Surabaya',
 					'timika' => 'Timika',
 					'jawatengahdanyogyakarta' => 'Jawa Tengah dan Yogyakarta',
-					'luarnegeri' => 'luar negeri'))
-				}}				
+					'luarnegeri' => 'luar negeri')) 
+				}}-->
 			</td>
 			<td></td><!--ga pake span-->		
 		</tr>
@@ -536,7 +544,7 @@
 		  }
 		});
 	</script>
-
+	
 	
 	<!-- PAKE FORM HTML BIASA-->
 	<!--<h1 style="text-align:center;">Anggota</h1>
@@ -898,8 +906,9 @@
 	<p>
 		Dengan melakukan registrasi secara <i>online</i> ini saya
 		menyatakan bahwa saya telah membaca dan memahami
-		<a href="" alt="ketentuan dan perjanjian anggota">
-		ketentuan dan perjanjian untuk anggota</a>
+		{{HTML::linkRoute('ketentuan','ketentuan dan perjanjian untuk anggota')}}
+		<!--<a href="ketentuan" alt="ketentuan dan perjanjian anggota">
+		ketentuan dan perjanjian untuk anggota</a>-->
 		,serta bersedia menyetujui segala isi dan konsekuensinya :				
 	</p>
 	

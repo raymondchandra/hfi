@@ -1,0 +1,32 @@
+.cabang_list_container{
+	margin-top:30px; 
+}
+
+.cabang_list{
+	margin-left: 100px;
+}
+
+.list_cabang{
+	font-size: 14px;
+}
+
+.telepon_cabang,.fax_cabang{
+	width: 100px;
+
+}
+
+.email_cabang,.website_cabang{
+	width: 150px;
+}
+
+.list_cabang tr td input[type='text']{
+	width: 90% !important;
+}
+
+#tambah_cabang_link{
+	margin-left: 870px;
+}
+
+.table_cabang input[type='text']{
+	width: 110% !important;
+}

@@ -17,7 +17,7 @@
 							</div>
 							
 							<h1 class="logintitle">
-								Lupa Password
+								Ubah Password 
 							</h1>
 							<div class="form">
 								{{ Form::open(array('url' => '/signin')) }}

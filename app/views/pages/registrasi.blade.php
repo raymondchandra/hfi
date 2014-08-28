@@ -3,7 +3,6 @@
 <div class="grid_12">
 <div class="main_content">
 	<h1 style="text-align:center;">Registrasi Keanggotaan</h1>
-
 	<p>	
 		Silahkan mengisi formulir di bawah ini untuk registrasi anggota.
 		Pastikan untuk mengisi minimal semua kolom dengan tanda bintang! 
@@ -18,6 +17,8 @@
 	</p>
 	
 	<hr>
+	
+	{{ Form::open(array('url' => 'regis')) }}
 	<form>
 	<table border="0" class="form_registrasi">		
 		<tr>
@@ -345,7 +346,7 @@
 			<td>Telepon / fax</td>
 			<td>:</td>
 			<td>{{ Form::text('telepon', Input::old('telepon'), array('style' => 'width:50px')) }}<span class="red">*</span> - 
-			{{ Form::text('telepon2', Input::old('telepon')) }} / 
+			{{ Form::text('telepon2', Input::old('telepon2')) }} / 
 			{{ Form::text('fax', Input::old('fax')) }}</td>
 			<td><span id="val_teleponfax" style="color:red"></span></td>
 		</tr>
@@ -914,7 +915,7 @@
 	
 	<!-- Form::open(array('action' => array('Controller@method', $user->id)))-->
 	<!-- -->
-	{{ Form::open(array('url' => 'foo/bar')) }}	<!-- default post-->	
+	<!--{{ Form::open(array('url' => 'foo/bar')) }}-->	<!-- default post-->	
 	<p style="text-align:center;">
 		<div style="text-align: center;" class="tempat_radio">
 			{{ Form::radio('persetujuan','setuju')}}setuju    {{ Form::radio('persetujuan','tidaksetuju', true) }}tidak setuju

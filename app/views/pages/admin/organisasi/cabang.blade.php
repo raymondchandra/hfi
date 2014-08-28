@@ -6,7 +6,26 @@
 			type: 'GET',
 			success: function(data){
 				if(data==""){
-					alert("Kosong");
+					//alert("Kosong");
+					var list ="<tr><td class='nama_cabang'>Nama Cabang</td>";
+					list+="<td class='alamat_cabang'>Alamat Cabang</td>";
+					list+="<td class='telepon_cabang'>Telepon</td>";
+					list+="<td class='fax_cabang'>Fax</td>";
+					list+="<td class='email_cabang'>E-mail</td>";
+					list+="<td class='website_cabang'>Website</td>";
+					list+="<td>&nbsp;</td>";
+					list+="<td>&nbsp;</td>";
+					list+="</tr>";
+					list+="<tr><td class='nama_cabang'>-</td>";
+					list+="<td class='alamat_cabang'>-</td>";
+					list+="<td class='telepon_cabang'>-</td>";
+					list+="<td class='fax_cabang'>-</td>";
+					list+="<td class='email_cabang'>-</td>";
+					list+="<td class='website_cabang'>-</td>";
+					list+="<td>&nbsp;</td>";
+					list+="<td>&nbsp;</td>";
+					list+="</tr>";
+					$('.list_cabang').html(list);
 				}
 				else{
 					//atur

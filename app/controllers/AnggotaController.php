@@ -7,20 +7,19 @@ class AnggotaController extends BaseController {
 
 	public function view_index() 
 	{		
-		$isiKonten = getKonten('anggota_home');	
-
+		$isiKonten = $this->getKonten('anggota_home');	
 		$arr = $this->setHeader();
 		return View::make('pages.anggota', compact('arr', 'isiKonten'));		
 	}
 	
 	public function view_ketentuan()
 	{
-		$isiKonten = getKonten('anggota_ketentuan');
+		$isiKonten = $this->getKonten('anggota_ketentuan');
 		$arr = $this->setHeader();
 		return View::make('pages.ketentuan', compact('arr', 'isiKonten'));	
 	}
 	
-	public static getKonten($tipe)
+	public static function getKonten($tipe)
 	{
 		$konten = Konten::where('tipe_konten', '=', $tipe)->first();
 		if($konten == null)
@@ -32,7 +31,7 @@ class AnggotaController extends BaseController {
 			$isiKonten = $konten->konten;
 		}
 		
-		return $isiKonten
+		return $isiKonten;
 	}
 
 	//public function get_anggota_beranda()

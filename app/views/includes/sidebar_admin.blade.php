@@ -38,23 +38,23 @@
 			</li>
 			
 			<li>
-				<a href="#" class="no_arrow">Kegiatan</a>
+				<a href="javascript:void(0)" id="admin_kegiatan" class="no_arrow">Kegiatan</a>
 			</li>
 			
 			<li>
-				<a href="#" class="_publikasi_tombol">Publikasi</a>
+				<a href="javascript::void(0)" class="_publikasi_tombol">Publikasi</a>
 				<ul style="display: none;" class="_publikasi_list">
 					<li>
-						<a href="#">Jenis Publikasi</a>
+						<a href="javascript:void(0)" id="admin_jenis_publikasi">Jenis Publikasi</a>
 					</li>
 					<li>
-						<a href="#">Ketentuan Umum</a>
+						<a href="javascript:void(0)" id="admin_ketentuan_publikasi">Ketentuan Umum</a>
 					</li>
 					<li>
-						<a href="#">Karya Tulis Lain</a>
+						<a href="javascript:void(0)" id="admin_karya_tulis">Karya Tulis Lain</a>
 					</li>
 					<li>
-						<a href="#">Ilmiah Populer</a>
+						<a href="javascript:void(0)" id="admin_ilmiah">Ilmiah Populer</a>
 					</li>
 				</ul>
 			</li>
@@ -75,7 +75,7 @@
 			</li>
 			
 			<li>
-				<a href="#" class="no_arrow">e-Berkas</a>
+				<a href="javascript:void(0)" class="no_arrow" id='admin_berkas'>e-Berkas</a>
 			</li>
 		</ul>
 	</nav>

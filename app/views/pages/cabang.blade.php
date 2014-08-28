@@ -31,22 +31,33 @@
 						<?php 
 							$list="";
 							$count = 0;
-							foreach ($arr2 as $value){
-								$list.="<tr>";
-								$list.="<td>".$arr2[0]['nama']."</td>";
-								$list.="<td>".$arr2[0]['alamat']."</td>";
-								$list.="<td><a href='javascript:void(0)' class='pop_the_pop_up'>Lihat Detail</a>
-									<input type='hidden' class='hidden_nama' value='".$arr2[0]['nama']."'/>
-									<input type='hidden' class='hidden_alamat' value='".$arr2[0]['alamat']."'/>
-									<input type='hidden' class='hidden_telp' value='".$arr2[0]['telp']."'/>
-									<input type='hidden' class='hidden_fax' value='".$arr2[0]['fax']."'/>
-									<input type='hidden' class='hidden_email' value='".$arr2[0]['email']."'/>
-									<input type='hidden' class='hidden_link' value='".$arr2[0]['link']."'/>
-								</td>";
-								$list.="</tr>";
-								$count++;
+							if($arr2==""){
+									$list.="<tr>";
+									$list.="<td>-</td>";
+									$list.="<td>-</td>";
+									$list.="<td></td>";
+									$list.="</tr>";
+								echo $list;
 							}
-							echo $list;
+							else{
+								foreach ($arr2 as $value){
+									$list.="<tr>";
+									$list.="<td>".$arr2[0]['nama']."</td>";
+									$list.="<td>".$arr2[0]['alamat']."</td>";
+									$list.="<td><a href='javascript:void(0)' class='pop_the_pop_up'>Lihat Detail</a>
+										<input type='hidden' class='hidden_nama' value='".$arr2[0]['nama']."'/>
+										<input type='hidden' class='hidden_alamat' value='".$arr2[0]['alamat']."'/>
+										<input type='hidden' class='hidden_telp' value='".$arr2[0]['telp']."'/>
+										<input type='hidden' class='hidden_fax' value='".$arr2[0]['fax']."'/>
+										<input type='hidden' class='hidden_email' value='".$arr2[0]['email']."'/>
+										<input type='hidden' class='hidden_link' value='".$arr2[0]['link']."'/>
+									</td>";
+									$list.="</tr>";
+									$count++;
+								}
+								echo $list;
+							}
+							
 						?>
 					</table>
 					<script>

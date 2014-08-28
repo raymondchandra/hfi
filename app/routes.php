@@ -29,6 +29,7 @@ Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index'
 Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login', 'before' => 'checkLogin']);
 Route::get('/registrasi', ['as' => 'registrasi', 'uses' => 'AccountController@view_registrasi']);
 Route::get('/forgotpassword', ['as' => 'forgotpassword', 'uses' => 'AccountController@view_forgotpassword']);
+Route::get('/ubahpassword', ['as' => 'changepassword', 'uses' => 'AccountController@view_changepassword']);
 
 //get daftar cabang buat registrasi	
 Route::get('/registrasi/daftarcabang', ['as' => 'registrasi.daftarcabang', 'uses' => 'AccountController@view_registrasi']);
@@ -80,7 +81,22 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('/anggota/akun', ['as' => 'admin.anggota.akun', 'uses' => 'AnggotaAdminController@view_akun']);
 	Route::get('/anggota/daftar', ['as' => 'admin.anggota.daftar', 'uses' => 'AnggotaAdminController@view_anggota']);
 	//end of anggota
+	
+	//kegiatan
+	Route::get('/kegiatan', ['as' => 'admin.kegiatan', 'uses' => 'KegiatanAdminController@view_index']);
+	//end of kegiatan
+	
+	//publikasi
+	Route::get('/publikasi/jenis', ['as' => 'admin.publikasi.jenis', 'uses' => 'PublikasiAdminController@view_jenis']);
+	Route::get('/publikasi/ketentuan', ['as' => 'admin.publikasi.ketentuan', 'uses' => 'PublikasiAdminController@view_ketentuan']);
+	Route::get('/publikasi/karyalain', ['as' => 'admin.publikasi.karyalain', 'uses' => 'PublikasiAdminController@view_karyaLain']);
+	Route::get('/publikasi/ilmiahpopuler', ['as' => 'admin.publikasi.ilmiahpopuler', 'uses' => 'PublikasiAdminController@view_populer']);
+	//end of publikasi
+	
+	//berkas
 	Route::get('/berkas', ['as' => 'admin.berkas', 'uses' => 'BerkasAdminController@view_index']);
+	//end of berkas
+	
 	
 	//admin get route
 	Route::get('/organisasi/daftarcabang', ['as' => 'admin.organisasi.daftarcabang', 'uses' => 'OrganisasiAdminController@get_semua_cabang']);

@@ -6,7 +6,7 @@ class PublikasiAdminController extends BaseController {
 	
 	public function view_jenis()
 	{
-		return View::make('pages.admin.publikasi.ilmiahPopuler');
+		return View::make('pages.admin.publikasi.jenisPublikasi');
 	}
 	
 	public function view_ketentuan()

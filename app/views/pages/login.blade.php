@@ -23,7 +23,7 @@
 									<!--<input type="text"  placeholder="Username"/>-->
 									{{ Form::text('username', Input::old('username'), array('placeholder'=>'Username')) }}
 									<!--<input type="password" placeholder="Password"/>-->
-									{{ Form::password('password', Input::old('password')) }}
+									{{ Form::password('password', array('placeholder' => 'password'), Input::old('password')) }}
 									<!--<input type="button" value="Log In" class="login"/>-->
 									<div style="display: block; position: relative; width: 100$; height: 30px; overflow: hidden;">
 										{{ Form::submit('Login', array('class' => 'login')) }}

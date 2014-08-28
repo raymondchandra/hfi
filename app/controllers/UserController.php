@@ -39,6 +39,19 @@ class UserController extends BaseController {
 		}
 	}
 	
+	public static function getProfileId($auth_id)
+	{
+		$profile = Anggota::where('auth_id', '=' , $id)->first();
+		if($profile != null)
+		{
+			return $profile->id;
+		}
+		else
+		{
+			return "error";
+		}
+	}
+	
 	public function view_carianggota()
 	{
 		$arr = $this->setHeader();

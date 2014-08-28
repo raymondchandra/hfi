@@ -41,8 +41,9 @@ class HomeAdminController extends BaseController {
 	
 	public function view_misi()
 	{
+		$regulations = get_all_regulasi();
 		$misi_hfi = HomeController::get_konten('misi');
-		return View::make('pages.admin.home.misi' , compact('misi_hfi'));
+		return View::make('pages.admin.home.misi' , compact('misi_hfi', 'regulations'));
 	}
 	
 	public function view_regulasi()
@@ -168,6 +169,39 @@ class HomeAdminController extends BaseController {
 			
 			return "Success Insert";
 		}
+	}
+	
+	public function add_regulasi()
+	{
+		if(Input::hasFile('fileReg'))
+		{
+			$file = Input::file('fileReg');
+			$destination = "assets/file_upload/regulasi/";
+			$fileName = $file->getClientOriginalName();
+			$uploadSuccess   = $file->move($destinationPath, $filename);
+			
+			$reg = new Regulasi();
+			$reg -> timestamps = false;
+			$reg -> versi = Input::get('versi');
+			$reg -> file_path = $destination.$fileName;
+			$reg -> uploaded_by = UserController::getProfileId(Auth::user()->id);
+			$reg -> tanggal_upload = Carbon::now();
+			
+			$reg -> save();
+			
+			return "success";
+			
+		}
+		else
+		{
+			return "failed";
+		}
+	}
+	
+	public function get_all_regulasi()
+	{
+		$regulations = Regulasi::all();
+		return $regulations;
 	}
 	
 	public function update_gallery()

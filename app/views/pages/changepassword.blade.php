@@ -23,11 +23,11 @@
 								{{ Form::open(array('url' => '/signin')) }}
 								<form>
 									<!--<input type="text"  placeholder="Username"/>-->
-									{{ Form::password('oldpassword', Input::old('oldpassword')) }}
+									{{ Form::password('oldpassword', array('placeholder' => 'password lama') , Input::old('oldpassword')) }}
 									<!--<input type="password" placeholder="Password"/>-->
-									{{ Form::password('newpassword', Input::old('newpassword')) }}
+									{{ Form::password('newpassword', array('placeholder' => 'password baru'), Input::old('newpassword')) }}
 									
-									{{ Form::password('retypenewpassword', Input::old('retypenewpassword')) }}
+									{{ Form::password('retypenewpassword', array('placeholder' => 'Ketik ulang password baru'), Input::old('retypenewpassword')) }}
 									<!--<input type="button" value="Log In" class="login"/>-->
 									<div style="display: block; position: relative; width: 100$; height: 30px; overflow: hidden;">
 										{{ Form::submit('Ubah Password', array('class' => 'login')) }}

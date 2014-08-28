@@ -29,6 +29,7 @@ Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index'
 Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login', 'before' => 'checkLogin']);
 Route::get('/registrasi', ['as' => 'registrasi', 'uses' => 'AccountController@view_registrasi']);
 Route::get('/forgotpassword', ['as' => 'forgotpassword', 'uses' => 'AccountController@view_forgotpassword']);
+Route::get('/ubahpassword', ['as' => 'changepassword', 'uses' => 'AccountController@view_changepassword']);
 
 //get daftar cabang buat registrasi	
 Route::get('/registrasi/daftarcabang', ['as' => 'registrasi.daftarcabang', 'uses' => 'AccountController@view_registrasi']);

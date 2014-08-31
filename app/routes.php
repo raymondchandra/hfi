@@ -102,6 +102,8 @@ Route::group(['prefix' => 'admin'], function () {
 	
 	//admin get route
 	Route::get('/organisasi/daftarcabang', ['as' => 'admin.organisasi.daftarcabang', 'uses' => 'OrganisasiAdminController@get_semua_cabang']);
+	Route::get('/organisasi/daftarpengurus', ['as' => 'admin.organisasi.daftarpengurus', 'uses' => 'OrganisasiAdminController@get_semua_pengurus']);
+	Route::get('/home/daftarregulasi', ['as' => 'admin.home.daftarregulasi', 'uses' => 'HomeAdminController@get_all_regulasi']);
 	
 	//admin post route
 	Route::post('/organisasi/tambahcabang', ['as' => 'admin.organisasi.tambahcabang', 'uses' => 'OrganisasiAdminController@tambah_cabang']);
@@ -147,6 +149,7 @@ Route::group(['prefix' => 'admin'], function () {
 	//admin delete route
 	
 	//delete regulasi
+	Route::delete('/home/deleteregulasi', ['as' => 'admin.home.deleteregulasi', 'uses' => 'HomeAdminController@delete_regulasi']);
 	//delete pengurus
 	//delete cabang
 	Route::delete('/organisasi/deletecabang', ['as' => 'admin.organisasi.deletecabang', 'uses' => 'OrganisasiAdminController@delete_cabang']);
@@ -159,6 +162,7 @@ Route::post('/signin', ['as' => 'signin', 'uses' => 'AccountController@postSignI
 Route::post('/regis', ['as' => 'regis', 'uses' => 'AccountController@postRegis']);
 //Route::post('/sendEmail', ['as' => 'sendEmail', 'uses' => 'KontakController@send_email']);
 Route::post('/postRegulasi', ['as' => 'postRegulasi', 'uses' => 'HomeAdminController@add_regulasi']);
+Route::post('/postPengurus', ['as' => 'postPengurus', 'uses' => 'OrganisasiAdminController@tambah_pengurus']);
 
 
 

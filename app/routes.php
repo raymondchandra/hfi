@@ -107,6 +107,7 @@ Route::group(['prefix' => 'admin'], function () {
 	
 	//post slideshow
 	//upload regulasi
+		//Route::post('/postRegulasi', ['as' => 'admin.postRegulasi', 'uses' => 'HomeAdminController@add_regulasi']);
 	//upload pengurus
 	//post cabang
 	//post kegiatan
@@ -152,6 +153,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::post('/signin', ['as' => 'signin', 'uses' => 'AccountController@postSignIn']);
 Route::post('/regis', ['as' => 'regis', 'uses' => 'AccountController@postRegis']);
 //Route::post('/sendEmail', ['as' => 'sendEmail', 'uses' => 'KontakController@send_email']);
+Route::post('/postRegulasi', ['as' => 'postRegulasi', 'uses' => 'HomeAdminController@add_regulasi']);
 
 
 

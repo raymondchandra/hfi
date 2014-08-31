@@ -4,51 +4,54 @@
 	<div class="kartu_size">
 		<div class="left">
 		
-			<div class="head_kartu_title">
-				<span class="title">
-					Member
-				</span>
-				<span class="tahun">
-					2014
-				</span>
+			<div class="word_member">
+				Member
+			</div>
+			<div class="word_tahun">
+				2014
 			</div>
 			<div class="nama_member">
-				Nama Seseorang
+				Nama Seorang Member
 			</div>
-			<div class="big_footer_area">
-				<div class="left">
-					<div class="no_and_section">
-						<span class="member_no">
-							Member #23456
-						</span>
-						<span class="regional">
-							Bandung, Jawa Barat
-						</span>
-					</div>
-					<div class="valid_waktu">
-						Valid for 3 years
-					
-					</div>
-					<span class="vlag_kecil">
-					</span>
-					<div class="website">
-						http://hfi.fisika.net/
-					</div>
-				</div>
-				<div class="right">
-					<div class="tanda_tangan_pres">
-						qwertyu
-					</div>
-					<div class="logo_hfi">
-						qwertyu
-					</div>
-				</div>
+			<div class="member_no">
+				Member #9457584
 			</div>
-			
+			<div class="nama_section">
+				Indonesia Section
+			</div>
+			<div class="valid_for">
+				Member HFI selama 3 tahun
+			</div>
+			<div class="valid_since">
+				Sampai 31 September 2017
+			</div>
+			<div class="hyperlink_hfi">
+				hfi.fisika.net
+			</div>
 		</div>
 		
 		<div class="right">
-		
+			<p class="kantor_alamat_hfi">
+				Kantor alamat HFI sendiri<br/>
+				Jl. Sebuah Jalan No. 99
+			</p>
+			<div class="info_member">
+				Untuk informasi membership kunjungi hfi.fisika.net
+			</div>
+			<p class="keterangan_0">
+				Keterangan terkait kartu HFI dapat ditempakan di kolom berikut, administrator bebas memasukan keterangan apapun asalakan relevan.
+			</p>
+
+			<p class="keterangan_1">
+				Keterangan tambahan dapat ditambahkan disini:
+				<br/>
+				Nomer telpon
+				<br/>
+				Email
+			</p>
+			<div class="barcode">
+				barcode?
+			</div>
 		</div>
 	</div>
 	

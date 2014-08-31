@@ -16,16 +16,194 @@
 	
 	.kartu_size > .left, .kartu_size > .right {
 		width: 50%;
+		height: 202px;
 		display: block;
 		float: left;
+		position: relative;
 		-webkit-box-sizing: border-box;
 		-ms-box-sizing: border-box;
 		-o-box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
-		border: 1px dashed #808285;
 	} 
-	
+
+.word_member {
+	height: 50px;
+	width:200px;
+	display: block;
+	position: absolute;
+	top:0;
+	left:20px;
+
+	color: #fff;
+	line-height: 50px;
+	font-size: 20px;
+}
+.word_tahun {
+		-webkit-transform: rotate(-90deg);
+
+		-moz-transform: rotate(-90deg);
+
+		-ms-transform: rotate(-90deg);
+
+		-o-transform: rotate(-90deg);
+
+		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+		
+		display: block;
+		position: absolute;
+		top: 16px;
+		right: 0px;
+		font-size: 14px;
+		color: #fff;
+}
+
+.nama_member {
+	height: 24px;
+	width:320px;
+	display: block;
+	position: absolute;
+	top:50px;
+	left:20px;
+
+	line-height: 24px;
+	font-size: 14px;
+}
+
+.member_no {
+	height: 24px;
+	width:200px;
+	display: block;
+	position: absolute;
+	top:80px;
+	left:20px;
+
+	line-height: 24px;
+	font-size: 12px;
+	color:#fff;
+}
+
+.nama_section {
+	height: 24px;
+	width:200px;
+	display: block;
+	position: absolute;
+	top:96px;
+	left:20px;
+
+	line-height: 24px;
+	font-size: 12px;
+	color:#fff;
+}
+
+.valid_for {
+	height: 24px;
+	width:200px;
+	display: block;
+	position: absolute;
+	top:128px;
+	left:20px;
+
+	line-height: 24px;
+	font-size: 12px;
+	color:#fff;
+}
+
+
+.valid_since {
+	height: 24px;
+	width:200px;
+	display: block;
+	position: absolute;
+	top:142px;
+	left:20px;
+
+	line-height: 24px;
+	font-size: 12px;
+	color:#fff;
+}
+
+
+.hyperlink_hfi {
+	height: 24px;
+	width:200px;
+	display: block;
+	position: absolute;
+	top:171px;
+	left:20px;
+
+	line-height: 24px;
+	font-size: 14px;
+	color:#fff;
+}
+
+.kantor_alamat_hfi {
+
+	width:200px;
+	display: block;
+	position: absolute;
+	top:10px;
+	right:20px;
+	text-align: right;
+
+	line-height: 16px;
+	font-size: 12px;
+	color:#fff;
+
+	margin: 0 !important;
+}
+
+.info_member {
+	height: 24px;
+	width:320px;
+	display: block;
+	position: absolute;
+	top:50px;
+	left:20px;
+
+	line-height: 24px;
+	font-size: 12px;
+}
+
+.keterangan_0 {
+	height: 88px;
+	width: 170px;
+	display: block;
+	position: absolute;
+	top: 80px;
+	left: 7px;
+	line-height: 14px;
+	font-size: 11px;
+	color: #fff;
+	margin: 0 !important;
+}
+
+.keterangan_1 {
+	height: 88px;
+	width: 140px;
+	display: block;
+	position: absolute;
+	top: 80px;
+	right: 4px;
+	line-height: 14px;
+	font-size: 11px;
+	color: #fff;
+	margin: 0 !important;
+}
+
+.barcode {
+	height: 24px;
+	width:320px;
+	display: block;
+	position: absolute;
+	bottom: 8px;
+	left:20px;
+
+	line-height: 24px;
+	font-size: 12px;
+}
+
+	/*
 	.head_kartu_title {
 		background-color: #00aeef;
 		display: block;
@@ -51,19 +229,15 @@
 	}
 	
 	.head_kartu_title > .tahun{
-		/* Safari */
+		
 		-webkit-transform: rotate(-90deg);
 
-		/* Firefox */
 		-moz-transform: rotate(-90deg);
 
-		/* IE */
 		-ms-transform: rotate(-90deg);
 
-		/* Opera */
 		-o-transform: rotate(-90deg);
 
-		/* Internet Explorer */
 		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 		
 		display: block;
@@ -191,5 +365,5 @@ left: 209px;
 		height: 0.6754in;
 		display: block;
 		float: left;
-	}
-/**}**/
+	}*/
+

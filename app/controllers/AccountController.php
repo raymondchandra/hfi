@@ -161,9 +161,16 @@ class AccountController extends BaseController {
 		return View::make('pages.login', compact('arr'));
 	}
 	
+	//tes
 	public function view_forgotpassword(){
 		$arr = $this->setHeader();
 		return View::make('pages.forgotpassword', compact('arr'));
+	} 
+	
+	//tes
+	public function view_changepassword(){
+		$arr = $this->setHeader();
+		return View::make('pages.changepassword', compact('arr'));
 	} 
 	
 	//return semua cabang di database

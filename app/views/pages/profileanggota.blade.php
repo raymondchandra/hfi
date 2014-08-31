@@ -32,6 +32,7 @@
 					<a href="javascript:void(0)" class="edit_profile">Rubah Profile</a>
 					<!--<input type="button" value="rubah profile" class="edit_profile"/>-->
 					<a href="#">Cetak Kartu Anggota</a>
+					<a href="ubahpassword">Ubah Password</a>
 				</div>
 				
 				<table border="0" style="width:450px;">

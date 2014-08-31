@@ -10,30 +10,29 @@
 						<div class="login_container">
 							<div class="alert_wrong_pass">
 								@if(Session::has('message'))
-									<p class="alert" style="margin: 0px !important;">{{ Session::get('message') }}</p>
+									<p class="alert" style="margin: 0px !important;">
+										Username atau email anda tidak terdaftar
+									</p>
 								@endif
 							</div>
 							
 							<h1 class="logintitle">
-								Login
+								Ubah Password 
 							</h1>
 							<div class="form">
 								{{ Form::open(array('url' => '/signin')) }}
 								<form>
 									<!--<input type="text"  placeholder="Username"/>-->
-									{{ Form::text('username', Input::old('username'), array('placeholder'=>'Username')) }}
+									{{ Form::password('oldpassword', array('placeholder' => 'password lama') , Input::old('oldpassword')) }}
 									<!--<input type="password" placeholder="Password"/>-->
-									{{ Form::password('password', array('placeholder' => 'password'), Input::old('password')) }}
+									{{ Form::password('newpassword', array('placeholder' => 'password baru'), Input::old('newpassword')) }}
+									
+									{{ Form::password('retypenewpassword', array('placeholder' => 'Ketik ulang password baru'), Input::old('retypenewpassword')) }}
 									<!--<input type="button" value="Log In" class="login"/>-->
 									<div style="display: block; position: relative; width: 100$; height: 30px; overflow: hidden;">
-										{{ Form::submit('Login', array('class' => 'login')) }}
-										{{ Form::checkbox('remember_me', 'yes', null, ['style' => 'margin-top: 8px;']) }}
-										<span style="line-height: 30px; margin-left: 0x; float: right;">Remember Me</span>
+										{{ Form::submit('Ubah Password', array('class' => 'login')) }}
 									</div>
-									<a href="forgotpassword" class="lupa_pass">
-										Lupa Password?
-									</a>
-								</form>								
+								</form>								 
 								{{ Form::token() }}
 								{{ Form::close() }}
 							</div>

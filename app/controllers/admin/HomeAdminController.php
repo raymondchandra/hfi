@@ -18,8 +18,9 @@ class HomeAdminController extends BaseController {
 	
 	public function view_slide()
 	{
-		$slideshow = get_gallery();
-		return View::make('pages.admin.home.slideshow', compact('slideshow'));
+		//$slideshow = get_gallery();
+		//return View::make('pages.admin.home.slideshow', compact('slideshow'));
+		return View::make('pages.admin.home.slideshow');
 	}
 	
 	public function view_welcome()
@@ -228,14 +229,15 @@ class HomeAdminController extends BaseController {
 	}
 
 	public function update_foto_gallery()
-	{
-		if(Input::hasFile('image'))
+	{	
+		if(Input::hasFile('photo'))
 		{
 			$id_img = Input::get('id');
 			$id = Auth::user()->id;
-			$img_upload = Input::file('image');
+			$img_upload = Input::file('photo');
 			$file_name = $img_upload->getClientOriginalName();
 			$destination = 'assets/file_upload/slideshow/';
+			
 			
 			if(count($id_img) != 0)
 			{
@@ -253,7 +255,7 @@ class HomeAdminController extends BaseController {
 				{
 					return "Failed";
 				}
-				
+			
 			}else
 			{
 				$uploadSuccess   = $file->move($destination, $file_name);
@@ -277,7 +279,7 @@ class HomeAdminController extends BaseController {
 		}
 		else
 		{
-			return "Failed";
+			return "Failed2";
 		}
 		
 	

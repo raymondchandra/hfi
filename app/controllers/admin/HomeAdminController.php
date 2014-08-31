@@ -18,7 +18,8 @@ class HomeAdminController extends BaseController {
 	
 	public function view_slide()
 	{
-		return View::make('pages.admin.home.slideshow');
+		$slideshow = get_gallery();
+		return View::make('pages.admin.home.slideshow', compact('slideshow'));
 	}
 	
 	public function view_welcome()
@@ -204,11 +205,104 @@ class HomeAdminController extends BaseController {
 		return $regulations;
 	}
 	
-	public function update_gallery()
+	public function update_foto_gallery()
 	{
+		if(Input::hasFile('image'))
+		{
+			$id_img = Input::get('id');
+			$id = Auth::user()->id;
+			$img_upload = Input::file('image');
+			$file_name = $img_upload->getClientOriginalName();
+			$destination = 'assets/file_upload/slideshow/';
+			
+			if(count($id_img) != 0)
+			{
+				$uploadSuccess   = $file->move($destination, $file_name);
+				if($uploadSuccess)
+				{
+					$gallery = Gallery::find($id_img->id);
+					$gallery->timestamps = false;
+					$gallery -> tanggal_upload = Carbon::now();
+					$gallery -> uploaded_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+					$gallery -> file_path = $destination.$file_name;
+					$gallery->save();
+					return "Success Update";
+				}else
+				{
+					return "Failed";
+				}
+				
+			}else
+			{
+				$uploadSuccess   = $file->move($destination, $file_name);
+				if($uploadSuccess)
+				{
+					$gallery = new Gallery();
+					$gallery -> timestamps = false;
+					$gallery -> type = '1';
+					$gallery -> tanggal_upload = Carbon::now();
+					$gallery -> uploaded_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+					$gallery -> save();
+					
+					return "Success Insert";
+				}else
+				{
+					return "Failed";
+				}
+				
+			}
+			
+		}
+		else
+		{
+			return "Failed";
+		}
 		
+	
 	}
 	
+	public function update_caption()
+	{
+		$caption = Input::get('caption');
+		$id = Auth::user()->id;
+		$id_caption = Input::get('idCaption');
+		if(count($id_caption) != 0)
+		{
+			$gallery = Gallery::find($id_caption->id);
+			$gallery->kapsion = $caption;
+			$gallery->timestamps = false;
+			$gallery -> tanggal_upload = Carbon::now();
+			$gallery -> uploaded_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			
+			$gallery->save();
+			return "Success Update";
+		}else
+		{
+			$gallery = new Gallery();
+			$gallery -> timestamps = false;
+			$gallery -> kapsion = $caption;
+			$gallery -> type = '1';
+			$gallery -> tanggal_upload = Carbon::now();
+			$gallery -> uploaded_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			
+			$gallery -> save();
+			
+			return "Success Insert";
+		}
+	}
+	
+	public function get_gallery()
+	{
+		$gal = Gallery::where('type','=', '1')->get();
+		if(count($gal) != 0)
+		{
+			return $gal;
+			
+		}else
+		{
+			return "Failed";
+		}
+	}
 }
 
 ?>

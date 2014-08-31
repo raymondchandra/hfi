@@ -1,5 +1,7 @@
 <script>
 	var index_caption = -1;
+	
+	var imageUpload = "";
 	$(document).ready(function(){
 		//$('.pu_c').click();
 		$( ".loader" ).fadeOut( 200, function(){});
@@ -92,10 +94,12 @@
 								
 								(Passphoto)
 							</div>
-							<form>
-								{{ Form::file('file',array('class'=>'upload_photo','style' => 'margin-top: 20px; display: block; margin-left: auto; margin-right: auto;')) }}
+								{{ Form::open(array('url' => 'admin/editSlideShow','method'=>'put')) }}
+								{{ Form::file('photo',array('name'=>'photo','id'=>'photo','class'=>'upload_photo','style' => 'margin-top: 20px; display: block; margin-left: auto; margin-right: auto;')) }}
 								{{ Form::submit('Unggah Gambar', array('style' => 'display: block; margin-left: auto; margin-right: auto; margin-top: 20px;')) }}
-							</form>
+								{{ Form::close() }}
+								<!--<input type='file' class='upload_photo' multiple="false" style="margin-top: '20px'; display: 'block'; margin-left: 'auto'; margin-right: 'auto';" />
+								<input type='button' class='button_upload_foto' value='Unggah Gambar' style="display: 'block'; margin-left: 'auto'; margin-right: 'auto'; margin-top: '20px';">-->
 						</div>
 					
 					</div>
@@ -113,6 +117,7 @@ $('.caption').keyup(function(){
 
 $('body').on('change','.upload_photo',function(){
 	var i = 0, len = this.files.length, img, reader, file;
+	
 		//document.getElementById("images").disabled = true;
 	for ( ; i < len; i++ ) {
 		file = this.files[i];
@@ -120,12 +125,32 @@ $('body').on('change','.upload_photo',function(){
 			if ( window.FileReader ) {
 				reader = new FileReader();
 				reader.onloadend = function (e) { 
-					showUploadedItem(e.target.result, file.fileName);
+					//showUploadedItem(e.target.result, file.fileName);
 				};
 				reader.readAsDataURL(file);
 			}
+			imageUpload = file;
 		}	
 	}
+});
+
+$('body').on('click','.button_upload_foto',function(){
+	var data = new FormData();
+	data.append('id', index_caption);
+	data.append('image', imageUpload);
+	$.ajax({
+		type: 'PUT',
+		url: 'admin/editSlideShow',
+		data: {
+			'id' : index_caption
+		},
+		success: function(response){
+			alert(response);
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			alert(errorThrown);
+		}
+	},'json');
 });
 
 function showUploadedItem (source) {

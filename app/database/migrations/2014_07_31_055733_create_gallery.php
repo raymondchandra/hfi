@@ -16,7 +16,6 @@ class CreateGallery extends Migration {
 				$table->create();
 				$table->increments('id');
 				$table->string('kapsion');
-				$table->string('nama_file');
 				$table->string('file_path');
 				$table->string('uploaded_by');
 				$table->integer('type')->unsigned();

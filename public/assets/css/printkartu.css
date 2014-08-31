@@ -1,0 +1,369 @@
+/**@media print {**/
+    body { 
+        width: 8.27in;
+        height: 11.69in;
+    }
+	body *{ 
+        font-family: sans-serif;
+    }
+	
+	.kartu_size {
+		width: 645px;
+		height: 204px;
+
+		background: url('../img/kartu.jpg') no-repeat;
+	}
+	
+	.kartu_size > .left, .kartu_size > .right {
+		width: 50%;
+		height: 202px;
+		display: block;
+		float: left;
+		position: relative;
+		-webkit-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		-o-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	} 
+
+.word_member {
+	height: 50px;
+	width:200px;
+	display: block;
+	position: absolute;
+	top:0;
+	left:20px;
+
+	color: #fff;
+	line-height: 50px;
+	font-size: 20px;
+}
+.word_tahun {
+		-webkit-transform: rotate(-90deg);
+
+		-moz-transform: rotate(-90deg);
+
+		-ms-transform: rotate(-90deg);
+
+		-o-transform: rotate(-90deg);
+
+		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+		
+		display: block;
+		position: absolute;
+		top: 16px;
+		right: 0px;
+		font-size: 14px;
+		color: #fff;
+}
+
+.nama_member {
+	height: 24px;
+	width:320px;
+	display: block;
+	position: absolute;
+	top:50px;
+	left:20px;
+
+	line-height: 24px;
+	font-size: 14px;
+}
+
+.member_no {
+	height: 24px;
+	width:200px;
+	display: block;
+	position: absolute;
+	top:80px;
+	left:20px;
+
+	line-height: 24px;
+	font-size: 12px;
+	color:#fff;
+}
+
+.nama_section {
+	height: 24px;
+	width:200px;
+	display: block;
+	position: absolute;
+	top:96px;
+	left:20px;
+
+	line-height: 24px;
+	font-size: 12px;
+	color:#fff;
+}
+
+.valid_for {
+	height: 24px;
+	width:200px;
+	display: block;
+	position: absolute;
+	top:128px;
+	left:20px;
+
+	line-height: 24px;
+	font-size: 12px;
+	color:#fff;
+}
+
+
+.valid_since {
+	height: 24px;
+	width:200px;
+	display: block;
+	position: absolute;
+	top:142px;
+	left:20px;
+
+	line-height: 24px;
+	font-size: 12px;
+	color:#fff;
+}
+
+
+.hyperlink_hfi {
+	height: 24px;
+	width:200px;
+	display: block;
+	position: absolute;
+	top:171px;
+	left:20px;
+
+	line-height: 24px;
+	font-size: 14px;
+	color:#fff;
+}
+
+.kantor_alamat_hfi {
+
+	width:200px;
+	display: block;
+	position: absolute;
+	top:10px;
+	right:20px;
+	text-align: right;
+
+	line-height: 16px;
+	font-size: 12px;
+	color:#fff;
+
+	margin: 0 !important;
+}
+
+.info_member {
+	height: 24px;
+	width:320px;
+	display: block;
+	position: absolute;
+	top:50px;
+	left:20px;
+
+	line-height: 24px;
+	font-size: 12px;
+}
+
+.keterangan_0 {
+	height: 88px;
+	width: 170px;
+	display: block;
+	position: absolute;
+	top: 80px;
+	left: 7px;
+	line-height: 14px;
+	font-size: 11px;
+	color: #fff;
+	margin: 0 !important;
+}
+
+.keterangan_1 {
+	height: 88px;
+	width: 140px;
+	display: block;
+	position: absolute;
+	top: 80px;
+	right: 4px;
+	line-height: 14px;
+	font-size: 11px;
+	color: #fff;
+	margin: 0 !important;
+}
+
+.barcode {
+	height: 24px;
+	width:320px;
+	display: block;
+	position: absolute;
+	bottom: 8px;
+	left:20px;
+
+	line-height: 24px;
+	font-size: 12px;
+}
+
+	/*
+	.head_kartu_title {
+		background-color: #00aeef;
+		display: block;
+		float: left;
+		width: 100%;
+		height: 0.5234in;
+		position: relative;
+	}
+	
+	.head_kartu_title *{
+		color: #fff;
+	}
+	
+	.head_kartu_title > .title{
+		line-height: 0.5234in;
+		font-size: 22px;
+		padding-left:20px;
+		-webkit-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		-o-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	
+	.head_kartu_title > .tahun{
+		
+		-webkit-transform: rotate(-90deg);
+
+		-moz-transform: rotate(-90deg);
+
+		-ms-transform: rotate(-90deg);
+
+		-o-transform: rotate(-90deg);
+
+		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+		
+		display: block;
+		position: absolute;
+		top: 16px;
+		right: 0px;
+		font-size: 14px;
+	}
+	
+	.nama_member {
+		width: 100%;
+		height: 0.2508in;
+		line-height: 0.2508in;
+		display: block;
+		float: left;
+		font-size: 14px;
+		padding-left: 10px;
+		-webkit-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		-o-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	
+	.big_footer_area {
+		position: relative;
+		display: block;
+	}
+	
+	.big_footer_area * {
+		color: #fff;
+	}
+	.big_footer_area > .left {
+		width: 65%;
+		display: block;
+		float: left;
+	}
+	
+	.big_footer_area > .right {
+		width: 35%;
+		display: block;
+		float: left;
+		background-color: #44c8f5;
+		height: 1.3508in;
+	}
+	
+	.big_footer_area > .left .no_and_section{
+		background-color: #00aeef;
+		display: block;
+		float: left;
+		height: 0.5933in;
+		width: 100%;
+		padding-left: 10px;
+		-webkit-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		-o-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		padding-top: 10px;
+		padding-left: 10px;
+	}
+	
+	.no_and_section *{
+		font-size: 14px;
+	}
+	
+	.no_and_section > span{
+		display: block;
+	}
+	
+	.valid_waktu {
+		background-color: #0072a6;
+		line-height: 0.3879in;
+		height: 0.3879in;
+		display: block;
+		width: 100%;
+		float: left;
+		font-size: 14px;
+		-webkit-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		-o-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		padding-left: 10px;
+	}
+	
+	.vlag_kecil {
+		
+	background: url('../img/flag_kecil_kartu.png') no-repeat;
+	width: 10px;
+	height:45px;
+	display: block;
+	position: absolute;
+	top: 123px;
+left: 209px;
+	}
+	
+	.website {
+		background-color: #00aeef;
+		width: 100%;
+		height: 0.3879in;
+		line-height: 0.3879in;
+		display: block;
+		float: left;
+		-webkit-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		-o-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		padding-left: 10px;
+	}
+	
+	.tanda_tangan_pres, .logo_hfi {
+		background-color: #44c8f5;
+		width: 100%;
+		height: 0.6754in;
+		display: block;
+		float: left;
+	}
+	
+	.logo_hfi {
+		border-top: 1px dotted #fff;
+		background-color: #44c8f5;
+		width: 100%;
+		height: 0.6754in;
+		display: block;
+		float: left;
+	}*/
+

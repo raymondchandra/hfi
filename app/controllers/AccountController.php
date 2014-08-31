@@ -162,6 +162,12 @@ class AccountController extends BaseController {
 	}
 	
 	//tes
+	public function view_cetakkartu(){
+		$arr = $this->setHeader();
+		return View::make('pages.cetakkartu', compact('arr'));
+	} 
+	
+	//tes
 	public function view_forgotpassword(){
 		$arr = $this->setHeader();
 		return View::make('pages.forgotpassword', compact('arr'));

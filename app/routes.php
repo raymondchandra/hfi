@@ -28,6 +28,7 @@ Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index'
 //account view
 Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login', 'before' => 'checkLogin']);
 Route::get('/registrasi', ['as' => 'registrasi', 'uses' => 'AccountController@view_registrasi']);
+Route::get('/cetakkartu', ['as' => 'cetakkartu', 'uses' => 'AccountController@view_cetakkartu']);
 Route::get('/forgotpassword', ['as' => 'forgotpassword', 'uses' => 'AccountController@view_forgotpassword']);
 Route::get('/ubahpassword', ['as' => 'changepassword', 'uses' => 'AccountController@view_changepassword']);
 
@@ -60,6 +61,7 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('/home/visi', ['as' => 'admin.home.visi', 'uses' => 'HomeAdminController@view_visi']);
 	Route::get('/home/misi', ['as' => 'admin.home.misi', 'uses' => 'HomeAdminController@view_misi']);
 	Route::get('/home/regulasi', ['as' => 'admin.home.regulasi', 'uses' => 'HomeAdminController@view_regulasi']); 
+	Route::get('/home/slideshow', ['as' => 'admin.home.slideshow', 'uses' => 'HomeAdminController@view_slide']); 
 	//end of home
 	
 	//organisasi
@@ -120,6 +122,9 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::put('/editMisi', ['as' => 'admin.editMisi', 'uses' => 'HomeAdminController@update_misi']);
 	
 	//edit slideshow
+	Route::put('/editSlideShow', ['as' => 'admin.editSlideShow', 'uses' => 'HomeAdminController@update_foto_gallery']);
+	//edit caption
+	Route::put('/editCaption', ['as' => 'admin.editCaption', 'uses' => 'HomeAdminController@update_caption']);
 	//edit regulasi
 	//edit pengurus
 	//edit cabang

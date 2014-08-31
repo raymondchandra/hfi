@@ -93,28 +93,47 @@
 			
 			<div class="clear"></div>
 			
-			<div class="regulasi_hfi_container">	
+			<div class="regulasi_hfi_container">
+
+				
 				<h2>
 					Regulasi HFI
 				</h2>
 				<div class="pdf_container">
+					<?php											
+						$length = sizeof($regulasi_hfi);								
+						$arrRegulasi = array();					
+						for($i=0; $i<$length; $i++){
+							$arrRegulasi[] = $regulasi_hfi[$i];
+						}
+					?>
 					<div class="versi_pdf_container">
-						<ul>
+						<?php for($r=0; $r<$length; $r++){ ?>
+							<ol style="margin-bottom:5px;">								
+								<li><a href='javascript:void(0)' class='pop_the_pop_up' value="<?php echo $arrRegulasi[$r]['file_path']?>">
+									<?php echo $arrRegulasi[$r]['versi']?></a>
+								</li>								
+							</ol>				
+						<?php } ?>
+						<!--<ul>
 							<li>
 								<a href="javascript:void(0);" class="pop_the_pop_up">AD / ART 2001 - sekarang</a>
 							</li>
 							<li>
 								<a href="javascript:void(0);" class="pop_the_pop_up">AD / ART 1990 - 2001</a>
 							</li>
-						</ul>
+						</ul>-->
 					</div>
 					<script>
 						$('.pop_the_pop_up').click(function() {
-							$( ".pop_up_super_c" ).fadeIn( 277, function(){});
-							$('html').css('overflow-y', 'hidden');
-						});
-					</script>
-					
+							var title = ($(this).text());
+							$('.title_pdf_viewer').html(title);
+							var file_path = $(this).attr('value');			
+							$('.pdf_viewer').attr("data", file_path);
+								$( ".pop_up_super_c" ).fadeIn( 277, function(){});
+								$('html').css('overflow-y', 'hidden');
+						});												
+					</script>					
 				</div>
 			</div>	
 			
@@ -132,10 +151,9 @@
 				<div class="container_12">
 				
 				<div class="grid_12" style="background: #fff;">
-					<h3 style="padding-top: 5px;padding-left: 20px; margin-bottom: 5px !important; text-align: center;">
-						Regulasi AD / ART 2001 - sekarang
-					</h3>
-					<object data="assets/img/Chapter_4.pdf" type="application/pdf" width="100%" class="pdf_viewer"></object>
+					<h3 style="padding-top: 5px;padding-left: 20px; margin-bottom: 5px !important; text-align: center;" class="title_pdf_viewer"></h3>					
+					<!--<object data="assets/img/Chapter_4.pdf" type="application/pdf" width="100%" class="pdf_viewer"></object>-->
+					<object style="height:650px !important;" data="" type="application/pdf" width="100%" class="pdf_viewer"></object>
 				</div>
 				</div>
 				

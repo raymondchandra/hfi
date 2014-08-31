@@ -43,14 +43,14 @@ class HomeAdminController extends BaseController {
 	
 	public function view_misi()
 	{
-		$regulations = get_all_regulasi();
 		$misi_hfi = HomeController::get_konten('misi');
 		return View::make('pages.admin.home.misi' , compact('misi_hfi', 'regulations'));
 	}
 	
 	public function view_regulasi()
 	{
-		return View::make('pages.admin.home.regulasi'); 
+		$regulations = $this->get_all_regulasi();
+		return View::make('pages.admin.home.regulasi', compact('regulations')); 
 	}
 	
 	public function update_welcome()
@@ -177,20 +177,22 @@ class HomeAdminController extends BaseController {
 	{
 		if(Input::hasFile('fileReg'))
 		{
+			
 			$file = Input::file('fileReg');
-			$destination = "assets/file_upload/regulasi/";
+			$destinationPath = "assets/file_upload/regulasi/";
 			$fileName = $file->getClientOriginalName();
-			$uploadSuccess   = $file->move($destinationPath, $filename);
+			$uploadSuccess   = $file->move($destinationPath, $fileName);
 			
 			$reg = new Regulasi();
 			$reg -> timestamps = false;
 			$reg -> versi = Input::get('versi');
-			$reg -> file_path = $destination.$fileName;
+			$reg -> file_path = $destinationPath.$fileName;
 			$reg -> uploaded_by = UserController::getProfileId(Auth::user()->id);
 			$reg -> tanggal_upload = Carbon::now();
 			
 			$reg -> save();
 			
+
 			return "success";
 			
 		}
@@ -201,11 +203,30 @@ class HomeAdminController extends BaseController {
 	}
 	
 	public function get_all_regulasi()
-	{
+	{		
 		$regulations = Regulasi::all();
-		return $regulations;
+		//$regulations = Regulasi::paginate(5);
+		if($regulations==null){
+			return "kosong";
+		}else{			
+			return $regulations;
+		}		
 	}
 	
+
+	public function delete_regulasi()
+	{
+		$id_regulasi = Input::get('id_regulasi');
+		$regulasi = Regulasi::find($id_regulasi);
+		
+		$regulasi->delete();
+		
+		return "Success Delete";
+	}
+		
+	public function update_gallery(){
+	}
+
 	public function update_foto_gallery()
 	{	
 		if(Input::hasFile('photo'))

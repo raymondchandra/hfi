@@ -26,6 +26,17 @@
 			}
 		}
 		
+		public function get_semua_pengurus()
+		{
+			$count = Pengurus::all();
+			if(count($count) != 0)
+			{
+				return $count;
+			}else{
+				return "";
+			}
+		}
+		
 		
 		public function edit_cabang()
 		{
@@ -72,12 +83,49 @@
 			return "Success Update";
 		}
 		
+		public function tambah_pengurus()
+		{
+			if(Input::hasFile('filePeng'))
+			{				
+				$file = Input::file('filePeng');
+				$destinationPath = "assets/file_upload/pengurus/";
+				$fileName = $file->getClientOriginalName();
+				$uploadSuccess   = $file->move($destinationPath, $fileName);
+				
+				$peng = new Pengurus();
+				$peng -> timestamps = false;
+				$peng -> periode = Input::get('periode');
+				$peng -> file_path = $destinationPath.$fileName;
+				$peng -> uploaded_by = UserController::getProfileId(Auth::user()->id);
+				$peng -> tanggal_upload = Carbon::now();
+				$peng -> id_cabang = Input:get('id_cabang');
+				
+				$peng -> save();
+				
+				return "success";			
+			}
+			else
+			{
+				return "failed";
+			}
+		}
+		
 		public function delete_cabang()
 		{
 			$id_cabang = Input::get('id_cabang');
 			$cabang = Cabang::find($id_cabang);
 			
 			$cabang->delete();
+			
+			return "Success Delete";
+		}
+		
+		public function delete_pengurus()
+		{
+			$id_pengurus = Input::get('id_pengurus');
+			$pengurus = Pengurus::find($id_pengurus);
+			
+			$pengurus->delete();
 			
 			return "Success Delete";
 		}

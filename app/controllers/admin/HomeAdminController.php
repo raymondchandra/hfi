@@ -48,8 +48,9 @@ class HomeAdminController extends BaseController {
 	
 	public function view_regulasi()
 	{
-		$regulations = $this->get_all_regulasi();
-		return View::make('pages.admin.home.regulasi', compact('regulations')); 
+		//$regulations = $this->get_all_regulasi();
+		//return View::make('pages.admin.home.regulasi', compact('regulations')); 
+		return View::make('pages.admin.home.regulasi'); 
 	}
 	
 	public function update_welcome()
@@ -206,7 +207,7 @@ class HomeAdminController extends BaseController {
 		$regulations = Regulasi::all();
 		//$regulations = Regulasi::paginate(5);
 		if($regulations==null){
-			return "kosong";
+			return "";
 		}else{			
 			return $regulations;
 		}		

@@ -29,7 +29,7 @@
 							arrIDPengurus[$i] = data[$i]['id'];
 							arrFILEPATHPengurus[$i] = data[$i]['file_path'];
 							list+="<tr>";							
-							list+="<td><a href='javascript:void(0)' class='periode_pengurus' value='"+data[$i]['file_path']+"'>"+data[$i]['versi']+"</a></td>";
+							list+="<td><a href='javascript:void(0)' class='periode_pengurus' value='"+data[$i]['file_path']+"'>"+data[$i]['periode']+"</a></td>";
 							list+="<td><p style='display:none;'>"+data[$i]['file_path']+"</p><input type='button' value='x' class='hapus_pengurus'/><input type='hidden' class='id_pengurus' value='"+$i+"'/> </td>";
 							list+="</tr>";
 						}
@@ -51,7 +51,7 @@
 </script>
 
 <div class='admin_title'>Pengurus</div>
-<div class='regulasi_container'>
+<div class='pengurus_container'>
 </div>
 
 	<div id='sidelist_pengurus'>
@@ -62,40 +62,52 @@
 				//baru bisa hapus database, blom bisa sampe hapus pdf nya yg ada di folder file_upload
 				$('body').on('click','.hapus_pengurus',function(){
 					$id = $(this).next().val();
+					//alert($id);
 					//ajax delete
 					$.ajax({
-						url: 'admin/home/deletepengurus',
+						url: 'admin/organisasi/deletepengurus',
 						type: 'DELETE',
 						data: {
 							'id_pengurus' : arrIDPengurus[$id]
 						},
-						success: function(data){
+						success: function(data){							
 							getPengurus();
+							//alert(data);
 						},
 						error: function(jqXHR, textStatus, errorThrown){
 							alert(errorThrown);
 						}
 					});
-				});
+				});							
+				
 			</script>
 		</div>		
-		<div id='pages'>									
+		<div id='pages' style="display:none;">									
 		</div>			
-		<div id='unggah_pengurus'>
+		<div id='unggah_pengurus'>			
 			{{ Form::open(array('url' => '/postPengurus', 'files' => true))}}
 			<form>
 				<!--{{ Form::file('file',array('class'=>'upload_photo','style' => 'margin-top: 20px; display: block; margin-left: auto; margin-right: auto;')) }}-->
 				<ul>
 					<li style="margin-top:5px;">{{ Form::file('filePeng') }}</li>
-					<li style="margin-top:5px;">Periode : {{ Form::text('periode', Input::old('periode'), array('style' => 'width: 180px;')) }}	</li>
+					<li style="margin-top:5px;">Periode : {{ Form::text('periode', Input::old('periode'), array('style' => 'width: 200px;')) }}	</li>
+						<?php
+							// $length = sizeof($arr2);
+							// $arrCabang = array();					
+							// for($i=0; $i<$length; $i++){
+								// $arrCabang[] = $arr2[$i]['nama'];
+								// echo var_dump($arrCabang[$i]);
+							// }							
+						?>				
+					<li style="margin-top:5px;">Cabang : {{ Form::select('hficabang', $arr2, Input::old('hficabang'), array('style' => 'width:200px;'))}}</li>
 				<!--{{ Form::submit('Unggah Gambar', array('id' => 'submit_change','style' => 'display: block; margin-left: auto; margin-right: auto; margin-top: 20px;')) }}-->				
-					<li style="margin-top:5px;">{{ Form::submit('Unggah Pengurus') }}	</li>
+					<li style="margin-top:5px;">{{ Form::submit('Unggah Pengurus', array('id'=>'tambah_pengurus_button')) }}</li>
 				</ul>
 			</form>			
 			{{ Form::token() }}
 			{{ Form::close() }}
 			<!--<input type='button' value='Unggah'></input>
-			<input type='file' id='upload_file' style="display:none;"></input>-->
+			<input type='file' id='upload_file' style="display:none;"></input>-->					
 		</div>
 	</div>
 		

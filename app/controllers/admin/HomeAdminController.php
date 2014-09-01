@@ -220,10 +220,17 @@ class HomeAdminController extends BaseController {
 		$id_regulasi = Input::get('id_regulasi');
 		$regulasi = Regulasi::find($id_regulasi);
 		$file = $regulasi -> file_path;
-		File::Delete($file);
-		$regulasi->delete();
-		
-		return "Success Delete";
+		$file = $file;
+		if(File::exists($file))
+		{
+			File::delete($file);
+			$regulasi->delete();
+			return "Success Delete";
+		}
+		else 
+		{
+			return "Failed Delete";
+		}
 	}
 		
 	public function update_gallery(){

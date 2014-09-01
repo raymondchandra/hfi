@@ -41,7 +41,7 @@ class UserController extends BaseController {
 	
 	public static function getProfileId($auth_id)
 	{
-		$profile = Anggota::where('auth_id', '=' , $id)->first();
+		$profile = Anggota::where('auth_id', '=' , $auth_id)->first();
 		if($profile != null)
 		{
 			return $profile->id;

@@ -207,7 +207,7 @@
 			});
 		</script>				
 	</div>		
-</div>
+</div> 
 <!--pop up -->
 <div class=" pop_up_super_c" style="display: none;">
 	<a class="exit close_56" ></a>

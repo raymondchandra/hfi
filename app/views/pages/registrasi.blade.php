@@ -24,30 +24,26 @@
 		<tr>
 			<td>Username</td>
 			<td>:</td>
-			<td>{{ Form::text('username', Input::old('username')) }} <span class="red">*</span></td>
-			<td></td>
+			<td>{{ Form::text('username', Input::old('username')) }} <span class="red">*</span></td>			
 		</tr>		
 		<tr>
 			<td><i>Password</i></td>
 			<td>:</td>
-			<td>{{ Form::password('password',array('id' => 'input_password'), Input::old('password')) }} <span class="red">*</span></td>
-			<td></td>
+			<td>{{ Form::password('password',array('id' => 'input_password'), Input::old('password')) }} <span class="red">*</span></td>			
 		</tr>	
 		<tr>
 			<td><i>Ketik Ulang Password</i></td>
 			<td>:</td>
 			<td>{{ Form::password('password_again',array('id' => 'password_again'), Input::old('password_again')) }} <span class="red">*</span></td>
-			<td></td>
 		</tr>
 		<tr>
 			<td>Nama</td>
 			<td>:</td>
-			<td>{{ Form::text('nama', Input::old('nama')) }} <span class="red">*</span></td>
-			<td></td>			
+			<td>{{ Form::text('nama', Input::old('nama')) }} <span class="red">*</span></td>			
 		</tr>
 		<tr>
 			<td>Registrasi</td>			
-			<td>: </td>
+			<td>:</td>
 			<td>
 				anggota non-aktif, HFI Cabang 				
 				<?php
@@ -79,8 +75,7 @@
 					'jawatengahdanyogyakarta' => 'Jawa Tengah dan Yogyakarta',
 					'luarnegeri' => 'luar negeri')) 
 				}}-->
-			</td>
-			<td></td><!--ga pake span-->		
+			</td>			
 		</tr>
 		<tr>
 			<td>Tempat, tanggal lahir</td>
@@ -258,20 +253,17 @@
 					))
 				}} <span class="red" style="right: 284px; top: 35px;">*</span>
 				</div>
-				</td>
-			<td><span id="tempattanggallahir" style="color:red"></span></td>
+				</td>			
 		</tr>
 		<tr>
 			<td>Jenis kelamin</td>
 			<td>:</td>
-			<td>{{ Form::radio('gender','pria') }}pria    {{ Form::radio('gender','wanita') }}wanita <span class="red">*</span></td>
-			<td><span id="val_jeniskelamin" style="color:red"></span></td>		
+			<td>{{ Form::radio('gender','pria') }}pria    {{ Form::radio('gender','wanita') }}wanita <span class="red">*</span></td>			
 		</tr>
 		<tr>
 			<td>Tema penelitian	</td>
 			<td>:</td>
-			<td>{{ Form::textarea('temapenelitian', Input::old('temapenelitian')) }} <span class="red">*</span></td>
-			<td><span id="val_temapenelitian" style="color:red"></span></td>			
+			<td>{{ Form::textarea('temapenelitian', Input::old('temapenelitian')) }} <span class="red">*</span></td>			
 		</tr>		
 		<tr>
 			<td>Spesialisasi</td>
@@ -294,14 +286,12 @@
 					'nuklir' => 'nuklir',
 					'parkikel' => 'partikel',
 					'lainlain' => 'lain-lain'))
-				}} <span class="red">*</span></td>
-			<td><span id="val_spesialisasi" style="color:red"></span></td>			
+				}} <span class="red">*</span></td>				
 		</tr>
 		<tr>
 			<td>Pendidikan</td>
 			<td>:</td>
-			<td>{{ Form::textarea('pendidikan', Input::old('pendidikan')) }} <span class="red">*</span></td>
-			<td><span id="val_pendidikan" style="color:red"></span></td>		
+			<td>{{ Form::textarea('pendidikan', Input::old('pendidikan')) }} <span class="red">*</span></td>				
 		</tr>
 		<tr>
 			<td>Profesi</td>
@@ -315,20 +305,17 @@
 					'peneliti' => 'peneliti',
 					'karyawan' => 'karyawan',
 					'lainlain' => 'lain-lain'))
-				}} <span class="red">*</span></td>			
-			<td><span id="val_profesi" style="color:red"></span></td>			
+				}} <span class="red">*</span></td>								
 		</tr>
 		<tr>
 			<td>Institusi</td>
 			<td>:</td>
-			<td>{{ Form::text('institusi', Input::old('institusi')) }} <span class="red">*</span></td>
-			<td><span id="val_institusi" style="color:red"></span></td>			
+			<td>{{ Form::text('institusi', Input::old('institusi')) }} <span class="red">*</span></td>					
 		</tr>
 		<tr>
 			<td>Alamat kontak</td>
 			<td>:</td>
-			<td>{{ Form::textarea('alamatkontak', Input::old('alamatkontak')) }} <span class="red">*</span></td>
-			<td><span id="val_alamatkontak" style="color:red"></span></td>			
+			<td>{{ Form::textarea('alamatkontak', Input::old('alamatkontak')) }} <span class="red">*</span></td>			
 		</tr>
 		<tr>
 			<td>Kota - kodepos, negara</td>
@@ -337,44 +324,79 @@
 			<div style="width: 600px;">
 			{{ Form::text('kota', Input::old('kota'), array('class' => 'form_kota', 'style' => 'width: 170px;')) }} - 
 			{{ Form::text('kodepos', Input::old('kodepos'), array('class' => 'form_kota', 'style' => 'width: 170px;')) }} , 
-			{{ Form::text('negara', Input::old('negara'), array('class' => 'form_kota', 'style' => 'width: 170px;')) }} <span class="red"style="color:red; right: -134px;">*</span></td>
-			</div>
-			<td>
-			<span id="val_kotakodeposnegara" style="color:red;"></span></td>
+			{{ Form::text('negara', Input::old('negara'), array('class' => 'form_kota', 'style' => 'width: 170px;')) }} <span class="red"style="color:red; right: -134px;">*</span>
+			</div></td>
 		</tr>		
 		<tr>
 			<td>Telepon / fax</td>
 			<td>:</td>
 			<td>{{ Form::text('telepon', Input::old('telepon'), array('style' => 'width:50px')) }}<span class="red">*</span> - 
 			{{ Form::text('telepon2', Input::old('telepon2')) }} / 
-			{{ Form::text('fax', Input::old('fax')) }}</td>
-			<td><span id="val_teleponfax" style="color:red"></span></td>
+			{{ Form::text('fax', Input::old('fax')) }}</td>			
 		</tr>
 		<tr>
 			<td>HP</td>
 			<td>:</td>
-			<td>{{ Form::text('hp', Input::old('hp')) }}</td>
-			<td></td><!--ga pake span-->		
+			<td>{{ Form::text('hp', Input::old('hp')) }}</td>			
 		</tr>
 		<tr>
 			<td>Surat elektronik</td>
 			<td>:</td>
-			<td>{{ Form::text('email', Input::old('email')) }}<span class="red">*</span></td>
-			<td></td><!--ga pake span-->		
+			<td>{{ Form::text('email', Input::old('email')) }}<span class="red">*</span></td>				
 		</tr>
 		<tr>
 			<td>Situs</td>
 			<td>:</td>
-			<td>{{ Form::text('situs', Input::old('situs')) }}</td>
-			<td></td><!--ga pake span-->		
+			<td>{{ Form::text('situs', Input::old('situs')) }}</td>				
 		</tr>
 		<tr>
 			<td>Keterangan lain</td>
 			<td>:</td>
-			<td>{{ Form::textarea('keteranganlain', Input::old('keteranganlain')) }}</td>
-			<td></td><!--ga pake span-->		
-		</tr>		
+			<td>{{ Form::textarea('keteranganlain', Input::old('keteranganlain')) }}</td>					
+		</tr>	
+		
+		<!-- newcode coba upload laravel-->
+		<tr>
+			<td>KTP</td> <!-- file upload -->
+			<td>:</td>
+			<td>
+				{{Form::file('chooseImage', array('onchange' => 'readURL(this);'))}}				
+			</td>			
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td><img id="screenshot" alt="preview ktp" style="width:380px; height:230px;"/></td>			
+		</tr>
+		
+		<!-- end newcode coba upload laravel-->
 	</table>
+		
+	<!-- ukuran ktp
+	448x684
+	226kB-->
+	
+	<!--
+		foto 2x3
+		75px x 133px		
+	-->
+	
+<script>
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function (e) {
+				$('#screenshot').attr('src', e.target.result).css(
+				{
+					 'width': '380px',
+					'height': '230px'
+				});
+			};
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+</script>
 	
 	<style>
 		#tanggallahir-error, #tahunlahir-error, #bulanlahir-error {

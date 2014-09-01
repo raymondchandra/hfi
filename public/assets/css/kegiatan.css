@@ -1,12 +1,45 @@
-.filter_kegiatan_container{
-	float: left;
-	width: 200px;
-}
-
-.filter_kegiatan input[type="text"]{
-	width: 90% !important;
-}
-
 .kegiatan_container{
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.info_kegiatan{
+	width: 650px;
+	margin-left:25px !important;
+	margin-right:auto !important;
 	float:left;
+	/*padding-top: 20px;*/
+	vertical-align: center;
+}
+
+.waktu_kegiatan{
+	height: 20px;
+	font-size: 12px;
+}
+
+.place_kegiatan{
+	height: 30px;
+	line-height: 30px;
+}
+
+.nama_kegiatan{
+	font-size: 14px!important;
+	font-weight: bold;
+}
+
+.poster_kegiatan{
+	width: 150px;
+	height: 180px;
+	float:left;
+	margin-bottom: 10px;
+}
+
+.edit_kegiatan_form{
+	height: 180px;
+	float:left;
+	padding-top: 50px;
+}
+.edit_kegiatan_form input{
+	margin-top: auto;
+	margin-bottom:auto;
 }

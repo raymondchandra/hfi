@@ -946,7 +946,7 @@
 	</p>
 		<div style="width: 100%; text-align: center;" class="de_tombol">
 			{{ Form::submit('Register', array('class' => 'regreg reg_submit_off')) }}
-			{{ Form::button('Batal') }}
+			{{ Form::reset('Clear form') }}
 			{{ Form::token() . Form::close() }}
 			<script>
 				

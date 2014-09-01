@@ -231,7 +231,10 @@ class HomeAdminController extends BaseController {
 
 	public function update_foto_gallery()
 	{	
-		if(Input::hasFile('photo'))
+		if(Request::ajax()){
+			return $_FILES['image'];
+		}
+		/*if(Input::hasFile('photo'))
 		{
 			$id_img = Input::get('id');
 			$id = Auth::user()->id;
@@ -281,7 +284,7 @@ class HomeAdminController extends BaseController {
 		else
 		{
 			return "Failed2";
-		}
+		}*/
 		
 	
 	}

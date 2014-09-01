@@ -69,33 +69,29 @@
 						data: {
 							'id_regulasi' : arrIDRegulasi[$id]
 						},
-						success: function(data){
+						success: function(data){							
 							getRegulasi();
+							//alert(data);
 						},
 						error: function(jqXHR, textStatus, errorThrown){
 							alert(errorThrown);
 						}
 					});
-				});
+				});							
+								
 			</script>
 		</div>		
 		<div id='pages'>									
 		</div>			
-		<div id='unggah_regulasi'>
-			{{ Form::open(array('url' => '/postRegulasi', 'files' => true))}}
-			<form>
-				<!--{{ Form::file('file',array('class'=>'upload_photo','style' => 'margin-top: 20px; display: block; margin-left: auto; margin-right: auto;')) }}-->
+		<div id='unggah_regulasi'>			
+			<form>				
 				<ul>
 					<li style="margin-top:5px;">{{ Form::file('fileReg') }}</li>
-					<li style="margin-top:5px;">Versi : {{ Form::text('versi', Input::old('versi'), array('style' => 'width: 180px;')) }}	</li>
-				<!--{{ Form::submit('Unggah Gambar', array('id' => 'submit_change','style' => 'display: block; margin-left: auto; margin-right: auto; margin-top: 20px;')) }}-->				
-					<li style="margin-top:5px;">{{ Form::submit('Unggah Regulasi') }}	</li>
+					<li style="margin-top:5px;">Versi : {{ Form::text('versi', Input::old('versi'), array('style' => 'width: 180px;')) }}	</li>				
+					<li style="margin-top:5px;">{{ Form::submit('Unggah Regulasi', array('id'=>'tambah_regulasi_button')) }}</li>
 				</ul>
 			</form>			
-			{{ Form::token() }}
-			{{ Form::close() }}
-			<!--<input type='button' value='Unggah'></input>
-			<input type='file' id='upload_file' style="display:none;"></input>-->
+			
 		</div>
 	</div>
 		

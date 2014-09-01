@@ -196,7 +196,8 @@ class AccountController extends BaseController {
 	
 	public function get_all_cabang()
 	{
-		$count = Cabang::select('nama')->get();
+		//$count = Cabang::select('nama')->get();
+		$count = DB::table('cabang')->orderBy('nama','asc')->lists('nama','nama');
 		if(count($count) != 0)
 		{
 			return $count;

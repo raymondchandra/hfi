@@ -124,7 +124,8 @@
 		{
 			$id_pengurus = Input::get('id_pengurus');
 			$pengurus = Pengurus::find($id_pengurus);
-			
+			$file = $pengurus->file_path;
+			File::delete($file);
 			$pengurus->delete();
 			
 			return "Success Delete";

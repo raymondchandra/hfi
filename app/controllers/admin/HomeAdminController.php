@@ -238,14 +238,13 @@ class HomeAdminController extends BaseController {
 
 	public function update_foto_gallery()
 	{	
-		$slideshow= 'Success';
-		//return View::make('pages.adminPanel' , compact('slideshow'));
+		//$slideshow= 'Success';
+		//return Input::get('id_photo');
+		//return Redirect::to('/admin')->with('editSlideShow',"'Success'");
 		
-		return Redirect::to('/admin')->with('editSlideShow',"'Success'");
-		
-		/*if(Input::hasFile('photo'))
+		if(Input::hasFile('photo'))
 		{
-			$id_img = Input::get('id');
+			$id_img = Input::get('id_photo');
 			$id = Auth::user()->id;
 			$img_upload = Input::file('photo');
 			$file_name = $img_upload->getClientOriginalName();
@@ -257,7 +256,7 @@ class HomeAdminController extends BaseController {
 				$uploadSuccess   = $img_upload->move($destination, $file_name);
 				if($uploadSuccess)
 				{
-					$gallery = Gallery::find($id_img->id);
+					$gallery = Gallery::find($id_img);
 					$gallery->timestamps = false;
 					$gallery -> tanggal_upload = Carbon::now();
 					$gallery -> uploaded_by = Anggota::where('auth_id', '=' , $id)->first()->id;
@@ -293,7 +292,7 @@ class HomeAdminController extends BaseController {
 		else
 		{
 			return "Failed";
-		}*/
+		}
 		
 	
 	}

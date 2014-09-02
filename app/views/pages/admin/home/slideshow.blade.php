@@ -96,6 +96,7 @@
 							</div>
 								{{ Form::open(array('url' => 'admin/editSlideShow','method'=>'put','files'=>'true')) }}
 								{{ Form::file('photo',array('name'=>'photo','id'=>'photo','class'=>'upload_photo','style' => 'margin-top: 20px; display: block; margin-left: auto; margin-right: auto;')) }}
+								<input type='hidden' class='photo_id' name='id_photo' />
 								{{ Form::submit('Unggah Gambar', array('style' => 'display: block; margin-left: auto; margin-right: auto; margin-top: 20px;')) }}
 								{{ Form::close() }}
 								<!--<input type='file' class='upload_photo' multiple="false" style="margin-top: '20px'; display: 'block'; margin-left: 'auto'; margin-right: 'auto';" />
@@ -182,6 +183,8 @@ $('.ok_change').click(function(){
 			$("body").css('overflow-x','hidden');
 			index_caption = $(this).prev().val();
 			alert(index_caption);
+			$('.photo_id').val(index_caption);
+			
 			//ajax
 			
 			

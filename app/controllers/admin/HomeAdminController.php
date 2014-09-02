@@ -245,7 +245,7 @@ class HomeAdminController extends BaseController {
 		
 		if(Input::hasFile('photo'))
 		{
-			$id_img = Input::get('id');
+			$id_img = Input::get('id_photo');
 			$id = Auth::user()->id;
 			$img_upload = Input::file('photo');
 			$file_name = $img_upload->getClientOriginalName();

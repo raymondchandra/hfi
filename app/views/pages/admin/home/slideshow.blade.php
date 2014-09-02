@@ -101,7 +101,6 @@
 								<!--<input type='file' class='upload_photo' multiple="false" style="margin-top: '20px'; display: 'block'; margin-left: 'auto'; margin-right: 'auto';" />
 								<input type='button' class='button_upload_foto' value='Unggah Gambar' style="display: 'block'; margin-left: 'auto'; margin-right: 'auto'; margin-top: '20px';">-->
 						</div>
-					
 					</div>
 				</div>
 			</div>

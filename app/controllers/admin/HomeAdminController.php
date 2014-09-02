@@ -241,11 +241,8 @@ class HomeAdminController extends BaseController {
 		$slideshow= 'Success';
 		//return View::make('pages.adminPanel' , compact('slideshow'));
 		
-		return Redirect::to('/admin')->with('message',"'Success'");
+		return Redirect::to('/admin')->with('editSlideShow',"'Success'");
 		
-		/*if(Request::ajax()){
-			return Request::all();
-		}*/
 		/*if(Input::hasFile('photo'))
 		{
 			$id_img = Input::get('id');

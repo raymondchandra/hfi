@@ -2,8 +2,11 @@
 @section('content')
 <script>
 $(document).ready(function(){
-	if({{Session::get('message')}}=='Success'){
+	if({{Session::get('editSlideShow')}}=='Success'){
 		$('#home_slideshow').click();
+	}
+	else{
+		
 	}
 });
 

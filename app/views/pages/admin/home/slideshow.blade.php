@@ -94,12 +94,12 @@
 								
 								(Passphoto)
 							</div>
-								<!--{{ Form::open(array('url' => 'admin/editSlideShow','method'=>'put','files'=>'true')) }}
+								{{ Form::open(array('url' => 'admin/editSlideShow','method'=>'put','files'=>'true')) }}
 								{{ Form::file('photo',array('name'=>'photo','id'=>'photo','class'=>'upload_photo','style' => 'margin-top: 20px; display: block; margin-left: auto; margin-right: auto;')) }}
 								{{ Form::submit('Unggah Gambar', array('style' => 'display: block; margin-left: auto; margin-right: auto; margin-top: 20px;')) }}
-								{{ Form::close() }}-->
-								<input type='file' class='upload_photo' multiple="false" style="margin-top: '20px'; display: 'block'; margin-left: 'auto'; margin-right: 'auto';" />
-								<input type='button' class='button_upload_foto' value='Unggah Gambar' style="display: 'block'; margin-left: 'auto'; margin-right: 'auto'; margin-top: '20px';">
+								{{ Form::close() }}
+								<!--<input type='file' class='upload_photo' multiple="false" style="margin-top: '20px'; display: 'block'; margin-left: 'auto'; margin-right: 'auto';" />
+								<input type='button' class='button_upload_foto' value='Unggah Gambar' style="display: 'block'; margin-left: 'auto'; margin-right: 'auto'; margin-top: '20px';">-->
 						</div>
 					
 					</div>
@@ -148,7 +148,7 @@ $('body').on('click','.button_upload_foto',function(){
 		data : data,
 		processData: false,
 		success: function(response){
-			//alert(response);
+			//alert(response.id);
 			$('.slide_container').text(response);
 		},
 		error: function(jqXHR, textStatus, errorThrown){

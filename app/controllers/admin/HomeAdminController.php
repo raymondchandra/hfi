@@ -238,9 +238,14 @@ class HomeAdminController extends BaseController {
 
 	public function update_foto_gallery()
 	{	
-		if(Request::ajax()){
-			return $_FILES['image'];
-		}
+		$slideshow= 'Success';
+		//return View::make('pages.adminPanel' , compact('slideshow'));
+		
+		return Redirect::to('/admin')->with('message',"'Success'");
+		
+		/*if(Request::ajax()){
+			return Request::all();
+		}*/
 		/*if(Input::hasFile('photo'))
 		{
 			$id_img = Input::get('id');
@@ -252,7 +257,7 @@ class HomeAdminController extends BaseController {
 			
 			if(count($id_img) != 0)
 			{
-				$uploadSuccess   = $file->move($destination, $file_name);
+				$uploadSuccess   = $img_upload->move($destination, $file_name);
 				if($uploadSuccess)
 				{
 					$gallery = Gallery::find($id_img->id);
@@ -269,7 +274,7 @@ class HomeAdminController extends BaseController {
 			
 			}else
 			{
-				$uploadSuccess   = $file->move($destination, $file_name);
+				$uploadSuccess   = $img_upload->move($destination, $file_name);
 				if($uploadSuccess)
 				{
 					$gallery = new Gallery();
@@ -290,7 +295,7 @@ class HomeAdminController extends BaseController {
 		}
 		else
 		{
-			return "Failed2";
+			return "Failed";
 		}*/
 		
 	

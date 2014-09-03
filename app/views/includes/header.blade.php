@@ -15,13 +15,20 @@
 				</div>
 				<div class="grid_4 ">
 					@if(Auth::check())
-						@if(Auth::user()->role == 0)
-							Hi {{ HTML::linkRoute('profile', UserController::getHeaderName(Auth::user()->id), array(), array('class' => 'daftar_dan_login', 'style' => 'float: right;')) }}
-						@else
-							Hi {{UserController::getHeaderName(Auth::user()->id)}}
-						@endif	
+
 					<div class="top_right_iden">
-						{{ HTML::linkRoute('logout', 'Keluar', array(), array('class' => 'daftar_dan_login', 'style' => 'float: right;')) }}
+							
+
+						{{ HTML::linkRoute('logout', 'Keluar', array(), array('class' => 'daftar_dan_login', 'style' => 'float: right;')) }}<span> | </span>
+						@if(Auth::user()->role == 0)
+							<span style="float: right; margin-right: 10px; display: block;">
+							Hi {{ HTML::linkRoute('profile', UserController::getHeaderName(Auth::user()->id), array(), array('class' => 'daftar_dan_login', 'style' => 'float: right;')) }}
+							</span>
+						@else
+							<span style="float: right; margin-right: 10px; display: block;">
+							Hi {{UserController::getHeaderName(Auth::user()->id)}}
+							</span>
+						@endif
 					</div>
 					@else
 					<div class="top_right_iden">

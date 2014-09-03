@@ -48,6 +48,13 @@
 	$(document).ready(function() {
 		getPengurus();
 	});
+	
+	//REDIRECT
+	//contoh redirect abis postRegis
+	//return Redirect::to('/')->with('message', 'Terima kasih telah melakukan pendaftar, silahkan menyelesaikan administrasi pembayaran. Keterangan lebih lanjut dapat 
+			//dilihat pada <a href="/anggota">Anggota</a>');
+	//return Redirect::to('/registrasi')->with('message', 'Error')->withErrors('Username telah terdaftar')->withInput();
+			
 </script>
 
 <div class='admin_title'>Pengurus</div>

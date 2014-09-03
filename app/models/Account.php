@@ -50,7 +50,7 @@ class Account extends Eloquent implements UserInterface, RemindableInterface
 	
 	public function profile()
     {
-        return $this->hasOne('Anggota');
+       return $this->belongsTo('Anggota', 'profile_id');
     }
 }
 

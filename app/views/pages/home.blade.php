@@ -6,42 +6,35 @@
 ">
 
 			  <div class="carousel-inner" style="width: 400px;">
-
-
-				<div class="item active">
-				  <img src="assets/img/w1.jpg" alt="Some Alt Text" width="400" />
-				  <div class="carousel-caption">
-					Some caption
-				  </div>
-				</div>
-
-				<div class="item">
-				  <img src="assets/img/w2.jpg" alt="Some Alt Text" width="400"/>
-				  <div class="carousel-caption">
-					Some caption
-				  </div>
-				</div>
-				
-				<div class="item">
-				  <img src="assets/img/w3.jpg" alt="Some Alt Text" width="400"/>
-				  <div class="carousel-caption">
-					Some caption
-				  </div>
-				</div>
-
-				<div class="item">
-				  <img src="assets/img/w4.jpg" alt="Some Alt Text" width="400"/>
-				  <div class="carousel-caption">
-					Some caption
-				  </div>
-				</div>
-				
-				<div class="item">
-				  <img src="assets/img/w5.jpg" alt="Some Alt Text" width="400"/>
-				  <div class="carousel-caption">
-					Some caption
-				  </div>
-				</div>
+				@if($slideshow == "Failed")
+					
+				@else
+				<ul>
+					<?php
+						$view="
+							<div class='item active'>
+							  <img src='".$slideshow[0]['file_path']."' alt='ome Alt Text' width='400' height='300' />
+							  <div class='carousel-caption'>
+								".$slideshow[0]['kapsion']."
+							  </div>
+							</div>
+						";
+						$length= count($slideshow);
+						
+						for($i=1;$i<$length;$i++){
+							$view.="
+								<div class='item'>
+								  <img src='".$slideshow[$i]['file_path']."' alt='ome Alt Text' width='400' height='300'/>
+								  <div class='carousel-caption'>
+									".$slideshow[$i]['kapsion']."
+								  </div>
+								</div>
+							";
+						}
+						echo $view;
+					?>
+				</ul>
+				@endif
 				
 			  </div>
 

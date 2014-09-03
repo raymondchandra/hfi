@@ -20,6 +20,8 @@
 				<input type='text' class='caption' placeholder='caption 1' />
 				<input type='button' class='ok_change' value='Ok' style='display:none;' />
 				<input type='hidden' value='0' />
+				<input type='button' class='reset_change' value='Reset' style='display:none' />
+				<input type='hidden' class='default_val' value='' />
 				<a href="javascript:void(0)" class="edit_pp" >
 					<p>Perbaharui Foto</p>
 					<span class="cam">
@@ -33,6 +35,8 @@
 				<input type='text' class='caption' placeholder='caption 1' />
 				<input type='button' class='ok_change' value='Ok' style='display:none;' />
 				<input type='hidden' value='0' />
+				<input type='button' class='reset_change' value='Reset' style='display:none' />
+				<input type='hidden' class='default_val' value='' />
 				<a href="javascript:void(0)" class="edit_pp" >
 					<p>Perbaharui Foto</p>
 					<span class="cam">
@@ -46,6 +50,8 @@
 				<input type='text' class='caption' placeholder='caption 1' />
 				<input type='button' class='ok_change' value='Ok' style='display:none;' />
 				<input type='hidden' value='0' />
+				<input type='button' class='reset_change' value='Reset' style='display:none' />
+				<input type='hidden' class='default_val' value='' />
 				<a href="javascript:void(0)" class="edit_pp" >
 					<p>Perbaharui Foto</p>
 					<span class="cam">
@@ -59,6 +65,8 @@
 				<input type='text' class='caption' placeholder='caption 1' />
 				<input type='button' class='ok_change' value='Ok' style='display:none;' />
 				<input type='hidden' value='0' />
+				<input type='button' class='reset_change' value='Reset' style='display:none' />
+				<input type='hidden' class='default_val' value='' />
 				<a href="javascript:void(0)" class="edit_pp" >
 					<p>Perbaharui Foto</p>
 					<span class="cam">
@@ -72,6 +80,8 @@
 				<input type='text' class='caption' placeholder='caption 1' />
 				<input type='button' class='ok_change' value='Ok' style='display:none;' />
 				<input type='hidden' value='0' />
+				<input type='button' class='reset_change' value='Reset' style='display:none' />
+				<input type='hidden' class='default_val' value='' />
 				<a href="javascript:void(0)" class="edit_pp" >
 					<p>Perbaharui Foto</p>
 					<span class="cam">
@@ -92,6 +102,8 @@
 							<input type='text' class='caption' value='".$slideshow[$i]['kapsion']."' placeholder='caption ".($i+1)."' />
 							<input type='button' class='ok_change' value='Ok' style='display:none;' />
 							<input type='hidden' value='".$slideshow[$i]['id']."' />
+							<input type='button' class='reset_change' value='Reset' style='display:none' />
+							<input type='hidden' class='default_val' value='".$slideshow[$i]['kapsion']."' />
 							<a href='javascript:void(0)' class='edit_pp' >
 								<p>Perbaharui Foto</p>
 								<span class='cam'>
@@ -112,6 +124,8 @@
 								<input type='text' class='caption' placeholder='caption ".$temp."' />
 								<input type='button' class='ok_change' value='Ok' style='display:none;' />
 								<input type='hidden' value='0' />
+								<input type='button' class='reset_change' value='Reset' style='display:none' />
+								<input type='hidden' class='default_val' value='' />
 								<a href='javascript:void(0)' class='edit_pp' >
 									<p>Perbaharui Foto</p>
 									<span class='cam'>
@@ -164,6 +178,7 @@
 
 $('.caption').keyup(function(){
 	$(this).next().removeAttr('style');
+	$(this).siblings('.reset_change').removeAttr('style');
 });
 
 $('body').on('change','.upload_photo',function(){
@@ -208,6 +223,12 @@ $('body').on('click','.button_upload_foto',function(){
 	});
 });
 
+$('body').on('click','.reset_change',function(){
+	$(this).siblings('.caption').val($(this).next().val());
+	$(this).css('display','none');
+	$(this).siblings('.ok_change').css('display','none');
+});
+
 function showUploadedItem (source) {
 	var image = "<img src='"+source+"' />"
 	$('.saran_34').html(image);
@@ -215,6 +236,8 @@ function showUploadedItem (source) {
 
 $('.ok_change').click(function(){
 	$(this).css('display','none');
+	$(this).siblings('.reset_change').css('display','none');
+	$(this).siblings('.default_val').val($(this).prev().val());
 	$.ajax({
 		type: 'PUT',
 		url: 'admin/editCaption',
@@ -224,6 +247,9 @@ $('.ok_change').click(function(){
         },
 		success: function(response){
 			alert(response);
+			//pop up
+			$('#sesuatu').fadeIn( 277, function(){});
+			$('#message_pop').text('Sukses');
 		},
 		error: function(jqXHR, textStatus, errorThrown){
 			alert(errorThrown);

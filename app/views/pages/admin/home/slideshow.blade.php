@@ -248,6 +248,8 @@ $('.ok_change').click(function(){
 		success: function(response){
 			alert(response);
 			//pop up
+			$('#sesuatu').fadeIn( 277, function(){});
+			$('#message_pop').text('Sukses');
 		},
 		error: function(jqXHR, textStatus, errorThrown){
 			alert(errorThrown);

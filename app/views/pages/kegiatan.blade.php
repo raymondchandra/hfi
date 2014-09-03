@@ -2,14 +2,20 @@
 @section('content')
 <script>
 	$(document).ready(function(){
-		var length = $('.show_after').text().length;
-		if (length > 200) {  
-           $('.show_before').text($('.show_after').text().substr(0,197)); 
-			$('.show_after').append("<a href='javascript:void(0)' style='text-decoration:none;' class='hide_description'>[tutup]</a>");
-           //alert('ABC');
-           // 17 charcters + .......  
-          $('.show_before').append("<a href='javascript:void(0)' class='description_button' style='text-decoration:none;'> [selengkapnya]</a>");
-		}
+	
+		$( ".show_after" ).each(function( index ) {
+			//alert($(this).text());
+			var length = $(this).text().length;
+			if (length > 200) {
+				$(this).siblings('.show_before').text($('.show_after').text().substr(0,197)); 
+				$(this).append("<a href='javascript:void(0)' style='text-decoration:none;' class='hide_description'>[tutup]</a>"); 
+				$(this).siblings('.show_before').append("<a href='javascript:void(0)' class='description_button' style='text-decoration:none;'> [selengkapnya]</a>");
+			}
+			else{
+				$(this).siblings('.show_before').text($('.show_after').text());
+			}
+		});
+		
 	});
 	
 	$('body').on('click','.description_button',function(){

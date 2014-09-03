@@ -18,9 +18,9 @@ class HomeAdminController extends BaseController {
 	
 	public function view_slide()
 	{
-		//$slideshow = get_gallery();
-		//return View::make('pages.admin.home.slideshow', compact('slideshow'));
-		return View::make('pages.admin.home.slideshow');
+		$slideshow = get_slideshow();
+		return View::make('pages.admin.home.slideshow', compact('slideshow'));
+		//return View::make('pages.admin.home.slideshow');
 	}
 	
 	public function view_welcome()
@@ -314,7 +314,7 @@ class HomeAdminController extends BaseController {
 		}
 	}
 	
-	public function get_gallery()
+	public function get_slideshow()
 	{
 		$gal = Gallery::where('type','=', '1')->get();
 		if(count($gal) != 0)

@@ -3,9 +3,6 @@
 //model binding
 //Route::model('post', 'Post');
 
-Route::get('/tes', function(){
-	
-});
 
 //Redirect
 Route::get('/redirect', ['as' => 'redirect' , 'uses' => 'AccountController@view_redirect']);

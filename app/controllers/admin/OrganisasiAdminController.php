@@ -118,7 +118,7 @@ use Carbon\Carbon;
 				$peng -> timestamps = false;
 				$peng -> periode = Input::get('periode');
 				$peng -> file_path = $destinationPath.$fileName;
-				$peng -> uploaded_by = UserController::getProfileId(Auth::user()->id);
+				$peng -> uploaded_by = Auth::user()->id;
 				$peng -> tanggal_upload = Carbon::now();
 				$peng -> id_cabang = $this->get_id_cabang(Input::get('hficabang'));
 				

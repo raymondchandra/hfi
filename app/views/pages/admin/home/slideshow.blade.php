@@ -11,6 +11,9 @@
 <div class='admin_title'>Slideshow</div>
 
 <div class='slide_container'>
+	<?php
+		echo $slideshow;
+	?>
 	<ul>
 		<li>
 			<div>

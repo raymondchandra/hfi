@@ -166,58 +166,6 @@ Route::post('/postRegulasi', ['as' => 'postRegulasi', 'uses' => 'HomeAdminContro
 Route::post('/postPengurus', ['as' => 'postPengurus', 'uses' => 'OrganisasiAdminController@tambah_pengurus']);
 
 
-Route::get('/tes', function(){
-	$cabang = new Cabang();
-	
-	$cabang -> tipe = '1';
-	$cabang -> timestamps = false;
-	$cabang -> nama = 'cabang jakarta';
-	
-	$cabang -> save();
-
-	$acc = new Account();	
-	
-	$acc -> username = 'user';
-	$acc -> timestamps = false;
-	$acc -> password = Hash::make('passUsr');
-	$acc -> status_aktif = '1';
-	$acc -> role = '0';
-	
-	$acc -> save();
-	
-	$usr = new Anggota();
-	
-	$accTmp = Account::where('username', '=', 'user')->first()->id;
-	
-	$usr -> auth_id = $accTmp;
-	$usr -> timestamps = false;
-	$usr -> nama = "user";
-	$idCbg = Cabang::where('nama', '=', 'cabang jakarta')->first()->id;
-	$usr -> id_cabang = $idCbg;
-	
-	$usr -> save();
-	
-	$accAdmin = new Account();
-	
-	
-	$accAdmin -> username = 'admin';
-	$accAdmin -> timestamps = false;
-	$accAdmin -> password = Hash::make('passAdm');
-	$accAdmin -> status_aktif = '1';
-	$accAdmin -> role = '1';
-	
-	$accAdmin ->save();
-	
-	$usrAdmin = new Anggota();
-	$accAdminTmp = Account::where('username', '=', 'admin')->first()->id;
-	$usrAdmin -> auth_id = $accAdminTmp;
-	$usrAdmin -> timestamps = false;
-	$usrAdmin -> name = 'admin';
-	$usrAdmin -> id_cabang = $idCbg;
-	
-	$usrAdmin ->save();
-	
-});
 
 
 

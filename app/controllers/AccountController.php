@@ -89,12 +89,7 @@ class AccountController extends BaseController {
 		if(count($cekCount) == 0)
 		{
 			
-			$acc = new Account();
-			$acc->timestamps = false;
-			$acc->username = $username;
-			$acc->password = Hash::make($password);
-			$acc->status_aktif = 0;
-			$acc->save();
+			
 			
 			$nama = Input::get('nama');
 			$cabangHFI = Input::get('hficabang');
@@ -122,11 +117,9 @@ class AccountController extends BaseController {
 			$persetujuan = Input::get('persetujuan');
 			
 			
-			$auth_id = Account::where('username', '=', $username)->first()->id;
 			$cabang_id = Cabang::where('nama', '=', $cabangHFI)->first()->id;
 			$ang = new Anggota();
 			$ang->timestamps = false;
-			$ang -> auth_id = $auth_id;
 			$ang -> id = $username;
 			$ang -> nama = $nama;
 			$ang -> tanggal_revisi = Carbon::now();
@@ -147,6 +140,14 @@ class AccountController extends BaseController {
 			$ang -> situs = $situs;
 			$ang -> keterangan = $keterangan;
 			$ang -> save();
+			
+			$acc = new Account();
+			$acc->timestamps = false;
+			$acc->username = $username;
+			$acc->profile_id = Anggota::where('nama', '=', $nama)->first()->id;
+			$acc->password = Hash::make($password);
+			$acc->status_aktif = 0;
+			$acc->save();
 			return Redirect::to('/')->with('message', 'Terima kasih telah melakukan pendaftar, silahkan menyelesaikan administrasi pembayaran. Keterangan lebih lanjut dapat 
 			dilihat pada <a href="/anggota">Anggota</a>');
 		}else

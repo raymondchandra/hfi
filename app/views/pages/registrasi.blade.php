@@ -19,7 +19,7 @@
 	<hr>
 	
 	{{ Form::open(array('url' => '/regis')) }}
-	<form>
+	
 	<table border="0" class="form_registrasi">		
 		<tr>
 			<td>Username</td>
@@ -30,7 +30,8 @@
 			<td><i>Password</i></td>
 			<td>:</td>
 			<td>{{ Form::password('password',array('id' => 'input_password'), Input::old('password')) }} <span class="red">*</span></td>			
-		</tr>	
+		</tr>
+		
 		<tr>
 			<td><i>Ketik Ulang Password</i></td>
 			<td>:</td>
@@ -267,6 +268,7 @@
 					'lainlain' => 'lain-lain'))
 				}} <span class="red">*</span></td>				
 		</tr>
+		
 		<tr>
 			<td>Pendidikan</td>
 			<td>:</td>
@@ -333,9 +335,23 @@
 			<td>:</td>
 			<td>{{ Form::textarea('keteranganlain', Input::old('keteranganlain')) }}</td>					
 		</tr>	
-				
 	</table>
+	
 		
+	
+	<p>
+		<span class="red" style="position: relative; right:0; top: 0;">*</span> ) harus diisi!
+	</p>
+
+	<hr>
+	<p>
+		Dengan melakukan registrasi secara <i>online</i> ini saya
+		menyatakan bahwa saya telah membaca dan memahami
+		{{HTML::linkRoute('ketentuan','ketentuan dan perjanjian untuk anggota')}}
+		<!--<a href="ketentuan" alt="ketentuan dan perjanjian anggota">
+		ketentuan dan perjanjian untuk anggota</a>-->
+		,serta bersedia menyetujui segala isi dan konsekuensinya :				
+	</p>
 	<!-- ukuran ktp
 	448x684
 	226kB-->
@@ -365,203 +381,189 @@
 		}
 	</style>
 	
-	<script>
-		jQuery.validator.setDefaults({
-		  debug: true,
-		  success: "valid"
-		});
-		$( "form" ).validate({
-		  rules: {
-			username : {
-			  required: true
-			},
-			nama: {
-			  required: true
-			},
-			password: {
-			  required: true,
-			  minlength: 8
-			},
-			password_again: {
-			  required: true,
-				  equalTo: "#input_password"
-				
-			},
-			tempatlahir: {
-			  required: true
-			},
-			tanggallahir: {
-			  required: true,
-				number: true
-			},
-			bulanlahir: {
-			  required: true,
-				number: true
-			},
-			tahunlahir: {
-			  required: true,
-				number: true
-			},
-			gender: {
-			  required: true
-			},
-			temapenelitian: {
-			  required: true
-			},
-			spesialisasi: {
-			  required: true
-			},
-			pendidikan: {
-			  required: true
-			},
-			profesi: {
-			  required: true
-			},
-			institusi: {
-			  required: true
-			},
-			alamatkontak: {
-			  required: true
-			},
-			kota: {
-			  required: true
-			},
-			kodepos: {
-			  required: true
-			},
-			negara: {
-			  required: true
-			},
-			telepon: {
-			  required: true,
-				number: true
-			},
-			email: {
-			  required: true,
-				email: true
-			}
-			
-		  }, messages: {
-			username: {
-			  required: "Mohon isi username Anda"
-			},
-			nama: {
-			  required: "Mohon isi nama dengan lengkap"
-			},
-			password: {
-			  required: "Mohon isi password dengan lengkap",
-			  minlength: "Panjang password minimal 8 karakter"
-			},
-			password_again: {
-			  required: "Mohon isi form dengan lengkap",
-				  equalTo: "Maaf password tidak cocok"
-				
-			},
-			tempatlahir: {
-			  required: "Mohon isi tempat lahir dengan lengkap"
-			},
-			tanggallahir: {
-			  required: "Mohon pilih tanggal lahir",
-				number: "Mohon pilih tanggal lahir"
-			},
-			bulanlahir: {
-			  required: "Mohon pilih tanggal lahir",
-				number: "Mohon pilih tanggal lahir"
-			},
-			tahunlahir: {
-			  required: "Mohon pilih tanggal lahir",
-				number: "Mohon pilih tanggal lahir"
-			},
-			gender: {
-			  required: "Pilih Jenis Kelamin"
-			},
-			temapenelitian: {
-			  required: "Mohon isi tempat penelitian"
-			},
-			spesialisasi: {
-			  required: "Mohon pilih spesialisasi"
-			},
-			pendidikan: {
-			  required: "Mohon isi tempat pendidikan"
-			},
-			profesi: {
-			  required: "Mohon pilih profesi"
-			},
-			institusi: {
-			  required: "Mohon masukkan nama institusi"
-			},
-			alamatkontak: {
-			  required: "Mohon tulis alaman Anda"
-			},
-			kota: {
-			  required: "Mohon tulis kota tinggal Anda"
-			},
-			kodepos: {
-			  required: "Mohon tulis kode pos Anda"
-			},
-			negara: {
-			  required: "Mohon tulis negara tinggal Anda"
-			},
-			telepon: {
-			  required: "Mohon masukkan nomer telpon",
-				number: "Mohon isi form dengan angka"
-			},
-			email: {
-			  required: "Mohon masukkan email Anda",
-				email: "Mohon tulis format dengan benar"
-			}
-			
-		  }
-		});
-	</script>
 	
-	<p>
-		<span class="red" style="position: relative; right:0; top: 0;">*</span> ) harus diisi!
-	</p>
-
-	<hr>
-	<p>
-		Dengan melakukan registrasi secara <i>online</i> ini saya
-		menyatakan bahwa saya telah membaca dan memahami
-		{{HTML::linkRoute('ketentuan','ketentuan dan perjanjian untuk anggota')}}
-		<!--<a href="ketentuan" alt="ketentuan dan perjanjian anggota">
-		ketentuan dan perjanjian untuk anggota</a>-->
-		,serta bersedia menyetujui segala isi dan konsekuensinya :				
-	</p>
-		
 	<p style="text-align:center;">
 		<div style="text-align: center;" class="tempat_radio">
 			{{ Form::radio('persetujuan','setuju')}}setuju    {{ Form::radio('persetujuan','tidaksetuju', true) }}tidak setuju
 		</div>
 	
 	</p>
-		<div style="width: 100%; text-align: center;"> <!--class="de_tombol"-->
-			{{ Form::submit('daftar') }}
-			{{ Form::reset('Clear form') }}
-			{{ Form::token() }} 
-			{{ Form::close() }}
-			<script>
-				
-					// set hidden form field with selected timeslot
-					// $('input[name="persetujuan"]').live("click", (function () {
-						// var valu = $(this).val();
-						// if(valu === 'setuju'){
-							// $('.regreg').removeClass('reg_submit_off');
-							// $('.regreg').addClass('reg_submit_on');
-						// }else{
-							// $('.regreg').addClass('reg_submit_off');
-							// $('.regreg').removeClass('reg_submit_on');
-						// }
-						
-					// })); 
+	<script>
+		jQuery.validator.setDefaults({
+		  debug: true,
+		  success: "valid"
+		});
+		$( "form" ).validate({
+			rules: {
+				username : {
+				  required: true
+				},
+				nama: {
+				  required: true
+				},
+				password: {
+				  required: true,
+				  minlength: 8
+				},
+				password_again: {
+				  required: true,
+					  equalTo: "#input_password"
 					
-					//array('class' => 'regreg reg_submit_off')
+				},
+				tempatlahir: {
+				  required: true
+				},
+				tanggallahir: {
+				  required: true,
+					number: true
+				},
+				bulanlahir: {
+				  required: true,
+					number: true
+				},
+				tahunlahir: {
+				  required: true,
+					number: true
+				},
+				gender: {
+				  required: true
+				},
+				temapenelitian: {
+				  required: true
+				},
+				spesialisasi: {
+				  required: true
+				},
+				pendidikan: {
+				  required: true
+				},
+				profesi: {
+				  required: true
+				},
+				institusi: {
+				  required: true
+				},
+				alamatkontak: {
+				  required: true
+				},
+				kota: {
+				  required: true
+				},
+				kodepos: {
+				  required: true
+				},
+				negara: {
+				  required: true
+				},
+				telepon: {
+				  required: true,
+					number: true
+				},
+				email: {
+				  required: true,
+					email: true
+				}
+			}, messages: {
+				username: {
+				  required: "Mohon isi username Anda"
+				},
+				nama: {
+				  required: "Mohon isi nama dengan lengkap"
+				},
+				password: {
+				  required: "Mohon isi password dengan lengkap",
+				  minlength: "Panjang password minimal 8 karakter"
+				},
+				password_again: {
+				  required: "Mohon isi form dengan lengkap",
+					  equalTo: "Maaf password tidak cocok"
+					
+				},
+				tempatlahir: {
+				  required: "Mohon isi tempat lahir dengan lengkap"
+				},
+				tanggallahir: {
+				  required: "Mohon pilih tanggal lahir",
+					number: "Mohon pilih tanggal lahir"
+				},
+				bulanlahir: {
+				  required: "Mohon pilih tanggal lahir",
+					number: "Mohon pilih tanggal lahir"
+				},
+				tahunlahir: {
+				  required: "Mohon pilih tanggal lahir",
+					number: "Mohon pilih tanggal lahir"
+				},
+				gender: {
+				  required: "Pilih Jenis Kelamin"
+				},
+				temapenelitian: {
+				  required: "Mohon isi tempat penelitian"
+				},
+				spesialisasi: {
+				  required: "Mohon pilih spesialisasi"
+				},
+				pendidikan: {
+				  required: "Mohon isi tempat pendidikan"
+				},
+				profesi: {
+				  required: "Mohon pilih profesi"
+				},
+				institusi: {
+				  required: "Mohon masukkan nama institusi"
+				},
+				alamatkontak: {
+				  required: "Mohon tulis alaman Anda"
+				},
+				kota: {
+				  required: "Mohon tulis kota tinggal Anda"
+				},
+				kodepos: {
+				  required: "Mohon tulis kode pos Anda"
+				},
+				negara: {
+				  required: "Mohon tulis negara tinggal Anda"
+				},
+				telepon: {
+				  required: "Mohon masukkan nomer telpon",
+					number: "Mohon isi form dengan angka"
+				},
+				email: {
+				  required: "Mohon masukkan email Anda",
+					email: "Mohon tulis format dengan benar"
+				}
+			},
+			submitHandler: function(form) {
+				    form.submit();
+				  }
+		});
+	</script>
+	<div style="width: 100%; text-align: center;"> <!--class="de_tombol"-->
+		{{ Form::submit('daftar') }}
+		{{ Form::reset('Clear form') }}
+		<script>
+			
+				// set hidden form field with selected timeslot
+				// $('input[name="persetujuan"]').live("click", (function () {
+					// var valu = $(this).val();
+					// if(valu === 'setuju'){
+						// $('.regreg').removeClass('reg_submit_off');
+						// $('.regreg').addClass('reg_submit_on');
+					// }else{
+						// $('.regreg').addClass('reg_submit_off');
+						// $('.regreg').removeClass('reg_submit_on');
+					// }
+					
+				// })); 
 				
-			</script>
-		</div>
-
-	</form>
-
+				//array('class' => 'regreg reg_submit_off')
+			
+		</script>
 	</div>
-	</div>
+	
+	{{ Form::token() }} 
+	{{ Form::close() }}
+	
+</div>
+</div>
 @stop

@@ -18,7 +18,7 @@ class HomeAdminController extends BaseController {
 	
 	public function view_slide()
 	{
-		$slideshow = get_slideshow();
+		$slideshow = get_slideshow;
 		return View::make('pages.admin.home.slideshow', compact('slideshow'));
 		//return View::make('pages.admin.home.slideshow');
 	}
@@ -253,7 +253,7 @@ class HomeAdminController extends BaseController {
 			$destination = 'assets/file_upload/slideshow/';
 			
 			
-			if(count($id_img) != 0)
+			if(count($id_img) != 0 && $id_img!= 0 )
 			{
 				$gallery = Gallery::find($id_img);
 				$pathLama = $gallery -> file_path;

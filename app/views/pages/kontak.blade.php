@@ -52,11 +52,11 @@
 				<table>
 					<tr>
 						<td class='table_head'>Nama*</td>
-						<td>{{ Form::text('nama', Input::old('nama')) }}</td>
+						<td style="position: relative;">{{ Form::text('nama', Input::old('nama')) }}</td>
 					</tr>
 					<tr>
 						<td class='table_head'>e-mail*</td>
-						<td>{{ Form::text('email', Input::old('email')) }}</td>
+						<td style="position: relative;">{{ Form::text('email', Input::old('email')) }}</td>
 					</tr>
 					<tr>
 						<td class='table_head'>Profesi</td>
@@ -99,6 +99,52 @@
 					</tr>
 				</table>
 				<div id='contact_note'>* = harus diisi</div>
+				<style>
+					#nama-error {
+						position: absolute;
+						right:0px;
+					}
+					#email-error {
+						position: absolute;
+						right:0px;
+					}
+				</style>
+				<script>
+						jQuery.validator.setDefaults({
+						  debug: true,
+						  success: "valid"
+						});
+						$( "form" ).validate({
+						  rules: {
+							nama : {
+							  required: true
+							},
+							email: {
+							  required: true,
+								email: true
+							},
+							isi_pesan: {
+							  required: true,
+								email: true
+							}
+							
+						  }, messages: {
+							nama: {
+							  required: "Mohon isi nama dengan lengkap"
+							},
+							email: {
+							  required: "Mohon masukkan email Anda",
+								email: "Mohon tulis format dengan benar"
+							},
+							isi_pesan: {
+							  required: "Mohon masukkan email Anda",
+								email: "Mohon tulis format dengan benar"
+							}
+							
+						  }
+						});
+					</script>
+
 				{{Form::submit('Kirim Pesan');}}
 				{{ Form::close() }}
 			</div>

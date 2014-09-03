@@ -1,14 +1,17 @@
-
 <script>
 	$(document).ready(function(){
-		var length = $('.show_after').text().length;
-		if (length > 200) {  
-           $('.show_before').text($('.show_after').text().substr(0,197)); 
-			$('.show_after').append("<a href='javascript:void(0)' style='text-decoration:none;' class='hide_description'>[tutup]</a>");
-           //alert('ABC');
-           // 17 charcters + .......  
-          $('.show_before').append("<a href='javascript:void(0)' class='description_button' style='text-decoration:none;'> [selengkapnya]</a>");
-		}
+		$( ".show_after" ).each(function( index ) {
+			//alert($(this).text());
+			var length = $(this).text().length;
+			if (length > 200) {
+				$(this).siblings('.show_before').text($('.show_after').text().substr(0,197)); 
+				$(this).append("<a href='javascript:void(0)' style='text-decoration:none;' class='hide_description'>[tutup]</a>"); 
+				$(this).siblings('.show_before').append("<a href='javascript:void(0)' class='description_button' style='text-decoration:none;'> [selengkapnya]</a>");
+			}
+			else{
+				$(this).siblings('.show_before').text($('.show_after').text());
+			}
+		});
 	});
 	
 	$('body').on('click','.description_button',function(){
@@ -83,7 +86,7 @@
 <script>
 	
 	$('body').on('click','#tambah_kegiatan',function(){
-		$( ".pop_up_super_c" ).fadeIn( 277, function(){});
+		$( ".tambah_kegiatan_pop" ).fadeIn( 277, function(){});
 	});
 	
 	$('body').on('click','.hapus_kegiatan',function(){
@@ -91,7 +94,7 @@
 	});
 
 	$('body').on('click','.edit_kegiatan',function(){
-		$( ".pop_up_super_c" ).fadeIn( 277, function(){});
+		$( ".edit_kegiatan_pop" ).fadeIn( 277, function(){});
 	});
 	
 	$('.exit').click(function() {$( ".pop_up_super_c" ).fadeOut( 200, function(){});});	
@@ -111,7 +114,20 @@
 		
 		
 <!--pop up -->
-<div class=" pop_up_super_c" style="display: none;">
+<div class=" pop_up_super_c tambah_kegiatan_pop" style="display: none;">
+	<a class="exit close_56" ></a>
+	<div class="pop_up_tbl">
+		<div class="pop_up_cell">
+			<div class="container_12">			
+			<div class="grid_12 pop_up_container" style="background: #fff;">
+				ABC
+			</div>
+			</div>			
+		</div>		
+	</div>
+</div>
+
+<div class=" pop_up_super_c edit_kegiatan_pop" style="display: none;">
 	<a class="exit close_56" ></a>
 	<div class="pop_up_tbl">
 		<div class="pop_up_cell">

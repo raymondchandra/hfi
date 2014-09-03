@@ -165,8 +165,9 @@
 		
 		.top_nav_hfi li ul li a
 		{	width: auto;
-			background: #383189
-			
+			background: #383189;
+			z-index: 9999999;
+			position: relative;
 			}
 		
 		.top_nav_hfi li ul li a:hover

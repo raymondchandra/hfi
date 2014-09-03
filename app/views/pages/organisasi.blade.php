@@ -27,10 +27,12 @@
 						$arrPengurus = array();											
 						// for($i=0; $i<$length; $i++){
 							// $arrPengurus[] = $pengs[$i];
-						// }						
-						foreach($pengs as $value){
-							$arrPengurus[] = $value;							
-						}
+						// }	
+						if($pengs!=null){
+							foreach($pengs as $value){
+								$arrPengurus[] = $value;							
+							}
+						}					
 					?>
 					<div class="versi_pdf_container">
 						<?php foreach($arrPengurus as $pengurus) { //for($r=0; $r<$length; $r++){ ?>						

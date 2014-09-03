@@ -131,7 +131,7 @@
 
 	}
 		
-	.top_nav_hfi li a:before{
+	.top_nav_hfi > li > a:before{
 		content:"|";
 		display: block;
 		position: absolute;

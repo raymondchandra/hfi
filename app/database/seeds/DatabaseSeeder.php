@@ -12,39 +12,6 @@ class DatabaseSeeder extends Seeder {
 		Eloquent::unguard();
 
 		// $this->call('UserTableSeeder');
-
-		$acc = new Account();
-		$acc->timestamps = false;
-	    $acc->username = 'ketua';
-	    $acc->password = Hash::make('ketua');
-		$acc->status_aktif = 1;
-		$acc->role = 1;
-	    $acc->save();
-		
-		$acc = new Account();
-		$acc->timestamps = false;
-	    $acc->username = 'wakil';
-	    $acc->password = Hash::make('wakil');
-		$acc->status_aktif = 1;
-		$acc->role = 1;
-	    $acc->save();
-		
-		$acc = new Account();
-		$acc->timestamps = false;
-	    $acc->username = 'sekertaris';
-	    $acc->password = Hash::make('sekertaris');
-		$acc->status_aktif = 1;
-		$acc->role = 1;
-	    $acc->save();
-		
-		$acc = new Account();
-		$acc->timestamps = false;
-	    $acc->username = 'bendahara';
-	    $acc->password = Hash::make('bendahara');
-		$acc->status_aktif = 1;
-		$acc->role = 1;
-	    $acc->save();
-		
 		$cabang = new Cabang();
 		$cabang->nama = 'Pusat';
 		$cabang->telp = 123;
@@ -54,6 +21,49 @@ class DatabaseSeeder extends Seeder {
 		$cabang->alamat = 'asdf';
 		$cabang->timestamps = false;
 		$cabang->save();
+		
+		$profile = new Anggota();
+		$profile->id_cabang = 1;
+		$profile->timestamps = false;
+		$profile->save();
+		
+		$acc = new Account();
+		$acc->timestamps = false;
+	    $acc->username = 'ketua';
+	    $acc->password = Hash::make('ketua');
+		$acc->profile_id = 1;
+		$acc->status_aktif = 1;
+		$acc->role = 1;
+	    $acc->save();
+		
+		$acc = new Account();
+		$acc->timestamps = false;
+	    $acc->username = 'wakil';
+	    $acc->password = Hash::make('wakil');
+		$acc->profile_id = 1;
+		$acc->status_aktif = 1;
+		$acc->role = 1;
+	    $acc->save();
+		
+		$acc = new Account();
+		$acc->timestamps = false;
+	    $acc->username = 'sekertaris';
+	    $acc->password = Hash::make('sekertaris');
+		$acc->profile_id = 1;
+		$acc->status_aktif = 1;
+		$acc->role = 1;
+	    $acc->save();
+		
+		$acc = new Account();
+		$acc->timestamps = false;
+	    $acc->username = 'bendahara';
+	    $acc->password = Hash::make('bendahara');
+		$acc->profile_id = 1;
+		$acc->status_aktif = 1;
+		$acc->role = 1;
+	    $acc->save();
+		
+		
 	}
 
 }

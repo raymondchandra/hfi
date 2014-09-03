@@ -47,5 +47,10 @@ class Account extends Eloquent implements UserInterface, RemindableInterface
     {
         return $this->username;
     }
+	
+	public function profile()
+    {
+        return $this->hasOne('Anggota');
+    }
 }
 

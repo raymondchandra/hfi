@@ -252,7 +252,7 @@ class HomeAdminController extends BaseController {
 			$destination = 'assets/file_upload/slideshow/';
 			
 			
-			if(count($id_img) == 0)
+			if(count($id_img) != 0)
 			{
 				$gallery = Gallery::find($id_img);
 				$pathLama = $gallery -> file_path;

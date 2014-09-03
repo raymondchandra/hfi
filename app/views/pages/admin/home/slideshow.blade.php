@@ -11,74 +11,122 @@
 <div class='admin_title'>Slideshow</div>
 
 <div class='slide_container'>
-	<?php
-		//echo $slideshow;
-	?>
-	<ul>
-		<li>
-			<div>
-				<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
-			</div>
-			<input type='text' class='caption' placeholder='caption 1' />
-			<input type='button' class='ok_change' value='Ok' style='display:none;' />
-			<input type='hidden' value='0' />
-			<a href="javascript:void(0)" class="edit_pp" >
-				<p>Perbaharui Foto</p>
-				<span class="cam">
-				</span>
-			</a>
-		</li>
-		<li>
-			<div>
-				<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/> 
-			</div>	
-			<input type='text' class='caption' placeholder='caption 2' />
-			<input type='button' class='ok_change' value='Ok' style='display:none;' />
-			<input type='hidden' value='1' />
-			<a href="javascript:void(0)" class="edit_pp" >
-				<p>Perbaharui Foto</p> 
-				<span class="cam">
-				</span>
-			</a>
-		</li>
-		<li>
-			<div>
-				<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/> 
-			</div>
-			<input type='text' class='caption' placeholder='caption 3' />
-			<input type='button' class='ok_change' value='Ok' style='display:none;' />
-			<input type='hidden' value='2' />
-			<a href="javascript:void(0)" class="edit_pp" >
-				<p>Perbaharui Foto</p>
-				<span class="cam">
-				</span>
-			</a>
-		</li>
-		<li>
-			<div>
-				<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/> 
-			</div>
-			<input type='text' class='caption' placeholder='caption 4' />
-			<!--<input type='submit' class='ok_change' value='Ok' style='display:none;' />-->
-			<a href="javascript:void(0)" class="edit_pp" >
-				<p>Perbaharui Foto</p>
-				<span class="cam">
-				</span>
-			</a>
-		</li>
-		<li>
-			<div>
-				<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/> 
-			</div>			
-			<input type='text' class='caption' placeholder='caption 5' />
-			<!--<input type='submit' class='ok_change' value='Ok' style='display:none;' />-->
-			<a href="javascript:void(0)" class="edit_pp" >
-				<p>Perbaharui Foto</p>
-				<span class="cam">
-				</span>
-			</a>
-		</li>
-	</ul>
+	@if($slideshow == "Failed")
+		<ul>
+			<li>
+				<div>
+					<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
+				</div>
+				<input type='text' class='caption' placeholder='caption 1' />
+				<input type='button' class='ok_change' value='Ok' style='display:none;' />
+				<input type='hidden' value='0' />
+				<a href="javascript:void(0)" class="edit_pp" >
+					<p>Perbaharui Foto</p>
+					<span class="cam">
+					</span>
+				</a>
+			</li>
+			<li>
+				<div>
+					<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
+				</div>
+				<input type='text' class='caption' placeholder='caption 1' />
+				<input type='button' class='ok_change' value='Ok' style='display:none;' />
+				<input type='hidden' value='0' />
+				<a href="javascript:void(0)" class="edit_pp" >
+					<p>Perbaharui Foto</p>
+					<span class="cam">
+					</span>
+				</a>
+			</li>
+			<li>
+				<div>
+					<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
+				</div>
+				<input type='text' class='caption' placeholder='caption 1' />
+				<input type='button' class='ok_change' value='Ok' style='display:none;' />
+				<input type='hidden' value='0' />
+				<a href="javascript:void(0)" class="edit_pp" >
+					<p>Perbaharui Foto</p>
+					<span class="cam">
+					</span>
+				</a>
+			</li>
+			<li>
+				<div>
+					<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
+				</div>
+				<input type='text' class='caption' placeholder='caption 1' />
+				<input type='button' class='ok_change' value='Ok' style='display:none;' />
+				<input type='hidden' value='0' />
+				<a href="javascript:void(0)" class="edit_pp" >
+					<p>Perbaharui Foto</p>
+					<span class="cam">
+					</span>
+				</a>
+			</li>
+			<li>
+				<div>
+					<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
+				</div>
+				<input type='text' class='caption' placeholder='caption 1' />
+				<input type='button' class='ok_change' value='Ok' style='display:none;' />
+				<input type='hidden' value='0' />
+				<a href="javascript:void(0)" class="edit_pp" >
+					<p>Perbaharui Foto</p>
+					<span class="cam">
+					</span>
+				</a>
+			</li>
+	@else
+		<ul>
+			<?php
+				$length = count($slideshow);
+				$view="";
+				for($i=0;$i<$length;$i++){
+					$view.="
+						<li>
+							<div>
+								<img src='".$slideshow[$i]['file_path']."' class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
+							</div>
+							<input type='text' class='caption' value='".$slideshow[$i]['kapsion']."' placeholder='caption ".($i+1)."' />
+							<input type='button' class='ok_change' value='Ok' style='display:none;' />
+							<input type='hidden' value='".$slideshow[$i]['id']."' />
+							<a href='javascript:void(0)' class='edit_pp' >
+								<p>Perbaharui Foto</p>
+								<span class='cam'>
+								</span>
+							</a>
+						</li>
+					";
+				}
+				if($length<5){
+					$sisa = 5-$length;
+					$temp = $length+1;
+					for($i=0;$i<$sisa;$i++){
+						$view.="
+							<li>
+								<div>
+									<img src='#' class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
+								</div>
+								<input type='text' class='caption' placeholder='caption ".$temp."' />
+								<input type='button' class='ok_change' value='Ok' style='display:none;' />
+								<input type='hidden' value='0' />
+								<a href='javascript:void(0)' class='edit_pp' >
+									<p>Perbaharui Foto</p>
+									<span class='cam'>
+									</span>
+								</a>
+							</li>
+						";
+						$temp++;
+					}
+				}
+				echo $view;
+			?>
+		</ul>
+	@endif
+	
 </div>
 
 	<div id="" class="pu_c photo_edit" style="z-index:99999;position: fixed; display: none; top: 0; left: 0; width: 100%; height: 100%; background:rgba(0,0,0,0.7);">
@@ -167,7 +215,21 @@ function showUploadedItem (source) {
 
 $('.ok_change').click(function(){
 	$(this).css('display','none');
-	alert($(this).prev().val());
+	$.ajax({
+		type: 'PUT',
+		url: 'admin/editCaption',
+		data: {
+			"caption":$(this).prev().val(),
+			"idCaption":$(this).next().val()
+        },
+		success: function(response){
+			alert(response);
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			alert(errorThrown);
+		}
+	},'json');
+
 });
 
 //$('body').on('mouseenter','.slide_image',function(){

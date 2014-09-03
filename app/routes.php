@@ -61,7 +61,6 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	Route::get('/home/visi', ['as' => 'admin.home.visi', 'uses' => 'HomeAdminController@view_visi']);
 	Route::get('/home/misi', ['as' => 'admin.home.misi', 'uses' => 'HomeAdminController@view_misi']);
 	Route::get('/home/regulasi', ['as' => 'admin.home.regulasi', 'uses' => 'HomeAdminController@view_regulasi']); 
-	Route::get('/home/slideshow', ['as' => 'admin.home.slideshow', 'uses' => 'HomeAdminController@view_slide']);
 	//end of home
 	
 	//organisasi

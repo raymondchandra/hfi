@@ -86,7 +86,7 @@
 <script>
 	
 	$('body').on('click','#tambah_kegiatan',function(){
-		$( ".pop_up_super_c" ).fadeIn( 277, function(){});
+		$( ".tambah_kegiatan_pop" ).fadeIn( 277, function(){});
 	});
 	
 	$('body').on('click','.hapus_kegiatan',function(){
@@ -94,7 +94,7 @@
 	});
 
 	$('body').on('click','.edit_kegiatan',function(){
-		$( ".pop_up_super_c" ).fadeIn( 277, function(){});
+		$( ".edit_kegiatan_pop" ).fadeIn( 277, function(){});
 	});
 	
 	$('.exit').click(function() {$( ".pop_up_super_c" ).fadeOut( 200, function(){});});	
@@ -114,7 +114,20 @@
 		
 		
 <!--pop up -->
-<div class=" pop_up_super_c" style="display: none;">
+<div class=" pop_up_super_c tambah_kegiatan_pop" style="display: none;">
+	<a class="exit close_56" ></a>
+	<div class="pop_up_tbl">
+		<div class="pop_up_cell">
+			<div class="container_12">			
+			<div class="grid_12 pop_up_container" style="background: #fff;">
+				ABC
+			</div>
+			</div>			
+		</div>		
+	</div>
+</div>
+
+<div class=" pop_up_super_c edit_kegiatan_pop" style="display: none;">
 	<a class="exit close_56" ></a>
 	<div class="pop_up_tbl">
 		<div class="pop_up_cell">

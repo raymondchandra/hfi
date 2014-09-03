@@ -17,11 +17,11 @@ class CreatePengurus extends Migration {
             $table->increments('id');
             $table->string('periode');
             $table->string('file_path');
-			$table->string('uploaded_by');
+			$table->integer('uploaded_by')->unsigned();
 			$table->dateTime('tanggal_upload');
 			$table->integer('id_cabang')->unsigned();
 			
-			$table->foreign('uploaded_by')->references('id')->on('profile');
+			$table->foreign('uploaded_by')->references('id')->on('auth');
 			$table->foreign('id_cabang')->references('id')->on('cabang');
         });
 	}

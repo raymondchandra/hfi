@@ -4,7 +4,7 @@
 //Route::model('post', 'Post');
 
 Route::get('/tes', function(){
-
+	
 });
 
 //Redirect
@@ -45,7 +45,7 @@ Route::group(['prefix' => 'user', 'before' => 'authUser'], function () {
 	//user get route
 	
 	//user put route 
-	//Route::put('/editProfile', ['as' => 'editProfile', 'uses' => 'UserController@edit_profile']);
+		Route::put('/editProfile', ['as' => 'editProfile', 'uses' => 'UserController@edit_profile']);
 	//ganti password
 });
 
@@ -164,6 +164,8 @@ Route::post('/regis', ['as' => 'regis', 'uses' => 'AccountController@postRegis']
 //Route::post('/sendEmail', ['as' => 'sendEmail', 'uses' => 'KontakController@send_email']);
 Route::post('/postRegulasi', ['as' => 'postRegulasi', 'uses' => 'HomeAdminController@add_regulasi']);
 Route::post('/postPengurus', ['as' => 'postPengurus', 'uses' => 'OrganisasiAdminController@tambah_pengurus']);
+
+
 
 
 

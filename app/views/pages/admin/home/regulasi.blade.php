@@ -83,7 +83,8 @@
 		</div>		
 		<div id='pages'>									
 		</div>			
-		<div id='unggah_regulasi'>			
+		<div id='unggah_regulasi'>		
+			{{ Form::open(array('url' => '/postRegulasi', 'files' => true))}}
 			<form>				
 				<ul>
 					<li style="margin-top:5px;">{{ Form::file('fileReg') }}</li>
@@ -91,7 +92,8 @@
 					<li style="margin-top:5px;">{{ Form::submit('Unggah Regulasi', array('id'=>'tambah_regulasi_button')) }}</li>
 				</ul>
 			</form>			
-			
+			{{Form::token()}}
+			{{Form::close()}}
 		</div>
 	</div>
 		

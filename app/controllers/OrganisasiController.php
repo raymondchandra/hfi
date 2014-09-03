@@ -42,7 +42,10 @@ class OrganisasiController extends BaseController {
 		$pengs = Pengurus::all();
 		if(count($pengs) == 0)
 		{
-			return "";
+			//kalo return "" bakal kebaca array isinya 1 (string "") 
+			//makanya diganti jadi return null
+			//return ""; 			
+			return null;
 		}
 		else
 		{

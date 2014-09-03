@@ -21,11 +21,11 @@ class CreateKegiatan extends Migration {
 			$table->dateTime('waktu_selesai');
 			$table->string('deskripsi');
 			$table->string('brosur_kegiatan');
-			$table->string('uploaded_by');
+			$table->integer('uploaded_by')->unsigned();
 			
 			$table->string('link')->nullable();
 			
-			$table->foreign('uploaded_by')->references('id')->on('profile');
+			$table->foreign('uploaded_by')->references('id')->on('auth');
         });
 	}
 

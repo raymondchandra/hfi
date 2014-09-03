@@ -100,18 +100,22 @@
 				</h2>
 				<div class="pdf_container">
 					<?php											
-						$length = sizeof($regulasi_hfi);								
+						// $length = sizeof($regulasi_hfi);														
 						$arrRegulasi = array();					
-						for($i=0; $i<$length; $i++){
-							$arrRegulasi[] = $regulasi_hfi[$i];
+						// for($i=0; $i<$length; $i++){
+							// $arrRegulasi[] = $regulasi_hfi[$i];
+						// }
+						foreach($regulasi_hfi as $value){
+							$arrRegulasi[] = $value;
 						}
 					?>
 					<div class="versi_pdf_container">
-						<?php for($r=0; $r<$length; $r++){ ?>
+						<?php foreach($arrRegulasi as $regulasi){ //for($r=0; $r<$length; $r++){ ?>
 							<ol style="margin-bottom:5px;">								
 								<li>
-									<a href='javascript:void(0)' class='pop_the_pop_up' value="<?php echo $arrRegulasi[$r]['file_path']?>">
-									<?php echo $arrRegulasi[$r]['versi']?></a>
+									<a href='javascript:void(0)' class='pop_the_pop_up' value="
+									<?php echo $regulasi['file_path'] //echo $arrRegulasi[$r]['file_path']?>">
+									<?php echo $regulasi['versi'] //echo $arrRegulasi[$r]['versi']?></a>
 								</li>								
 							</ol>				
 						<?php } ?>

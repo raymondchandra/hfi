@@ -18,9 +18,9 @@ class HomeAdminController extends BaseController {
 	
 	public function view_slide()
 	{
-		//$slideshow = get_gallery();
-		//return View::make('pages.admin.home.slideshow', compact('slideshow'));
-		return View::make('pages.admin.home.slideshow');
+		$slideshow = get_slideshow();
+		return View::make('pages.admin.home.slideshow', compact('slideshow'));
+		//return View::make('pages.admin.home.slideshow');
 	}
 	
 	public function view_welcome()
@@ -65,7 +65,7 @@ class HomeAdminController extends BaseController {
 			$konten->konten = $konten_welcome;
 			$konten->timestamps = false;
 			$konten -> tanggal_edit = Carbon::now();
-			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			$konten -> edited_by = $id;
 			
 			$konten->save();
 			return "Success Update";
@@ -76,7 +76,7 @@ class HomeAdminController extends BaseController {
 			$konten -> konten = $konten_welcome;
 			$konten -> tipe_konten = 'welcome';
 			$konten -> tanggal_edit = Carbon::now();
-			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			$konten -> edited_by = $id;
 			
 			$konten -> save();
 			
@@ -95,7 +95,7 @@ class HomeAdminController extends BaseController {
 			$konten->konten = $konten_welcome;
 			$konten->timestamps = false;
 			$konten -> tanggal_edit = Carbon::now();
-			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			$konten -> edited_by = $id;
 			
 			$konten->save();
 			return "Success Update";
@@ -106,7 +106,7 @@ class HomeAdminController extends BaseController {
 			$konten -> konten = $konten_welcome;
 			$konten -> tipe_konten = 'tentang';
 			$konten -> tanggal_edit = Carbon::now();
-			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			$konten -> edited_by = $id;
 			
 			$konten -> save();
 			
@@ -125,7 +125,7 @@ class HomeAdminController extends BaseController {
 			$konten->konten = $konten_welcome;
 			$konten->timestamps = false;
 			$konten -> tanggal_edit = Carbon::now();
-			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			$konten -> edited_by = $id;
 			
 			$konten->save();
 			return "Success Update";
@@ -136,7 +136,7 @@ class HomeAdminController extends BaseController {
 			$konten -> konten = $konten_welcome;
 			$konten -> tipe_konten = 'visi';
 			$konten -> tanggal_edit = Carbon::now();
-			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			$konten -> edited_by = $id;
 			
 			$konten -> save();
 			
@@ -155,7 +155,7 @@ class HomeAdminController extends BaseController {
 			$konten->konten = $konten_welcome;
 			$konten->timestamps = false;
 			$konten -> tanggal_edit = Carbon::now();
-			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			$konten -> edited_by = $id;
 			
 			$konten->save();
 			return "Success Update";
@@ -166,7 +166,7 @@ class HomeAdminController extends BaseController {
 			$konten -> konten = $konten_welcome;
 			$konten -> tipe_konten = 'misi';
 			$konten -> tanggal_edit = Carbon::now();
-			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			$konten -> edited_by = $id;
 			
 			$konten -> save();
 			
@@ -188,18 +188,19 @@ class HomeAdminController extends BaseController {
 			$reg -> timestamps = false;
 			$reg -> versi = Input::get('versi');
 			$reg -> file_path = $destinationPath.$fileName;
-			$reg -> uploaded_by = UserController::getProfileId(Auth::user()->id);
+			$reg -> uploaded_by = Auth::user()->id;
 			$reg -> tanggal_upload = Carbon::now();
 			
 			$reg -> save();
 			
 
-			return "success";
-			
+			//return "success";
+			return Redirect::to('/admin')->with('message', "berhasil menambah file regulasi");
 		}
 		else
 		{
-			return "failed";
+			//return "failed";
+			return Redirect::to('/admin')->with('message', "gagal menambah file regulasi");
 		}
 	}
 	
@@ -245,14 +246,14 @@ class HomeAdminController extends BaseController {
 		
 		if(Input::hasFile('photo'))
 		{
-			$id_img = Input::get('id');
+			$id_img = Input::get('id_photo');
 			$id = Auth::user()->id;
 			$img_upload = Input::file('photo');
 			$file_name = $img_upload->getClientOriginalName();
 			$destination = 'assets/file_upload/slideshow/';
 			
 			
-			if(count($id_img) == 0)
+			if(count($id_img) != 0)
 			{
 				$gallery = Gallery::find($id_img);
 				$pathLama = $gallery -> file_path;
@@ -260,7 +261,7 @@ class HomeAdminController extends BaseController {
 				$uploadSuccess   = $img_upload->move($destination, $file_name);
 				$gallery -> timestamps = false;
 				$gallery -> tanggal_upload = Carbon::now();
-				$gallery -> uploaded_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+				$gallery -> uploaded_by = $id;
 				$gallery -> file_path = $destination.$file_name;
 				$gallery->save();
 				return Redirect::to('/admin')->with('editSlideShow',"'Success'");
@@ -271,7 +272,7 @@ class HomeAdminController extends BaseController {
 				$gallery -> timestamps = false;
 				$gallery -> type = '1';
 				$gallery -> tanggal_upload = Carbon::now();
-				$gallery -> uploaded_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+				$gallery -> uploaded_by = $id;
 				$gallery -> file_path = $destination.$file_name;
 				$gallery -> save();
 				return Redirect::to('/admin')->with('editSlideShow',"'Success'");
@@ -295,7 +296,7 @@ class HomeAdminController extends BaseController {
 			$gallery->kapsion = $caption;
 			$gallery->timestamps = false;
 			$gallery -> tanggal_upload = Carbon::now();
-			$gallery -> uploaded_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			$gallery -> uploaded_by = $id;
 			
 			$gallery->save();
 			return "Success Update";
@@ -306,7 +307,7 @@ class HomeAdminController extends BaseController {
 			$gallery -> kapsion = $caption;
 			$gallery -> type = '1';
 			$gallery -> tanggal_upload = Carbon::now();
-			$gallery -> uploaded_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			$gallery -> uploaded_by = $id;
 			
 			$gallery -> save();
 			
@@ -314,7 +315,7 @@ class HomeAdminController extends BaseController {
 		}
 	}
 	
-	public function get_gallery()
+	public function get_slideshow()
 	{
 		$gal = Gallery::where('type','=', '1')->get();
 		if(count($gal) != 0)

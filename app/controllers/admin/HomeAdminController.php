@@ -194,12 +194,13 @@ class HomeAdminController extends BaseController {
 			$reg -> save();
 			
 
-			return "success";
-			
+			//return "success";
+			return Redirect::to('/admin')->with('message', "berhasil menambah file regulasi");
 		}
 		else
 		{
-			return "failed";
+			//return "failed";
+			return Redirect::to('/admin')->with('message', "gagal menambah file regulasi");
 		}
 	}
 	

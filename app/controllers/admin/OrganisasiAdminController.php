@@ -124,11 +124,13 @@ use Carbon\Carbon;
 				
 				$peng -> save();
 				
-				return "success";			
+				// return "success";	
+				return Redirect::to('/admin')->with('message','berhasil menambah file pengurus');
 			}
 			else
 			{
-				return "failed";
+				// return "failed";
+				return Redirect::to('/admin')->with('message','gagal menambah file pengurus');
 			}
 		}
 		

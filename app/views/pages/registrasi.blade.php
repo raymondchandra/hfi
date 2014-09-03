@@ -544,19 +544,19 @@
 		<script>
 			
 				// set hidden form field with selected timeslot
-				// $('input[name="persetujuan"]').live("click", (function () {
-					// var valu = $(this).val();
-					// if(valu === 'setuju'){
-						// $('.regreg').removeClass('reg_submit_off');
-						// $('.regreg').addClass('reg_submit_on');
-					// }else{
-						// $('.regreg').addClass('reg_submit_off');
-						// $('.regreg').removeClass('reg_submit_on');
-					// }
+				 $('input[name="persetujuan"]').live("click", (function () {
+					 var valu = $(this).val();
+					 if(valu === 'setuju'){
+						 $('.regreg').removeClass('reg_submit_off');
+						 $('.regreg').addClass('reg_submit_on');
+					 }else{
+						 $('.regreg').addClass('reg_submit_off');
+						 $('.regreg').removeClass('reg_submit_on');
+					 }
 					
-				// })); 
+				 })); 
 				
-				//array('class' => 'regreg reg_submit_off')
+				array('class' => 'regreg reg_submit_off')
 			
 		</script>
 	</div>

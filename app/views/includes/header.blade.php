@@ -26,7 +26,7 @@
 							</span>
 						@else
 							<span style="float: right; margin-right: 10px; display: block;">
-							Hi {{UserController::getHeaderName(Auth::user()->id)}}
+							{{ HTML::linkRoute('adminPanel', 'Admin Panel', array(), array('class' => 'daftar_dan_login', 'style' => 'float: right;')) }}
 							</span>
 						@endif
 					</div>

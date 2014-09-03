@@ -18,9 +18,9 @@ class CreateContent extends Migration {
             $table->longText('konten');
             $table->string('tipe_konten');
 			$table->dateTime('tanggal_edit');
-			$table->string('edited_by');
+			$table->integer('edited_by')->unsigned();
 			
-			$table->foreign('edited_by')->references('id')->on('profile');
+			$table->foreign('edited_by')->references('id')->on('auth');
         });
 	}
 

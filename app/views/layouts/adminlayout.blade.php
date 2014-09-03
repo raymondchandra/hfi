@@ -129,7 +129,7 @@
 	</script>
 	
 <!--pop-up-message-->
-<div class=" pop_up_super_c" id="sesuatu" style="display: none;">
+<div class="pop_up_super_c" id="sesuatu" style="display: none;">
 	<a class="exit close_56" ></a>
 	<div class="pop_up_tbl">
 		<div class="pop_up_cell">

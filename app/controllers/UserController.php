@@ -29,7 +29,9 @@ class UserController extends BaseController {
 	
 	public static function getHeaderName($id)
 	{
-		/*$profile = Anggota::where('auth_id', '=' , $id)->first();
+		
+		$profile = Account::find($id)->profile;
+		return $profile->nama;
 		if($profile != null)
 		{
 			return $profile->nama;
@@ -37,8 +39,7 @@ class UserController extends BaseController {
 		else
 		{
 			return "error";
-		}*/
-		return "error";
+		}
 	}
 	
 	public static function getProfileId($auth_id)

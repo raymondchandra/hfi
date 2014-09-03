@@ -220,10 +220,17 @@ class HomeAdminController extends BaseController {
 		$id_regulasi = Input::get('id_regulasi');
 		$regulasi = Regulasi::find($id_regulasi);
 		$file = $regulasi -> file_path;
-		File::Delete($file);
-		$regulasi->delete();
-		
-		return "Success Delete";
+		$file = $file;
+		if(File::exists($file))
+		{
+			File::delete($file);
+			$regulasi->delete();
+			return "Success Delete";
+		}
+		else 
+		{
+			return "Failed Delete";
+		}
 	}
 		
 	public function update_gallery(){
@@ -231,6 +238,11 @@ class HomeAdminController extends BaseController {
 
 	public function update_foto_gallery()
 	{	
+		//$slideshow= 'Success';
+		//return View::make('pages.adminPanel' , compact('slideshow'));
+		
+		//return Redirect::to('/admin')->with('editSlideShow',"'Success'");
+		
 		if(Input::hasFile('photo'))
 		{
 			$id_img = Input::get('id');
@@ -240,47 +252,33 @@ class HomeAdminController extends BaseController {
 			$destination = 'assets/file_upload/slideshow/';
 			
 			
-			if(count($id_img) != 0)
+			if(count($id_img) == 0)
 			{
-				$uploadSuccess   = $file->move($destination, $file_name);
-				if($uploadSuccess)
-				{
-					$gallery = Gallery::find($id_img->id);
-					$gallery->timestamps = false;
-					$gallery -> tanggal_upload = Carbon::now();
-					$gallery -> uploaded_by = Anggota::where('auth_id', '=' , $id)->first()->id;
-					$gallery -> file_path = $destination.$file_name;
-					$gallery->save();
-					return "Success Update";
-				}else
-				{
-					return "Failed";
-				}
-			
+				$gallery = Gallery::find($id_img);
+				$pathLama = $gallery -> file_path;
+				File::delete($pathLama);
+				$uploadSuccess   = $img_upload->move($destination, $file_name);
+				$gallery -> timestamps = false;
+				$gallery -> tanggal_upload = Carbon::now();
+				$gallery -> uploaded_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+				$gallery -> file_path = $destination.$file_name;
+				$gallery->save();
+				return Redirect::to('/admin')->with('editSlideShow',"'Success'");
 			}else
 			{
-				$uploadSuccess   = $file->move($destination, $file_name);
-				if($uploadSuccess)
-				{
-					$gallery = new Gallery();
-					$gallery -> timestamps = false;
-					$gallery -> type = '1';
-					$gallery -> tanggal_upload = Carbon::now();
-					$gallery -> uploaded_by = Anggota::where('auth_id', '=' , $id)->first()->id;
-					$gallery -> save();
-					
-					return "Success Insert";
-				}else
-				{
-					return "Failed";
-				}
-				
+				$uploadSuccess   = $img_upload->move($destination, $file_name);
+				$gallery = new Gallery();
+				$gallery -> timestamps = false;
+				$gallery -> type = '1';
+				$gallery -> tanggal_upload = Carbon::now();
+				$gallery -> uploaded_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+				$gallery -> file_path = $destination.$file_name;
+				$gallery -> save();
+				return Redirect::to('/admin')->with('editSlideShow',"'Success'");
 			}
-			
-		}
-		else
+		}else
 		{
-			return "Failed2";
+			return Redirect::to('/admin')->with('editSlideShow',"'Failed'");
 		}
 		
 	

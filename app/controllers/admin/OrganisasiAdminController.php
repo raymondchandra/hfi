@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 	class OrganisasiAdminController extends BaseController {
 		
 		public $restful = true;
@@ -11,7 +13,27 @@
 		
 		public function view_pengurus()
 		{
-			return View::make('pages.admin.organisasi.pengurus');
+			$arr = $this->setHeader();
+			$arr2 = $this->get_all_cabang();			
+			return View::make('pages.admin.organisasi.pengurus', compact('arr', 'arr2'));
+		}		
+		public function get_all_cabang()
+		{
+			//$count = Cabang::select('nama')->get();
+			$count = DB::table('cabang')->orderBy('nama','asc')->lists('nama','nama');
+			if(count($count) != 0)
+			{
+				return $count;
+			}else
+			{
+				return "";
+			}
+		}
+		
+		public function get_id_cabang($nama_cabs)
+		{
+			$id = Cabang::where('nama', '=', $nama_cabs)->first();			
+			return $id->id;
 		}
 
 		public function get_semua_cabang()
@@ -98,7 +120,7 @@
 				$peng -> file_path = $destinationPath.$fileName;
 				$peng -> uploaded_by = UserController::getProfileId(Auth::user()->id);
 				$peng -> tanggal_upload = Carbon::now();
-				$peng -> id_cabang = Input:get('id_cabang');
+				$peng -> id_cabang = $this->get_id_cabang(Input::get('hficabang'));
 				
 				$peng -> save();
 				
@@ -125,10 +147,16 @@
 			$id_pengurus = Input::get('id_pengurus');
 			$pengurus = Pengurus::find($id_pengurus);
 			$file = $pengurus->file_path;
-			File::delete($file);
-			$pengurus->delete();
-			
-			return "Success Delete";
+			if(File::exists($file))
+			{
+				File::delete($file);
+				$pengurus->delete();
+				return "Success Delete";
+			}
+			else 
+			{
+				return "Failed Delete";
+			}
 		}
 	}
 

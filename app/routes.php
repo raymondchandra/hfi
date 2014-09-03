@@ -51,8 +51,8 @@ Route::group(['prefix' => 'user', 'before' => 'authUser'], function () {
 
 
 //admin route
-//Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
+//Route::group(['prefix' => 'admin'], function () {
 	Route::get('/', ['as' => 'adminPanel', 'uses' => 'HomeAdminController@view_adminPanel']);
 	//home
 	Route::get('/home/slide', ['as' => 'admin.home.slide', 'uses' => 'HomeAdminController@view_slide']);
@@ -151,6 +151,7 @@ Route::group(['prefix' => 'admin'], function () {
 	//delete regulasi
 	Route::delete('/home/deleteregulasi', ['as' => 'admin.home.deleteregulasi', 'uses' => 'HomeAdminController@delete_regulasi']);
 	//delete pengurus
+	Route::delete('/organisasi/deletepengurus', ['as' => 'admin.organisasi.deletepengurus', 'uses' => 'OrganisasiAdminController@delete_pengurus']);
 	//delete cabang
 	Route::delete('/organisasi/deletecabang', ['as' => 'admin.organisasi.deletecabang', 'uses' => 'OrganisasiAdminController@delete_cabang']);
 	//delete kegiatan

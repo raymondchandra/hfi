@@ -94,7 +94,6 @@
 			<div class="clear"></div>
 			
 			<div class="regulasi_hfi_container">
-
 				
 				<h2>
 					Regulasi HFI
@@ -110,7 +109,8 @@
 					<div class="versi_pdf_container">
 						<?php for($r=0; $r<$length; $r++){ ?>
 							<ol style="margin-bottom:5px;">								
-								<li><a href='javascript:void(0)' class='pop_the_pop_up' value="<?php echo $arrRegulasi[$r]['file_path']?>">
+								<li>
+									<a href='javascript:void(0)' class='pop_the_pop_up' value="<?php echo $arrRegulasi[$r]['file_path']?>">
 									<?php echo $arrRegulasi[$r]['versi']?></a>
 								</li>								
 							</ol>				
@@ -148,8 +148,7 @@
 		<a class="exit close_56" ></a>
 		<div class="pop_up_tbl">
 			<div class="pop_up_cell">
-				<div class="container_12">
-				
+				<div class="container_12">				
 				<div class="grid_12" style="background: #fff;">
 					<h3 style="padding-top: 5px;padding-left: 20px; margin-bottom: 5px !important; text-align: center;" class="title_pdf_viewer"></h3>					
 					<!--<object data="assets/img/Chapter_4.pdf" type="application/pdf" width="100%" class="pdf_viewer"></object>-->

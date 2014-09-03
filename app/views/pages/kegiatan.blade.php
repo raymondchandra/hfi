@@ -29,6 +29,45 @@
 <div class="grid_12">
 	<div class="main_content">
 	<h2>Kegiatan</h2>
+	<div class="kegiatan_container">
+		@if($kegiatans == NULL)
+			<span>Kegiatan belum tersedia.</span>
+		@else
+			<ul>
+				@foreach($kegiatans as $kegiatan)
+					<li>
+						<div>
+						<img class="poster_kegiatan" src="{{$kegiatan->brosur_kegiatan}}" />
+						<div class="info_kegiatan">
+							<div class="waktu_kegiatan">{{$kegiatan->waktu_mulai}} - {{$kegiatan->waktu_selesai}}</div>
+							<div class="nama_kegiatan">{{$kegiatan->nama_kegiatan}}</div>
+							<div class="place_kegiatan">{{$kegiatan->tempat}}</div>
+							<div class="box">
+								<div class="deskripsi_kegiatan">
+									<div class="show_after" style='display:none;margin-bottom: 10px;'>
+										{{$kegiatan->deskripsi}}
+									</div>
+									<div class="show_before">
+									
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+					</li>
+					<span class='clear'>&nbsp;</span>
+					<span class='clear'>&nbsp;</span>
+				@endforeach
+			</ul>
+		@endif
+		
+	</div>
+	@if($kegiatans != NULL)
+		<?php echo $kegiatans->links(); ?>
+	@endif
+	
+	
+	<!--
 		<div class="kegiatan_container">
 			<ul>
 				<li>
@@ -74,7 +113,7 @@
 					</div>
 				</li>
 			</ul>
-		</div>
+		</div>-->
 	</div>
 </div>
 

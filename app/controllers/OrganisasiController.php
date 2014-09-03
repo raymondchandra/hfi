@@ -8,7 +8,8 @@ class OrganisasiController extends BaseController {
 	{
 	
 		$arr = $this->setHeader();
-		return View::make('pages.organisasi', compact('arr'));
+		$pengs = $this->get_all_pengurus();
+		return View::make('pages.organisasi', compact('arr', 'pengs'));
 	}
 	
 	public function view_cabang()
@@ -18,8 +19,8 @@ class OrganisasiController extends BaseController {
 		return View::make('pages.cabang', compact('arr','arr2'));
 	}
 	
-	//pengurus
-	//public function get_pengurus()
+
+
 	
 	//cabang
 	public function get_semua_cabang()
@@ -35,9 +36,19 @@ class OrganisasiController extends BaseController {
 		}
 	}
 	
-	
-	
-	
+	//pengurus
+	public function get_all_pengurus()
+	{
+		$pengs = Pengurus::all();
+		if(count($pengs) == 0)
+		{
+			return "";
+		}
+		else
+		{
+			return $pengs;
+		}
+	}
 }
 
 ?>

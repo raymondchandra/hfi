@@ -11,20 +11,54 @@
 
 #list_pengurus{	
 	width:350px;
-	height:450px;
+	height:380px;
+	float:left;
+	display:block;
+	padding-left:30px;
+	padding-right:20px;
+	padding-top:20px;
+	padding-bottom:20px;
+}
+
+#block_nama_versi{
+	float:left;
+	width:200px;	
+	height:20px;
+}
+
+#block_delete_pengurus{	
+	width:100px;
+	height:20px;
+}
+
+#block_delete_pengurus input {
+	float:right;
+	height:20px;
+}
+
+#pages {	
+	width:350px;
+	height:25px;
 	float:left;
 	display:block;
 }
 
-#list_pengurus ul li{	
-	height:45px;
-}
+/*#pages ul.pagination {
+	list-style: none !important;
+	margin-bottom: 0px !important;
+}*/
 
-#delete_pengurus{
-	float:right;
-	margin-right:20px;
-	height:20px;
-}
+/*#pages ul li .pagination {
+	list-style: none !important;
+}*/
+
+/*#list_regulasi ul li{	
+	height:45px;
+}*/
+/*.pagination ul li{
+	height:45px;
+	width:20px;
+}*/
 
 #unggah_pengurus{		
 	width:350px;

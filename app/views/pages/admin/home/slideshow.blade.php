@@ -12,7 +12,7 @@
 
 <div class='slide_container'>
 	<?php
-		echo $slideshow;
+		//echo $slideshow;
 	?>
 	<ul>
 		<li>

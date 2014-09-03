@@ -88,47 +88,132 @@
 	font-family: "Lucida Console", Monaco, monospace;
 }
 
-.site_nav ul{
+
+
+.top_nav_hfi{
+	margin: 0;
+	padding: 0;
+	
+	text-align: center;
+}
+	
+	.top_nav_hfi li
+	{	float: left;
+		list-style: none;
+		
+	margin: 0px !important; 
+		
+		}
+
+	.top_nav_hfi li a
+	{	display: block;
+		text-decoration: none;
+		
+		
+	line-height: 35px;
+	padding: 0 33px 0 33px;
+		color: #EAFFED;
+		white-space: nowrap}
+
+	.top_nav_hfi li a:hover
+	{
+	text-decoration: none;
+	line-height: 35px;
+	padding: 0 33px 0 33px;
+	background: #1c187c; 
+	background: -moz-linear-gradient(top, #1c187c 2%, #383189 100%); 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(2%,#1c187c), color-stop(100%,#383189)); 
+	background: -webkit-linear-gradient(top, #1c187c 2%,#383189 100%); 
+	background: -o-linear-gradient(top, #1c187c 2%,#383189 100%); 
+	background: -ms-linear-gradient(top, #1c187c 2%,#383189 100%); 
+	background: linear-gradient(to bottom, #1c187c 2%,#383189 100%); 
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1c187c', endColorstr='#383189',GradientType=0 ); 
+
+	}
+		
+	.top_nav_hfi li a:before{
+		content:"|";
+		display: block;
+		position: absolute;
+		width:2px;
+		height: 35px;
+		line-height: 35px;
+		text-decoration: none;
+		text-indent:-69px;
+	}
+	
+	.top_nav_hfi li:nth-child(1) a:before{
+		content:"";
+		display: block;
+		position: absolute;
+		width:2px;
+		height: 35px;
+		line-height: 35px;
+		text-decoration: none;
+	}
+		
+		.top_nav_hfi li ul
+		{	margin: 0;
+			padding: 0;
+			position: absolute;
+			visibility: hidden;
+			border-top: 1px solid white}
+		
+		.top_nav_hfi li ul li
+		{	float: none;
+			display: inline}
+		
+		.top_nav_hfi li ul li a
+		{	width: auto;
+			background: #383189
+			
+			}
+		
+		.top_nav_hfi li ul li a:hover
+		{	background: #000}
+/*
+.site_nav > div > div > ul {
 	text-align: center;
 }
 
-.site_nav ul li{
+.site_nav > div > div > ul > li{
 	display: inline-block;
 	margin: 0px !important; 
+	position: relative;
 }
 
-.site_nav ul li a{
+.site_nav > div > div > ul > li a{
 	display: inline-block;
 	text-decoration: none;
 	line-height: 35px;
-	padding: 0 45px 0 45px;
+	padding: 0 33px 0 33px;
 }
 
-.site_nav ul li a:hover{
+.site_nav > div > div > ul > li a:hover{
 	display: inline-block;
 	text-decoration: none;
 	line-height: 35px;
-	padding: 0 45px 0 45px;
+	padding: 0 33px 0 33px;
 	
-	background: #1c187c; /* Old browsers */
-background: -moz-linear-gradient(top, #1c187c 2%, #383189 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(2%,#1c187c), color-stop(100%,#383189)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top, #1c187c 2%,#383189 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top, #1c187c 2%,#383189 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top, #1c187c 2%,#383189 100%); /* IE10+ */
-background: linear-gradient(to bottom, #1c187c 2%,#383189 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1c187c', endColorstr='#383189',GradientType=0 ); /* IE6-9 */
+	background: #1c187c; 
+background: -moz-linear-gradient(top, #1c187c 2%, #383189 100%); 
+background: -webkit-gradient(linear, left top, left bottom, color-stop(2%,#1c187c), color-stop(100%,#383189)); 
+background: -webkit-linear-gradient(top, #1c187c 2%,#383189 100%); 
+background: -o-linear-gradient(top, #1c187c 2%,#383189 100%); 
+background: -ms-linear-gradient(top, #1c187c 2%,#383189 100%); 
+background: linear-gradient(to bottom, #1c187c 2%,#383189 100%); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1c187c', endColorstr='#383189',GradientType=0 ); 
 }
-.site_nav ul li a:active{
+.site_nav > div > div > ul > li a:active{
 	display: inline-block;
 	text-decoration: none;
 	line-height: 35px;
-	padding: 0 45px 0 45px;
+	padding: 0 33px 0 33px;
 	
 	background: #1c1c4c; 
 }
 
-.site_nav ul li:nth-child(1) a:before{
+.site_nav > div > div > ul > li:nth-child(1) a:before{
 	content:"";
 	display: block;
 	position: absolute;
@@ -138,7 +223,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1c187c', end
 	text-decoration: none;
 }
 
-.site_nav ul li a:before{
+.site_nav > div > div > ul > li a:before{
 	content:"|";
 	display: block;
 	position: absolute;
@@ -146,8 +231,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1c187c', end
 	height: 35px;
 	line-height: 35px;
 	text-decoration: none;
-	text-indent:-100px;
-}
+	text-indent:-77px;
+}*/
 
 /*
 -------- Content Section ------

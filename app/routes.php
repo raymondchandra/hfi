@@ -51,8 +51,8 @@ Route::group(['prefix' => 'user', 'before' => 'authUser'], function () {
 
 
 //admin route
-//Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
+//Route::group(['prefix' => 'admin'], function () {
 	Route::get('/', ['as' => 'adminPanel', 'uses' => 'HomeAdminController@view_adminPanel']);
 	//home
 	Route::get('/home/slide', ['as' => 'admin.home.slide', 'uses' => 'HomeAdminController@view_slide']);

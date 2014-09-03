@@ -8,8 +8,8 @@ class AnggotaAdminController extends BaseController {
 	
 	public function view_aturan()
 	{
-		$konten_home = Konten::where('tipe_konten', '=', 'anggota_home')->first()->konten;
-		$konten_aturan = Konten::where('tipe_konten', '=', 'anggota_ketentuan')->first()->konten;
+		$konten_home = AnggotaController::getKonten('anggota_home');
+		$konten_aturan = AnggotaController::getKonten('anggota_ketentuan');;
 		return View::make('pages.admin.anggota.aturan', compact('konten_home', 'konten_aturan'));
 	}
 	

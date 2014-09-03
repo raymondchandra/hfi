@@ -17,10 +17,10 @@ class CreateRegulasi extends Migration {
             $table->increments('id');
             $table->string('versi');
             $table->string('file_path');
-			$table->string('uploaded_by');
+			$table->integer('uploaded_by')->unsigned();
 			$table->dateTime('tanggal_upload');
 			
-			$table->foreign('uploaded_by')->references('id')->on('profile');
+			$table->foreign('uploaded_by')->references('id')->on('auth');
         });
 		
 		

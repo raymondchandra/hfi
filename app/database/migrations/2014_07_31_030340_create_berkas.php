@@ -17,12 +17,12 @@ class CreateBerkas extends Migration {
             $table->increments('id');
             $table->string('nama_file');
             $table->string('path_file');
-            $table->string('uploaded_by');
+            $table->integer('uploaded_by')->unsigned();
 			$table->dateTime('uploaded_date');
 			$table->string('kategori');
 			$table->string('deskripsi');
 
-			$table->foreign('uploaded_by')->references('id')->on('profile');
+			$table->foreign('uploaded_by')->references('id')->on('auth');
         });
 	}
 

@@ -8,6 +8,7 @@ class AnggotaAdminController extends BaseController {
 	
 	public function view_aturan()
 	{
+
 		$konten_home = Konten::where('tipe_konten', '=', 'anggota_home')->first()->konten;
 		// $konten_home = Konten::where('tipe_konten', '=', 'anggota_home')->first();
 		// if(count($konten_home) != 0)
@@ -26,6 +27,10 @@ class AnggotaAdminController extends BaseController {
 		// {
 			// $konten_aturan = "";
 		// }
+
+		$konten_home = AnggotaController::getKonten('anggota_home');
+		$konten_aturan = AnggotaController::getKonten('anggota_ketentuan');;
+
 		return View::make('pages.admin.anggota.aturan', compact('konten_home', 'konten_aturan'));
 	}
 	
@@ -52,7 +57,7 @@ class AnggotaAdminController extends BaseController {
 			$konten->konten = $konten_home;
 			$konten->timestamps = false;
 			$konten -> tanggal_edit = Carbon::now();
-			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			$konten -> edited_by = $id;
 			
 			$konten->save();
 			return "Success Update";
@@ -64,7 +69,7 @@ class AnggotaAdminController extends BaseController {
 			$konten->konten = $konten_home;
 			$konten->timestamps = false;
 			$konten -> tanggal_edit = Carbon::now();
-			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			$konten -> edited_by = $id;
 			return "Success Update";
 		}
 	}
@@ -82,7 +87,7 @@ class AnggotaAdminController extends BaseController {
 			$konten->konten = $konten_home;
 			$konten->timestamps = false;
 			$konten -> tanggal_edit = Carbon::now();
-			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			$konten -> edited_by = $id;
 			
 			$konten->save();
 			return "Success Update";
@@ -94,7 +99,7 @@ class AnggotaAdminController extends BaseController {
 			$konten->konten = $konten_home;
 			$konten->timestamps = false;
 			$konten -> tanggal_edit = Carbon::now();
-			$konten -> edited_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+			$konten -> edited_by = $id;
 			return "Success Update";
 		}
 

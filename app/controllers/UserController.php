@@ -10,7 +10,8 @@ class UserController extends BaseController {
 	{
 
 			$authId = Auth::user()->id;
-			$profile = Anggota::where('auth_id', '=' , $authId)->first();
+			$profile = Auth::user()->profile;
+			//Anggota::where('auth_id', '=' , $authId)->first();
 			$cabang = Cabang::where('id', '=' , $profile->id_cabang)->first();
 			if(Auth::user()->status_aktif == 1)
 			{
@@ -33,7 +34,7 @@ class UserController extends BaseController {
 	
 	public static function getHeaderName($id)
 	{
-		$profile = Anggota::where('auth_id', '=' , $id)->first();
+		/*$profile = Anggota::where('auth_id', '=' , $id)->first();
 		if($profile != null)
 		{
 			return $profile->nama;
@@ -41,7 +42,8 @@ class UserController extends BaseController {
 		else
 		{
 			return "error";
-		}
+		}*/
+		return "error";
 	}
 	
 	public static function getProfileId($auth_id)
@@ -55,6 +57,7 @@ class UserController extends BaseController {
 		{
 			return "error";
 		}
+		return "error";
 	}
 	
 	public function view_carianggota()

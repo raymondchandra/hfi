@@ -15,14 +15,17 @@ class CreateKegiatan extends Migration {
 		Schema::table('kegiatan', function (Blueprint $table) {
             $table->create();
             $table->increments('id');
-            $table->string('deskripsi');
             $table->string('nama_kegiatan');
+			$table->string('tempat');
+			$table->dateTime('waktu_mulai');
+			$table->dateTime('waktu_selesai');
+			$table->string('deskripsi');
 			$table->string('brosur_kegiatan');
-			$table->string('uploaded_by');
-			$table->dateTime('tanggal_date');
+			$table->integer('uploaded_by')->unsigned();
+			
 			$table->string('link')->nullable();
 			
-			$table->foreign('uploaded_by')->references('id')->on('profile');
+			$table->foreign('uploaded_by')->references('id')->on('auth');
         });
 	}
 

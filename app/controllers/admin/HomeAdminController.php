@@ -18,9 +18,9 @@ class HomeAdminController extends BaseController {
 	
 	public function view_slide()
 	{
-		//$slideshow = get_gallery();
-		//return View::make('pages.admin.home.slideshow', compact('slideshow'));
-		return View::make('pages.admin.home.slideshow');
+		$slideshow = get_slideshow();
+		return View::make('pages.admin.home.slideshow', compact('slideshow'));
+		//return View::make('pages.admin.home.slideshow');
 	}
 	
 	public function view_welcome()
@@ -239,9 +239,14 @@ class HomeAdminController extends BaseController {
 
 	public function update_foto_gallery()
 	{	
+		//$slideshow= 'Success';
+		//return View::make('pages.adminPanel' , compact('slideshow'));
+		
+		//return Redirect::to('/admin')->with('editSlideShow',"'Success'");
+		
 		if(Input::hasFile('photo'))
 		{
-			$id_img = Input::get('id');
+			$id_img = Input::get('id_photo');
 			$id = Auth::user()->id;
 			$img_upload = Input::file('photo');
 			$file_name = $img_upload->getClientOriginalName();
@@ -250,45 +255,31 @@ class HomeAdminController extends BaseController {
 			
 			if(count($id_img) != 0)
 			{
-				$uploadSuccess   = $file->move($destination, $file_name);
-				if($uploadSuccess)
-				{
-					$gallery = Gallery::find($id_img->id);
-					$gallery->timestamps = false;
-					$gallery -> tanggal_upload = Carbon::now();
-					$gallery -> uploaded_by = Anggota::where('auth_id', '=' , $id)->first()->id;
-					$gallery -> file_path = $destination.$file_name;
-					$gallery->save();
-					return "Success Update";
-				}else
-				{
-					return "Failed";
-				}
-			
+				$gallery = Gallery::find($id_img);
+				$pathLama = $gallery -> file_path;
+				File::delete($pathLama);
+				$uploadSuccess   = $img_upload->move($destination, $file_name);
+				$gallery -> timestamps = false;
+				$gallery -> tanggal_upload = Carbon::now();
+				$gallery -> uploaded_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+				$gallery -> file_path = $destination.$file_name;
+				$gallery->save();
+				return Redirect::to('/admin')->with('editSlideShow',"'Success'");
 			}else
 			{
-				$uploadSuccess   = $file->move($destination, $file_name);
-				if($uploadSuccess)
-				{
-					$gallery = new Gallery();
-					$gallery -> timestamps = false;
-					$gallery -> type = '1';
-					$gallery -> tanggal_upload = Carbon::now();
-					$gallery -> uploaded_by = Anggota::where('auth_id', '=' , $id)->first()->id;
-					$gallery -> save();
-					
-					return "Success Insert";
-				}else
-				{
-					return "Failed";
-				}
-				
+				$uploadSuccess   = $img_upload->move($destination, $file_name);
+				$gallery = new Gallery();
+				$gallery -> timestamps = false;
+				$gallery -> type = '1';
+				$gallery -> tanggal_upload = Carbon::now();
+				$gallery -> uploaded_by = Anggota::where('auth_id', '=' , $id)->first()->id;
+				$gallery -> file_path = $destination.$file_name;
+				$gallery -> save();
+				return Redirect::to('/admin')->with('editSlideShow',"'Success'");
 			}
-			
-		}
-		else
+		}else
 		{
-			return "Failed2";
+			return Redirect::to('/admin')->with('editSlideShow',"'Failed'");
 		}
 		
 	
@@ -324,7 +315,7 @@ class HomeAdminController extends BaseController {
 		}
 	}
 	
-	public function get_gallery()
+	public function get_slideshow()
 	{
 		$gal = Gallery::where('type','=', '1')->get();
 		if(count($gal) != 0)

@@ -1,0 +1,24 @@
+<?php
+
+class DatabaseSeeder extends Seeder {
+
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		Eloquent::unguard();
+
+		// $this->call('UserTableSeeder');
+
+	$acc = new Account();
+	$acc->timestamps = false;
+    $acc->username = 'tes4';
+    $acc->password = Hash::make('creed');
+	$acc->status_aktif = 0;
+    $acc->save();
+	}
+
+}

@@ -1,11 +1,13 @@
+<div class="container_12">
+	<div class="grid_12">
 <div class='admin_title'>Ketentuan Umum</div>
 <div class='editor_container'>
 <textarea name="pub_ketentuan" id = 'pub_ketentuan' class="editor"> 
 {{$pub_ketentuan}}
 
 </textarea>
+<input type='button' id='submit_change' value='Rubah' style="margin-left: auto; margin-right: auto; "></input>
 </div>
-<input type='button' id='submit_change' value='Rubah'></input>
 
 <script>
 	$('.editor').jqte();
@@ -26,3 +28,5 @@
 		},'json');
 	});
 </script>
+	</div>
+</div>

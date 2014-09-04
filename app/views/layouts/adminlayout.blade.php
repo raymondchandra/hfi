@@ -142,6 +142,45 @@
 	</div>
 </div>
 
+<script>
+	/*Script yang digunakan untuk LOADING ANIMATION*/
+	
+	
+	/*external container area exit trigger*/
+	 $('.pu_close').click(function(){
+		 $( ".pu_c" ).fadeOut( 200, function(){});
+		 $("body").css('overflow-x','visible');
+	 });
+	 $('.pu_c').click(function (e)
+		 {
+			 var container = $('.pu_cell');
+
+			 if (container.is(e.target) )// if the target of the click is the container...
+			 {
+				 $( ".pu_c" ).fadeOut( 200, function(){});
+				 $("body").css('overflow-x','visible');
+			 }
+		 });						
+		 Slider = $('#slider').Swipe({   <!--swipe ke detect error-->
+			 auto: 3000,  
+			 continuous: true  
+		 }).data('Swipe');  
+	 $('.pu_c').css('display','none');
+								
+</script>
+
+<!-- pop up loading -->
+<div id="" class="pu_c loader" style="z-index: 999999; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: block; ">
+	<div class="tableed">
+		<div class="celled pu_cell" style="">
+			<div class="container_12" style="position: relative;">
+				<span class="loading_animation" style="background-color: rgba(0, 0, 0, 0.701961);">
+				</span>
+			</div>
+		</div>
+	</div>
+</div> 
+
 
 </body>
 </html>

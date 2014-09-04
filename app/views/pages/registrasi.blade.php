@@ -111,23 +111,44 @@
 				<script>
 				var lastIdx = 2;
 				function addPendidikan(){
-					var newRow = "<select class='selPendidikan'>";
-					newRow +="<option value=''>Pilih!</option>";
-					newRow +="<option value='SD'>SD</option>";
-					newRow +="<option value='SMP'>SMP</option>";
-					newRow +="<option value='SMA'>SMA</option>";
-					newRow +="<option value='D1'>D1</option>";
-					newRow +="<option value='D2'>D2</option>";
-					newRow +="<option value='D3'>D3</option>";
-					newRow +="<option value='D4'>D4</option>";
-					newRow +="<option value='S1'>S1</option>";
-					newRow +="<option value='S2'>S2</option>";
-					newRow +="<option value='S3'>S3</option>";
-					newRow +="<option value='lain'>Lainnya</option>";
-					newRow +="</select>";
-					newRow +="<input type='text' id='pendidikan'"+lastIdx+" class='texPendidikan' /><br />";
-					$('#addPendidikan').append(newRow);
-					lastIdx++;
+					if(lastIdx <=5)
+					{
+						var newRow = "<div id='divPendidikan"+lastIdx+"'><select class='selPendidikan'>";
+						newRow +="<option value=''>Pilih!</option>";
+						newRow +="<option value='SD'>SD</option>";
+						newRow +="<option value='SMP'>SMP</option>";
+						newRow +="<option value='SMA'>SMA</option>";
+						newRow +="<option value='D1'>D1</option>";
+						newRow +="<option value='D2'>D2</option>";
+						newRow +="<option value='D3'>D3</option>";
+						newRow +="<option value='D4'>D4</option>";
+						newRow +="<option value='S1'>S1</option>";
+						newRow +="<option value='S2'>S2</option>";
+						newRow +="<option value='S3'>S3</option>";
+						newRow +="<option value='lain'>Lainnya</option>";
+						newRow +="</select>";
+						newRow +="<input type='text' id='pendidikan"+lastIdx+"' class='texPendidikan' />";
+						newRow +="<input type='button' value='X' id='delPendidikan"+lastIdx+"' onClick='delPendidikan("+lastIdx+")' /><br /></div>";
+						$('#delPendidikan'+(lastIdx-1)).hide();
+						$('#addPendidikan').append(newRow);
+						if(lastIdx==5){
+							$('#refPendidikan').hide();
+						}
+						lastIdx++;
+						
+					}
+					
+				}
+				function delPendidikan()
+				{
+					$('#divPendidikan'+(lastIdx-1)).remove();
+					lastIdx--;
+					$('#delPendidikan'+(lastIdx-1)).show();
+					//newRow ="<input type='button' value='X' id='delPendidikan"+(lastIdx-1)+"' onClick='delPendidikan("+(lastIdx-1)+")' /><br />";
+					//$('#divPendidikan'+(lastIdx-1)).append(newRow);
+					if(lastIdx==5){
+						$('#refPendidikan').show();
+					}
 				}
 			</script>
 			<div>
@@ -147,7 +168,7 @@
 				</select>
 			<input type="text" id="pendidikan1" class='texPendidikan' /><span class="red">*</span><br />
 			<div id="addPendidikan"></div>
-		<a href="javascript:void(0)" onClick = "addPendidikan();">tambah pendidikan</a>
+		<a href="javascript:void(0)" onClick = "addPendidikan();" id="refPendidikan">tambah pendidikan</a>
 	</div>
 	<!--{{ Form::textarea('pendidikan', Input::old('pendidikan')) }}--> </td>				
 		</tr>

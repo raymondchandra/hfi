@@ -3,82 +3,142 @@
 	
 	var imageUpload = "";
 	$(document).ready(function(){
-		//$('.pu_c').click();
 		$( ".loader" ).fadeOut( 200, function(){});
 	});
 </script>
 
 <div class='admin_title'>Slideshow</div>
-
 <div class='slide_container'>
-	<?php
-		//echo $slideshow;
-	?>
-	<ul>
-		<li>
-			<div>
-				<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
-			</div>
-			<input type='text' class='caption' placeholder='caption 1' />
-			<input type='button' class='ok_change' value='Ok' style='display:none;' />
-			<input type='hidden' value='0' />
-			<a href="javascript:void(0)" class="edit_pp" >
-				<p>Perbaharui Foto</p>
-				<span class="cam">
-				</span>
-			</a>
-		</li>
-		<li>
-			<div>
-				<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/> 
-			</div>	
-			<input type='text' class='caption' placeholder='caption 2' />
-			<input type='button' class='ok_change' value='Ok' style='display:none;' />
-			<input type='hidden' value='1' />
-			<a href="javascript:void(0)" class="edit_pp" >
-				<p>Perbaharui Foto</p> 
-				<span class="cam">
-				</span>
-			</a>
-		</li>
-		<li>
-			<div>
-				<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/> 
-			</div>
-			<input type='text' class='caption' placeholder='caption 3' />
-			<input type='button' class='ok_change' value='Ok' style='display:none;' />
-			<input type='hidden' value='2' />
-			<a href="javascript:void(0)" class="edit_pp" >
-				<p>Perbaharui Foto</p>
-				<span class="cam">
-				</span>
-			</a>
-		</li>
-		<li>
-			<div>
-				<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/> 
-			</div>
-			<input type='text' class='caption' placeholder='caption 4' />
-			<!--<input type='submit' class='ok_change' value='Ok' style='display:none;' />-->
-			<a href="javascript:void(0)" class="edit_pp" >
-				<p>Perbaharui Foto</p>
-				<span class="cam">
-				</span>
-			</a>
-		</li>
-		<li>
-			<div>
-				<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/> 
-			</div>			
-			<input type='text' class='caption' placeholder='caption 5' />
-			<!--<input type='submit' class='ok_change' value='Ok' style='display:none;' />-->
-			<a href="javascript:void(0)" class="edit_pp" >
-				<p>Perbaharui Foto</p>
-				<span class="cam">
-				</span>
-			</a>
-		</li>
-	</ul>
+	@if($slideshow == "Failed")
+		<ul>
+			<li>
+				<div>
+					<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
+				</div>
+				<input type='text' class='caption' placeholder='caption 1' />
+				<input type='button' class='ok_change' value='Ok' style='display:none;' />
+				<input type='hidden' value='0' />
+				<input type='button' class='reset_change' value='Reset' style='display:none' />
+				<input type='hidden' class='default_val' value='' />
+				<a href="javascript:void(0)" class="edit_pp" >
+					<p>Perbaharui Foto</p>
+					<span class="cam">
+					</span>
+				</a>
+			</li>
+			<li>
+				<div>
+					<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
+				</div>
+				<input type='text' class='caption' placeholder='caption 1' />
+				<input type='button' class='ok_change' value='Ok' style='display:none;' />
+				<input type='hidden' value='0' />
+				<input type='button' class='reset_change' value='Reset' style='display:none' />
+				<input type='hidden' class='default_val' value='' />
+				<a href="javascript:void(0)" class="edit_pp" >
+					<p>Perbaharui Foto</p>
+					<span class="cam">
+					</span>
+				</a>
+			</li>
+			<li>
+				<div>
+					<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
+				</div>
+				<input type='text' class='caption' placeholder='caption 1' />
+				<input type='button' class='ok_change' value='Ok' style='display:none;' />
+				<input type='hidden' value='0' />
+				<input type='button' class='reset_change' value='Reset' style='display:none' />
+				<input type='hidden' class='default_val' value='' />
+				<a href="javascript:void(0)" class="edit_pp" >
+					<p>Perbaharui Foto</p>
+					<span class="cam">
+					</span>
+				</a>
+			</li>
+			<li>
+				<div>
+					<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
+				</div>
+				<input type='text' class='caption' placeholder='caption 1' />
+				<input type='button' class='ok_change' value='Ok' style='display:none;' />
+				<input type='hidden' value='0' />
+				<input type='button' class='reset_change' value='Reset' style='display:none' />
+				<input type='hidden' class='default_val' value='' />
+				<a href="javascript:void(0)" class="edit_pp" >
+					<p>Perbaharui Foto</p>
+					<span class="cam">
+					</span>
+				</a>
+			</li>
+			<li>
+				<div>
+					<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
+				</div>
+				<input type='text' class='caption' placeholder='caption 1' />
+				<input type='button' class='ok_change' value='Ok' style='display:none;' />
+				<input type='hidden' value='0' />
+				<input type='button' class='reset_change' value='Reset' style='display:none' />
+				<input type='hidden' class='default_val' value='' />
+				<a href="javascript:void(0)" class="edit_pp" >
+					<p>Perbaharui Foto</p>
+					<span class="cam">
+					</span>
+				</a>
+			</li>
+	@else
+		<ul>
+			<?php
+				$length = count($slideshow);
+				$view="";
+				for($i=0;$i<$length;$i++){
+					$view.="
+						<li>
+							<div>
+								<img src='".$slideshow[$i]['file_path']."' class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
+							</div>
+							<input type='text' class='caption' value='".$slideshow[$i]['kapsion']."' placeholder='caption ".($i+1)."' />
+							<input type='button' class='ok_change' value='Ok' style='display:none;' />
+							<input type='hidden' value='".$slideshow[$i]['id']."' />
+							<input type='button' class='reset_change' value='Reset' style='display:none' />
+							<input type='hidden' class='default_val' value='".$slideshow[$i]['kapsion']."' />
+							<a href='javascript:void(0)' class='edit_pp' >
+								<p>Perbaharui Foto</p>
+								<span class='cam'>
+								</span>
+							</a>
+						</li>
+					";
+				}
+				if($length<5){
+					$sisa = 5-$length;
+					$temp = $length+1;
+					for($i=0;$i<$sisa;$i++){
+						$view.="
+							<li>
+								<div>
+									<img src='#' class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
+								</div>
+								<input type='text' class='caption' placeholder='caption ".$temp."' />
+								<input type='button' class='ok_change' value='Ok' style='display:none;' />
+								<input type='hidden' value='0' />
+								<input type='button' class='reset_change' value='Reset' style='display:none' />
+								<input type='hidden' class='default_val' value='' />
+								<a href='javascript:void(0)' class='edit_pp' >
+									<p>Perbaharui Foto</p>
+									<span class='cam'>
+									</span>
+								</a>
+							</li>
+						";
+						$temp++;
+					}
+				}
+				echo $view;
+			?>
+		</ul>
+	@endif
+	
 </div>
 
 	<div id="" class="pu_c photo_edit" style="z-index:99999;position: fixed; display: none; top: 0; left: 0; width: 100%; height: 100%; background:rgba(0,0,0,0.7);">
@@ -116,6 +176,7 @@
 
 $('.caption').keyup(function(){
 	$(this).next().removeAttr('style');
+	$(this).siblings('.reset_change').removeAttr('style');
 });
 
 $('body').on('change','.upload_photo',function(){
@@ -160,6 +221,12 @@ $('body').on('click','.button_upload_foto',function(){
 	});
 });
 
+$('body').on('click','.reset_change',function(){
+	$(this).siblings('.caption').val($(this).next().val());
+	$(this).css('display','none');
+	$(this).siblings('.ok_change').css('display','none');
+});
+
 function showUploadedItem (source) {
 	var image = "<img src='"+source+"' />"
 	$('.saran_34').html(image);
@@ -167,7 +234,26 @@ function showUploadedItem (source) {
 
 $('.ok_change').click(function(){
 	$(this).css('display','none');
-	alert($(this).prev().val());
+	$(this).siblings('.reset_change').css('display','none');
+	$(this).siblings('.default_val').val($(this).prev().val());
+	$.ajax({
+		type: 'PUT',
+		url: 'admin/editCaption',
+		data: {
+			"caption":$(this).prev().val(),
+			"idCaption":$(this).next().val()
+        },
+		success: function(response){
+			alert(response);
+			//pop up
+			$('#sesuatu').fadeIn( 277, function(){});
+			$('#message_pop').text('Sukses');
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			alert(errorThrown);
+		}
+	},'json');
+
 });
 
 //$('body').on('mouseenter','.slide_image',function(){
@@ -221,7 +307,7 @@ $('.ok_change').click(function(){
 								
 </script>
 
-<div id="" class="pu_c loader" style="z-index: 999999; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: block; ">
+<!--<div id="" class="pu_c loader" style="z-index: 999999; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: block; ">
 	<div class="tableed">
 		<div class="celled pu_cell" style="">
 			<div class="container_12" style="position: relative;">
@@ -230,4 +316,4 @@ $('.ok_change').click(function(){
 			</div>
 		</div>
 	</div>
-</div> 
+</div>--> 

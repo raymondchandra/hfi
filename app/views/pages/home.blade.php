@@ -6,42 +6,35 @@
 ">
 
 			  <div class="carousel-inner" style="width: 400px;">
-
-
-				<div class="item active">
-				  <img src="assets/img/w1.jpg" alt="Some Alt Text" width="400" />
-				  <div class="carousel-caption">
-					Some caption
-				  </div>
-				</div>
-
-				<div class="item">
-				  <img src="assets/img/w2.jpg" alt="Some Alt Text" width="400"/>
-				  <div class="carousel-caption">
-					Some caption
-				  </div>
-				</div>
-				
-				<div class="item">
-				  <img src="assets/img/w3.jpg" alt="Some Alt Text" width="400"/>
-				  <div class="carousel-caption">
-					Some caption
-				  </div>
-				</div>
-
-				<div class="item">
-				  <img src="assets/img/w4.jpg" alt="Some Alt Text" width="400"/>
-				  <div class="carousel-caption">
-					Some caption
-				  </div>
-				</div>
-				
-				<div class="item">
-				  <img src="assets/img/w5.jpg" alt="Some Alt Text" width="400"/>
-				  <div class="carousel-caption">
-					Some caption
-				  </div>
-				</div>
+				@if($slideshow == "Failed")
+					
+				@else
+				<ul>
+					<?php
+						$view="
+							<div class='item active'>
+							  <img src='".$slideshow[0]['file_path']."' alt='ome Alt Text' width='400' height='300' />
+							  <div class='carousel-caption'>
+								".$slideshow[0]['kapsion']."
+							  </div>
+							</div>
+						";
+						$length= count($slideshow);
+						
+						for($i=1;$i<$length;$i++){
+							$view.="
+								<div class='item'>
+								  <img src='".$slideshow[$i]['file_path']."' alt='ome Alt Text' width='400' height='300'/>
+								  <div class='carousel-caption'>
+									".$slideshow[$i]['kapsion']."
+								  </div>
+								</div>
+							";
+						}
+						echo $view;
+					?>
+				</ul>
+				@endif
 				
 			  </div>
 
@@ -156,7 +149,7 @@
 				<div class="grid_12" style="background: #fff;">
 					<h3 style="padding-top: 5px;padding-left: 20px; margin-bottom: 5px !important; text-align: center;" class="title_pdf_viewer"></h3>					
 					<!--<object data="assets/img/Chapter_4.pdf" type="application/pdf" width="100%" class="pdf_viewer"></object>-->
-					<object style="height:650px !important;" data="" type="application/pdf" width="100%" class="pdf_viewer"></object>
+					<object style="height:590px !important;" data="" type="application/pdf" width="100%" class="pdf_viewer"></object>
 				</div>
 				</div>
 				

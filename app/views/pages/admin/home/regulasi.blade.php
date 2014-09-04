@@ -1,4 +1,11 @@
 <script>
+$(document).ready(function(){
+	$( ".loader" ).fadeOut( 200, function(){});
+});
+</script>	
+<div class="container_12">
+	<div class="grid_12">
+<script>
 	var arrIDRegulasi = "";
 	var arrFILEPATHRegulasi = "";
 	function getRegulasi(){
@@ -83,18 +90,7 @@
 		</div>		
 		<div id='pages'>									
 		</div>			
-		<div id='unggah_regulasi'>		
-			{{ Form::open(array('url' => '/postRegulasi', 'files' => true))}}
-			<form>				
-				<ul>
-					<li style="margin-top:5px;">{{ Form::file('fileReg') }}</li>
-					<li style="margin-top:5px;">Versi : {{ Form::text('versi', Input::old('versi'), array('style' => 'width: 180px;')) }}	</li>				
-					<li style="margin-top:5px;">{{ Form::submit('Unggah Regulasi', array('id'=>'tambah_regulasi_button')) }}</li>
-				</ul>
-			</form>			
-			{{Form::token()}}
-			{{Form::close()}}
-		</div>
+		
 	</div>
 		
 	<div id='preview_pdf_regulasi'>
@@ -102,7 +98,20 @@
 		<!--<object data="<?php //echo $arrRegulasi['0']['file_path']?>" type="application/pdf" width="100%" id="pdf_viewer_regulasi"></object>-->
 		<object data="" type="application/pdf" width="100%" id="pdf_viewer_regulasi"></object>		
 	</div>
-	
+		<span class="clear">
+		</span>
+	<div id='unggah_regulasi'>		
+		{{ Form::open(array('url' => '/postRegulasi', 'files' => true))}}
+		<form>				
+			<ul>
+				<li style="margin-top:5px;">{{ Form::file('fileReg') }}</li>
+				<li style="margin-top:5px;">Versi : {{ Form::text('versi', Input::old('versi'), array('style' => 'width: 180px;')) }}	</li>				
+				<li style="margin-top:5px;">{{ Form::submit('Unggah Regulasi', array('id'=>'tambah_regulasi_button')) }}</li>
+			</ul>
+		</form>			
+		{{Form::token()}}
+		{{Form::close()}}
+	</div>
 <script>	
 	$('body').on('click','.versi_regulasi',function(){
 		var file_path = $(this).attr('value');							
@@ -193,3 +202,5 @@
 			</div>
 		</div>
 	</div>-->
+</div>
+</div>

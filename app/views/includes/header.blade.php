@@ -26,7 +26,7 @@
 							</span>
 						@else
 							<span style="float: right; margin-right: 10px; display: block;">
-							Hi {{UserController::getHeaderName(Auth::user()->id)}}
+							{{ HTML::linkRoute('adminPanel', 'Admin Panel', array(), array('class' => 'daftar_dan_login', 'style' => 'float: right;')) }}
 							</span>
 						@endif
 					</div>
@@ -67,7 +67,7 @@
 							{{HTML::linkRoute('kegiatan','Kegiatan')}}
 						</li>
 						<li>
-							{{HTML::linkRoute('publikasi','Publikasi')}}
+							{{HTML::linkRoute('publikasi','Publikasi',array(1))}}
 							<ul>
 								<li><a href="#">Publikasi Jurnal dan Non-Jurnal</a></li>
 								<li><a href="#">Publikasi Ilmiah Populer</a></li>

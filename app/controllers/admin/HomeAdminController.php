@@ -18,7 +18,8 @@ class HomeAdminController extends BaseController {
 	
 	public function view_slide()
 	{
-		$slideshow = get_slideshow;
+		$slideshow = $this->get_slideshow();
+		//$slideshow = "";
 		return View::make('pages.admin.home.slideshow', compact('slideshow'));
 		//return View::make('pages.admin.home.slideshow');
 	}
@@ -233,10 +234,7 @@ class HomeAdminController extends BaseController {
 			return "Failed Delete";
 		}
 	}
-		
-	public function update_gallery(){
-	}
-
+	
 	public function update_foto_gallery()
 	{	
 		//$slideshow= 'Success';
@@ -292,7 +290,7 @@ class HomeAdminController extends BaseController {
 		$id_caption = Input::get('idCaption');
 		if(count($id_caption) != 0)
 		{
-			$gallery = Gallery::find($id_caption->id);
+			$gallery = Gallery::find($id_caption);
 			$gallery->kapsion = $caption;
 			$gallery->timestamps = false;
 			$gallery -> tanggal_upload = Carbon::now();
@@ -318,6 +316,7 @@ class HomeAdminController extends BaseController {
 	public function get_slideshow()
 	{
 		$gal = Gallery::where('type','=', '1')->get();
+		//echo "AAAA";
 		if(count($gal) != 0)
 		{
 			return $gal;

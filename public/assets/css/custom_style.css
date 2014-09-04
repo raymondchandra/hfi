@@ -959,4 +959,14 @@ transform:rotate(90deg);
 	margin-right: auto;
 }
 
+.pagination {
+
+	
+}
+
+.pagination ul li{
+	display: inline-block;
+
+}
+
 

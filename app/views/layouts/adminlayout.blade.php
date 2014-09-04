@@ -111,25 +111,25 @@
 		});
 		
 			$('body').on('click','#sesuatu',function(){
-		$( ".pop_up_super_c" ).fadeIn( 277, function(){});
+		$( ".pop_up_super_c_layout" ).fadeIn( 277, function(){});
 	});
 	
-	$('.exit').click(function() {$( ".pop_up_super_c" ).fadeOut( 200, function(){});});	
+	$('.exit').click(function() {$( ".pop_up_super_c_layout" ).fadeOut( 200, function(){});});	
 		
-	$('.pop_up_super_c').click(function (e)
+	$('.pop_up_super_c_layout').click(function (e)
 	{
 		var container = $('.pop_up_cell');
 
 		if (container.is(e.target) )// if the target of the click is the container...
 		{
-			$( ".pop_up_super_c" ).fadeOut( 200, function(){});
+			$( ".pop_up_super_c_layout" ).fadeOut( 200, function(){});
 			$('html').css('overflow-y', 'auto');
 		}
 	});
 	</script>
 	
 <!--pop-up-message-->
-<div class="pop_up_super_c" id="sesuatu" style="display: none;">
+<div class="pop_up_super_c_layout" id="sesuatu" style="display: none;">
 	<a class="exit close_56" ></a>
 	<div class="pop_up_tbl">
 		<div class="pop_up_cell">

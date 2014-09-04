@@ -70,7 +70,19 @@ class UserController extends BaseController {
 	public function view_berkas()
 	{	
 		$arr = $this->setHeader();
-		return View::make('pages.berkas', compact('arr'));
+			//ambil cabang dari database
+			$listberkas = $this->get_all_berkas();	//return null kalo kosong
+			//ambil nama pengunduh						
+			if($listberkas!=null){
+				$arrPengunggah = array();
+				foreach($listberkas as $value){
+					$pengunggah = DB::table('profile')->where('id', $value['uploaded_by'])->pluck('nama');
+					$arrPengunggah[] = $pengunggah;
+				}
+			}else{
+				$arrPengunggah = null;
+			}						
+		return View::make('pages.berkas', compact('arr', 'listberkas', 'arrPengunggah'));		
 	}
 	
 	public function get_all_cabang()
@@ -85,6 +97,20 @@ class UserController extends BaseController {
 			return "";
 		}
 	}
+	
+	public function get_all_berkas()
+	{	
+		$count = Berkas::all();
+		if(count($count) != 0)
+		{
+			return $count;
+		}
+		else
+		{
+			return null;
+		}
+	}
+		
 	
 	//edit_profile
 	public function edit_profile(){

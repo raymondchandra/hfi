@@ -7,7 +7,7 @@
 			success: function(data){
 				if(data==""){
 					//alert("Kosong");
-					var list ="<tr><td class='nama_cabang'>Nama Cabang</td>";
+					var list ="<tr><td class='nama_cabang'>Kantor</td>";
 					list+="<td class='alamat_cabang'>Alamat Cabang</td>";
 					list+="<td class='telepon_cabang'>Telepon</td>";
 					list+="<td class='detail_cabang'>Lihat Detail</td>";
@@ -65,64 +65,7 @@
 		<table class='list_cabang'>
 		</table>
 		<script>
-			$('body').on('click','.edit_info_cabang',function(){
-				$nama_cabang=$(this).parent().siblings('.nama_cabang').text();
-				$alamat_cabang = $(this).parent().siblings('.alamat_cabang').text();
-				$telepon_cabang = $(this).parent().siblings('.telepon_cabang').text();
-				$fax_cabang = $(this).parent().siblings('.fax_cabang').text();
-				$email_cabang = $(this).parent().siblings('.email_cabang').text();
-				$website_cabang = $(this).parent().siblings('.website_cabang').text();
-				$id_cabang = $(this).next().val();
-				$string="<td class='nama_cabang'><input type='text' id='up_nama_cabang' value='"+$nama_cabang+"' /></td>";
-				$string+="<td class='alamat_cabang'><input type='text' id='up_alamat_cabang' value='"+$alamat_cabang+"' /></td>";
-				$string+="<td class='telepon_cabang'><input type='text' id='up_telepon_cabang' value="+$telepon_cabang+" /></td>";
-				$string+="<td class='fax_cabang'><input type='text' id='up_fax_cabang' value="+$fax_cabang+" /></td>";
-				$string+="<td class='email_cabang'><input type='text' id='up_email_cabang' value="+$email_cabang+" /></td>";
-				$string+="<td class='website_cabang'><input type='text' id='up_website_cabang' value="+$website_cabang+" /></td>";
-				$string+="<td><input type='button' value='Ok' class='ok_edit' /><input type='hidden' value='"+$id_cabang+"' /></td>";
-				$(this).parent().parent().html($string);
-			});
 			
-			$('body').on('click','.ok_edit',function(){
-				$id = $(this).next().val();
-				$nama_cabang=$(this).parent().siblings('.nama_cabang').children('#up_nama_cabang').val();
-				$alamat_cabang = $(this).parent().siblings('.alamat_cabang').children('#up_alamat_cabang').val();
-				$telepon_cabang = $(this).parent().siblings('.telepon_cabang').children('#up_telepon_cabang').val();
-				$fax_cabang = $(this).parent().siblings('.fax_cabang').children('#up_fax_cabang').val();
-				$email_cabang = $(this).parent().siblings('.email_cabang').children('#up_email_cabang').val();
-				$website_cabang = $(this).parent().siblings('.website_cabang').children('#up_website_cabang').val();
-				//ajax update
-				//alert(arrIDCabang[$id]);
-				$.ajax({
-					url: 'admin/organisasi/editcabang',
-					type: 'PUT',
-					data: {
-						'id_cabang' : arrIDCabang[$id],
-						'nama_cabang':$nama_cabang,
-						'telp_cabang':$telepon_cabang,
-						'fax_cabang':$fax_cabang,
-						'email_cabang':$email_cabang,
-						'link_cabang':$website_cabang,
-						'alamat_cabang':$alamat_cabang
-					},
-					success: function(data){
-						//alert(data);
-						/*$string = "<td class='nama_cabang'>"+$nama_cabang+"</td>"
-						$string += "<td class='alamat_cabang'>"+$alamat_cabang+"</td>"
-						$string += "<td class='telepon_cabang'>"+$telepon_cabang+"</td>"
-						$string += "<td class='fax_cabang'>"+$fax_cabang+"</td>"
-						$string += "<td class='email_cabang'>"+$email_cabang+"</td>"
-						$string += "<td class='website_cabang'>"+$website_cabang+"</td>"
-						$string += "<td><input type='button' value='v' class='edit_info_cabang' /></td>"
-						$(this).parent().parent().html($string);*/
-						//$( ".pop_up_super_c" ).fadeOut( 200, function(){});
-						getCabang();
-					},
-					error:function(jqXHR, textStatus, errorThrown){
-						alert(errorThrown);
-					}		
-				});
-			});
 			$('body').on('click','.hapus_cabang',function(){
 				$id = $(this).next().val();
 				//ajax delete

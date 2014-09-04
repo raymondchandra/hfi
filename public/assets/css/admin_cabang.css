@@ -11,8 +11,12 @@
 }
 
 .telepon_cabang,.fax_cabang{
-	width: 100px;
+	width: 200px;
 
+}
+
+.detail_cabang{
+	width: 125px;
 }
 
 .email_cabang,.website_cabang{

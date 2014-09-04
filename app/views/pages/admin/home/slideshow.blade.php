@@ -9,7 +9,6 @@
 </script>
 
 <div class='admin_title'>Slideshow</div>
-
 <div class='slide_container'>
 	@if($slideshow == "Failed")
 		<ul>

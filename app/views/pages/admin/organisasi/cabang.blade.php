@@ -7,7 +7,7 @@
 			success: function(data){
 				if(data==""){
 					//alert("Kosong");
-					var list ="<tr><td class='nama_cabang'>Kantor</td>";
+					var list ="<table class='list_cabang'><tr><td class='nama_cabang'>Kantor</td>";
 					list+="<td class='alamat_cabang'>Alamat Cabang</td>";
 					list+="<td class='telepon_cabang'>Telepon</td>";
 					list+="<td class='detail_cabang'>Lihat Detail</td>";
@@ -16,13 +16,13 @@
 					list+="<td class='alamat_cabang'>-</td>";
 					list+="<td class='telepon_cabang'>-</td>";
 					list+="<td class='detail_cabang'>-</td>";
-					list+="</tr>";
-					$('.list_cabang').html(list);
+					list+="</tr></table>";
+					$('.cabang_list').html(list);
 				}
 				else{
 					//atur
 					var length = data.length;
-					var list ="<tr><td class='nama_cabang'>Nama Cabang</td>";
+					var list ="<table class='list_cabang'><tr><td class='nama_cabang'>Nama Cabang</td>";
 					list+="<td class='alamat_cabang'>Alamat Cabang</td>";
 					list+="<td class='telepon_cabang'>Telepon</td>";
 					list+="<td class='detail_cabang'>Lihat Detail</td>";
@@ -44,7 +44,8 @@
 						list+="<td class='detail_cabang'><a href='javascript:void(0)' class='lihat_detail'>Lihat Detail</a><input type='hidden' value='"+$i+"' /><input type='button' class='hapus_cabang' value='X' /></td>";
 						list+="</tr>";
 					}
-					$('.list_cabang').html(list);
+					list+="</table>";
+					$('.cabang_list').html(list);
 					$( ".loader" ).fadeOut( 200, function(){});
 				}
 			},
@@ -89,6 +90,7 @@
 			
 			$('body').on('click','.lihat_detail',function(){
 				$id = $(this).next().val();
+				$( ".loader" ).fadeIn( 200, function(){});
 				$.ajax({
 					url: 'admin/organisasi/satucabang',
 					type: 'GET',
@@ -111,13 +113,20 @@
 						}else{
 							view+="<div><a href='http://"+data[0]['link']+"'>"+data[0]['link']+"</a></div>";
 						}
+						view+="<div><a href='javascript:void(0)' class='go_back_but'>Kembali</a></div>"
 						view+="<span class='clear'>&nbsp;</span>";
 						$('.cabang_list').html(view);
+						$( ".loader" ).fadeOut( 200, function(){});
 					},
 					error:function(jqXHR, textStatus, errorThrown){
 						alert(errorThrown);
 					}		
 				});
+			});
+			
+			$('body').on('click','.go_back_but',function(){
+				$( ".loader" ).fadeIn( 200, function(){});
+				getCabang();
 			});
 			
 			$('#tambah_cabang').click(function(){

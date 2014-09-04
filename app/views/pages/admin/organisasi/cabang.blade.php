@@ -41,10 +41,11 @@
 						}else{
 							list+="<td class='website_cabang'><a href='"+data[$i]['link']+"'>"+data[$i]['link']+"</a></td>";
 						}*/
-						list+="<td class='detail_cabang'><a href='#'>Lihat Detail</a></td>";
+						list+="<td class='detail_cabang'><a href='#' class='lihat_detail'>Lihat Detail</a><input type='hidden' value='"+$i+"' /><input type='button' class='hapus_cabang' value='X' /></td>";
 						list+="</tr>";
 					}
 					$('.list_cabang').html(list);
+					$( ".loader" ).fadeOut( 200, function(){});
 				}
 			},
 			error:function(errorThrown){
@@ -67,7 +68,8 @@
 		<script>
 			
 			$('body').on('click','.hapus_cabang',function(){
-				$id = $(this).next().val();
+				$( ".loader" ).fadeIn( 200, function(){});
+				$id = $(this).prev().val();
 				//ajax delete
 				$.ajax({
 					url: 'admin/organisasi/deletecabang',
@@ -77,6 +79,28 @@
 					},
 					success: function(data){
 						getCabang();
+						$( ".loader" ).fadeOut( 200, function(){});
+					},
+					error:function(jqXHR, textStatus, errorThrown){
+						alert(errorThrown);
+					}		
+				});
+			});
+			
+			$('body').on('click','.lihat_detail',function(){
+				$id = $(this).next().val();
+				$.ajax({
+					url: 'admin/organisasi/satucabang',
+					type: 'GET',
+					data: {
+						'id_cabang' : arrIDCabang[$id]
+					},
+					success: function(data){
+						//alert(data[0]['nama']);
+						var view="<div>"+data[0]['nama']+"</div>";
+						var view="<span class='clear'>&nbsp;</span>";
+						view+="<div>"+data[0]['alamat']+"</div>";
+						$('.cabang_list_container').html(view);
 					},
 					error:function(jqXHR, textStatus, errorThrown){
 						alert(errorThrown);

@@ -1,6 +1,6 @@
 <div class="container_12">
 	<div class="grid_12">
-	<div class='admin_title'>Misi HFI</div>
+	<div class='admin_title'>Ubah Password</div>
 		<div class="table">
 			<div class="table_cell">
 				<div class="login_container">
@@ -12,9 +12,6 @@
 						@endif
 					</div>
 					
-					<h1 class="logintitle">
-						Ubah Password 
-					</h1>
 					<div class="form">
 						{{ Form::open(array('url' => '')) }}
 						<form>

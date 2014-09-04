@@ -77,3 +77,8 @@ $('body').on('click','#admin_berkas',function(){
 	 $('.admin_control_panel').load('admin/berkas');
 });
 
+//sidebar ubah password
+$('body').on('click','#ubah_password',function(){
+	 $('.admin_control_panel').load('admin/ubahpassword');
+});
+

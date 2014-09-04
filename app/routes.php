@@ -96,6 +96,10 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	Route::get('/berkas', ['as' => 'admin.berkas', 'uses' => 'BerkasAdminController@view_index']);
 	//end of berkas
 	
+	//ubahpassword
+	Route::get('/ubahpassword', ['as' => 'admin.ubahpassword', 'uses' => 'UbahpasswordAdminController@view_index']);
+	//end of ubahpassword
+	
 	
 	//admin get route
 	Route::get('/organisasi/daftarcabang', ['as' => 'admin.organisasi.daftarcabang', 'uses' => 'OrganisasiAdminController@get_semua_cabang']);

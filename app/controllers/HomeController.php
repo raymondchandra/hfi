@@ -17,7 +17,9 @@ class HomeController extends BaseController {
 		
 		$arr = $this->setHeader();
 		
-		return View::make('pages.home', compact('deskripsi_selamat_datang', 'tentang_hfi', 'visi_hfi', 'misi_hfi', 'regulasi_hfi', 'arr'));
+		$slideshow = $this->get_slideshow();
+		
+		return View::make('pages.home', compact('deskripsi_selamat_datang', 'tentang_hfi', 'visi_hfi', 'misi_hfi', 'regulasi_hfi', 'arr','slideshow'));
 	}
 	
 	public static function get_konten($tipe)
@@ -44,6 +46,20 @@ class HomeController extends BaseController {
 		}else{			
 			return $regulations;
 		}		
+	}
+	
+	public function get_slideshow()
+	{
+		$gal = Gallery::where('type','=', '1')->get();
+		//echo "AAAA";
+		if(count($gal) != 0)
+		{
+			return $gal;
+			
+		}else
+		{
+			return "Failed";
+		}
 	}
 	
 }

@@ -8,12 +8,24 @@
 				<div class="side_panel_hfi_background">
 				<ul>
 					<li>
-						<a href="#">Publikasi Jurnal & Non-Jurnal</a>
+						<a href="javascript:void(0)"> Publikasi Jurnal & Non-Jurnal</a>
+
+					</li>
+					<li>
+						{{HTML::linkRoute('publikasi','Jenis Publikasi',array(1))}}
+
+					</li>
+					<li>
+						{{HTML::linkRoute('publikasi','Ketentuan Umum',array(2))}}
+
+					</li>
+					<li>
+						{{HTML::linkRoute('publikasi','Karya-Karya Tulis Lain',array(3))}}
 
 					</li>
 					<span class="white_space">&nbsp;</span>
 					<li>
-						<a href="#">Publikasi Ilmiah Populer</a>
+						{{HTML::linkRoute('publikasi','Publikasi Ilmiah Populer',array(4))}}
 
 					</li>
 				
@@ -22,10 +34,7 @@
 			</div>
 			
 			<div class="content_hfi">
-				Sesuai dengan tugas utamanya sebagai komunitas profesi ilmiah di bidang fisika, 
-				HFI menerbitkan beberapa jurnal serta non-jurnal ilmiah secara berkala. 
-				Bila Anda tertarik untuk melihat jurnal atau mengirimkan naskah, silahkan mengakses halaman situs dengan meng-klik navigasi di sebalah kiri halaman
-				untuk mendapatkan keterangan lebih lanjut.
+				{{$publikasi}}
 			</div>
 		</div>
 	</div>

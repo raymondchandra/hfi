@@ -234,10 +234,7 @@ class HomeAdminController extends BaseController {
 			return "Failed Delete";
 		}
 	}
-		
-	public function update_gallery(){
-	}
-
+	
 	public function update_foto_gallery()
 	{	
 		//$slideshow= 'Success';

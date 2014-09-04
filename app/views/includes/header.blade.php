@@ -67,7 +67,7 @@
 							{{HTML::linkRoute('kegiatan','Kegiatan')}}
 						</li>
 						<li>
-							{{HTML::linkRoute('publikasi','Publikasi')}}
+							{{HTML::linkRoute('publikasi','Publikasi',array(1))}}
 							<ul>
 								<li><a href="#">Publikasi Jurnal dan Non-Jurnal</a></li>
 								<li><a href="#">Publikasi Ilmiah Populer</a></li>

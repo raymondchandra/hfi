@@ -1,0 +1,9 @@
+textarea{
+	resize:none;
+	width: 250px;
+}
+
+input[type='text'],select{
+	width: 200px;
+	/*height:22px;*/
+}

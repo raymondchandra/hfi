@@ -65,173 +65,8 @@
 				{{ Form::text('tempatlahir', Input::old('tempatlahir')) }}<span class="red" style="right:340px;">*</span>
 				<div class="clear">
 				</div>
-			
-				{{ Form::select('tanggallahir', array(
-					'pilih' => 'pilih tanggal!',
-					'1' => '1',
-					'2' => '2',
-					'3' => '3',
-					'4' => '4',
-					'5' => '5',
-					'6' => '6',
-					'7' => '7',
-					'8' => '8',
-					'9' => '9',
-					'10' => '10',
-					'11' => '11',
-					'12' => '12',
-					'13' => '13',
-					'14' => '14',
-					'15' => '15',
-					'16' => '16',
-					'17' => '17',
-					'18' => '18',
-					'19' => '19',
-					'20' => '20',
-					'21' => '21',
-					'22' => '22',
-					'23' => '23',
-					'24' => '24',
-					'25' => '25',
-					'26' => '26',
-					'27' => '27',
-					'28' => '28',
-					'29' => '29',
-					'30' => '30',
-					'31' => '31'),'',
-						array('style' => 'width:100px; float: left; margin-top:10px;'
-					))
-				}}
-				{{ Form::select('bulanlahir',array(
-					'pilih' => 'pilih bulan!',
-					'1' => 'Januari',
-					'2' => 'Februari',
-					'3' => 'Maret',
-					'4' => 'April',
-					'5' => 'Mei',
-					'6' => 'Juni',
-					'7' => 'Juli',
-					'8' => 'Agustus',
-					'9' => 'September',
-					'10' => 'Oktober',
-					'11' => 'November',
-					'12' => 'Desember'),'',
-						array('style' => 'width:100px; margin-left: 5px; float: left; margin-top:10px;'
-					))
-				}}
-				{{ Form::select('tahunlahir', array(
-					'pilih' => 'pilih tahun!',
-					'2007' => '2007',
-					'2006' => '2006',
-					'2005' => '2005',
-					'2004' => '2004',
-					'2003' => '2003',
-					'2002' => '2002',
-					'2001' => '2001',
-					'2000' => '2000',
-					'1999' => '1999',
-					'1998' => '1998',
-					'1997' => '1997',
-					'1996' => '1996',
-					'1995' => '1995',
-					'1994' => '1994',
-					'1993' => '1993',
-					'1992' => '1992',
-					'1991' => '1991',
-					'1990' => '1990',
-					'1989' => '1989',
-					'1988' => '1988',
-					'1987' => '1987',
-					'1986' => '1986',
-					'1985' => '1985',
-					'1984' => '1984',
-					'1983' => '1983',
-					'1982' => '1982',
-					'1981' => '1981',
-					'1980' => '1980',
-					'1979' => '1979',
-					'1978' => '1978',
-					'1977' => '1977',
-					'1976' => '1976',
-					'1975' => '1975',
-					'1974' => '1974',
-					'1973' => '1973',
-					'1972' => '1972',
-					'1971' => '1971',
-					'1970' => '1970',
-					'1969' => '1969',
-					'1968' => '1968',
-					'1967' => '1967',
-					'1966' => '1966',
-					'1965' => '1965',
-					'1964' => '1964',
-					'1963' => '1963',
-					'1962' => '1962',
-					'1961' => '1961',
-					'1960' => '1960',
-					'1959' => '1959',
-					'1958' => '1958',
-					'1957' => '1957',
-					'1956' => '1956',
-					'1955' => '1955',
-					'1954' => '1954',
-					'1953' => '1953',
-					'1952' => '1952',
-					'1951' => '1951',
-					'1950' => '1950',
-					'1949' => '1949',
-					'1948' => '1948',
-					'1947' => '1947',
-					'1946' => '1946',
-					'1945' => '1945',
-					'1944' => '1944',
-					'1943' => '1943',
-					'1942' => '1942',
-					'1941' => '1941',
-					'1940' => '1940',
-					'1939' => '1939',
-					'1938' => '1938',
-					'1937' => '1937',
-					'1936' => '1936',
-					'1935' => '1935',
-					'1934' => '1934',
-					'1933' => '1933',
-					'1932' => '1932',
-					'1931' => '1931',
-					'1930' => '1930',
-					'1929' => '1929',
-					'1928' => '1928',
-					'1927' => '1927',
-					'1926' => '1926',
-					'1925' => '1925',
-					'1924' => '1924',
-					'1923' => '1923',
-					'1922' => '1922',
-					'1921' => '1921',
-					'1920' => '1920',
-					'1919' => '1919',
-					'1918' => '1918',
-					'1917' => '1917',
-					'1916' => '1916',
-					'1915' => '1915',
-					'1914' => '1914',
-					'1913' => '1913',
-					'1912' => '1912',
-					'1911' => '1911',
-					'1910' => '1910',
-					'1909' => '1909',
-					'1908' => '1908',
-					'1907' => '1907',
-					'1906' => '1906',
-					'1905' => '1905',
-					'1904' => '1904',
-					'1903' => '1903',
-					'1902' => '1902',
-					'1901' => '1901',
-					'1900' => '1900'),'',
-						array('style' => 'width:100px; margin-left: 5px; float: left; margin-top:10px;'
-					))
-				}} <span class="red" style="right: 284px; top: 35px;">*</span>
+				{{ Form::text('tanggallahir', Input::old('tanggallahir'),  array('id' => 'tanggallahir', 'style' => 'width:80px;')) }}
+				<span class="red" style="right: 284px; top: 35px;">*</span>
 				</div>
 				</td>			
 		</tr>
@@ -272,7 +107,49 @@
 		<tr>
 			<td>Pendidikan</td>
 			<td>:</td>
-			<td>{{ Form::textarea('pendidikan', Input::old('pendidikan')) }} <span class="red">*</span></td>				
+			<td>
+				<script>
+				var lastIdx = 2;
+				function addPendidikan(){
+					var newRow = "<select class='selPendidikan'>";
+					newRow +="<option value=''>Pilih!</option>";
+					newRow +="<option value='SD'>SD</option>";
+					newRow +="<option value='SMP'>SMP</option>";
+					newRow +="<option value='SMA'>SMA</option>";
+					newRow +="<option value='D1'>D1</option>";
+					newRow +="<option value='D2'>D2</option>";
+					newRow +="<option value='D3'>D3</option>";
+					newRow +="<option value='D4'>D4</option>";
+					newRow +="<option value='S1'>S1</option>";
+					newRow +="<option value='S2'>S2</option>";
+					newRow +="<option value='S3'>S3</option>";
+					newRow +="<option value='lain'>Lainnya</option>";
+					newRow +="</select>";
+					newRow +="<input type='text' id='pendidikan'"+lastIdx+" class='texPendidikan' /><br />";
+					$('#addPendidikan').append(newRow);
+					lastIdx++;
+				}
+			</script>
+			<div>
+				<select class='selPendidikan'>
+					<option value=''>Pilih!</option>
+					<option value='SD'>SD</option>
+					<option value='SMP'>SMP</option>
+					<option value='SMA'>SMA</option>
+					<option value='D1'>D1</option>
+					<option value='D2'>D2</option>
+					<option value='D3'>D3</option>
+					<option value='D4'>D4</option>
+					<option value='S1'>S1</option>
+					<option value='S2'>S2</option>
+					<option value='S3'>S3</option>
+					<option value='lain'>Lainnya</option>
+				</select>
+			<input type="text" id="pendidikan1" class='texPendidikan' /><span class="red">*</span><br />
+			<div id="addPendidikan"></div>
+		<a href="javascript:void(0)" onClick = "addPendidikan();">tambah pendidikan</a>
+	</div>
+	<!--{{ Form::textarea('pendidikan', Input::old('pendidikan')) }}--> </td>				
 		</tr>
 		<tr>
 			<td>Profesi</td>
@@ -537,6 +414,33 @@
 				    form.submit();
 				  }
 		});
+	</script>
+	
+<link rel="stylesheet" type="text/css" href="assets/js/datetimepicker/jquery.datetimepicker.css"/ >
+<script src="assets/js/datetimepicker/jquery.datetimepicker.js"></script>
+		
+	<script>
+		jQuery('#tanggallahir').datetimepicker({
+			lang:'en',
+			i18n:{
+				en:{
+					months:[
+					'January','February','March','April',
+					'May','June','July','August',
+					'September','October','November','December',
+					],
+					dayOfWeek:[
+					"Sun.", "Mon", "Tue", "Wed", 
+					"Thu", "Fri", "Sa.",
+					]
+					
+				}
+				},
+			timepicker:false,
+			format:'d.m.Y',
+			yearStart: '1900'
+		});
+		
 	</script>
 	<div style="width: 100%; text-align: center;"> <!--class="de_tombol"-->
 		{{ Form::submit('daftar') }}

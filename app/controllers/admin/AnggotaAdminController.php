@@ -104,6 +104,13 @@ class AnggotaAdminController extends BaseController {
 		}
 
 	}
+	
+	public function search_anggota()
+	{
+		$keyword = Input::get('keyword');
+		
+		//$query = Anggota::whereRaw('')
+	}
 }
 
 ?>

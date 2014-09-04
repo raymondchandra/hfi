@@ -69,6 +69,7 @@
 
 .top_right_iden {
 	margin-top: 12px;
+	font-size: 13px;
 }
 
 .top_right_iden * {
@@ -171,7 +172,7 @@
 			}
 		
 		.top_nav_hfi li ul li a:hover
-		{	background: #000}
+		{	background: #8d87ff}
 /*
 .site_nav > div > div > ul {
 	text-align: center;
@@ -956,6 +957,16 @@ transform:rotate(90deg);
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.pagination {
+
+	
+}
+
+.pagination ul li{
+	display: inline-block;
+
 }
 
 

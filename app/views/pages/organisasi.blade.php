@@ -72,7 +72,7 @@
 			<div class="container_12">			
 			<div class="grid_12" style="background: #fff;">
 				<h3 style="padding-top: 5px;padding-left: 20px; margin-bottom: 5px !important; text-align: center;" class="title_pdf_viewer"></h3>
-				<object style="height:650px !important;" data="" type="application/pdf" width="100%" class="pdf_viewer"></object>
+				<object style="height:590px !important;" data="" type="application/pdf" width="100%" class="pdf_viewer"></object>
 			</div>
 			</div>			
 		</div>		

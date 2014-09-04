@@ -1,6 +1,7 @@
 <script>
 	$(document).ready(function(){
 		$( ".show_after" ).each(function( index ) {
+			
 			//alert($(this).text());
 			var length = $(this).text().length;
 			if (length > 200) {
@@ -11,6 +12,7 @@
 			else{
 				$(this).siblings('.show_before').text($('.show_after').text());
 			}
+			$( ".loader" ).fadeOut( 200, function(){});
 		});
 	});
 	

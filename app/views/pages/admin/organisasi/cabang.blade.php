@@ -41,7 +41,7 @@
 						}else{
 							list+="<td class='website_cabang'><a href='"+data[$i]['link']+"'>"+data[$i]['link']+"</a></td>";
 						}*/
-						list+="<td class='detail_cabang'><a href='#' class='lihat_detail'>Lihat Detail</a><input type='hidden' value='"+$i+"' /><input type='button' class='hapus_cabang' value='X' /></td>";
+						list+="<td class='detail_cabang'><a href='javascript:void(0)' class='lihat_detail'>Lihat Detail</a><input type='hidden' value='"+$i+"' /><input type='button' class='hapus_cabang' value='X' /></td>";
 						list+="</tr>";
 					}
 					$('.list_cabang').html(list);
@@ -97,10 +97,22 @@
 					},
 					success: function(data){
 						//alert(data[0]['nama']);
-						var view="<div>"+data[0]['nama']+"</div>";
-						var view="<span class='clear'>&nbsp;</span>";
-						view+="<div>"+data[0]['alamat']+"</div>";
-						$('.cabang_list_container').html(view);
+						var view="<div>Nama Cabang : "+data[0]['nama']+"</div>";
+						view+="<span class='clear'>&nbsp;</span>";
+						view+="<div>Alamat Kantor : "+data[0]['alamat']+"</div>";
+						view+="<span class='clear'>&nbsp;</span>";
+						view+="<div>Telepon : "+data[0]['telp']+"</div>";
+						view+="<span class='clear'>&nbsp;</span>";
+						view+="<div>Fax : "+data[0]['fax']+"</div>";
+						view+="<span class='clear'>&nbsp;</span>";
+						view+="<div>E-mail : "+data[0]['email']+"</div>";
+						if(data[0]['link']=="-"){
+							view+="<div>-</div>";
+						}else{
+							view+="<div><a href='http://"+data[0]['link']+"'>"+data[0]['link']+"</a></div>";
+						}
+						view+="<span class='clear'>&nbsp;</span>";
+						$('.cabang_list').html(view);
 					},
 					error:function(jqXHR, textStatus, errorThrown){
 						alert(errorThrown);

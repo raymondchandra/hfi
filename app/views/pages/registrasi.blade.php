@@ -65,8 +65,8 @@
 				{{ Form::text('tempatlahir', Input::old('tempatlahir')) }}<span class="red" style="right:340px;">*</span>
 				<div class="clear">
 				</div>
-			
-				{{ Form::select('tanggallahir', array(
+				{{ Form::text('tanggallahir', Input::old('tanggallahir'),  array('id' => 'tanggallahir', 'style' => 'width:80px;')) }}
+				<!--{{ Form::select('tanggallahir', array(
 					'pilih' => 'pilih tanggal!',
 					'1' => '1',
 					'2' => '2',
@@ -231,7 +231,7 @@
 					'1900' => '1900'),'',
 						array('style' => 'width:100px; margin-left: 5px; float: left; margin-top:10px;'
 					))
-				}} <span class="red" style="right: 284px; top: 35px;">*</span>
+				}}--> <span class="red" style="right: 284px; top: 35px;">*</span>
 				</div>
 				</td>			
 		</tr>
@@ -537,6 +537,33 @@
 				    form.submit();
 				  }
 		});
+	</script>
+	
+<link rel="stylesheet" type="text/css" href="assets/js/datetimepicker/jquery.datetimepicker.css"/ >
+<script src="assets/js/datetimepicker/jquery.datetimepicker.js"></script>
+		
+	<script>
+		jQuery('#tanggallahir').datetimepicker({
+			lang:'en',
+			i18n:{
+				en:{
+					months:[
+					'January','February','March','April',
+					'May','June','July','August',
+					'September','October','November','December',
+					],
+					dayOfWeek:[
+					"Sun.", "Mon", "Tue", "Wed", 
+					"Thu", "Fri", "Sa.",
+					]
+					
+				}
+				},
+			timepicker:false,
+			format:'d.m.Y',
+			yearStart: '1900'
+		});
+		
 	</script>
 	<div style="width: 100%; text-align: center;"> <!--class="de_tombol"-->
 		{{ Form::submit('daftar') }}

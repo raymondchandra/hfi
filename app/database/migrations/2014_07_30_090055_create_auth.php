@@ -40,7 +40,6 @@ class CreateAuth extends Migration {
 			$table->string('spesialisasi');
             $table->string('profesi');
             $table->string('institusi');
-            $table->string('pendidikan');
 			$table->string('alamat');
 			$table->string('kota');
 			$table->string('kodepos');

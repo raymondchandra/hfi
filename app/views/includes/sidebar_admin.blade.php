@@ -77,5 +77,8 @@
 			<li>
 				<a href="javascript:void(0)" class="no_arrow" id='admin_berkas'>e-Berkas</a>
 			</li>
+			<li>
+				<a href="javascript:void(0)" class="no_arrow" id='ubah_password'>Ubah Password</a>
+			</li>
 		</ul>
 	</nav>

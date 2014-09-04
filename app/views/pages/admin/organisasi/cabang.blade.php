@@ -41,10 +41,11 @@
 						}else{
 							list+="<td class='website_cabang'><a href='"+data[$i]['link']+"'>"+data[$i]['link']+"</a></td>";
 						}*/
-						list+="<td class='detail_cabang'><a href='#' class='lihat_detail'>Lihat Detail</a><input type='hidden' value='"+$i+"' /><span>&nbsp;</span><input type='button' class='hapus_cabang' value='X' /></td>";
+						list+="<td class='detail_cabang'><a href='#' class='lihat_detail'>Lihat Detail</a><input type='hidden' value='"+$i+"' /><input type='button' class='hapus_cabang' value='X' /></td>";
 						list+="</tr>";
 					}
 					$('.list_cabang').html(list);
+					$( ".loader" ).fadeOut( 200, function(){});
 				}
 			},
 			error:function(errorThrown){
@@ -67,6 +68,7 @@
 		<script>
 			
 			$('body').on('click','.hapus_cabang',function(){
+				$( ".loader" ).fadeIn( 200, function(){});
 				$id = $(this).prev().val();
 				//ajax delete
 				$.ajax({
@@ -77,6 +79,7 @@
 					},
 					success: function(data){
 						getCabang();
+						$( ".loader" ).fadeOut( 200, function(){});
 					},
 					error:function(jqXHR, textStatus, errorThrown){
 						alert(errorThrown);
@@ -94,7 +97,10 @@
 					},
 					success: function(data){
 						//alert(data[0]['nama']);
-						$('.cabang_list_container').html("<div>"+data[0]['nama']+"</div>");
+						var view="<div>"+data[0]['nama']+"</div>";
+						var view="<span class='clear'>&nbsp;</span>";
+						view+="<div>"+data[0]['alamat']+"</div>";
+						$('.cabang_list_container').html(view);
 					},
 					error:function(jqXHR, textStatus, errorThrown){
 						alert(errorThrown);

@@ -3,7 +3,6 @@
 	
 	var imageUpload = "";
 	$(document).ready(function(){
-		//$('.pu_c').click();
 		$( ".loader" ).fadeOut( 200, function(){});
 	});
 </script>
@@ -308,7 +307,7 @@ $('.ok_change').click(function(){
 								
 </script>
 
-<div id="" class="pu_c loader" style="z-index: 999999; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: block; ">
+<!--<div id="" class="pu_c loader" style="z-index: 999999; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: block; ">
 	<div class="tableed">
 		<div class="celled pu_cell" style="">
 			<div class="container_12" style="position: relative;">
@@ -317,4 +316,4 @@ $('.ok_change').click(function(){
 			</div>
 		</div>
 	</div>
-</div> 
+</div>--> 

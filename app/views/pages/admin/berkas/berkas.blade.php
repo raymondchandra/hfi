@@ -11,15 +11,15 @@
 						list+="<td class='nama_berkas'>Nama Berkas</td>";
 						list+="<td class='pengunggah_berkas'>Pengunggah Berkas</td>";
 						list+="<td class='deskripsi_berkas'>Deskripsi Berkas</td>";
-						list+="<td>&nbsp;</td>";
-						list+="<td>&nbsp;</td>";
+						list+="<td class='edit_berkas'>&nbsp;</td>";
+						list+="<td class='delete_berkas'>&nbsp;</td>";
 					list+="</tr>";
 					list+="<tr>";
 						list+="<td class='nama_berkas'>-</td>";
 						list+="<td class='pengunggah_berkas'>-</td>";
 						list+="<td class='deskripsi_berkas'>-</td>";
-						list+="<td>&nbsp;</td>";
-						list+="<td>&nbsp;</td>";
+						list+="<td class='edit_berkas'>&nbsp;</td>";
+						list+="<td class='delete_berkas'>&nbsp;</td>";
 					list+="</tr>";
 					$('.list_berkas').html(list);
 				}
@@ -30,8 +30,8 @@
 						list+="<td class='nama_berkas'>Nama Berkas</td>";
 						list+="<td class='pengunggah_berkas'>Pengunggah Berkas</td>";
 						list+="<td class='deskripsi_berkas'>Deskripsi Berkas</td>";
-						list+="<td>&nbsp;</td>";
-						list+="<td>&nbsp;</td>";
+						list+="<td class='edit_berkas'>&nbsp;</td>";
+						list+="<td class='delete_berkas'>&nbsp;</td>";
 					list+="</tr>";
 					arrIDBerkas = [];
 					<?php $i = 0;?>
@@ -41,11 +41,12 @@
 							list+="<td class='nama_berkas'>"+data[$i]['nama_file']+"</td>";
 							list+="<td class='pengungah_berkas'><?php echo $arrPengunggah[$i]; $i++;?></td>";
 							list+="<td class='deskripsi_berkas'> <input type='hidden' value='"+data[$i]['deskripsi']+"'/> <button style='width:120px; margin-top:0px;' class='button_show_deskripsi' type='submit'>Lihat Deskripsi</button> </td>";							
-							list+="<td><input type='button' value='v' class='edit_info_berkas' /><input type='hidden' class='id_berkas' value='"+$i+"' /></td>";
-							list+="<td><input type='button' value='x' class='hapus_berkas' /><input type='hidden' class='id_berkas' value='"+$i+"' /></td>";
+							list+="<td class='edit_berkas'> <input type='button' value='v' class='edit_info_berkas' /><input type='hidden' class='id_berkas' value='"+$i+"' /></td>";
+							list+="<td class='delete_berkas'><input type='button' value='x' class='hapus_berkas' /><input type='hidden' class='id_berkas' value='"+$i+"' /></td>";
 						list+="</tr>";
 					}
 					$('.list_berkas').html(list);
+					$(".loader").fadeOut(200, function(){});
 				}
 			},
 			error: function(errorThrown){
@@ -66,50 +67,69 @@
 		
 		<table class='list_berkas'>		
 		</table>
-		<script>			
-			$('body').on('click','.button_show_deskripsi',function(){							
+		<script>	
+			var id_edit_berkas;
+		
+			$('body').on('click','.button_show_deskripsi',function(){									
 				$(".pop_up_super_c_deskripsi_berkas").fadeIn(277, function(){});				
 				var nama = $(this).parent().prev().prev().text();						
 				var deskripsi = $(this).prev().val();
 				$('#judul_deskripsi').html(nama);
 				$('#isi_deskripsi').html(deskripsi);
-				$('html').css('overflow-y', 'hidden');
+				$('html').css('overflow-y', 'hidden');				
 			});
 		
-			$('body').on('click','.edit_info_berkas',function(){
+			$('body').on('click','.edit_info_berkas',function(){				
 				$(".pop_up_super_c_edit_berkas").fadeIn(277, function(){});
-				var nama = $(this).parent().prev().prev().text();						
-				var deskripsi = $(this).prev().val();
-				$('#judul_deskripsi_edit_berkas').val(nama);
-				$('#isi_deskripsi_edit_berkas').val(deskripsi);
+				var nama = $(this).parent().prev().prev().prev().text();						
+					//alert(nama);					
+				var deskripsi = $(this).parent().prev().children("input").val();																
+				//var deskripsi = $(this).prev().val();																										
+					//alert(deskripsi);
+				
+				//ambil id berkas buat ok_edit_berkas
+				id_edit_berkas = $(this).next().val();
+					//alert(arrIDBerkas[id_edit_berkas]);
+												
+				$('#up_nama_berkas').val(nama);				
+				$('#up_deskripsi_berkas').val(deskripsi);							
 				$('html').css('overflow-y', 'hidden');				
 			});
 			
-			$('body').on('click','.ok_edit_berkas',function(){
-				$id = $(this).next().val();
-				$nama_berkas = $(this).parent().siblings('.nama_berkas').children('#up_nama_berkas').val();
-				$pengunggah_berkas = $(this).parent().siblings('.pengunggah_berkas').children('#up_pengunggah_berkas').val();
-				$deskripsi_berkas = $(this).parent().siblings('.deskripsi_berkas').childrem('#up_deskripsi_berkas').val();
+			$('body').on('click','.ok_edit_berkas',function(){			
+				//$id = $(this).next().val();					
+				//$new_edit_nama = $(this).parent().siblings('.nama_berkas').children('#td_up_nama_berkas').children('#up_nama_berkas').val();
+				$nama_berkas = $(this).parent().parent().prev().prev().children('#td_up_nama_berkas').children('#up_nama_berkas').val();;					
+					alert($nama_berkas);					
+				//$pengunggah_berkas = $(this).parent().siblings('.pengunggah_berkas').children('#up_pengunggah_berkas').val();
+				$deskripsi_berkas = $(this).parent().parent().prev().children('#td_up_deskripsi_berkas').children('#up_deskripsi_berkas').val();				
+				//var deskripsi_berkas = $(this).parent().prev().children('#up_deskripsi_berkas').val();
+					alert($deskripsi_berkas);
 				//ajax update
 				$.ajax({
 					url: 'admin/berkas/editberkas',
 					type: 'PUT',
 					data: {
-						'id_berkas' : arrIDBerkas[$id],
+						// 'id_berkas' : arrIDBerkas[$id],
+						'id_berkas' : arrIDBerkas[id_edit_berkas],							
 						'nama_berkas' : $nama_berkas,
-						'pengunggah_berkas' : $pengunggah_berkas,
+						// 'pengunggah_berkas' : $pengunggah_berkas,
 						'deskripsi_berkas' : $deskripsi_berkas
 					},
-					success:function(data){
+					success:function(data){						
+						$( ".pop_up_super_c_edit_berkas" ).fadeOut( 200, function(){});
 						getBerkas();
+						//alert(data);
 					},
-					error:function(jqXHR, textStatus, errorThrown){
+					error:function(jqXHR, textStatus, errorThrown){							
+						alert("eror");
 						alert(errorThrown);
 					}
 				});
 			});
 		
 			$('body').on('click','.hapus_berkas',function(){
+				$(".loader").fadeIn(200, function(){});
 				$id = $(this).next().val();
 				//ajax delete
 				$.ajax({
@@ -118,8 +138,8 @@
 					data: {
 						'id_berkas' : arrIDBerkas[$id]
 					},
-					success: function(data){
-						getBerkas();
+					success: function(data){						
+						getBerkas();						
 					},
 					error:function(jqXHR, textStatus, errorThrown){
 						alert(errorThrown);
@@ -164,27 +184,31 @@
 				$('html').css('overflow-y', 'hidden');				
 			});						
 			
-			$('body').on('click','#button_tambah_berkas',function(){
-				$nama = $('#new_nama').val();
-				$pengunggah = $('#new_pengunggah').text();
-				$deskripsi = $('#new_deskripsi').val();				
-				$.ajax({
-					url: 'admin/berkas/tambahberkas',
-					type: 'POST',
-					data: {
-						'nama_berkas' : $nama,
-						'pengunggah_berkas' : $pengunggah,
-						'deskripsi_berkas' : $deskripsi
-					},
-					success: function(data){
-						$(".pop_up_super_c_tambah_berkas").fadeOut(200, function(){});
-						getBerkas();
-					},
-					error:function(errorThrown){
-						alert(errorThrown);
-					}
-				});
-			});
+			// $('body').on('click','#button_tambah_berkas',function(){
+				// $nama = $('#new_nama').val();
+					// alert($nama);
+				// $pengunggah = $('#new_pengunggah').text();
+					// alert($pengunggah);
+				// $deskripsi = $('#new_deskripsi').val();				
+					// alert($deskripsi);
+				// $.ajax({
+					// url: 'admin/berkas/tambahberkas',
+					// type: 'POST',
+					// data: {
+						// 'nama_berkas' : $nama,
+						// 'pengunggah_berkas' : $pengunggah,
+						// 'deskripsi_berkas' : $deskripsi
+					// },
+					// success: function(data){
+						// $(".pop_up_super_c_tambah_berkas").fadeOut(200, function(){});
+						// alert(data);
+						// getBerkas();
+					// },
+					// error:function(errorThrown){
+						// alert(errorThrown);
+					// }
+				// });
+			// });
 		</script>
 	</div>
 </div>
@@ -218,17 +242,17 @@
 						<tr>
 							<td style="width:150px !important;">Nama Berkas</td>
 							<td><pre>:   </pre></td>
-							<td>{{ Form::text('namaberkas', Input::old('namaberkas'), array('id' => 'new_nama', 'style' => 'width:350px !important;')) }}</td>
+							<td>{{ Form::text('nama_berkas', Input::old('nama_berkas'), array('id' => 'new_nama', 'style' => 'width:350px !important;')) }}</td>
 						</tr>
-						<tr>
+						<tr style="display:none;">
 							<td>Pengunggah</td>
-							<td><pre>:   </pre></td>
-							<td id="new_pengunggah">1</td>
+							<td><pre>:   </pre></td>							
+							<td id="new_pengunggah">{{ Form::hidden('id_pengunggah', Auth::user()->profile_id, Input::old('id_pengunggah')) }}</td>
 						</tr>
 						<tr>
 							<td>Deskripsi Berkas</td>
 							<td><pre>:   </pre></td>
-							<td>{{ Form::textarea('deskripsiberkas', Input::old('deskripsiberkas'), array('id' => 'new_deskripsi')) }}</td>
+							<td>{{ Form::textarea('deskripsi_berkas', Input::old('deskripsi_berkas'), array('id' => 'new_deskripsi')) }}</td>
 						</tr>
 						<tr>
 							<td>File Berkas</td>
@@ -237,7 +261,7 @@
 						</tr>
 						<tr>
 							<!--<td><input type='button' value='Tambah' id="tambah_cabang_button"/></td>-->							
-							<td colspan="3">{{ Form::submit('Tambah Berkas')}}</td>
+							<td colspan="3">{{ Form::submit('Tambah Berkas', array('id' => 'button_tambah_berkas'))}}</td>
 						</tr>					
 					</table>
 					{{ Form::token() }}
@@ -259,18 +283,18 @@
 				<div id="div_form_berkas">					
 					<table class="table_berkas">
 						<tr>
-							<td style="width:150px !important;">Nama Berkas</td>
+							<td class="nama_berkas">Nama Berkas</td>
 							<td><pre>:   </pre></td>
-							<td><input type="text" value=""/>"</td>
+							<td id="td_up_nama_berkas"><p id="tesnama" style="display:none;">test</p><input id="up_nama_berkas" type="text" value="" style="width:350px !important;"/></td>
 						</tr>						
 						<tr>
-							<td>Deskripsi Berkas</td>
+							<td class="deskripsi_berkas">Deskripsi Berkas</td>
 							<td><pre>:   </pre></td>
-							<td><textarea value="sdasdasd"></textarea></td>
+							<td id="td_up_deskripsi_berkas"><textarea id="up_deskripsi_berkas" rows="12"></textarea></td>
 						</tr>						
 						<tr>							
 							<td colspan="3"><button class="ok_edit_berkas">Edit Berkas</button></td>
-						</tr>					
+						</tr>						
 					</table>					
 				</div>
 			</div>

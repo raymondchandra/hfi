@@ -152,6 +152,7 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	//aktivasi akun
 	//reset password
 	//edit berkas
+	Route::put('/berkas/editberkas', ['as' => 'admin.berkas.editberkas', 'uses' => 'BerkasAdminController@edit_berkas']);
 	
 	
 	//admin delete route

@@ -13,9 +13,13 @@
 @import 'admin_regulasi.css';
 @import 'admin_pengurus.css';
 
+@import 'admin_berkas.css';
+
 @import 'slideshow.css';
 @import 'cabang.css';
 @import 'admin_cabang.css'; 
 @import 'kegiatan.css'; 
 @import 'jquery-te-1.4.0.css';
+
+@import 'admin_daftar_akun.css';
 

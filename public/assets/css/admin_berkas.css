@@ -1,0 +1,108 @@
+.berkas_list_container{
+	margin-top:30px; 
+}
+
+.berkas_list{
+	margin-left: 100px;
+}
+
+.list_berkas{
+	font-size: 14px;
+}
+
+.nama_berkas,.pengunggah_berkas{
+	width: 300px;
+}
+
+.deskripsi_berkas{
+	width: 180px;
+}
+
+.edit_berkas, .delete_berkas{
+	width: 50px;	
+}
+
+.edit_berkas input[type='button']{
+	margin 
+}
+
+.download_berkas{
+	width: 120px;	
+}
+
+.list_berkas tr td input[type='text']{
+	width: 90% !important;
+}
+
+#tambah_berkas_link{
+	margin-left: 870px;
+}
+
+.table_berkas input[type='text']{
+	width: 110% !important;
+}
+
+.table_preview tr{
+	height:30px;
+}
+
+.div_detail_berkas{
+	width:500px;
+	height:auto;
+	margin-left:auto;
+	margin-right:auto;	
+}
+
+#judul_deskripsi{
+	height:60px;
+	padding-top:20px;
+	margin-left:40px;
+	margin-right:40px;
+	text-align:center;
+}
+
+#div_isi_deskripsi, #div_form_berkas{
+	height:300px;
+	margin-left:40px;	
+	margin-right:40px;
+	padding-bottom:20px;
+}
+
+/*redundan popup di halaman admin berkas*/
+
+.pop_up_super_c_deskripsi_berkas, .pop_up_super_c_tambah_berkas,
+.pop_up_super_c_edit_berkas {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 999999;
+	background-color: rgba(0,0,0,0.8);
+	top: 0px;
+	left: 0px;
+	overflow: auto;
+}
+.pop_up_tbl_deskripsi_berkas, .pop_up_tbl_tambah_berkas,
+.pop_up_tbl_edit_berkas {
+	width: 100%;
+	height: 100%;
+	display: table;
+	z-index: 1999999;
+	overflow-y: hidden;
+	vertical-align: middle;
+}
+.pop_up_cell_deskripsi_berkas, ..pop_up_cell_tambah_berkas,
+.pop_up_cell_edit_berkas {
+	display: table-cell;
+	vertical-align: middle;
+}
+.close_56_deskripsi_berkas, .close_56_tambah_berkas,
+.close_56_edit_berkas {
+	background: url('../img/close56.png') no-repeat;
+	width: 56px;
+	height: 69px;
+	display: block;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	cursor: pointer;
+}

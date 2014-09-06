@@ -31,7 +31,7 @@ Route::get('/ubahpassword', ['as' => 'changepassword', 'uses' => 'AccountControl
 
 //get daftar cabang buat registrasi	
 Route::get('/registrasi/daftarcabang', ['as' => 'registrasi.daftarcabang', 'uses' => 'AccountController@view_registrasi']);
-
+Route::post('/registrasi/checkExist', ['as' => 'registrasi.checkExist', 'uses' => 'AccountController@checkExist']);
 
 
 //user view

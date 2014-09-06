@@ -89,7 +89,7 @@
 							<a href="#">
 								Lain-lain
 							</a>
-							<ul>
+							<!--<ul>
 								<li><a href="#">Jika ada 0</a></li>
 								<li><a href="#">Jika ada 1</a></li>
 								<li><a href="#">Jika ada 2</a></li>
@@ -97,7 +97,7 @@
 								<li><a href="#">Jika ada 4</a></li>
 								<li><a href="#">Jika ada 5</a></li>
 								
-							</ul>
+							</ul>-->
 							
 						</li>
 						

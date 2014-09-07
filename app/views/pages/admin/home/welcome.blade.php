@@ -1,5 +1,4 @@
-@extends('layouts.adminlayout')
-@section('content')
+
 <script>
 $(document).ready(function(){
 	$( ".loader" ).fadeOut( 200, function(){});
@@ -38,4 +37,3 @@ $(document).ready(function(){
 		</script>
 	</div>
 </div>
-@stop

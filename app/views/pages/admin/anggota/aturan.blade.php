@@ -1,3 +1,9 @@
+
+<script>
+$(document).ready(function(){
+	$( ".loader" ).fadeOut( 200, function(){});
+});
+</script>	
 <div class='admin_title'>Beranda Anggota HFI</div>
 <div class='editor_container' style="height:350px;">
 

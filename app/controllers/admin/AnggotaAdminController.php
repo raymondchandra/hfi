@@ -9,24 +9,24 @@ class AnggotaAdminController extends BaseController {
 	public function view_aturan()
 	{
 
-		$konten_home = Konten::where('tipe_konten', '=', 'anggota_home')->first()->konten;
-		// $konten_home = Konten::where('tipe_konten', '=', 'anggota_home')->first();
-		// if(count($konten_home) != 0)
-		// {			
-			// $konten_home->konten;
-		// }else
-		// {
-			// $konten_home = "";
-		// }
-		$konten_aturan = Konten::where('tipe_konten', '=', 'anggota_ketentuan')->first()->konten;
-		// $konten_aturan = Konten::where('tipe_konten', '=', 'anggota_ketentuan')->first();
-		// if(count($konten_aturan) != 0)
-		// {			
-			// $konten_aturan->konten;
-		// }else
-		// {
-			// $konten_aturan = "";
-		// }
+		//$konten_home = Konten::where('tipe_konten', '=', 'anggota_home')->first()->konten;
+		$konten_home = Konten::where('tipe_konten', '=', 'anggota_home')->first();
+		 if(count($konten_home) != 0)
+		 {			
+			$konten_home->konten;
+		}else
+		{
+			$konten_home = "";
+		}
+		//$konten_aturan = Konten::where('tipe_konten', '=', 'anggota_ketentuan')->first()->konten;
+		 $konten_aturan = Konten::where('tipe_konten', '=', 'anggota_ketentuan')->first();
+		 if(count($konten_aturan) != 0)
+		 {			
+			 $konten_aturan->konten;
+		 }else
+		 {
+			 $konten_aturan = "";
+		 }
 
 		$konten_home = AnggotaController::getKonten('anggota_home');
 		$konten_aturan = AnggotaController::getKonten('anggota_ketentuan');;

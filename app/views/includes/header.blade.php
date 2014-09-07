@@ -87,7 +87,7 @@
 						</li>
 						<li>
 							<a href="#">
-								Lain-lain
+								{{HTML::linkRoute('lain','Lain-lain')}}
 							</a>
 							<!--<ul>
 								<li><a href="#">Jika ada 0</a></li>

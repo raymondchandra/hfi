@@ -1,5 +1,4 @@
-@extends('layouts.adminlayout')
-@section('content')
+
 <script>
 	$(document).ready(function(){
 		$( ".show_after" ).each(function( index ) {
@@ -14,8 +13,9 @@
 			else{
 				$(this).siblings('.show_before').text($('.show_after').text());
 			}
-			$( ".loader" ).fadeOut( 200, function(){});
+			
 		});
+		$( ".loader" ).fadeOut( 200, function(){});
 	});
 	
 	$('body').on('click','.description_button',function(){
@@ -75,6 +75,7 @@
 		@if($kegiatans != NULL)
 			<?php echo $kegiatans->links(); ?>
 		@endif
+		
 <script>
 	
 	$('body').on('click','#tambah_kegiatan',function(){
@@ -236,4 +237,3 @@
 		</div>		
 	</div>
 </div>
-@stop

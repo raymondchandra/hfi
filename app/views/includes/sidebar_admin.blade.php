@@ -5,22 +5,22 @@
 				<a href="javascript:void(0)" class="_home_tombol">Home</a>
 				<ul style="display: none;" class="_home_list">
 					<li>
-						{{HTML::linkRoute('admin.home.slide','Slideshow')}}
+						<a href="javascript:void(0)" id='home_slideshow'>Slideshow</a>
 					</li>
 					<li> 
-						{{HTML::linkRoute('admin.home.welcome','Welcome Message')}}
+						<a href="javascript:void(0)" id='home_welcome'>Welcome Message</a>
 					</li>
 					<li>
-						{{HTML::linkRoute('admin.home.about','Tentang HFI')}}
+						<a href="javascript:void(0)" id='home_about'>Tentang HFI</a>
 					</li>
 					<li>
-						{{HTML::linkRoute('admin.home.visi','Visi')}}
+						<a href="javascript:void(0)" id='home_visi'>Visi</a>
 					</li>
 					<li>
-						{{HTML::linkRoute('admin.home.misi','Misi')}}
+						<a href="javascript:void(0)" id='home_misi'>Misi</a>
 					</li>
 					<li>
-						{{HTML::linkRoute('admin.home.regulasi','Regulasi')}}
+						<a href="javascript:void(0)" id='home_regulasi'>Regulasi</a>
 					</li>
 				</ul>
 			</li>
@@ -32,13 +32,13 @@
 						<a href="javascript:void(0)" id='organisasi_pengurus'>Pengurus</a>
 					</li>
 					<li>
-						{{HTML::linkRoute('admin.organisasi.cabang','Cabang')}}
+						<a href="javascript:void(0)" id='organisasi_cabang'>Cabang</a>
 					</li>
 				</ul>
 			</li>
 			
 			<li>
-				{{HTML::linkRoute('admin.kegiatan','Kegiatan')}}
+				<a href="javascript:void(0)" id="admin_kegiatan" class="no_arrow">Kegiatan</a>
 			</li>
 			
 			<li>
@@ -68,12 +68,8 @@
 					<li>
 						<a href="javascript:void(0)" id="anggota_daftar">Daftar Anggota</a>
 					</li>
-					<li>
-						<a href="javascript:void(0)" id="anggota_akun">Daftar Akun</a>
-					</li>
 				</ul>
 			</li>
-			
 			<li>
 				<a href="javascript:void(0)" class="_akun_tombol">Akun</a>
 				<ul style="display: none;" class="_akun_list">
@@ -88,9 +84,11 @@
 					</li>
 				</ul>
 			</li>
-			
 			<li>
 				<a href="javascript:void(0)" class="no_arrow" id='admin_berkas'>e-Berkas</a>
+			</li>
+			<li>
+				<a href="javascript:void(0)" class="no_arrow" id='admin_lain'>Lain-lain</a>
 			</li>
 			<li>
 				<a href="javascript:void(0)" class="no_arrow" id='ubah_password'>Ubah Password</a>

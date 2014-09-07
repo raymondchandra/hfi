@@ -1,8 +1,10 @@
 <?php
 
-//model binding
-//Route::model('post', 'Post');
 
+//test upload ajax
+Route::get('/test', ['as' => 'test', 'uses' => 'LainController@view_test']);
+Route::post('/putSlideTest', ['as' => 'test.a', 'uses' => 'HomeAdminController@update_foto_gallery']);
+//end of test
 
 //Redirect
 Route::get('/redirect', ['as' => 'redirect' , 'uses' => 'AccountController@view_redirect']);
@@ -21,6 +23,7 @@ Route::get('anggota', ['as' => 'anggota', 'uses' => 'AnggotaController@view_inde
 	//route ke sidebar
 	Route::get('/ketentuan', ['as' => 'ketentuan', 'uses' => 'AnggotaController@view_ketentuan']);
 Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index']);
+Route::get('/lain', ['as' => 'lain', 'uses' => 'LainController@view_index']);
 
 //account view
 Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login', 'before' => 'checkLogin']);
@@ -96,6 +99,8 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	Route::get('/berkas', ['as' => 'admin.berkas', 'uses' => 'BerkasAdminController@view_index']);
 	//end of berkas
 	
+	Route::get('/lain', ['as' => 'admin.lain', 'uses' => 'LainAdminController@view_lain']);
+	
 	//ubahpassword
 	Route::get('/ubahpassword', ['as' => 'admin.ubahpassword', 'uses' => 'UbahpasswordAdminController@view_index']);
 	//end of ubahpassword
@@ -110,6 +115,7 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	
 	//admin post route
 	Route::post('/organisasi/tambahcabang', ['as' => 'admin.organisasi.tambahcabang', 'uses' => 'OrganisasiAdminController@tambah_cabang']);
+	
 			
 	//post slideshow
 	//upload regulasi
@@ -127,7 +133,7 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	Route::put('/editMisi', ['as' => 'admin.editMisi', 'uses' => 'HomeAdminController@update_misi']);
 	
 	//edit slideshow
-	Route::put('/editSlideShow', ['as' => 'admin.editSlideShow', 'uses' => 'HomeAdminController@update_foto_gallery']);
+	Route::post('/editSlideShow', ['as' => 'admin.editSlideShow', 'uses' => 'HomeAdminController@update_foto_gallery']);
 	//edit caption
 	Route::put('/editCaption', ['as' => 'admin.editCaption', 'uses' => 'HomeAdminController@update_caption']);
 	//edit regulasi
@@ -145,6 +151,10 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	Route::put('/editPubLain', ['as' => 'admin.editPubLain', 'uses' => 'PublikasiAdminController@update_karyaLain']);
 	Route::put('/editPubPopuler', ['as' => 'admin.editPubPopuler', 'uses' => 'PublikasiAdminController@update_populer']);
 	
+	//edit lain
+	Route::put('/editLain', ['as' => 'admin.editLain', 'uses' => 'LainAdminController@update_lain']);
+	
+	
 	//edit beranda anggota
 	Route::put('/editAnggotaHome', ['as' => 'admin.editAnggotaHome', 'uses' => 'AnggotaAdminController@update_home']);
 	//edit aturan anggota
@@ -154,7 +164,7 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	//edit berkas
 	Route::put('/berkas/editberkas', ['as' => 'admin.berkas.editberkas', 'uses' => 'BerkasAdminController@edit_berkas']);
 	
-	
+	Route::put('/changePass', ['as' => 'admin.changePass', 'uses' => 'AccountController@changePass']);
 	//admin delete route
 	
 	//delete regulasi
@@ -176,6 +186,8 @@ Route::post('/regis', ['as' => 'regis', 'uses' => 'AccountController@postRegis']
 Route::post('/postRegulasi', ['as' => 'postRegulasi', 'uses' => 'HomeAdminController@add_regulasi']);
 Route::post('/postPengurus', ['as' => 'postPengurus', 'uses' => 'OrganisasiAdminController@tambah_pengurus']);
 Route::post('/postBerkas', ['as' => 'postBerkas', 'uses' => 'BerkasAdminController@tambah_berkas']);
+
+Route::put('/changePass', ['as' => 'changePass', 'uses' => 'AccountController@changePass']);
 
 
 

@@ -94,6 +94,12 @@ $('body').on('click','#admin_berkas',function(){
 	 $('.admin_control_panel').load('admin/berkas');
 });
 
+//sidebar lain-lain
+$('body').on('click','#admin_lain',function(){
+	$( ".loader" ).fadeIn( 200, function(){});
+	 $('.admin_control_panel').load('admin/lain');
+});
+
 //sidebar ubah password
 $('body').on('click','#ubah_password',function(){
 	$( ".loader" ).fadeIn( 200, function(){});

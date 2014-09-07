@@ -207,6 +207,42 @@ class AccountController extends BaseController {
 		}
 	}
 	
+	public function changePass()
+	{
+		$rules = array(
+			'oldPass' => 'required',
+			'newPass' => 'required|min:8',
+			'reNewPass' => 'required|min:8'
+		);
+		
+	    $validator = Validator::make(Input::all(), $rules);
+
+	    if ($validator->fails())
+	    {
+	        return $validator->messages();
+	    }
+	
+		$oldPass = Input::get('oldPass');
+		$newPass = Input::get('newPass');
+		$reNewPass = Input::get('reNewPass');
+		$id = Auth::user()->id;
+		if(Hash::check($oldPass,Auth::user()->password)){
+			if($newPass == $reNewPass)
+			{
+				$acc = Account::where('id', '=', $id)->first();
+				$acc->password = Hash::make($newPass);
+				$acc->save();
+				return 'success';
+			}else
+			{
+				return 'wrong retype';
+			}
+			
+		}else return 'wrong password';
+		
+		
+	}
+	
 	public function view_login()
 	{
 		$arr = $this->setHeader();

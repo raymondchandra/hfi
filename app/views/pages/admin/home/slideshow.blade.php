@@ -1,3 +1,5 @@
+@extends('layouts.adminlayout')
+@section('content')
 <script>
 	var index_caption = -1;
 	
@@ -95,7 +97,7 @@
 					$view.="
 						<li>
 							<div>
-								<img src='".$slideshow[$i]['file_path']."' class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
+								<img src='../../".$slideshow[$i]['file_path']."' class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
 							</div>
 							<input type='text' class='caption' value='".$slideshow[$i]['kapsion']."' placeholder='caption ".($i+1)."' />
 							<input type='button' class='ok_change' value='Ok' style='display:none;' />
@@ -317,3 +319,5 @@ $('.ok_change').click(function(){
 		</div>
 	</div>
 </div>--> 
+
+@stop

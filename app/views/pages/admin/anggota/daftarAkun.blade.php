@@ -57,7 +57,13 @@
 			<div class="container_12">			
 			<div class="grid_7 detail_cabang" style="background: #fff;">
 				<h2>Detail Anggota</h2>
-				
+					<img src='#' width='140' height='170' />
+					<label>Nama</label><div>Muhammad Nauffal Ashidiq Wangsa Admaja</div>
+					<label>Alamat</label><div>Jl. Merdeka No 123 Bandung</div>
+					<label>Telepon</label><div>022730101010</div>
+					<label>Fax</label><div>-</div>
+					<label>e-mail</label><div>abc@gmail.com</div>
+					<label>website</label><div>-</div>
 			</div>
 			</div>			
 		</div>		

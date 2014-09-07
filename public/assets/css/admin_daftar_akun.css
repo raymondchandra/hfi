@@ -6,16 +6,16 @@
 
 .daftar_aktifasi_container{
 	float:left;
-	margin-right: 150px;
+	margin-right: 20px;
 }
 
 .email,.nama{
-	width: 200px;
-	max-width: 200px;
+	width: 170px;
+	max-width: 170px;
 }
 
 .batas_aktif{
-	width: 100px;
+	width: 75px;
 }
 
 .aktifasi,.lihat_detail,.hapus_akun_non{

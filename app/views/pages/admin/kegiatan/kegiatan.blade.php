@@ -1,3 +1,5 @@
+@extends('layouts.adminlayout')
+@section('content')
 <script>
 	$(document).ready(function(){
 		$( ".show_after" ).each(function( index ) {
@@ -234,3 +236,4 @@
 		</div>		
 	</div>
 </div>
+@stop

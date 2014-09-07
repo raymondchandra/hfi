@@ -109,6 +109,19 @@
 				});
 			}
 		});
+	
+	$('._akun_tombol').click(function ()
+		{
+			if ($('._akun_list').is(':visible')) {
+				$( "._akun_list" ).slideUp( 370, function(){
+					$('._akun_list').css('display', 'none');
+				});
+			} else {
+				$( "._akun_list" ).slideDown( 370, function(){
+					$('._akun_list').css('display', 'block');
+				});
+			}
+		});
 		
 			$('body').on('click','#sesuatu',function(){
 		$( ".pop_up_super_c_layout" ).fadeIn( 277, function(){});

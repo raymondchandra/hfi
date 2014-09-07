@@ -5,22 +5,22 @@
 				<a href="javascript:void(0)" class="_home_tombol">Home</a>
 				<ul style="display: none;" class="_home_list">
 					<li>
-						<a href="javascript:void(0)" id='home_slideshow'>Slideshow</a>
+						{{HTML::linkRoute('admin.home.slide','Slideshow')}}
 					</li>
 					<li> 
-						<a href="javascript:void(0)" id='home_welcome'>Welcome Message</a>
+						{{HTML::linkRoute('admin.home.welcome','Welcome Message')}}
 					</li>
 					<li>
-						<a href="javascript:void(0)" id='home_about'>Tentang HFI</a>
+						{{HTML::linkRoute('admin.home.about','Tentang HFI')}}
 					</li>
 					<li>
-						<a href="javascript:void(0)" id='home_visi'>Visi</a>
+						{{HTML::linkRoute('admin.home.visi','Visi')}}
 					</li>
 					<li>
-						<a href="javascript:void(0)" id='home_misi'>Misi</a>
+						{{HTML::linkRoute('admin.home.misi','Misi')}}
 					</li>
 					<li>
-						<a href="javascript:void(0)" id='home_regulasi'>Regulasi</a>
+						{{HTML::linkRoute('admin.home.regulasi','Regulasi')}}
 					</li>
 				</ul>
 			</li>
@@ -32,13 +32,13 @@
 						<a href="javascript:void(0)" id='organisasi_pengurus'>Pengurus</a>
 					</li>
 					<li>
-						<a href="javascript:void(0)" id='organisasi_cabang'>Cabang</a>
+						{{HTML::linkRoute('admin.organisasi.cabang','Cabang')}}
 					</li>
 				</ul>
 			</li>
 			
 			<li>
-				<a href="javascript:void(0)" id="admin_kegiatan" class="no_arrow">Kegiatan</a>
+				{{HTML::linkRoute('admin.kegiatan','Kegiatan')}}
 			</li>
 			
 			<li>
@@ -70,6 +70,21 @@
 					</li>
 					<li>
 						<a href="javascript:void(0)" id="anggota_akun">Daftar Akun</a>
+					</li>
+				</ul>
+			</li>
+			
+			<li>
+				<a href="javascript:void(0)" class="_akun_tombol">Akun</a>
+				<ul style="display: none;" class="_akun_list">
+					<li>					
+						<a href="javascript:void(0)" id='akun_baru'>Akun Baru</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)" id="akun_aktif">Akun Aktif</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)" id="akun_non_aktif">Akun Non-aktif</a>
 					</li>
 				</ul>
 			</li>

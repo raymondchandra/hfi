@@ -31,7 +31,7 @@ Route::get('/ubahpassword', ['as' => 'changepassword', 'uses' => 'AccountControl
 
 //get daftar cabang buat registrasi	
 Route::get('/registrasi/daftarcabang', ['as' => 'registrasi.daftarcabang', 'uses' => 'AccountController@view_registrasi']);
-
+Route::post('/registrasi/checkExist', ['as' => 'registrasi.checkExist', 'uses' => 'AccountController@checkExist']);
 
 
 //user view
@@ -152,6 +152,7 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	//aktivasi akun
 	//reset password
 	//edit berkas
+	Route::put('/berkas/editberkas', ['as' => 'admin.berkas.editberkas', 'uses' => 'BerkasAdminController@edit_berkas']);
 	
 	
 	//admin delete route

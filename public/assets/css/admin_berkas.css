@@ -11,11 +11,19 @@
 }
 
 .nama_berkas,.pengunggah_berkas{
-	width: 200px;
+	width: 300px;
 }
 
 .deskripsi_berkas{
-	width: 120px;
+	width: 180px;
+}
+
+.edit_berkas, .delete_berkas{
+	width: 50px;	
+}
+
+.edit_berkas input[type='button']{
+	margin 
 }
 
 .download_berkas{

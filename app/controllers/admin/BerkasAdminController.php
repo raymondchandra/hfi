@@ -34,11 +34,12 @@ class BerkasAdminController extends BaseController {
 						
 			$berkas = new Berkas();
 			$berkas -> timestamps = false;
-			$berkas -> nama_file = Input::get("nama_file");
+			$berkas -> nama_file = Input::get("nama_berkas");
 			$berkas -> path_file = $destinationPath.$fileName;
-			$berkas -> uploaded_by = UserController::getProfileId(Auth::user()->id);
+			//$berkas -> uploaded_by = Auth::user()->profile_id;			
+			$berkas -> uploaded_by = Input::get("id_pengunggah");
 			$berkas -> uploaded_date = Carbon::now();
-			$berkas -> deskripsi = Input::get("deskripsi");
+			$berkas -> deskripsi = Input::get("deskripsi_berkas");
 			
 			$berkas -> save();
 			
@@ -66,6 +67,21 @@ class BerkasAdminController extends BaseController {
 		{
 			return "Failed Delete";
 		}
+	}
+	
+	public function edit_berkas()
+	{
+		$id_berkas = Input::get("id_berkas");
+		$berkas = Berkas::find($id_berkas);
+		if($berkas!=null){
+			$berkas->nama_file = Input::get("nama_berkas");
+			$berkas->deskripsi = Input::get("deskripsi_berkas");
+			$berkas->timestamps = false;
+			$berkas->save();
+			return "Berhasil Edit";
+		}else{
+			return "Gagal Edit";
+		}		
 	}
 	
 	public function get_all_berkas()

@@ -24,7 +24,24 @@
 		<tr>
 			<td>Username</td>
 			<td>:</td>
-			<td>{{ Form::text('username', Input::old('username')) }} <span class="red">*</span></td>			
+			<td>{{ Form::text('username',Input::old('username'), array('id' => 'input_username')) }} <span id="username-error"></span><span class="red">*</span></td>	
+			<script>
+				$("#input_username").change(function(){
+					var url = '{{ URL::route('registrasi.checkExist') }}';
+					
+					var input = {
+						username : $("#input_username").val()
+					}
+					$.post(url,input, function( data ) {
+					 	if(data == 'ok')
+						{
+							$("#username-error").text("Anda dapat menggunakan username ini");
+						}else{
+							$("#username-error").text("Username ini sudah terpakai");
+						}
+					});
+				});
+			</script>		
 		</tr>		
 		<tr>
 			<td><i>Password</i></td>
@@ -46,14 +63,7 @@
 			<td>Registrasi</td>			
 			<td>:</td>
 			<td>
-				anggota non-aktif, HFI Cabang 				
-				<?php
-					// $length = sizeof($arr2);
-					// $arrCabang = array();					
-					// for($i=0; $i<$length; $i++){
-						// $arrCabang[] = $arr2[$i]['nama'];
-					// }
-				?>
+				anggota non-aktif, HFI Cabang 	
 				{{ Form::select('hficabang', $arr2, Input::old('hficabang'), array('style' => 'width:200px;'))}}				
 			</td>			
 		</tr>
@@ -113,7 +123,7 @@
 				function addPendidikan(){
 					if(lastIdx <=5)
 					{
-						var newRow = "<div id='divPendidikan"+lastIdx+"'><select class='selPendidikan'>";
+						var newRow = "<div id='divPendidikan"+lastIdx+"'><select class='selPendidikan' name='selPendidikan"+lastIdx+"'>";
 						newRow +="<option value=''>Pilih!</option>";
 						newRow +="<option value='SD'>SD</option>";
 						newRow +="<option value='SMP'>SMP</option>";
@@ -127,7 +137,7 @@
 						newRow +="<option value='S3'>S3</option>";
 						newRow +="<option value='lain'>Lainnya</option>";
 						newRow +="</select>";
-						newRow +="<input type='text' id='pendidikan"+lastIdx+"' class='texPendidikan' />";
+						newRow +="<input type='text' id='pendidikan"+lastIdx+"' name='pendidikan"+lastIdx+"' class='texPendidikan' />";
 						newRow +="<input type='button' value='X' id='delPendidikan"+lastIdx+"' onClick='delPendidikan("+lastIdx+")' /><br /></div>";
 						$('#delPendidikan'+(lastIdx-1)).hide();
 						$('#addPendidikan').append(newRow);
@@ -144,15 +154,13 @@
 					$('#divPendidikan'+(lastIdx-1)).remove();
 					lastIdx--;
 					$('#delPendidikan'+(lastIdx-1)).show();
-					//newRow ="<input type='button' value='X' id='delPendidikan"+(lastIdx-1)+"' onClick='delPendidikan("+(lastIdx-1)+")' /><br />";
-					//$('#divPendidikan'+(lastIdx-1)).append(newRow);
 					if(lastIdx==5){
 						$('#refPendidikan').show();
 					}
 				}
 			</script>
 			<div>
-				<select class='selPendidikan'>
+				<select class='selPendidikan' name='selPendidikan1'>
 					<option value=''>Pilih!</option>
 					<option value='SD'>SD</option>
 					<option value='SMP'>SMP</option>
@@ -166,7 +174,7 @@
 					<option value='S3'>S3</option>
 					<option value='lain'>Lainnya</option>
 				</select>
-			<input type="text" id="pendidikan1" class='texPendidikan' /><span class="red">*</span><br />
+			<input type="text" id="pendidikan1" name="pendidikan1" class='texPendidikan' /><span class="red">*</span><br />
 			<div id="addPendidikan"></div>
 		<a href="javascript:void(0)" onClick = "addPendidikan();" id="refPendidikan">tambah pendidikan</a>
 	</div>
@@ -312,8 +320,7 @@
 				  required: true
 				},
 				tanggallahir: {
-				  required: true,
-					number: true
+				  required: true
 				},
 				bulanlahir: {
 				  required: true,
@@ -332,7 +339,7 @@
 				spesialisasi: {
 				  required: true
 				},
-				pendidikan: {
+				pendidikan1: {
 				  required: true
 				},
 				profesi: {
@@ -381,8 +388,7 @@
 				  required: "Mohon isi tempat lahir dengan lengkap"
 				},
 				tanggallahir: {
-				  required: "Mohon pilih tanggal lahir",
-					number: "Mohon pilih tanggal lahir"
+				  required: "Mohon pilih tanggal lahir"
 				},
 				bulanlahir: {
 				  required: "Mohon pilih tanggal lahir",
@@ -401,7 +407,7 @@
 				spesialisasi: {
 				  required: "Mohon pilih spesialisasi"
 				},
-				pendidikan: {
+				pendidikan1: {
 				  required: "Mohon isi tempat pendidikan"
 				},
 				profesi: {
@@ -411,7 +417,7 @@
 				  required: "Mohon masukkan nama institusi"
 				},
 				alamatkontak: {
-				  required: "Mohon tulis alaman Anda"
+				  required: "Mohon tulis alamat Anda"
 				},
 				kota: {
 				  required: "Mohon tulis kota tinggal Anda"

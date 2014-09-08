@@ -1,10 +1,18 @@
+
+<script>
+$(document).ready(function(){
+	$( ".loader" ).fadeOut( 200, function(){});
+});
+</script>	
+<div class="container_12">
+	<div class="grid_12">
 <div class='admin_title'>Jenis Publikasi</div>
 <div class='editor_container'>
 <textarea name="pub_jenis" id = 'pub_jenis' class="editor"> 
 {{$pub_jenis}}
 </textarea>
+<input type='button' id='submit_change' value='Rubah' style="margin-left: auto; margin-right: auto; "></input>
 </div>
-<input type='button' id='submit_change' value='Rubah'></input>
 
 <script>
 	$('.editor').jqte();
@@ -25,3 +33,5 @@
 		},'json');
 	});
 </script>
+	</div>
+</div>

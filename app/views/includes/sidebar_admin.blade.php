@@ -68,14 +68,27 @@
 					<li>
 						<a href="javascript:void(0)" id="anggota_daftar">Daftar Anggota</a>
 					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="javascript:void(0)" class="_akun_tombol">Akun</a>
+				<ul style="display: none;" class="_akun_list">
+					<li>					
+						<a href="javascript:void(0)" id='akun_baru'>Akun Baru</a>
+					</li>
 					<li>
-						<a href="javascript:void(0)" id="anggota_akun">Daftar Akun</a>
+						<a href="javascript:void(0)" id="akun_aktif">Akun Aktif</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)" id="akun_non_aktif">Akun Non-aktif</a>
 					</li>
 				</ul>
 			</li>
-			
 			<li>
 				<a href="javascript:void(0)" class="no_arrow" id='admin_berkas'>e-Berkas</a>
+			</li>
+			<li>
+				<a href="javascript:void(0)" class="no_arrow" id='admin_lain'>Lain-lain</a>
 			</li>
 			<li>
 				<a href="javascript:void(0)" class="no_arrow" id='ubah_password'>Ubah Password</a>

@@ -1,3 +1,9 @@
+
+<script>
+$(document).ready(function(){
+	$( ".loader" ).fadeOut( 200, function(){});
+});
+</script>	
 <div class="container_12">
 	<div class="grid_12">
 		<div class='admin_title'>Misi HFI</div>

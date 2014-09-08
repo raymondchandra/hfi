@@ -6,12 +6,12 @@ class KegiatanController extends BaseController {
 	
 	public function view_index()
 	{
-		$kegiatans = $this->get_all_kegiatan(); 
+		$kegiatans = KegiatanController::get_all_kegiatan(); 
 		$arr = $this->setHeader();
 		return View::make('pages.kegiatan', compact('arr','kegiatans'));
 	}
 
-	public function get_all_kegiatan()
+	public static function get_all_kegiatan()
 	{
 		$kegiatan = Kegiatan::orderBy('waktu_mulai')->paginate(2);
 		if(count($kegiatan) == 0)
@@ -24,7 +24,6 @@ class KegiatanController extends BaseController {
 		}
 	}
 	
-	//public function get_kegiatan_info()
 }
 
 ?>

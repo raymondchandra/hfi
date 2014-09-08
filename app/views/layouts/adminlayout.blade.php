@@ -109,27 +109,40 @@
 				});
 			}
 		});
+	
+	$('._akun_tombol').click(function ()
+		{
+			if ($('._akun_list').is(':visible')) {
+				$( "._akun_list" ).slideUp( 370, function(){
+					$('._akun_list').css('display', 'none');
+				});
+			} else {
+				$( "._akun_list" ).slideDown( 370, function(){
+					$('._akun_list').css('display', 'block');
+				});
+			}
+		});
 		
 			$('body').on('click','#sesuatu',function(){
-		$( ".pop_up_super_c" ).fadeIn( 277, function(){});
+		$( ".pop_up_super_c_layout" ).fadeIn( 277, function(){});
 	});
 	
-	$('.exit').click(function() {$( ".pop_up_super_c" ).fadeOut( 200, function(){});});	
+	$('.exit').click(function() {$( ".pop_up_super_c_layout" ).fadeOut( 200, function(){});});	
 		
-	$('.pop_up_super_c').click(function (e)
+	$('.pop_up_super_c_layout').click(function (e)
 	{
 		var container = $('.pop_up_cell');
 
 		if (container.is(e.target) )// if the target of the click is the container...
 		{
-			$( ".pop_up_super_c" ).fadeOut( 200, function(){});
+			$( ".pop_up_super_c_layout" ).fadeOut( 200, function(){});
 			$('html').css('overflow-y', 'auto');
 		}
 	});
 	</script>
 	
 <!--pop-up-message-->
-<div class="pop_up_super_c" id="sesuatu" style="display: none;">
+<div class="pop_up_super_c_layout" id="sesuatu" style="display: none;">
 	<a class="exit close_56" ></a>
 	<div class="pop_up_tbl">
 		<div class="pop_up_cell">
@@ -141,6 +154,45 @@
 		</div>		
 	</div>
 </div>
+
+<script>
+	/*Script yang digunakan untuk LOADING ANIMATION*/
+	
+	
+	/*external container area exit trigger*/
+	 $('.pu_close').click(function(){
+		 $( ".pu_c" ).fadeOut( 200, function(){});
+		 $("body").css('overflow-x','visible');
+	 });
+	 $('.pu_c').click(function (e)
+		 {
+			 var container = $('.pu_cell');
+
+			 if (container.is(e.target) )// if the target of the click is the container...
+			 {
+				 $( ".pu_c" ).fadeOut( 200, function(){});
+				 $("body").css('overflow-x','visible');
+			 }
+		 });						
+		 Slider = $('#slider').Swipe({   <!--swipe ke detect error-->
+			 auto: 3000,  
+			 continuous: true  
+		 }).data('Swipe');  
+	 $('.pu_c').css('display','none');
+								
+</script>
+
+<!-- pop up loading -->
+<div id="" class="pu_c loader" style="z-index: 999999; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: block; ">
+	<div class="tableed">
+		<div class="celled pu_cell" style="height: 100%;">
+			<div class="container_12" style="position: relative;">
+				<span class="loading_animation" style="background-color: rgba(0, 0, 0, 0.701961);">
+				</span>
+			</div>
+		</div>
+	</div>
+</div> 
 
 
 </body>

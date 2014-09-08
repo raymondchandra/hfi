@@ -1,8 +1,10 @@
 <?php
 
-//model binding
-//Route::model('post', 'Post');
 
+//test upload ajax
+Route::get('/test', ['as' => 'test', 'uses' => 'LainController@view_test']);
+Route::post('/putSlideTest', ['as' => 'test.a', 'uses' => 'HomeAdminController@update_foto_gallery']);
+//end of test
 
 //Redirect
 Route::get('/redirect', ['as' => 'redirect' , 'uses' => 'AccountController@view_redirect']);
@@ -21,6 +23,7 @@ Route::get('anggota', ['as' => 'anggota', 'uses' => 'AnggotaController@view_inde
 	//route ke sidebar
 	Route::get('/ketentuan', ['as' => 'ketentuan', 'uses' => 'AnggotaController@view_ketentuan']);
 Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index']);
+Route::get('/lain', ['as' => 'lain', 'uses' => 'LainController@view_index']);
 
 //account view
 Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login', 'before' => 'checkLogin']);
@@ -31,7 +34,7 @@ Route::get('/ubahpassword', ['as' => 'changepassword', 'uses' => 'AccountControl
 
 //get daftar cabang buat registrasi	
 Route::get('/registrasi/daftarcabang', ['as' => 'registrasi.daftarcabang', 'uses' => 'AccountController@view_registrasi']);
-
+Route::post('/registrasi/checkExist', ['as' => 'registrasi.checkExist', 'uses' => 'AccountController@checkExist']);
 
 
 //user view
@@ -81,6 +84,12 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	Route::get('/anggota/daftar', ['as' => 'admin.anggota.daftar', 'uses' => 'AnggotaAdminController@view_anggota']);
 	//end of anggota
 	
+	//akun
+	Route::get('/akun/baru', ['as' => 'admin.akun.baru', 'uses' => 'AkunAdminController@view_akun_baru']);
+	Route::get('/akun/aktif', ['as' => 'admin.akun.aktif', 'uses' => 'AkunAdminController@view_akun_aktif']);
+	Route::get('/akun/nonaktif', ['as' => 'admin.akun.nonaktif', 'uses' => 'AkunAdminController@view_akun_nonaktif']);
+	//end of akun
+	
 	//kegiatan
 	Route::get('/kegiatan', ['as' => 'admin.kegiatan', 'uses' => 'KegiatanAdminController@view_index']);
 	//end of kegiatan
@@ -96,6 +105,8 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	Route::get('/berkas', ['as' => 'admin.berkas', 'uses' => 'BerkasAdminController@view_index']);
 	//end of berkas
 	
+	Route::get('/lain', ['as' => 'admin.lain', 'uses' => 'LainAdminController@view_lain']);
+	
 	//ubahpassword
 	Route::get('/ubahpassword', ['as' => 'admin.ubahpassword', 'uses' => 'UbahpasswordAdminController@view_index']);
 	//end of ubahpassword
@@ -103,19 +114,22 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	
 	//admin get route
 	Route::get('/organisasi/daftarcabang', ['as' => 'admin.organisasi.daftarcabang', 'uses' => 'OrganisasiAdminController@get_semua_cabang']);
+	Route::get('/organisasi/satucabang', ['as' => 'admin.organisasi.satucabang', 'uses' => 'OrganisasiAdminController@get_satu_cabang']);
 	Route::get('/organisasi/daftarpengurus', ['as' => 'admin.organisasi.daftarpengurus', 'uses' => 'OrganisasiAdminController@get_semua_pengurus']);
 	Route::get('/home/daftarregulasi', ['as' => 'admin.home.daftarregulasi', 'uses' => 'HomeAdminController@get_all_regulasi']);
+	Route::get('/berkas/daftarberkas', ['as' => 'admin.berkas.daftarberkas', 'uses' => 'BerkasAdminController@get_all_berkas']);
 	
 	//admin post route
 	Route::post('/organisasi/tambahcabang', ['as' => 'admin.organisasi.tambahcabang', 'uses' => 'OrganisasiAdminController@tambah_cabang']);
 	
-	
+			
 	//post slideshow
 	//upload regulasi
 		//Route::post('/postRegulasi', ['as' => 'admin.postRegulasi', 'uses' => 'HomeAdminController@add_regulasi']);
 	//upload pengurus
 	//post cabang
 	//post kegiatan
+	Route::post('/kegiatan', ['as' => 'admin.addKegiatan', 'uses' => 'KegiatanAdminController@add_kegiatan']);
 	//upload berkas
 	
 	//admin put route
@@ -124,13 +138,8 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	Route::put('/editVisi', ['as' => 'admin.editVisi', 'uses' => 'HomeAdminController@update_visi']);
 	Route::put('/editMisi', ['as' => 'admin.editMisi', 'uses' => 'HomeAdminController@update_misi']);
 	
-	Route::put('/editPubJenis', ['as' => 'admin.editPubJenis', 'uses' => 'PublikasiAdminController@update_jenis']);
-	Route::put('/editPubKetentuan', ['as' => 'admin.editPubKetentuan', 'uses' => 'PublikasiAdminController@update_ketentuan']);
-	Route::put('/editPubLain', ['as' => 'admin.editPubLain', 'uses' => 'PublikasiAdminController@update_karyaLain']);
-	Route::put('/editPubPopuler', ['as' => 'admin.editPubPopuler', 'uses' => 'PublikasiAdminController@update_populer']);
-	
 	//edit slideshow
-	Route::put('/editSlideShow', ['as' => 'admin.editSlideShow', 'uses' => 'HomeAdminController@update_foto_gallery']);
+	Route::post('/editSlideShow', ['as' => 'admin.editSlideShow', 'uses' => 'HomeAdminController@update_foto_gallery']);
 	//edit caption
 	Route::put('/editCaption', ['as' => 'admin.editCaption', 'uses' => 'HomeAdminController@update_caption']);
 	//edit regulasi
@@ -138,11 +147,19 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	//edit cabang
 	Route::put('/organisasi/editcabang', ['as' => 'admin.organisasi.editcabang', 'uses' => 'OrganisasiAdminController@edit_cabang']);
 	//edit kegiatan
+	Route::put('/kegiatan', ['as' => 'admin.editKegiatan', 'uses' => 'KegiatanAdminController@edit_kegiatan']);
+	Route::put('/fotokegiatan', ['as' => 'admin.editFotoKegiatan', 'uses' => 'KegiatanAdminController@edit_fotoKegiatan']);
 	
-	//edit jenis publikasi
-	//edit ketentuan
-	//edit karya tulis lain
-	//edit ilmiah populer
+	
+	//edit publikasi
+	Route::put('/editPubJenis', ['as' => 'admin.editPubJenis', 'uses' => 'PublikasiAdminController@update_jenis']);
+	Route::put('/editPubKetentuan', ['as' => 'admin.editPubKetentuan', 'uses' => 'PublikasiAdminController@update_ketentuan']);
+	Route::put('/editPubLain', ['as' => 'admin.editPubLain', 'uses' => 'PublikasiAdminController@update_karyaLain']);
+	Route::put('/editPubPopuler', ['as' => 'admin.editPubPopuler', 'uses' => 'PublikasiAdminController@update_populer']);
+	
+	//edit lain
+	Route::put('/editLain', ['as' => 'admin.editLain', 'uses' => 'LainAdminController@update_lain']);
+	
 	
 	//edit beranda anggota
 	Route::put('/editAnggotaHome', ['as' => 'admin.editAnggotaHome', 'uses' => 'AnggotaAdminController@update_home']);
@@ -151,17 +168,21 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	//aktivasi akun
 	//reset password
 	//edit berkas
+	Route::put('/berkas/editberkas', ['as' => 'admin.berkas.editberkas', 'uses' => 'BerkasAdminController@edit_berkas']);
 	
+	Route::put('/changePass', ['as' => 'admin.changePass', 'uses' => 'AccountController@changePass']);
 	//admin delete route
 	
 	//delete regulasi
 	Route::delete('/home/deleteregulasi', ['as' => 'admin.home.deleteregulasi', 'uses' => 'HomeAdminController@delete_regulasi']);
 	//delete pengurus
 	Route::delete('/organisasi/deletepengurus', ['as' => 'admin.organisasi.deletepengurus', 'uses' => 'OrganisasiAdminController@delete_pengurus']);
-	//delete cabang
+	//delete cabang 
 	Route::delete('/organisasi/deletecabang', ['as' => 'admin.organisasi.deletecabang', 'uses' => 'OrganisasiAdminController@delete_cabang']);
 	//delete kegiatan
+	Route::delete('/kegiatan', ['as' => 'admin.deleteKegiatan', 'uses' => 'KegiatanAdminController@del_kegiatan']);
 	//delete berkas
+	Route::delete('/berkas/deleteberkas', ['as' => 'admin.berkas.deleteberkas', 'uses' => 'BerkasAdminController@delete_berkas']);
 });
 
 //post route
@@ -170,6 +191,9 @@ Route::post('/regis', ['as' => 'regis', 'uses' => 'AccountController@postRegis']
 //Route::post('/sendEmail', ['as' => 'sendEmail', 'uses' => 'KontakController@send_email']);
 Route::post('/postRegulasi', ['as' => 'postRegulasi', 'uses' => 'HomeAdminController@add_regulasi']);
 Route::post('/postPengurus', ['as' => 'postPengurus', 'uses' => 'OrganisasiAdminController@tambah_pengurus']);
+Route::post('/postBerkas', ['as' => 'postBerkas', 'uses' => 'BerkasAdminController@tambah_berkas']);
+
+Route::put('/changePass', ['as' => 'changePass', 'uses' => 'AccountController@changePass']);
 
 
 

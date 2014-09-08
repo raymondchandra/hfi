@@ -79,8 +79,34 @@ class AccountController extends BaseController {
 		return Redirect::to('/login')->with('message', 'Anda telah keluar.');
 	}
 	
+	/*public function testRegis()
+	{
+		$test = "";
+		for($i = 1; $i <= 5; $i++){
+			$gelar = Input::get('selPendidikan'.$i);
+			$lokasi =  Input::get('pendidikan'.$i);
+			$test .= $gelar." ".$lokasi;
+			if($gelar != ""){
+				$test .= " in\n";
+				$pend = new Pendidikan();
+				$pend->timestamps = false;
+				$pend->id_profile = 2;
+				$pend->gelar = $gelar;
+				$pend->lokasi = $lokasi;
+				$pend->save();
+			}else{
+				$test .= " \n";
+				
+			}
+		}
+		
+		return $test;
+	}*/
+	
 	public function postRegis()
 	{
+		
+		
 		$username = Input::get('username');
 		$password = Input::get('password');
 			
@@ -88,8 +114,6 @@ class AccountController extends BaseController {
 		
 		if(count($cekCount) == 0)
 		{
-			
-			
 			
 			$nama = Input::get('nama');
 			$cabangHFI = Input::get('hficabang');
@@ -100,7 +124,6 @@ class AccountController extends BaseController {
 			$gender = Input::get('gender');
 			$tema = Input::get('temapenelitian');
 			$spesialisasi = Input::get('spesialisasi');
-			$pend = Input::get('pendidikan');
 			$profesi = Input::get('profesi');
 			$institusi = Input::get('institusi');
 			$alamat = Input::get('alamatkontak');
@@ -128,7 +151,6 @@ class AccountController extends BaseController {
 			$ang -> spesialisasi = $spesialisasi;
 			$ang -> profesi = $profesi;
 			$ang -> institusi = $institusi;
-			$ang -> pendidikan = $pend;
 			$ang -> alamat = $alamat;
 			$ang -> kota = $kota;
 			$ang -> kodepos = $kodepos;
@@ -141,19 +163,84 @@ class AccountController extends BaseController {
 			$ang -> keterangan = $keterangan;
 			$ang -> save();
 			
+			$profile_id = Anggota::where('nama', '=', $nama)->first()->id;
 			$acc = new Account();
 			$acc->timestamps = false;
 			$acc->username = $username;
-			$acc->profile_id = Anggota::where('nama', '=', $nama)->first()->id;
+			$acc->profile_id = $profile_id;
 			$acc->password = Hash::make($password);
 			$acc->status_aktif = 0;
 			$acc->save();
+			
+			
+			for($i = 1; $i <= 5; $i++){
+				$gelar = Input::get('selPendidikan'.$i);
+				$lokasi =  Input::get('pendidikan'.$i);
+				if($gelar != ""){
+					$pend = new Pendidikan();
+					$pend->timestamps = false;
+					$pend->id_profile = $profile_id;
+					$pend->gelar = $gelar;
+					$pend->lokasi = $lokasi;
+					$pend->save();
+				}
+			}
 			return Redirect::to('/')->with('message', 'Terima kasih telah melakukan pendaftar, silahkan menyelesaikan administrasi pembayaran. Keterangan lebih lanjut dapat 
 			dilihat pada <a href="/anggota">Anggota</a>');
 		}else
 		{
 			return Redirect::to('/registrasi')->with('message', 'Error')->withErrors('Username telah terdaftar')->withInput();
 		}
+	}
+	
+	public function checkExist()
+	{
+		$username = Input::get('username');
+		$cekCount = DB::table('auth')->where('username', $username)->first();
+		
+		if(count($cekCount) == 0)
+		{
+			return 'ok';
+		}
+		else{
+			return 'exist';
+		}
+	}
+	
+	public function changePass()
+	{
+		$rules = array(
+			'oldPass' => 'required',
+			'newPass' => 'required|min:8',
+			'reNewPass' => 'required|min:8'
+		);
+		
+	    $validator = Validator::make(Input::all(), $rules);
+
+	    if ($validator->fails())
+	    {
+	        return $validator->messages();
+	    }
+	
+		$oldPass = Input::get('oldPass');
+		$newPass = Input::get('newPass');
+		$reNewPass = Input::get('reNewPass');
+		$id = Auth::user()->id;
+		if(Hash::check($oldPass,Auth::user()->password)){
+			if($newPass == $reNewPass)
+			{
+				$acc = Account::where('id', '=', $id)->first();
+				$acc->password = Hash::make($newPass);
+				$acc->save();
+				return 'success';
+			}else
+			{
+				return 'wrong retype';
+			}
+			
+		}else return 'wrong password';
+		
+		
 	}
 	
 	public function view_login()

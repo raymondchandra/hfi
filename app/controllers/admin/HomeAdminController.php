@@ -19,9 +19,8 @@ class HomeAdminController extends BaseController {
 	public function view_slide()
 	{
 		$slideshow = $this->get_slideshow();
-		//$slideshow = "";
+		
 		return View::make('pages.admin.home.slideshow', compact('slideshow'));
-		//return View::make('pages.admin.home.slideshow');
 	}
 	
 	public function view_welcome()
@@ -234,56 +233,43 @@ class HomeAdminController extends BaseController {
 			return "Failed Delete";
 		}
 	}
-		
-	public function update_gallery(){
-	}
-
+	
 	public function update_foto_gallery()
 	{	
-		//$slideshow= 'Success';
-		//return View::make('pages.adminPanel' , compact('slideshow'));
-		
-		//return Redirect::to('/admin')->with('editSlideShow',"'Success'");
-		
-		if(Input::hasFile('photo'))
+		if(Input::hasFile('file'))
 		{
 			$id_img = Input::get('id_photo');
 			$id = Auth::user()->id;
-			$img_upload = Input::file('photo');
+			
+			$img_upload = Input::file('file');
 			$file_name = $img_upload->getClientOriginalName();
-			$destination = 'assets/file_upload/slideshow/';
+			$destination = 'assets/file_upload/slideshow/'.$id_img.'/';
 			
-			
-			if(count($id_img) != 0 && $id_img!= 0 )
-			{
-				$gallery = Gallery::find($id_img);
+			$gallery = Gallery::find($id_img);
+			if($gallery != NULL){ 
+				//delete foto lama
 				$pathLama = $gallery -> file_path;
 				File::delete($pathLama);
-				$uploadSuccess   = $img_upload->move($destination, $file_name);
-				$gallery -> timestamps = false;
-				$gallery -> tanggal_upload = Carbon::now();
-				$gallery -> uploaded_by = $id;
-				$gallery -> file_path = $destination.$file_name;
-				$gallery->save();
-				return Redirect::to('/admin')->with('editSlideShow',"'Success'");
-			}else
-			{
-				$uploadSuccess   = $img_upload->move($destination, $file_name);
+			}else{
 				$gallery = new Gallery();
-				$gallery -> timestamps = false;
 				$gallery -> type = '1';
-				$gallery -> tanggal_upload = Carbon::now();
-				$gallery -> uploaded_by = $id;
-				$gallery -> file_path = $destination.$file_name;
-				$gallery -> save();
-				return Redirect::to('/admin')->with('editSlideShow',"'Success'");
+			}
+			
+			$uploadSuccess   = $img_upload->move($destination, $file_name);
+			$gallery -> timestamps = false;
+			$gallery -> tanggal_upload = Carbon::now();
+			$gallery -> uploaded_by = $id;
+			$gallery -> file_path = $destination.$file_name;
+			try{
+				$gallery->save();
+				return 'success';
+			} catch (Exception $e) {
+				return 'failed1';
 			}
 		}else
 		{
-			return Redirect::to('/admin')->with('editSlideShow',"'Failed'");
+			return 'failed2';
 		}
-		
-	
 	}
 	
 	public function update_caption()

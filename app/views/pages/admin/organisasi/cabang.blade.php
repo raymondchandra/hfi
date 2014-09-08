@@ -1,3 +1,4 @@
+
 <script>
 	var arrIDCabang = "";
 	function getCabang(){
@@ -7,7 +8,7 @@
 			success: function(data){
 				if(data==""){
 					//alert("Kosong");
-					var list ="<tr><td class='nama_cabang'>Kantor</td>";
+					var list ="<table class='list_cabang'><tr><td class='nama_cabang'>Kantor</td>";
 					list+="<td class='alamat_cabang'>Alamat Cabang</td>";
 					list+="<td class='telepon_cabang'>Telepon</td>";
 					list+="<td class='detail_cabang'>Lihat Detail</td>";
@@ -16,13 +17,13 @@
 					list+="<td class='alamat_cabang'>-</td>";
 					list+="<td class='telepon_cabang'>-</td>";
 					list+="<td class='detail_cabang'>-</td>";
-					list+="</tr>";
-					$('.list_cabang').html(list);
+					list+="</tr></table>";
+					$('.cabang_list').html(list);
 				}
 				else{
 					//atur
 					var length = data.length;
-					var list ="<tr><td class='nama_cabang'>Nama Cabang</td>";
+					var list ="<table class='list_cabang'><tr><td class='nama_cabang'>Nama Cabang</td>";
 					list+="<td class='alamat_cabang'>Alamat Cabang</td>";
 					list+="<td class='telepon_cabang'>Telepon</td>";
 					list+="<td class='detail_cabang'>Lihat Detail</td>";
@@ -41,10 +42,12 @@
 						}else{
 							list+="<td class='website_cabang'><a href='"+data[$i]['link']+"'>"+data[$i]['link']+"</a></td>";
 						}*/
-						list+="<td class='detail_cabang'><a href='#'>Lihat Detail</a></td>";
+						list+="<td class='detail_cabang'><a href='javascript:void(0)' class='lihat_detail'>Lihat Detail</a><input type='hidden' value='"+$i+"' /><input type='button' class='hapus_cabang' value='X' /></td>";
 						list+="</tr>";
 					}
-					$('.list_cabang').html(list);
+					list+="</table>";
+					$('.cabang_list').html(list);
+					$( ".loader" ).fadeOut( 200, function(){});
 				}
 			},
 			error:function(errorThrown){
@@ -67,7 +70,8 @@
 		<script>
 			
 			$('body').on('click','.hapus_cabang',function(){
-				$id = $(this).next().val();
+				$( ".loader" ).fadeIn( 200, function(){});
+				$id = $(this).prev().val();
 				//ajax delete
 				$.ajax({
 					url: 'admin/organisasi/deletecabang',
@@ -77,11 +81,53 @@
 					},
 					success: function(data){
 						getCabang();
+						$( ".loader" ).fadeOut( 200, function(){});
 					},
 					error:function(jqXHR, textStatus, errorThrown){
 						alert(errorThrown);
 					}		
 				});
+			});
+			
+			$('body').on('click','.lihat_detail',function(){
+				$id = $(this).next().val();
+				$( ".loader" ).fadeIn( 200, function(){});
+				$.ajax({
+					url: 'admin/organisasi/satucabang',
+					type: 'GET',
+					data: {
+						'id_cabang' : arrIDCabang[$id]
+					},
+					success: function(data){
+						//alert(data[0]['nama']);
+						var view="<div>Nama Cabang : "+data[0]['nama']+"</div>";
+						view+="<span class='clear'>&nbsp;</span>";
+						view+="<div>Alamat Kantor : "+data[0]['alamat']+"</div>";
+						view+="<span class='clear'>&nbsp;</span>";
+						view+="<div>Telepon : "+data[0]['telp']+"</div>";
+						view+="<span class='clear'>&nbsp;</span>";
+						view+="<div>Fax : "+data[0]['fax']+"</div>";
+						view+="<span class='clear'>&nbsp;</span>";
+						view+="<div>E-mail : "+data[0]['email']+"</div>";
+						if(data[0]['link']=="-"){
+							view+="<div>-</div>";
+						}else{
+							view+="<div><a href='http://"+data[0]['link']+"'>"+data[0]['link']+"</a></div>";
+						}
+						view+="<div><a href='javascript:void(0)' class='go_back_but'>Kembali</a></div>"
+						view+="<span class='clear'>&nbsp;</span>";
+						$('.cabang_list').html(view);
+						$( ".loader" ).fadeOut( 200, function(){});
+					},
+					error:function(jqXHR, textStatus, errorThrown){
+						alert(errorThrown);
+					}		
+				});
+			});
+			
+			$('body').on('click','.go_back_but',function(){
+				$( ".loader" ).fadeIn( 200, function(){});
+				getCabang();
 			});
 			
 			$('#tambah_cabang').click(function(){
@@ -222,4 +268,3 @@
 		</div>		
 	</div>
 </div>
-

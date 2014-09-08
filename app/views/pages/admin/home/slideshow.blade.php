@@ -1,9 +1,9 @@
+
 <script>
 	var index_caption = -1;
 	
 	var imageUpload = "";
 	$(document).ready(function(){
-		//$('.pu_c').click();
 		$( ".loader" ).fadeOut( 200, function(){});
 	});
 </script>
@@ -11,6 +11,7 @@
 <div class='admin_title'>Slideshow</div>
 <div class='slide_container'>
 	@if($slideshow == "Failed")
+		
 		<ul>
 			<li>
 				<div>
@@ -31,7 +32,7 @@
 				<div>
 					<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
 				</div>
-				<input type='text' class='caption' placeholder='caption 1' />
+				<input type='text' class='caption' placeholder='caption 2' />
 				<input type='button' class='ok_change' value='Ok' style='display:none;' />
 				<input type='hidden' value='0' />
 				<input type='button' class='reset_change' value='Reset' style='display:none' />
@@ -46,7 +47,7 @@
 				<div>
 					<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
 				</div>
-				<input type='text' class='caption' placeholder='caption 1' />
+				<input type='text' class='caption' placeholder='caption 3' />
 				<input type='button' class='ok_change' value='Ok' style='display:none;' />
 				<input type='hidden' value='0' />
 				<input type='button' class='reset_change' value='Reset' style='display:none' />
@@ -61,7 +62,7 @@
 				<div>
 					<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
 				</div>
-				<input type='text' class='caption' placeholder='caption 1' />
+				<input type='text' class='caption' placeholder='caption 4' />
 				<input type='button' class='ok_change' value='Ok' style='display:none;' />
 				<input type='hidden' value='0' />
 				<input type='button' class='reset_change' value='Reset' style='display:none' />
@@ -76,7 +77,7 @@
 				<div>
 					<img src="#" class='slide_image' /> <input type='button' value='Ganti Foto' class='change_photo'/>
 				</div>
-				<input type='text' class='caption' placeholder='caption 1' />
+				<input type='text' class='caption' placeholder='caption 5' />
 				<input type='button' class='ok_change' value='Ok' style='display:none;' />
 				<input type='hidden' value='0' />
 				<input type='button' class='reset_change' value='Reset' style='display:none' />
@@ -148,10 +149,10 @@
 				<div class="container_12" style="position: relative;">
 					<span class="close_56 pu_close" style="right: 185px;">
 					</span>
-					<div class="grid_6 push_3">
+					<div class="grid_8 push_2">
 						
 						<div class="change_pp_container">
-							<div class="saran_34">
+							<div class="saran_43">
 								Disarankan Anda mengunggah foto dengan dimensi 
 								
 								<span style="display: block; margin-left: auto; margin-right: auto; font-size: 24px;">3 X 4</span> 
@@ -159,7 +160,7 @@
 								(Passphoto)
 							</div>
 								{{ Form::open(array('url' => 'admin/editSlideShow','method'=>'put','files'=>'true')) }}
-								{{ Form::file('photo',array('name'=>'photo','id'=>'photo','class'=>'upload_photo','style' => 'margin-top: 20px; display: block; margin-left: auto; margin-right: auto;')) }}
+								{{ Form::file('photo',array('name'=>'photo','id'=>'photo','class'=>'upload_photo','accept'=>"image/*" ,'style' => 'margin-top: 20px; display: block; margin-left: auto; margin-right: auto;')) }}
 								<input type='hidden' class='photo_id' name='id_photo' />
 								{{ Form::submit('Unggah Gambar', array('style' => 'display: block; margin-left: auto; margin-right: auto; margin-top: 20px;')) }}
 								{{ Form::close() }}
@@ -190,7 +191,7 @@ $('body').on('change','.upload_photo',function(){
 			if ( window.FileReader ) {
 				reader = new FileReader();
 				reader.onloadend = function (e) { 
-					//showUploadedItem(e.target.result, file.fileName);
+					showUploadedItem(e.target.result, file.fileName);
 				};
 				reader.readAsDataURL(file);
 			}
@@ -229,7 +230,7 @@ $('body').on('click','.reset_change',function(){
 });
 
 function showUploadedItem (source) {
-	var image = "<img src='"+source+"' />"
+	var image = "<img src='"+source+"' width=400 height=300 />"
 	$('.saran_34').html(image);
 } 
 
@@ -308,7 +309,7 @@ $('.ok_change').click(function(){
 								
 </script>
 
-<div id="" class="pu_c loader" style="z-index: 999999; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: block; ">
+<!--<div id="" class="pu_c loader" style="z-index: 999999; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: block; ">
 	<div class="tableed">
 		<div class="celled pu_cell" style="">
 			<div class="container_12" style="position: relative;">
@@ -317,4 +318,4 @@ $('.ok_change').click(function(){
 			</div>
 		</div>
 	</div>
-</div> 
+</div>--> 

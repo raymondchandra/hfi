@@ -107,9 +107,51 @@ class AnggotaAdminController extends BaseController {
 	
 	public function search_anggota()
 	{
-		$keyword = Input::get('keyword');
+		$nama = Input::get('nama');
+		$penelitian = Input::get('penelitian');
+		$gelarPendidikan = Input::get('gelarPendidikan');
+		$lokasiPendidikan = Input::get('lokasiPendidikan');
+		$institusi = Input::get('institusi');
+		$surel = Input::get('surel');
+		$status = Input::get('status');
+		if($status === 'yes')
+		{
+			$aktif = 1;
+		}
+		else
+		{
+			$aktif = 0;
+		}
+		$cabang = Input::get('cabang');
+		$id_cab = Cabang::where('nama', '=', $cabang)->select('cabang.id')->first();
+		$jenis_kelamin = Input::get('jenis_kelamin');
+		if($jenis_kelamin === 'pria')
+		{
+			$kode_jk = 1;
+		}
+		else
+		{
+			$kode_jk = 0;
+		}
+		$spesialisasi = Input::get('spesialisasi');
+		$profesi = Input::get('profesi');
 		
-		//$query = Anggota::whereRaw('')
+		$res = Anggota::join('pendidikan', 'profile.id', '=', 'pendidikan.id_profile')
+						->join('auth', 'profile.id', '=' ,'auth.profile_id')
+						->where('nama', 'LIKE' ,'%'.$nama.'%')
+						->where('penelitian', 'LIKE', '%'.$penelitian.'%')
+						->where('gelar', 'LIKE', '%'.$gelarPendidikan.'%')
+						->where('lokasi', 'LIKE', '%'.$lokasiPendidikan.'%')
+						->where('institusi', 'LIKE', '%'.$institusi.'%')
+						->where('email', 'LIKE', '%'.$surel.'%')
+						->where('status_aktif', '=', $aktif)
+						->where('cabang', '=', $id_cab)
+						->where('spesialisasi', '=', $spesialisasi)
+						->where('profesi', '=', $profesi)
+						->where('gender', '=', $kode_jk)
+						->get();
+		
+		return $res;
 	}
 }
 

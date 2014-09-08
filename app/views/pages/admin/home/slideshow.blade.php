@@ -231,7 +231,7 @@ $('body').on('click','.reset_change',function(){
 
 function showUploadedItem (source) {
 	var image = "<img src='"+source+"' width=400 height=300 />"
-	$('.saran_34').html(image);
+	$('.saran_43').html(image);
 } 
 
 $('.ok_change').click(function(){

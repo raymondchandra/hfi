@@ -60,6 +60,22 @@ $('body').on('click','#anggota_daftar',function(){
 	 $('.admin_control_panel').load('admin/anggota/daftar');
 });
 
+//sidebar akun
+$('body').on('click','#akun_baru',function(){
+	$( ".loader" ).fadeIn( 200, function(){});
+	 $('.admin_control_panel').load('admin/akun/baru');
+});
+
+$('body').on('click','#akun_aktif',function(){
+	$( ".loader" ).fadeIn( 200, function(){});
+	 $('.admin_control_panel').load('admin/akun/aktif');
+});
+
+$('body').on('click','#akun_non_aktif',function(){
+	$( ".loader" ).fadeIn( 200, function(){});
+	 $('.admin_control_panel').load('admin/akun/nonaktif');
+});
+
 //sidebar kegiatan
 
 $('body').on('click','#admin_kegiatan',function(){

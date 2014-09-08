@@ -64,7 +64,16 @@ class UserController extends BaseController {
 	public function view_carianggota()
 	{
 		$arr = $this->setHeader();
-		return View::make('pages.carianggota', compact('arr'));
+			//ambil cabang dari database
+			$cabang = $this->get_all_cabang(); //return null kalo kosong
+			if($cabang==null){
+				$cabang = null;
+			}			
+			$listcabang = array("pilih" => "pilih!");								
+			foreach($cabang as $value){				
+				$listcabang[$value] = $value;				
+			}	
+		return View::make('pages.carianggota', compact('arr', 'listcabang'));
 	}	
 	
 	public function view_berkas()

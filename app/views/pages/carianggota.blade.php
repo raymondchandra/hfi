@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('content')	
+@section('content')
 <div class="container_12">
 	<div class="grid_12">
 		<div class="main_content">
@@ -21,53 +21,56 @@
 				</div>
 			</div>
 			
-			<div class="content_hfi" id="contentfield">
-				
+			<div class="content_hfi" id="contentfield">				
 				<h1> Cari Member</h1>
-				{{ Form::open(array('url' => 'foo/bar')) }}	<!-- default post-->	
-						
-					<table border="0">
-						<tr>
-							<td>
-							{{ Form::text('katakunci', Input::old('katakunci'), array('style' => 'width:300px')) }}
-							</td>
-							<td>
-							{{ HTML::image('assets/img/lupicon.png') }}
-							</td>
-					</table>
-											
-				<h4>Pencarian Lengkap</h4>
-				<table border="0">					
+				{{ Form::open(array('url' => 'foo/bar')) }}	<!-- default post-->							
+				<table border="0">
+					<tr>
+						<td>Nama</td>
+						<td>:</td>
+						<td>{{ Form::text('nama', Input::old('nama')) }}</td>
+					</tr>
+					<tr>
+						<td>Penelitian</td>
+						<td>:</td>
+						<td>{{ Form::text('penelitian', Input::old('penelitian')) }}</td>
+					</tr>
+					<tr>
+						<td>Pendidikan</td>
+						<td>:</td>
+						<td>
+							{{ Form::select('gelar', array(
+								's1' => 'S1',
+								's2' => 'S2',
+								's3' => 'S3',
+								'd1' => 'D1',
+								'd2' => 'D2',
+								'd3' => 'D3'
+								), Input::old('gelar'), array('style' => 'width:50px;')) 
+							}}
+							{{ Form::text('lulusan', Input::old('lulusan'), array('placeholder' => 'nama institusi pendidikan')) }}
+						</td>
+					</tr>
+					<tr>
+						<td>Institusi</td>
+						<td>:</td>
+						<td>{{ Form::text('institusi', Input::old('institusi')) }}</td>							
+					</tr>
+					<tr>
+						<td>Surat Elektronik</td>
+						<td>:</td>
+						<td>{{ Form::text('suratelektronik', Input::old('suratelektronik')) }}</td>
+					</tr>																								
 					<tr>
 						<td>Status</td>
-						<td>:</td>
-						<td>{{ Form::checkbox('anggotaaktif','anggotaaktif') }} Anggota Aktif</td>
+						<td>:</td>						
+						<td>{{ Form::checkbox('anggotaaktif', 'yes') }} Anggota Aktif</td>
 					</tr>						
 					<tr>
 						<td>Cabang</td>
 						<td>:</td>
 						<td>
-							{{ Form::select('cabang', array(
-								'0' => 'pilih!',
-								'aceh' => 'Aceh',
-								'bali' => 'Bali',
-								'bandung' => 'Bandung',
-								'gorontalo' => 'Gorontalo',
-								'jakarta' => 'Jakarta',
-								'kalimantantenggara' => 'Kalimantan Tenggara',
-								'kalimantanselatan' => 'Kalimantan Selatan',
-								'lampung' => 'Lampung',
-								'makassar' => 'Makassar',
-								'palembang' => 'Palembang',
-								'riau' => 'Riau',
-								'sulawesiutara' => 'Sulawesi Utara',
-								'sumaterautara' => 'Sumatera Utara',
-								'sumaterabarat' => 'Sumatera Barat',
-								'surabaya' => 'Surabaya',
-								'timika' => 'Timika',
-								'jawatengahdanyogyakarta' => 'Jawa Tengah dan Yogyakarta',
-								'luarnegeri' => 'luar negeri'))
-							}}				
+							{{ Form::select('cabang', $listcabang, Input::old('cabang'), array('style' => 'width:200px;')) }}							
 						</td>
 					</tr>
 					<tr>
@@ -111,9 +114,17 @@
 								'karyawan' => 'karyawan',
 								'lainlain' => 'lain-lain'))
 							}}</td>						
-					</tr>		
+					</tr>
+					<tr>
+						<td>{{ Form::submit('Cari') }}</td>
+						<td>&nbsp;</td>
+						<td>{{ Form::reset('Batal') }}</td>
+					</tr>
 				</table>				
 				{{ Form::token() . Form::close() }}
+				
+				
+				
 			</div>
 		</div>
 	</div>

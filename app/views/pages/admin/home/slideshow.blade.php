@@ -149,10 +149,10 @@
 				<div class="container_12" style="position: relative;">
 					<span class="close_56 pu_close" style="right: 185px;">
 					</span>
-					<div class="grid_6 push_3">
+					<div class="grid_8 push_2">
 						
 						<div class="change_pp_container">
-							<div class="saran_34">
+							<div class="saran_43">
 								Disarankan Anda mengunggah foto dengan dimensi 
 								
 								<span style="display: block; margin-left: auto; margin-right: auto; font-size: 24px;">3 X 4</span> 

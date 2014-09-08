@@ -779,6 +779,22 @@ label.error {
 	-o-box-sizing: border-box;
 	box-sizing: border-box;
 }
+
+.saran_43 {
+	width: 400px;
+	height: 300px;
+	display: block;
+	border: #6766c6 1px solid;
+	margin-left: auto;
+	margin-right: auto;
+	color: #535353;
+	position: relative;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+}
 /*----------------------------------------------------------------------------------------------------------
 -------- Admin Page -------------------------------------- Admin Page --------------------------------------
 ----------------------------------------------------------------------------------------------------------*/

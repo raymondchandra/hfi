@@ -1,10 +1,9 @@
-@extends('layouts.adminlayout')
-@section('content')
+
 <script>
 	var arrIDCabang = "";
 	function getCabang(){
 		$.ajax({
-			url: '../../admin/organisasi/daftarcabang',
+			url: 'admin/organisasi/daftarcabang',
 			type: 'GET',
 			success: function(data){
 				if(data==""){
@@ -75,7 +74,7 @@
 				$id = $(this).prev().val();
 				//ajax delete
 				$.ajax({
-					url: '../../admin/organisasi/deletecabang',
+					url: 'admin/organisasi/deletecabang',
 					type: 'DELETE',
 					data: {
 						'id_cabang' : arrIDCabang[$id]
@@ -94,7 +93,7 @@
 				$id = $(this).next().val();
 				$( ".loader" ).fadeIn( 200, function(){});
 				$.ajax({
-					url: '../../admin/organisasi/satucabang',
+					url: 'admin/organisasi/satucabang',
 					type: 'GET',
 					data: {
 						'id_cabang' : arrIDCabang[$id]
@@ -269,4 +268,3 @@
 		</div>		
 	</div>
 </div>
-@stop

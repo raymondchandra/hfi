@@ -40,12 +40,17 @@
 						<td>:</td>
 						<td>
 							{{ Form::select('gelar', array(
+								'sd' => 'SD',
+								'smp' => 'SMP',
+								'sma' => 'SMA',
+								'd1' => 'D1',
+								'd2' => 'D2',
+								'd3' => 'D3',
+								'd4' => 'D4',
 								's1' => 'S1',
 								's2' => 'S2',
 								's3' => 'S3',
-								'd1' => 'D1',
-								'd2' => 'D2',
-								'd3' => 'D3'
+								'lainnya' => 'Lainnya'
 								), Input::old('gelar'), array('style' => 'width:50px;')) 
 							}}
 							{{ Form::text('lulusan', Input::old('lulusan'), array('placeholder' => 'nama institusi pendidikan')) }}

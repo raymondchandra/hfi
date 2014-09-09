@@ -48,9 +48,11 @@ use Carbon\Carbon;
 			}
 		}
 		
+		//get semua pengurus untuk id_cabang tertentu
 		public function get_semua_pengurus()
-		{
-			$count = Pengurus::all();
+		{			
+			$id_cabang = Input::get('id_cabang');
+			$count = DB::table('pengurus')->where('id_cabang', $id_cabang)->get();
 			if(count($count) != 0)
 			{
 				return $count;
@@ -58,6 +60,18 @@ use Carbon\Carbon;
 				return "";
 			}
 		}
+		
+		//before
+		// public function get_semua_pengurus()
+		// {
+			// $count = Pengurus::all();					
+			// if(count($count) != 0)
+			// {
+				// return $count;
+			// }else{
+				// return "";
+			// }
+		// }
 		
 		
 		public function edit_cabang()
@@ -120,17 +134,17 @@ use Carbon\Carbon;
 				$peng -> file_path = $destinationPath.$fileName;
 				$peng -> uploaded_by = Auth::user()->id;
 				$peng -> tanggal_upload = Carbon::now();
-				$peng -> id_cabang = $this->get_id_cabang(Input::get('hficabang'));
-				
+				//$peng -> id_cabang = $this->get_id_cabang(Input::get('hficabang'));
+				$peng -> id_cabang = Input::get('id_cabang');
 				$peng -> save();
 				
-				// return "success";	
-				return Redirect::to('/admin')->with('message','berhasil menambah file pengurus');
+				return "success";	
+				//return Redirect::to('/admin')->with('message','berhasil menambah file pengurus');
 			}
 			else
 			{
-				// return "failed";
-				return Redirect::to('/admin')->with('message','gagal menambah file pengurus');
+				return "failed";
+				//return Redirect::to('/admin')->with('message','gagal menambah file pengurus');
 			}
 		}
 		

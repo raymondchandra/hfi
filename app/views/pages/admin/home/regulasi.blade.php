@@ -61,7 +61,9 @@ $(document).ready(function(){
 <div class='admin_title'>Regulasi</div>
 <div class='regulasi_container'>
 </div>
-
+	@if(Session::has('message'))
+		<p>gagal upload regulasi</p>
+	@endif
 	<div id='sidelist_regulasi'>
 		<div id='list_regulasi'>			
 			<table border=0 class="tabel_list_regulasi">								
@@ -105,6 +107,9 @@ $(document).ready(function(){
 		{{ Form::open(array('url' => '/postRegulasi', 'files' => true))}}
 		<form>				
 			<ul>
+				<li style="margin-top:5px;">{{ Form::file('fileReg', array('id'=>'fileReg')) }}</li>
+				<li style="margin-top:5px;">Versi : {{ Form::text('versi', Input::old('versi'), array('id'=>'versi', 'style' => 'width: 180px;')) }}	</li>				
+				<li style="margin-top:5px;">{{ Form::submit('Unggah Regulasi', array('id'=>'tambah_regulasi_button')) }}</li>
 				<li style="margin-top:5px;">{{ Form::file('fileReg') }}</li>
 				<li style="margin-top:5px;">Versi : {{ Form::text('versi', Input::old('versi'), array('style' => 'width: 180px;')) }}	</li>				
 				<li style="margin-top:5px;">{{ Form::submit('Unggah Regulasi', array('id'=>'tambah_regulasi_button', 'class' => 'button')) }}</li>
@@ -113,6 +118,8 @@ $(document).ready(function(){
 		{{Form::token()}}
 		{{Form::close()}}
 	</div>
+		
+	
 <script>	
 	$('body').on('click','.versi_regulasi',function(){
 		var file_path = $(this).attr('value');							
@@ -120,6 +127,30 @@ $(document).ready(function(){
 		//$('#pdf_viewer_regulasi').attr("data", file_path);
 		$('#preview_pdf_regulasi').html("<object data='"+file_path+"' type='application/pdf' width='100%' id='pdf_viewer_regulasi'></object>");
 	});
+					
+	$("#tambah_regulasi_button").click(function(){
+		var data = new FormData();
+		data.append('')
+		
+		var input = {
+			fileReg : $("#fileReg").val(),
+			versi : $("#versi").val()						
+		};
+			//alert(input);
+		$.ajax({
+	        url: '{{ URL::route('postRegulasi') }}',
+	        type: 'POST',
+	        data: input,
+	        success: function (data) {
+	            $.each(data,function(row){
+					alert(row);
+				});
+								
+	        }
+	    });	
+	});
+	
+	
 	//$('.editor').jqte();	
 	// $('#submit_change').click(function(){		
 		// $.ajax({
@@ -144,8 +175,6 @@ $(document).ready(function(){
 	
 	
 <script>
-
-
 // $('#unggah').click(function(){
 	// $('#upload_file').click();
 // });
@@ -182,8 +211,6 @@ $(document).ready(function(){
 		 // }).data('Swipe');  
 	 // $('.pu_c').css('display','none');
 </script>
-
-
 	<!--<div id="" class="pu_c unggah_form" style="z-index:99999;position: fixed; display: none; top: 0; left: 0; width: 100%; height: 100%; background:rgba(0,0,0,0.7);">
 		<div class="tableed">
 			<div class="celled pu_cell" style="">

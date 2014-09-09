@@ -57,7 +57,7 @@ $("#btnChangePassword").click(function(){
 							{{ Form::password('retypenewpassword', array('placeholder' => 'Ketik ulang password baru','id' => 'reNewPass', 'style' => 'width: 300px; float: left;'), Input::old('retypenewpassword')) }}
 							<!-- PENTING! Untuk menghilangka notifikasi error cukup tambahkan kelas 'hide' pada element bersangkutan -->
 							<span class="error">
-								Maaf password anda tidak sama!
+								Maaf password Anda tidak sama!
 							</span>
 							
 							<span class="clear"></span>

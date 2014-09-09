@@ -74,7 +74,7 @@
 					{{$visi_hfi}}
 				</div>
 				<div class="clear"></div>
-				<div class="misi_container">
+				<div class="misi_container" style="margin-bottom: 40px !important;">
 					<h2>
 						Misi
 					</h2>

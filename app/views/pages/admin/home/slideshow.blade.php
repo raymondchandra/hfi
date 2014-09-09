@@ -273,7 +273,7 @@ $('.ok_change').click(function(){
 			$(".photo_edit").fadeIn( 277, function(){}).css('display','block').css('z-index','999999');
 			$("body").css('overflow-x','hidden');
 			index_caption = $(this).prev().val();
-			alert(index_caption);
+			//alert(index_caption);
 			$('.photo_id').val(index_caption);
 			
 			//ajax

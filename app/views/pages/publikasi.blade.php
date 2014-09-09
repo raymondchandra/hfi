@@ -11,22 +11,27 @@
 						<a href="javascript:void(0)"> Publikasi Jurnal & Non-Jurnal</a>
 
 					</li>
-					<li>
-						{{HTML::linkRoute('publikasi','Jenis Publikasi',array(1))}}
+					<li class="sublink_sidebar">
+						<a href="{{ URL::route('publikasi',array(1)) }}">
+							Jenis Publikasi
+						</a>
 
 					</li>
-					<li>
-						{{HTML::linkRoute('publikasi','Ketentuan Umum',array(2))}}
-
+					<li class="sublink_sidebar">
+						<a href="{{ URL::route('publikasi',array(2)) }}">
+							Ketentuan Umum
+						</a>
 					</li>
-					<li>
-						{{HTML::linkRoute('publikasi','Karya-Karya Tulis Lain',array(3))}}
-
+					<li class="sublink_sidebar">
+						<a href="{{ URL::route('publikasi',array(3)) }}">
+							Karya-Karya Tulis Lain
+						</a>
 					</li>
 					<span class="white_space">&nbsp;</span>
 					<li>
-						{{HTML::linkRoute('publikasi','Publikasi Ilmiah Populer',array(4))}}
-
+						<a href="{{ URL::route('publikasi',array(4)) }}">
+							Publikasi Ilmiah Populer
+						</a>
 					</li>
 				
 				</ul>

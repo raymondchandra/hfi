@@ -1,4 +1,5 @@
-
+<div class="container_12">
+	<div class="grid_12">
 <script>
 	$(document).ready(function(){
 		$( ".show_after" ).each(function( index ) {
@@ -34,7 +35,7 @@
 </script>
 	<div class='admin_title'>Kegiatan</div>
 		<div style='height: 30px;'></div>
-		<div style="margin-left:890px;"><a href="javascript:void(0)" style="text-decoration:none;" id="tambah_kegiatan">Tambah Kegiatan</a></div>
+		<div style="width: 100%; display: block; overflow: hidden; margin-bottom: 30px;"><a href="javascript:void(0)" style="text-decoration:none;" id="tambah_kegiatan" class="command_button">Tambah Kegiatan</a></div>
 		<div class="kegiatan_container" style="margin-left: 20px;">
 			@if($kegiatans == NULL)
 				<span>Kegiatan belum tersedia.</span>
@@ -235,5 +236,7 @@
 			</div>
 			</div>			
 		</div>		
+	</div>
+</div>
 	</div>
 </div>

@@ -29,6 +29,7 @@
 
 #tambah_cabang_link{
 	margin-left: 785px;
+	overflow: hidden;
 }
 
 .table_cabang input[type='text']{

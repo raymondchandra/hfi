@@ -24,7 +24,7 @@
 		<tr>
 			<td>Username</td>
 			<td>:</td>
-			<td>{{ Form::text('username',Input::old('username'), array('id' => 'input_username')) }} <span id="username-error"></span><span class="red">*</span></td>	
+			<td>{{ Form::text('username',Input::old('username'), array('id' => 'input_username', 'class' => 'wl_it')) }} <span id="username-error"></span><span class="red">*</span></td>	
 			<script>
 				$("#input_username").change(function(){
 					var url = '{{ URL::route('registrasi.checkExist') }}';
@@ -46,25 +46,25 @@
 		<tr>
 			<td><i>Password</i></td>
 			<td>:</td>
-			<td>{{ Form::password('password',array('id' => 'input_password'), Input::old('password')) }} <span class="red">*</span></td>			
+			<td>{{ Form::password('password',array('id' => 'input_password', 'class' => 'wl_it'), Input::old('password')) }} <span class="red">*</span></td>			
 		</tr>
 		
 		<tr>
-			<td><i>Ketik Ulang Password</i></td>
+			<td>Ketik Ulang <i>Password</i></td>
 			<td>:</td>
-			<td>{{ Form::password('password_again',array('id' => 'password_again'), Input::old('password_again')) }} <span class="red">*</span></td>
+			<td>{{ Form::password('password_again',array('id' => 'password_again', 'class' => 'wl_it'), Input::old('password_again')) }} <span class="red">*</span></td>
 		</tr>
 		<tr>
 			<td>Nama</td>
 			<td>:</td>
-			<td>{{ Form::text('nama', Input::old('nama')) }} <span class="red">*</span></td>			
+			<td>{{ Form::text('nama', Input::old('nama'),array('class' => 'wl_it')) }} <span class="red">*</span></td>			
 		</tr>
 		<tr>
-			<td>Registrasi</td>			
+			<td>Registrasi Cabang</td>			
 			<td>:</td>
 			<td>
-				anggota non-aktif, HFI Cabang 	
-				{{ Form::select('hficabang', $arr2, Input::old('hficabang'), array('style' => 'width:200px;'))}}				
+				<!-- anggota non-aktif, HFI Cabang 	-->
+				{{ Form::select('hficabang', $arr2, Input::old('hficabang'), array('style' => 'width:200px;', 'class' => 'wl_dd'))}}				
 			</td>			
 		</tr>
 		<tr>
@@ -72,11 +72,10 @@
 			<td>:</td>
 			<td style="">
 				<div style="width:600px;">
-				{{ Form::text('tempatlahir', Input::old('tempatlahir')) }}<span class="red" style="right:340px;">*</span>
-				<div class="clear">
-				</div>
-				{{ Form::text('tanggallahir', Input::old('tanggallahir'),  array('id' => 'tanggallahir', 'style' => 'width:80px;')) }}
-				<span class="red" style="right: 284px; top: 35px;">*</span>
+				{{ Form::text('tempatlahir', Input::old('tempatlahir'),array('class' => 'wl_tl')) }}<span class="red" style="right: 369px;">*</span>
+			
+				{{ Form::text('tanggallahir', Input::old('tanggallahir'),  array('id' => 'tanggallahir', 'style' => 'width:80px;', 'class' => 'wl_ttl')) }}
+				<span class="red" style="right: 241px;">*</span>
 				</div>
 				</td>			
 		</tr>
@@ -110,7 +109,7 @@
 					'nonlinier' => 'non-linier',
 					'nuklir' => 'nuklir',
 					'parkikel' => 'partikel',
-					'lainlain' => 'lain-lain'))
+					'lainlain' => 'lain-lain'), NULL, array('class'=>'wl_dd'))
 				}} <span class="red">*</span></td>				
 		</tr>
 		
@@ -123,7 +122,7 @@
 				function addPendidikan(){
 					if(lastIdx <=5)
 					{
-						var newRow = "<div id='divPendidikan"+lastIdx+"'><select class='selPendidikan' name='selPendidikan"+lastIdx+"'>";
+						var newRow = "<div id='divPendidikan'"+lastIdx+" style='margin-top: 5px;' '><select class='selPendidikan ws_dd' name='selPendidikan"+lastIdx+"'>";
 						newRow +="<option value=''>Pilih!</option>";
 						newRow +="<option value='SD'>SD</option>";
 						newRow +="<option value='SMP'>SMP</option>";
@@ -137,8 +136,8 @@
 						newRow +="<option value='S3'>S3</option>";
 						newRow +="<option value='lain'>Lainnya</option>";
 						newRow +="</select>";
-						newRow +="<input type='text' id='pendidikan"+lastIdx+"' name='pendidikan"+lastIdx+"' class='texPendidikan' />";
-						newRow +="<input type='button' value='X' id='delPendidikan"+lastIdx+"' onClick='delPendidikan("+lastIdx+")' /><br /></div>";
+						newRow +="<input type='text' id='pendidikan"+lastIdx+"' name='pendidikan"+lastIdx+"' class='texPendidikan' style='margin-left: 20px;'/>";
+						newRow +="<input type='button' value='X' id='delPendidikan"+lastIdx+"' onClick='delPendidikan("+lastIdx+")' style='padding: 0px;'/><br /></div>";
 						$('#delPendidikan'+(lastIdx-1)).hide();
 						$('#addPendidikan').append(newRow);
 						if(lastIdx==5){
@@ -160,7 +159,7 @@
 				}
 			</script>
 			<div>
-				<select class='selPendidikan' name='selPendidikan1'>
+				<select class='selPendidikan ws_dd' name='selPendidikan1'>
 					<option value=''>Pilih!</option>
 					<option value='SD'>SD</option>
 					<option value='SMP'>SMP</option>
@@ -174,7 +173,7 @@
 					<option value='S3'>S3</option>
 					<option value='lain'>Lainnya</option>
 				</select>
-			<input type="text" id="pendidikan1" name="pendidikan1" class='texPendidikan' /><span class="red">*</span><br />
+			<input type="text" id="pendidikan1" name="pendidikan1" class='texPendidikan' style="margin-left: 16px;"/><span class="red">*</span><br />
 			<div id="addPendidikan"></div>
 		<a href="javascript:void(0)" onClick = "addPendidikan();" id="refPendidikan">tambah pendidikan</a>
 	</div>
@@ -191,13 +190,13 @@
 					'dosen' => 'dosen',
 					'peneliti' => 'peneliti',
 					'karyawan' => 'karyawan',
-					'lainlain' => 'lain-lain'))
+					'lainlain' => 'lain-lain'), null, array('class' => 'wl_dd'))
 				}} <span class="red">*</span></td>								
 		</tr>
 		<tr>
 			<td>Institusi</td>
 			<td>:</td>
-			<td>{{ Form::text('institusi', Input::old('institusi')) }} <span class="red">*</span></td>					
+			<td>{{ Form::text('institusi', Input::old('institusi'), array('class' => 'wl_it')) }} <span class="red">*</span></td>					
 		</tr>
 		<tr>
 			<td>Alamat kontak</td>
@@ -205,36 +204,43 @@
 			<td>{{ Form::textarea('alamatkontak', Input::old('alamatkontak')) }} <span class="red">*</span></td>			
 		</tr>
 		<tr>
-			<td>Kota - kodepos, negara</td>
+			<td>Kota - kodepos</td>
 			<td>:</td>
-			<td style="width: 420px;">
-			<div style="width: 600px;">
-			{{ Form::text('kota', Input::old('kota'), array('class' => 'form_kota', 'style' => 'width: 170px;')) }} - 
-			{{ Form::text('kodepos', Input::old('kodepos'), array('class' => 'form_kota', 'style' => 'width: 170px;')) }} , 
-			{{ Form::text('negara', Input::old('negara'), array('class' => 'form_kota', 'style' => 'width: 170px;')) }} <span class="red"style="color:red; right: -134px;">*</span>
-			</div></td>
+			<td style="">
+				{{ Form::text('kota', Input::old('kota'), array('class' => 'form_kota', 'style' => 'width: 236px;')) }} - 
+				{{ Form::text('kodepos', Input::old('kodepos'), array('class' => 'form_kota', 'style' => 'width: 100px;')) }} , 
+				
+			</td>
+		</tr>
+		<tr>
+			<td>Negara</td>
+			<td>:</td>
+			<td style="">
+				{{ Form::text('negara', Input::old('negara'), array('class' => 'form_kota wl_it')) }} <span class="red"style="color:red;">*</span>
+				
+			</td>
 		</tr>		
 		<tr>
 			<td>Telepon / fax</td>
 			<td>:</td>
-			<td>{{ Form::text('telepon', Input::old('telepon'), array('style' => 'width:50px')) }}<span class="red">*</span> - 
-			{{ Form::text('telepon2', Input::old('telepon2')) }} / 
-			{{ Form::text('fax', Input::old('fax')) }}</td>			
+			<td>{{-- Form::text('telepon', Input::old('telepon'), array('style' => 'width:50px')) --}}<span class="red">*</span>
+			{{ Form::text('telepon2', Input::old('telepon2'), array('style' => 'width: 170px;')) }} / 
+			{{ Form::text('fax', Input::old('fax'), array('style' => 'width: 164px;')) }}</td>			
 		</tr>
 		<tr>
 			<td>HP</td>
 			<td>:</td>
-			<td>{{ Form::text('hp', Input::old('hp')) }}</td>			
+			<td>{{ Form::text('hp', Input::old('hp'), array('class' => 'wl_it')) }}</td>			
 		</tr>
 		<tr>
 			<td>Surat elektronik</td>
 			<td>:</td>
-			<td>{{ Form::text('email', Input::old('email')) }}<span class="red">*</span></td>				
+			<td>{{ Form::text('email', Input::old('email'), array('class' => 'wl_it')) }}<span class="red">*</span></td>				
 		</tr>
 		<tr>
 			<td>Situs</td>
 			<td>:</td>
-			<td>{{ Form::text('situs', Input::old('situs')) }}</td>				
+			<td>{{ Form::text('situs', Input::old('situs'), array('class' => 'wl_it')) }}</td>				
 		</tr>
 		<tr>
 			<td>Keterangan lain</td>
@@ -290,7 +296,8 @@
 	
 	<p style="text-align:center;">
 		<div style="text-align: center;" class="tempat_radio">
-			{{ Form::radio('persetujuan','setuju')}}setuju    {{ Form::radio('persetujuan','tidaksetuju', true) }}tidak setuju
+			{{ Form::radio('persetujuan','setuju')}}setuju    
+			{{ Form::radio('persetujuan','tidaksetuju', true) }}tidak setuju
 		</div>
 	
 	</p>
@@ -470,10 +477,10 @@
 		
 	</script>
 	<div style="width: 100%; text-align: center;"> <!--class="de_tombol"-->
-		{{ Form::submit('daftar') }}
+		{{ Form::submit('daftar', ['class' => 'regreg']) }}
 		{{ Form::reset('Clear form') }}
 		<script>
-			
+				$('.regreg').addClass('reg_submit_off');
 				// set hidden form field with selected timeslot
 				 $('input[name="persetujuan"]').live("click", (function () {
 					 var valu = $(this).val();
@@ -487,13 +494,23 @@
 					
 				 })); 
 				
-				array('class' => 'regreg reg_submit_off')
+				//array('class' => 'regreg reg_submit_off')
 			
 		</script>
 	</div>
 	
 	{{ Form::token() }} 
 	{{ Form::close() }}
+	
+	<style>
+		#tempatlahir-error {
+			float: right;
+		}
+		
+		#kodepos-error, #kota-error, #negara-error{
+			width: auto !important;
+		}
+	</style>
 	
 </div>
 </div>

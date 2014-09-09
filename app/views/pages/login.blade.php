@@ -21,7 +21,7 @@
 								{{ Form::open(array('url' => '/signin')) }}
 								<form>
 									<!-- PENTING! Untuk menghilangka notifikasi error cukup tambahkan kelas 'hide' pada element bersangkutan -->
-									{{ Form::text('username', Input::old('username'), array('placeholder'=>'Username')) }}
+									{{ Form::text('username', Input::old('username'), array('placeholder'=>'Username')) }} 
 									<span class="error" style="position: absolute; top: 18px; right: -243px;">
 										Maaf username Anda belum terdaftar
 									</span>

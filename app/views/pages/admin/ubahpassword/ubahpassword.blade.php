@@ -37,7 +37,7 @@ $("#btnChangePassword").click(function(){
 							</p>
 						@endif
 					</div>
-					
+					 
 					
 						<form>
 							{{ Form::password('oldpassword', array('placeholder' => 'password lama','id' => 'oldPass', 'style' => 'width: 300px; float: left;') , Input::old('oldpassword')) }}

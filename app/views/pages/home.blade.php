@@ -43,7 +43,7 @@
 
 			</div>
 			
-			<div class="selamat_datang_container">
+			<div class="selamat_datang_container" id="selamat_datang">
 				<h2>
 					Selamat Datang
 				</h2>
@@ -55,7 +55,7 @@
 			
 
 		
-			<div class="tentang_hfi_container">	
+			<div class="tentang_hfi_container" id="tentang_hfi">	
 				<h2>
 					Tentang HFI
 				</h2>
@@ -67,14 +67,14 @@
 			</div>
 			<div class="visi_misi_container">	
 				
-				<div class="visi_container">
+				<div class="visi_container" id="visi_hfi">
 					<h2>
 						Visi
 					</h2>
 					{{$visi_hfi}}
 				</div>
 				<div class="clear"></div>
-				<div class="misi_container" style="margin-bottom: 40px !important;">
+				<div class="misi_container" style="margin-bottom: 40px !important;" id="misi_hfi">
 					<h2>
 						Misi
 					</h2>
@@ -86,7 +86,7 @@
 			
 			<div class="clear"></div>
 			
-			<div class="regulasi_hfi_container">
+			<div class="regulasi_hfi_container" id="regulasi_hfi">
 				
 				<h2>
 					Regulasi HFI

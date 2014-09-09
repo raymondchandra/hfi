@@ -1004,3 +1004,75 @@ transform:rotate(90deg);
 }
 
 
+/* state */
+.current {
+	background: #1c187c; 
+}
+
+/*admin for custom button-link*/
+
+.command_button {
+	float: right;
+padding: 5px 10px;
+background-color: #2FBB03;
+display: block;
+color: #fff;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-o-border-radius: 5px;
+border-radius: 5px;
+text-decoration: none;
+}
+
+.command_button:hover {
+	float: right;
+padding: 5px 10px;
+background-color: #34a112;
+display: block;
+color: #fff;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-o-border-radius: 5px;
+border-radius: 5px;
+text-decoration: none;
+}
+.command_button:active {
+	float: right;
+padding: 5px 10px;
+background-color: #277f0c;
+display: block;
+color: #fff;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-o-border-radius: 5px;
+border-radius: 5px;
+text-decoration: none;
+}
+
+.delete_row {
+padding: 2px !important;
+background-color: #f11;
+border: 0px;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-o-border-radius: 5px;
+border-radius: 5px;
+width: 30px;
+height: 30px;
+color: #fff;
+cursor: pointer;
+}
+.detail_row {
+padding: 6px !important;
+background-color: #2FBB03;
+border: 0px;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-o-border-radius: 5px;
+border-radius: 5px;
+width: 30px;
+height: 30px;
+color: #fff;
+cursor: pointer;
+margin-right: 5px;
+}

@@ -62,9 +62,9 @@
 		</script>
 
 		<div class='admin_title'>e-Berkas</div>
+		<div id='tambah_berkas_link' style='display: block;width: 100%;margin-left: 0px !important;overflow: hidden;'><a href='javascript:void(0)' id='tambah_berkas' class='command_button'>Tambah Berkas Baru</a></div>
 
 		<div class="berkas_list_container">
-			<div id='tambah_berkas_link'><a href='javascript:void(0)' id='tambah_berkas'>Tambah Berkas Baru</a></div>
 			<div class="berkas_list"> 		
 				
 				<table class='list_berkas'>		
@@ -263,7 +263,7 @@
 								</tr>
 								<tr>
 									<!--<td><input type='button' value='Tambah' id="tambah_cabang_button"/></td>-->							
-									<td colspan="3">{{ Form::submit('Tambah Berkas', array('id' => 'button_tambah_berkas'))}}</td>
+									<td colspan="3">{{ Form::submit('Tambah Berkas', array('id' => 'button_tambah_berkas', 'class' => 'button'))}}</td>
 								</tr>					
 							</table>
 							{{ Form::token() }}

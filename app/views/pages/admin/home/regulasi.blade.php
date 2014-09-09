@@ -107,7 +107,7 @@ $(document).ready(function(){
 			<ul>
 				<li style="margin-top:5px;">{{ Form::file('fileReg') }}</li>
 				<li style="margin-top:5px;">Versi : {{ Form::text('versi', Input::old('versi'), array('style' => 'width: 180px;')) }}	</li>				
-				<li style="margin-top:5px;">{{ Form::submit('Unggah Regulasi', array('id'=>'tambah_regulasi_button')) }}</li>
+				<li style="margin-top:5px;">{{ Form::submit('Unggah Regulasi', array('id'=>'tambah_regulasi_button', 'class' => 'button')) }}</li>
 			</ul>
 		</form>			
 		{{Form::token()}}

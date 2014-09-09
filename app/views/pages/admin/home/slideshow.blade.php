@@ -1,4 +1,5 @@
-
+<div class="container_12">
+	<div class="grid_12">
 <script>
 	var index_caption = -1;
 	
@@ -9,7 +10,7 @@
 </script>
 
 <div class='admin_title'>Slideshow</div>
-<div class='slide_container'>
+<div class='slide_container' style="margin-left: 0px !important;">
 	@if($slideshow == "Failed")
 		
 		<ul>
@@ -162,7 +163,7 @@
 								{{ Form::open(array('url' => 'admin/editSlideShow','method'=>'put','files'=>'true')) }}
 								{{ Form::file('photo',array('name'=>'photo','id'=>'photo','class'=>'upload_photo','accept'=>"image/*" ,'style' => 'margin-top: 20px; display: block; margin-left: auto; margin-right: auto;')) }}
 								<input type='hidden' class='photo_id' name='id_photo' />
-								{{ Form::submit('Unggah Gambar', array('style' => 'display: block; margin-left: auto; margin-right: auto; margin-top: 20px;')) }}
+								{{ Form::submit('Unggah Gambar', array('class' => 'button','style' => 'display: block; margin-left: auto; margin-right: auto; margin-top: 20px;')) }}
 								{{ Form::close() }}
 								<!--<input type='file' class='upload_photo' multiple="false" style="margin-top: '20px'; display: 'block'; margin-left: 'auto'; margin-right: 'auto';" />
 								<input type='button' class='button_upload_foto' value='Unggah Gambar' style="display: 'block'; margin-left: 'auto'; margin-right: 'auto'; margin-top: '20px';">-->
@@ -319,3 +320,5 @@ $('.ok_change').click(function(){
 		</div>
 	</div>
 </div>--> 
+	</div>
+</div>

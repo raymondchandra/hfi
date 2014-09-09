@@ -229,6 +229,8 @@
 					//show form tambah pengurus					
 					$('body').on('click','#tambah_pengurus',function(){
 						$(".pop_up_super_c_tambah_pengurus").fadeIn( 277, function(){});
+						$filePeng = $('#filePeng').val("");
+						$periode = $('#periode').val("");
 						$('html').css('overflow-y', 'hidden');
 					});
 					
@@ -389,40 +391,84 @@
 			<div class="pop_up_tbl_tambah_pengurus">
 				<div class="pop_up_cell_tambah_pengurus">
 					<div class="container_12">			
-					<div class="grid_7 detail_pengurus" style="background: #fff;">
+					<div class="grid_9 detail_pengurus" style="background: #fff; margin-left:160px;">
 						<h2>Detail Pengurus</h2>
 						<form class='tambah_pengurus_form'>
 							<!-- /postPengurus-->
 							<ul>
 								<li>{{ Form::file('filePeng', array('name'=>'filePeng','id'=>'filePeng')) }}</li>
 								<li>Periode : {{ Form::text('periode', Input::old('periode'), array('style' => 'width: 200px;', 'id'=>'periode')) }}</li>
-								<li>{{ Form::button('Unggah', array('onClick' => 'upload()')) }}</li>
+								<li>{{ Form::submit('Unggah') }}</li>
 							</ul>	
 							<script>
-								function upload(){
-									var data, xhr;
-									data = new FormData();
-									//'id_pengurus' : arrIDPengurus[$id]
-									data.append('filePeng', $('#filePeng')[0].files[0]);
-									data.append('periode', $('#periode').val());
-									data.append('id_cabang', inputpengurus_idcabang);
-									$.ajax({
-										url: 'postPengurus',
-										type: 'POST',
-										data: data,
-										processData: false,
-										contentType: false,
-										success: function(as){
-											$( ".pop_up_super_c_tambah_pengurus" ).fadeOut( 200, function(){
-												getCabang();
-												alert("Berhasil Menambah Pengurus");
-											});											
+								$(".tambah_pengurus_form").validate({
+									rules: {
+										filePeng : {
+											required: true
 										},
-										error:function(errorThrown){
-											alert(errorThrown);
-										}	
-									});
-								}
+										periode : {
+											required: true
+										}
+									},									
+									message: {
+										filePeng : {
+											required: "Mohon file diisi"
+										},
+										periode : {
+											required: "Mohon periode diisi"
+										}
+									},
+									submitHandler:function(form){
+										$filePeng = $('#filePeng').val();
+										$periode = $('#periode').val();
+										var data, xhr;
+										data = new FormData();										
+										data.append('filePeng', $('#filePeng')[0].files[0]);
+										data.append('periode', $('#periode').val());
+										data.append('id_cabang', inputpengurus_idcabang);
+										$.ajax({
+											url: 'postPengurus',
+											type: 'POST',
+											data: data,
+											processData: false,
+											contentType: false,
+											success: function(as){
+												$( ".pop_up_super_c_tambah_pengurus" ).fadeOut( 200, function(){
+													getCabang();
+													alert("Berhasil Menambah Pengurus");
+												});											
+											},
+											error:function(errorThrown){
+												alert(errorThrown);
+											}	
+										});
+									}
+								});								
+							
+								// function upload(){
+									// var data, xhr;
+									// data = new FormData();
+									// 'id_pengurus' : arrIDPengurus[$id]
+									// data.append('filePeng', $('#filePeng')[0].files[0]);
+									// data.append('periode', $('#periode').val());
+									// data.append('id_cabang', inputpengurus_idcabang);
+									// $.ajax({
+										// url: 'postPengurus',
+										// type: 'POST',
+										// data: data,
+										// processData: false,
+										// contentType: false,
+										// success: function(as){
+											// $( ".pop_up_super_c_tambah_pengurus" ).fadeOut( 200, function(){
+												// getCabang();
+												// alert("Berhasil Menambah Pengurus");
+											// });											
+										// },
+										// error:function(errorThrown){
+											// alert(errorThrown);
+										// }	
+									// });
+								// }
 							</script>
 						</form>						
 					</div>

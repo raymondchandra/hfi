@@ -1011,6 +1011,27 @@ transform:rotate(90deg);
 
 /*admin for custom button-link*/
 
+.button {
+display: block;
+margin: 20px 0;
+padding: 6px 0 4px;
+width: 154px;
+background: #658700;
+border: #526E00 1px solid;
+color: #F3FFCF !important;
+text-align: center;
+font-size: 13px;
+font-weight: bold;
+border-radius: 3px;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+box-shadow: 0 0 2px #000, inset 0 1px 1px #99CC00;
+-webkit-box-shadow: 0 0 2px #000, inset 0 1px 1px #99CC00;
+-moz-box-shadow: 0 0 2px #000, inset 0 1px 1px #99CC00;
+cursor: pointer;
+
+}
+
 .command_button {
 	float: right;
 padding: 5px 10px;
@@ -1075,4 +1096,38 @@ height: 30px;
 color: #fff;
 cursor: pointer;
 margin-right: 5px;
+}
+
+/*sidebar classes*/
+
+.sublink_sidebar {
+	box-shadow: none !important; 
+	border-left: 4px solid #fff;
+padding-left: 0px;
+}
+
+.sublink_sidebar > a{
+	text-indent: 20px; 
+	background: none !important;
+	padding-left: 5px !important;
+}
+.sublink_sidebar > a:hover{
+	text-indent: 20px; 
+	background: #333298 !important;
+	padding-left: 5px !important;
+}
+
+/*error and notification*/
+
+.error {
+height: 28px; 
+float: left; 
+background-color: #ea6153;
+margin-top: 2px; 
+line-height: 28px; 
+border-radius: 5px; 
+margin-left: 20px;
+padding-right:5px;
+padding-left:5px;
+color: #fff;
 }

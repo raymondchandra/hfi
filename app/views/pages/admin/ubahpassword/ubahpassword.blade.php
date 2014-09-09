@@ -38,21 +38,37 @@ $("#btnChangePassword").click(function(){
 						@endif
 					</div>
 					
-					<div class="form">
+					
 						<form>
 							<!--<input type="text"  placeholder="Username"/>-->
-							{{ Form::password('oldpassword', array('placeholder' => 'password lama','id' => 'oldPass') , Input::old('oldpassword')) }}
+							{{ Form::password('oldpassword', array('placeholder' => 'password lama','id' => 'oldPass', 'style' => 'width: 300px; float: left;') , Input::old('oldpassword')) }}
 							<!--<input type="password" placeholder="Password"/>-->
-							{{ Form::password('newpassword', array('placeholder' => 'password baru','id' => 'newPass'), Input::old('newpassword')) }}
+							<span class="error">
+								Maaf password Anda tidak cocok!
+							</span>
 							
-							{{ Form::password('retypenewpassword', array('placeholder' => 'Ketik ulang password baru','id' => 'reNewPass'), Input::old('retypenewpassword')) }}
+							<span class="clear"></span>
+							{{ Form::password('newpassword', array('placeholder' => 'password baru','id' => 'newPass', 'style' => 'width: 300px; float: left;'), Input::old('newpassword')) }}
+							<span class="error">
+								Panjang password minimal 8 karakter
+							</span>
+							
+							<span class="clear"></span>
+							{{ Form::password('retypenewpassword', array('placeholder' => 'Ketik ulang password baru','id' => 'reNewPass', 'style' => 'width: 300px; float: left;'), Input::old('retypenewpassword')) }}
 							<!--<input type="button" value="Log In" class="login"/>-->
-							<div style="display: block; position: relative; width: 100$; height: 30px; overflow: hidden;">
+							<span class="error">
+								Maaf password anda tidak sama!
+							</span>
+							
+							<span class="clear"></span>
+							<div style="display: block; position: relative;overflow: hidden;">
 								{{ Form::button('Ubah Password', array('id' => 'btnChangePassword')) }}
 							</div>
-						</form>								 
-						
-					</div>
+							
+							
+						</form>		
+					
+					
 				</div>
 			</div>
 		</div>

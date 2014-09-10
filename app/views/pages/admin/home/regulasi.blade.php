@@ -43,9 +43,10 @@ $(document).ready(function(){
 						}
 						$('.tabel_list_regulasi').html(list);
 						//set awal pdf viewer, kalo engga ga bakal bisa refresh pdf viewer
-						$('#pdf_viewer_regulasi').attr("data",data['0']['file_path']);
-						
+						//$('#pdf_viewer_regulasi').attr("data",data['0']['file_path']);
+						$('#preview_pdf_regulasi').html("<object data='' type='application/pdf' width='100%' id='pdf_viewer_regulasi'></object>");						
 					}
+					$( ".loader" ).fadeOut( 200, function(){});
 			},
 			error:function(errorThrown){
 				alert(errorThrown);
@@ -60,10 +61,7 @@ $(document).ready(function(){
 
 <div class='admin_title'>Regulasi</div>
 <div class='regulasi_container'>
-</div>
-	@if(Session::has('message'))
-		<p>gagal upload regulasi</p>
-	@endif
+</div>	
 	<div id='sidelist_regulasi'>
 		<div id='list_regulasi'>			
 			<table border=0 class="tabel_list_regulasi">								
@@ -79,8 +77,11 @@ $(document).ready(function(){
 						data: {
 							'id_regulasi' : arrIDRegulasi[$id]
 						},
-						success: function(data){							
+						success: function(data){
+							$(".loader").fadeIn( 277, function(){});						
 							getRegulasi();
+							//blank preview pdf
+							$('#preview_pdf_regulasi').html("<object data='' type='application/pdf' width='100%' id='pdf_viewer_regulasi'></object>");
 							//alert(data);
 						},
 						error: function(jqXHR, textStatus, errorThrown){
@@ -103,20 +104,14 @@ $(document).ready(function(){
 	</div>
 		<span class="clear">
 		</span>
-	<div id='unggah_regulasi'>		
-		{{ Form::open(array('url' => '/postRegulasi', 'files' => true))}}
-		<form>				
+	<div id='unggah_regulasi'>				
+		<form class='tambah_regulasi_form'>				
 			<ul>
 				<li style="margin-top:5px;">{{ Form::file('fileReg', array('id'=>'fileReg')) }}</li>
-				<li style="margin-top:5px;">Versi : {{ Form::text('versi', Input::old('versi'), array('id'=>'versi', 'style' => 'width: 180px;')) }}	</li>				
-				<li style="margin-top:5px;">{{ Form::submit('Unggah Regulasi', array('id'=>'tambah_regulasi_button')) }}</li>
-				<li style="margin-top:5px;">{{ Form::file('fileReg') }}</li>
-				<li style="margin-top:5px;">Versi : {{ Form::text('versi', Input::old('versi'), array('style' => 'width: 180px;')) }}	</li>				
+				<li style="margin-top:5px;">Versi : {{ Form::text('versi', Input::old('versi'), array('id'=>'versi', 'style' => 'width: 180px;')) }}</li>				
 				<li style="margin-top:5px;">{{ Form::submit('Unggah Regulasi', array('id'=>'tambah_regulasi_button', 'class' => 'button')) }}</li>
 			</ul>
-		</form>			
-		{{Form::token()}}
-		{{Form::close()}}
+		</form>					
 	</div>
 		
 	
@@ -128,28 +123,95 @@ $(document).ready(function(){
 		$('#preview_pdf_regulasi').html("<object data='"+file_path+"' type='application/pdf' width='100%' id='pdf_viewer_regulasi'></object>");
 	});
 					
-	$("#tambah_regulasi_button").click(function(){
-		var data = new FormData();
-		data.append('')
-		
-		var input = {
-			fileReg : $("#fileReg").val(),
-			versi : $("#versi").val()						
-		};
-			//alert(input);
-		$.ajax({
-	        url: '{{ URL::route('postRegulasi') }}',
-	        type: 'POST',
-	        data: input,
-	        success: function (data) {
-	            $.each(data,function(row){
-					alert(row);
+	jQuery.validator.setDefaults({
+		  debug: true,
+		  success: "valid"
+		});
+		$('.tambah_regulasi_form').validate({
+			rules: {
+				fileReg :{
+					required : true
+				},
+				versi : {
+					required : true
+				}
+			}, message : {
+				fileReg : {
+					required : "Mohon isi file regulasi"
+				},
+				versi : {
+					required : "Mohon isi versi regulasi"
+				}
+			},
+			submitHandler: function(form){
+				var data, xhr;
+				data = new FormData();
+				$fileReg = $('#fileReg').val();					
+				$versi = $('#versi').val();						
+				data.append('fileReg', $('#fileReg')[0].files[0]);
+				data.append('versi', $('#versi').val());		
+				$.ajax({
+					url: 'postRegulasi',
+					type: 'POST',
+					data: data,
+					processData: false,
+					contentType: false,
+					success: function(as){			
+						$(".loader").fadeIn( 277, function(){});
+						getRegulasi();						
+						$('#fileReg').val("");	
+						$('#versi').val("");							
+						alert("Berhasil Menambah Regulasi");												
+					},
+					error:function(errorThrown){
+						alert("Gagal Menambah Regulasi");
+						alert(errorThrown);
+					}
 				});
-								
-	        }
-	    });	
-	});
-	
+			}
+		});
+		// $("#tambah_regulasi_button").click(function(){
+			// var data, xhr;
+			// data = new FormData();
+			// $fileReg = $('#fileReg').val();
+				// alert($fileReg);
+			// $versi = $('#versi').val();	
+				// alert($versi);
+			// data.append('fileReg', $('#fileReg')[0].files[0]);
+			// data.append('versi', $('#versi').val());		
+			// $.ajax({
+				// url: 'postRegulasi',
+				// type: 'POST',
+				// data: data,
+				// processData: false,
+				// contentType: false,
+				// success: function(as){			
+					// getRegulasi();
+					// alert("Berhasil Menambah Regulasi");
+				// },
+				// error:function(errorThrown){
+					// alert("Gagal Menambah Regulasi");
+					// alert(errorThrown);
+				// }
+			// });
+			// var input = {
+				// fileReg : $("#fileReg").val(),
+				// versi : $("#versi").val()						
+			// };
+				// alert(input);
+			// $.ajax({
+				// url: '{{ URL::route('postRegulasi') }}',
+				// type: 'POST',
+				// data: input,
+				// success: function (data) {
+					// $.each(data,function(row){
+						// alert(row);
+					// });
+									
+				// }
+			// });	
+		// });
+
 	
 	//$('.editor').jqte();	
 	// $('#submit_change').click(function(){		

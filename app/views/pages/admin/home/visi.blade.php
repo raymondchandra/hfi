@@ -11,7 +11,7 @@ $(document).ready(function(){
 		<textarea name="visi_message" id = 'visi_message' class="editor"> 
 		{{$visi_hfi}}
 		</textarea>
-		<input type='button' id='submit_change' value='Rubah'  style="margin-left: auto; margin-right: auto; "></input>
+		<input type='button' id='submit_change' value='Ubah' class="button" style="margin-left: auto; margin-right: auto; "></input>
 		</div>
 
 		<script>

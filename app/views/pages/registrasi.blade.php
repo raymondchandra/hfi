@@ -507,6 +507,10 @@
 			float: right;
 		}
 		
+		#username-error {
+			background-color: #88DB12;
+		}
+		
 		#kodepos-error, #kota-error, #negara-error{
 			width: auto !important;
 		}

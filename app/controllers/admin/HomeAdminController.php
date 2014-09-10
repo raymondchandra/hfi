@@ -51,6 +51,8 @@ class HomeAdminController extends BaseController {
 	{
 		//$regulations = $this->get_all_regulasi();
 		//return View::make('pages.admin.home.regulasi', compact('regulations')); 
+		
+		
 		return View::make('pages.admin.home.regulasi'); 
 	}
 	
@@ -176,6 +178,16 @@ class HomeAdminController extends BaseController {
 	
 	public function add_regulasi()
 	{
+		$rules = array(
+			'versi' => 'required',
+			'fileReg' => 'required'
+		);		
+		$validator = Validator::make(Input::all(), $rules);		
+		if($validator->fails())
+		{
+			return $validator->messages();
+		}
+		
 		if(Input::hasFile('fileReg'))
 		{
 			
@@ -194,13 +206,13 @@ class HomeAdminController extends BaseController {
 			$reg -> save();
 			
 
-			//return "success";
-			return Redirect::to('/admin')->with('message', "berhasil menambah file regulasi");
+			return "success";
+			
 		}
 		else
 		{
-			//return "failed";
-			return Redirect::to('/admin')->with('message', "gagal menambah file regulasi");
+			return "failed";
+			
 		}
 	}
 	
@@ -209,7 +221,7 @@ class HomeAdminController extends BaseController {
 		$regulations = Regulasi::all();
 		//$regulations = Regulasi::paginate(5);
 		if($regulations==null){
-			return "";
+			return null;
 		}else{			
 			return $regulations;
 		}		
@@ -255,7 +267,7 @@ class HomeAdminController extends BaseController {
 				$gallery -> type = '1';
 			}
 			
-			$uploadSuccess   = $img_upload->move($destination, $file_name);
+			$uploadSuccess = $img_upload->move($destination, $file_name);
 			$gallery -> timestamps = false;
 			$gallery -> tanggal_upload = Carbon::now();
 			$gallery -> uploaded_by = $id;

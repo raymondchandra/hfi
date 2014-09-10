@@ -85,7 +85,7 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	//end of anggota
 	
 	//akun
-	Route::get('/akun/baru', ['as' => 'admin.akun.baru', 'uses' => 'AkunAdminController@view_akun_baru']);
+	Route::get('/akun/baru', ['as' => 'admin.akun.baru', 'uses' => 'AkunAdminController@view_akun_baru']); 
 	Route::get('/akun/aktif', ['as' => 'admin.akun.aktif', 'uses' => 'AkunAdminController@view_akun_aktif']);
 	Route::get('/akun/nonaktif', ['as' => 'admin.akun.nonaktif', 'uses' => 'AkunAdminController@view_akun_nonaktif']);
 	//end of akun

@@ -48,18 +48,18 @@
 						<li>
 							{{HTML::linkRoute('home','Home')}}
 							 <ul>
-								<li><a href="#">Selamat Datang</a></li>
-								<li><a href="#">Tentang HFI</a></li>
-								<li><a href="#">Visi</a></li>
-								<li><a href="#">Misi</a></li>
-								<li><a href="#">Regulasi HFI</a></li>
+								<li><a href="{{ URL::route('home',array()) }}">Selamat Datang</a></li>
+								<li><a href="{{ URL::route('home',array()) }}#tentang_hfi">Tentang HFI</a></li>
+								<li><a href="{{ URL::route('home',array()) }}#visi_hfi">Visi</a></li>
+								<li><a href="{{ URL::route('home',array()) }}#misi_hfi">Misi</a></li>
+								<li><a href="{{ URL::route('home',array()) }}#regulasi_hfi">Regulasi HFI</a></li>
 							</ul>
 						</li>
 						<li>
 							{{HTML::linkRoute('organisasi','Organisasi')}}
 							 <ul>
-								<li><a href="#">Pengurus</a></li>
-								<li><a href="#">Cabang</a></li>
+								<li><a href="{{ URL::route('organisasi',array()) }}">Pengurus</a></li>
+								<li><a href="{{ URL::route('cabang',array()) }}">Cabang</a></li>
 								
 							</ul>
 						</li>
@@ -69,16 +69,16 @@
 						<li>
 							{{HTML::linkRoute('publikasi','Publikasi',array(1))}}
 							<ul>
-								<li><a href="#">Publikasi Jurnal dan Non-Jurnal</a></li>
-								<li><a href="#">Publikasi Ilmiah Populer</a></li>
+								<li><a href="{{ URL::route('publikasi',array(1)) }}">Publikasi Jurnal dan Non-Jurnal</a></li>
+								<li><a href="{{ URL::route('publikasi',array(4)) }}">Publikasi Ilmiah Populer</a></li>
 								
 							</ul>
 						</li>
 						<li>
 							{{HTML::linkRoute('anggota','Anggota')}}
 							<ul>
-								<li><a href="#">Beranda</a></li>
-								<li><a href="#">Ketentuan dan Perjanjian</a></li>
+								<li><a href="{{ URL::route('anggota',array()) }}">Beranda</a></li>
+								<li><a href="{{ URL::route('ketentuan',array()) }}">Ketentuan dan Perjanjian</a></li>
 								
 							</ul>
 						</li>

@@ -147,6 +147,8 @@ class AccountController extends BaseController {
 			$ang -> nama = $nama;
 			$ang -> tanggal_revisi = Carbon::now();
 			$ang -> id_cabang = $cabang_id;
+			$ang -> tempat_lahir = $tempatLahir;
+			//$ang ->tgl gender
 			$ang -> tema_penelitian = $tema;
 			$ang -> spesialisasi = $spesialisasi;
 			$ang -> profesi = $profesi;

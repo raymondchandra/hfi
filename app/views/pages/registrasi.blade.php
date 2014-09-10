@@ -117,7 +117,7 @@
 			<td>Pendidikan</td>
 			<td>:</td>
 			<td>
-				<script>
+		<script>
 				var lastIdx = 2;
 				function addPendidikan(){
 					if(lastIdx <=5)
@@ -148,7 +148,7 @@
 					}
 					
 				}
-				function delPendidikan()
+				function delPendidikan(lastIdx)
 				{
 					$('#divPendidikan'+(lastIdx-1)).remove();
 					lastIdx--;

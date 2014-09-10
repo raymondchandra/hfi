@@ -6,7 +6,7 @@
 <div class='admin_title'>Akun Aktif</div>
 <div class='search_box'>
 		<input type='text' placeholder='Cari Username' />
-</div>
+</div> 
 <div class='list_akun_container'>
 	<table>
 		<div class='akun_legend'>

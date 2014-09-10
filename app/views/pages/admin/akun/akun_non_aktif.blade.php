@@ -2,7 +2,7 @@
 	$(document).ready(function(){
 		$( ".loader" ).fadeOut( 200, function(){});
 	});
-</script>
+</script> 
 <div class='admin_title'>Akun Tidak Aktif</div>
 <div class='search_box'>
 		<input type='text' placeholder='Cari Username' />

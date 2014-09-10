@@ -11,7 +11,7 @@
 <div class='list_akun_container'>
 	<table>
 		<div class='akun_legend'>
-			<tr>
+			<tr> 
 				<td class='nama_cabang'>Username</td>
 				<td class='nama_cabang'>Nama</td>
 				<td class='nama_cabang'>Cabang</td>

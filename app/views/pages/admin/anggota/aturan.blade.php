@@ -1,4 +1,5 @@
-
+<div class="container_12">
+	<div class="grid_12">
 <script>
 $(document).ready(function(){
 	$( ".loader" ).fadeOut( 200, function(){});
@@ -11,7 +12,7 @@ $(document).ready(function(){
 	{{$konten_home}}
 </textarea>
 </div>
-<input style="margin-left:920px;" type='button' name="submit_beranda_anggota" id='submit_change_home' value='Rubah'></input>
+<input class="button" type='button' name="submit_beranda_anggota" id='submit_change_home' value='Ubah'></input>
 
 
 <div class='admin_title'>Aturan Menjadi Anggota HFI</div>
@@ -21,7 +22,7 @@ $(document).ready(function(){
 	{{$konten_aturan}}
 </textarea>
 </div>
-<input style="margin-left:920px; margin-bottom:50px;" type='button' name="submit_aturan_anggota" id='submit_change_reg' value='Rubah'></input>
+<input class="button"  style="margin-bottom:50px;" type='button' name="submit_aturan_anggota" id='submit_change_reg' value='Ubah'></input>
 
 
 <script>
@@ -61,3 +62,5 @@ $(document).ready(function(){
 		},'json');
 	});
 </script>
+	</div>
+</div>

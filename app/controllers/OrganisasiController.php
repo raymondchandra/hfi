@@ -16,7 +16,8 @@ class OrganisasiController extends BaseController {
 	{
 		$arr = $this->setHeader();
 		$arr2 = $this->get_semua_cabang();
-		return View::make('pages.cabang', compact('arr','arr2'));
+			$arr3 = $this->get_all_pengurus();
+		return View::make('pages.cabang', compact('arr','arr2','arr3'));
 	}
 	
 
@@ -36,15 +37,32 @@ class OrganisasiController extends BaseController {
 		}
 	}
 	
-	//pengurus
+	// pengurus
+	// public function get_all_pengurus()
+	// {
+		// $id_cabang = Input::get('id_cabang');
+		// $count = DB::table('pengurus')->where('id_cabang', $id_cabang)->get();
+		// if(count($pengs) == 0)
+		// {
+			// kalo return "" bakal kebaca array isinya 1 (string "") 
+			// makanya diganti jadi return null
+			// return ""; 			
+			// return null;
+		// }
+		// else
+		// {
+			// return $pengs;
+		// }
+	// }
+	// pengurus
 	public function get_all_pengurus()
 	{
 		$pengs = Pengurus::all();
 		if(count($pengs) == 0)
 		{
-			//kalo return "" bakal kebaca array isinya 1 (string "") 
-			//makanya diganti jadi return null
-			//return ""; 			
+			// kalo return "" bakal kebaca array isinya 1 (string "") 
+			// makanya diganti jadi return null
+			// return ""; 			
 			return null;
 		}
 		else

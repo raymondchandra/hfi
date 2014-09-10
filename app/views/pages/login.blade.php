@@ -20,11 +20,17 @@
 							<div class="form">
 								{{ Form::open(array('url' => '/signin')) }}
 								<form>
-									<!--<input type="text"  placeholder="Username"/>-->
-									{{ Form::text('username', Input::old('username'), array('placeholder'=>'Username')) }}
-									<!--<input type="password" placeholder="Password"/>-->
+									<!-- PENTING! Untuk menghilangka notifikasi error cukup tambahkan kelas 'hide' pada element bersangkutan -->
+									{{ Form::text('username', Input::old('username'), array('placeholder'=>'Username')) }} 
+									<span class="error" style="position: absolute; top: 18px; right: -243px;">
+										Maaf username Anda belum terdaftar
+									</span>
+
+									<!-- PENTING! Untuk menghilangka notifikasi error cukup tambahkan kelas 'hide' pada element bersangkutan -->
 									{{ Form::password('password', array('placeholder' => 'password'), Input::old('password')) }}
-									<!--<input type="button" value="Log In" class="login"/>-->
+									<span class="error" style="position: absolute;top: 56px;right: -278px;">
+										Maaf username atau password Anda salah!
+									</span>
 									<div style="display: block; position: relative; width: 100$; height: 30px; overflow: hidden;">
 										{{ Form::submit('Login', array('class' => 'login')) }}
 										{{ Form::checkbox('remember_me', 'yes', null, ['style' => 'margin-top: 8px;']) }}

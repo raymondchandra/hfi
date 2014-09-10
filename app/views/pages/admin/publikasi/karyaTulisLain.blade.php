@@ -12,7 +12,7 @@ $(document).ready(function(){
 {{$pub_lain}}
 
 </textarea>
-<input type='button' id='submit_change' value='Rubah' style="margin-left: auto; margin-right: auto; "></input>
+<input type='button' id='submit_change' value='Rubah' style="margin-left: auto; margin-right: auto; " class="button"></input>
 </div>
 
 <script>

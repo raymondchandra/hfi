@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')	
-<div class="container_12">
+<div class="container_12" id="divProfil">
 	<div class="grid_12">
 		<div class="main_content">
 			<div class="side_panel_hfi">
@@ -95,27 +95,28 @@
 							pendidikan2 : $("#pendidikan2").val(),
 							pendidikan3 : $("#pendidikan3").val(),
 							pendidikan4 : $("#pendidikan4").val(),
-							pendidikan5 : $("#pendidikan5").val(),
+							pendidikan5 : $("#pendidikan5").val()
 						}
-						for(var i = 1;i<=5;i++){
-							input.pendidikan
-							
-						}
-						input.pendidikan1 = 'asd';
+						
 						var url = '{{ URL::route('editProfile')}}';
 						$.ajax({
 					        type: 'PUT',
 					        url: url,
 					        data: input,
 					        success: function (data){
-								alert(data);
+								if(data=="success"){
+									location.reload();
+								}else{
+									alert("error");
+								}
 					        }
 					    });
 						
 					}
+					
 					function batalEditProfile()
 					{
-						
+						location.reload();
 					}
 				</script>	
 				<table border="0" style="width:450px;">					
@@ -175,7 +176,7 @@
 								}
 								},
 							timepicker:false,
-							format:'Y-m-d',
+							format:'d.m.Y',
 							yearStart: '1900'
 						});
 						

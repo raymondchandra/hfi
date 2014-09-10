@@ -23,9 +23,12 @@ class UserController extends BaseController {
 			}
 			
 			$siteUrl = "//".$profile->situs;
-						
-			$tanggal_aktif = Auth::user()->batas_aktif;
+			$date= date_create(Auth::user()->batas_aktif);
+			$tanggal_aktif = date_format($date,"d-m-Y");
+			$date= date_create($profile->tanggal_lahir);
+			$profile->tanggal_lahir = date_format($date,"d-m-Y");
 			$result = array('data' => $profile, 'cabang' => $cabang->nama, 'status_aktif' => $status_aktif, 'batas_aktif' => $tanggal_aktif, 'siteUrl' => $siteUrl);
+			
 			$arr = $this->setHeader();
 				//ambil cabang dari database
 				$listcabang = $this->get_all_cabang();
@@ -142,7 +145,9 @@ class UserController extends BaseController {
 		$profile->tanggal_revisi = Carbon::now();
 		$profile -> gender = Input::get('gender');
 		$profile -> tempat_lahir = Input::get('tempatlahir');
-		$profile -> tanggal_lahir = Input::get('tanggallahir');
+		$datepiece = explode('.',Input::get('tanggallahir'));
+		$date = $datepiece[2].'-'.$datepiece[1].'-'.$datepiece[0];
+		$profile -> tanggal_lahir = $date;
 		$profile -> tema_penelitian = Input::get('temapenelitian');
 		$profile -> spesialisasi = Input::get('spesialisasi');
 		$profile -> profesi = Input::get('profesi');

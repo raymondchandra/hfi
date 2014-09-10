@@ -39,6 +39,7 @@
 			</div>
 			
 			<div class="content_hfi">
+				<h1>{{$current}}</h1>
 				{{$publikasi}}
 			</div>
 		</div>

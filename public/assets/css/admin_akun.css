@@ -8,4 +8,88 @@
 	margin-right: 5px;
 	text-align:right;
 }
- 
+
+.list_legend_akun{
+	padding:5px 0px;
+	margin-top:20px;
+	border-top:1px solid #c0c0c0;border-bottom:
+	1px solid #c0c0c0
+}
+
+.list_legend_akun ul{
+	height:18px;
+	overflow:hidden
+}
+
+.list_legend_akun ul li{
+	display:inline-block;
+	overflow:hidden;
+	color:#808080
+}
+
+.list_legend_akun ul li *{
+	display:block;
+	float:left;
+	padding-right:3px;
+	text-indent:8px
+}
+
+.list_legend_akun ul .username_akun{
+	width:250px
+}
+
+.list_legend_akun ul .name_akun{
+	width:200px
+}
+
+.list_legend_akun ul .cabang_akun{
+	width:150px
+}
+
+.list_legend_akun ul .tanggal_akun{
+	width:150px
+}
+
+.list_legend_akun ul .id_cat{
+	width:80px
+}
+
+.list_legend_akun ul .name_cat{
+	width:140px
+}
+.list_legend_akun ul .command{
+	width:200px
+}
+
+.admin_product_list ul li{
+	display:inline-block;
+	overflow:hidden;
+	border-bottom:1px solid #efefef
+}
+
+.admin_product_list ul li *{
+	display:block;
+	float:left;
+	padding-right:3px;
+	text-indent:8px;
+	line-height:50px;
+}
+
+.admin_product_list ul li .username_akun{
+	width:275px;
+}
+
+.admin_product_list ul li .name_akun{
+	width:200px
+}
+
+.admin_product_list ul li .cabang_akun{
+	width:150px;
+}
+
+.admin_product_list ul li .tanggal_akun{
+	width:150px;
+}
+
+
+.admin_product_list ul li .command{width:200px}

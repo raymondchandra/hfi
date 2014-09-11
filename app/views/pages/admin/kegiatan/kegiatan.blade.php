@@ -146,7 +146,7 @@
 							</textarea>
 						</div>
 
-						{{Form::submit('Kirim Pesan', array('style' => 'display:block; margin-left: auto; margin-right: auto;'));}}
+						{{Form::submit('Kirim Pesan', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'button'));}}
 					{{ Form::close() }}
 					<style>
 						.row_label {

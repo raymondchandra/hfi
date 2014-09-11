@@ -14,7 +14,7 @@
 	border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;
 	box-shadow:0 0 3px #999; -webkit-box-shadow:0 0 3px #999; -moz-box-shadow:0 0 3px #999;
 	overflow:hidden;
-	height: 300px !important;
+	/*height: 300px !important;*/
 	transition:box-shadow 0.4s, border 0.4s; -webkit-transition:-webkit-box-shadow 0.4s, border 0.4s; -moz-transition:-moz-box-shadow 0.4s, border 0.4s; -o-transition:-o-box-shadow 0.4s, border 0.4s;
 }
 .jqte * {

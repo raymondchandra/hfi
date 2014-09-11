@@ -184,18 +184,21 @@
 							$('html').css('overflow-y', 'hidden');
 						});
 						
-					$('.exit').click(function() {$( ".pop_up_super_c_show_pengurus" ).fadeOut( 200, function(){});});					
-				
-					$('.pop_up_super_c_show_pengurus').click(function (e)
-					{
-						var container = $('.pop_up_cell_show_pengurus');
-
-						if (container.is(e.target) )// if the target of the click is the container...
-						{
+						$('body').on('click','.exit',function(){
 							$( ".pop_up_super_c_show_pengurus" ).fadeOut( 200, function(){});
-							$('html').css('overflow-y', 'auto');
-						}
-					});
+						});
+						//$('.exit').click(function() {$( ".pop_up_super_c_show_pengurus" ).fadeOut( 200, function(){});});					
+					
+						$('.pop_up_super_c_show_pengurus').click(function (e)
+						{
+							var container = $('.pop_up_cell_show_pengurus');
+
+							if (container.is(e.target) )// if the target of the click is the container...
+							{
+								$( ".pop_up_super_c_show_pengurus" ).fadeOut( 200, function(){});
+								$('html').css('overflow-y', 'auto');
+							}
+						});
 					
 					</script>
 				</div>

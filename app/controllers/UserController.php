@@ -23,13 +23,17 @@ class UserController extends BaseController {
 			}
 			
 			$siteUrl = "//".$profile->situs;
-						
-			$tanggal_aktif = Auth::user()->batas_aktif;
+			$date= date_create(Auth::user()->batas_aktif);
+			$tanggal_aktif = date_format($date,"d-m-Y");
+			$date= date_create($profile->tanggal_lahir);
+			$profile->tanggal_lahir = date_format($date,"d-m-Y");
 			$result = array('data' => $profile, 'cabang' => $cabang->nama, 'status_aktif' => $status_aktif, 'batas_aktif' => $tanggal_aktif, 'siteUrl' => $siteUrl);
+			
 			$arr = $this->setHeader();
 				//ambil cabang dari database
 				$listcabang = $this->get_all_cabang();
-			return View::make('pages.profileanggota', compact('arr', 'listcabang'))->with('data' , $result);
+			$pendidikans = $this->getPendidikan($profile->id);
+			return View::make('pages.profileanggota', compact('arr', 'listcabang','pendidikans'))->with('data' , $result);
 	}
 	
 	public static function getHeaderName($id)
@@ -119,15 +123,81 @@ class UserController extends BaseController {
 			return null;
 		}
 	}
-		
+	
+	public function getPendidikan($profile_id)
+	{	
+		$pendidikan = Pendidikan::where('id_profile', '=' , $profile_id)->get();
+		if($pendidikan==NULL){
+			return null;
+		}else{
+			return $pendidikan;
+		}
+	}
 	
 	//edit_profile
 	public function edit_profile(){
-		$id_profile = Input::get('id_profile');
-		$profile = Profile::find($id_profile);
-		$profile->nama = Input::get('nama_profile');
-		$profile->id_cabang = 
+		
+		$id_profile = Auth::user()->profile->id;
+		$profile = Anggota::find($id_profile);
+		$profile->nama = Input::get('nama');
+		$cabang_id = Cabang::where('nama', '=', Input::get('cabang'))->first()->id;
+		$profile->id_cabang = $cabang_id;
 		$profile->tanggal_revisi = Carbon::now();
+		$profile -> gender = Input::get('gender');
+		$profile -> tempat_lahir = Input::get('tempatlahir');
+		$datepiece = explode('.',Input::get('tanggallahir'));
+		$date = $datepiece[2].'-'.$datepiece[1].'-'.$datepiece[0];
+		$profile -> tanggal_lahir = $date;
+		$profile -> tema_penelitian = Input::get('temapenelitian');
+		$profile -> spesialisasi = Input::get('spesialisasi');
+		$profile -> profesi = Input::get('profesi');
+		$profile -> institusi = Input::get('institusi');
+		$profile -> alamat = Input::get('alamat');
+		$profile -> kota = Input::get('kota');
+		$profile -> kodepos = Input::get('kodepos');
+		$profile -> negara = Input::get('negara');
+		$profile -> telepon = Input::get('telepon');
+		$profile -> hp = Input::get('hp');
+		$profile -> fax = Input::get('fax');
+		$profile -> email = Input::get('email');
+		$profile -> situs = Input::get('situs');
+		$profile -> keterangan = Input::get('keterangan');
+		$profile -> timestamps = false;
+		try{
+			$profile -> save();
+		}catch(Exception $e){
+			
+			return $e;
+		}
+		
+		//delete dulu pendidikannya
+		try{
+			DB::table('pendidikan')->where('id_profile', '=', $id_profile)->delete();
+		}catch(Exception $e){
+			return $e;
+		}
+		
+		for($i = 1; $i <= 5; $i++){
+			$gelar = Input::get('selPendidikan'.$i);
+			$lokasi =  Input::get('pendidikan'.$i);
+			
+			if($gelar != ""){
+				$pend = new Pendidikan();
+				$pend->timestamps = false;
+				$pend->id_profile = $id_profile;
+				$pend->gelar = $gelar;
+				$pend->lokasi = $lokasi;
+				try{
+					$pend->save();
+				}catch(Exception $e){
+					return $e;
+					
+				}
+				
+			}
+		}
+		
+		return 'success';
 		
 	}
 }

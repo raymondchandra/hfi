@@ -1,6 +1,22 @@
 <script>
 	$(document).ready(function(){
+		
+		var url = '{{URL::route('admin.akun.getBaru')}}';
+		$.get(url,function(data){
+			var temp = "";
+			$.each(data,function(index, value){
+				temp +="<tr>";
+				temp +="<td class='username'>"+value.username+"</td>";
+				temp +="<td class='nama'>"+value.username+"</td>";
+				temp +="<td class='cabang'>"+value.username+"</td>";
+				temp +="<input type='hidden' value ='"+value.id+"' />";
+				temp +="<td class='aktivasi'><a href='javascript:void(0)' class='aktivasi_akun'>Aktivasi</a></td>";	
+				temp +="</tr>";
+			});
+			$("#akun_content").append(temp);
+		});
 		$( ".loader" ).fadeOut( 200, function(){});
+		
 	});
 </script>
 
@@ -9,31 +25,14 @@
 		<input type='text' placeholder='Cari Username' />
 </div>
 <div class='list_akun_container'>
-	<table>
-		<div class='akun_legend'>
+	<table id='akun_content'>
 			<tr> 
-				<td class='nama_cabang'>Username</td>
-				<td class='nama_cabang'>Nama</td>
-				<td class='nama_cabang'>Cabang</td>
-				<td class='detail_cabang'>Aktifasi</td>
+				<td class='username'>Username</td>
+				<td class='nama'>Nama</td>
+				<td class='cabang'>Cabang</td>
+				<td class='aktivasi'>Aktivasi</td>
 			</tr>
-		</div>
-		<div class='akun_content'>
-			<tr>
-				<td class='nama_cabang'>Muhammad Naufal Ashshiddiq Wangsaatmadja</td>
-				<td class='alamat_cabang'>Muhammad Naufal Ashshiddiq Wangsaatmadja</td>
-				<td class='nama_cabang'>Jawa Tengah atau Yogyakarta</td>
-				<input type='hidden' />
-				<td class='detail_cabang'><a href='javascript:void(0)' class='aktifasi_akun'>Aktifasi</a></td>
-			</tr>
-			<tr>
-				<td class='nama_cabang'>Muhammad Naufal Ashshiddiq Wangsaatmadja</td>
-				<td class='alamat_cabang'>Muhammad Naufal Ashshiddiq Wangsaatmadja</td>
-				<td class='nama_cabang'>Muhammad Naufal Ashshiddiq Wangsaatmadja</td>
-				<input type='hidden' />
-				<td class='detail_cabang'><a href='javascript:void(0)' class='aktifasi_akun'>Aktifasi</a></td>
-			</tr>
-		</div>
+		
 	</table>
 
 </div>

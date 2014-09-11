@@ -79,30 +79,6 @@ class AccountController extends BaseController {
 		return Redirect::to('/login')->with('message', 'Anda telah keluar.');
 	}
 	
-	/*public function testRegis()
-	{
-		$test = "";
-		for($i = 1; $i <= 5; $i++){
-			$gelar = Input::get('selPendidikan'.$i);
-			$lokasi =  Input::get('pendidikan'.$i);
-			$test .= $gelar." ".$lokasi;
-			if($gelar != ""){
-				$test .= " in\n";
-				$pend = new Pendidikan();
-				$pend->timestamps = false;
-				$pend->id_profile = 2;
-				$pend->gelar = $gelar;
-				$pend->lokasi = $lokasi;
-				$pend->save();
-			}else{
-				$test .= " \n";
-				
-			}
-		}
-		
-		return $test;
-	}*/
-	
 	public function postRegis()
 	{
 		

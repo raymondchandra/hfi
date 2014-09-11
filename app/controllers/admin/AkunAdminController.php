@@ -20,6 +20,15 @@ class AkunAdminController extends BaseController {
 	{
 		return View::make('pages.admin.akun.akun_non_aktif');
 	}
+	
+	public function get_akun_baru()
+	{
+		$akun = Account::where('status_aktif','=',0)->get();
+		
+		//username, nama, cabang
+		return $akun;
+		
+	}
 }
 
 ?>

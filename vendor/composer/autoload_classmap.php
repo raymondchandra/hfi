@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Account' => $baseDir . '/app/models/Account.php',
     'AccountController' => $baseDir . '/app/controllers/AccountController.php',
+    'AkunAdminController' => $baseDir . '/app/controllers/admin/AkunAdminController.php',
     'Anggota' => $baseDir . '/app/models/Anggota.php',
     'AnggotaAdminController' => $baseDir . '/app/controllers/admin/AnggotaAdminController.php',
     'AnggotaController' => $baseDir . '/app/controllers/AnggotaController.php',

@@ -80,7 +80,7 @@ class AkunAdminController extends BaseController {
 	public function activateAccount()
 	{
 		$id = Input::get('id');
-		$length = Input:get('length');
+		$length = Input::get('length');
 		$akun = Account::find($id);
 		$akun->batas_aktif = Carbon::now()->addYears($length);
 		try{
@@ -95,7 +95,7 @@ class AkunAdminController extends BaseController {
 	public function extendAccount()
 	{
 		$id = Input::get('id');
-		$length = Input:get('length');
+		$length = Input::get('length');
 		$akun = Account::find($id);
 		$akun->batas_aktif = Carbon::createFromFormat('Y-m-d', $akun->batas_aktif)->addYears($length);
 		try{
@@ -110,8 +110,8 @@ class AkunAdminController extends BaseController {
 	public function resetPassword()
 	{
 		$id = Input::get('id');
-		$newPass = Input:get('newPass');
-		$reNewPass = Input:get('reNewPass');
+		$newPass = Input::get('newPass');
+		$reNewPass = Input::get('reNewPass');
 		if($newPass == $reNewPass){
 			$akun = Account::find($id);
 			$akun->password = Hash::make($newPass);

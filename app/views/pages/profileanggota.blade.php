@@ -29,7 +29,7 @@
 						</span>
 					</a>
 					<a href="javascript:void(0)" class="edit_profile front" onclick="editProfile()">Ubah Profile</a>
-					<a href="cetakkartu" target="_blank">Cetak Kartu Anggota</a>
+					<a href="user/cetakkartu" target="_blank">Cetak Kartu Anggota</a>
 					<a href="ubahpassword">Ubah Password</a>
 				</div>
 				<style>

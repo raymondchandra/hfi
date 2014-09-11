@@ -31,11 +31,11 @@
 			<div class="nama_institusi">
 				Institusi		: {{$profile->institusi}}
 			</div>
-			<!--<div class="valid_for">
-				Member HFI selama 3 tahun
-			</div>-->
+			<div class="valid_for">
+				Member HFI sampai
+			</div>
 			<div class="valid_since">
-				Member HFI Sampai {{$date}}
+				{{$date}}
 			</div>
 			
 			<img src='{{ asset("assets/img/foto_kartu.png") }}' width="85" alt="" class="kartu_hfi"/>

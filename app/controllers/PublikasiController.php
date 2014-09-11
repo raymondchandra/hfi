@@ -10,17 +10,26 @@ class PublikasiController extends BaseController {
 	
     public function view_index($id)
     {
-       	$current = $id;
+       	$current = "";
 		$publikasi = "";
         
-		if($current==1)
+		if($id==1){
 			$publikasi = $this->get_publikasi_jurnal();
-		else if($current==2)
+			$current = "Jenis publikasi yang dikelola";
+		}
+		else if($id==2){
 			$publikasi = $this->get_publikasi_ketentuan();
-		else if($current==3)
+			$current = "Ketentuan umum publikasi di jurnal-jurnal HFI";
+		}
+		else if($id==3){
 			$publikasi = $this->get_publikasi_lain();
-		else if($current==4)
+			$current = "Karya-karya tulis lain";
+		}
+		else if($id==4){
 			$publikasi = $this->get_publikasi_populer();
+			$current = "Publikasi Ilmiah Populer";
+		}
+			
 		
 		$arr = $this->setHeader();
 		return View::make('pages.publikasi', compact('arr', 'current', 'publikasi'));

@@ -117,12 +117,12 @@
 			<td>Pendidikan</td>
 			<td>:</td>
 			<td>
-				<script>
+		<script>
 				var lastIdx = 2;
 				function addPendidikan(){
 					if(lastIdx <=5)
 					{
-						var newRow = "<div id='divPendidikan'"+lastIdx+" style='margin-top: 5px;' '><select class='selPendidikan ws_dd' name='selPendidikan"+lastIdx+"'>";
+						var newRow = "<div id='divPendidikan"+lastIdx+"' style='margin-top: 5px;' '><select class='selPendidikan ws_dd' name='selPendidikan"+lastIdx+"'>";
 						newRow +="<option value=''>Pilih!</option>";
 						newRow +="<option value='SD'>SD</option>";
 						newRow +="<option value='SMP'>SMP</option>";
@@ -137,7 +137,7 @@
 						newRow +="<option value='lain'>Lainnya</option>";
 						newRow +="</select>";
 						newRow +="<input type='text' id='pendidikan"+lastIdx+"' name='pendidikan"+lastIdx+"' class='texPendidikan' style='margin-left: 20px;'/>";
-						newRow +="<input type='button' value='X' id='delPendidikan"+lastIdx+"' onClick='delPendidikan("+lastIdx+")' style='padding: 0px;'/><br /></div>";
+						newRow +="<input type='button' value='X' id='delPendidikan"+lastIdx+"' onClick='delPendidikan()' style='padding: 0px;'/><br /></div>";
 						$('#delPendidikan'+(lastIdx-1)).hide();
 						$('#addPendidikan').append(newRow);
 						if(lastIdx==5){

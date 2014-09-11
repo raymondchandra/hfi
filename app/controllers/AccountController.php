@@ -118,9 +118,9 @@ class AccountController extends BaseController {
 			$nama = Input::get('nama');
 			$cabangHFI = Input::get('hficabang');
 			$tempatLahir = Input::get('tempatlahir');
-			$tgl = Input::get('tanggallahir');
-			$bln = Input::get('bulanlahir');
-			$thn = Input::get('tahunlahir');
+			$date = Input::get('tanggallahir');
+			$datepiece = explode('.',$date);
+			$date = $datepiece[2].'-'.$datepiece[1].'-'.$datepiece[0];
 			$gender = Input::get('gender');
 			$tema = Input::get('temapenelitian');
 			$spesialisasi = Input::get('spesialisasi');
@@ -143,10 +143,16 @@ class AccountController extends BaseController {
 			$cabang_id = Cabang::where('nama', '=', $cabangHFI)->first()->id;
 			$ang = new Anggota();
 			$ang->timestamps = false;
-			$ang -> id = $username;
 			$ang -> nama = $nama;
+			
+			//nomer Anggota
+			$no_anggota = "";
+			$ang ->no_anggota = $no_anggota;
 			$ang -> tanggal_revisi = Carbon::now();
 			$ang -> id_cabang = $cabang_id;
+			$ang -> tempat_lahir = $tempatLahir;
+			$ang -> tanggal_lahir = $date;
+			$ang -> gender = $gender;
 			$ang -> tema_penelitian = $tema;
 			$ang -> spesialisasi = $spesialisasi;
 			$ang -> profesi = $profesi;
@@ -163,7 +169,7 @@ class AccountController extends BaseController {
 			$ang -> keterangan = $keterangan;
 			$ang -> save();
 			
-			$profile_id = Anggota::where('nama', '=', $nama)->first()->id;
+			$profile_id = $ang->id;
 			$acc = new Account();
 			$acc->timestamps = false;
 			$acc->username = $username;

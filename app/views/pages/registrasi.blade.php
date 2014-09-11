@@ -117,12 +117,12 @@
 			<td>Pendidikan</td>
 			<td>:</td>
 			<td>
-				<script>
+		<script>
 				var lastIdx = 2;
 				function addPendidikan(){
 					if(lastIdx <=5)
 					{
-						var newRow = "<div id='divPendidikan'"+lastIdx+" style='margin-top: 5px;' '><select class='selPendidikan ws_dd' name='selPendidikan"+lastIdx+"'>";
+						var newRow = "<div id='divPendidikan"+lastIdx+"' style='margin-top: 5px;' '><select class='selPendidikan ws_dd' name='selPendidikan"+lastIdx+"'>";
 						newRow +="<option value=''>Pilih!</option>";
 						newRow +="<option value='SD'>SD</option>";
 						newRow +="<option value='SMP'>SMP</option>";
@@ -137,7 +137,7 @@
 						newRow +="<option value='lain'>Lainnya</option>";
 						newRow +="</select>";
 						newRow +="<input type='text' id='pendidikan"+lastIdx+"' name='pendidikan"+lastIdx+"' class='texPendidikan' style='margin-left: 20px;'/>";
-						newRow +="<input type='button' value='X' id='delPendidikan"+lastIdx+"' onClick='delPendidikan("+lastIdx+")' style='padding: 0px;'/><br /></div>";
+						newRow +="<input type='button' value='X' id='delPendidikan"+lastIdx+"' onClick='delPendidikan()' style='padding: 0px;'/><br /></div>";
 						$('#delPendidikan'+(lastIdx-1)).hide();
 						$('#addPendidikan').append(newRow);
 						if(lastIdx==5){
@@ -277,7 +277,14 @@
 		#tanggallahir-error, #tahunlahir-error, #bulanlahir-error {
 			position:absolute;
 			right:100px;
-			margin-top: 10px;
+			/*margin-top: 10px;*/
+		}
+		
+		#pendidikan1-error {
+		background: #ea6153;
+		color: #fff;
+		border-radius: 5px;
+		float: right;
 		}
 		
 		#kota-error, #kodepos-error, #negara-error {
@@ -509,6 +516,9 @@
 		
 		#username-error {
 			background-color: #88DB12;
+			float: right;
+			line-height: 28px;
+			border-radius: 5px;
 		}
 		
 		#kodepos-error, #kota-error, #negara-error{

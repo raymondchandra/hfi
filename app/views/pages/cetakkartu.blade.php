@@ -7,38 +7,50 @@
 			<div class="word_member">
 				Member
 			</div>
+			<p class="kantor_alamat_hfi">
+				Alamat kantor HFI Pusat<br/>
+				{{$alamatHFIPusat}}
+			</p>
 			<div class="word_tahun">
-				2014
+				{{$thisyear}}
 			</div>
+			
 			<div class="nama_member">
-				Nama Seorang Member
+				{{$profile->nama}}
 			</div>
+			<div>
+				<img src="" alt=""/>
+			</div>
+			
 			<div class="member_no">
-				Member #9457584
+				No. Member	: {{$profile->no_anggota}}
 			</div>
 			<div class="nama_section">
-				Indonesia Section
+				Cabang	: {{$nama_cabang}}
+			</div>
+			<div class="nama_institusi">
+				Institusi		: {{$profile->institusi}}
 			</div>
 			<div class="valid_for">
-				Member HFI selama 3 tahun
+				Member HFI sampai
 			</div>
 			<div class="valid_since">
-				Sampai 31 September 2017
+				{{$date}}
 			</div>
+			
+			<img src='{{ asset("assets/img/foto_kartu.png") }}' width="85" alt="" class="kartu_hfi"/>
+			
+
 			<div class="hyperlink_hfi">
-				hfi.fisika.net
+				Untuk informasi kunjung {{Request::root()}}
 			</div>
+
+			<img src='{{ asset("assets/img/tanda_tangan_ketua.png") }}' width="101" alt="" class="tanda_tangan_ketua"/>
 		</div>
 		
 		<div class="right">
-			<p class="kantor_alamat_hfi">
-				Kantor alamat HFI sendiri<br/>
-				Jl. Sebuah Jalan No. 99
-			</p>
-			<div class="info_member">
-				Untuk informasi membership kunjungi hfi.fisika.net
-			</div>
-			<p class="keterangan_0">
+			
+		<!-- 	<p class="keterangan_0">
 				Keterangan terkait kartu HFI dapat ditempakan di kolom berikut, administrator bebas memasukan keterangan apapun asalakan relevan.
 			</p>
 
@@ -51,7 +63,7 @@
 			</p>
 			<div class="barcode">
 				barcode?
-			</div>
+			</div>0-->
 		</div>
 	</div>
 	

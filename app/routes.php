@@ -117,7 +117,6 @@ Route::get('/lain', ['as' => 'lain', 'uses' => 'LainController@view_index']);
 //account view
 Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login', 'before' => 'checkLogin']);
 Route::get('/registrasi', ['as' => 'registrasi', 'uses' => 'AccountController@view_registrasi']);
-Route::get('/cetakkartu', ['as' => 'cetakkartu', 'uses' => 'AccountController@view_cetakkartu']);
 Route::get('/forgotpassword', ['as' => 'forgotpassword', 'uses' => 'AccountController@view_forgotpassword']);
 Route::get('/ubahpassword', ['as' => 'changepassword', 'uses' => 'AccountController@view_changepassword']);
 
@@ -131,6 +130,7 @@ Route::group(['prefix' => 'user', 'before' => 'authUser'], function () {
 	Route::get('/', ['as' => 'profile', 'uses' => 'UserController@view_profile']);
 	Route::get('/carianggota', ['as' => 'carianggota', 'uses' => 'UserController@view_carianggota']);
 	Route::get('/berkas', ['as' => 'berkas', 'uses' => 'UserController@view_berkas']);
+	Route::get('/cetakkartu', ['as' => 'cetakkartu', 'uses' => 'UserController@view_cetakkartu']);
 	
 	//user get route
 	
@@ -208,6 +208,13 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	Route::get('/home/daftarregulasi', ['as' => 'admin.home.daftarregulasi', 'uses' => 'HomeAdminController@get_all_regulasi']);
 	Route::get('/berkas/daftarberkas', ['as' => 'admin.berkas.daftarberkas', 'uses' => 'BerkasAdminController@get_all_berkas']);
 	
+	//akun get route
+	Route::get('/akun/getBaru', ['as' => 'admin.akun.getBaru', 'uses' => 'AkunAdminController@get_akun_baru']);
+	Route::get('/akun/getAktif', ['as' => 'admin.akun.getAktif', 'uses' => 'AkunAdminController@get_akun_aktif']);
+	Route::get('/akun/getNonaktif', ['as' => 'admin.akun.getNonaktif', 'uses' => 'AkunAdminController@get_akun_nonaktif']);
+	Route::get('/akun/findUsername/{status}', ['as' => 'admin.akun.findUsername', 'uses' => 'AkunAdminController@findUsername']);
+	
+	
 	//admin post route
 	Route::post('/organisasi/tambahcabang', ['as' => 'admin.organisasi.tambahcabang', 'uses' => 'OrganisasiAdminController@tambah_cabang']);
 	
@@ -247,6 +254,11 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	Route::put('/editPubKetentuan', ['as' => 'admin.editPubKetentuan', 'uses' => 'PublikasiAdminController@update_ketentuan']);
 	Route::put('/editPubLain', ['as' => 'admin.editPubLain', 'uses' => 'PublikasiAdminController@update_karyaLain']);
 	Route::put('/editPubPopuler', ['as' => 'admin.editPubPopuler', 'uses' => 'PublikasiAdminController@update_populer']);
+	
+	//edit akun
+	Route::put('/activateAccount', ['as' => 'admin.activateAccount', 'uses' => 'AkunAdminController@activateAccount']);
+	Route::put('/extendAccount', ['as' => 'admin.extendAccount', 'uses' => 'AkunAdminController@extendAccount']);
+	Route::put('/resetPassword', ['as' => 'admin.resetPassword', 'uses' => 'AkunAdminController@resetPassword']);
 	
 	//edit lain
 	Route::put('/editLain', ['as' => 'admin.editLain', 'uses' => 'LainAdminController@update_lain']);

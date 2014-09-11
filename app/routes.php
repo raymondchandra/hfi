@@ -28,7 +28,6 @@ Route::get('/lain', ['as' => 'lain', 'uses' => 'LainController@view_index']);
 //account view
 Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login', 'before' => 'checkLogin']);
 Route::get('/registrasi', ['as' => 'registrasi', 'uses' => 'AccountController@view_registrasi']);
-Route::get('/cetakkartu', ['as' => 'cetakkartu', 'uses' => 'AccountController@view_cetakkartu']);
 Route::get('/forgotpassword', ['as' => 'forgotpassword', 'uses' => 'AccountController@view_forgotpassword']);
 Route::get('/ubahpassword', ['as' => 'changepassword', 'uses' => 'AccountController@view_changepassword']);
 
@@ -42,6 +41,7 @@ Route::group(['prefix' => 'user', 'before' => 'authUser'], function () {
 	Route::get('/', ['as' => 'profile', 'uses' => 'UserController@view_profile']);
 	Route::get('/carianggota', ['as' => 'carianggota', 'uses' => 'UserController@view_carianggota']);
 	Route::get('/berkas', ['as' => 'berkas', 'uses' => 'UserController@view_berkas']);
+	Route::get('/cetakkartu', ['as' => 'cetakkartu', 'uses' => 'UserController@view_cetakkartu']);
 	
 	//user get route
 	

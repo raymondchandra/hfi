@@ -25,8 +25,8 @@
 
     <!-- Include all compiled plugins (below), or include individual files as needed 
     <script src="assets/js/bootstrap.min.js"></script>-->
-	<script type="text/javascript" src="assets/js/carousel.js"></script>
-	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+	{{ HTML::script( asset('/assets/js/carousel.js') )}}
+	{{ HTML::script( asset('/assets/js/bootstrap.min.js') )}}
 	
 	<script type="text/javascript">
 		

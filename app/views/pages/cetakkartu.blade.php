@@ -7,12 +7,21 @@
 			<div class="word_member">
 				Member
 			</div>
+			<p class="kantor_alamat_hfi">
+				Kantor alamat HFI sendiri<br/>
+				Jl. Sebuah Jalan No. 99
+			</p>
 			<div class="word_tahun">
 				2014
 			</div>
+			
 			<div class="nama_member">
 				Nama Seorang Member
 			</div>
+			<div>
+				<img src="" alt=""/>
+			</div>
+			
 			<div class="member_no">
 				Member #9457584
 			</div>
@@ -31,10 +40,6 @@
 		</div>
 		
 		<div class="right">
-			<p class="kantor_alamat_hfi">
-				Kantor alamat HFI sendiri<br/>
-				Jl. Sebuah Jalan No. 99
-			</p>
 			<div class="info_member">
 				Untuk informasi membership kunjungi hfi.fisika.net
 			</div>

@@ -8,44 +8,44 @@
 				Member
 			</div>
 			<p class="kantor_alamat_hfi">
-				Kantor alamat HFI sendiri<br/>
-				Jl. Sebuah Jalan No. 99
+				Alamat kantor HFI Pusat<br/>
+				{{$alamatHFIPusat}}
 			</p>
 			<div class="word_tahun">
-				2014
+				{{$thisyear}}
 			</div>
 			
 			<div class="nama_member">
-				Nama Seorang Member
+				{{$profile->nama}}
 			</div>
 			<div>
 				<img src="" alt=""/>
 			</div>
 			
 			<div class="member_no">
-				No. Member	: 98765434567
+				No. Member	: {{$profile->no_anggota}}
 			</div>
 			<div class="nama_section">
-				Cabang		: Bandung
+				Cabang	: {{$nama_cabang}}
 			</div>
 			<div class="nama_institusi">
-				Institusi		: Universitas Katolik Parahyangan
+				Institusi		: {{$profile->institusi}}
 			</div>
-			<div class="valid_for">
+			<!--<div class="valid_for">
 				Member HFI selama 3 tahun
-			</div>
+			</div>-->
 			<div class="valid_since">
-				Sampai 31 September 2017
+				Member HFI Sampai {{$date}}
 			</div>
 			
-			<img src="assets/img/foto_kartu.jpg" width="85" alt="" class="kartu_hfi"/>
+			<img src='{{ asset("assets/img/foto_kartu.png") }}' width="85" alt="" class="kartu_hfi"/>
 			
 
 			<div class="hyperlink_hfi">
-				Untuk informasi kunjung www.something.com
+				Untuk informasi kunjung {{Request::root()}}
 			</div>
 
-			<img src="assets/img/tanda_tangan_ketua.png" width="101" alt="" class="tanda_tangan_ketua"/>
+			<img src='{{ asset("assets/img/tanda_tangan_ketua.png") }}' width="101" alt="" class="tanda_tangan_ketua"/>
 		</div>
 		
 		<div class="right">

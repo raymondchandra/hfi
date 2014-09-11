@@ -50,9 +50,7 @@ class HomeAdminController extends BaseController {
 	public function view_regulasi()
 	{
 		//$regulations = $this->get_all_regulasi();
-		//return View::make('pages.admin.home.regulasi', compact('regulations')); 
-		
-		
+		//return View::make('pages.admin.home.regulasi', compact('regulations')); 				
 		return View::make('pages.admin.home.regulasi'); 
 	}
 	
@@ -178,15 +176,15 @@ class HomeAdminController extends BaseController {
 	
 	public function add_regulasi()
 	{
-		$rules = array(
-			'versi' => 'required',
-			'fileReg' => 'required'
-		);		
-		$validator = Validator::make(Input::all(), $rules);		
-		if($validator->fails())
-		{
-			return $validator->messages();
-		}
+		// $rules = array(
+			// 'versi' => 'required',
+			// 'fileReg' => 'required'
+		// );		
+		// $validator = Validator::make(Input::all(), $rules);		
+		// if($validator->fails())
+		// {
+			// return $validator->messages();
+		// }
 		
 		if(Input::hasFile('fileReg'))
 		{
@@ -218,13 +216,18 @@ class HomeAdminController extends BaseController {
 	
 	public function get_all_regulasi()
 	{		
-		$regulations = Regulasi::all();
+		$count = Regulasi::all();
 		//$regulations = Regulasi::paginate(5);
-		if($regulations==null){
+		//if($regulations==null){
+		//echo $count;
+		if(count($count) != 0)
+		{
+			return $count;
+		}
+		else
+		{
 			return null;
-		}else{			
-			return $regulations;
-		}		
+		}
 	}
 	
 

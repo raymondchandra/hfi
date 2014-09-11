@@ -7,49 +7,37 @@
 					url: 'admin/berkas/daftarberkas',
 					type: 'GET',
 					success: function(data){				
-						if(data==null){
-							//alert("kosong");
-							var list = "<tr>";
-								list+="<td class='nama_berkas'>Nama Berkas</td>";
-								list+="<td class='pengunggah_berkas'>Pengunggah Berkas</td>";
-								list+="<td class='deskripsi_berkas'>Deskripsi Berkas</td>";
-								list+="<td class='edit_berkas'>&nbsp;</td>";
-								list+="<td class='delete_berkas'>&nbsp;</td>";
-							list+="</tr>";
-							list+="<tr>";
-								list+="<td class='nama_berkas'>-</td>";
-								list+="<td class='pengunggah_berkas'>-</td>";
-								list+="<td class='deskripsi_berkas'>-</td>";
-								list+="<td class='edit_berkas'>&nbsp;</td>";
-								list+="<td class='delete_berkas'>&nbsp;</td>";
-							list+="</tr>";
-							$('.list_berkas').html(list);
+						if(data==0){
+							//alert("kosong");							
+							$('.list_berkas').html("Tidak terdapat berkas di dalam database");
 						}
 						else{
+							//alert("masuk");
 							//atur					
-							var length = data.length;
+							var length = data.length;								
 							var list = "<tr>";
 								list+="<td class='nama_berkas'>Nama Berkas</td>";
-								list+="<td class='pengunggah_berkas'>Pengunggah Berkas</td>";
+								//list+="<td class='pengunggah_berkas'>Pengunggah Berkas</td>";
+								list+="<td class='tanggal_unggah_berkas'>Tanggal Unggah</td>";
 								list+="<td class='deskripsi_berkas'>Deskripsi Berkas</td>";
 								list+="<td class='edit_berkas'>&nbsp;</td>";
 								list+="<td class='delete_berkas'>&nbsp;</td>";
 							list+="</tr>";
 							arrIDBerkas = [];
-							<?php $i = 0;?>
-							for($i = 0; $i<length; $i++){
-								arrIDBerkas[$i] = data[$i]['id'];
+							var i = 0;
+							for(i = 0; i<length; i++){
+								arrIDBerkas[i] = data[i]['id'];
 								list+="<tr>";
-									list+="<td class='nama_berkas'>"+data[$i]['nama_file']+"</td>";
-									list+="<td class='pengungah_berkas'><?php echo $arrPengunggah[$i]; $i++;?></td>";
-									list+="<td class='deskripsi_berkas'> <input type='hidden' value='"+data[$i]['deskripsi']+"'/> <button style='width:120px; margin-top:0px;' class='button_show_deskripsi' type='submit'>Lihat Deskripsi</button> </td>";							
-									list+="<td class='edit_berkas'> <input type='button' value='v' class='edit_info_berkas' /><input type='hidden' class='id_berkas' value='"+$i+"' /></td>";
-									list+="<td class='delete_berkas'><input type='button' value='x' class='hapus_berkas' /><input type='hidden' class='id_berkas' value='"+$i+"' /></td>";
+									list+="<td class='nama_berkas'>"+data[i]['nama_file']+"</td>";									
+									list+="<td class='tanggal_unggah_berkas'>"+data[i]['uploaded_date']+"</td>";
+									list+="<td class='deskripsi_berkas'> <input type='hidden' value='"+data[i]['deskripsi']+"'/> <button style='width:120px; margin-top:0px;' class='button_show_deskripsi' type='submit'>Lihat Deskripsi</button> </td>";							
+									list+="<td class='edit_berkas'> <input type='button' value='v' class='edit_info_berkas' /><input type='hidden' class='id_berkas' value='"+i+"' /></td>";
+									list+="<td class='delete_berkas'><input type='button' value='x' class='hapus_berkas' /><input type='hidden' class='id_berkas' value='"+i+"' /></td>";
 								list+="</tr>";
 							}
-							$('.list_berkas').html(list);
-							$(".loader").fadeOut(200, function(){});
+							$('.list_berkas').html(list);							
 						}
+						$(".loader").fadeOut(200, function(){});
 					},
 					error: function(errorThrown){
 						alert(errorThrown);
@@ -71,7 +59,7 @@
 				</table>
 				<script>	
 					var id_edit_berkas;
-				
+					
 					$('body').on('click','.button_show_deskripsi',function(){									
 						$(".pop_up_super_c_deskripsi_berkas").fadeIn(277, function(){});				
 						var nama = $(this).parent().prev().prev().text();						
@@ -194,8 +182,8 @@
 						// $deskripsi = $('#new_deskripsi').val();				
 							// alert($deskripsi);
 						// $.ajax({
-							// url: 'admin/berkas/tambahberkas',
 							// type: 'POST',
+							// url: 'admin/berkas/tambahberkas',
 							// data: {
 								// 'nama_berkas' : $nama,
 								// 'pengunggah_berkas' : $pengunggah,
@@ -239,35 +227,105 @@
 					<div class="div_detail_berkas" style="background: #fff; margin-top:130px; width:600px !important;">
 						<h2>Detail Berkas</h2>
 						<div id="div_form_berkas">
-							{{Form::open(array('url' => '/postBerkas', 'files' => true))}}
-							<table class="table_berkas">
-								<tr>
-									<td style="width:150px !important;">Nama Berkas</td>
-									<td><pre>:   </pre></td>
-									<td>{{ Form::text('nama_berkas', Input::old('nama_berkas'), array('id' => 'new_nama', 'style' => 'width:350px !important;')) }}</td>
-								</tr>
-								<tr style="display:none;">
-									<td>Pengunggah</td>
-									<td><pre>:   </pre></td>							
-									<td id="new_pengunggah">{{ Form::hidden('id_pengunggah', Auth::user()->profile_id, Input::old('id_pengunggah')) }}</td>
-								</tr>
-								<tr>
-									<td>Deskripsi Berkas</td>
-									<td><pre>:   </pre></td>
-									<td>{{ Form::textarea('deskripsi_berkas', Input::old('deskripsi_berkas'), array('id' => 'new_deskripsi')) }}</td>
-								</tr>
-								<tr>
-									<td>File Berkas</td>
-									<td><pre>:   </pre></td>
-									<td>{{ Form::file('fileBerkas')}}</td>
-								</tr>
-								<tr>
-									<!--<td><input type='button' value='Tambah' id="tambah_cabang_button"/></td>-->							
-									<td colspan="3">{{ Form::submit('Tambah Berkas', array('id' => 'button_tambah_berkas', 'class' => 'button'))}}</td>
-								</tr>					
-							</table>
-							{{ Form::token() }}
-							{{ Form::close() }}
+							<!-- postBerkas-->		
+							<form class='tambah_berkas_form'>
+								<table class="table_berkas">
+									<tr>
+										<td style="width:150px !important;">Nama Berkas</td>
+										<td><pre>:   </pre></td>
+										<td>{{ Form::text('nama_berkas', Input::old('nama_berkas'), array('id' => 'new_nama', 'style' => 'width:350px !important;')) }}</td>
+									</tr>
+									<tr style="display:none;">
+										<td>Pengunggah</td>
+										<td><pre>:   </pre></td>							
+										<td id="new_pengunggah">{{ Form::hidden('id_pengunggah', Auth::user()->id, array('id'=>'new_id_pengunggah')) }}</td>
+									</tr>
+									<tr>
+										<td>Deskripsi Berkas</td>
+										<td><pre>:   </pre></td>
+										<td>{{ Form::textarea('deskripsi_berkas', Input::old('deskripsi_berkas'), array('id' => 'new_deskripsi')) }}</td>
+									</tr>
+									<tr>
+										<td>File Berkas</td>
+										<td><pre>:   </pre></td>
+										<td>{{ Form::file('fileBerkas', array('name'=>'fileBerkas', 'id'=>'fileBerkas'))}}</td>
+									</tr>
+									<tr>
+										<!--<td><input type='button' value='Tambah' id="tambah_cabang_button"/></td>-->							
+										<td colspan="3">{{ Form::submit('Tambah Berkas', array('class' => 'button'))}}</td>
+									</tr>					
+								</table>	
+							</form>
+							<script>
+								jQuery.validator.setDefaults({
+								  debug: true,
+								  success: "valid"
+								});
+								$(".tambah_berkas_form").validate({
+									rules:{
+										nama_berkas: {
+											required: true
+										},
+										deskripsi_berkas: {
+											required: true
+										},
+										fileBerkas: {
+											required: true
+										}
+									},
+									messages:{
+										nama_berkas: {
+											required: "Mohon nama berkas diisi"
+										},
+										deskripsi_berkas: {
+											required: "Mohon deskripsi berkas diisi"
+										},
+										fileBerkas: {
+											required: "Mohon file diisi"
+										}
+									},
+									submitHandler:function(form){
+										// $nama_berkas = $('#new_nama').val();
+											//alert($nama_berkas);
+										// $id_pengunggah = $('#new_id_pengunggah').text();
+											//alert($id_pengunggah);
+										// $deskripsi_berkas = $('#new_deskripsi').val();
+											//alert($deskripsi_berkas);
+										// $fileBerkas = $('#fileBerkas').val();
+											//alert($fileBerkas);
+										var data, xhr;
+										data = new FormData();
+											// fileBerkas
+											// nama_berkas
+											// id_pengunggah
+											// deskripsi_berkas
+										data.append('nama_berkas', $('#new_nama').val());											
+										data.append('id_pengunggah', $('#new_id_pengunggah').val());
+										data.append('deskripsi_berkas', $('#new_deskripsi').val());
+										data.append('fileBerkas', $('#fileBerkas')[0].files[0]);
+										$.ajax({
+											url: 'admin/postBerkas',
+											type: 'POST',
+											data: data,
+											processData: false,
+											contentType: false,
+											success: function(as){
+												$(".pop_up_super_c_tambah_berkas").fadeOut( 200, function(){
+													$(".loader").fadeIn(200, function(){
+														getBerkas();
+														alert('Berhasil menambah berkas');
+													});													
+												});
+											},
+											error:function(errorThrown){
+												alert('Gagal menambah berkas');
+												$(".pop_up_super_c_tambah_berkas").fadeOut( 200, function(){});
+												alert(errorThrown);
+											}
+										});
+									}
+								});
+							</script>
 						</div>
 					</div>
 					</div>			

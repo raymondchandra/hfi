@@ -1136,9 +1136,9 @@ background-color: #ea6153;
 margin-top: 2px; 
 line-height: 28px; 
 border-radius: 5px; 
-margin-left: 20px;
-padding-right:5px;
-padding-left:5px;
+	/*margin-left: 20px;
+	padding-right:5px;
+	padding-left:5px;*/
 color: #fff;
 display: block;
 }

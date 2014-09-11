@@ -40,9 +40,7 @@
 		</div>
 		
 		<div class="right">
-			<div class="info_member">
-				Untuk informasi membership kunjungi hfi.fisika.net
-			</div>
+			
 			<p class="keterangan_0">
 				Keterangan terkait kartu HFI dapat ditempakan di kolom berikut, administrator bebas memasukan keterangan apapun asalakan relevan.
 			</p>

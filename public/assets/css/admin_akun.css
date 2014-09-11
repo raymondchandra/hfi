@@ -36,18 +36,19 @@
 }
 
 .list_legend_akun ul .username_akun{
-	width:250px
-}
-
-.list_legend_akun ul .name_akun{
 	width:200px
 }
 
-.list_legend_akun ul .cabang_akun{
+.list_legend_akun ul .name_akun{
 	width:170px
 }
 
-.list_legend_akun ul .tanggal_akun{
+.list_legend_akun ul .cabang_akun{
+	width:120px;
+	margin-right:20px;
+}
+
+.list_legend_akun ul .tanggal_akun, .list_legend_akun ul .nomor_anggota{
 	width:110px
 }
 
@@ -62,7 +63,7 @@
 	width:150px
 } 
 
-.admin_product_list ul li{
+.admin_akun_list ul li{
 	display:inline-block;
 	border-bottom:1px solid #efefef;
 	margin-left: 0px !important;
@@ -70,28 +71,29 @@
 	padding-top: 5px;
 }
 
-.admin_product_list ul li *{
+.admin_akun_list ul li *{
 	display:block;
 	float:left;
 	padding-right:3px;
 }
 
-.admin_product_list ul li .username_akun{
-	width:230px;
+.admin_akun_list ul li .username_akun{
+	width:200px;
 	padding-right: 20px;
 }
 
-.admin_product_list ul li .name_akun{
-	width:200px
+.admin_akun_list ul li .name_akun{
+	width:170px
 }
 
-.admin_product_list ul li .cabang_akun{
-	width:170px;
+.admin_akun_list ul li .cabang_akun{
+	width:120px;
+	margin-right:20px;
 }
 
-.admin_product_list ul li .tanggal_akun{
+.admin_akun_list ul li .tanggal_akun, .admin_akun_list ul li .nomor_anggota{
 	width:110px;
 }
 
 
-.admin_product_list ul li .command{width:150px}
+.admin_akun_list ul li .command{width:150px}

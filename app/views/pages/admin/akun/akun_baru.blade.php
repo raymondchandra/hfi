@@ -6,7 +6,7 @@
 			var temp = "<tr><td>A</td></tr>";
 			$.each(data,function(index, value){
 				temp +="<tr>";
-				temp +="<td class='nama_cabang'>value.username</td>";
+				temp +="<td class='nama_cabang'>"+value.username+"</td>";
 				temp +="<td class='nama_cabang'>value.username</td>";
 				temp +="<td class='nama_cabang'>value.username</td>";
 				temp +="<input type='hidden' value ='"+value.id+"' />";
@@ -40,17 +40,20 @@
 		<li class="tanggal_akun">
 			Tanggal Registrasi
 		</li>
+		<li class="nomor_anggota">
+			&nbsp;
+		</li>
 		<li class="command">
-			Aktifasi
+			
 		</li>
 	</ul> 
 </div>
 
-<div class="admin_product_list">
-	<ul> 
+<div class="admin_akun_list">
+	<ul class="list_akun"> 
 		<li>
 			<div class="username_akun">
-				Muhammad Naufal Ashshiddiq
+				Muhammad Naufal Ashshiddiq Wangsaadmaja
 			</div>
 			<div class="name_akun">
 				Muhammad Naufal Ashshiddiq
@@ -61,8 +64,31 @@
 			<div class="tanggal_akun">
 				12-12-2012
 			</div>
+			<div class="nomor_anggota">
+				&nbsp;
+			</div>
 			<div class='command'>
-				<a href="javascript:void(0)">Aktifasi</a>
+				<a href="javascript:void(0)">Aktivasi</a>
+			</div>
+		</li>
+		<li>
+			<div class="username_akun">
+				Muhammad Naufal Ashshiddiq Wangsaadmaja
+			</div>
+			<div class="name_akun">
+				Muhammad Naufal Ashshiddiq
+			</div>
+			<div class="cabang_akun">
+				Jawa Timur - Yogyakarta
+			</div>
+			<div class="tanggal_akun">
+				12-12-2012
+			</div>
+			<div class="nomor_anggota">
+				&nbsp;
+			</div>
+			<div class='command'>
+				<a href="javascript:void(0)">Aktivasi</a>
 			</div>
 		</li>
 	</ul>

@@ -65,6 +65,19 @@ class UserController extends BaseController {
 		return "error";
 	}
 	
+	//tes
+	public function view_cetakkartu(){
+		
+		$profile = Auth::user()->profile;
+		$arr = $this->setHeader();
+		$nama_cabang = Cabang::find($profile->id_cabang)->nama;
+		$date = Carbon::createFromFormat('Y-m-d', Auth::user()->batas_aktif)->format('d F Y');
+		
+		$thisyear = Carbon::now()->year;
+		$alamatHFIPusat = Cabang::find(1)->alamat;
+		return View::make('pages.cetakkartu', compact('arr','profile','date','nama_cabang','thisyear','alamatHFIPusat'));
+	} 
+	
 	public function view_carianggota()
 	{
 		$arr = $this->setHeader();

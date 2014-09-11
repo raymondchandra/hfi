@@ -277,7 +277,14 @@
 		#tanggallahir-error, #tahunlahir-error, #bulanlahir-error {
 			position:absolute;
 			right:100px;
-			margin-top: 10px;
+			/*margin-top: 10px;*/
+		}
+		
+		#pendidikan1-error {
+		background: #ea6153;
+		color: #fff;
+		border-radius: 5px;
+		float: right;
 		}
 		
 		#kota-error, #kodepos-error, #negara-error {
@@ -509,6 +516,9 @@
 		
 		#username-error {
 			background-color: #88DB12;
+			float: right;
+			line-height: 28px;
+			border-radius: 5px;
 		}
 		
 		#kodepos-error, #kota-error, #negara-error{

@@ -259,7 +259,7 @@
 							function addPendidikan(){
 								if(lastIdx <=5)
 								{
-									var newRow = "<div id='divPendidikan"+lastIdx+"' style='margin-top: 5px;' '><select class='selPendidikan' id='selPendidikan"+lastIdx+"'>";
+									var newRow = "<div id='divPendidikan"+lastIdx+"' style='margin-top: 5px;' '><select class='selPendidikan'  style='width:50px;' id='selPendidikan"+lastIdx+"'>";
 									newRow +="<option value=''>Pilih!</option>";
 									newRow +="<option value='SD'>SD</option>";
 									newRow +="<option value='SMP'>SMP</option>";
@@ -273,7 +273,7 @@
 									newRow +="<option value='S3'>S3</option>";
 									newRow +="<option value='lain'>Lainnya</option>";
 									newRow +="</select>";
-									newRow +="<input type='text' id='pendidikan"+lastIdx+"' name='pendidikan"+lastIdx+"' class='texPendidikan' style='margin-left: 20px;'/>";
+									newRow +="<input type='text' id='pendidikan"+lastIdx+"' name='pendidikan"+lastIdx+"' class='texPendidikan' style='margin-left: 16px; width: 230px;'/>";
 									newRow +="<input type='button' value='X' id='delPendidikan"+lastIdx+"' onClick='delPendidikan()' style='padding: 0px;'/><br /></div>";
 									$('#delPendidikan'+(lastIdx-1)).hide();
 									$('#addPendidikan').append(newRow);
@@ -298,7 +298,7 @@
 						</script>
 					<div class="back">
 							
-								<select class='selPendidikan' id='selPendidikan1'>
+								<select class='selPendidikan' id='selPendidikan1' style='width:50px;'>
 									<option value=''>Pilih!</option>
 									<option value='SD'>SD</option>
 									<option value='SMP'>SMP</option>
@@ -312,7 +312,7 @@
 									<option value='S3'>S3</option>
 									<option value='lain'>Lainnya</option>
 								</select>
-							<input type="text" id="pendidikan1" name="pendidikan1" class='texPendidikan' style="margin-left: 16px;"/><br />
+							<input type="text" id="pendidikan1" name="pendidikan1" class='texPendidikan' style='margin-left: 16px; width: 230px;'/><br />
 							<div id="addPendidikan"></div>
 						<a href="javascript:void(0)" onClick = "addPendidikan();" id="refPendidikan">tambah pendidikan</a>
 					</div>

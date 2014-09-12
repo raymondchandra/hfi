@@ -154,11 +154,10 @@
 						
 						<div class="change_pp_container">
 							<div class="saran_43">
-								Disarankan Anda mengunggah foto dengan dimensi 
+								Disarankan Anda mengunggah foto dengan rasio 
 								
-								<span style="display: block; margin-left: auto; margin-right: auto; font-size: 24px;">3 X 4</span> 
+								<span style="display: block; margin-left: auto; margin-right: auto; font-size: 24px;">4:3</span> 
 								
-								(Passphoto)
 							</div>
 								{{ Form::open(array('url' => 'admin/editSlideShow','method'=>'put','files'=>'true')) }}
 								{{ Form::file('photo',array('name'=>'photo','id'=>'photo','class'=>'upload_photo','accept'=>"image/*" ,'style' => 'margin-top: 20px; display: block; margin-left: auto; margin-right: auto;')) }}
@@ -247,10 +246,16 @@ $('.ok_change').click(function(){
 			"idCaption":$(this).next().val()
         },
 		success: function(response){
-			alert(response);
+			if(response==1){
+				alert("Sukses mengubah caption.");
+			}
+			else if(response==2){
+				alert("Tidak ada gambar.");
+			}
+			
 			//pop up
-			$('#sesuatu').fadeIn( 277, function(){});
-			$('#message_pop').text('Sukses');
+			//$('#sesuatu').fadeIn( 277, function(){});
+			//$('#message_pop').text('Sukses');
 		},
 		error: function(jqXHR, textStatus, errorThrown){
 			alert(errorThrown);
@@ -302,10 +307,10 @@ $('.ok_change').click(function(){
 				 $("body").css('overflow-x','visible');
 			 }
 		 });						
-		 Slider = $('#slider').Swipe({   <!--swipe ke detect error-->
+		/* Slider = $('#slider').Swipe({   <!--swipe ke detect error-->
 			 auto: 3000,  
 			 continuous: true  
-		 }).data('Swipe');  
+		 }).data('Swipe');  */
 	 $('.pu_c').css('display','none');
 								
 </script>

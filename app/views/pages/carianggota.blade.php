@@ -40,16 +40,16 @@
 						<td>:</td>
 						<td>
 							{{ Form::select('gelar', array(
-								'sd' => 'SD',
-								'smp' => 'SMP',
-								'sma' => 'SMA',
-								'd1' => 'D1',
-								'd2' => 'D2',
-								'd3' => 'D3',
-								'd4' => 'D4',
-								's1' => 'S1',
-								's2' => 'S2',
-								's3' => 'S3',
+								'SD' => 'SD',
+								'SMP' => 'SMP',
+								'SMA' => 'SMA',
+								'D1' => 'D1',
+								'D2' => 'D2',
+								'D3' => 'D3',
+								'D4' => 'D4',
+								'S1' => 'S1',
+								'S2' => 'S2',
+								'S3' => 'S3',
 								'lainnya' => 'Lainnya'
 								), Input::old('gelar'), array('style' => 'width:50px;')) 
 							}}

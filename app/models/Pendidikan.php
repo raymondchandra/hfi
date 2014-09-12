@@ -1,8 +1,9 @@
 <?php
 
-	class Pendidikan extends Eloquent
-	{
-		protected $table = 'pendidikan';
-		
-		
-	}
+
+class Pendidikan extends Eloquent
+{
+	protected $table = 'pendidikan';
+	
+}
+

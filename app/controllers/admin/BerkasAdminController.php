@@ -8,19 +8,21 @@ class BerkasAdminController extends BaseController {
 	
 	public function view_index()
 	{
-		$arr = $this->setHeader();	
-			//ngambil nama pengunggah tiap berkas
-			$listberkas = $this->get_all_berkas();	//return null kalo kosong				
-			if($listberkas!=null){
-				$arrPengunggah = array();
-				foreach($listberkas as $value){
-					$pengunggah = DB::table('profile')->where('id', $value['uploaded_by'])->pluck('nama');
-					$arrPengunggah[] = $pengunggah;
-				}
-			}else{
-				$arrPengunggah = null;
-			}					
-		return View::make('pages.admin.berkas.berkas', compact('arr', 'arrPengunggah'));
+		// $arr = $this->setHeader();	
+			// ngambil nama pengunggah tiap berkas
+			// $listberkas = $this->get_all_berkas();	//return null kalo kosong				
+			// if($listberkas!=null){
+				// $arrPengunggah = array();
+				// foreach($listberkas as $value){
+					// $pengunggah = DB::table('profile')->where('id', $value['uploaded_by'])->pluck('nama');
+					// $arrPengunggah[] = $pengunggah;
+				// }
+			// }else{
+				// $arrPengunggah = null;
+			// }					
+		// return View::make('pages.admin.berkas.berkas', compact('arr', 'arrPengunggah'));
+		//return View::make('pages.admin.berkas.berkas', compact('arr'));
+		return View::make('pages.admin.berkas.berkas');
 	}		
 	
 	public function tambah_berkas()
@@ -43,11 +45,13 @@ class BerkasAdminController extends BaseController {
 			
 			$berkas -> save();
 			
-			return Redirect::to('/admin')->with('message', "berhasil menambah file berkas");
+			//return Redirect::to('/admin')->with('message', "berhasil menambah file berkas");
+			return "Berhasil menambah berkas";
 		}
 		else
 		{
-			return Redirect::to('/admin')->with('message', "gagal menambah file berkas");
+			//return Redirect::to('/admin')->with('message', "gagal menambah file berkas");
+			return "Gagal menambah berkas";
 		}
 	}
 	
@@ -87,6 +91,7 @@ class BerkasAdminController extends BaseController {
 	public function get_all_berkas()
 	{
 		$count = Berkas::all();
+		//echo $count;
 		if(count($count) != 0)
 		{
 			return $count;

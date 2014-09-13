@@ -50,9 +50,7 @@ class HomeAdminController extends BaseController {
 	public function view_regulasi()
 	{
 		//$regulations = $this->get_all_regulasi();
-		//return View::make('pages.admin.home.regulasi', compact('regulations')); 
-		
-		
+		//return View::make('pages.admin.home.regulasi', compact('regulations')); 				
 		return View::make('pages.admin.home.regulasi'); 
 	}
 	
@@ -178,15 +176,15 @@ class HomeAdminController extends BaseController {
 	
 	public function add_regulasi()
 	{
-		$rules = array(
-			'versi' => 'required',
-			'fileReg' => 'required'
-		);		
-		$validator = Validator::make(Input::all(), $rules);		
-		if($validator->fails())
-		{
-			return $validator->messages();
-		}
+		// $rules = array(
+			// 'versi' => 'required',
+			// 'fileReg' => 'required'
+		// );		
+		// $validator = Validator::make(Input::all(), $rules);		
+		// if($validator->fails())
+		// {
+			// return $validator->messages();
+		// }
 		
 		if(Input::hasFile('fileReg'))
 		{
@@ -218,13 +216,18 @@ class HomeAdminController extends BaseController {
 	
 	public function get_all_regulasi()
 	{		
-		$regulations = Regulasi::all();
+		$count = Regulasi::all();
 		//$regulations = Regulasi::paginate(5);
-		if($regulations==null){
+		//if($regulations==null){
+		//echo $count;
+		if(count($count) != 0)
+		{
+			return $count;
+		}
+		else
+		{
 			return null;
-		}else{			
-			return $regulations;
-		}		
+		}
 	}
 	
 
@@ -289,35 +292,23 @@ class HomeAdminController extends BaseController {
 		$caption = Input::get('caption');
 		$id = Auth::user()->id;
 		$id_caption = Input::get('idCaption');
-		if(count($id_caption) != 0)
-		{
-			$gallery = Gallery::find($id_caption);
-			$gallery->kapsion = $caption;
-			$gallery->timestamps = false;
-			$gallery -> tanggal_upload = Carbon::now();
-			$gallery -> uploaded_by = $id;
-			
+		$gallery = Gallery::find($id_caption);
+		if($gallery==NULL) return 2; //ga ad gambar
+		$gallery->kapsion = $caption;
+		$gallery->timestamps = false;
+		$gallery -> tanggal_upload = Carbon::now();
+		$gallery -> uploaded_by = $id;
+		try{
 			$gallery->save();
-			return "Success Update";
-		}else
-		{
-			$gallery = new Gallery();
-			$gallery -> timestamps = false;
-			$gallery -> kapsion = $caption;
-			$gallery -> type = '1';
-			$gallery -> tanggal_upload = Carbon::now();
-			$gallery -> uploaded_by = $id;
-			
-			$gallery -> save();
-			
-			return "Success Insert";
+			return 1; //success
+		}catch(Exception $e){
+			return $e;	
 		}
 	}
 	
 	public function get_slideshow()
 	{
 		$gal = Gallery::where('type','=', '1')->get();
-		//echo "AAAA";
 		if(count($gal) != 0)
 		{
 			return $gal;

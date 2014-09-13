@@ -155,7 +155,8 @@
 											//view pengurus
 											if(data==""){
 												view+="<div><hr></hr></div>";
-												view+="Tidak terdapat pengurus yang diunggah dari cabang ini";
+												view+="<div id='tambah_pengurus_link'><a href='javascript:void(0)' id='tambah_pengurus'  class='command_button'>+ Pengurus Baru</a></div>";
+												view+="Tidak terdapat pengurus yang diunggah dari cabang ini";												
 											}
 											else
 											{
@@ -177,7 +178,7 @@
 														arrFILEPATHPengurus[$i] = data[$i]['file_path'];														
 														view+="<tr>";
 															view+="<td style='vertical-align:middle !important; width:350px; overflow:hidden; margin-right:30px;'><a href='javascript:void(0)' class='periode_pengurus' value='"+data[$i]['file_path']+"'>"+data[$i]['periode']+"</a></td>";
-															view+="<td style='vertical-align:middle !important; width:350px;'>"+data[$i]['tanggal_upload']+"</td>"
+															view+="<td style='vertical-align:middle !important; width:350px;'>"+data[$i]['tanggal_upload']+"</td>";
 															view+="<td style='vertical-align:middle !important; width:100px;'><p style='display:none;'>"+data[$i]['file_path']+"</p><input type='button' value='x' class='hapus_pengurus'/><input type='hidden' class='id_pengurus' value='"+$i+"'/></td>";
 														view+="</tr>";
 													}
@@ -410,7 +411,7 @@
 											required: true
 										}
 									},									
-									message: {
+									messages: {
 										filePeng : {
 											required: "Mohon file diisi"
 										},
@@ -419,27 +420,34 @@
 										}
 									},
 									submitHandler:function(form){
-										$filePeng = $('#filePeng').val();
-										$periode = $('#periode').val();
+										// $filePeng = $('#filePeng').val();
+										// $periode = $('#periode').val();
 										var data, xhr;
 										data = new FormData();										
 										data.append('filePeng', $('#filePeng')[0].files[0]);
 										data.append('periode', $('#periode').val());
 										data.append('id_cabang', inputpengurus_idcabang);
 										$.ajax({
-											url: 'postPengurus',
+											url: 'admin/postPengurus',
 											type: 'POST',
 											data: data,
 											processData: false,
 											contentType: false,
 											success: function(as){
 												$( ".pop_up_super_c_tambah_pengurus" ).fadeOut( 200, function(){
-													getCabang();
-													alert("Berhasil Menambah Pengurus");
+													$(".loader").fadeIn(200, function(){													
+														getCabang();
+														alert("Berhasil menambah pengurus");
+													});
 												});											
 											},
 											error:function(errorThrown){
-												alert(errorThrown);
+												$(".pop_up_super_c_tambah_pengurus").fadeOut(200, function(){
+													$(".loader").fadeOut(200, function(){
+														alert("Gagal menambah pengurus");
+														alert(errorThrown);
+													});
+												});												
 											}	
 										});
 									}

@@ -112,6 +112,62 @@ class UserController extends BaseController {
 		return View::make('pages.berkas', compact('arr', 'listberkas', 'arrPengunggah'));		
 	}
 	
+	public function search_anggota()
+	{
+		$nama = Input::get('nama');					
+		$penelitian = Input::get('penelitian');			
+		$gelarPendidikan = Input::get('gelarPendidikan');
+		$lokasiPendidikan = Input::get('lokasiPendidikan');
+		$institusi = Input::get('institusi');
+		$surel = Input::get('surel');
+		$status = Input::get('status');
+		if($status === 'yes')
+		{
+			$aktif = 1;
+		}
+		else
+		{
+			$aktif = 0;
+		}
+		$cabang = Input::get('cabang');
+		if($cabang == 0)
+		{
+			$id_cab = Cabang::where('nama', '=', $cabang)->select('cabang.id')->first();
+		}
+		else
+		{
+			$id_cab = "";
+		}
+		$jenis_kelamin = Input::get('jenis_kelamin');
+		if($jenis_kelamin === 'pria')
+		{
+			$kode_jk = 1;
+		}
+		else
+		{
+			$kode_jk = 0;
+		}
+		$spesialisasi = Input::get('spesialisasi');
+		$profesi = Input::get('profesi');
+		
+		$res = Anggota::join('pendidikan', 'profile.id', '=', 'pendidikan.id_profile')
+						->join('auth', 'profile.id', '=' ,'auth.profile_id')
+						
+						->where('nama', 'LIKE' ,'%'.$nama.'%')
+						->where('tema_penelitian', 'LIKE', '%'.$penelitian.'%')
+						->where('gelar', 'LIKE', '%'.$gelarPendidikan.'%')
+						->where('lokasi', 'LIKE', '%'.$lokasiPendidikan.'%')
+						->where('institusi', 'LIKE', '%'.$institusi.'%')
+						->where('email', 'LIKE', '%'.$surel.'%')
+						->where('status_aktif', '=', $aktif)
+						->where('id_cabang', 'LIKE', $id_cab)
+						->where('spesialisasi', 'LIKE', '%'.$spesialisasi.'%')
+						->where('profesi', 'LIKE', '%'.$profesi.'%')
+						->where('gender', '=', $kode_jk)
+						->get();		
+		return $res;
+	}
+	
 	public function get_all_cabang()
 	{
 		//$count = Cabang::select('nama')->get();

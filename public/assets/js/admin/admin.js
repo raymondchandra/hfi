@@ -49,11 +49,10 @@ $('body').on('click','#anggota_aturan',function(){
 	 $('.admin_control_panel').load('admin/anggota/aturan');
 });
 
-
-$('body').on('click','#anggota_akun',function(){
-	$( ".loader" ).fadeIn( 200, function(){});
-	 $('.admin_control_panel').load('admin/anggota/akun');
-});
+// $('body').on('click','#anggota_akun',function(){
+	// $( ".loader" ).fadeIn( 200, function(){});
+	 // $('.admin_control_panel').load('admin/anggota/akun');
+// });
 
 $('body').on('click','#anggota_daftar',function(){
 	$( ".loader" ).fadeIn( 200, function(){});

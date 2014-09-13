@@ -1149,3 +1149,16 @@ display: block;
 .show {
 	display: block;
 }
+
+/*error and notification*/
+
+.x_mark {
+	width: 20px;
+	height: 20px;
+	background: url(../img/x_mark.png) no-repeat;
+	display: block;
+	
+	position: absolute;
+	top: 4px;
+	right: 4px;
+}

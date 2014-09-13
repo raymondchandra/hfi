@@ -10,6 +10,11 @@
 	{{ HTML::script( asset('/assets/js/jquery.validate.min.js') )}}
 	{{ HTML::script( asset('/assets/js/text_editor/jquery-te-1.4.0.min.js')) }}
 	
+	<!-- tambahan javascript ui accordion-->
+	{{ HTML::style( asset('/assets/js/jquery-ui-1.11.1/jquery-ui.css')) }}
+	{{ HTML::script( asset('/assets/js/jquery-ui-1.11.1/jquery-ui.js')) }}
+	
+	
 	<!--<link href="assets/css/all.css" rel="stylesheet">
     <link href="assets/css/carousel.css" rel="stylesheet">
 	

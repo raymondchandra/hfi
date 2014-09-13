@@ -44,9 +44,9 @@ class AkunAdminController extends BaseController {
 			$account_id = $row->id;
 			$r[$account_id]['username'] = $row->username;
 			$anggota = $row->profile;
-			$r[$account_id]['username'] = $anggota->no_anggota;
+			$r[$account_id]['no_anggota'] = $anggota->no_anggota;
 			$r[$account_id]['nama'] = $anggota->nama;
-			$r[$account_id]['batas_aktif'] = $anggota->batas_aktif;
+			$r[$account_id]['batas_aktif'] = $row->batas_aktif;
 			$r[$account_id]['cabang'] = Cabang::where('id','=',$anggota->id_cabang)->first()->nama;
 			$r[$account_id]['tanggal'] = $anggota->tanggal_revisi;
 			
@@ -59,20 +59,23 @@ class AkunAdminController extends BaseController {
 	public function findUsername($status)
 	{
 		$username = Input::get('username');
-		$akun = Account::where('username','LIKE','%'.$username.'%','AND')->where('status_aktif','=',$status)->get();
+		$token = Input::get('token');
+		$akun = Account::where('status_aktif','=',$status)->where('username','LIKE','%'.$username.'%')->get();
+		$ret['token'] = $token;
 		$r = array();
 		foreach($akun as $row){
 			$account_id = $row->id;
 			$r[$account_id]['username'] = $row->username;
 			$anggota = $row->profile;
-			$r[$account_id]['username'] = $anggota->no_anggota;
+			$r[$account_id]['no_anggota'] = $anggota->no_anggota;
 			$r[$account_id]['nama'] = $anggota->nama;
-			$r[$account_id]['batas_aktif'] = $anggota->batas_aktif;
+			$r[$account_id]['batas_aktif'] = $row->batas_aktif;
 			$r[$account_id]['cabang'] = Cabang::where('id','=',$anggota->id_cabang)->first()->nama;
 			$r[$account_id]['tanggal'] = $anggota->tanggal_revisi;
 			
 		}
-		return json_encode($r);
+		$ret['data'] = $r;
+		return json_encode($ret);
 		
 	}
 	
@@ -83,6 +86,7 @@ class AkunAdminController extends BaseController {
 		$length = Input::get('length');
 		$akun = Account::find($id);
 		$akun->batas_aktif = Carbon::now()->addYears($length);
+		$akun->status_aktif = 1;
 		try{
 			$akun->save();
 			return 'success';
@@ -112,19 +116,16 @@ class AkunAdminController extends BaseController {
 		$id = Input::get('id');
 		$newPass = Input::get('newPass');
 		$reNewPass = Input::get('reNewPass');
-		if($newPass == $reNewPass){
-			$akun = Account::find($id);
-			$akun->password = Hash::make($newPass);
-			try{
-				$akun->save();
-				return 'success';
-			}catch(Exception $e){
-				return $e;
-			}
-		}else{
-			return 'password tidak sama';
+		if(strlen($newPass) < 8) return '0';
+		if($newPass != $reNewPass) return '1';
+		$akun = Account::find($id);
+		$akun->password = Hash::make($newPass);
+		try{
+			$akun->save();
+			return 'success';
+		}catch(Exception $e){
+			return $e;
 		}
-		
 	}
 	
 }

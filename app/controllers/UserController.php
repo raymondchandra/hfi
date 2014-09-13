@@ -6,6 +6,7 @@ class UserController extends BaseController {
 	
 	public $restful = true;
 	
+	
 	public function view_profile()
 	{
 

@@ -124,7 +124,6 @@ Route::get('/ubahpassword', ['as' => 'changepassword', 'uses' => 'AccountControl
 Route::get('/registrasi/daftarcabang', ['as' => 'registrasi.daftarcabang', 'uses' => 'AccountController@view_registrasi']);
 Route::post('/registrasi/checkExist', ['as' => 'registrasi.checkExist', 'uses' => 'AccountController@checkExist']);
 
-
 //user view
 Route::group(['prefix' => 'user', 'before' => 'authUser'], function () {
 	Route::get('/', ['as' => 'profile', 'uses' => 'UserController@view_profile']);
@@ -132,7 +131,8 @@ Route::group(['prefix' => 'user', 'before' => 'authUser'], function () {
 	Route::get('/berkas', ['as' => 'berkas', 'uses' => 'UserController@view_berkas']);
 	Route::get('/cetakkartu', ['as' => 'cetakkartu', 'uses' => 'UserController@view_cetakkartu']);
 	
-	//user get route
+	//user get route	
+	Route::get('/getDaftarAnggota', ['as' => 'getDaftarAnggota', 'uses'=>'UserController@search_anggota']);
 	
 	//user put route 
 		Route::put('/editProfile', ['as' => 'editProfile', 'uses' => 'UserController@edit_profile']);
@@ -214,7 +214,9 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	Route::get('/akun/getNonaktif', ['as' => 'admin.akun.getNonaktif', 'uses' => 'AkunAdminController@get_akun_nonaktif']);
 	Route::get('/akun/findUsername/{status}', ['as' => 'admin.akun.findUsername', 'uses' => 'AkunAdminController@findUsername']);
 	
-	
+	//anggota get route
+	Route::get('/anggota/getDaftarAnggota', ['as' => 'admin.anggota.getDaftarAnggota', 'uses'=>'AnggotaAdminController@search_anggota']);
+		
 	//admin post route
 	Route::post('/organisasi/tambahcabang', ['as' => 'admin.organisasi.tambahcabang', 'uses' => 'OrganisasiAdminController@tambah_cabang']);
 	
@@ -298,6 +300,8 @@ Route::post('/postRegulasi', ['as' => 'postRegulasi', 'uses' => 'HomeAdminContro
 
 Route::put('/changePass', ['as' => 'changePass', 'uses' => 'AccountController@changePass']);
 
+
+//Route::get('/getDaftarAnggota', ['as' => 'daftarAnggota', 'uses'=>'AnggotaAdminController@search_anggota']);
 
 
 

@@ -41,7 +41,8 @@ class AnggotaAdminController extends BaseController {
 	
 	public function view_anggota()
 	{
-		return View::make('pages.admin.anggota.daftarAnggota');
+		$arr2 = $this->get_all_cabang();
+		return View::make('pages.admin.anggota.daftarAnggota', compact('arr2'));
 	}
 	
 	public function update_home()
@@ -107,8 +108,8 @@ class AnggotaAdminController extends BaseController {
 	
 	public function search_anggota()
 	{
-		$nama = Input::get('nama');
-		$penelitian = Input::get('penelitian');
+		$nama = Input::get('nama');					
+		$penelitian = Input::get('penelitian');			
 		$gelarPendidikan = Input::get('gelarPendidikan');
 		$lokasiPendidikan = Input::get('lokasiPendidikan');
 		$institusi = Input::get('institusi');
@@ -123,7 +124,14 @@ class AnggotaAdminController extends BaseController {
 			$aktif = 0;
 		}
 		$cabang = Input::get('cabang');
-		$id_cab = Cabang::where('nama', '=', $cabang)->select('cabang.id')->first();
+		if($cabang == 0)
+		{
+			$id_cab = Cabang::where('nama', '=', $cabang)->select('cabang.id')->first();
+		}
+		else
+		{
+			$id_cab = "";
+		}
 		$jenis_kelamin = Input::get('jenis_kelamin');
 		if($jenis_kelamin === 'pria')
 		{
@@ -138,20 +146,33 @@ class AnggotaAdminController extends BaseController {
 		
 		$res = Anggota::join('pendidikan', 'profile.id', '=', 'pendidikan.id_profile')
 						->join('auth', 'profile.id', '=' ,'auth.profile_id')
+						
 						->where('nama', 'LIKE' ,'%'.$nama.'%')
-						->where('penelitian', 'LIKE', '%'.$penelitian.'%')
+						->where('tema_penelitian', 'LIKE', '%'.$penelitian.'%')
 						->where('gelar', 'LIKE', '%'.$gelarPendidikan.'%')
 						->where('lokasi', 'LIKE', '%'.$lokasiPendidikan.'%')
 						->where('institusi', 'LIKE', '%'.$institusi.'%')
 						->where('email', 'LIKE', '%'.$surel.'%')
 						->where('status_aktif', '=', $aktif)
-						->where('cabang', '=', $id_cab)
-						->where('spesialisasi', '=', $spesialisasi)
-						->where('profesi', '=', $profesi)
+						->where('id_cabang', 'LIKE', $id_cab)
+						->where('spesialisasi', 'LIKE', '%'.$spesialisasi.'%')
+						->where('profesi', 'LIKE', '%'.$profesi.'%')
 						->where('gender', '=', $kode_jk)
-						->get();
-		
-		return $res;
+						->get();					
+		return $res;		
+	}
+	
+	public function get_all_cabang()
+	{
+		//$count = Cabang::select('nama')->get();
+		$count = DB::table('cabang')->orderBy('nama','asc')->lists('nama','nama');
+		if(count($count) != 0)
+		{
+			return $count;
+		}else
+		{
+			return "";
+		}
 	}
 }
 

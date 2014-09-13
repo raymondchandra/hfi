@@ -178,7 +178,7 @@
 														arrFILEPATHPengurus[$i] = data[$i]['file_path'];														
 														view+="<tr>";
 															view+="<td style='vertical-align:middle !important; width:350px; overflow:hidden; margin-right:30px;'><a href='javascript:void(0)' class='periode_pengurus' value='"+data[$i]['file_path']+"'>"+data[$i]['periode']+"</a></td>";
-															view+="<td style='vertical-align:middle !important; width:350px;'>"+data[$i]['tanggal_upload']+"</td>"
+															view+="<td style='vertical-align:middle !important; width:350px;'>"+data[$i]['tanggal_upload']+"</td>";
 															view+="<td style='vertical-align:middle !important; width:100px;'><p style='display:none;'>"+data[$i]['file_path']+"</p><input type='button' value='x' class='hapus_pengurus'/><input type='hidden' class='id_pengurus' value='"+$i+"'/></td>";
 														view+="</tr>";
 													}

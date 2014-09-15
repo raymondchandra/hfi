@@ -1,4 +1,5 @@
-
+<div class="container_12">
+	<div class="grid_12">
 <script>
 	var index_caption = -1;
 	
@@ -9,7 +10,7 @@
 </script>
 
 <div class='admin_title'>Slideshow</div>
-<div class='slide_container'>
+<div class='slide_container' style="margin-left: 0px !important;">
 	@if($slideshow == "Failed")
 		
 		<ul>
@@ -153,16 +154,15 @@
 						
 						<div class="change_pp_container">
 							<div class="saran_43">
-								Disarankan Anda mengunggah foto dengan dimensi 
+								Disarankan Anda mengunggah foto dengan rasio 
 								
-								<span style="display: block; margin-left: auto; margin-right: auto; font-size: 24px;">3 X 4</span> 
+								<span style="display: block; margin-left: auto; margin-right: auto; font-size: 24px;">4:3</span> 
 								
-								(Passphoto)
 							</div>
 								{{ Form::open(array('url' => 'admin/editSlideShow','method'=>'put','files'=>'true')) }}
 								{{ Form::file('photo',array('name'=>'photo','id'=>'photo','class'=>'upload_photo','accept'=>"image/*" ,'style' => 'margin-top: 20px; display: block; margin-left: auto; margin-right: auto;')) }}
 								<input type='hidden' class='photo_id' name='id_photo' />
-								{{ Form::submit('Unggah Gambar', array('style' => 'display: block; margin-left: auto; margin-right: auto; margin-top: 20px;')) }}
+								{{ Form::submit('Unggah Gambar', array('class' => 'button','style' => 'display: block; margin-left: auto; margin-right: auto; margin-top: 20px;')) }}
 								{{ Form::close() }}
 								<!--<input type='file' class='upload_photo' multiple="false" style="margin-top: '20px'; display: 'block'; margin-left: 'auto'; margin-right: 'auto';" />
 								<input type='button' class='button_upload_foto' value='Unggah Gambar' style="display: 'block'; margin-left: 'auto'; margin-right: 'auto'; margin-top: '20px';">-->
@@ -231,7 +231,7 @@ $('body').on('click','.reset_change',function(){
 
 function showUploadedItem (source) {
 	var image = "<img src='"+source+"' width=400 height=300 />"
-	$('.saran_34').html(image);
+	$('.saran_43').html(image);
 } 
 
 $('.ok_change').click(function(){
@@ -246,10 +246,16 @@ $('.ok_change').click(function(){
 			"idCaption":$(this).next().val()
         },
 		success: function(response){
-			alert(response);
+			if(response==1){
+				alert("Sukses mengubah caption.");
+			}
+			else if(response==2){
+				alert("Tidak ada gambar.");
+			}
+			
 			//pop up
-			$('#sesuatu').fadeIn( 277, function(){});
-			$('#message_pop').text('Sukses');
+			//$('#sesuatu').fadeIn( 277, function(){});
+			//$('#message_pop').text('Sukses');
 		},
 		error: function(jqXHR, textStatus, errorThrown){
 			alert(errorThrown);
@@ -273,7 +279,7 @@ $('.ok_change').click(function(){
 			$(".photo_edit").fadeIn( 277, function(){}).css('display','block').css('z-index','999999');
 			$("body").css('overflow-x','hidden');
 			index_caption = $(this).prev().val();
-			alert(index_caption);
+			//alert(index_caption);
 			$('.photo_id').val(index_caption);
 			
 			//ajax
@@ -301,10 +307,10 @@ $('.ok_change').click(function(){
 				 $("body").css('overflow-x','visible');
 			 }
 		 });						
-		 Slider = $('#slider').Swipe({   <!--swipe ke detect error-->
+		/* Slider = $('#slider').Swipe({   <!--swipe ke detect error-->
 			 auto: 3000,  
 			 continuous: true  
-		 }).data('Swipe');  
+		 }).data('Swipe');  */
 	 $('.pu_c').css('display','none');
 								
 </script>
@@ -319,3 +325,5 @@ $('.ok_change').click(function(){
 		</div>
 	</div>
 </div>--> 
+	</div>
+</div>

@@ -2,6 +2,10 @@
 	margin-left:auto;
 	margin-right:auto;
 }
+.kegiatan_container > ul > li {
+	overflow: hidden;
+	margin-bottom: 30px;
+}
 
 .info_kegiatan{
 	width: 650px;
@@ -35,9 +39,9 @@
 }
 
 .edit_kegiatan_form{
-	height: 180px;
-	float:left;
-	padding-top: 50px;
+	float: left;
+	margin-top: 38px;
+	margin-left: 25px;
 }
 .edit_kegiatan_form input{
 	margin-top: auto;

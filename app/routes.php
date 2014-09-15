@@ -1,5 +1,96 @@
 <?php
 
+
+// Route::get('/tes', function(){
+	// $acc = new Account();
+			// $acc->timestamps = false;
+			// $acc->username = "profile8";
+			// $acc->profile_id = "8";
+			// $acc->password = Hash::make("profile8");
+			// $acc->role = 0;
+			// $acc->status_aktif = 0;
+			// $acc->save();
+
+	// $pen = new Pendidikan();
+	// $pen -> timestamps = false;
+	// $pen -> id_profile = "8";
+	// $pen -> gelar = "D3";
+	// $pen -> lokasi = "UNPAD";
+	// $pen -> save();
+
+	// $user = new Anggota();
+	// $user -> timestamps = false;
+	// $user -> no_anggota = "noanggota newuser5";
+	// $user -> nama = "nama newuser5";
+	// $user -> tanggal_lahir = "2010-08-16";
+	// $user -> tempat_lahir = "tempatlahir newuser5";
+	// $user -> gender = "0"; // 0 = female, 1 = male
+	// $user -> tanggal_revisi = "2013-08-13";
+	// $user -> id_cabang = "14"; //4-8 14-18
+	// $user -> tema_penelitian = "temapenelitian newuser5";
+	// $user -> spesialisasi = "matematika";
+	// $user -> profesi = "dosen";
+	// $user -> institusi = "institusi newuser5";
+	// $user -> alamat = "alamat newuser5";
+	// $user -> kota = "kota newuser5";
+	// $user -> kodepos = "kodepos newuser5";
+	// $user -> negara = "negara newuser5";
+	// $user -> telepon = "telepon newuser5";
+	// $user -> hp = "hp newuser5";
+	// $user -> fax = "fax newuser5";
+	// $user -> email = "email newuser5";
+	// $user -> situs = "situs newuser5";
+	// $user -> keterangan = "keterangan newuser5";
+	// $user -> foto_profile = "assets/img/onionhead.jpg";
+	// $user -> save();
+	
+	// $acc = new Account();		
+	// $acc -> timestamps = false;
+	// $acc -> username = 'newadmin1';	
+	// $acc -> password = Hash::make('newadmin1');
+	// $acc -> status_aktif = '1';
+	// $acc -> role = '1';	 //0 = user, 1 = admin
+	// $acc -> save();
+	
+	// $cabang = new Cabang();		
+	// $cabang -> timestamps = false;
+	// $cabang -> tipe = '0';	//0 = cabang , 1 = pusat
+	// $cabang -> kode = 'kode newcabang5';
+	// $cabang -> nama = 'newcabang5';	
+	// $cabang -> alamat = 'alamat newcabang5';
+	// $cabang -> telp = 'telp newcabang5';
+	// $cabang -> fax = 'fax newcabang5';
+	// $cabang -> email = 'email newcabang5';
+	// $cabang -> link = 'link newcabang5';
+	// $cabang -> save();	
+	
+	// $usr = new Anggota();
+	
+	// $accTmp = Account::where('username', '=', 'user')->first()->id;	
+	// $usr -> auth_id = $accTmp;
+	// $usr -> timestamps = false;
+	// $usr -> nama = "namanewadmin1";
+	// $idCbg = Cabang::where('nama', '=', 'cabang jakarta')->first()->id;
+	// $usr -> id_cabang = $idCbg;	
+	// $usr -> save();
+	
+	// $accAdmin = new Account();		
+	// $accAdmin -> username = 'admin';
+	// $accAdmin -> timestamps = false;
+	// $accAdmin -> password = Hash::make('passAdm');
+	// $accAdmin -> status_aktif = '1';
+	// $accAdmin -> role = '1';	
+	// $accAdmin ->save();
+	
+	// $usrAdmin = new Anggota();
+	// $accAdminTmp = Account::where('username', '=', 'admin')->first()->id;
+	// $usrAdmin -> auth_id = $accAdminTmp;
+	// $usrAdmin -> timestamps = false;
+	// $usrAdmin -> name = 'admin';
+	// $usrAdmin -> id_cabang = $idCbg;	
+	// $usrAdmin ->save();	
+// });
+
 //test upload ajax
 Route::get('/test', ['as' => 'test', 'uses' => 'LainController@view_test']);
 Route::post('/putSlideTest', ['as' => 'test.a', 'uses' => 'HomeAdminController@update_foto_gallery']);
@@ -27,7 +118,6 @@ Route::get('/lain', ['as' => 'lain', 'uses' => 'LainController@view_index']);
 //account view
 Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login', 'before' => 'checkLogin']);
 Route::get('/registrasi', ['as' => 'registrasi', 'uses' => 'AccountController@view_registrasi']);
-Route::get('/cetakkartu', ['as' => 'cetakkartu', 'uses' => 'AccountController@view_cetakkartu']);
 Route::get('/forgotpassword', ['as' => 'forgotpassword', 'uses' => 'AccountController@view_forgotpassword']);
 Route::get('/ubahpassword', ['as' => 'changepassword', 'uses' => 'AccountController@view_changepassword']);
 
@@ -35,14 +125,15 @@ Route::get('/ubahpassword', ['as' => 'changepassword', 'uses' => 'AccountControl
 Route::get('/registrasi/daftarcabang', ['as' => 'registrasi.daftarcabang', 'uses' => 'AccountController@view_registrasi']);
 Route::post('/registrasi/checkExist', ['as' => 'registrasi.checkExist', 'uses' => 'AccountController@checkExist']);
 
-
 //user view
 Route::group(['prefix' => 'user', 'before' => 'authUser'], function () {
 	Route::get('/', ['as' => 'profile', 'uses' => 'UserController@view_profile']);
 	Route::get('/carianggota', ['as' => 'carianggota', 'uses' => 'UserController@view_carianggota']);
 	Route::get('/berkas', ['as' => 'berkas', 'uses' => 'UserController@view_berkas']);
+	Route::get('/cetakkartu', ['as' => 'cetakkartu', 'uses' => 'UserController@view_cetakkartu']);
 	
-	//user get route
+	//user get route	
+	Route::get('/getDaftarAnggota', ['as' => 'getDaftarAnggota', 'uses'=>'UserController@search_anggota']);
 	
 	//user put route 
 		Route::put('/editProfile', ['as' => 'editProfile', 'uses' => 'UserController@edit_profile']);
@@ -84,7 +175,7 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	//end of anggota
 	
 	//akun
-	Route::get('/akun/baru', ['as' => 'admin.akun.baru', 'uses' => 'AkunAdminController@view_akun_baru']);
+	Route::get('/akun/baru', ['as' => 'admin.akun.baru', 'uses' => 'AkunAdminController@view_akun_baru']); 
 	Route::get('/akun/aktif', ['as' => 'admin.akun.aktif', 'uses' => 'AkunAdminController@view_akun_aktif']);
 	Route::get('/akun/nonaktif', ['as' => 'admin.akun.nonaktif', 'uses' => 'AkunAdminController@view_akun_nonaktif']);
 	//end of akun
@@ -118,18 +209,29 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	Route::get('/home/daftarregulasi', ['as' => 'admin.home.daftarregulasi', 'uses' => 'HomeAdminController@get_all_regulasi']);
 	Route::get('/berkas/daftarberkas', ['as' => 'admin.berkas.daftarberkas', 'uses' => 'BerkasAdminController@get_all_berkas']);
 	
+	//akun get route
+	Route::get('/akun/getBaru', ['as' => 'admin.akun.getBaru', 'uses' => 'AkunAdminController@get_akun_baru']);
+	Route::get('/akun/getAktif', ['as' => 'admin.akun.getAktif', 'uses' => 'AkunAdminController@get_akun_aktif']);
+	Route::get('/akun/getNonaktif', ['as' => 'admin.akun.getNonaktif', 'uses' => 'AkunAdminController@get_akun_nonaktif']);
+	Route::get('/akun/findUsername/{status}', ['as' => 'admin.akun.findUsername', 'uses' => 'AkunAdminController@findUsername']);
+	
+	//anggota get route
+	Route::get('/anggota/getDaftarAnggota', ['as' => 'admin.anggota.getDaftarAnggota', 'uses'=>'AnggotaAdminController@search_anggota']);
+		
 	//admin post route
 	Route::post('/organisasi/tambahcabang', ['as' => 'admin.organisasi.tambahcabang', 'uses' => 'OrganisasiAdminController@tambah_cabang']);
 	
 			
 	//post slideshow
 	//upload regulasi
-		//Route::post('/postRegulasi', ['as' => 'admin.postRegulasi', 'uses' => 'HomeAdminController@add_regulasi']);
+	Route::post('/postRegulasi', ['as' => 'admin.postRegulasi', 'uses' => 'HomeAdminController@add_regulasi']);
 	//upload pengurus
+	Route::post('/postPengurus', ['as' => 'admin.postPengurus', 'uses' => 'OrganisasiAdminController@tambah_pengurus']);
 	//post cabang
 	//post kegiatan
 	Route::post('/kegiatan', ['as' => 'admin.addKegiatan', 'uses' => 'KegiatanAdminController@add_kegiatan']);
 	//upload berkas
+	Route::post('/postBerkas', ['as' => 'admin.postBerkas', 'uses' => 'BerkasAdminController@tambah_berkas']);
 	
 	//admin put route
 	Route::put('/editWelcome', ['as' => 'admin.editWelcome', 'uses' => 'HomeAdminController@update_welcome']);
@@ -155,6 +257,11 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	Route::put('/editPubKetentuan', ['as' => 'admin.editPubKetentuan', 'uses' => 'PublikasiAdminController@update_ketentuan']);
 	Route::put('/editPubLain', ['as' => 'admin.editPubLain', 'uses' => 'PublikasiAdminController@update_karyaLain']);
 	Route::put('/editPubPopuler', ['as' => 'admin.editPubPopuler', 'uses' => 'PublikasiAdminController@update_populer']);
+	
+	//edit akun
+	Route::put('/activateAccount', ['as' => 'admin.activateAccount', 'uses' => 'AkunAdminController@activateAccount']);
+	Route::put('/extendAccount', ['as' => 'admin.extendAccount', 'uses' => 'AkunAdminController@extendAccount']);
+	Route::put('/resetPassword', ['as' => 'admin.resetPassword', 'uses' => 'AkunAdminController@resetPassword']);
 	
 	//edit lain
 	Route::put('/editLain', ['as' => 'admin.editLain', 'uses' => 'LainAdminController@update_lain']);
@@ -189,11 +296,13 @@ Route::post('/signin', ['as' => 'signin', 'uses' => 'AccountController@postSignI
 Route::post('/regis', ['as' => 'regis', 'uses' => 'AccountController@postRegis']);
 //Route::post('/sendEmail', ['as' => 'sendEmail', 'uses' => 'KontakController@send_email']);
 Route::post('/postRegulasi', ['as' => 'postRegulasi', 'uses' => 'HomeAdminController@add_regulasi']);
-Route::post('/postPengurus', ['as' => 'postPengurus', 'uses' => 'OrganisasiAdminController@tambah_pengurus']);
-Route::post('/postBerkas', ['as' => 'postBerkas', 'uses' => 'BerkasAdminController@tambah_berkas']);
+//Route::post('/postPengurus', ['as' => 'postPengurus', 'uses' => 'OrganisasiAdminController@tambah_pengurus']);
+//Route::post('/postBerkas', ['as' => 'postBerkas', 'uses' => 'BerkasAdminController@tambah_berkas']);
 
 Route::put('/changePass', ['as' => 'changePass', 'uses' => 'AccountController@changePass']);
 
+
+//Route::get('/getDaftarAnggota', ['as' => 'daftarAnggota', 'uses'=>'AnggotaAdminController@search_anggota']);
 
 
 

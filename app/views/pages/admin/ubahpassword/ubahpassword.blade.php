@@ -37,22 +37,38 @@ $("#btnChangePassword").click(function(){
 							</p>
 						@endif
 					</div>
+					 
 					
-					<div class="form">
 						<form>
-							<!--<input type="text"  placeholder="Username"/>-->
-							{{ Form::password('oldpassword', array('placeholder' => 'password lama','id' => 'oldPass') , Input::old('oldpassword')) }}
-							<!--<input type="password" placeholder="Password"/>-->
-							{{ Form::password('newpassword', array('placeholder' => 'password baru','id' => 'newPass'), Input::old('newpassword')) }}
+							{{ Form::password('oldpassword', array('placeholder' => 'password lama','id' => 'oldPass', 'style' => 'width: 300px; float: left;') , Input::old('oldpassword')) }}
+							<!-- PENTING! Untuk menghilangka notifikasi error cukup tambahkan kelas 'hide' pada element bersangkutan -->
+							<span class="error">
+								Maaf password Anda tidak cocok!
+							</span>
 							
-							{{ Form::password('retypenewpassword', array('placeholder' => 'Ketik ulang password baru','id' => 'reNewPass'), Input::old('retypenewpassword')) }}
-							<!--<input type="button" value="Log In" class="login"/>-->
-							<div style="display: block; position: relative; width: 100$; height: 30px; overflow: hidden;">
+							<span class="clear"></span>
+							{{ Form::password('newpassword', array('placeholder' => 'password baru','id' => 'newPass', 'style' => 'width: 300px; float: left;'), Input::old('newpassword')) }}
+							<!-- PENTING! Untuk menghilangka notifikasi error cukup tambahkan kelas 'hide' pada element bersangkutan -->
+							<span class="error">
+								Panjang password minimal 8 karakter
+							</span>
+							
+							<span class="clear"></span>
+							{{ Form::password('retypenewpassword', array('placeholder' => 'Ketik ulang password baru','id' => 'reNewPass', 'style' => 'width: 300px; float: left;'), Input::old('retypenewpassword')) }}
+							<!-- PENTING! Untuk menghilangka notifikasi error cukup tambahkan kelas 'hide' pada element bersangkutan -->
+							<span class="error">
+								Maaf password Anda tidak sama!
+							</span>
+							
+							<span class="clear"></span>
+							<div style="display: block; position: relative;overflow: hidden;">
 								{{ Form::button('Ubah Password', array('id' => 'btnChangePassword')) }}
 							</div>
-						</form>								 
-						
-					</div>
+							
+							
+						</form>		
+					
+					
 				</div>
 			</div>
 		</div>

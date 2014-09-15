@@ -15,7 +15,7 @@
 
 }
 
-.detail_cabang{
+.detail_cabang, .detail_pengurus{
 	width: 125px;
 }
 
@@ -27,10 +27,57 @@
 	width: 90% !important;
 }
 
-#tambah_cabang_link{
+#tambah_cabang_link {
 	margin-left: 785px;
+	overflow: hidden;
+}
+
+#tambah_pengurus_link{
+	margin-left: 600px;
+	overflow: hidden;
 }
 
 .table_cabang input[type='text']{
 	width: 110% !important;
+}
+
+
+
+/*redundan popup di halaman admin cabang*/
+
+.pop_up_super_c_tambah_cabang, .pop_up_super_c_show_pengurus,
+.pop_up_super_c_tambah_pengurus {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 999999;
+	background-color: rgba(0,0,0,0.8);
+	top: 0px;
+	left: 0px;
+	overflow: auto;
+}
+.pop_up_tbl_tambah_cabang, .pop_up_tbl_show_pengurus,
+.pop_up_tbl_tambah_pengurus {
+	width: 100%;
+	height: 100%;
+	display: table;
+	z-index: 1999999;
+	overflow-y: hidden;
+	vertical-align: middle;
+}
+.pop_up_cell_tambah_cabang, .pop_up_cell_show_pengurus,
+.pop_up_cell_tambah_pengurus {
+	display: table-cell;
+	vertical-align: middle;
+}
+.close_56_tambah_cabang, .close_56_show_pengurus,
+.close_56_tambah_pengurus {
+	background: url('../img/close56.png') no-repeat;
+	width: 56px;
+	height: 69px;
+	display: block;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	cursor: pointer;
 }

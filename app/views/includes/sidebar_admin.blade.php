@@ -43,7 +43,7 @@
 			
 			<li>
 				<a href="javascript::void(0)" class="_publikasi_tombol">Publikasi</a>
-				<ul style="display: none;" class="_publikasi_list">
+				<ul style="display: none;" class="_publikasi_list"> 
 					<li>
 						<a href="javascript:void(0)" id="admin_jenis_publikasi">Jenis Publikasi</a>
 					</li>

@@ -3,12 +3,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>HFI</title>
  
- 	{{ HTML::style('assets/css/all.css') }}
-    {{ HTML::style('assets/css/carousel.css') }}
-	{{ HTML::script('assets/js/jquery-1.11.1.min.js') }}
-	{{ HTML::script('assets/js/jquery-migrate-1.2.1.min.js') }}
-	{{ HTML::script('assets/js/jquery.validate.min.js') }}
-	{{ HTML::script('assets/js/text_editor/jquery-te-1.4.0.min.js') }}
+ 	{{ HTML::style( asset('/assets/css/all.css') ) }}
+    {{ HTML::style( asset('/assets/css/carousel.css') ) }}
+	{{ HTML::script( asset('/assets/js/jquery-1.11.1.min.js') )}}
+	{{ HTML::script( asset('/assets/js/jquery-migrate-1.2.1.min.js') )}}
+	{{ HTML::script( asset('/assets/js/jquery.validate.min.js') )}}
+	{{ HTML::script( asset('/assets/js/text_editor/jquery-te-1.4.0.min.js')) }}
+	
+	<!-- tambahan javascript ui accordion-->
+	{{ HTML::style( asset('/assets/js/jquery-ui-1.11.1/jquery-ui.css')) }}
+	{{ HTML::script( asset('/assets/js/jquery-ui-1.11.1/jquery-ui.js')) }}
+	
 	
 	<!--<link href="assets/css/all.css" rel="stylesheet">
     <link href="assets/css/carousel.css" rel="stylesheet">

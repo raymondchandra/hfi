@@ -275,10 +275,10 @@
 									},
 									messages:{
 										nama_berkas: {
-											required: "Mohon nama berkas diisi"
+											required: "Mohon isi nama berkas"
 										},
 										deskripsi_berkas: {
-											required: "Mohon deskripsi berkas diisi"
+											required: "Mohon isi deskripsi berkas"
 										},
 										fileBerkas: {
 											required: "Mohon file diisi"

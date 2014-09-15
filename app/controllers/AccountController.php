@@ -295,6 +295,8 @@ class AccountController extends BaseController {
 		}
 		
 		$nomor_anggota = $year.$cabang_sql.$z_anggota;
+		
+		return $nomor_anggota;
 	}
 
 }

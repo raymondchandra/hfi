@@ -158,7 +158,7 @@ class AccountController extends BaseController {
 			for($i = 1; $i <= 5; $i++){
 				$gelar = Input::get('selPendidikan'.$i);
 				$lokasi =  Input::get('pendidikan'.$i);
-				if($gelar != ""){
+				if($lokasi != ""){
 					$pend = new Pendidikan();
 					$pend->timestamps = false;
 					$pend->id_profile = $profile_id;
@@ -217,10 +217,10 @@ class AccountController extends BaseController {
 				return 'success';
 			}else
 			{
-				return 'wrong retype';
+				return 'reNewPass';
 			}
 			
-		}else return 'wrong password';
+		}else return 'oldPass';
 		
 		
 	}

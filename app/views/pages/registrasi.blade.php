@@ -123,7 +123,6 @@
 					if(lastIdx <=5)
 					{
 						var newRow = "<div id='divPendidikan"+lastIdx+"' style='margin-top: 5px;' '><select class='selPendidikan ws_dd' name='selPendidikan"+lastIdx+"'>";
-						newRow +="<option value=''>Pilih!</option>";
 						newRow +="<option value='SD'>SD</option>";
 						newRow +="<option value='SMP'>SMP</option>";
 						newRow +="<option value='SMA'>SMA</option>";
@@ -160,7 +159,6 @@
 			</script>
 			<div>
 				<select class='selPendidikan ws_dd' name='selPendidikan1'>
-					<option value=''>Pilih!</option>
 					<option value='SD'>SD</option>
 					<option value='SMP'>SMP</option>
 					<option value='SMA'>SMA</option>
@@ -207,8 +205,8 @@
 			<td>Kota - kodepos</td>
 			<td>:</td>
 			<td style="">
-				{{ Form::text('kota', Input::old('kota'), array('class' => 'form_kota', 'style' => 'width: 236px;')) }} - 
-				{{ Form::text('kodepos', Input::old('kodepos'), array('class' => 'form_kota', 'style' => 'width: 100px;')) }} , 
+				{{ Form::text('kota', Input::old('kota'), array('class' => 'form_kota', 'style' => 'width: 236px;')) }} 
+				{{ Form::text('kodepos', Input::old('kodepos'), array('class' => 'form_kota', 'style' => 'width: 100px;')) }} 
 				
 			</td>
 		</tr>

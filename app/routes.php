@@ -1,6 +1,5 @@
 <?php
 
-
 //test upload ajax
 Route::get('/test', ['as' => 'test', 'uses' => 'LainController@view_test']);
 Route::post('/putSlideTest', ['as' => 'test.a', 'uses' => 'HomeAdminController@update_foto_gallery']);

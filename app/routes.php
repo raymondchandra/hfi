@@ -1,94 +1,31 @@
 <?php
+use Carbon\Carbon;
 
-// Route::get('/tes', function(){
-	// $acc = new Account();
-			// $acc->timestamps = false;
-			// $acc->username = "profile8";
-			// $acc->profile_id = "8";
-			// $acc->password = Hash::make("profile8");
-			// $acc->role = 0;
-			// $acc->status_aktif = 0;
-			// $acc->save();
+Route::get('/tes', function(){
+		$year = Carbon::now()->year;
+		$id_cabang = 1;
+		if(strlen($id_cabang) < 2)
+		{
+			$cabang_sql = "0".$id_cabang;
+		}
+		else
+		{
+			$cabang_sql = $id_cabang;
+		}
+		$cat_sql = $year.$cabang_sql;
+		$anggota_count = Anggota::where('no_anggota', 'LIKE', $cat_sql.'%')->get();
+		
+		$z_anggota = count($anggota_count) + 1;
+		while(strlen($z_anggota) < 3)
+		{
+			$z_anggota = '0'.$z_anggota;
+		}
+		
+		$nomor_anggota = $year.$cabang_sql.$z_anggota;
+		
+		echo $nomor_anggota;
+});
 
-	// $pen = new Pendidikan();
-	// $pen -> timestamps = false;
-	// $pen -> id_profile = "8";
-	// $pen -> gelar = "D3";
-	// $pen -> lokasi = "UNPAD";
-	// $pen -> save();
-
-	// $user = new Anggota();
-	// $user -> timestamps = false;
-	// $user -> no_anggota = "noanggota newuser5";
-	// $user -> nama = "nama newuser5";
-	// $user -> tanggal_lahir = "2010-08-16";
-	// $user -> tempat_lahir = "tempatlahir newuser5";
-	// $user -> gender = "0"; // 0 = female, 1 = male
-	// $user -> tanggal_revisi = "2013-08-13";
-	// $user -> id_cabang = "14"; //4-8 14-18
-	// $user -> tema_penelitian = "temapenelitian newuser5";
-	// $user -> spesialisasi = "matematika";
-	// $user -> profesi = "dosen";
-	// $user -> institusi = "institusi newuser5";
-	// $user -> alamat = "alamat newuser5";
-	// $user -> kota = "kota newuser5";
-	// $user -> kodepos = "kodepos newuser5";
-	// $user -> negara = "negara newuser5";
-	// $user -> telepon = "telepon newuser5";
-	// $user -> hp = "hp newuser5";
-	// $user -> fax = "fax newuser5";
-	// $user -> email = "email newuser5";
-	// $user -> situs = "situs newuser5";
-	// $user -> keterangan = "keterangan newuser5";
-	// $user -> foto_profile = "assets/img/onionhead.jpg";
-	// $user -> save();
-	
-	// $acc = new Account();		
-	// $acc -> timestamps = false;
-	// $acc -> username = 'newadmin1';	
-	// $acc -> password = Hash::make('newadmin1');
-	// $acc -> status_aktif = '1';
-	// $acc -> role = '1';	 //0 = user, 1 = admin
-	// $acc -> save();
-	
-	// $cabang = new Cabang();		
-	// $cabang -> timestamps = false;
-	// $cabang -> tipe = '0';	//0 = cabang , 1 = pusat
-	// $cabang -> kode = 'kode newcabang5';
-	// $cabang -> nama = 'newcabang5';	
-	// $cabang -> alamat = 'alamat newcabang5';
-	// $cabang -> telp = 'telp newcabang5';
-	// $cabang -> fax = 'fax newcabang5';
-	// $cabang -> email = 'email newcabang5';
-	// $cabang -> link = 'link newcabang5';
-	// $cabang -> save();	
-	
-	// $usr = new Anggota();
-	
-	// $accTmp = Account::where('username', '=', 'user')->first()->id;	
-	// $usr -> auth_id = $accTmp;
-	// $usr -> timestamps = false;
-	// $usr -> nama = "namanewadmin1";
-	// $idCbg = Cabang::where('nama', '=', 'cabang jakarta')->first()->id;
-	// $usr -> id_cabang = $idCbg;	
-	// $usr -> save();
-	
-	// $accAdmin = new Account();		
-	// $accAdmin -> username = 'admin';
-	// $accAdmin -> timestamps = false;
-	// $accAdmin -> password = Hash::make('passAdm');
-	// $accAdmin -> status_aktif = '1';
-	// $accAdmin -> role = '1';	
-	// $accAdmin ->save();
-	
-	// $usrAdmin = new Anggota();
-	// $accAdminTmp = Account::where('username', '=', 'admin')->first()->id;
-	// $usrAdmin -> auth_id = $accAdminTmp;
-	// $usrAdmin -> timestamps = false;
-	// $usrAdmin -> name = 'admin';
-	// $usrAdmin -> id_cabang = $idCbg;	
-	// $usrAdmin ->save();	
-// });
 
 //test upload ajax
 Route::get('/test', ['as' => 'test', 'uses' => 'LainController@view_test']);

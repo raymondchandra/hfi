@@ -286,9 +286,9 @@ class AccountController extends BaseController {
 			$cabang_sql = $id_cabang;
 		}
 		$cat_sql = $year.$cabang_sql;
-		$anggota_count = Anggota::where('no_anggota', 'LIKE', $cat_sql.'%');
+		$anggota_count = Anggota::where('no_anggota', 'LIKE', $cat_sql.'%')->get();
 		
-		$z_anggota = count($anggota_count);
+		$z_anggota = count($anggota_count) + 1;
 		while(strlen($z_anggota) < 3)
 		{
 			$z_anggota = '0'.$z_anggota;

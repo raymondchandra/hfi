@@ -107,7 +107,7 @@
 								if(data=="success"){
 									location.reload();
 								}else{
-									alert("error");
+									alert(data);
 								}
 					        }
 					    });
@@ -176,7 +176,7 @@
 								}
 								},
 							timepicker:false,
-							format:'d.m.Y',
+							format:'d-m-Y',
 							yearStart: '1900'
 						});
 						
@@ -260,7 +260,6 @@
 								if(lastIdx <=5)
 								{
 									var newRow = "<div id='divPendidikan"+lastIdx+"' style='margin-top: 5px;' '><select class='selPendidikan'  style='width:50px;' id='selPendidikan"+lastIdx+"'>";
-									newRow +="<option value=''>Pilih!</option>";
 									newRow +="<option value='SD'>SD</option>";
 									newRow +="<option value='SMP'>SMP</option>";
 									newRow +="<option value='SMA'>SMA</option>";
@@ -299,7 +298,6 @@
 					<div class="back">
 							
 								<select class='selPendidikan' id='selPendidikan1' style='width:50px;'>
-									<option value=''>Pilih!</option>
 									<option value='SD'>SD</option>
 									<option value='SMP'>SMP</option>
 									<option value='SMA'>SMA</option>

@@ -18,6 +18,7 @@
 			</div>
 			
 			<div class="content_hfi" id="contentfield">
+				<h1>Ketentuan dan Perjanjian</h1>
 				{{$isiKonten}}
 			</div>
 		</div>

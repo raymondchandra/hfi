@@ -215,8 +215,11 @@ class UserController extends BaseController {
 		$profile->tanggal_revisi = Carbon::now();
 		$profile -> gender = Input::get('gender');
 		$profile -> tempat_lahir = Input::get('tempatlahir');
-		$datepiece = explode('.',Input::get('tanggallahir'));
+		$datepiece = explode('-',Input::get('tanggallahir'));
+		
+		//return $datepiece[0];
 		$date = $datepiece[2].'-'.$datepiece[1].'-'.$datepiece[0];
+		
 		$profile -> tanggal_lahir = $date;
 		$profile -> tema_penelitian = Input::get('temapenelitian');
 		$profile -> spesialisasi = Input::get('spesialisasi');
@@ -233,6 +236,7 @@ class UserController extends BaseController {
 		$profile -> situs = Input::get('situs');
 		$profile -> keterangan = Input::get('keterangan');
 		$profile -> timestamps = false;
+		
 		try{
 			$profile -> save();
 		}catch(Exception $e){
@@ -251,7 +255,7 @@ class UserController extends BaseController {
 			$gelar = Input::get('selPendidikan'.$i);
 			$lokasi =  Input::get('pendidikan'.$i);
 			
-			if($gelar != ""){
+			if($lokasi != ""){
 				$pend = new Pendidikan();
 				$pend->timestamps = false;
 				$pend->id_profile = $id_profile;

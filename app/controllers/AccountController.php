@@ -158,7 +158,7 @@ class AccountController extends BaseController {
 			for($i = 1; $i <= 5; $i++){
 				$gelar = Input::get('selPendidikan'.$i);
 				$lokasi =  Input::get('pendidikan'.$i);
-				if($gelar != ""){
+				if($lokasi != ""){
 					$pend = new Pendidikan();
 					$pend->timestamps = false;
 					$pend->id_profile = $profile_id;
@@ -217,10 +217,10 @@ class AccountController extends BaseController {
 				return 'success';
 			}else
 			{
-				return 'wrong retype';
+				return 'reNewPass';
 			}
 			
-		}else return 'wrong password';
+		}else return 'oldPass';
 		
 		
 	}
@@ -273,7 +273,6 @@ class AccountController extends BaseController {
 		}
 	}
 	
-	
 	public function getNomorAnggota($id_cabang)
 	{
 		$year = Carbon::now()->year;
@@ -287,17 +286,19 @@ class AccountController extends BaseController {
 			$cabang_sql = $id_cabang;
 		}
 		$cat_sql = $year.$cabang_sql;
-		$anggota_count = Anggota::where('no_anggota', 'LIKE', $cat_sql.'%');
+		$anggota_count = Anggota::where('no_anggota', 'LIKE', $cat_sql.'%')->get();
 		
-		$z_anggota = count($anggota_count);
+		$z_anggota = count($anggota_count) + 1;
 		while(strlen($z_anggota) < 3)
 		{
 			$z_anggota = '0'.$z_anggota;
 		}
 		
 		$nomor_anggota = $year.$cabang_sql.$z_anggota;
+		
 		return $nomor_anggota;
 	}
+
 }
 
 ?>

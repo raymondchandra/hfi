@@ -1130,7 +1130,7 @@ padding-left: 0px;
 /*error and notification*/
 
 .error {
-height: 28px; 
+/*height: 28px;*/ 
 float: left; 
 background-color: #ea6153;
 margin-top: 2px; 

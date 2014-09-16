@@ -1,3 +1,24 @@
+.userview_nama_berkas{
+	width:240px;	
+	overflow:hidden;
+	display:block;
+	margin-right:20px;
+}
+	
+.userview_besar_file{
+	width:140px;		
+}
+
+.userview_deskripsi_berkas{	
+	width:140px;
+}
+
+.userview_download_berkas{	
+	width:140px;
+}
+
+/*------------------------------------------------------*/
+
 .berkas_list_container{
 	margin-top:30px; 
 }
@@ -53,6 +74,13 @@
 	margin-right:auto;	
 }
 
+.div_hapus_berkas{
+	width:500px;
+	height:150px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
 #judul_deskripsi{
 	height:60px;
 	padding-top:20px;
@@ -68,10 +96,12 @@
 	padding-bottom:20px;
 }
 
+
+
 /*redundan popup di halaman admin berkas*/
 
 .pop_up_super_c_deskripsi_berkas, .pop_up_super_c_tambah_berkas,
-.pop_up_super_c_edit_berkas {
+.pop_up_super_c_edit_berkas, .pop_up_super_c_hapus_berkas{
 	width: 100%;
 	height: 100%;
 	position: fixed;
@@ -82,7 +112,7 @@
 	overflow: auto;
 }
 .pop_up_tbl_deskripsi_berkas, .pop_up_tbl_tambah_berkas,
-.pop_up_tbl_edit_berkas {
+.pop_up_tbl_edit_berkas, .pop_up_tbl_hapus_berkas {
 	width: 100%;
 	height: 100%;
 	display: table;
@@ -90,13 +120,13 @@
 	overflow-y: hidden;
 	vertical-align: middle;
 }
-.pop_up_cell_deskripsi_berkas, ..pop_up_cell_tambah_berkas,
-.pop_up_cell_edit_berkas {
+.pop_up_cell_deskripsi_berkas, .pop_up_cell_tambah_berkas,
+.pop_up_cell_edit_berkas, .pop_up_cell_hapus_berkas{
 	display: table-cell;
 	vertical-align: middle;
 }
 .close_56_deskripsi_berkas, .close_56_tambah_berkas,
-.close_56_edit_berkas {
+.close_56_edit_berkas, .close_56_hapus_berkas {
 	background: url('../img/close56.png') no-repeat;
 	width: 56px;
 	height: 69px;

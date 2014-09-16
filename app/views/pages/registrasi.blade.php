@@ -123,7 +123,6 @@
 					if(lastIdx <=5)
 					{
 						var newRow = "<div id='divPendidikan"+lastIdx+"' style='margin-top: 5px;' '><select class='selPendidikan ws_dd' name='selPendidikan"+lastIdx+"'>";
-						newRow +="<option value=''>Pilih!</option>";
 						newRow +="<option value='SD'>SD</option>";
 						newRow +="<option value='SMP'>SMP</option>";
 						newRow +="<option value='SMA'>SMA</option>";
@@ -159,8 +158,7 @@
 				}
 			</script>
 			<div>
-				<select class='selPendidikan ws_dd' name='selPendidikan1'>
-					<option value=''>Pilih!</option>
+				<select class='selPendidikan ws_dd' name='selPendidikan1' style="float: left;">
 					<option value='SD'>SD</option>
 					<option value='SMP'>SMP</option>
 					<option value='SMA'>SMA</option>
@@ -207,8 +205,8 @@
 			<td>Kota - kodepos</td>
 			<td>:</td>
 			<td style="">
-				{{ Form::text('kota', Input::old('kota'), array('class' => 'form_kota', 'style' => 'width: 236px;')) }} - 
-				{{ Form::text('kodepos', Input::old('kodepos'), array('class' => 'form_kota', 'style' => 'width: 100px;')) }} , 
+				{{ Form::text('kota', Input::old('kota'), array('class' => 'form_kota', 'style' => 'width: 236px;')) }} 
+				{{ Form::text('kodepos', Input::old('kodepos'), array('class' => 'form_kota', 'style' => 'width: 100px;')) }} 
 				
 			</td>
 		</tr>
@@ -224,8 +222,8 @@
 			<td>Telepon / fax</td>
 			<td>:</td>
 			<td>{{-- Form::text('telepon', Input::old('telepon'), array('style' => 'width:50px')) --}}<span class="red">*</span>
-			{{ Form::text('telepon2', Input::old('telepon2'), array('style' => 'width: 170px;')) }} / 
-			{{ Form::text('fax', Input::old('fax'), array('style' => 'width: 164px;')) }}</td>			
+			{{ Form::text('telepon2', Input::old('telepon2'), array('style' => 'width: 170px; float: left;')) }} <span style="float: left;">/</span> 
+			{{ Form::text('fax', Input::old('fax'), array('style' => 'width: 164px; float: left;')) }}</td>			
 		</tr>
 		<tr>
 			<td>HP</td>
@@ -374,7 +372,7 @@
 				negara: {
 				  required: true
 				},
-				telepon: {
+				telepon2: {
 				  required: true,
 					number: true
 				},
@@ -442,7 +440,7 @@
 				negara: {
 				  required: "Mohon tulis negara tinggal Anda"
 				},
-				telepon: {
+				telepon2: {
 				  required: "Mohon masukkan nomer telpon",
 					number: "Mohon isi form dengan angka"
 				},
@@ -510,7 +508,7 @@
 	{{ Form::close() }}
 	
 	<style>
-		#tempatlahir-error {
+		#tempatlahir-error, #telepon2-error {
 			float: right;
 		}
 		

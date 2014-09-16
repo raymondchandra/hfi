@@ -98,7 +98,7 @@
 						<td style="display:block; margin-left:-80px;"><div style='width:200px;;display:block;'>{{Form::text('captcha',Input::old('captcha'))}}</div></td>
 					</tr>
 				</table>
-				<div id='contact_note'>* = harus diisi</div>
+				<div id='contact_note'>* : harus diisi</div>
 				<style>
 					#nama-error {
 						position: absolute;

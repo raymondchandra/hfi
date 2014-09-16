@@ -1,9 +1,24 @@
 <?php
+use Carbon\Carbon;
+
+Route::get('/tes', function(){
+	$destinationPath = "assets/file_upload/berkas/7/";
+	
+	if(!file_exists($destinationPath))
+	{
+		echo $destinationPath." GA ADA";
+		File::makeDirectory($destinationPath, $mode = 0777, true, true);
+	}
+	else
+	{
+		echo $destinationPath." ADA";
+	}
+});
 
 
 //test upload ajax
-//Route::get('/test', ['as' => 'test', 'uses' => 'LainController@view_test']);
-//Route::post('/putSlideTest', ['as' => 'test.a', 'uses' => 'HomeAdminController@update_foto_gallery']);
+Route::get('/test', ['as' => 'test', 'uses' => 'LainController@view_test']);
+Route::post('/putSlideTest', ['as' => 'test.a', 'uses' => 'HomeAdminController@update_foto_gallery']);
 //end of test
 
 //Redirect
@@ -213,3 +228,10 @@ Route::put('/changePass', ['as' => 'changePass', 'uses' => 'AccountController@ch
 
 
 //Route::get('/getDaftarAnggota', ['as' => 'daftarAnggota', 'uses'=>'AnggotaAdminController@search_anggota']);
+
+
+
+
+
+
+

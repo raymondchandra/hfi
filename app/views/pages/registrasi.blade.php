@@ -158,7 +158,7 @@
 				}
 			</script>
 			<div>
-				<select class='selPendidikan ws_dd' name='selPendidikan1'>
+				<select class='selPendidikan ws_dd' name='selPendidikan1' style="float: left;">
 					<option value='SD'>SD</option>
 					<option value='SMP'>SMP</option>
 					<option value='SMA'>SMA</option>
@@ -222,8 +222,8 @@
 			<td>Telepon / fax</td>
 			<td>:</td>
 			<td>{{-- Form::text('telepon', Input::old('telepon'), array('style' => 'width:50px')) --}}<span class="red">*</span>
-			{{ Form::text('telepon2', Input::old('telepon2'), array('style' => 'width: 170px;')) }} / 
-			{{ Form::text('fax', Input::old('fax'), array('style' => 'width: 164px;')) }}</td>			
+			{{ Form::text('telepon2', Input::old('telepon2'), array('style' => 'width: 170px; float: left;')) }} <span style="float: left;">/</span> 
+			{{ Form::text('fax', Input::old('fax'), array('style' => 'width: 164px; float: left;')) }}</td>			
 		</tr>
 		<tr>
 			<td>HP</td>
@@ -372,7 +372,7 @@
 				negara: {
 				  required: true
 				},
-				telepon: {
+				telepon2: {
 				  required: true,
 					number: true
 				},
@@ -440,7 +440,7 @@
 				negara: {
 				  required: "Mohon tulis negara tinggal Anda"
 				},
-				telepon: {
+				telepon2: {
 				  required: "Mohon masukkan nomer telpon",
 					number: "Mohon isi form dengan angka"
 				},
@@ -508,7 +508,7 @@
 	{{ Form::close() }}
 	
 	<style>
-		#tempatlahir-error {
+		#tempatlahir-error, #telepon2-error {
 			float: right;
 		}
 		

@@ -46,7 +46,7 @@ class BerkasAdminController extends BaseController {
 			
 			$berkas -> save();
 			
-			$berkas = Berkas::where('uploaded_date' , '=' , $upload_time)->where('uploaded_by', '=', $upload_id)->where('nama_file', '=', $fileName)->first();
+			//$berkas2 = Berkas::where('uploaded_date' , '=' , $upload_time)->where('uploaded_by', '=', $upload_id)->where('nama_file', '=', $fileName)->first();
 			$berkas_id = $berkas->id;
 			$destinationPath .= $berkas_id;
 			$destinationPath .= "/";
@@ -55,21 +55,25 @@ class BerkasAdminController extends BaseController {
 				File::makeDirectory($destinationPath, $mode = 0777, true, true);
 				$uploadSuccess = $file->move($destinationPath, $fileName);
 				$berkas -> path_file = $destinationPath.$fileName;
+				$berkas -> save();
 			}
 			else
 			{
 				$uploadSuccess = $file->move($destinationPath, $fileName);
-				$berkas -> path_file = $destinationPath.$fileName;
+				$berkas2 -> path_file = $destinationPath.$fileName;
+				$berkas -> save();
 			}
 			
-			return Redirect::to('/admin')->with('message', "berhasil menambah file berkas");
+			//return Redirect::to('/admin')->with('message', "berhasil menambah file berkas");
+			return "Berhasil menambah berkas di controller";
 		}
 		else
 		{
-			//return Redirect::to('/admin')->with('message', "gagal menambah file berkas");
-			return "Gagal menambah berkas";
+			//return Redirect::to('/admin/carianggota')->with('message', "gagal menambah file berkas");
+			return "Gagal menambah berkas di controller";
 		}
 	}
+	
 	
 	public function delete_berkas()
 	{
@@ -80,6 +84,8 @@ class BerkasAdminController extends BaseController {
 		if(File::exists($file))
 		{
 			File::delete($file);
+			$directory = "assets/file_upload/berkas/".$berkas->id;
+			File::deleteDirectory($directory);
 			$berkas -> delete();
 			return "Success Delete";
 		}

@@ -59,6 +59,7 @@
 				</table>
 				<script>	
 					var id_edit_berkas;
+					var id_hapus_berkas;
 					
 					$('body').on('click','.button_show_deskripsi',function(){									
 						$(".pop_up_super_c_deskripsi_berkas").fadeIn(277, function(){});				
@@ -90,11 +91,11 @@
 						//$id = $(this).next().val();					
 						//$new_edit_nama = $(this).parent().siblings('.nama_berkas').children('#td_up_nama_berkas').children('#up_nama_berkas').val();
 						$nama_berkas = $(this).parent().parent().prev().prev().children('#td_up_nama_berkas').children('#up_nama_berkas').val();;					
-							alert($nama_berkas);					
+							//alert($nama_berkas);					
 						//$pengunggah_berkas = $(this).parent().siblings('.pengunggah_berkas').children('#up_pengunggah_berkas').val();
 						$deskripsi_berkas = $(this).parent().parent().prev().children('#td_up_deskripsi_berkas').children('#up_deskripsi_berkas').val();				
 						//var deskripsi_berkas = $(this).parent().prev().children('#up_deskripsi_berkas').val();
-							alert($deskripsi_berkas);
+							// alert($deskripsi_berkas);
 						//ajax update
 						$.ajax({
 							url: 'admin/berkas/editberkas',
@@ -112,23 +113,48 @@
 								//alert(data);
 							},
 							error:function(jqXHR, textStatus, errorThrown){							
-								alert("eror");
+								// alert("eror");
 								alert(errorThrown);
 							}
 						});
 					});
 				
-					$('body').on('click','.hapus_berkas',function(){
-						$(".loader").fadeIn(200, function(){});
+					// $('body').on('click','.hapus_berkas',function(){
+						// $(".loader").fadeIn(200, function(){});
+						// $id = $(this).next().val();
+						// ajax delete
+						// $.ajax({
+							// url: 'admin/berkas/deleteberkas',
+							// type: 'DELETE',
+							// data: {
+								// 'id_berkas' : arrIDBerkas[$id]
+							// },
+							// success: function(data){						
+								// getBerkas();						
+							// },
+							// error:function(jqXHR, textStatus, errorThrown){
+								// alert(errorThrown);
+							// }
+						// });
+					// });
+					$('body').on('click','.hapus_berkas',function(){						
+						$(".pop_up_super_c_hapus_berkas").fadeIn(277, function(){});
 						$id = $(this).next().val();
+						
+						//ambil id berkas buat ok_hapus_berkas
+						id_hapus_berkas = $id;						
+					});
+					$('body').on('click','.ok_hapus_berkas',function(){
 						//ajax delete
 						$.ajax({
 							url: 'admin/berkas/deleteberkas',
 							type: 'DELETE',
 							data: {
-								'id_berkas' : arrIDBerkas[$id]
+								'id_berkas' : arrIDBerkas[id_hapus_berkas]
 							},
-							success: function(data){						
+							success: function(data){
+								$(".pop_up_super_c_hapus_berkas").fadeOut(200, function(){});
+								alert("berhasil hapus");
 								getBerkas();						
 							},
 							error:function(jqXHR, textStatus, errorThrown){
@@ -136,10 +162,14 @@
 							}
 						});
 					});
+					$('body').on('click','.batal_hapus_berkas',function(){
+						$(".pop_up_super_c_hapus_berkas").fadeOut(200, function(){});
+					});
 											
 					$('.exit').click(function() {$( ".pop_up_super_c_deskripsi_berkas" ).fadeOut( 200, function(){});});	
 					$('.exit').click(function() {$( ".pop_up_super_c_tambah_berkas" ).fadeOut( 200, function(){});});	
 					$('.exit').click(function() {$( ".pop_up_super_c_edit_berkas" ).fadeOut( 200, function(){});});	
+					$('.exit').click(function() {$( ".pop_up_super_c_hapus_berkas").fadeOut( 200, function(){});});
 					
 					$('.pop_up_super_c_deskripsi_berkas').click(function (e)
 					{
@@ -165,6 +195,15 @@
 						if (container.is(e.target) )// if the target of the click is the container...
 						{
 							$( ".pop_up_super_c_edit_berkas" ).fadeOut( 200, function(){});
+							$('html').css('overflow-y', 'auto');
+						}
+					});
+					$('.pop_up_super_c_hapus_berkas').click(function (e)
+					{
+						var container = $('.pop_up_cell_hapus_berkas');
+						if (container.is(e.target) )// if the target of the click is the container...
+						{
+							$( ".pop_up_super_c_hapus_berkas" ).fadeOut( 200, function(){});
 							$('html').css('overflow-y', 'auto');
 						}
 					});
@@ -208,7 +247,7 @@
 			<div class="pop_up_tbl_deskripsi_berkas">
 				<div class="pop_up_cell_deskripsi_berkas">
 					<div class="container_12">			
-					<div class="div_detail_berkas" style="background:#fff; margin-top:130px;">								
+					<div class="div_detail_berkas" style="background:#fff;">								
 						<h3 id="judul_deskripsi"></h3>
 						<div id="div_isi_deskripsi">
 							<p id="isi_deskripsi"></p>
@@ -224,7 +263,7 @@
 			<div class="pop_up_tbl_tambah_berkas">
 				<div class="pop_up_cell_tambah_berkas">
 					<div class="container_12">			
-					<div class="div_detail_berkas" style="background: #fff; margin-top:130px; width:600px !important;">
+					<div class="div_detail_berkas" style="background: #fff; width:600px !important;">
 						<h2>Detail Berkas</h2>
 						<div id="div_form_berkas">
 							<!-- postBerkas-->		
@@ -310,15 +349,20 @@
 											processData: false,
 											contentType: false,
 											success: function(as){
+												// alert('Berhasil menambah berkas ini ajax');
+												// alert(as);
+												// alert(data);
 												$(".pop_up_super_c_tambah_berkas").fadeOut( 200, function(){
 													$(".loader").fadeIn(200, function(){
 														getBerkas();
-														alert('Berhasil menambah berkas');
+														alert('Berhasil menambah berkas ini ajax');
 													});													
 												});
 											},
 											error:function(errorThrown){
-												alert('Gagal menambah berkas');
+												// alert('Gagal menambah berkas ini ajax');
+												// alert(as);
+												// alert(data);
 												$(".pop_up_super_c_tambah_berkas").fadeOut( 200, function(){});
 												alert(errorThrown);
 											}
@@ -338,7 +382,7 @@
 			<div class="pop_up_tbl_edit_berkas">
 				<div class="pop_up_cell_edit_berkas">
 					<div class="container_12">			
-					<div class="div_detail_berkas" style="background: #fff; margin-top:130px; width:600px !important;">
+					<div class="div_detail_berkas" style="background: #fff; width:600px !important;">
 						<h2>Perbarui Berkas</h2>
 						<div id="div_form_berkas">					
 							<table class="table_berkas">
@@ -358,6 +402,26 @@
 							</table>					
 						</div>
 					</div>
+					</div>			
+				</div>		
+			</div>
+		</div>
+		<!-- pop up hapus berkas -->
+		<div class=" pop_up_super_c_hapus_berkas" style="display: none;">
+			<a class="exit close_56_hapus_berkas" ></a>
+			<div class="pop_up_tbl_hapus_berkas">
+				<div class="pop_up_cell_hapus_berkas">
+					<div class="container_12">			
+						<div class="div_hapus_berkas" style="background: #fff; width:600px !important; padding-top:40px;">
+							<h2 style="text-align:center;">Anda yakin ingin menghapus berkas ini?</h2>							
+							<table border="0" style="margin-left:auto; margin-right:auto;">
+								<tr>
+									<td><button class="ok_hapus_berkas">Ya</button></td>
+									<td>&nbsp;</td>
+									<td><button class="batal_hapus_berkas">Tidak</button></td>
+								</tr>
+							</table>
+						</div>
 					</div>			
 				</div>		
 			</div>

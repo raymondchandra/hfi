@@ -2,28 +2,17 @@
 use Carbon\Carbon;
 
 Route::get('/tes', function(){
-		$year = Carbon::now()->year;
-		$id_cabang = 1;
-		if(strlen($id_cabang) < 2)
-		{
-			$cabang_sql = "0".$id_cabang;
-		}
-		else
-		{
-			$cabang_sql = $id_cabang;
-		}
-		$cat_sql = $year.$cabang_sql;
-		$anggota_count = Anggota::where('no_anggota', 'LIKE', $cat_sql.'%')->get();
-		
-		$z_anggota = count($anggota_count) + 1;
-		while(strlen($z_anggota) < 3)
-		{
-			$z_anggota = '0'.$z_anggota;
-		}
-		
-		$nomor_anggota = $year.$cabang_sql.$z_anggota;
-		
-		echo $nomor_anggota;
+	$destinationPath = "assets/file_upload/berkas/7/";
+	
+	if(!file_exists($destinationPath))
+	{
+		echo $destinationPath." GA ADA";
+		File::makeDirectory($destinationPath, $mode = 0777, true, true);
+	}
+	else
+	{
+		echo $destinationPath." ADA";
+	}
 });
 
 

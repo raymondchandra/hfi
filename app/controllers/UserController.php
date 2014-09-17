@@ -326,9 +326,11 @@ class UserController extends BaseController {
 		return $nomor_anggota;
 	}
 	
-	public static addNomerAnggota($account_id){
+	public static function addNomerAnggota($account_id)
+	{
 		$profile = Account::find($account_id)->profile;
 		//isi disini vid
+		return 'asdf';
 	}
 	
 }

@@ -271,8 +271,33 @@ class UserController extends BaseController {
 			}
 		}
 		
-		return 'success';
-		
+		return 'success';		
 	}
+	
+	//edit foto profile
+	public function edit_foto_profile()
+	{				
+		if(Input::hasFile('fileFoto'))
+		{			
+			$file = Input::file('fileFoto');
+			$destinationPath = "assets/file_upload/img/";
+			$fileName = $file->getClientOriginalName();
+			$uploadSuccess   = $file->move($destinationPath, $fileName);
+			
+			$id_profile = Auth::user()->profile->id;
+			$profile = Anggota::find($id_profile);
+		
+			$profile -> timestamps = false;			
+			$profile -> foto_profile = $destinationPath.$fileName;
+			$profile -> save();
+											
+			return "success";		
+		}
+		else
+		{
+			return "failed";			
+		}
+	} 
+	
 }
 ?>

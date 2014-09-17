@@ -63,6 +63,9 @@ Route::group(['prefix' => 'user', 'before' => 'authUser'], function () {
 	//user put route 
 		Route::put('/editProfile', ['as' => 'editProfile', 'uses' => 'UserController@edit_profile']);
 	//ganti password
+	
+	//edit foto profile	
+	Route::post('/editFotoProfile', ['as' => 'editFotoProfile', 'uses' => 'UserController@edit_foto_profile']);
 });
 
 

@@ -408,10 +408,52 @@
 								
 								(Passphoto)
 							</div>
-							<form>
-								{{ Form::file('file',array('style' => 'margin-top: 20px; display: block; margin-left: auto; margin-right: auto;')) }}
-								{{ Form::submit('Unggah Gambar', array('style' => 'display: block; margin-left: auto; margin-right: auto; margin-top: 20px;')) }}
+							<form class="edit_foto_profile">
+								{{ Form::file('fileFoto',array('id'=>'fileFoto', 'style' => 'margin-top: 20px; display: block; margin-left: auto; margin-right: auto;')) }}
+								{{ Form::submit('Unggah Gambar', array('id'=>'ok_edit_foto_button', 'style' => 'display: block; margin-left: auto; margin-right: auto; margin-top: 20px;')) }}
 							</form>
+							<script>
+								jQuery.validator.setDefaults({
+								  debug: true,
+								  success: "valid"
+								});
+								$(".edit_foto_profile").validate({
+									rules : {
+										fileFoto : {
+											required : true
+										}
+									}, 
+									messages : {
+										fileFoto : {
+											required : "Mohon diisi foto"
+										}
+									},
+									submitHandler:function(form){
+										var input, xhr;
+										input = new FormData();
+										input.append('fileFoto', $('#fileFoto')[0].files[0]);
+										var urlEditFotoProfile = '{{ URL::route('editFotoProfile') }}';
+										$.ajax({
+											url: urlEditFotoProfile,	
+											type: 'POST',
+											data: input,
+											processData: false,
+											contentType: false,
+											success: function(as){
+												if(as=="success"){
+													location.reload();
+												}else{
+													alert("failed");
+												}												
+											},
+											error:function(errorThrown){
+												alert(errorThrown);
+											}
+										});
+									}
+								});
+																
+							</script>
 						</div>
 					
 					</div>

@@ -34,8 +34,7 @@ class AnggotaController extends BaseController {
 		return $isiKonten;
 	}
 
-	//public function get_anggota_beranda()
-	//public function get_anggota_ketentuan()
+	
 }
 
 ?>

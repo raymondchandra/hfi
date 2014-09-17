@@ -273,31 +273,8 @@ class AccountController extends BaseController {
 		}
 	}
 	
-	public function getNomorAnggota($id_cabang)
-	{
-		$year = Carbon::now()->year;
-		
-		if(strlen($id_cabang) < 2)
-		{
-			$cabang_sql = "0".$id_cabang;
-		}
-		else
-		{
-			$cabang_sql = $id_cabang;
-		}
-		$cat_sql = $year.$cabang_sql;
-		$anggota_count = Anggota::where('no_anggota', 'LIKE', $cat_sql.'%')->get();
-		
-		$z_anggota = count($anggota_count) + 1;
-		while(strlen($z_anggota) < 3)
-		{
-			$z_anggota = '0'.$z_anggota;
-		}
-		
-		$nomor_anggota = $year.$cabang_sql.$z_anggota;
-		
-		return $nomor_anggota;
-	}
+	
+	
 
 }
 

@@ -66,7 +66,7 @@
 
 		<div class="cabang_list_container">
 			<div id='tambah_cabang_link'><a href='javascript:void(0)' id='tambah_cabang'  class="command_button">+ Kantor Cabang Baru</a></div>
-			<div class="cabang_list">
+			<div class="cabang_list" style="margin-left: 20px !important; ">
 				<table class='list_cabang'>
 				</table>
 				<script>

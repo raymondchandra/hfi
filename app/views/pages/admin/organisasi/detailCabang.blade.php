@@ -42,7 +42,7 @@
 	@endif
 	<span class='clear'>&nbsp;</span>	
 </div>
-<hr />
+<hr style="margin-top: 30px;"/>
 <div id="pengurus">
 	<h3>Daftar Pengurus Pada Cabang ini</h3>
 	<div id='tambah_pengurus_link'><a href='javascript:void(0)' id='tambah_pengurus'  class='command_button'>+ Pengurus Baru</a></div>
@@ -157,12 +157,14 @@
 		<div class="pop_up_cell_tambah_pengurus">
 			<div class="container_12">			
 			<div class="grid_9 detail_pengurus" style="background: #fff; margin-left:160px;">
-				<h2>Detail Pengurus</h2>
+				<h2 style="margin-left: 20px; margin-top: 20px;">Detail Pengurus</h2>
 				<form class='tambah_pengurus_form'>
 					<!-- /postPengurus-->
 					<ul>
 						<li>{{ Form::file('filePeng', array('name'=>'filePeng','id'=>'filePeng')) }}</li>
+						<span class="clear" style="height: 20px; display: block;"></span>
 						<li>Periode : {{ Form::text('periode', Input::old('periode'), array('style' => 'width: 200px;', 'id'=>'periode')) }}</li>
+						<span class="clear" style="height: 20px; display: block;"></span>
 						<li>{{ Form::submit('Unggah') }}</li>
 					</ul>	
 					<script>

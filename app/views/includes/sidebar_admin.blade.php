@@ -29,7 +29,7 @@
 				<a href="javascript:void(0)" class="_organisasi_tombol">Organisasi</a>
 				<ul style="display: none;" class="_organisasi_list">
 					<li>
-						<a href="javascript:void(0)" id='organisasi_pengurus'>Pengurus</a>
+						<a href="javascript:void(0)" id='organisasi_pusat'>Pusat</a>
 					</li>
 					<li>
 						<a href="javascript:void(0)" id='organisasi_cabang'>Cabang</a>

@@ -19,7 +19,12 @@ class HomeController extends BaseController {
 		
 		$slideshow = $this->get_slideshow();
 		
-		return View::make('pages.home', compact('deskripsi_selamat_datang', 'tentang_hfi', 'visi_hfi', 'misi_hfi', 'regulasi_hfi', 'arr','slideshow'));
+		return View::make('pages.home', compact('deskripsi_selamat_datang', 'tentang_hfi', 'visi_hfi', 'misi_hfi', 'arr','slideshow'))->nest('reg_page','pages.regulasi',compact('regulasi_hfi'));
+	}
+	
+	public function view_regulasi(){
+		$regulasi_hfi = $this->get_all_regulasi();
+		return View::make('pages.regulasi', compact('regulasi_hfi'));
 	}
 	
 	public static function get_konten($tipe)
@@ -39,8 +44,8 @@ class HomeController extends BaseController {
 		
 	public function get_all_regulasi()
 	{		
-		$regulations = Regulasi::all();
-		//$regulations = Regulasi::paginate(5);
+		//$regulations = Regulasi::all();
+		$regulations = Regulasi::paginate(1);
 		if($regulations==null){
 			return "kosong";
 		}else{			

@@ -55,7 +55,8 @@
 		$("#activateButton").click(function(){
 			var input = {
 				id : activeId,
-				length : $("#lama_aktivasi").val()
+				length : $("#lama_aktivasi").val(),
+				newData : "no"
 			};
 			if(!input.length){
 				alert('Masukkan lama aktivasi.');

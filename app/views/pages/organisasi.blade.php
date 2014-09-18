@@ -32,9 +32,13 @@
 							foreach($pengs as $value){
 								$arrPengurus[] = $value;							
 							}
-						}					
+						}				
 					?>
+					@if(count($arrPengurus)==0)
+						<div>Tidak terdapat pengurus yang diunggah</div>
+					@else
 					<div class="versi_pdf_container">
+						
 						<?php foreach($arrPengurus as $pengurus) { //for($r=0; $r<$length; $r++){ ?>						
 						<ul style="margin-bottom:5px;">
 							<li>
@@ -44,7 +48,9 @@
 							</li>							
 						</ul>
 						<?php } ?>
+						
 					</div>
+					@endif
 					<script>
 						$('.pop_the_pop_up').click(function() {
 							var title = ($(this).text());

@@ -39,6 +39,7 @@ Route::get('anggota', ['as' => 'anggota', 'uses' => 'AnggotaController@view_inde
 	Route::get('/ketentuan', ['as' => 'ketentuan', 'uses' => 'AnggotaController@view_ketentuan']);
 Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index']);
 Route::get('/lain', ['as' => 'lain', 'uses' => 'LainController@view_index']);
+Route::get('/regulasi', ['as' => 'regulasi.home', 'uses' => 'HomeController@view_regulasi']);
 
 //account view
 Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login', 'before' => 'checkLogin']);
@@ -84,7 +85,9 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	
 	//organisasi
 	Route::get('/organisasi/cabang', ['as' => 'admin.organisasi.cabang', 'uses' => 'OrganisasiAdminController@view_cabang']);
-	Route::get('/organisasi/pengurus', ['as' => 'admin.organisasi.pengurus', 'uses' => 'OrganisasiAdminController@view_pengurus']);
+	Route::get('/organisasi/pusat', ['as' => 'admin.organisasi.pusat', 'uses' => 'OrganisasiAdminController@view_pusat']);
+	//Route::get('/organisasi/pengurus', ['as' => 'admin.organisasi.pengurus', 'uses' => 'OrganisasiAdminController@view_pengurus']);
+	Route::get('/organisasi/detail/{id}', ['as' => 'admin.organisasi.detail', 'uses' => 'OrganisasiAdminController@view_detail']);
 	//end of organisasi
 	
 	Route::get('/kegiatan', ['as' => 'admin.kegiatan', 'uses' => 'KegiatanAdminController@view_index']);

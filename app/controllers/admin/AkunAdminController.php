@@ -84,6 +84,12 @@ class AkunAdminController extends BaseController {
 	{
 		$id = Input::get('id');
 		$length = Input::get('length');
+		$newData = Input::get('newData');
+		
+		if($newData == "yes"){
+			UserController::addNomerAnggota($id);
+		}
+		
 		$akun = Account::find($id);
 		$akun->batas_aktif = Carbon::now()->addYears($length);
 		$akun->status_aktif = 1;

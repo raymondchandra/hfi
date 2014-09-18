@@ -32,9 +32,9 @@ $('body').on('click','#home_regulasi',function(){
 
 
 //sidebar organisasi
-$('body').on('click','#organisasi_pengurus',function(){
+$('body').on('click','#organisasi_pusat',function(){
 	$( ".loader" ).fadeIn( 200, function(){});
-	 $('.admin_control_panel').load('admin/organisasi/pengurus'); 
+	 $('.admin_control_panel').load('admin/organisasi/pusat'); 
 });
 
 $('body').on('click','#organisasi_cabang',function(){

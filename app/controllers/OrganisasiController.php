@@ -57,7 +57,7 @@ class OrganisasiController extends BaseController {
 	// pengurus
 	public function get_all_pengurus()
 	{
-		$pengs = Pengurus::all();
+		$pengs = Pengurus::where('tipe','=','1');
 		if(count($pengs) == 0)
 		{
 			// kalo return "" bakal kebaca array isinya 1 (string "") 

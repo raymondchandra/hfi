@@ -187,8 +187,7 @@ class HomeAdminController extends BaseController {
 		// }
 		
 		if(Input::hasFile('fileReg'))
-		{
-			
+		{			
 			$file = Input::file('fileReg');
 			$destinationPath = "assets/file_upload/regulasi/";
 			$fileName = $file->getClientOriginalName();
@@ -249,14 +248,20 @@ class HomeAdminController extends BaseController {
 		}
 	}
 	
+	//update foto slide
 	public function update_foto_gallery()
 	{	
-		if(Input::hasFile('file'))
+		if(Input::hasFile('filePhoto'))
 		{
+			$imgType = Input::file('filePhoto')->getMimeType();				
+			if(substr($imgType,0,6) != "image/"){
+				return "gagal, harus berupa image!";
+			}
+		
 			$id_img = Input::get('id_photo');
 			$id = Auth::user()->id;
 			
-			$img_upload = Input::file('file');
+			$img_upload = Input::file('filePhoto');
 			$file_name = $img_upload->getClientOriginalName();
 			$destination = 'assets/file_upload/slideshow/'.$id_img.'/';
 			

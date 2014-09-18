@@ -37,7 +37,6 @@ class Account extends Eloquent implements UserInterface, RemindableInterface
        
     }
 
-
     public function getRememberTokenName()
     {
         return 'remember_token';

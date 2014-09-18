@@ -4,15 +4,21 @@
 	var index_caption = -1;
 	
 	var imageUpload = "";
+	
+	//newcode
+	var idFotoYangMoDiUpdate;
+	var sourcePreviewImage;
+	//endnewcode
+	
 	$(document).ready(function(){
-		$( ".loader" ).fadeOut( 200, function(){});
+		//$( ".loader" ).fadeOut( 200, function(){});
+		$(".loader").fadeOut( 277, function(){});
 	});
 </script>
 
 <div class='admin_title'>Slideshow</div>
 <div class='slide_container' style="margin-left: 0px !important;">
-	@if($slideshow == "Failed")
-		
+	@if($slideshow == "Failed")		
 		<ul>
 			<li>
 				<div>
@@ -91,8 +97,8 @@
 			</li>
 	@else
 		<ul>
-			<?php
-				$length = count($slideshow);
+			<?php											
+				$length = count($slideshow);					
 				$view="";
 				for($i=0;$i<$length;$i++){
 					$view.="
@@ -109,7 +115,8 @@
 								<p>Perbaharui Foto</p>
 								<span class='cam'>
 								</span>
-							</a>
+							</a>							
+							<input type='hidden' value='".$slideshow[$i]['file_path']."' />
 						</li>
 					";
 				}
@@ -131,8 +138,9 @@
 									<p>Perbaharui Foto</p>
 									<span class='cam'>
 									</span>
-								</a>
+								</a>								
 							</li>
+							<input type='hidden' value='' />
 						";
 						$temp++;
 					}
@@ -158,12 +166,12 @@
 								
 								<span style="display: block; margin-left: auto; margin-right: auto; font-size: 24px;">4:3</span> 
 								
-							</div>
-								{{ Form::open(array('url' => 'admin/editSlideShow','method'=>'put','files'=>'true')) }}
-								{{ Form::file('photo',array('name'=>'photo','id'=>'photo','class'=>'upload_photo','accept'=>"image/*" ,'style' => 'margin-top: 20px; display: block; margin-left: auto; margin-right: auto;')) }}
-								<input type='hidden' class='photo_id' name='id_photo' />
-								{{ Form::submit('Unggah Gambar', array('class' => 'button','style' => 'display: block; margin-left: auto; margin-right: auto; margin-top: 20px;')) }}
-								{{ Form::close() }}
+							</div>					
+								<form class="update_foto_slideshow">
+									{{ Form::file('filePhoto',array('name'=>'photo','id'=>'filePhoto','class'=>'upload_photo','accept'=>"image/*" ,'style' => 'margin-top: 20px; display: block; margin-left: auto; margin-right: auto;')) }}
+									<input type='hidden' class='photo_id' name='id_photo' />
+									{{ Form::submit('Unggah Gambar', array('class' => 'button', 'id'=> 'button_upload_foto', 'style' => 'display: block; margin-left: auto; margin-right: auto; margin-top: 20px;')) }}								
+								</form>
 								<!--<input type='file' class='upload_photo' multiple="false" style="margin-top: '20px'; display: 'block'; margin-left: 'auto'; margin-right: 'auto';" />
 								<input type='button' class='button_upload_foto' value='Unggah Gambar' style="display: 'block'; margin-left: 'auto'; margin-right: 'auto'; margin-top: '20px';">-->
 						</div>
@@ -200,28 +208,72 @@ $('body').on('change','.upload_photo',function(){
 	}
 });
 
-$('body').on('click','.button_upload_foto',function(){
-	var data = new FormData();
-	data.append('id', index_caption);
-	data.append('image', imageUpload);
-	$.ajax({
-		type: 'PUT',
-		url: 'admin/editSlideShow',
-		/*data: {
-			'id' : index_caption,
-			'image':imageUpload
-		},*/
-		data : data,
-		processData: false,
-		success: function(response){
-			//alert(response.id);
-			$('.slide_container').text(response);
-		},
-		error: function(jqXHR, textStatus, errorThrown){
-			alert(errorThrown);
-		}
-	});
+//post edit foto slide
+jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
 });
+$(".update_foto_slideshow").validate({
+	rules: {
+		filePhoto :{
+			required : true
+		}
+	}, messages : {
+		filePhoto : {
+			required : "Mohon isi file foto"
+		}
+	},
+	submitHandler:function(form){		
+		var data, xhr;
+		data = new FormData();						
+		data.append('filePhoto', $('#filePhoto')[0].files[0]);	
+		data.append('id_photo', idFotoYangMoDiUpdate);
+		$.ajax({
+			url: 'admin/editSlideShow',
+			type: 'POST',
+			data: data,
+			processData: false,
+			contentType: false,					
+			success: function(as){			
+				alert(as);
+				$(".loader").fadeIn( 377, function(){
+					$( ".pu_c" ).fadeOut( 200, function(){});
+					$('.admin_control_panel').load('admin/home/slide');									
+					$(".loader").fadeOut( 377, function(){
+						// alert("Berhasil Update Foto Slideshow");												
+					});
+				});																			
+			},
+			error:function(errorThrown){
+				alert("Gagal Update Foto Slideshow");
+				alert(errorThrown);
+			}
+		});
+	}
+});
+
+// $('body').on('click','.button_upload_foto',function(){
+	// var data = new FormData();
+	// data.append('id', index_caption);
+	// data.append('image', imageUpload);
+	// $.ajax({
+		// type: 'PUT',
+		// url: 'admin/editSlideShow',
+		// /*data: {
+			// 'id' : index_caption,
+			// 'image':imageUpload
+		// },*/
+		// data : data,
+		// processData: false,
+		// success: function(response){
+			// alert(response.id);
+			// $('.slide_container').text(response);
+		// },
+		// error: function(jqXHR, textStatus, errorThrown){
+			// alert(errorThrown);
+		// }
+	// });
+// });
 
 $('body').on('click','.reset_change',function(){
 	$(this).siblings('.caption').val($(this).next().val());
@@ -274,16 +326,25 @@ $('.ok_change').click(function(){
 </script>
 
 <script type="text/javascript">
-	$(document).ready(function() {
+	$(document).ready(function() {	
+		$( ".loader" ).fadeOut( 200, function(){});
+	
 		$(".edit_pp").click(function() {
+			//newcode ---> buat dapetin id foto yang mo diupdate
+			idFotoYangMoDiUpdate = $(this).prev().prev().prev().val();			
+			sourcePreviewImage = $(this).next().val();				
+			//endnewcode
 			$(".photo_edit").fadeIn( 277, function(){}).css('display','block').css('z-index','999999');
 			$("body").css('overflow-x','hidden');
 			index_caption = $(this).prev().val();
 			//alert(index_caption);
 			$('.photo_id').val(index_caption);
 			
-			//ajax
+			//newcode
+			$('.saran_43').html("<img src='"+sourcePreviewImage+"' width=400 height=300 />");
+			//endnewcode
 			
+			//ajax
 			
 		});
 		

@@ -278,7 +278,12 @@ class UserController extends BaseController {
 	public function edit_foto_profile()
 	{				
 		if(Input::hasFile('fileFoto'))
-		{			
+		{					
+			$imgType = Input::file('fileFoto')->getMimeType();				
+			if(substr($imgType,0,6) != "image/"){
+				return "failed";
+			}
+		
 			$file = Input::file('fileFoto');
 			$destinationPath = "assets/file_upload/img/";
 			$fileName = $file->getClientOriginalName();
@@ -292,6 +297,7 @@ class UserController extends BaseController {
 			$profile -> save();
 											
 			return "success";		
+			//return $imgType;
 		}
 		else
 		{

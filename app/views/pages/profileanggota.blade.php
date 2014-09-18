@@ -38,7 +38,7 @@
 					}
 					
 				</style>
-				<script>
+				<script>									
 					function editProfile(){
 						$(".front").hide();
 						$(".back").show();
@@ -409,10 +409,34 @@
 								(Passphoto)
 							</div>
 							<form class="edit_foto_profile">
-								{{ Form::file('fileFoto',array('id'=>'fileFoto', 'style' => 'margin-top: 20px; display: block; margin-left: auto; margin-right: auto;')) }}
+								{{ Form::file('fileFoto',array('id'=>'fileFoto', 'class'=>'upload_photo', 'accept'=>"image/*", 'style' => 'margin-top: 20px; display: block; margin-left: auto; margin-right: auto;')) }}
 								{{ Form::submit('Unggah Gambar', array('id'=>'ok_edit_foto_button', 'style' => 'display: block; margin-left: auto; margin-right: auto; margin-top: 20px;')) }}
 							</form>
 							<script>
+								$('body').on('change','.upload_photo',function(){
+									var i = 0, len = this.files.length, img, reader, file;
+									
+										//document.getElementById("images").disabled = true;
+									for ( ; i < len; i++ ) {
+										file = this.files[i];
+										if (!!file.type.match(/image.*/)) {
+											if ( window.FileReader ) {
+												reader = new FileReader();
+												reader.onloadend = function (e) { 
+													showUploadedItem(e.target.result, file.fileName);
+												};
+												reader.readAsDataURL(file);
+											}
+											imageUpload = file;
+										}	
+									}
+								});
+								
+								function showUploadedItem (source) {																									
+									var image = "<img src='"+source+"' width=150 height=200 />"										
+									$('.saran_34').html(image);
+								} 
+								
 								jQuery.validator.setDefaults({
 								  debug: true,
 								  success: "valid"
@@ -440,11 +464,14 @@
 											processData: false,
 											contentType: false,
 											success: function(as){
-												if(as=="success"){
-													location.reload();
-												}else{
-													alert("failed");
-												}												
+													location.reload();													
+													alert(as);
+												// if(as=="success"){
+													// alert(as);
+													// location.reload();													
+												// }else{
+													// alert("failed");
+												// }												
 											},
 											error:function(errorThrown){
 												alert(errorThrown);
@@ -464,9 +491,14 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
+			var sourcePreviewImage;
+		
 			$("#show_pp_editor").click(function() {
 				$(".pu_c").fadeIn( 277, function(){}).css('display','block').css('z-index','999999');
 				$("body").css('overflow-x','hidden');
+					
+				sourcePreviewImage = $(this).prev().attr("src");					
+				$('.saran_34').html("<img src='"+sourcePreviewImage+"' width=150 height=200 />");
 			});											
 		});
 		

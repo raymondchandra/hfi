@@ -87,59 +87,11 @@
 			<div class="clear"></div>
 			
 			<div class="regulasi_hfi_container" id="regulasi_hfi">
-				
-				<h2>
-					Regulasi HFI
-				</h2>
-				<div class="pdf_container">
-					<?php											
-						// $length = sizeof($regulasi_hfi);														
-						$arrRegulasi = array();					
-						// for($i=0; $i<$length; $i++){
-							// $arrRegulasi[] = $regulasi_hfi[$i];
-						// }
-						foreach($regulasi_hfi as $value){
-							$arrRegulasi[] = $value;
-						}
-					?>
-					<div class="versi_pdf_container">
-						<?php foreach($arrRegulasi as $regulasi){ //for($r=0; $r<$length; $r++){ ?>
-							<ol style="margin-bottom:5px;">								
-								<li>
-									<a href='javascript:void(0)' class='pop_the_pop_up' value="
-									<?php echo $regulasi['file_path'] //echo $arrRegulasi[$r]['file_path']?>">
-									<?php echo $regulasi['versi'] //echo $arrRegulasi[$r]['versi']?></a>
-								</li>								
-							</ol>				
-						<?php } ?>
-						<!--<ul>
-							<li>
-								<a href="javascript:void(0);" class="pop_the_pop_up">AD / ART 2001 - sekarang</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);" class="pop_the_pop_up">AD / ART 1990 - 2001</a>
-							</li>
-						</ul>-->
-					</div>
-					<script>
-						$('.pop_the_pop_up').click(function() {
-							var title = ($(this).text());
-							$('.title_pdf_viewer').html(title);
-							var file_path = $(this).attr('value');			
-							$('.pdf_viewer').attr("data", file_path);
-								$( ".pop_up_super_c" ).fadeIn( 277, function(){});
-								$('html').css('overflow-y', 'hidden');
-						});												
-					</script>					
-				</div>
+				{{$reg_page}}
 			</div>	
-			
 		</div>
 	</div>
 	
-	<!--<div class="pop_up" style="position: fixed; top: 0px; left: 0;">
-	asdads
-	</div>-->
 	
 	<div class=" pop_up_super_c" style="display: none;">
 		<a class="exit close_56" ></a>
@@ -157,4 +109,22 @@
 			
 		</div>
 	</div>
+	
+	<div id="" class="pu_c loader" style="z-index: 999999; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: block; ">
+	<div class="tableed">
+		<div class="celled pu_cell" style="height: 100%;">
+			<div class="container_12" style="position: relative;">
+				<span class="loading_animation" style="background-color: rgba(0, 0, 0, 0.701961);">
+				</span>
+			</div>
+		</div>
+	</div>
+	
+	</div> 
+	<script>
+		$(document).ready(function(){
+			$( ".loader" ).fadeOut( 200, function(){});
+		});
+		
+	</script>
 @stop

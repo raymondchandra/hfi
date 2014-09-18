@@ -11,12 +11,28 @@ use Carbon\Carbon;
 			return View::make('pages.admin.organisasi.cabang');
 		}
 		
-		public function view_pengurus()
+		/*public function view_pengurus()
 		{
 			$arr = $this->setHeader();
 			$arr2 = $this->get_all_cabang();			
 			return View::make('pages.admin.organisasi.pengurus', compact('arr', 'arr2'));
-		}		
+		}*/
+		
+		public function view_detail($id)
+		{
+			$cabang = $this->get_cabang($id);
+			$pengurus = $this->get_pengurus($id);
+			return View::make('pages.admin.organisasi.detailCabang',compact('id','cabang','pengurus'));
+		}
+		
+		public function view_pusat()
+		{
+			$id = 1;
+			$cabang = $this->get_cabang($id);
+			$pengurus = $this->get_pengurus($id);
+			return View::make('pages.admin.organisasi.pusat')->nest('detailPusat','pages.admin.organisasi.detailCabang',compact('id','cabang','pengurus'));
+		}
+		
 		public function get_all_cabang()
 		{
 			//$count = Cabang::select('nama')->get();
@@ -38,7 +54,7 @@ use Carbon\Carbon;
 
 		public function get_semua_cabang()
 		{
-			$count = Cabang::all();
+			$count = Cabang::where('tipe','=',0)->get();
 			if(count($count) != 0)
 			{
 				return $count;
@@ -49,10 +65,21 @@ use Carbon\Carbon;
 		}
 		
 		//get semua pengurus untuk id_cabang tertentu
+		public function get_pengurus($id_cabang)
+		{
+			$count = DB::table('pengurus')->where('id_cabang', $id_cabang)->paginate(10);
+			if(count($count) != 0)
+			{
+				return $count;
+			}else{
+				return "";
+			}
+		}
+		
 		public function get_semua_pengurus()
 		{			
 			$id_cabang = Input::get('id_cabang');
-			$count = DB::table('pengurus')->where('id_cabang', $id_cabang)->get();
+			$count = DB::table('pengurus')->where('id_cabang', $id_cabang)->paginate(10);
 			if(count($count) != 0)
 			{
 				return $count;
@@ -101,6 +128,19 @@ use Carbon\Carbon;
 			}else
 			{
 				return "Fail";
+			}
+		}
+		
+		public function get_cabang($id)
+		{
+			$count = Cabang::find($id);
+			if(count($count) != 0)
+			{
+				return $count;
+				
+			}else
+			{
+				return NULL;
 			}
 		}
 		
@@ -162,17 +202,19 @@ use Carbon\Carbon;
 		{
 			$id_pengurus = Input::get('id_pengurus');
 			$pengurus = Pengurus::find($id_pengurus);
+			
 			$file = $pengurus->file_path;
 			if(File::exists($file))
 			{
 				File::delete($file);
 				$pengurus->delete();
-				return "Success Delete";
+				return "success";
 			}
 			else 
 			{
-				return "Failed Delete";
+				return "fail";
 			}
+			
 		}
 	}
 

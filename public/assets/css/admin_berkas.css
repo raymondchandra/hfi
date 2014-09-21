@@ -87,6 +87,7 @@
 	margin-left:40px;
 	margin-right:40px;
 	text-align:center;
+	overflow:hidden;
 }
 
 #div_isi_deskripsi, #div_form_berkas{
@@ -94,6 +95,7 @@
 	margin-left:40px;	
 	margin-right:40px;
 	padding-bottom:20px;
+	overflow:auto;
 }
 
 

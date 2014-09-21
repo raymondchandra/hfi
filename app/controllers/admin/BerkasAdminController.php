@@ -60,7 +60,7 @@ class BerkasAdminController extends BaseController {
 			else
 			{
 				$uploadSuccess = $file->move($destinationPath, $fileName);
-				$berkas2 -> path_file = $destinationPath.$fileName;
+				$berkas -> path_file = $destinationPath.$fileName;
 				$berkas -> save();
 			}
 			

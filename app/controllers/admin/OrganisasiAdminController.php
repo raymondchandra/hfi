@@ -159,14 +159,14 @@ use Carbon\Carbon;
 			return "Success Update";
 		}
 		
-		public function tambah_pengurus()
+		/*public function tambah_pengurus()
 		{
 			if(Input::hasFile('filePeng'))
 			{				
 				$file = Input::file('filePeng');
 				$destinationPath = "assets/file_upload/pengurus/";
 				$fileName = $file->getClientOriginalName();
-				$uploadSuccess   = $file->move($destinationPath, $fileName);
+				$uploadSuccess = $file->move($destinationPath, $fileName);
 				
 				$peng = new Pengurus();
 				$peng -> timestamps = false;
@@ -179,12 +179,54 @@ use Carbon\Carbon;
 				$peng -> save();
 				
 				return "success";	
-				//return Redirect::to('/admin')->with('message','berhasil menambah file pengurus');
+			}else{
+				return "failed";				
+			}
+		}*/
+		
+		//tambah pengurus 
+		public function tambah_pengurus()
+		{
+			if(Input::hasFile('filePeng'))
+			{
+				$file = Input::file('filePeng');
+				$destinationPath = "assets/file_upload/pengurus/";
+				$fileName = $file->getClientOriginalName();
+				
+				$periode = Input::get('periode');
+				$uploaded_id = Auth::user()->id;				
+				$upload_time = Carbon::now(); //tanggal_upload				
+				$id_cabang = Input::get('id_cabang');
+				
+				$peng = new Pengurus();
+				$peng -> timestamps = false;
+				$peng -> periode = $periode;
+				$peng -> uploaded_by = $uploaded_id;
+				$peng -> tanggal_upload = $upload_time;
+				$peng -> id_cabang = $id_cabang;
+				$peng -> save();
+				
+				$id_pengurus = $peng->id;
+				$destinationPath .= $id_pengurus;
+				$destinationPath .= "/";
+				if(!file_exists($destinationPath))
+				{
+					File::makeDirectory($destinationPath, $mode = 0777, true, true);
+					$uploadSuccess = $file->move($destinationPath, $fileName);
+					$peng -> file_path = $destinationPath.$fileName;
+					$peng -> save();
+				}
+				else
+				{
+					$uploadSuccess = $file->move($destinationPath, $fileName);
+					$peng -> file_path = $destinationPath.$fileName;
+					$peng -> save();
+				}
+				return "Berhasil menambah pengurus";
 			}
 			else
 			{
-				return "failed";
-				//return Redirect::to('/admin')->with('message','gagal menambah file pengurus');
+				return "Gagal menambah pengurus";
 			}
 		}
 		
@@ -206,15 +248,19 @@ use Carbon\Carbon;
 			$file = $pengurus->file_path;
 			if(File::exists($file))
 			{
-				File::delete($file);
+				File::delete($file);				
+				$parentpath = "assets/file_upload/pengurus/";
+				$fileDir = $parentpath.$id_pengurus;
+				File::deleteDirectory($fileDir);
 				$pengurus->delete();
+				//$pengurus->delete();
 				return "success";
 			}
 			else 
 			{
 				return "fail";
 			}
-			
+			//File::deleteDirectory($directoryPath);
 		}
 	}
 

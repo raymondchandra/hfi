@@ -78,17 +78,26 @@
 						<table border=0 class="tabel_list_regulasi">								
 						</table>
 						<script>
-							//baru bisa hapus database, blom bisa sampe hapus pdf nya yg ada di folder file_upload
+							var id_hapus_regulasi;
+						
 							$('body').on('click','.hapus_regulasi',function(){
+								$(".pop_up_super_c_hapus_regulasi").fadeIn(277, function(){});
 								$id = $(this).next().val();
+								
+								//ambil id regulasi buat ok_hapus_regulasi
+								id_hapus_regulasi = $id;
+							});													
+							$('body').on('click','.ok_hapus_regulasi',function(){
+								//$id = $(this).next().val();
 								//ajax delete
 								$.ajax({
 									url: 'admin/home/deleteregulasi',
 									type: 'DELETE',
 									data: {
-										'id_regulasi' : arrIDRegulasi[$id]
+										'id_regulasi' : arrIDRegulasi[id_hapus_regulasi]
 									},
 									success: function(data){
+										$(".pop_up_super_c_hapus_regulasi").fadeOut(200, function(){});
 										$(".loader").fadeIn( 277, function(){});						
 										getRegulasi();
 										//blank preview pdf
@@ -100,7 +109,21 @@
 									}
 								});
 							});							
-											
+							$('body').on('click','.batal_hapus_regulasi',function(){
+								$(".pop_up_super_c_hapus_regulasi").fadeOut(200, function(){});
+							});
+							
+							$('exit').click(function() {$(".pop_up_super_c_hapus_regulasi").fadeOut(200, function(){});});
+							
+							$('.pop_up_super_c_hapus_regulasi').click(function (e)
+							{
+								var container = $('.pop_up_cell_hapus_regulasi');
+								if (container.is(e.target) )// if the target of the click is the container...
+								{
+									$( ".pop_up_super_c_hapus_regulasi" ).fadeOut( 200, function(){});
+									$('html').css('overflow-y', 'auto');
+								}
+							});
 						</script>
 					</div>	
 				</div>					
@@ -131,6 +154,8 @@
 					//$('#pdf_viewer_regulasi').attr("data", file_path);
 					$('#preview_pdf_regulasi').html("<object data='"+file_path+"' type='application/pdf' width='100%' id='pdf_viewer_regulasi'></object>");
 				});
+				
+				
 								
 				jQuery.validator.setDefaults({
 				  debug: true,
@@ -179,7 +204,29 @@
 						});
 					}
 				});
-			</script>					
+			</script>	
+			
+			<!-- pop up hapus regulasi -->
+			<div class=" pop_up_super_c_hapus_regulasi" style="display: none;">
+				<a class="exit close_56_hapus_regulasi" ></a>
+				<div class="pop_up_tbl_hapus_regulasi">
+					<div class="pop_up_cell_hapus_regulasi">
+						<div class="container_12">			
+							<div class="div_hapus_regulasi" style="background: #fff; width:600px !important; padding-top:40px;">
+								<h2 style="text-align:center;">Anda yakin ingin menghapus berkas ini?</h2>							
+								<table border="0" style="margin-left:auto; margin-right:auto;">
+									<tr>
+										<td><button class="ok_hapus_regulasi">Ya</button></td>
+										<td>&nbsp;</td>
+										<td><button class="batal_hapus_regulasi">Tidak</button></td>
+									</tr>
+								</table>
+							</div>
+						</div>			
+					</div>		
+				</div>
+			</div>		
+			
 		</div>
 	</div>
 	

@@ -79,3 +79,43 @@
 	display:block;
 	height:500px;
 }
+
+.div_hapus_regulasi{
+	width:500px;
+	height:150px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.pop_up_super_c_hapus_regulasi{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 999999;
+	background-color: rgba(0,0,0,0.8);
+	top: 0px;
+	left: 0px;
+	overflow: auto;
+}
+.pop_up_tbl_hapus_regulasi {
+	width: 100%;
+	height: 100%;
+	display: table;
+	z-index: 1999999;
+	overflow-y: hidden;
+	vertical-align: middle;
+}
+.pop_up_cell_hapus_regulasi{
+	display: table-cell;
+	vertical-align: middle;
+}
+.close_56_hapus_regulasi {
+	background: url('../img/close56.png') no-repeat;
+	width: 56px;
+	height: 69px;
+	display: block;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	cursor: pointer;
+}

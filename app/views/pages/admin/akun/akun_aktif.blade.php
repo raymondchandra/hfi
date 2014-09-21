@@ -120,6 +120,11 @@
 		</a>
 </div>
 
+<!-- add jPages plugin -->
+<link rel="stylesheet" href="{{ asset('assets/js/jpages/css/jPages.css') }}">
+<script src="{{ asset('assets/js/jpages/js/jPages.min.js') }}"></script>
+
+<div class="holder"></div>
 <div class='list_legend_akun'>
 	<ul>
 		<li class="nomor_anggota">
@@ -144,10 +149,35 @@
 </div>
 
 <div class="admin_akun_list">
-	<ul class="list_akun"> 
+	<ul class="list_akun" id="jpage_list_akun"> <!-- list_akun -->
 		
 	</ul>
 </div>
+<div class="holder"></div>
+
+<script>
+$(document).ready(function () {
+    setTimeout(function(){
+	$(function() {
+		/* initiate plugin */
+		$("div.holder").jPages({
+			containerID : "jpage_list_akun",
+			perPage : 10
+		});
+		/* on select change */
+		$("select").change(function(){
+			/* get new nº of items per page */
+		  var newPerPage = parseInt( $(this).val() );
+		  /* destroy jPages and initiate plugin again */
+		  $("div.holder").jPages("destroy").jPages({
+				containerID   : "jpage_list_akun",
+				perPage       : newPerPage
+			});
+		});
+	});
+    }, 500);
+});
+</script>
 
 <!--pop up reset password-->
 <div class=" pop_up_super_c akun_aktif_ubahpass_pop" style="display: none;">
@@ -285,6 +315,8 @@
 		$('.search_box_input').val('');
 		$(this).css('display', 'none');
 	});
+	
+
 </script>
 
 

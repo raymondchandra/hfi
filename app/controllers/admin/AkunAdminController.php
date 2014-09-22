@@ -21,6 +21,11 @@ class AkunAdminController extends BaseController {
 		return View::make('pages.admin.akun.akun_non_aktif');
 	}
 	
+	public function view_akun_admin()
+	{
+		return View::make('pages.admin.akun.akun_admin');
+	}
+	
 	public function get_akun_baru()
 	{
 		return $this->get_akun(0);
@@ -28,13 +33,38 @@ class AkunAdminController extends BaseController {
 	
 	public function get_akun_aktif()
 	{
-		return $this->get_akun(1);
+		$akun = Account::where('status_aktif','=','1')->where('role','=','0')->get();
+		$r = array();
+		foreach($akun as $row){
+			$account_id = $row->id;
+			$r[$account_id]['username'] = $row->username;
+			$anggota = $row->profile;
+			$r[$account_id]['no_anggota'] = $anggota->no_anggota;
+			$r[$account_id]['nama'] = $anggota->nama;
+			$r[$account_id]['batas_aktif'] = $row->batas_aktif;
+			$r[$account_id]['cabang'] = Cabang::where('id','=',$anggota->id_cabang)->first()->nama;
+			$r[$account_id]['tanggal'] = $anggota->tanggal_revisi;
+			
+		}
+		return json_encode($r);
 		
 	}
 	
 	public function get_akun_nonaktif()
 	{
 		return $this->get_akun(2);
+	}
+	
+	public function get_akun_admin()
+	{
+		$akun = Account::where('status_aktif','=','1')->where('role','=','1')->get();
+		$r = array();
+		foreach($akun as $row){
+			$account_id = $row->id;
+			$r[$account_id]['username'] = $row->username;
+			
+		}
+		return json_encode($r);
 	}
 	
 	public function get_akun($status){

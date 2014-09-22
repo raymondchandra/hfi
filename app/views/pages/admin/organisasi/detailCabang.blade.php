@@ -71,18 +71,27 @@
 </div>	
 </div>
 <script>
-	$('body').one('click','.hapus_pengurus',function(){
-		var id_pengurus = $(this).next().val();
+	var id_hapus_pengurus;
+	$('body').on('click','.hapus_pengurus',function(){
+		$(".pop_up_super_c_hapus_pengurus").fadeIn(277, function(){});
+		//var id_pengurus = $(this).next().val();
+		$id_pengurus = $(this).next().val();
+		
+		//ambil id pengurus buat ok_hapus_pengurus
+		id_hapus_pengurus = $id_pengurus;
+	});			
+	$('body').on('click','.ok_hapus_pengurus',function(){
 		$( ".loader" ).fadeIn( 200, function(){});
 		//ajax delete
 		$.ajax({
 			url: 'admin/organisasi/deletepengurus',
 			type: 'DELETE',
 			data: {
-				'id_pengurus' : id_pengurus
+				'id_pengurus' : id_hapus_pengurus
 			},
 			success: function(data){
 				debugger;
+				$(".pop_up_super_c_hapus_pengurus").fadeOut(200, function(){});	
 				if(data=="success"){
 					alert("Berhasil menghapus pengurus");
 				
@@ -96,7 +105,36 @@
 				alert(errorThrown);
 			}
 		});
-	});								
+	});	
+	$('body').on('click','.batal_hapus_pengurus',function(){
+		$(".pop_up_super_c_hapus_pengurus").fadeOut(200, function(){});
+	});
+	// $('body').one('click','.hapus_pengurus',function(){
+		// var id_pengurus = $(this).next().val();
+		// $( ".loader" ).fadeIn( 200, function(){});
+		// ajax delete
+		// $.ajax({
+			// url: 'admin/organisasi/deletepengurus',
+			// type: 'DELETE',
+			// data: {
+				// 'id_pengurus' : id_pengurus
+			// },
+			// success: function(data){
+				// debugger;
+				// if(data=="success"){
+					// alert("Berhasil menghapus pengurus");
+				
+				// }else{
+					// alert("Gagal menghapus pengurus");
+				// }
+				// $('.cabang_list').load(thisurl);
+				// $( ".loader" ).fadeOut( 200, function(){});
+			// },
+			// error: function(jqXHR, textStatus, errorThrown){
+				// alert(errorThrown);
+			// }
+		// });
+	// });								
 	
 	$('body').on('click','.go_back_but',function(){
 		$( ".loader" ).fadeIn( 200, function(){});
@@ -126,6 +164,7 @@
 	//$('.exit').click(function() {$( ".pop_up_super_c" ).fadeOut( 200, function(){});});	
 	$('.exit').click(function() {$( ".pop_up_super_c_show_pengurus" ).fadeOut( 200, function(){});});	
 	$('.exit').click(function() {$( ".pop_up_super_c_tambah_pengurus" ).fadeOut( 200, function(){});});	
+	$('.exit').click(function() {$( ".pop_up_super_c_hapus_pengurus" ).fadeOut( 200, function(){});});
 
 	$('.pop_up_super_c_show_pengurus').click(function (e)
 	{
@@ -145,6 +184,15 @@
 		if (container.is(e.target) )// if the target of the click is the container...
 		{
 			$( ".pop_up_super_c_tambah_pengurus" ).fadeOut( 200, function(){});
+			$('html').css('overflow-y', 'auto');
+		}
+	});
+	$('.pop_up_super_c_hapus_pengurus').click(function (e)
+	{
+		var container = $('.pop_up_cell_hapus_pengurus');
+		if (container.is(e.target) )// if the target of the click is the container...
+		{
+			$( ".pop_up_super_c_hapus_pengurus" ).fadeOut( 200, function(){});
 			$('html').css('overflow-y', 'auto');
 		}
 	});
@@ -241,5 +289,26 @@
 			
 		</div>
 		
+	</div>
+</div>
+
+<!-- pop up hapus pengurus -->
+<div class=" pop_up_super_c_hapus_pengurus" style="display: none;">
+	<a class="exit close_56_hapus_pengurus" ></a>
+	<div class="pop_up_tbl_hapus_pengurus">
+		<div class="pop_up_cell_hapus_pengurus">
+			<div class="container_12">			
+				<div class="div_hapus_pengurus" style="background: #fff; width:600px !important; padding-top:40px;">
+					<h2 style="text-align:center;">Anda yakin ingin menghapus pengurus ini?</h2>							
+					<table border="0" style="margin-left:auto; margin-right:auto;">
+						<tr>
+							<td><button class="ok_hapus_pengurus">Ya</button></td>
+							<td>&nbsp;</td>
+							<td><button class="batal_hapus_pengurus">Tidak</button></td>
+						</tr>
+					</table>
+				</div>
+			</div>			
+		</div>		
 	</div>
 </div>

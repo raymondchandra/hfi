@@ -191,20 +191,36 @@ class HomeAdminController extends BaseController {
 			$file = Input::file('fileReg');
 			$destinationPath = "assets/file_upload/regulasi/";
 			$fileName = $file->getClientOriginalName();
-			$uploadSuccess   = $file->move($destinationPath, $fileName);
+			// $uploadSuccess   = $file->move($destinationPath, $fileName);
 			
 			$reg = new Regulasi();
 			$reg -> timestamps = false;
 			$reg -> versi = Input::get('versi');
-			$reg -> file_path = $destinationPath.$fileName;
+			//$reg -> file_path = $destinationPath.$fileName;
 			$reg -> uploaded_by = Auth::user()->id;
 			$reg -> tanggal_upload = Carbon::now();
 			
 			$reg -> save();
 			
-
-			return "success";
+			$id_regulasi = $reg->id;
+			$destinationPath .= $id_regulasi;
+			$destinationPath .= "/";
 			
+			if(!file_exists($destinationPath))
+			{
+				File::makeDirectory($destinationPath, $mode = 0777, true, true);
+				$uploadSuccess = $file->move($destinationPath, $fileName);
+				$reg -> file_path = $destinationPath.$fileName;
+				$reg ->save();
+			}
+			else
+			{
+				$uploadSuccess = $file->move($destinationPath, $fileName);
+				$reg -> file_path = $destinationPath.$fileName;
+				$reg -> save();
+			}
+			
+			return "success";			
 		}
 		else
 		{
@@ -239,6 +255,8 @@ class HomeAdminController extends BaseController {
 		if(File::exists($file))
 		{
 			File::delete($file);
+			$directory = "assets/file_upload/regulasi/".$regulasi->id;
+			File::deleteDirectory($directory);
 			$regulasi->delete();
 			return "Success Delete";
 		}

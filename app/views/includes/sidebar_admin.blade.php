@@ -38,7 +38,18 @@
 			</li>
 			
 			<li>
-				<a href="javascript:void(0)" id="admin_kegiatan" class="no_arrow">Kegiatan</a>
+				<a href="javascript::void(0)" class="_kegiatan_tombol">Kegiatan</a>
+				<ul style="display: none;" class="_kegiatan_list"> 
+					<li>
+						<a href="javascript:void(0)" id="admin_kegiatan_nasional">Kegiatan Nasional</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)" id="admin_kegiatan_internasional">Kegiatan Internasional</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)" id="admin_kegiatan_simposium">Simposium</a>
+					</li>
+				</ul>
 			</li>
 			
 			<li>

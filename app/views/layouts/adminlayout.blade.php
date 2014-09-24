@@ -97,6 +97,19 @@
 			}
 		});
 		
+		$('._kegiatan_tombol').click(function ()
+		{
+			if ($('._kegiatan_list').is(':visible')) {
+				$( "._kegiatan_list" ).slideUp( 370, function(){
+					$('._kegiatan_list').css('display', 'none');
+				});
+			} else {
+				$( "._kegiatan_list" ).slideDown( 370, function(){
+					$('._kegiatan_list').css('display', 'block');
+				});
+			}
+		});
+		
 	$('._anggota_tombol').click(function ()
 		{
 			if ($('._anggota_list').is(':visible')) {

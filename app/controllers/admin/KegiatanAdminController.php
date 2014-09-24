@@ -4,10 +4,22 @@ class KegiatanAdminController extends BaseController {
 	
 	public $restful = true;
 	
-	public function view_index()
+	public function view_index($jenis)
 	{
-		$kegiatans = KegiatanController::get_all_kegiatan(); 
-		return View::make('pages.admin.kegiatan.kegiatan',compact('kegiatans'));
+		$kegiatans = KegiatanController::get_all_kegiatan();
+		if($jenis == 0){
+			return View::make('pages.admin.kegiatan.kegiatan_nasional',compact('kegiatans'));
+		}
+		elseif($jenis == 1){
+			return View::make('pages.admin.kegiatan.kegiatan_internasional',compact('kegiatans'));
+		}
+		elseif($jenis == 2){
+			return View::make('pages.admin.kegiatan.kegiatan',compact('kegiatans'));
+		}
+		else{
+			return View::make('pages.admin.kegiatan.kegiatan',compact('kegiatans'));
+		}
+		
 	}
 	
 	public function add_kegiatan()

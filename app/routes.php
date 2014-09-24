@@ -113,7 +113,7 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	//end of akun
 	
 	//kegiatan
-	Route::get('/kegiatan', ['as' => 'admin.kegiatan', 'uses' => 'KegiatanAdminController@view_index']);
+	Route::get('/kegiatan/{jenis}', ['as' => 'admin.kegiatan.{jenis}', 'uses' => 'KegiatanAdminController@view_index']);
 	//end of kegiatan
 	
 	//publikasi

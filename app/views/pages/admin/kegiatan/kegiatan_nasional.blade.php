@@ -232,9 +232,113 @@
 	<div class="pop_up_tbl">
 		<div class="pop_up_cell">
 			<div class="container_12">			
-			<div class="grid_12 pop_up_container" style="background: #fff;">
-				ABC
-			</div>
+					
+				<div class="grid_12 pop_up_container" style="background: #fff; padding: 20px;">
+					{{ Form::open(array('url' => '', 'files' => true)) }}
+						<div class="grid_5">
+							<img src="" width="150" height="180"/>
+							{{ Form::file('gambar', Input::old('gambar')) }}
+						</div>
+						<div class="grid_5">
+							<div class="row_label">
+								<label>Nama</label>{{ Form::text('nama', Input::old('nama')) }}
+							</div>
+							<div class="row_label">
+								<label>Tempat</label>{{ Form::text('tempat', Input::old('tempat')) }}
+							</div>
+							<div class="row_label">
+								<label>Tanggal</label>{{ Form::text('datepicker3', Input::old('datepicker3'),  array('id' => 'datepicker3', 'style' => 'width:80px;')) }}
+								<span>-</span>{{ Form::text('datepicker4', Input::old('datepicker4'),  array('id' => 'datepicker4', 'style' => 'width:80px;')) }}
+							</div>
+							<div class="row_label">
+								<label>Jam</label>{{ Form::text('timepickerstart3', Input::old('timepickerstart3'),  array('id' => 'timepickerstart3', 'style' => 'width:80px;')) }}
+								<span>-</span>{{ Form::text('timepickerend4', Input::old('timepickerend4'),  array('id' => 'timepickerend4', 'style' => 'width:80px;')) }}
+							</div>
+						</div>
+							
+						<span class="clear"></span>
+						<div class="area_jqte">
+							<textarea name="edit_kegiatan_nasional_message" id = 'edit_kegiatan_nasional_message' class="editor_edit_kegiatan_nasional_message"> 
+							
+							</textarea>
+						</div>
+
+						{{Form::submit('Kirim Pesan', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'button'));}}
+					{{ Form::close() }}
+					<style>
+						.row_label {
+							display: block;
+							margin-bottom: 10px;
+						}
+
+						.row_label > label {
+							display: inline-block;
+							width: 100px;
+						}
+
+						.area_jqte > .jqte {
+							position: relative;
+							padding-top: 33px;
+						}
+						.area_jqte .jqte_toolbar  {
+							position: absolute;
+							top: 0px;
+							width: 100%;
+						}
+					</style>
+					<script>
+						$('.editor_edit_kegiatan_nasional_message').jqte();
+					</script>
+					<script>
+						jQuery('#datepicker3').datetimepicker({
+							lang:'en',
+							i18n:{
+						 		en:{
+						   			months:[
+									'January','February','March','April',
+									'May','June','July','August',
+									'September','October','November','December',
+						   			],
+						   			dayOfWeek:[
+									"Sun.", "Mon", "Tue", "Wed", 
+									"Thu", "Fri", "Sa.",
+						   			]
+						  			}
+						 		},
+						 	timepicker:false,
+						 	format:'d.m.Y'
+						});
+						
+						jQuery('#datepicker4').datetimepicker({
+						 	lang:'en',
+						 	i18n:{
+						  		en:{
+						   			months:[
+									'January','February','March','April',
+									'May','June','July','August',
+									'September','October','November','December',
+						   			],
+						   			dayOfWeek:[
+									"Sun.", "Mon", "Tue", "Wed", 
+									"Thu", "Fri", "Sa.",
+						   			]
+						  			}
+						 		},
+						 	timepicker:false,
+						 	format:'d.m.Y'
+						});
+						
+						jQuery('#timepickerstart3').datetimepicker({
+						  	datepicker:false,
+						  	format:'H:i'
+						});
+						jQuery('#timepickerend4').datetimepicker({
+						  	datepicker:false,
+						  	format:'H:i'
+						});
+					</script>
+				</div>
+			
 			</div>			
 		</div>		
 	</div>

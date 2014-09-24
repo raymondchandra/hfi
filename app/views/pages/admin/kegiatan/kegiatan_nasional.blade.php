@@ -84,8 +84,20 @@
 	});
 	
 	$('body').on('click','.hapus_kegiatan',function(){
-		alert($(this).prev().val());
-		
+		$id = $(this).prev().val();
+		$.ajax({
+			type: 'DELETE',
+			url: 'admin/deleteKegiatan',
+			data: {
+				"id_kegiatan": $id
+			},
+			success: function(response){
+				alert(response);
+			},
+			error: function(jqXHR, textStatus, errorThrown){
+				alert(errorThrown);
+			}
+		},'json');
 	});
 
 	$('body').on('click','.edit_kegiatan',function(){

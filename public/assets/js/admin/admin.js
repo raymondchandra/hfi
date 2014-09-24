@@ -75,6 +75,11 @@ $('body').on('click','#akun_non_aktif',function(){
 	 $('.admin_control_panel').load('admin/akun/nonaktif');
 });
 
+$('body').on('click','#akun_admin',function(){
+	$( ".loader" ).fadeIn( 200, function(){});
+	 $('.admin_control_panel').load('admin/akun/adminList');
+});
+
 //sidebar kegiatan
 
 $('body').on('click','#admin_kegiatan',function(){

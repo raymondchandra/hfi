@@ -82,6 +82,9 @@
 					<li>
 						<a href="javascript:void(0)" id="akun_non_aktif">Akun Non-aktif</a>
 					</li>
+					<li>
+						<a href="javascript:void(0)" id="akun_admin">Akun Admin</a>
+					</li>
 				</ul>
 			</li>
 			<li>

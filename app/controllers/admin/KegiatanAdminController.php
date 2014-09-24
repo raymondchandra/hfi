@@ -14,10 +14,10 @@ class KegiatanAdminController extends BaseController {
 			return View::make('pages.admin.kegiatan.kegiatan_internasional',compact('kegiatans'));
 		}
 		elseif($jenis == 2){
-			return View::make('pages.admin.kegiatan.kegiatan',compact('kegiatans'));
+			return View::make('pages.admin.kegiatan.kegiatan_nasional',compact('kegiatans'));
 		}
 		else{
-			return View::make('pages.admin.kegiatan.kegiatan',compact('kegiatans'));
+			return View::make('pages.admin.kegiatan.kegiatan_nasional',compact('kegiatans'));
 		}
 		
 	}

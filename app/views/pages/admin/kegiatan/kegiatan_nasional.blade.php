@@ -62,7 +62,7 @@
 							</div>
 							<div class="edit_kegiatan_form">
 								<input type="button" class="edit_kegiatan" value="edit" />
-								<input type='hidden' value='0' />
+								<input type='hidden' value='{{$kegiatan->id}}' />
 								<input type="button" class="hapus_kegiatan" value="hapus" />
 							</div>
 							</div>
@@ -85,6 +85,7 @@
 	
 	$('body').on('click','.hapus_kegiatan',function(){
 		alert($(this).prev().val());
+		
 	});
 
 	$('body').on('click','.edit_kegiatan',function(){

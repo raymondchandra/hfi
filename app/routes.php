@@ -184,6 +184,8 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	Route::put('/kegiatan', ['as' => 'admin.editKegiatan', 'uses' => 'KegiatanAdminController@edit_kegiatan']);
 	Route::put('/fotokegiatan', ['as' => 'admin.editFotoKegiatan', 'uses' => 'KegiatanAdminController@edit_fotoKegiatan']);
 	
+	Route::delete('/deleteKegiatan', ['as' => 'admin.deleteKegiatan', 'uses' => 'KegiatanAdminController@del_kegiatan']);
+	
 	
 	//edit publikasi
 	Route::put('/editPubJenis', ['as' => 'admin.editPubJenis', 'uses' => 'PublikasiAdminController@update_jenis']);

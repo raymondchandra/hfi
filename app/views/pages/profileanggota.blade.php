@@ -56,7 +56,7 @@
 						}
 						
 					}
-					
+					 
 					function okEditProfile(){
 						var temp_gender = "";
 						if($('#up_genderpria_profile').is(':checked')){
@@ -498,6 +498,7 @@
 				$("body").css('overflow-x','hidden');
 					
 				sourcePreviewImage = $(this).prev().attr("src");					
+				$('#fileFoto').val("");
 				$('.saran_34').html("<img src='"+sourcePreviewImage+"' width=150 height=200 />");
 			});											
 		});

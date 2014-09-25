@@ -47,19 +47,23 @@ class KegiatanAdminController extends BaseController {
 	{
 		$id_kegiatan = Input::get('id_kegiatan');
 		$kegiatan = Kegiatan::find($id_kegiatan);
-		$kegiatan->nama_kegiatan = Input::get('nama_kegiatan');
-		$kegiatan->tempat = Input::get('tempat');
-		$kegiatan->waktu_mulai = Input::get('waktu_mulai');
-		$kegiatan->waktu_selesai = Input::get('waktu_selesai');
-		$kegiatan->deskripsi = Input::get('deskripsi');
-		$kegiatan->uploaded_by = Auth::user()->id;
-		$kegiatan->link = Input::get('link');
-		$kegiatan->timestamps = false;
-		try {
-			$kegiatan->save();
-			return "Success Update";
-		} catch (Exception $e) {
-    		return 'Caught exception: '. $e->getMessage(). "\n";
+		if($kegiatan->type == 1 || $kegiatan->type == 2){
+			$kegiatan->nama_kegiatan = Input::get('nama_kegiatan');
+			$kegiatan->tempat = Input::get('tempat');
+			$kegiatan->waktu_mulai = Input::get('waktu_mulai');
+			$kegiatan->waktu_selesai = Input::get('waktu_selesai');
+			$kegiatan->deskripsi = Input::get('deskripsi');
+			$kegiatan->uploaded_by = Auth::user()->id;
+			$kegiatan->link = Input::get('link');
+			$kegiatan->timestamps = false;
+			try {
+				$kegiatan->save();
+				return "Success Update";
+			} catch (Exception $e) {
+	    		return 'Caught exception: '. $e->getMessage(). "\n";
+			}
+		}else{
+			return 'Error Update';
 		}
 	}
 	
@@ -75,7 +79,7 @@ class KegiatanAdminController extends BaseController {
 	    		return 'Caught exception: '. $e->getMessage(). "\n";
 			}
 		}else{
-
+			return 'Error Delete';
 		}
 		
 		

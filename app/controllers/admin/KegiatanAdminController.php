@@ -24,6 +24,7 @@ class KegiatanAdminController extends BaseController {
 	
 	public function add_kegiatan()
 	{
+		
 		$kegiatan = new Kegiatan();
 		$kegiatan->nama_kegiatan = Input::get('nama_kegiatan');
 		$kegiatan->tempat = Input::get('tempat');
@@ -39,8 +40,7 @@ class KegiatanAdminController extends BaseController {
 			return "Success Insert";
 		} catch (Exception $e) {
     		return 'Caught exception: '. $e->getMessage(). "\n";
-		}	
-		
+		}
 	}
 	
 	public function edit_kegiatan()

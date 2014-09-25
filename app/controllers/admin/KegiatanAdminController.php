@@ -6,7 +6,7 @@ class KegiatanAdminController extends BaseController {
 	
 	public function view_index($jenis)
 	{
-		$kegiatans = KegiatanController::get_all_kegiatan();
+		$kegiatans = KegiatanController::get_all_kegiatan($jenis);
 		if($jenis == 0){
 			return View::make('pages.admin.kegiatan.kegiatan_nasional',compact('kegiatans'));
 		}
@@ -32,6 +32,7 @@ class KegiatanAdminController extends BaseController {
 		$kegiatan->deskripsi = Input::get('deskripsi');
 		$kegiatan->uploaded_by = Auth::user()->id;
 		$kegiatan->link = Input::get('link');
+		$kegiatan->type = Input::get('type');
 		$kegiatan->timestamps = false;
 		try {
 			$kegiatan->save();
@@ -66,12 +67,17 @@ class KegiatanAdminController extends BaseController {
 	{
 		$id_kegiatan = Input::get('id_kegiatan');
 		$kegiatan = Kegiatan::find($id_kegiatan);
-		try {
-			$kegiatan->delete();
-			return "Success Delete";
-		} catch (Exception $e) {
-    		return 'Caught exception: '. $e->getMessage(). "\n";
+		if($kegiatan->type == 1 || $kegiatan->type == 2){
+			try {
+				$kegiatan->delete();
+				return "Success Delete";
+			} catch (Exception $e) {
+	    		return 'Caught exception: '. $e->getMessage(). "\n";
+			}
+		}else{
+
 		}
+		
 		
 	}
 	

@@ -22,7 +22,7 @@ class CreateKegiatan extends Migration {
 			$table->string('deskripsi');
 			$table->string('brosur_kegiatan');
 			$table->integer('uploaded_by')->unsigned();
-			
+			$table->tinyInteger('type');
 			$table->string('link')->nullable();
 			
 			$table->foreign('uploaded_by')->references('id')->on('auth');

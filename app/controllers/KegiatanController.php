@@ -11,9 +11,9 @@ class KegiatanController extends BaseController {
 		return View::make('pages.kegiatan', compact('arr','kegiatans'));
 	}
 
-	public static function get_all_kegiatan()
+	public static function get_all_kegiatan($jenis)
 	{
-		$kegiatan = Kegiatan::orderBy('waktu_mulai')->paginate(2);
+		$kegiatan = Kegiatan::where('type','=',$jenis)->orderBy('waktu_mulai')->paginate(2);
 		if(count($kegiatan) == 0)
 		{
 			return NULL;

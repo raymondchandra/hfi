@@ -6,8 +6,8 @@ class LainAdminController extends BaseController {
 	
 	public function view_lain()
 	{
-		$lain = LainController::get_konten('lain');
-		return View::make('pages.admin.lain.lain',compact('lain'));
+		$lains = LainController::get_konten('lain');
+		return View::make('pages.admin.lain.lainIndex',compact('lains'));
 	}
 	
 	

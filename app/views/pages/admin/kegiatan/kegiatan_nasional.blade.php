@@ -76,12 +76,12 @@
 		@if($kegiatans != NULL)
 			<?php echo $kegiatans->links(); ?>
 		@endif
-		
 <script>
-	
+	$file_brosur="";
 	$('body').on('click','#tambah_kegiatan',function(){
 		$( ".tambah_kegiatan_pop" ).fadeIn( 277, function(){});
 	});
+	
 	
 	$('body').on('click','.hapus_kegiatan',function(){
 		$id = $(this).prev().val();
@@ -93,6 +93,7 @@
 			},
 			success: function(response){
 				alert(response);
+				$('#admin_kegiatan_nasional').click();
 			},
 			error: function(jqXHR, textStatus, errorThrown){
 				alert(errorThrown);
@@ -116,6 +117,66 @@
 			$('html').css('overflow-y', 'auto');
 		}
 	});
+	$('body').on('click','#ok_tambah_kegiatan',function(){
+		
+		$arrayData = $('.form_tambah_kegiatan').serializeArray();
+		//alert($file_brosur);
+		/*alert($arrayData[1]['value']);
+		alert($arrayData[2]['value']);
+		alert($arrayData[3]['value']);
+		alert($arrayData[4]['value']);
+		alert($arrayData[5]['value']);
+		alert($arrayData[6]['value']);*/
+		
+		var formData = new FormData();
+		
+		formData.append('nama_kegiatan',$arrayData[1]['value']);
+		formData.append('tempat',$arrayData[2]['value']);
+		formData.append('tanggal_mulai',$arrayData[3]['value']);
+		formData.append('tanggal_selesai',$arrayData[4]['value']);
+		formData.append('waktu_mulai',$arrayData[5]['value']);
+		formData.append('waktu_selesai',$arrayData[6]['value']);
+		formData.append('deskripsi',$arrayData[7]['value']);
+		formData.append('type',0);
+		
+		formData.append('brosur',$file_brosur);
+		
+		
+		$.ajax({
+			type: 'POST',
+			url: 'admin/kegiatan',
+			data: formData,
+			processData:false,
+			contentType: false,
+			success: function(response){
+				alert(response);
+			},
+				error: function(jqXHR, textStatus, errorThrown){
+				alert(errorThrown);
+			}
+		});
+		
+	});
+	
+	$('body').on('change','#brosur_kegiatan',function(){
+		var i = 0, len = this.files.length, img, reader, file;
+	
+		//document.getElementById("images").disabled = true;
+		for ( ; i < len; i++ ) {
+			file = this.files[i];
+			if (!!file.type.match(/image.*/)) {
+				if ( window.FileReader ) {
+					reader = new FileReader();
+					reader.onloadend = function (e) { 
+						//showUploadedItem(e.target.result, file.fileName);
+						$('#preview_brosur').attr('src',e.target.result);
+					};
+					reader.readAsDataURL(file);
+				}
+				$file_brosur = file;
+			}	
+		}
+	});	
 
 </script>
 
@@ -130,10 +191,10 @@
 		<div class="pop_up_cell">
 			<div class="container_12">			
 				<div class="grid_12 pop_up_container" style="background: #fff; padding: 20px;">
-					{{ Form::open(array('url' => '', 'files' => true)) }}
+					{{ Form::open(array('class'=>'form_tambah_kegiatan','url' => '', 'files' => true)) }}
 						<div class="grid_5">
-							<img src="" width="150" height="180"/>
-							{{ Form::file('gambar', Input::old('gambar')) }}
+							<img src="" id='preview_brosur' width="150" height="180"/>
+							{{ Form::file('gambar',array('id'=>'brosur_kegiatan'), Input::old('gambar')) }}
 						</div>
 						<div class="grid_5">
 							<div class="row_label">
@@ -159,7 +220,7 @@
 							</textarea>
 						</div>
 
-						{{Form::submit('Kirim Pesan', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'button'));}}
+						{{Form::button('Kirim Pesan', array('style' => 'display:block; margin-left: auto; margin-right: auto;','id'=>'ok_tambah_kegiatan', 'class' => 'button'));}}
 					{{ Form::close() }}
 					<style>
 						.row_label {

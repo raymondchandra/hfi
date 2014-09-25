@@ -76,12 +76,12 @@
 		@if($kegiatans != NULL)
 			<?php echo $kegiatans->links(); ?>
 		@endif
-		
 <script>
 	
 	$('body').on('click','#tambah_kegiatan',function(){
 		$( ".tambah_kegiatan_pop" ).fadeIn( 277, function(){});
 	});
+	
 	
 	$('body').on('click','.hapus_kegiatan',function(){
 		$id = $(this).prev().val();
@@ -93,6 +93,7 @@
 			},
 			success: function(response){
 				alert(response);
+				$('#admin_kegiatan_nasional').click();
 			},
 			error: function(jqXHR, textStatus, errorThrown){
 				alert(errorThrown);

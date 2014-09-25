@@ -635,6 +635,7 @@ return array(
     'KegiatanController' => $baseDir . '/app/controllers/KegiatanController.php',
     'KontakController' => $baseDir . '/app/controllers/KontakController.php',
     'Konten' => $baseDir . '/app/models/Konten.php',
+    'Lain' => $baseDir . '/app/database/migrations/2014_09_25_135640_lain.php',
     'LainAdminController' => $baseDir . '/app/controllers/admin/LainAdminController.php',
     'LainController' => $baseDir . '/app/controllers/LainController.php',
     'Monolog\\ErrorHandler' => $vendorDir . '/monolog/monolog/src/Monolog/ErrorHandler.php',

@@ -1,7 +1,47 @@
 <script>
+	var popupId = -1;
 $(document).ready(function(){
 	$( ".loader" ).fadeOut( 200, function(){});
 });
+
+function edit(id){
+	popupId = id;
+	$( ".loader" ).fadeIn( 200, function(){});
+	
+	$.get('admin/lain/getDetail/'+popupId,function(data){
+		if(data == 0){
+			
+			$( ".loader" ).fadeOut( 200, function(){});
+			alert('Error');
+		}else{
+			$( ".menu_lain_pop" ).fadeIn( 277, function(){});
+			$("#lainTitle").val(data.title);
+			$('.jqte_editor').html(data.konten);
+			$( ".loader" ).fadeOut( 200, function(){});
+		}
+		
+	});
+	
+}
+
+function hapus(id){
+	$.ajax({
+		type: 'DELETE',
+		url: 'admin/lain/'+id,
+		success: function(response){
+			if(response == "success"){
+				$( ".loader" ).fadeIn( 200, function(){});
+		 		$('.admin_control_panel').load('admin/lain');
+			}
+			else{
+				alert(response);
+			}
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			alert(errorThrown);
+		}
+	},'json');
+}
 </script>	
 
 <div class="container_12">
@@ -17,19 +57,18 @@ $(document).ready(function(){
 				@else
 					<table border=0 style='width:800px;'>
 						<tr>
-							<td><h6>Periode</h6></td>
-							<td><h6>Tanggal Unggah</h6></td>
+							<td><h6>Menu</h6></td>
+							<td><h6>Tanggal Edit</h6></td>
 							<td>&nbsp;</td>
 						</tr>
 					@foreach($lains as $lain)
 						<tr>
-							<td style='vertical-align:middle !important; width:350px; overflow:hidden; margin-right:30px;'><a href='javascript:void(0)' class='periode_pengurus' value='{{$urus->file_path}}'>{{$lain->title}}</a></td>
-							<td style='vertical-align:middle !important; width:350px;'>{{$lain->tanggal_upload}}</td>
-							<td style='vertical-align:middle !important; width:100px;'><p style='display:none;'>{{$lain->file_path}}</p><input type='button' value='x' class='hapus_pengurus'/><input type='hidden' class='id_pengurus' value='{{$urus->id}}'/></td>
+							<td style='vertical-align:middle !important; width:350px; overflow:hidden; margin-right:30px;'>{{$lain->title}}</td>
+							<td style='vertical-align:middle !important; width:350px;'>{{$lain->tanggal_edit}}</td>
+							<td style='vertical-align:middle !important; width:100px;'><input type='button' value='v' class='editLain' onClick='edit({{$lain->id}})'/><input type='button' value='x' class='hapusLain' onClick='hapus({{$lain->id}})'/></td>
 						</tr>
 					@endforeach
 					</table>
-					<?php echo $lains->links(); ?>
 				@endif
 				
 			</div>
@@ -46,15 +85,85 @@ $(document).ready(function(){
 			<div class="pop_up_cell">
 				<div class="container_12">			
 					<div class="grid_12 pop_up_container" style="background: #fff; padding: 20px;">
-						Isi dengan sesuatu
+						<h2> Tambah Menu Lain </h2>
+						<div class='editor_container'>
+							<span> Judul : </span> <input type="text" id="lainTitle" value="" /> 
+							<textarea name="lain" id = 'lainArea' class="editor"> 
+							
+							</textarea>
+							<input type='button' id='submit_change' value='Tambah' style="margin-left: auto; margin-right: auto; " class="button"></input>
+						</div>
 					</div>
 				</div>			
 			</div>		
 		</div>
 	</div>
+
+	<script>
+		$('.editor').jqte();
+		
+		$('#submit_change').click(function(){
+			if(popupId == -1){
+				$.ajax({
+					type: 'POST',
+					url: 'admin/lain',
+					data: {
+						"title" : $("#lainTitle").val(),
+		                "update": $('.editor').val()
+		            },
+					success: function(response){
+						if(response == 1){
+							alert("Judul tidak boleh kosong.");
+						}else if(response == 2){
+							alert("Success Insert");
+							$( ".loader" ).fadeIn( 200, function(){});
+		 					$('.admin_control_panel').load('admin/lain');
+						}else{
+							alert(response);
+						}
+					},
+					error: function(jqXHR, textStatus, errorThrown){
+						alert(errorThrown);
+					}
+				},'json');
+			}else{
+				$.ajax({
+					type: 'PUT',
+					url: 'admin/editLain',
+					data: {
+						"title" : $("#lainTitle").val(),
+		                "update": $('.editor').val(),
+		                "id" : popupId
+		            },
+					success: function(response){
+						if(response == 0){
+							alert("Error. Not Found");
+						}else if(response == 1){
+							alert("Judul tidak boleh kosong.");
+						}else if(response == 2){
+							alert("Success Update");
+							$( ".loader" ).fadeIn( 200, function(){});
+		 					$('.admin_control_panel').load('admin/lain');
+						}else{
+							alert(response);
+						}
+					},
+					error: function(jqXHR, textStatus, errorThrown){
+						alert(errorThrown);
+					}
+				},'json');
+
+			}
+				
+		});
+	</script>
+
 	<script>
 		$('body').on('click','.f_menu_lain_popuper',function(){
 			$( ".menu_lain_pop" ).fadeIn( 277, function(){});
+			$("#lainTitle").val("");
+			$('.jqte_editor').html("");
+			popupId = -1;
 		});
 		
 		$('.exit').click(function() {$( ".pop_up_super_c" ).fadeOut( 200, function(){});});	

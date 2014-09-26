@@ -45,7 +45,7 @@
 						}else{
 							list+="<td class='website_cabang'><a href='"+data[$i]['link']+"'>"+data[$i]['link']+"</a></td>";
 						}*/
-						list+="<td class='detail_cabang'><a href='javascript:void(0)' class='lihat_detail detail_row'>Lihat Detail</a><input type='hidden' value='"+arrIDCabang[$i]+"' /></td>";
+						list+="<td class='detail_cabang'><a href='javascript:void(0)' class='lihat_detail detail_row'>Lihat Detail</a><input type='hidden' value='"+$i+"' /></td>";
 						list+="</tr>";
 					}
 					list+="</table>";
@@ -86,16 +86,13 @@
 						$('body').on('click','.lihat_detail',function(){
 							$id = $(this).next().val();
 								//input pengurus
-								//inputpengurus_idcabang = arrIDCabang[$id];				
-								inputpengurus_idcabang = $id;	
-								alert(inputpengurus_idcabang);
+								inputpengurus_idcabang = $id;				
 							$( ".loader" ).fadeIn( 200, function(){});
 							$.ajax({
 								url: 'admin/organisasi/satucabang',
 								type: 'GET',
 								data: {
-									// 'id_cabang' : arrIDCabang[$id]
-									'id_cabang' : inputpengurus_idcabang
+									'id_cabang' : arrIDCabang[$id]
 								},
 								success: function(data){	
 									var view="<div><span class='detail_cell'>Nama Cabang</span>: "+data[0]['nama']+"</div>";
@@ -122,7 +119,6 @@
 											url: 'admin/organisasi/daftarpengurus',
 											type: 'GET',
 											data: {
-												// 'id_cabang' : arrIDCabang[$id]
 												'id_cabang' : inputpengurus_idcabang
 											},
 											success: function(data){													
@@ -133,7 +129,6 @@
 												}
 												else
 												{
-													//alert(data);
 													view+="<div><hr></hr></div>";
 													view+="<h3>Daftar Pengurus Pada Cabang ini</h3>";
 													//view+="<div id='tambah_pengurus_link'><a href='javascript:void(0)' id='tambah_pengurus'  class='command_button'>+ Pengurus Baru</a></div>";

@@ -1,45 +1,92 @@
 <?php
 use Carbon\Carbon;
+
 class LainAdminController extends BaseController {
 	
 	public $restful = true;
 	
 	public function view_lain()
 	{
-		$lains = LainController::get_konten('lain');
+		$lains = $this->getAllLain();
 		return View::make('pages.admin.lain.lainIndex',compact('lains'));
 	}
 	
-	
-	public function update_lain()
+	public function getAllLain()
+	{
+		$lains = Lain1::all();
+		return $lains;
+	}
+
+	//get
+	public function getLain($id)
+	{
+		$lain = Lain1::find($id);
+		return $lain;
+	}
+
+	public function add_lain()
 	{
 		$text = Input::get('update');
-		
+		$title = Input::get('title');
+
+		if($title == "") return 1;
 		$id = Auth::user()->id;
-		$konten_id = Konten::where('tipe_konten', '=', 'lain')->first();
+		$lain = new Lain1();
+
+		$lain -> timestamps = false;
+		$lain -> konten = $text;
+		$lain -> title = $title;
+		$lain -> tanggal_edit = Carbon::now();
+		$lain -> edited_by = $id;
 		
-		if(count($konten_id) != 0)
-		{
-			$konten = Konten::find($konten_id->id);
-			$konten->konten = $text;
-			$konten->timestamps = false;
-			$konten -> tanggal_edit = Carbon::now();
-			$konten -> edited_by = $id;
+		
+		try {
 			
-			$konten->save();
-			return "Success Update";
+			$lain -> save();
+			return 2;
+		} catch (Exception $e) {
+			return $e;
+		}
+	}
+
+	public function update_lain()
+	{
+		$id = Input::get('id');
+		$text = Input::get('update');
+		$title = Input::get('title');
+		if($title == "") return 1;
+		$accountId = Auth::user()->id;
+
+		$lain = Lain1::find($id);
+
+		if(count($lain) != 0)
+		{
+			$lain->timestamps = false;
+			$lain -> konten = $text;
+			$lain -> title = $title;
+			$lain -> tanggal_edit = Carbon::now();
+			$lain -> edited_by = $accountId;
+			try {
+				$lain -> save();
+				return 2;
+			} catch (Exception $e) {
+				return $e;
+			}
 		}else
 		{
+			return 0;
 			
-			$konten = new Konten();
-			$konten -> timestamps = false;
-			$konten -> konten = $text;
-			$konten -> tipe_konten = 'lain';
-			$konten -> tanggal_edit = Carbon::now();
-			$konten -> edited_by = $id;
-			$konten -> save();
-			
-			return "Success Insert";
+		}
+	}
+
+	//delete
+	public function delete_lain($id){
+		$lain = Lain1::find($id);
+		try {
+			$lain->delete();
+			return 'success';
+		} catch (Exception $e) {
+			return $e;
 		}
 	}
 }

@@ -30,9 +30,9 @@
 								list+="<tr>";
 									list+="<td class='nama_berkas'>"+data[i]['nama_file']+"</td>";									
 									list+="<td class='tanggal_unggah_berkas'>"+data[i]['uploaded_date']+"</td>";
-									list+="<td class='deskripsi_berkas'> <input type='hidden' value='"+data[i]['deskripsi']+"'/> <button style='width:120px; margin-top:0px;' class='button_show_deskripsi' type='submit'>Lihat Deskripsi</button> </td>";							
-									list+="<td class='edit_berkas'> <input type='button' value='v' class='edit_info_berkas' /><input type='hidden' class='id_berkas' value='"+i+"' /></td>";
-									list+="<td class='delete_berkas'><input type='button' value='x' class='hapus_berkas' /><input type='hidden' class='id_berkas' value='"+i+"' /></td>";
+									list+="<td class='deskripsi_berkas'> <input type='hidden' value='"+data[i]['deskripsi']+"'/> <button style='margin-top: 4px;' class='button_show_deskripsi btn btn-primary' type='submit'>Lihat Deskripsi</button> </td>";							
+									list+="<td class='edit_berkas'> <input type='button' value='edit' class='edit_info_berkas btn btn-warning' /><input type='hidden' class='id_berkas' value='"+i+"' /></td>";
+									list+="<td class='delete_berkas'><input type='button' value='x' class='hapus_berkas btn btn-danger' /><input type='hidden' class='id_berkas' value='"+i+"' /></td>";
 								list+="</tr>";
 							}
 							$('.list_berkas').html(list);							
@@ -430,7 +430,7 @@
 			</div>
 		</div>
 
-		<!--pop up edit berkas-->
+		<!--pop up edit berkas-
 		<div class=" pop_up_super_c_edit_berkas" style="display: none;">
 			<a class="exit close_56_edit_berkas" ></a>
 			<div class="pop_up_tbl_edit_berkas">
@@ -459,7 +459,7 @@
 					</div>			
 				</div>		
 			</div>
-		</div>
+		</div>->
 		<!-- pop up hapus berkas -->
 		<div class=" pop_up_super_c_hapus_berkas" style="display: none;">
 			<a class="exit close_56_hapus_berkas" ></a>

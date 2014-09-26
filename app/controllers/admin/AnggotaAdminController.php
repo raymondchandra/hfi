@@ -40,8 +40,9 @@ class AnggotaAdminController extends BaseController {
 	}
 	
 	public function view_anggota()
-	{
+	{		
 		$arr2 = $this->get_all_cabang();
+		//$list_anggota = $this->get_all_anggota();
 		return View::make('pages.admin.anggota.daftarAnggota', compact('arr2'));
 	}
 	
@@ -166,6 +167,18 @@ class AnggotaAdminController extends BaseController {
 	{
 		//$count = Cabang::select('nama')->get();
 		$count = DB::table('cabang')->orderBy('nama','asc')->lists('nama','nama');
+		if(count($count) != 0)
+		{
+			return $count;
+		}else
+		{
+			return "";
+		}
+	}
+	
+	public function get_all_anggota() //seluruh row yang ada di tabel profile
+	{		
+		$count = Anggota::all();
 		if(count($count) != 0)
 		{
 			return $count;

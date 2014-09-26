@@ -244,9 +244,83 @@
 	
 	$(document).ready(function() {
 		$(".loader").fadeOut(200, function(){});
-		$("#accordion").accordion();		
-		$("#accordion").accordion({collapsible:true});		
+		$("#accordion").accordion();				
+		$("#accordion").accordion({collapsible:true});	
+		$( "#accordion" ).accordion({ animate: 0 });	//set time buat preview awal saja biar preview dari posisi accordion closed
+		$( "#accordion" ).accordion({ active: 1 });
+		$( "#accordion" ).accordion({ animate: 500 });	//set time ulang delay collapse accordion		
+		
+		getAllDaftarAnggota();		
 	});
+	
+	function getAllDaftarAnggota()
+	{
+		$.ajax({
+			url : 'admin/anggota/getAllDaftarAnggota',
+			type : 'GET',
+			success : function(data){
+				if(data == ""){
+					//alert("tidak ada anggota");
+					$(".header_tabel_hasil").html("Database anggota kosong");
+				}else{
+					$(".loader").fadeIn(277,function(){});
+					arrlist = new Array(data.length);								
+					var length = data.length;	
+					var header = "<table style='margin-bottom:10px; margin-top:50px;'><td style='vertical-align:middle !important; width:350px; overflow:hidden;'>Nama Anggota</td><td style='vertical-align:middle !important; width:350px; overflow:hidden;'>Nomor Anggota</td><td style='vertical-align:middle !important; width:100px;'>Lihat Detail</td></table><hr></hr>";
+					var list="";
+					// list+="<tr>";
+						// list+="<td>Nama Anggota</td>";
+						// list+="<td>Nomor Anggota</td>";
+						// list+="<td>Lihat Detail</td>";
+					// list+="</tr>";				
+					for($i=0; $i<length; $i++){	
+							arrlist[$i] = new Array(21);
+							//simpan arrlist																		
+								arrlist[$i][0] = data[$i]['nama'];
+								arrlist[$i][1] = data[$i]['no_anggota'];
+								arrlist[$i][2] = data[$i]['tanggal_lahir'];
+								arrlist[$i][3] = data[$i]['tempat_lahir'];
+								if(data[$i]['gender']==1){
+									arrlist[$i][4] = "pria";
+								}else{
+									arrlist[$i][4] = "wanita";
+								}							
+								arrlist[$i][5] = data[$i]['tanggal_revisi'];
+								arrlist[$i][6] = data[$i]['id_cabang'];			
+								arrlist[$i][7] = data[$i]['tema_penelitian'];
+								arrlist[$i][8] = data[$i]['spesialisasi'];
+								arrlist[$i][9] = data[$i]['profesi'];
+								arrlist[$i][10] = data[$i]['institusi'];
+								arrlist[$i][11] = data[$i]['alamat'];
+								arrlist[$i][12] = data[$i]['kota'];
+								arrlist[$i][13] = data[$i]['kodepos'];
+								arrlist[$i][14] = data[$i]['negara'];
+								arrlist[$i][15] = data[$i]['telepon'];
+								arrlist[$i][16] = data[$i]['hp'];
+								arrlist[$i][17] = data[$i]['fax'];
+								arrlist[$i][18] = data[$i]['email'];
+								arrlist[$i][19] = data[$i]['situs'];
+								arrlist[$i][20] = data[$i]['keterangan'];
+								arrlist[$i][21] = data[$i]['foto_profile'];			
+							//end simpan arrlist
+						list+="<tr>";
+							list+="<td style='vertical-align:middle !important; width:350px; overflow:hidden;'>"+data[$i]['nama']+"</td>";
+							list+="<td style='vertical-align:middle !important; width:350px;'>"+data[$i]['no_anggota']+"</td>";
+							list+="<td style='vertical-align:middle !important; width:100px;'><input type='hidden' value='"+$i+"'/><input type='button' value='Lihat Detail' class='lihat_detail'/></td>";						
+						list+="</tr>";			
+					}
+					// alert("panjang arrlist setelah dimasukin data "+arrlist.length);
+					// alert("panjang arrlist[] setelah dimasukin data "+arrlist[0].length);
+					$('.header_tabel_hasil').html(header);
+					$('.tabel_hasil').html(list);
+					$(".loader").fadeOut(200, function(){});
+				}				
+			},
+			error: function(errorThrown){
+				alert(errorThrown);
+			}
+		});
+	}
 	
 	$('body').on('click','#head_accordion',function(){		
 		//var collapsible = $( ".selector" ).accordion( "option", "collapsible" );
@@ -386,8 +460,25 @@
 		<div class="div_tabel_hasil">
 			<!-- header table -->
 			<div class="header_tabel_hasil">				
+				<?php //if($list_anggota != ""){ ?>
+					<!-- <table style='margin-bottom:10px; margin-top:50px;'>
+						<td style='vertical-align:middle !important; width:350px; overflow:hidden;'>Nama Anggota</td>
+						<td style='vertical-align:middle !important; width:350px; overflow:hidden;'>Nomor Anggota</td>
+						<td style='vertical-align:middle !important; width:100px;'>Lihat Detail</td>
+					</table>
+					<hr></hr> -->
+				<?php //} ?>
 			</div>
 			<table class="tabel_hasil" border="0" style="margin-top:30px;">
+				<?php //$list_detail_anggota = array(); ?>
+				<?php //if($list_anggota != ""){ ?>				
+					<?php 
+						// $arrdetail = array();						
+						// foreach($list_anggota as $value){
+							
+						// }
+					?>
+				<?php //} ?>
 			</table>			
 		</div>
 		<!-- END ISI CONTENT-->

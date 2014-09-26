@@ -341,6 +341,7 @@ $('.ok_change').click(function(){
 			$('.photo_id').val(index_caption);
 			
 			//newcode
+			$('#filePhoto').val("");
 			$('.saran_43').html("<img src='"+sourcePreviewImage+"' width=400 height=300 />");
 			//endnewcode
 			

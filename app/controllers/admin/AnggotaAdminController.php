@@ -125,7 +125,7 @@ class AnggotaAdminController extends BaseController {
 			$aktif = 0;
 		}
 		$cabang = Input::get('cabang');
-		if($cabang == 0)
+		if($cabang != 0)
 		{
 			$id_cab = Cabang::where('nama', '=', $cabang)->select('cabang.id')->first();
 		}
@@ -133,15 +133,18 @@ class AnggotaAdminController extends BaseController {
 		{
 			$id_cab = "";
 		}
-		$jenis_kelamin = Input::get('jenis_kelamin');
+		$jenis_kelamin = Input::get('jeniskelamin');
 		if($jenis_kelamin === 'pria')
 		{
 			$kode_jk = 1;
 		}
-		else
+		else if($jenis_kelamin === 'wanita')
 		{
 			$kode_jk = 0;
+		}else{
+			$kode_jk = 2;
 		}
+
 		$spesialisasi = Input::get('spesialisasi');
 		$profesi = Input::get('profesi');
 		
@@ -155,11 +158,19 @@ class AnggotaAdminController extends BaseController {
 						->where('institusi', 'LIKE', '%'.$institusi.'%')
 						->where('email', 'LIKE', '%'.$surel.'%')
 						->where('status_aktif', '=', $aktif)
-						->where('id_cabang', 'LIKE', $id_cab)
 						->where('spesialisasi', 'LIKE', '%'.$spesialisasi.'%')
-						->where('profesi', 'LIKE', '%'.$profesi.'%')
-						->where('gender', '=', $kode_jk)
-						->get();					
+						->where('profesi', 'LIKE', '%'.$profesi.'%');
+						//->where('gender', '=', $kode_jk)
+		if($id_cab === ""){}else{
+			$res = $res->where('id_cabang', '=', $id_cab);
+		}
+
+		if($kode_jk != 2){
+			$res = $res->where('gender', '=', $kode_jk)->get();
+		}else{
+			$res = $res->get();
+		}
+		
 		return $res;		
 	}
 	

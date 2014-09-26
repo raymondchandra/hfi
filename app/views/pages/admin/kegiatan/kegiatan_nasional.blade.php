@@ -487,6 +487,7 @@
 							
 						<span class="clear"></span>
 						<div class="area_jqte">
+						
 							<textarea name="edit_kegiatan_nasional_message" id = 'edit_kegiatan_nasional_message' class="editor_edit_kegiatan_nasional_message"></textarea>
 						</div>
 

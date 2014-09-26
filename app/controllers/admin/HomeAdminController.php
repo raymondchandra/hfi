@@ -271,11 +271,10 @@ class HomeAdminController extends BaseController {
 	{	
 		if(Input::hasFile('filePhoto'))
 		{
-			$imgType = Input::file('filePhoto')->getMimeType();				
+			/*$imgType = Input::file('filePhoto')->getMimeType();				
 			if(substr($imgType,0,6) != "image/"){
 				return "gagal, harus berupa image!";
-			}
-		
+			}*/
 			$id_img = Input::get('id_photo');
 			$id = Auth::user()->id;
 			

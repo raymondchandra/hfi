@@ -86,7 +86,7 @@
 						$('body').on('click','.lihat_detail',function(){
 							$id = $(this).next().val();
 								//input pengurus
-								inputpengurus_idcabang = arrIDCabang[$id];				
+								inputpengurus_idcabang = $id;				
 							$( ".loader" ).fadeIn( 200, function(){});
 							$.ajax({
 								url: 'admin/organisasi/satucabang',
@@ -119,7 +119,7 @@
 											url: 'admin/organisasi/daftarpengurus',
 											type: 'GET',
 											data: {
-												'id_cabang' : arrIDCabang[$id]
+												'id_cabang' : inputpengurus_idcabang
 											},
 											success: function(data){													
 												//view pengurus

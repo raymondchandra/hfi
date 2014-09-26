@@ -2,7 +2,15 @@
 use Carbon\Carbon;
 
 Route::get('/tes', function(){
-	$destinationPath = "assets/file_upload/berkas/7/";
+	$lain = new Lain1();
+
+		$lain -> timestamps = false;
+		$lain -> konten = "fff";
+		$lain -> title = "asdf";
+		
+		$lain -> edited_by = '1';
+		$lain->save();
+	/*$destinationPath = "assets/file_upload/berkas/7/";
 	
 	if(!file_exists($destinationPath))
 	{
@@ -12,7 +20,7 @@ Route::get('/tes', function(){
 	else
 	{
 		echo $destinationPath." ADA";
-	}
+	}*/
 });
 
 
@@ -150,7 +158,9 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	
 	//anggota get route
 	Route::get('/anggota/getDaftarAnggota', ['as' => 'admin.anggota.getDaftarAnggota', 'uses'=>'AnggotaAdminController@search_anggota']);
-		
+
+
+	Route::get('/lain/getDetail/{id}', ['as' => 'admin.lain.getDetailLain', 'uses'=>'LainAdminController@getLain']);
 	//admin post route
 	Route::post('/organisasi/tambahcabang', ['as' => 'admin.organisasi.tambahcabang', 'uses' => 'OrganisasiAdminController@tambah_cabang']);
 	
@@ -165,6 +175,8 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	Route::post('/kegiatan', ['as' => 'admin.addKegiatan', 'uses' => 'KegiatanAdminController@add_kegiatan']);
 	//upload berkas
 	Route::post('/postBerkas', ['as' => 'admin.postBerkas', 'uses' => 'BerkasAdminController@tambah_berkas']);
+
+	Route::post('/lain', ['as' => 'admin.addLain', 'uses' => 'LainAdminController@add_lain']);
 	
 	//admin put route
 	Route::put('/editWelcome', ['as' => 'admin.editWelcome', 'uses' => 'HomeAdminController@update_welcome']);
@@ -223,6 +235,7 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	Route::delete('/deleteKegiatan', ['as' => 'admin.deleteKegiatan', 'uses' => 'KegiatanAdminController@del_kegiatan']);
 	//delete berkas
 	Route::delete('/berkas/deleteberkas', ['as' => 'admin.berkas.deleteberkas', 'uses' => 'BerkasAdminController@delete_berkas']);
+	Route::delete('/lain/{id}', ['as' => 'admin.lain.deleteLain', 'uses' => 'LainAdminController@delete_lain']);
 });
 
 //post route

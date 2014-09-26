@@ -7,11 +7,19 @@ $(document).ready(function(){
 <div class="container_12">
 	<div class="grid_12">
 <div class='admin_title'>Lain-lain</div>
+
+
+
+
+
+
+
 <div class='editor_container'>
-<textarea name="lain" id = 'lain' class="editor"> 
-{{$lain}}
-</textarea>
-<input type='button' id='submit_change' value='Ubah' style="margin-left: auto; margin-right: auto; " class="button"></input>
+	<span> Judul : </span> <input type="text" id="lainTitle" value="" /> 
+	<textarea name="lain" id = 'lainArea' class="editor"> 
+	
+	</textarea>
+	<input type='button' id='submit_change' value='Tambah' style="margin-left: auto; margin-right: auto; " class="button"></input>
 </div>
 
 <script>

@@ -95,7 +95,7 @@
 	margin-left:40px;	
 	margin-right:40px;
 	padding-bottom:20px;
-	overflow:auto;
+	/*overflow:auto;*/
 }
 
 
@@ -125,6 +125,11 @@
 .pop_up_cell_deskripsi_berkas, .pop_up_cell_tambah_berkas,
 .pop_up_cell_edit_berkas, .pop_up_cell_hapus_berkas{
 	display: table-cell;
+	vertical-align: middle;
+}
+
+.pop_up_cell_edit_berkas{
+	display: block !important;
 	vertical-align: middle;
 }
 .close_56_deskripsi_berkas, .close_56_tambah_berkas,

@@ -430,7 +430,7 @@
 			</div>
 		</div>
 
-		<!--pop up edit berkas-->
+		<!--pop up edit berkas-
 		<div class=" pop_up_super_c_edit_berkas" style="display: none;">
 			<a class="exit close_56_edit_berkas" ></a>
 			<div class="pop_up_tbl_edit_berkas">
@@ -459,7 +459,7 @@
 					</div>			
 				</div>		
 			</div>
-		</div>
+		</div>->
 		<!-- pop up hapus berkas -->
 		<div class=" pop_up_super_c_hapus_berkas" style="display: none;">
 			<a class="exit close_56_hapus_berkas" ></a>

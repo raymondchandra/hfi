@@ -12,7 +12,7 @@ $(document).ready(function(){
 	{{$konten_home}}
 </textarea>
 </div>
-<input class="button" type='button' name="submit_beranda_anggota" id='submit_change_home' value='Ubah'></input>
+<input class="button btn btn-success" type='button' name="submit_beranda_anggota" id='submit_change_home' value='Ubah' style='margin-left: auto; margin-right: auto; display: block;'></input>
 
 
 <div class='admin_title'>Aturan Menjadi Anggota HFI</div>
@@ -22,7 +22,7 @@ $(document).ready(function(){
 	{{$konten_aturan}}
 </textarea>
 </div>
-<input class="button"  style="margin-bottom:50px;" type='button' name="submit_aturan_anggota" id='submit_change_reg' value='Ubah'></input>
+<input class="button btn btn-success"  style="margin-bottom:50px; margin-left: auto; margin-right: auto; display: block;" type='button' name="submit_aturan_anggota" id='submit_change_reg' value='Ubah'></input>
 
 
 <script>

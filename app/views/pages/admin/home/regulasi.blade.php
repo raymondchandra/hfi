@@ -141,7 +141,7 @@
 						<ul>
 							<li style="margin-top:5px;">{{ Form::file('fileReg', array('id'=>'fileReg','accept'=>"application/pdf")) }}</li>
 							<li style="margin-top:5px;">Versi : {{ Form::text('versi', Input::old('versi'), array('id'=>'versi', 'style' => 'width: 180px;')) }}</li>				
-							<li style="margin-top:5px;">{{ Form::submit('Unggah Regulasi', array('id'=>'tambah_regulasi_button', 'class' => 'button')) }}</li>
+							<li style="margin-top:5px;">{{ Form::submit('Unggah Regulasi', array('id'=>'tambah_regulasi_button', 'class' => 'button btn btn-success')) }}</li>
 						</ul>
 					</form>					
 				</div>

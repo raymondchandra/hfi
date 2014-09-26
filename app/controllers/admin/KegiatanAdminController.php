@@ -8,31 +8,40 @@ class KegiatanAdminController extends BaseController {
 	public function view_index($jenis)
 	{
 		$kegiatans = KegiatanController::get_all_kegiatan($jenis);
-		if($jenis == 0){
+		if($jenis == 1){
 			return View::make('pages.admin.kegiatan.kegiatan_nasional',compact('kegiatans'));
 		}
-		elseif($jenis == 1){
+		elseif($jenis == 2){
 			return View::make('pages.admin.kegiatan.kegiatan_internasional',compact('kegiatans'));
 		}
-		elseif($jenis == 2){
+		elseif($jenis == 3){
 			return View::make('pages.admin.kegiatan.kegiatan_nasional',compact('kegiatans'));
 		}
 		else{
 			return View::make('pages.admin.kegiatan.kegiatan_nasional',compact('kegiatans'));
 		}
-		
+	}
+	
+	public function get_kegiatan(){
+		$id = Input::get('id_kegiatan');
+		$kegiatan = Kegiatan::find($id);
+		if(count($kegiatan) == 1){
+			return $kegiatan;
+		}
+		else{
+			return null;
+		}
 	}
 	
 	public function add_kegiatan()
 	{
-		
 		$kegiatan = new Kegiatan();
 		$kegiatan->nama_kegiatan = Input::get('nama_kegiatan');
 		$kegiatan->tempat = Input::get('tempat');
 		$datepiece = explode('.',Input::get('tanggal_mulai'));
-		$date_start = $datepiece[2].'-'.$datepiece[1].'-'.$datepiece[0].' '.Input::get('waktu_mulai').':00'.;
+		$date_start = $datepiece[2].'-'.$datepiece[1].'-'.$datepiece[0].' '.Input::get('waktu_mulai').':00';
 		$datepiece = explode('.',Input::get('tanggal_selesai'));
-		$date_finish = $datepiece[2].'-'.$datepiece[1].'-'.$datepiece[0].' '.Input::get('waktu_selesai').':00'.;
+		$date_finish = $datepiece[2].'-'.$datepiece[1].'-'.$datepiece[0].' '.Input::get('waktu_selesai').':00';
 		$kegiatan->waktu_mulai = $date_start;
 		$kegiatan->waktu_selesai = $date_finish;
 		$kegiatan->deskripsi = Input::get('deskripsi');
@@ -40,6 +49,12 @@ class KegiatanAdminController extends BaseController {
 		$kegiatan->link = Input::get('link');
 		$kegiatan->type = Input::get('type');
 		$kegiatan->timestamps = false;
+		$destination = 'assets/file_upload/kegiatan/'.$kegiatan->nama_kegiatan.'/';
+		if(Input::hasFile('brosur')){
+			$photo = Input::file('brosur');
+			$kegiatan->brosur_kegiatan = $destination.$photo->getClientOriginalName();
+			$photo->move($destination, $photo->getClientOriginalName());
+		}
 		try {
 			$kegiatan->save();
 			if(Input::hasFile('photo'))

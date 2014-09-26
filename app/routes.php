@@ -158,6 +158,8 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	Route::get('/akun/findUsername/{status}', ['as' => 'admin.akun.findUsername', 'uses' => 'AkunAdminController@findUsername']);
 	
 	//anggota get route
+	Route::get('/anggota/getAllDaftarAnggota', ['as' => 'admin.anggota.getAllDaftarAnggota', 'uses' => 'AnggotaAdminController@get_all_anggota']);
+		
 	Route::get('/anggota/getDaftarAnggota', ['as' => 'admin.anggota.getDaftarAnggota', 'uses'=>'AnggotaAdminController@search_anggota']);
 
 
@@ -250,9 +252,6 @@ Route::post('/postRegulasi', ['as' => 'postRegulasi', 'uses' => 'HomeAdminContro
 //Route::post('/postBerkas', ['as' => 'postBerkas', 'uses' => 'BerkasAdminController@tambah_berkas']);
 
 Route::put('/changePass', ['as' => 'changePass', 'uses' => 'AccountController@changePass']);
-
-
-//Route::get('/getDaftarAnggota', ['as' => 'daftarAnggota', 'uses'=>'AnggotaAdminController@search_anggota']);
 
 
 

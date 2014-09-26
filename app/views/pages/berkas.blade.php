@@ -70,7 +70,7 @@
 			$('html').css('overflow-y', 'hidden');
 		});
 		
-		$('.download_berkas').click(function(){			
+		$('.userview_download_berkas').click(function(){			
 			window.open($(this).attr('value'));
 		});
 		

@@ -246,7 +246,7 @@ $(".update_foto_slideshow").validate({
 			},
 			error:function(errorThrown){
 				alert("Gagal Update Foto Slideshow");
-				alert(errorThrown);
+				//alert(errorThrown);
 			}
 		});
 	}

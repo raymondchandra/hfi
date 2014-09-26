@@ -45,7 +45,7 @@ class HomeController extends BaseController {
 	public function get_all_regulasi()
 	{		
 		//$regulations = Regulasi::all();
-		$regulations = Regulasi::paginate(1);
+		$regulations = Regulasi::paginate(5);
 		if($regulations==null){
 			return "kosong";
 		}else{			

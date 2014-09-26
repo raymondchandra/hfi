@@ -22,7 +22,7 @@ class OrganisasiController extends BaseController {
 	
 
 
-	
+
 	//cabang
 	public function get_semua_cabang()
 	{
@@ -55,19 +55,15 @@ class OrganisasiController extends BaseController {
 		// }
 	// }
 	// pengurus
-	public function get_all_pengurus()
-	{
-		$pengs = Pengurus::where('tipe','=','1');
-		if(count($pengs) == 0)
+	public function get_semua_pengurus()
+	{			
+		$id_cabang = Input::get('id_cabang');
+		$count = DB::table('pengurus')->where('id_cabang','=', $id_cabang)->paginate(10);
+		if(count($count) != 0)
 		{
-			// kalo return "" bakal kebaca array isinya 1 (string "") 
-			// makanya diganti jadi return null
-			// return ""; 			
-			return null;
-		}
-		else
-		{
-			return $pengs;
+			return $count;
+		}else{
+			return "";
 		}
 	}
 }

@@ -12,9 +12,10 @@
 			var temp = "";
 			var obj = JSON.parse(data);
 			$.each(obj,function(index, value){
+				temp += '<li style="display: inline-block; opacity: 1; width: 100%;">';
 				temp += '<div class="username_akun">'+value.username+'</div>';
 				temp += '<div class="command">';
-				temp += '<a href="javascript:void(0)" class="akun_aktif_ubahpass_trigger" onClick="openPopup('+index+');">Reset Password</a>';
+				temp += '<a href="javascript:void(0)" class="akun_aktif_ubahpass_trigger btn btn-warning" onClick="openPopup('+index+');">Reset Password</a>';
 				temp += '</div></li>';
 			});
 			$(".list_akun").html(temp);
@@ -53,8 +54,8 @@
 <div class='grid_12'>
 <div class='admin_title'>Akun Admin</div>
 
-<div class="holder"></div>
-<div class='list_legend_akun'>
+<!--<div class="holder"></div>-->
+<div class='list_legend_akun' style="width: 50%;">
 	<ul>
 		<li class="username_akun">
 			Username
@@ -65,27 +66,24 @@
 	</ul> 
 </div>
 
-<div class="admin_akun_list">
+<div class="admin_akun_list" style="width: 50%;">
 	<ul class="list_akun" id="jpage_list_akun"> 
 		
 	</ul>
 </div>
-<div class="holder"></div>
+<!--<div class="holder"></div>-->
 
 <script>
+/*
 $(document).ready(function () {
     setTimeout(function(){
 	$(function() {
-		/* initiate plugin */
 		$("div.holder").jPages({
 			containerID : "jpage_list_akun",
 			perPage : 10
 		});
-		/* on select change */
 		$("select").change(function(){
-			/* get new nº of items per page */
 		  var newPerPage = parseInt( $(this).val() );
-		  /* destroy jPages and initiate plugin again */
 		  $("div.holder").jPages("destroy").jPages({
 				containerID   : "jpage_list_akun",
 				perPage       : newPerPage
@@ -93,7 +91,7 @@ $(document).ready(function () {
 		});
 	});
     }, 500);
-});
+});*/
 </script>
 
 

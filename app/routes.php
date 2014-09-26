@@ -122,6 +122,7 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	
 	//kegiatan
 	Route::get('/kegiatan/{jenis}', ['as' => 'admin.kegiatan.{jenis}', 'uses' => 'KegiatanAdminController@view_index']);
+	Route::get('/get_kegiatan', ['as' => 'admin.get_kegiatan', 'uses' => 'KegiatanAdminController@get_kegiatan']);
 	//end of kegiatan
 	
 	//publikasi

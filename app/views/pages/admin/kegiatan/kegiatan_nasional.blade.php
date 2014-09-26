@@ -80,6 +80,7 @@
 	$file_brosur="";
 	$('body').on('click','#tambah_kegiatan',function(){
 		$( ".tambah_kegiatan_pop" ).fadeIn( 277, function(){});
+		document.getElementById("form_tambah_kegiatan").reset();
 	});
 	
 	
@@ -102,10 +103,34 @@
 	});
 
 	$('body').on('click','.edit_kegiatan',function(){
-		$( ".edit_kegiatan_pop" ).fadeIn( 277, function(){});
+		$id=$(this).next().val();
+		$.ajax({
+			type: 'GET',
+			url: 'admin/get_kegiatan',
+			data: {
+				"id_kegiatan": $id
+			},
+			success: function(response){
+				//alert(response.nama_kegiatan);
+				$('#preview_brosur_edit').attr('src',response.brosur_kegiatan);
+				$('#edit_nama_kegiatan').val(response.nama_kegiatan);
+				$('#edit_tempat_kegiatan').val(response.tempat);
+				$('.editor_edit_kegiatan_nasional_message').jqte();
+				$('.jqte_editor').text(response.deskripsi);
+			},
+			error: function(jqXHR, textStatus, errorThrown){
+				alert(errorThrown);
+			},
+			complete: function(){
+				$( ".edit_kegiatan_pop" ).fadeIn( 277, function(){});
+			}
+		},'json');
 	});
 	
-	$('.exit').click(function() {$( ".pop_up_super_c" ).fadeOut( 200, function(){});});	
+	$('.exit').click(function() {
+		$( ".pop_up_super_c" ).fadeOut( 200, function(){});
+		$('#form_tambah_kegiatan').reset();
+	});	
 		
 	$('.pop_up_super_c').click(function (e)
 	{
@@ -114,12 +139,13 @@
 		if (container.is(e.target) )// if the target of the click is the container...
 		{
 			$( ".pop_up_super_c" ).fadeOut( 200, function(){});
+			$('#form_tambah_kegiatan').reset();
 			$('html').css('overflow-y', 'auto');
 		}
 	});
 	$('body').on('click','#ok_tambah_kegiatan',function(){
 		
-		$arrayData = $('.form_tambah_kegiatan').serializeArray();
+		$arrayData = $('#form_tambah_kegiatan').serializeArray();
 		//alert($file_brosur);
 		/*alert($arrayData[1]['value']);
 		alert($arrayData[2]['value']);
@@ -137,7 +163,7 @@
 		formData.append('waktu_mulai',$arrayData[5]['value']);
 		formData.append('waktu_selesai',$arrayData[6]['value']);
 		formData.append('deskripsi',$arrayData[7]['value']);
-		formData.append('type',0);
+		formData.append('type',1);
 		
 		formData.append('brosur',$file_brosur);
 		
@@ -149,7 +175,9 @@
 			processData:false,
 			contentType: false,
 			success: function(response){
+				$( ".tambah_kegiatan_pop" ).fadeOut( 277, function(){});
 				alert(response);
+				$('#form_tambah_kegiatan').reset();
 			},
 				error: function(jqXHR, textStatus, errorThrown){
 				alert(errorThrown);
@@ -191,7 +219,7 @@
 		<div class="pop_up_cell">
 			<div class="container_12">			
 				<div class="grid_12 pop_up_container" style="background: #fff; padding: 20px;">
-					{{ Form::open(array('class'=>'form_tambah_kegiatan','url' => '', 'files' => true)) }}
+					{{ Form::open(array('id'=>'form_tambah_kegiatan','url' => '', 'files' => true)) }}
 						<div class="grid_5">
 							<img src="" id='preview_brosur' width="150" height="180"/>
 							{{ Form::file('gambar',array('id'=>'brosur_kegiatan'), Input::old('gambar')) }}
@@ -309,15 +337,15 @@
 				<div class="grid_12 pop_up_container" style="background: #fff; padding: 20px;">
 					{{ Form::open(array('url' => '', 'files' => true)) }}
 						<div class="grid_5">
-							<img src="" width="150" height="180"/>
+							<img src="" id='preview_brosur_edit' width="150" height="180"/>
 							{{ Form::file('gambar', Input::old('gambar')) }}
 						</div>
 						<div class="grid_5">
 							<div class="row_label">
-								<label>Nama</label>{{ Form::text('nama', Input::old('nama')) }}
+								<label>Nama</label>{{ Form::text('nama', Input::old('nama'),array('id'=>'edit_nama_kegiatan')) }}
 							</div>
 							<div class="row_label">
-								<label>Tempat</label>{{ Form::text('tempat', Input::old('tempat')) }}
+								<label>Tempat</label>{{ Form::text('tempat', Input::old('tempat'),array('id'=>'edit_tempat_kegiatan')) }}
 							</div>
 							<div class="row_label">
 								<label>Tanggal</label>{{ Form::text('datepicker3', Input::old('datepicker3'),  array('id' => 'datepicker3', 'style' => 'width:80px;')) }}
@@ -331,9 +359,7 @@
 							
 						<span class="clear"></span>
 						<div class="area_jqte">
-							<textarea name="edit_kegiatan_nasional_message" id = 'edit_kegiatan_nasional_message' class="editor_edit_kegiatan_nasional_message"> 
-							
-							</textarea>
+							<textarea name="edit_kegiatan_nasional_message" id = 'edit_kegiatan_nasional_message' class="editor_edit_kegiatan_nasional_message"></textarea>
 						</div>
 
 						{{Form::submit('Kirim Pesan', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'button'));}}
@@ -360,7 +386,7 @@
 						}
 					</style>
 					<script>
-						$('.editor_edit_kegiatan_nasional_message').jqte();
+						
 					</script>
 					<script>
 						jQuery('#datepicker3').datetimepicker({

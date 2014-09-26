@@ -84,17 +84,17 @@ $('body').on('click','#akun_admin',function(){
 
 $('body').on('click','#admin_kegiatan_nasional',function(){
 	$( ".loader" ).fadeIn( 200, function(){});
-	 $('.admin_control_panel').load('admin/kegiatan/0');
+	 $('.admin_control_panel').load('admin/kegiatan/1');
 });
 
 $('body').on('click','#admin_kegiatan_internasional',function(){
 	$( ".loader" ).fadeIn( 200, function(){});
-	 $('.admin_control_panel').load('admin/kegiatan/1');
+	 $('.admin_control_panel').load('admin/kegiatan/2');
 });
 
 $('body').on('click','#admin_kegiatan_simposium',function(){
 	$( ".loader" ).fadeIn( 200, function(){});
-	 $('.admin_control_panel').load('admin/kegiatan/2');
+	 $('.admin_control_panel').load('admin/kegiatan/3');
 });
 
 //sidebar publikasi

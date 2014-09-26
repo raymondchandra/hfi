@@ -81,6 +81,7 @@
 	$('body').on('click','#tambah_kegiatan',function(){
 		$( ".tambah_kegiatan_pop" ).fadeIn( 277, function(){});
 		document.getElementById("form_tambah_kegiatan").reset();
+		$file_brosur="";
 	});
 	
 	
@@ -103,7 +104,13 @@
 	});
 
 	$('body').on('click','.edit_kegiatan',function(){
+		$(".loader").fadeIn(100, function(){});
+		$file_brosur="";
+		document.getElementById("form_edit_kegiatan").reset();
+
+	
 		$id=$(this).next().val();
+		$('.editor_edit_kegiatan_nasional_message').jqte();
 		$.ajax({
 			type: 'GET',
 			url: 'admin/get_kegiatan',
@@ -112,10 +119,36 @@
 			},
 			success: function(response){
 				//alert(response.nama_kegiatan);
-				$('#preview_brosur_edit').attr('src',response.brosur_kegiatan);
+				$('#preview_edit_brosur').attr('src',response.brosur_kegiatan);
 				$('#edit_nama_kegiatan').val(response.nama_kegiatan);
 				$('#edit_tempat_kegiatan').val(response.tempat);
-				$('.editor_edit_kegiatan_nasional_message').jqte();
+				$tanggalwaktumulai = response.waktu_mulai.split(' ');
+				$tanggalwaktuselesai = response.waktu_selesai.split(' ');
+				$tanggalmulai = $tanggalwaktumulai[0].split('-');
+				$waktumulai = $tanggalwaktumulai[1].split(':');
+				$tanggalselesai = $tanggalwaktuselesai[0].split('-');
+				$waktuselesai = $tanggalwaktuselesai[1].split(':');
+				
+				$tanggal_mulai = $tanggalmulai[2];
+				$bulan_mulai = $tanggalmulai[1];
+				$tahun_mulai = $tanggalmulai[0];
+				$tanggal_selesai = $tanggalselesai[2];
+				$bulan_selesai = $tanggalselesai[1];
+				$tahun_selesai = $tanggalselesai[0];
+				
+				$jam_mulai = $waktumulai[0];
+				$menit_mulai = $waktumulai[1];
+				$jam_selesai = $waktuselesai[0];
+				$menit_selesai = $waktuselesai[1];
+				
+				$temp_tanggal_mulai = $tanggal_mulai +"."+$bulan_mulai+"."+$tahun_mulai;
+				$temp_tanggal_selesai = $tanggal_selesai +"."+$bulan_selesai+"."+$tahun_selesai;
+				
+				$('#datepicker3').val($temp_tanggal_mulai);
+				$('#datepicker4').val($temp_tanggal_selesai);
+				$('#timepickerstart3').val($jam_mulai+":"+$menit_mulai);
+				$('#timepickerend4').val($jam_selesai+":"+$menit_selesai);
+				
 				$('.jqte_editor').text(response.deskripsi);
 			},
 			error: function(jqXHR, textStatus, errorThrown){
@@ -123,13 +156,112 @@
 			},
 			complete: function(){
 				$( ".edit_kegiatan_pop" ).fadeIn( 277, function(){});
+				$(".loader").fadeOut(200, function(){});
+				jQuery('#datepicker3').datetimepicker({
+					lang:'en',
+					i18n:{
+						en:{
+							months:[
+								'January','February','March','April',
+								'May','June','July','August',
+								'September','October','November','December',
+							],
+							dayOfWeek:[
+								"Sun.", "Mon", "Tue", "Wed", 
+								"Thu", "Fri", "Sa.",
+							]
+						}
+					},
+					timepicker:false,
+					format:'d.m.Y'
+				});
+						
+				jQuery('#datepicker4').datetimepicker({
+					lang:'en',
+					i18n:{
+						en:{
+						   	months:[
+								'January','February','March','April',
+								'May','June','July','August',
+								'September','October','November','December',
+						   	],
+						   	dayOfWeek:[
+								"Sun.", "Mon", "Tue", "Wed", 
+								"Thu", "Fri", "Sa.",
+						   	]
+						}
+					},
+
+					timepicker:false,
+					format:'d.m.Y'
+				});
+						
+						jQuery('#timepickerstart3').datetimepicker({
+						  	datepicker:false,
+						  	format:'H:i'
+						});
+						jQuery('#timepickerend4').datetimepicker({
+						  	datepicker:false,
+						  	format:'H:i'
+						});
 			}
 		},'json');
 	});
 	
+	$('body').on('click','.edit_button',function(){
+		$arrayData = $('#form_tambah_kegiatan').serializeArray();
+		var formData = new FormData();
+		
+		formData.append('nama_kegiatan',$arrayData[1]['value']);
+		formData.append('tempat',$arrayData[2]['value']);
+		formData.append('tanggal_mulai',$arrayData[3]['value']);
+		formData.append('tanggal_selesai',$arrayData[4]['value']);
+		formData.append('waktu_mulai',$arrayData[5]['value']);
+		formData.append('waktu_selesai',$arrayData[6]['value']);
+		formData.append('deskripsi',$arrayData[7]['value']);
+		
+		formData.append('brosur',$file_brosur);
+		
+		$.ajax({
+			type: 'PUT',
+			url: 'admin/editKegiatan',
+			data: formData,
+			processData:false,
+			contentType: false,
+			success: function(response){
+				alert(response);
+				$('#admin_kegiatan_nasional').click();
+			},
+				error: function(jqXHR, textStatus, errorThrown){
+				alert(errorThrown);
+			}
+		});
+		
+		
+	});
+	
+	$('body').on('change','#edit_file_upload',function(){
+		var i = 0, len = this.files.length, img, reader, file;
+		for ( ; i < len; i++ ) {
+			file = this.files[i];
+			if (!!file.type.match(/image.*/)) {
+				if ( window.FileReader ) {
+					reader = new FileReader();
+					reader.onloadend = function (e) { 
+						//showUploadedItem(e.target.result, file.fileName);
+						$('#preview_edit_brosur').attr('src',e.target.result);
+					};
+					reader.readAsDataURL(file);
+				}
+				$file_brosur = file;
+			}	
+		}
+	});
+	
+	
+	
 	$('.exit').click(function() {
 		$( ".pop_up_super_c" ).fadeOut( 200, function(){});
-		$('#form_tambah_kegiatan').reset();
 	});	
 		
 	$('.pop_up_super_c').click(function (e)
@@ -139,7 +271,6 @@
 		if (container.is(e.target) )// if the target of the click is the container...
 		{
 			$( ".pop_up_super_c" ).fadeOut( 200, function(){});
-			$('#form_tambah_kegiatan').reset();
 			$('html').css('overflow-y', 'auto');
 		}
 	});
@@ -175,9 +306,8 @@
 			processData:false,
 			contentType: false,
 			success: function(response){
-				$( ".tambah_kegiatan_pop" ).fadeOut( 277, function(){});
 				alert(response);
-				$('#form_tambah_kegiatan').reset();
+				$('#admin_kegiatan_nasional').click();
 			},
 				error: function(jqXHR, textStatus, errorThrown){
 				alert(errorThrown);
@@ -243,14 +373,8 @@
 							
 						<span class="clear"></span>
 						<div class="area_jqte">
-							<textarea name="misi_message" id = 'misi_message' class="editor"> 
-							
-							</textarea>
+							<textarea name="misi_message" id = 'misi_message' class="editor"></textarea>
 						</div>
-						<script>
-							$('.jqte').class('jqte_focused');
-						</script>
-
 						{{Form::button('Kirim Pesan', array('style' => 'display:block; margin-left: auto; margin-right: auto;','id'=>'ok_tambah_kegiatan', 'class' => 'button'));}}
 					{{ Form::close() }}
 					<style>
@@ -338,14 +462,15 @@
 			<div class="container_12">			
 					
 				<div class="grid_12 pop_up_container" style="background: #fff; padding: 20px;">
-					{{ Form::open(array('url' => '', 'files' => true)) }}
+					{{ Form::open(array('url' => '','id'=>'form_edit_kegiatan', 'files' => true)) }}
 						<div class="grid_5">
-							<img src="" id='preview_brosur_edit' width="150" height="180"/>
-							{{ Form::file('gambar', Input::old('gambar')) }}
+							<img src="" id='preview_edit_brosur' width="150" height="180"/>
+							{{ Form::file('gambar',array('id'=>'edit_file_upload'), Input::old('gambar')) }}
 						</div>
 						<div class="grid_5">
 							<div class="row_label">
-								<label>Nama</label>{{ Form::text('nama', Input::old('nama'),array('id'=>'edit_nama_kegiatan')) }}
+								<label>Nama</label>{{ Form::text('nama', Input::old('nama'),array('id'=>'edit_nama_kegiatan', 'onclick'=>'this.focus();this.select()', 'autofocus')) }}
+								
 							</div>
 							<div class="row_label">
 								<label>Tempat</label>{{ Form::text('tempat', Input::old('tempat'),array('id'=>'edit_tempat_kegiatan')) }}
@@ -362,10 +487,11 @@
 							
 						<span class="clear"></span>
 						<div class="area_jqte">
+						
 							<textarea name="edit_kegiatan_nasional_message" id = 'edit_kegiatan_nasional_message' class="editor_edit_kegiatan_nasional_message"></textarea>
 						</div>
 
-						{{Form::submit('Kirim Pesan', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'button'));}}
+						{{Form::button('Kirim Pesan', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'edit_button'));}}
 					{{ Form::close() }}
 					<style>
 						.row_label {
@@ -389,55 +515,7 @@
 						}
 					</style>
 					<script>
-						
-					</script>
-					<script>
-						jQuery('#datepicker3').datetimepicker({
-							lang:'en',
-							i18n:{
-						 		en:{
-						   			months:[
-									'January','February','March','April',
-									'May','June','July','August',
-									'September','October','November','December',
-						   			],
-						   			dayOfWeek:[
-									"Sun.", "Mon", "Tue", "Wed", 
-									"Thu", "Fri", "Sa.",
-						   			]
-						  			}
-						 		},
-						 	timepicker:false,
-						 	format:'d.m.Y'
-						});
-						
-						jQuery('#datepicker4').datetimepicker({
-						 	lang:'en',
-						 	i18n:{
-						  		en:{
-						   			months:[
-									'January','February','March','April',
-									'May','June','July','August',
-									'September','October','November','December',
-						   			],
-						   			dayOfWeek:[
-									"Sun.", "Mon", "Tue", "Wed", 
-									"Thu", "Fri", "Sa.",
-						   			]
-						  			}
-						 		},
-						 	timepicker:false,
-						 	format:'d.m.Y'
-						});
-						
-						jQuery('#timepickerstart3').datetimepicker({
-						  	datepicker:false,
-						  	format:'H:i'
-						});
-						jQuery('#timepickerend4').datetimepicker({
-						  	datepicker:false,
-						  	format:'H:i'
-						});
+						$('.jqte').class('jqte_focused');
 					</script>
 				</div>
 			

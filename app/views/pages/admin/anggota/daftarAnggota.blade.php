@@ -3,101 +3,109 @@
 	// var length_arrlist = arrlist.length;								
 	var arrlist;
 	var length_arrlist;
+	var once = true;
 	$('body').on('click','#tombol_cari', function(){
-			//reset
-			// arrlist = [];
-			// length_arrlist = arrlist.length;		
-		//close accordion
-		$( "#accordion" ).accordion( "option", "active", 1 );			
-		$nama = $('#cari_nama').val();	
-		$penelitian = $('#cari_penelitian').val();
-		$gelarPendidikan = $('#cari_gelar_pendidikan').val();
-		$lokasiPendidikan = $('#cari_lokasi_pendidikan').val();
-		$institusi = $('#cari_institusi').val();
-		$surel = $('#cari_surel').val();
-		$status = $('#cari_status').val();
-		$cabang = $('#cari_cabang').val();
-		$jenisKelamin = $('#cari_jenis_kelamin').val();
-		$spesialisasi = $('#cari_spesialisasi').val();
-		$profesi = $('#cari_profesi').val();						
-		$.ajax({						
-			url: 'admin/anggota/getDaftarAnggota',
-			type: 'GET',
-			data: {
-				'nama' : $nama,
-				'penelitian' : $penelitian,
-				'gelarPendidikan' : $gelarPendidikan,
-				'lokasiPendidikan' : $lokasiPendidikan,
-				'institusi' : $institusi,
-				'surel' : $surel,
-				'status' : $status,
-				'cabang' : $cabang,
-				'jenis_kelamin' : $jenisKelamin,
-				'spesialisasi' : $spesialisasi,
-				'profesi' : $profesi
-			},
-			success: function(data){							
-					//alert("sukses");
-					//alert("datalength "+data.length);
-				// var arrlist = [];
-				// var length_arrlist = arrlist.length;								
-				$(".loader").fadeIn(277,function(){});
-				arrlist = new Array(data.length);								
-				var length = data.length;	
-				var header = "<table style='margin-bottom:10px; margin-top:50px;'><td style='vertical-align:middle !important; width:350px; overflow:hidden;'>Nama Anggota</td><td style='vertical-align:middle !important; width:350px; overflow:hidden;'>Nomor Anggota</td><td style='vertical-align:middle !important; width:100px;'>Lihat Detail</td></table><hr></hr>";
-				var list="";
-				// list+="<tr>";
-					// list+="<td>Nama Anggota</td>";
-					// list+="<td>Nomor Anggota</td>";
-					// list+="<td>Lihat Detail</td>";
-				// list+="</tr>";				
-				for($i=0; $i<length; $i++){	
-						arrlist[$i] = new Array(21);
-						//simpan arrlist																		
-							arrlist[$i][0] = data[$i]['nama'];
-							arrlist[$i][1] = data[$i]['no_anggota'];
-							arrlist[$i][2] = data[$i]['tanggal_lahir'];
-							arrlist[$i][3] = data[$i]['tempat_lahir'];
-							if(data[$i]['gender']==1){
-								arrlist[$i][4] = "pria";
-							}else{
-								arrlist[$i][4] = "wanita";
-							}							
-							arrlist[$i][5] = data[$i]['tanggal_revisi'];
-							arrlist[$i][6] = data[$i]['id_cabang'];			
-							arrlist[$i][7] = data[$i]['tema_penelitian'];
-							arrlist[$i][8] = data[$i]['spesialisasi'];
-							arrlist[$i][9] = data[$i]['profesi'];
-							arrlist[$i][10] = data[$i]['institusi'];
-							arrlist[$i][11] = data[$i]['alamat'];
-							arrlist[$i][12] = data[$i]['kota'];
-							arrlist[$i][13] = data[$i]['kodepos'];
-							arrlist[$i][14] = data[$i]['negara'];
-							arrlist[$i][15] = data[$i]['telepon'];
-							arrlist[$i][16] = data[$i]['hp'];
-							arrlist[$i][17] = data[$i]['fax'];
-							arrlist[$i][18] = data[$i]['email'];
-							arrlist[$i][19] = data[$i]['situs'];
-							arrlist[$i][20] = data[$i]['keterangan'];
-							arrlist[$i][21] = data[$i]['foto_profile'];			
-						//end simpan arrlist
-					list+="<tr>";
-						list+="<td style='vertical-align:middle !important; width:350px; overflow:hidden;'>"+data[$i]['nama']+"</td>";
-						list+="<td style='vertical-align:middle !important; width:350px;'>"+data[$i]['no_anggota']+"</td>";
-						list+="<td style='vertical-align:middle !important; width:100px;'><input type='hidden' value='"+$i+"'/><input type='button' value='Lihat Detail' class='lihat_detail'/></td>";						
-					list+="</tr>";			
+		if(once == true){
+			once = false;
+
+			$(".loader").fadeIn(277,function(){});
+				//reset
+				// arrlist = [];
+				// length_arrlist = arrlist.length;		
+			//close accordion
+			$( "#accordion" ).accordion( "option", "active", 1 );			
+			$nama = $('#cari_nama').val();	
+			$penelitian = $('#cari_penelitian').val();
+			$gelarPendidikan = $('#cari_gelar_pendidikan').val();
+			$lokasiPendidikan = $('#cari_lokasi_pendidikan').val();
+			$institusi = $('#cari_institusi').val();
+			$surel = $('#cari_surel').val();
+			$status = $('#cari_status').val();
+			$cabang = $('#cari_cabang').val();
+			$jenisKelamin = $('#cari_jenis_kelamin').val();
+			$spesialisasi = $('#cari_spesialisasi').val();
+			$profesi = $('#cari_profesi').val();						
+			$.ajax({						
+				url: 'admin/anggota/getDaftarAnggota',
+				type: 'GET',
+				data: {
+					'nama' : $nama,
+					'penelitian' : $penelitian,
+					'gelarPendidikan' : $gelarPendidikan,
+					'lokasiPendidikan' : $lokasiPendidikan,
+					'institusi' : $institusi,
+					'surel' : $surel,
+					'status' : $status,
+					'cabang' : $cabang,
+					'jenis_kelamin' : $jenisKelamin,
+					'spesialisasi' : $spesialisasi,
+					'profesi' : $profesi
+				},
+				success: function(data){							
+						//alert("sukses");
+						//alert("datalength "+data.length);
+					// var arrlist = [];
+					// var length_arrlist = arrlist.length;	
+					arrlist = new Array(data.length);								
+					var length = data.length;	
+					var header = "<table style='margin-bottom:10px; margin-top:50px;'><td style='vertical-align:middle !important; width:350px; overflow:hidden;'>Nama Anggota</td><td style='vertical-align:middle !important; width:350px; overflow:hidden;'>Nomor Anggota</td><td style='vertical-align:middle !important; width:100px;'>Lihat Detail</td></table><hr></hr>";
+					var list="";
+					// list+="<tr>";
+						// list+="<td>Nama Anggota</td>";
+						// list+="<td>Nomor Anggota</td>";
+						// list+="<td>Lihat Detail</td>";
+					// list+="</tr>";				
+					for($i=0; $i<length; $i++){	
+							arrlist[$i] = new Array(21);
+							//simpan arrlist																		
+								arrlist[$i][0] = data[$i]['nama'];
+								arrlist[$i][1] = data[$i]['no_anggota'];
+								arrlist[$i][2] = data[$i]['tanggal_lahir'];
+								arrlist[$i][3] = data[$i]['tempat_lahir'];
+								if(data[$i]['gender']==1){
+									arrlist[$i][4] = "pria";
+								}else{
+									arrlist[$i][4] = "wanita";
+								}							
+								arrlist[$i][5] = data[$i]['tanggal_revisi'];
+								arrlist[$i][6] = data[$i]['id_cabang'];			
+								arrlist[$i][7] = data[$i]['tema_penelitian'];
+								arrlist[$i][8] = data[$i]['spesialisasi'];
+								arrlist[$i][9] = data[$i]['profesi'];
+								arrlist[$i][10] = data[$i]['institusi'];
+								arrlist[$i][11] = data[$i]['alamat'];
+								arrlist[$i][12] = data[$i]['kota'];
+								arrlist[$i][13] = data[$i]['kodepos'];
+								arrlist[$i][14] = data[$i]['negara'];
+								arrlist[$i][15] = data[$i]['telepon'];
+								arrlist[$i][16] = data[$i]['hp'];
+								arrlist[$i][17] = data[$i]['fax'];
+								arrlist[$i][18] = data[$i]['email'];
+								arrlist[$i][19] = data[$i]['situs'];
+								arrlist[$i][20] = data[$i]['keterangan'];
+								arrlist[$i][21] = data[$i]['foto_profile'];			
+							//end simpan arrlist
+						list+="<tr>";
+							list+="<td style='vertical-align:middle !important; width:350px; overflow:hidden;'>"+data[$i]['nama']+"</td>";
+							list+="<td style='vertical-align:middle !important; width:350px;'>"+data[$i]['no_anggota']+"</td>";
+							list+="<td style='vertical-align:middle !important; width:100px;'><input type='hidden' value='"+$i+"'/><input type='button' value='Lihat Detail' class='lihat_detail'/></td>";						
+						list+="</tr>";			
+					}
+					// alert("panjang arrlist setelah dimasukin data "+arrlist.length);
+					// alert("panjang arrlist[] setelah dimasukin data "+arrlist[0].length);
+					$('.header_tabel_hasil').html(header);
+					$('.tabel_hasil').html(list);
+					$(".loader").fadeOut(277,function(){});
+					once = true;
+				},						
+				error: function(errorThrown){
+					$(".loader").fadeOut(277,function(){});
+					alert("gagal");
+					once = true;						
+					// alert(errorThrown);
 				}
-				// alert("panjang arrlist setelah dimasukin data "+arrlist.length);
-				// alert("panjang arrlist[] setelah dimasukin data "+arrlist[0].length);
-				$('.header_tabel_hasil').html(header);
-				$('.tabel_hasil').html(list);
-				$(".loader").fadeOut(277,function(){});
-			},						
-			error: function(errorThrown){
-				alert("gagal");							
-				// alert(errorThrown);
-			}
-		});							
+			});
+		}					
 	});		
 	
 	$('body').on('click','.lihat_detail',function(){

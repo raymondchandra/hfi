@@ -9,9 +9,10 @@
 				<h2>
 					Lain-lain
 				</h2>
+				<h4>{{$lain->title}}</h4>
 				
 				<p>
-					{{$lain}}
+					{{$lain->konten}}
 				</p>
 			
 			</div>

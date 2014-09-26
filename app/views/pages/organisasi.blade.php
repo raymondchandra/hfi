@@ -43,8 +43,8 @@
 						<ul style="margin-bottom:5px;">
 							<li>
 								<a href="javascript:void(0);" class="pop_the_pop_up" value="
-								<?php echo $pengurus['file_path'] //echo $arrPengurus[$r]['file_path']?>">
-								<?php echo $pengurus['periode']//echo $arrPengurus[$r]['periode']?></a>
+								<?php echo $pengurus->file_path //echo $arrPengurus[$r]['file_path']?>">
+								<?php echo $pengurus->periode//echo $arrPengurus[$r]['periode']?></a>
 							</li>							
 						</ul>
 						<?php } ?>

@@ -26,26 +26,32 @@ class LainAdminController extends BaseController {
 
 	public function add_lain()
 	{
-		$text = Input::get('update');
-		$title = Input::get('title');
+		$count = count(Lain1::all());
+		if($count < 15){
 
-		if($title == "") return 1;
-		$id = Auth::user()->id;
-		$lain = new Lain1();
+			$text = Input::get('update');
+			$title = Input::get('title');
 
-		$lain -> timestamps = false;
-		$lain -> konten = $text;
-		$lain -> title = $title;
-		$lain -> tanggal_edit = Carbon::now();
-		$lain -> edited_by = $id;
-		
-		
-		try {
+			if($title == "") return 1;
+			$id = Auth::user()->id;
+			$lain = new Lain1();
+
+			$lain -> timestamps = false;
+			$lain -> konten = $text;
+			$lain -> title = $title;
+			$lain -> tanggal_edit = Carbon::now();
+			$lain -> edited_by = $id;
 			
-			$lain -> save();
-			return 2;
-		} catch (Exception $e) {
-			return $e;
+			
+			try {
+				
+				$lain -> save();
+				return 2;
+			} catch (Exception $e) {
+				return $e;
+			}
+		}else{
+			return 3;
 		}
 	}
 

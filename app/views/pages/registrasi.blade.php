@@ -26,20 +26,59 @@
 			<td>:</td>
 			<td>{{ Form::text('username',Input::old('username'), array('id' => 'input_username', 'class' => 'wl_it')) }} <span id="username-error"></span><span class="red">*</span></td>	
 			<script>
-				$("#input_username").change(function(){
-					var url = '{{ URL::route('registrasi.checkExist') }}';
-					
-					var input = {
-						username : $("#input_username").val()
-					}
-					$.post(url,input, function( data ) {
-					 	if(data == 'ok')
-						{
-							$("#username-error").text("Anda dapat menggunakan username ini");
-						}else{
-							$("#username-error").text("Username ini sudah terpakai");
+				var usernameOK = 'false';
+				var ajaxACK = true;
+				$("#input_username").keyup(function(){
+
+					if($("#input_username").val() == ""){
+						$("#username-error").text("");
+						usernameOK = 'false';
+						ajaxACK = true;
+					}else{
+						var url = '{{ URL::route('registrasi.checkExist') }}';
+						
+						var input = {
+							username : $("#input_username").val()
 						}
-					});
+						ajaxACK = false;
+						$.post(url,input, function( data ) {
+							if(ajaxACK == false){
+								if(data == 'ok')
+								{
+									$("#username-error").text("Anda dapat menggunakan username ini");
+									usernameOK = 'true';
+								}else{
+									$("#username-error").text("Username ini sudah terpakai");
+									usernameOK = 'false';
+								}
+								
+							}
+							ajaxACK = true;
+							
+						});
+
+					}
+				});
+				$(document).ready(function(){
+					if($("#input_username").val() == ""){
+						$("#username-error").text("");
+					}else{
+						var url = '{{ URL::route('registrasi.checkExist') }}';
+					
+						var input = {
+							username : $("#input_username").val()
+						}
+						$.post(url,input, function( data ) {
+						 	if(data == 'ok')
+							{
+								$("#username-error").text("Anda dapat menggunakan username ini");
+							}else{
+								$("#username-error").text("Username ini sudah terpakai");
+							}
+						});
+					}
+					
+
 				});
 			</script>		
 		</tr>		
@@ -450,8 +489,13 @@
 				}
 			},
 			submitHandler: function(form) {
-				    form.submit();
-				  }
+				if (usernameOK == 'true') {
+					form.submit();
+				}else{
+					alert("Masukkan username dengan tepat");
+				}
+				    
+			}
 		});
 	</script>
 	

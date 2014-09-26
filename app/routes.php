@@ -46,9 +46,10 @@ Route::get('anggota', ['as' => 'anggota', 'uses' => 'AnggotaController@view_inde
 	//route ke sidebar
 	Route::get('/ketentuan', ['as' => 'ketentuan', 'uses' => 'AnggotaController@view_ketentuan']);
 Route::get('/kontak', ['as' => 'kontak', 'uses' => 'KontakController@view_index']);
-Route::get('/lain', ['as' => 'lain', 'uses' => 'LainController@view_index']);
+Route::get('/lain/{id}', ['as' => 'lain', 'uses' => 'LainController@view_index']);
 Route::get('/regulasi', ['as' => 'regulasi.home', 'uses' => 'HomeController@view_regulasi']);
 
+Route::get('/organisasi/detail/{id}', ['as' => 'organisasi.detail', 'uses' => 'OrganisasiController@view_detail']);
 //account view
 Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login', 'before' => 'checkLogin']);
 Route::get('/registrasi', ['as' => 'registrasi', 'uses' => 'AccountController@view_registrasi','before' => 'checkLogin']);

@@ -87,17 +87,17 @@
 						</li>
 						<li>
 							<a href="#">
-								{{HTML::linkRoute('lain','Lain-lain')}}
+								Lain-lain
 							</a>
-							<!--<ul>
-								<li><a href="#">Jika ada 0</a></li>
-								<li><a href="#">Jika ada 1</a></li>
-								<li><a href="#">Jika ada 2</a></li>
-								<li><a href="#">Jika ada 3</a></li>
-								<li><a href="#">Jika ada 4</a></li>
-								<li><a href="#">Jika ada 5</a></li>
-								
-							</ul>-->
+							<ul>
+							<?php
+								$lains = LainController::getAllMenu();
+								foreach ($lains as $lain) {
+									echo '<li><a href="'.URL::route('lain',array($lain->id)).'">'.$lain->title.'</a></li>';
+								}
+							?>
+							</ul>
+							
 							
 						</li>
 						

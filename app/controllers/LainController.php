@@ -8,9 +8,9 @@ class LainController extends BaseController {
      * Show the profile for the given user.
      */
 	
-    public function view_index()
+    public function view_index($id)
     {
-       	$lain = $this->getLain();
+       	$lain = $this->getLain($id);
        
 		$arr = $this->setHeader();
 		return View::make('pages.lain', compact('arr', 'lain'));
@@ -22,22 +22,14 @@ class LainController extends BaseController {
     }
 	
 	
-	public function getLain()
+	public function getLain($id)
 	{
-		return LainController::get_konten("lain");
+		return Lain1::find($id);
 	}
-	
-	public static function get_konten($tipe)
-	{
-		$konten = Konten::where('tipe_konten', '=', $tipe)->first();
-		if(count($konten) != 0)
-		{
-			
-			return $konten->konten;
-		}else
-		{
-			return "";
-		}
+
+	public static function getAllMenu(){
+		$lains = Lain1::all();
+		return $lains;
 	}
 }
 

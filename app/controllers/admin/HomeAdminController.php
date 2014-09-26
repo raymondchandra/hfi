@@ -49,9 +49,9 @@ class HomeAdminController extends BaseController {
 	
 	public function view_regulasi()
 	{
-		//$regulations = $this->get_all_regulasi();
-		//return View::make('pages.admin.home.regulasi', compact('regulations')); 				
-		return View::make('pages.admin.home.regulasi'); 
+		$current = Input::get('page');
+		$regulasis = $this->get_all_regulasi();
+		return View::make('pages.admin.home.regulasi', compact('regulasis','current'));
 	}
 	
 	public function update_welcome()
@@ -230,19 +230,8 @@ class HomeAdminController extends BaseController {
 	}
 	
 	public function get_all_regulasi()
-	{		
-		$count = Regulasi::all();
-		//$regulations = Regulasi::paginate(5);
-		//if($regulations==null){
-		//echo $count;
-		if(count($count) != 0)
-		{
-			return $count;
-		}
-		else
-		{
-			return null;
-		}
+	{	
+		return Regulasi::paginate(2);
 	}
 	
 
@@ -301,11 +290,11 @@ class HomeAdminController extends BaseController {
 				$gallery->save();
 				return 'success';
 			} catch (Exception $e) {
-				return 'failed1';
+				return $e;
 			}
 		}else
 		{
-			return 'failed2';
+			return 'failed';
 		}
 	}
 	

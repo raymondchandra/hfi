@@ -54,7 +54,7 @@
 				}
 			},
 			error:function(errorThrown){
-				alert(errorThrown);
+				//alert(errorThrown);
 			}		
 		});
 	}
@@ -88,85 +88,7 @@
 								//input pengurus
 								inputpengurus_idcabang = $id;				
 							$( ".loader" ).fadeIn( 200, function(){});
-							$.ajax({
-								url: 'admin/organisasi/satucabang',
-								type: 'GET',
-								data: {
-									'id_cabang' : arrIDCabang[$id]
-								},
-								success: function(data){	
-									var view="<div><span class='detail_cell'>Nama Cabang</span>: "+data[0]['nama']+"</div>";
-									view+="<span class='clear'>&nbsp;</span>";
-									view+="<div><span class='detail_cell'>Alamat Kantor</span>: "+data[0]['alamat']+"</div>";
-									view+="<span class='clear'>&nbsp;</span>";
-									view+="<div><span class='detail_cell'>Telepon</span>: "+data[0]['telp']+"</div>";
-									view+="<span class='clear'>&nbsp;</span>";
-									view+="<div><span class='detail_cell'>Fax</span>: "+data[0]['fax']+"</div>";
-									view+="<span class='clear'>&nbsp;</span>";
-									view+="<div><span class='detail_cell'>E-mail</span>: "+data[0]['email']+"</div>";
-									if(data[0]['link']=="-"){
-										view+="<div>-</div>";
-									}else{
-										view+="<div><span class='detail_cell'>URL</span>:<a href='http://"+data[0]['link']+"'>"+data[0]['link']+"</a></div>";
-									}
-									//view+="<div><hr></hr></div>"								
-									// view+="<div><a href='javascript:void(0)' class='go_back_but'>Kembali</a></div>"																															
-									view+="<div><a href='javascript:void(0)' class='go_back_but' style='margin-left:600px;'>Kembali</a></div>"
-									view+="<span class='clear'>&nbsp;</span>";	
-																		
-									//tambah ajax buat ngambil seluruh pengurus pada id_cabang tertentu
-										$.ajax({
-											url: 'admin/organisasi/daftarpengurus',
-											type: 'GET',
-											data: {
-												'id_cabang' : inputpengurus_idcabang
-											},
-											success: function(data){													
-												//view pengurus
-												if(data==""){
-													view+="<div><hr></hr></div>";
-													view+="Tidak terdapat pengurus yang diunggah dari cabang ini";
-												}
-												else
-												{
-													view+="<div><hr></hr></div>";
-													view+="<h3>Daftar Pengurus Pada Cabang ini</h3>";
-													//view+="<div id='tambah_pengurus_link'><a href='javascript:void(0)' id='tambah_pengurus'  class='command_button'>+ Pengurus Baru</a></div>";
-													//atur
-													var length = data.length;
-													arrIDPengurus = [];
-													arrFILEPATHPengurus = [];												
-													view+="<table border=0 style='width:620px;'>";
-														view+="<tr>";
-															view+="<td><h6>Periode</h6></td>";
-															view+="<td><h6>Tanggal Unggah</h6></td>";
-															//view+="<td>&nbsp;</td>";														
-														view+="</tr>";													
-														for($i=0; $i<length; $i++){
-															arrIDPengurus[$i] = data[$i]['id'];
-															arrFILEPATHPengurus[$i] = data[$i]['file_path'];														
-															view+="<tr>";
-																view+="<td style='vertical-align:middle !important; width:350px; overflow:hidden; margin-right:30px;'><a href='javascript:void(0)' class='periode_pengurus' value='"+data[$i]['file_path']+"'>"+data[$i]['periode']+"</a></td>";
-																view+="<td style='vertical-align:middle !important; width:350px;'>"+data[$i]['tanggal_upload']+"</td>"
-																//view+="<td style='vertical-align:middle !important; width:100px;'><p style='display:none;'>"+data[$i]['file_path']+"</p><input type='button' value='x' class='hapus_pengurus'/><input type='hidden' class='id_pengurus' value='"+$i+"'/></td>";
-															view+="</tr>";
-														}
-													view+="</table>";												
-												}
-												//end view pengurus																						
-												$('.cabang_list').html(view);
-												$( ".loader" ).fadeOut( 200, function(){});
-											},
-											error:function(jqXHR, textStatus, errorThrown){
-												alert(errorThrown);
-											}
-										});									
-									//end tambah ajax buat ngambil seluruh pengurus pada id_cabang tertentu																
-								},
-								error:function(jqXHR, textStatus, errorThrown){
-									alert(errorThrown);
-								}		
-							});
+							$(".content_hfi").load('{{URL::to('/')}}'+'/organisasi/detail/'+arrIDCabang[inputpengurus_idcabang]);
 						});									
 						
 						$('body').on('click','.go_back_but',function(){

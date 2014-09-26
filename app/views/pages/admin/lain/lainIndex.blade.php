@@ -17,6 +17,7 @@ function edit(id){
 			$( ".menu_lain_pop" ).fadeIn( 277, function(){});
 			$("#lainTitle").val(data.title);
 			$('.jqte_editor').html(data.konten);
+			$('#submit_change').val('Ubah');
 			$( ".loader" ).fadeOut( 200, function(){});
 		}
 		
@@ -25,23 +26,56 @@ function edit(id){
 }
 
 function hapus(id){
-	$.ajax({
-		type: 'DELETE',
-		url: 'admin/lain/'+id,
-		success: function(response){
-			if(response == "success"){
-				$( ".loader" ).fadeIn( 200, function(){});
-		 		$('.admin_control_panel').load('admin/lain');
-			}
-			else{
-				alert(response);
-			}
-		},
-		error: function(jqXHR, textStatus, errorThrown){
-			alert(errorThrown);
-		}
-	},'json');
+	popupId = id;
+	$(".pop_up_super_c_hapus_regulasi").fadeIn(277, function(){});
+	
 }
+</script>
+<script>
+	var ajaxOnce = true;													
+	$('body').on('click','.ok_hapus_regulasi',function(){
+		if (ajaxOnce) {
+			ajaxOnce = false;
+			
+			
+			$.ajax({
+				type: 'DELETE',
+				url: 'admin/lain/'+popupId,
+				success: function(response){
+					$(".pop_up_super_c_hapus_regulasi").fadeOut(200, function(){});
+					if(response == "success"){
+
+						alert("Sukses menghapus data.");
+						$( ".loader" ).fadeIn( 200, function(){});
+				 		$('.admin_control_panel').load('admin/lain');
+					}
+					else{
+						alert(response);
+					}
+					ajaxOnce = true;
+				},
+				error: function(jqXHR, textStatus, errorThrown){
+					alert(errorThrown);
+				}
+			},'json');
+		};
+		
+	});							
+	$('body').on('click','.batal_hapus_regulasi',function(){
+		$(".pop_up_super_c_hapus_regulasi").fadeOut(200, function(){});
+	});
+	
+	$('exit').click(function() {$(".pop_up_super_c_hapus_regulasi").fadeOut(200, function(){});});
+	
+	$('.pop_up_super_c_hapus_regulasi').click(function (e)
+	{
+		var container = $('.pop_up_cell_hapus_regulasi');
+		if (container.is(e.target) )// if the target of the click is the container...
+		{
+			$( ".pop_up_super_c_hapus_regulasi" ).fadeOut( 200, function(){});
+			$('html').css('overflow-y', 'auto');
+		}
+	});
 </script>	
 
 <div class="container_12">
@@ -99,6 +133,27 @@ function hapus(id){
 		</div>
 	</div>
 
+	<!-- pop up hapus regulasi -->
+	<div class=" pop_up_super_c_hapus_regulasi" style="display: none;">
+		<a class="exit close_56_hapus_regulasi" ></a>
+		<div class="pop_up_tbl_hapus_regulasi">
+			<div class="pop_up_cell_hapus_regulasi">
+				<div class="container_12">			
+					<div class="div_hapus_regulasi" style="background: #fff; width:600px !important; padding-top:40px;">
+						<h2 style="text-align:center;">Anda yakin ingin menghapus berkas ini?</h2>							
+						<table border="0" style="margin-left:auto; margin-right:auto;">
+							<tr>
+								<td><button class="ok_hapus_regulasi">Ya</button></td>
+								<td>&nbsp;</td>
+								<td><button class="batal_hapus_regulasi">Tidak</button></td>
+							</tr>
+						</table>
+					</div>
+				</div>			
+			</div>		
+		</div>
+	</div>
+
 	<script>
 		$('.editor').jqte();
 		
@@ -118,7 +173,10 @@ function hapus(id){
 							alert("Success Insert");
 							$( ".loader" ).fadeIn( 200, function(){});
 		 					$('.admin_control_panel').load('admin/lain');
-						}else{
+						}else if(response == 3){
+							alert("Anda hanya dapat memiliki 15 menu lain-lain");
+						}
+						else{
 							alert(response);
 						}
 					},
@@ -163,6 +221,7 @@ function hapus(id){
 			$( ".menu_lain_pop" ).fadeIn( 277, function(){});
 			$("#lainTitle").val("");
 			$('.jqte_editor').html("");
+			$('#submit_change').val('Tambah');
 			popupId = -1;
 		});
 		

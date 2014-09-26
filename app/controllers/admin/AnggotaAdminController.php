@@ -150,7 +150,7 @@ class AnggotaAdminController extends BaseController {
 		
 		$res = Anggota::join('pendidikan', 'profile.id', '=', 'pendidikan.id_profile')
 						->join('auth', 'profile.id', '=' ,'auth.profile_id')
-						
+						->whereNotIn('no_anggota',array(''))
 						->where('nama', 'LIKE' ,'%'.$nama.'%')
 						->where('tema_penelitian', 'LIKE', '%'.$penelitian.'%')
 						->where('gelar', 'LIKE', '%'.$gelarPendidikan.'%')
@@ -166,9 +166,9 @@ class AnggotaAdminController extends BaseController {
 		}
 
 		if($kode_jk != 2){
-			$res = $res->where('gender', '=', $kode_jk)->get();
+			$res = $res->where('gender', '=', $kode_jk)->orderBy('nama', 'asc')->get();
 		}else{
-			$res = $res->get();
+			$res = $res->orderBy('nama', 'asc')->get();
 		}
 		
 		return $res;		
@@ -189,7 +189,7 @@ class AnggotaAdminController extends BaseController {
 	
 	public function get_all_anggota() //seluruh row yang ada di tabel profile
 	{		
-		$count = Anggota::all();
+		$count = Anggota::whereNotIn('no_anggota',array(''))->get();
 		if(count($count) != 0)
 		{
 			return $count;

@@ -7,7 +7,7 @@
 	
 	$(document).ready(function(){
 		
-		var url = '{{URL::route('admin.akun.getBaru')}}';
+		var url = '{{URL::route('admin.akun.getNonaktif')}}';
 		$.get(url,function(data){
 			var temp = "";
 			var obj = JSON.parse(data);

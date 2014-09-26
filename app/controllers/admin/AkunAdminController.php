@@ -90,7 +90,12 @@ class AkunAdminController extends BaseController {
 	{
 		$username = Input::get('username');
 		$token = Input::get('token');
-		$akun = Account::where('status_aktif','=',$status)->where('username','LIKE','%'.$username.'%')->get();
+		$akun = Account::where('status_aktif','=',$status)->where('username','LIKE','%'.$username.'%');
+		if ($status == 1) {
+			$akun = $akun->where('role','=','0')->get();
+		}else{
+			$akun = $akun->get();
+		}
 		$ret['token'] = $token;
 		$r = array();
 		foreach($akun as $row){

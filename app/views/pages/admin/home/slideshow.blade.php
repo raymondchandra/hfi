@@ -235,14 +235,20 @@ $(".update_foto_slideshow").validate({
 			processData: false,
 			contentType: false,					
 			success: function(as){			
-				alert(as);
-				$(".loader").fadeIn( 377, function(){
-					$( ".pu_c" ).fadeOut( 200, function(){});
-					$('.admin_control_panel').load('admin/home/slide');									
-					$(".loader").fadeOut( 377, function(){
-						// alert("Berhasil Update Foto Slideshow");												
-					});
-				});																			
+				if (as=="success") { 
+					alert('Sukses mengubah gambar.');
+				}else if(as == "failed"){
+					alert('Gagal mengubah gambar.');
+				}else{
+					alert(as);
+				}
+				$(".loader").fadeIn( 377, function(){});	
+				$( ".pu_c" ).fadeOut( 200, function(){});
+				$('.admin_control_panel').load('admin/home/slide');	
+											
+				//$(".loader").fadeOut( 377, function(){
+					// alert("Berhasil Update Foto Slideshow");												
+				//});																		
 			},
 			error:function(errorThrown){
 				alert("Gagal Update Foto Slideshow");
@@ -290,6 +296,7 @@ $('.ok_change').click(function(){
 	$(this).css('display','none');
 	$(this).siblings('.reset_change').css('display','none');
 	$(this).siblings('.default_val').val($(this).prev().val());
+	var text = $(this).prev();
 	$.ajax({
 		type: 'PUT',
 		url: 'admin/editCaption',
@@ -303,6 +310,7 @@ $('.ok_change').click(function(){
 			}
 			else if(response==2){
 				alert("Tidak ada gambar.");
+				text.val("");
 			}
 			
 			//pop up

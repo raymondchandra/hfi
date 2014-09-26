@@ -8,7 +8,7 @@ class OrganisasiController extends BaseController {
 	{
 	
 		$arr = $this->setHeader();
-		$pengs = $this->get_all_pengurus();
+		$pengs = $this->get_semua_pengurus(1);
 		return View::make('pages.organisasi', compact('arr', 'pengs'));
 	}
 	
@@ -16,8 +16,8 @@ class OrganisasiController extends BaseController {
 	{
 		$arr = $this->setHeader();
 		$arr2 = $this->get_semua_cabang();
-			$arr3 = $this->get_all_pengurus();
-		return View::make('pages.cabang', compact('arr','arr2','arr3'));
+		//	$arr3 = $this->get_semua_pengurus();
+		return View::make('pages.cabang', compact('arr','arr2'));
 	}
 	
 
@@ -54,10 +54,10 @@ class OrganisasiController extends BaseController {
 			// return $pengs;
 		// }
 	// }
+
 	// pengurus
-	public function get_semua_pengurus()
+	public function get_semua_pengurus($id_cabang)
 	{			
-		$id_cabang = Input::get('id_cabang');
 		$count = DB::table('pengurus')->where('id_cabang','=', $id_cabang)->paginate(10);
 		if(count($count) != 0)
 		{
@@ -66,6 +66,35 @@ class OrganisasiController extends BaseController {
 			return "";
 		}
 	}
-}
 
-?>
+	public function view_detail($id)
+	{
+		$cabang = $this->get_cabang($id);
+		$pengurus = $this->get_pengurus($id);
+		return View::make('pages.detailCabang',compact('id','cabang','pengurus'));
+	}
+
+	public function get_cabang($id)
+	{
+		$count = Cabang::find($id);
+		if(count($count) != 0)
+		{
+			return $count;
+			
+		}else
+		{
+			return $id;
+		}
+	}
+
+	public function get_pengurus($id_cabang)
+	{
+		$count = DB::table('pengurus')->where('id_cabang', $id_cabang)->paginate(10);
+		if(count($count) != 0)
+		{
+			return $count;
+		}else{
+			return "";
+		}
+	}
+}

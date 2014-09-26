@@ -41,7 +41,7 @@
 				'profesi' : $profesi
 			},
 			success: function(data){							
-					alert("sukses");
+					//alert("sukses");
 					//alert("datalength "+data.length);
 				// var arrlist = [];
 				// var length_arrlist = arrlist.length;								

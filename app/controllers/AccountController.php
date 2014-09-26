@@ -97,7 +97,11 @@ class AccountController extends BaseController {
 			$date = Input::get('tanggallahir');
 			$datepiece = explode('.',$date);
 			$date = $datepiece[2].'-'.$datepiece[1].'-'.$datepiece[0];
-			$gender = Input::get('gender');
+			if (Input::get('gender') == "pria") {
+				$gender = 1;
+			}else{
+				$gender = 0;
+			}
 			$tema = Input::get('temapenelitian');
 			$spesialisasi = Input::get('spesialisasi');
 			$profesi = Input::get('profesi');
@@ -167,8 +171,7 @@ class AccountController extends BaseController {
 					$pend->save();
 				}
 			}
-			return Redirect::to('/')->with('message', 'Terima kasih telah melakukan pendaftar, silahkan menyelesaikan administrasi pembayaran. Keterangan lebih lanjut dapat 
-			dilihat pada <a href="/anggota">Anggota</a>');
+			return Redirect::to('/')->with('message', 'Terima kasih telah melakukan pendaftar, silahkan menyelesaikan administrasi pembayaran.');
 		}else
 		{
 			return Redirect::to('/registrasi')->with('message', 'Error')->withErrors('Username telah terdaftar')->withInput();

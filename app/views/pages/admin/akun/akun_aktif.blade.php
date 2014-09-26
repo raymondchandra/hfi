@@ -13,7 +13,7 @@
 			var obj = JSON.parse(data);
 			$.each(obj,function(index, value){
 				//temp += '<li><div class="nomor_anggota">'+value.no_anggota+'</div>';
-				temp += '<li><div class="nomor_anggota">'+'ngasal'+'</div>';
+				temp += '<li><div class="nomor_anggota">'+value.no_anggota+'</div>';
 				temp += '<div class="username_akun">'+value.username+'</div>';
 				temp += '<div class="name_akun">'+value.nama+'</div>';
 				temp += '<div class="cabang_akun">'+value.cabang+'</div>';
@@ -37,7 +37,7 @@
 				if(obj.token == token){
 					$.each(obj.data,function(index, value){
 						//temp += '<li><div class="nomor_anggota">'+value.no_anggota+'</div>';
-						temp += '<li><div class="nomor_anggota">'+'ngasal'+'</div>';
+						temp += '<li><div class="nomor_anggota">'+value.no_anggota+'</div>';
 						temp += '<div class="username_akun">'+value.username+'</div>';
 						temp += '<div class="name_akun">'+value.nama+'</div>';
 						temp += '<div class="cabang_akun">'+value.cabang+'</div>';

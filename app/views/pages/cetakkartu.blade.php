@@ -38,7 +38,7 @@
 				{{$date}}
 			</div>
 			
-			<img src='{{ asset("assets/img/foto_kartu.png") }}' width="85" alt="" class="kartu_hfi"/>
+			<img src='{{ asset($profile->foto_profile) }}' width="85" alt="" class="kartu_hfi"/>
 			
 
 			<div class="hyperlink_hfi">

@@ -130,7 +130,7 @@ class UserController extends BaseController {
 			$aktif = 0;
 		}
 		$cabang = Input::get('cabang');
-		if($cabang == 0)
+		if($cabang != 0)
 		{
 			$id_cab = Cabang::where('nama', '=', $cabang)->select('cabang.id')->first();
 		}
@@ -138,21 +138,24 @@ class UserController extends BaseController {
 		{
 			$id_cab = "";
 		}
-		$jenis_kelamin = Input::get('jenis_kelamin');
+		$jenis_kelamin = Input::get('jeniskelamin');
 		if($jenis_kelamin === 'pria')
 		{
 			$kode_jk = 1;
 		}
-		else
+		else if($jenis_kelamin === 'wanita')
 		{
 			$kode_jk = 0;
+		}else{
+			$kode_jk = 2;
 		}
+
 		$spesialisasi = Input::get('spesialisasi');
 		$profesi = Input::get('profesi');
 		
 		$res = Anggota::join('pendidikan', 'profile.id', '=', 'pendidikan.id_profile')
 						->join('auth', 'profile.id', '=' ,'auth.profile_id')
-						
+						->whereNotIn('no_anggota',array(''))
 						->where('nama', 'LIKE' ,'%'.$nama.'%')
 						->where('tema_penelitian', 'LIKE', '%'.$penelitian.'%')
 						->where('gelar', 'LIKE', '%'.$gelarPendidikan.'%')
@@ -160,12 +163,20 @@ class UserController extends BaseController {
 						->where('institusi', 'LIKE', '%'.$institusi.'%')
 						->where('email', 'LIKE', '%'.$surel.'%')
 						->where('status_aktif', '=', $aktif)
-						->where('id_cabang', 'LIKE', $id_cab)
 						->where('spesialisasi', 'LIKE', '%'.$spesialisasi.'%')
-						->where('profesi', 'LIKE', '%'.$profesi.'%')
-						->where('gender', '=', $kode_jk)
-						->get();		
-		return $res;
+						->where('profesi', 'LIKE', '%'.$profesi.'%');
+						//->where('gender', '=', $kode_jk)
+		if($id_cab === ""){}else{
+			$res = $res->where('id_cabang', '=', $id_cab);
+		}
+
+		if($kode_jk != 2){
+			$res = $res->where('gender', '=', $kode_jk)->orderBy('nama', 'asc')->get();
+		}else{
+			$res = $res->orderBy('nama', 'asc')->get();
+		}
+		
+		return $res;		
 	}
 	
 	public function get_all_cabang()
@@ -279,25 +290,33 @@ class UserController extends BaseController {
 	{				
 		if(Input::hasFile('fileFoto'))
 		{					
-			$imgType = Input::file('fileFoto')->getMimeType();				
-			if(substr($imgType,0,6) != "image/"){
-				return "failed";
-			}
-		
-			$file = Input::file('fileFoto');
-			$destinationPath = "assets/file_upload/img/";
-			$fileName = $file->getClientOriginalName();
-			$uploadSuccess   = $file->move($destinationPath, $fileName);
-			
+			//$imgType = Input::file('fileFoto')->getMimeType();				
+			//if(substr($imgType,0,6) != "image/"){
+			//	return "failed";
+			//}
 			$id_profile = Auth::user()->profile->id;
 			$profile = Anggota::find($id_profile);
-		
+
+			$file = Input::file('fileFoto');
+			$destinationPath = "assets/file_upload/profile/".$id_profile.'/';
+			$fileName = $file->getClientOriginalName();
+
+			if($profile != NULL){ 
+				//delete foto lama
+				$pathLama = $profile -> foto_profile;
+				File::delete($pathLama);
+			}else{
+				return 'error';
+			}
+			$uploadSuccess   = $file->move($destinationPath, $fileName);
 			$profile -> timestamps = false;			
 			$profile -> foto_profile = $destinationPath.$fileName;
-			$profile -> save();
-											
-			return "success";		
-			//return $imgType;
+			try{
+				$profile->save();
+				return 'success';
+			} catch (Exception $e) {
+				return $e;
+			}
 		}
 		else
 		{

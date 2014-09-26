@@ -124,6 +124,13 @@
 	<script>
 		$(document).ready(function(){
 			$( ".loader" ).fadeOut( 200, function(){});
+			
+			<?php
+			 	$message = Session::get('message');
+			 	if($message != ""){
+			 		echo 'alert("'.$message.'");';
+			 	} 
+			?>
 		});
 		
 	</script>

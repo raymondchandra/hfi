@@ -8,11 +8,15 @@
 		<hr style="margin-top: 30px; margin-left: 20px;"/>
 		<div id="uploadttg" style="margin-left: 20px !important;">
 			<h3>Gambar Tanda Tangan Ketua HFI</h3>
-			<img id="gambar_tanda_tangan" src="assets/img/tandatangan.jpg" alt="tandatangan" width="118" height="63"/>
+			<img id="gambar_tanda_tangan" src="" alt="tandatangan" width="118" height="63"/>
 			{{ Form::file('uploadSignature', array('name'=>'uploadSignature','id'=>'uploadSignature', 'accept' => "image/*")) }}
 			{{ Form::submit('Unggah Tanda Tangan', array('id'=>'ok_edit_tanda_tangan_button', 'style' => 'display: block; margin-left: 100px; margin-top: 20px;')) }}
 		</div>		
 		<script>
+			$(document).ready(function() {
+				showImageFirst();
+			});
+		
 			$('body').on('change','#uploadSignature',function(){
 				var i = 0, len = this.files.length, img, reader, file;
 				
@@ -35,6 +39,14 @@
 				//var image = "<img src='"+source+"' alt='tandatangan' width=118 height=63 />"										
 				$('#gambar_tanda_tangan').attr('src',source);
 			} 
+			
+			function showImageFirst(){
+				$('#gambar_tanda_tangan').attr('src', 'assets/file_upload/tandatangan/tandatangan.png');
+			}
+			
+			$('body').on('click','#ok_edit_tanda_tangan_button',function(){
+				
+			});
 		</script>
 	</div>
 </div>

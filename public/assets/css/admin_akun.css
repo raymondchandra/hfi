@@ -75,7 +75,7 @@
 .admin_akun_list ul li *{
 	display:block;
 	float:left;
-	padding-right:3px;
+	/*padding-right:3px;*/
 }
 
 .admin_akun_list ul li .username_akun{

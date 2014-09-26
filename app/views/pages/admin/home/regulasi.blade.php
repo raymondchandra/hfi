@@ -38,9 +38,9 @@
 								for($i=0; $i<length; $i++){
 									arrIDRegulasi[$i] = data[$i]['id'];
 									arrFILEPATHRegulasi[$i] = data[$i]['file_path'];
-									list+="<tr>";							
-									list+="<td><a href='javascript:void(0)' class='versi_regulasi' value='"+data[$i]['file_path']+"'>"+data[$i]['versi']+"</a></td>";
-									list+="<td><p style='display:none;'>"+data[$i]['file_path']+"</p><input type='button' value='x' class='hapus_regulasi'/><input type='hidden' class='id_regulasi' value='"+$i+"'/> </td>";
+									list+="<tr style='padding-top:5px; padding-bottom: 5px; '>";							
+									list+="<td><a href='javascript:void(0)' class='versi_regulasi' style='line-height: 36px; margin-right: 10px;' value='"+data[$i]['file_path']+"'>"+data[$i]['versi']+"</a></td>";
+									list+="<td><p style='display:none;'>"+data[$i]['file_path']+"</p><input type='button' value='hapus' class='hapus_regulasi btn btn-danger'/><input type='hidden' class='id_regulasi' value='"+$i+"'/> </td>";
 									list+="</tr>";
 								}
 								$('.tabel_list_regulasi').html(list);

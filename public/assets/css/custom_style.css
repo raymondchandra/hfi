@@ -940,8 +940,10 @@ label.error {
 li:hover ._home_tombol:before,
 li:hover ._organisasi_tombol:before,
 li:hover ._publikasi_tombol:before,
+li:hover ._kegiatan_tombol:before,
 li:hover ._anggota_tombol:before,
-li:hover ._kontak_tombol:before
+li:hover ._kontak_tombol:before,
+li:hover ._akun_tombol:before
 {
 -webkit-transition: all 100ms linear 100ms; /* For Safari 3.1 to 6.0 */
     transition: all 100ms linear 100ms;
@@ -1165,7 +1167,7 @@ display: block;
 }
 
 
-.btn {
+.btn, button.btn  {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
@@ -1183,6 +1185,7 @@ display: block;
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
+  box-shadow: none;
 }
 .btn:focus,
 .btn:active:focus,

@@ -247,6 +247,9 @@
 							
 							</textarea>
 						</div>
+						<script>
+							$('.jqte').class('jqte_focused');
+						</script>
 
 						{{Form::button('Kirim Pesan', array('style' => 'display:block; margin-left: auto; margin-right: auto;','id'=>'ok_tambah_kegiatan', 'class' => 'button'));}}
 					{{ Form::close() }}

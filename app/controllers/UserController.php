@@ -305,8 +305,7 @@ class UserController extends BaseController {
 		}
 	} 
 	
-	
-	public function getNomorAnggota($id_cabang)
+	public static function getNomorAnggota($id_cabang)
 	{
 		$year = Carbon::now()->year;
 		
@@ -335,9 +334,17 @@ class UserController extends BaseController {
 	public static function addNomerAnggota($account_id)
 	{
 		$profile = Account::find($account_id)->profile;
-		//isi disini vid
-		return 'asdf';
+		if($profile != null)
+		{
+			$profile->no_anggota = UserController::getNomorAnggota($profile->id_cabang);
+			$profile->timestamps = false;
+			$profile->save();
+			return "success";
+		}
+		else
+		{
+			return "failed";
+		}
 	}
-	
 }
 ?>

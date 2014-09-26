@@ -88,28 +88,6 @@ use Carbon\Carbon;
 			}
 		}
 		
-		//before
-		public function get_semua_pengurus_front()
-		{
-			// $count = Pengurus::all();					
-			// if(count($count) != 0)
-			// {
-				// return $count;
-			// }else{
-				// return "";
-			// }
-			$id_cabang = Input::get('id_cabang');
-			$count = DB::table('pengurus')->where('id_cabang', $id_cabang)->get();
-			if(count($count) != 0)
-			{
-				return $count;
-			}else{
-				return "";
-			}
-		}
-		
-		
-		
 		public function edit_cabang()
 		{
 			$id_cabang = Input::get('id_cabang');

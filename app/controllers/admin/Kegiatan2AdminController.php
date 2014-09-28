@@ -69,4 +69,34 @@ class Kegiatan2AdminController extends BaseController {
 		$type = $kegiatan->type;
 		return View::make('pages.admin.kegiatan.simposium_index',compact('id','nama_kegiatan','type'));
 	}
+
+	public function view_general($id)
+	{
+		return View::make('pages.admin.kegiatan.simposium_general',compact('id'));
+	}
+
+	public function view_konten($id)
+	{
+		return View::make('pages.admin.kegiatan.simposium_konten_index',compact('id'));
+	}
+
+	public function view_harga($id)
+	{
+		return View::make('pages.admin.kegiatan.simposium_harga',compact('id'));
+	}
+
+	public function view_peserta($id)
+	{
+		return View::make('pages.admin.kegiatan.simposium_peserta',compact('id'));
+	}
+
+	public function view_pesan($id)
+	{
+		return View::make('pages.admin.kegiatan.simposium_pesan',compact('id'));
+	}
+
+	public function view_sponsor($id)
+	{
+		return View::make('pages.admin.kegiatan.simposium_sponsor',compact('id'));
+	}
 }

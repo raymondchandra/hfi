@@ -12,32 +12,32 @@
 
 	$("#general_button").click(function(){
 		$( ".loader" ).fadeIn( 200, function(){});
-		$('.admin_control_panel').load();
+		$('.admin_control_panel').load('admin/kegiatan2/general/'+id);
 	});
 
 	$("#konten_button").click(function(){
 		$( ".loader" ).fadeIn( 200, function(){});
-		$('.admin_control_panel').load();
+		$('.admin_control_panel').load('admin/kegiatan2/konten/'+id);
 	});
 
 	$("#harga_button").click(function(){
 		$( ".loader" ).fadeIn( 200, function(){});
-		$('.admin_control_panel').load();
+		$('.admin_control_panel').load('admin/kegiatan2/harga/'+id);
 	});
 
 	$("#peserta_button").click(function(){
 		$( ".loader" ).fadeIn( 200, function(){});
-		$('.admin_control_panel').load();
+		$('.admin_control_panel').load('admin/kegiatan2/peserta/'+id);
 	});
 
 	$("#pesan_button").click(function(){
 		$( ".loader" ).fadeIn( 200, function(){});
-		$('.admin_control_panel').load();
+		$('.admin_control_panel').load('admin/kegiatan2/pesan/'+id);
 	});
 
 	$("#sponsor_button").click(function(){
 		$( ".loader" ).fadeIn( 200, function(){});
-		$('.admin_control_panel').load();
+		$('.admin_control_panel').load('admin/kegiatan2/sponsor/'+id);
 	});
 </script>
 

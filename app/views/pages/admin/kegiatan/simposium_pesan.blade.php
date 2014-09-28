@@ -13,9 +13,8 @@
 
 <div class="container_12">
 	<div class="grid_12">
-		<div class='admin_title'>General</div>
+		<div class='admin_title'>Pesan</div>
 		<a href='javascript:void(0)' onClick='back()' >Back</a>
 
-		
 	</div>
 </div>

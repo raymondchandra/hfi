@@ -255,6 +255,12 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	Route::delete('/kegiatan2/{id}', ['as' => 'admin.kegiatan2.delKegiatan', 'uses' => 'Kegiatan2AdminController@delete_kegiatan']);
 
 	Route::get('/kegiatan2detail/{id}', ['as' => 'admin.kegiatan2detail.{jenis}', 'uses' => 'Kegiatan2AdminController@view_detail']);
+	Route::get('/kegiatan2/general/{id}', ['as' => 'admin.kegiatan2.general.{id}', 'uses' => 'Kegiatan2AdminController@view_general']);
+	Route::get('/kegiatan2/konten/{id}', ['as' => 'admin.kegiatan2.konten.{id}', 'uses' => 'Kegiatan2AdminController@view_konten']);
+	Route::get('/kegiatan2/harga/{id}', ['as' => 'admin.kegiatan2.harga.{id}', 'uses' => 'Kegiatan2AdminController@view_harga']);
+	Route::get('/kegiatan2/peserta/{id}', ['as' => 'admin.kegiatan2.peserta.{id}', 'uses' => 'Kegiatan2AdminController@view_peserta']);
+	Route::get('/kegiatan2/pesan/{id}', ['as' => 'admin.kegiatan2.pesan.{id}', 'uses' => 'Kegiatan2AdminController@view_pesan']);
+	Route::get('/kegiatan2/sponsor/{id}', ['as' => 'admin.kegiatan2.sponsor.{id}', 'uses' => 'Kegiatan2AdminController@view_sponsor']);
 	//end of simposium dan ictap
 });
 

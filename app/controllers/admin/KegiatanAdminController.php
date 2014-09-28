@@ -14,12 +14,6 @@ class KegiatanAdminController extends BaseController {
 		elseif($jenis == 2){
 			return View::make('pages.admin.kegiatan.kegiatan_internasional',compact('kegiatans'));
 		}
-		elseif($jenis == 3){
-			return View::make('pages.admin.kegiatan.kegiatan_nasional',compact('kegiatans'));
-		}
-		else{
-			return View::make('pages.admin.kegiatan.kegiatan_nasional',compact('kegiatans'));
-		}
 	}
 	
 	public function get_kegiatan(){

@@ -13,7 +13,7 @@ class KegiatanController extends BaseController {
 
 	public static function get_all_kegiatan($jenis)
 	{
-		$kegiatan = Kegiatan::where('type','=',$jenis)->orderBy('waktu_mulai')->paginate(2);
+		$kegiatan = Kegiatan::where('type','=',$jenis)->orderBy('waktu_mulai')->paginate(5);
 		if(count($kegiatan) == 0)
 		{
 			return NULL;

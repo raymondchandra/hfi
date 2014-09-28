@@ -94,7 +94,12 @@ $('body').on('click','#admin_kegiatan_internasional',function(){
 
 $('body').on('click','#admin_kegiatan_simposium',function(){
 	$( ".loader" ).fadeIn( 200, function(){});
-	 $('.admin_control_panel').load('admin/kegiatan/3');
+	 $('.admin_control_panel').load('admin/kegiatan2/3');
+});
+
+$('body').on('click','#admin_kegiatan_ictap',function(){
+	$( ".loader" ).fadeIn( 200, function(){});
+	 $('.admin_control_panel').load('admin/kegiatan2/4');
 });
 
 //sidebar publikasi

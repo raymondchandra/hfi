@@ -49,6 +49,9 @@
 					<li>
 						<a href="javascript:void(0)" id="admin_kegiatan_simposium">Simposium</a>
 					</li>
+					<li>
+						<a href="javascript:void(0)" id="admin_kegiatan_ictap">ICTAP</a>
+					</li>
 				</ul>
 			</li>
 			

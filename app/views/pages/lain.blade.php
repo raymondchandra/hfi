@@ -6,10 +6,7 @@
 		<div class="selamat_datang_container">
 			
 			<div class="main_content">
-				<h2>
-					Lain-lain
-				</h2>
-				<h4>{{$lain->title}}</h4>
+				<h2>{{$lain->title}}</h2>
 				
 				<p>
 					{{$lain->konten}}

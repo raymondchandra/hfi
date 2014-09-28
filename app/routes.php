@@ -242,6 +242,20 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	//delete berkas
 	Route::delete('/berkas/deleteberkas', ['as' => 'admin.berkas.deleteberkas', 'uses' => 'BerkasAdminController@delete_berkas']);
 	Route::delete('/lain/{id}', ['as' => 'admin.lain.deleteLain', 'uses' => 'LainAdminController@delete_lain']);
+
+
+
+
+
+
+
+	//simposium dan ictap
+	Route::get('/kegiatan2/{jenis}', ['as' => 'admin.kegiatan2.{jenis}', 'uses' => 'Kegiatan2AdminController@view_index']);
+	Route::post('/kegiatan2', ['as' => 'admin.kegiatan2.addKegiatan', 'uses' => 'Kegiatan2AdminController@add_kegiatan']);
+	Route::delete('/kegiatan2/{id}', ['as' => 'admin.kegiatan2.delKegiatan', 'uses' => 'Kegiatan2AdminController@delete_kegiatan']);
+
+	Route::get('/kegiatan2detail/{id}', ['as' => 'admin.kegiatan2detail.{jenis}', 'uses' => 'Kegiatan2AdminController@view_detail']);
+	//end of simposium dan ictap
 });
 
 //post route

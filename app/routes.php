@@ -280,6 +280,10 @@ Route::get('/test/simposium', function()
 	{
 		return View::make('pages.simposium_main');
 	});
+Route::get('/test/simposium_login', function()
+	{
+		return View::make('pages.simposium_login');
+	});
 Route::get('/test/simposium_tanggal', function()
 	{
 		return View::make('pages.simposium_tanggal');

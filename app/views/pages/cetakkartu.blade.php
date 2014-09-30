@@ -45,7 +45,7 @@
 				Untuk informasi kunjung {{Request::root()}}
 			</div>
 
-			<img src='{{ asset("assets/img/tanda_tangan_ketua.png") }}' width="101" alt="" class="tanda_tangan_ketua"/>
+			<img src='{{ asset("assets/file_upload/tandatangan/tandatangan.jpg") }}' width="101" alt="" class="tanda_tangan_ketua"/>
 		</div>
 		
 		<div class="right">

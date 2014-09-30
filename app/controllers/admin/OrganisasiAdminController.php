@@ -249,6 +249,34 @@ use Carbon\Carbon;
 			}
 			//File::deleteDirectory($directoryPath);
 		}
+
+		//upload tandatangan
+		public function edit_tandatangan()
+		{
+			if(Input::hasFile('fileTandaTangan'))
+			{
+				$file = Input::file('fileTandaTangan');
+				$destinationPath = "assets/file_upload/tandatangan/";
+				$fileName = "tandatangan.jpg";
+				$uploadSuccess = $file->move($destinationPath, $fileName);				
+								
+				return "Berhasil edit tandatangan";
+			}
+			else
+			{
+				return "Gagal edit tandatangan";
+			}
+		}
+		
+		// cek tandatangan
+		public function UrlExists()
+		{
+			if(file_exists("assets/file_upload/tandatangan/tandatangan.jpg")){
+				return "ada";
+			}else{
+				return "gaada";
+			}						
+		}	
 	}
 
 ?>

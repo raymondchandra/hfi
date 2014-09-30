@@ -243,7 +243,10 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	Route::delete('/berkas/deleteberkas', ['as' => 'admin.berkas.deleteberkas', 'uses' => 'BerkasAdminController@delete_berkas']);
 	Route::delete('/lain/{id}', ['as' => 'admin.lain.deleteLain', 'uses' => 'LainAdminController@delete_lain']);
 
-
+	//admin post tandatangan
+	Route::post('/postTandaTangan', ['as' => 'admin.postTandaTangan', 'uses' => 'OrganisasiAdminController@edit_tandatangan']);	
+	//admin cek tandatangan
+	Route::get('/cekTandaTangan', ['as' => 'admin.cekTandaTangan', 'uses' => 'OrganisasiAdminController@UrlExists']);
 
 
 

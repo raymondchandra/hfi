@@ -7,9 +7,11 @@
 <body>
 		<div class="container_12">
 			<div class="grid_12">
-				<a href="#" style="float: left;">
+				<h5 style="text-align: right;">
+					<a href="">
 					Login
 				</a>
+				</h5>
 			</div>	
 		</div>
 			@yield('content')

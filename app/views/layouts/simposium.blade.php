@@ -5,7 +5,13 @@
 	<!-- Latest compiled and minified CSS -->
 </head>
 <body>
-
+		<div class="container_12">
+			<div class="grid_12">
+				<a href="#" style="float: left;">
+					Login
+				</a>
+			</div>	
+		</div>
 			@yield('content')
 
 

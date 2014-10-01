@@ -66,37 +66,70 @@ class Kegiatan2AdminController extends BaseController {
 	{
 		$kegiatan = Kegiatan::find($id);
 		$nama_kegiatan = $kegiatan->nama_kegiatan;
-		$type = $kegiatan->type;
-		return View::make('pages.admin.kegiatan.simposium_index',compact('id','nama_kegiatan','type'));
+		return View::make('pages.simposium.admin.simposium_index',compact('id','nama_kegiatan'));
 	}
 
 	public function view_general($id)
 	{
-		return View::make('pages.admin.kegiatan.simposium_general',compact('id'));
+		$kegiatan = Kegiatan::find($id);
+		$nama_kegiatan = $kegiatan->nama_kegiatan;
+		return View::make('pages.simposium.admin.simposium_general',compact('id','nama_kegiatan'));
 	}
 
 	public function view_konten($id)
 	{
-		return View::make('pages.admin.kegiatan.simposium_konten_index',compact('id'));
+		$kegiatan = Kegiatan::find($id);
+		$nama_kegiatan = $kegiatan->nama_kegiatan;
+		return View::make('pages.simposium.admin.simposium_konten_index',compact('id','nama_kegiatan'));
 	}
 
-	public function view_harga($id)
-	{
-		return View::make('pages.admin.kegiatan.simposium_harga',compact('id'));
-	}
+	
 
-	public function view_peserta($id)
+	public function view_header($id)
 	{
-		return View::make('pages.admin.kegiatan.simposium_peserta',compact('id'));
-	}
-
-	public function view_pesan($id)
-	{
-		return View::make('pages.admin.kegiatan.simposium_pesan',compact('id'));
+		$kegiatan = Kegiatan::find($id);
+		$nama_kegiatan = $kegiatan->nama_kegiatan;
+		return View::make('pages.simposium.admin.simposium_header',compact('id','nama_kegiatan'));
 	}
 
 	public function view_sponsor($id)
 	{
-		return View::make('pages.admin.kegiatan.simposium_sponsor',compact('id'));
+		$kegiatan = Kegiatan::find($id);
+		$nama_kegiatan = $kegiatan->nama_kegiatan;
+		return View::make('pages.simposium.admin.simposium_sponsor',compact('id','nama_kegiatan'));
+	}
+
+	public function view_editor($type,$id)
+	{
+		$kegiatan = Kegiatan::find($id);
+		$nama_kegiatan = $kegiatan->nama_kegiatan;
+		$title = ucwords($type);
+		$text = "editor";
+		return View::make('pages.simposium.admin.simposium_editor',compact('id','nama_kegiatan','title','text'));
+	}
+
+	public function view_harga($id)
+	{
+		return View::make('pages.simposium.admin.simposium_harga',compact('id'));
+	}
+
+	public function view_peserta($id)
+	{
+		return View::make('pages.simposium.admin.simposium_peserta',compact('id'));
+	}
+
+	public function view_pesan($id)
+	{
+		return View::make('pages.simposium.admin.simposium_pesan',compact('id'));
+	}
+
+	public function view_berkas($id)
+	{
+		return View::make('pages.simposium.admin.simposium_sponsor',compact('id'));
+	}
+
+	public function view_template($id)
+	{
+		return View::make('pages.simposium.admin.simposium_sponsor',compact('id'));
 	}
 }

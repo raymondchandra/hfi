@@ -20,7 +20,7 @@ class CreateKegiatanKonten extends Migration {
 			$table->string('tipe');
 			$table->dateTime('tanggal_edit');
 			
-			$table->foreign('id_kegiatan')->references('id')->on('kegiatan');
+			$table->foreign('id_kegiatan')->references('id')->on('kegiatan2');
         });
 	}
 

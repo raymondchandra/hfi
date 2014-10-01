@@ -1,3 +1,6 @@
+@extends('layouts.simposium_admin')
+@section('content')
+
 <script>
 	var id = '{{$id}}';
 </script>
@@ -104,3 +107,4 @@
 		</script>
 	</div>
 </div>
+@stop

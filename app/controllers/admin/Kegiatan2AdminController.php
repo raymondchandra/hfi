@@ -62,7 +62,8 @@ class Kegiatan2AdminController extends BaseController {
 	}
 
 	public function edit_kegiatan($id){
-		$kegiatan = Kegiatan2::find($id);
+		return 'as';
+		/*$kegiatan = Kegiatan2::find($id);
 		$kegiatan->nama = Input::get('nama');
 		$kegiatan->tempat = Input::get('tempat');
 		$datepiece = explode('.',Input::get('tanggal_mulai'));
@@ -77,7 +78,7 @@ class Kegiatan2AdminController extends BaseController {
 			return 'success';
 		} catch (Exception $e) {
     		return 'Caught exception: '. $e->getMessage(). "\n";
-		}
+		}*/
 	}
 
 	public function edit_status($id){

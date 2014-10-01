@@ -276,6 +276,7 @@ Route::group(array('prefix' => 'simposium/admin', 'before' => ''), function () {
 	Route::put('/updateKegiatan/{id}', ['as' => 'admin.kegiatan2.updateKegiatan', 'uses' => 'Kegiatan2AdminController@edit_kegiatan']);
 	Route::put('/ubahStatus/{id}', ['as' => 'admin.kegiatan2.ubahStatus', 'uses' => 'Kegiatan2AdminController@edit_status']);
 	Route::put('/ubahStatAdmin/{id}', ['as' => 'admin.kegiatan2.ubahStatAdmin', 'uses' => 'Kegiatan2AdminController@edit_stat_admin']);
+	Route::put('/ubahPass/{id}', ['as' => 'admin.kegiatan2.ubahPass', 'uses' => 'Kegiatan2AdminController@edit_pass_admin']);
 
 	//admin post tandatangan
 	//Route::post('/postTandaTangan', ['as' => 'admin.postTandaTangan', 'uses' => 'OrganisasiAdminController@edit_tandatangan']);	

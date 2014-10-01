@@ -1,3 +1,5 @@
+@extends('layouts.simposium_admin')
+@section('content')
 <script>
 	var id = '{{$id}}';
 
@@ -6,7 +8,7 @@
 <div class="container_12">
 	<div class="grid_12">
 		<div class='admin_title'>{{$nama_kegiatan}}</div>
-		/
+		
 		<div>
 			<div>
 				<div><a href='general/{{$id}}' id='general_button'>Umum</a></div>
@@ -24,3 +26,4 @@
 		</div>
 	</div>
 </div>
+@stop

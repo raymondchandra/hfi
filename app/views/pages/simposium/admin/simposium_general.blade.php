@@ -1,7 +1,8 @@
+@extends('layouts.simposium_admin')
+@section('content')
 <script>
 	var id = '{{$id}}';
-	$('#updateKegiatan').click(function(){
-		
+	function updateKegiatan(){
 		$.ajax({
 			type: 'PUT',
 			url: '{{URL::route('admin.kegiatan2.updateKegiatan',array($id))}}',
@@ -22,7 +23,8 @@
 				alert(errorThrown);
 			}
 		},'json');
-	});
+	}
+	
 
 	$('#ubah_status').click(function(){
 		var input = array();
@@ -101,8 +103,8 @@
 	});
 
 </script>
-<link rel="stylesheet" type="text/css" href="assets/js/datetimepicker/jquery.datetimepicker.css"/ >
-<script src="assets/js/datetimepicker/jquery.datetimepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="{{asset('assets/js/datetimepicker/jquery.datetimepicker.css')}}"/ >
+<script src="{{asset('assets/js/datetimepicker/jquery.datetimepicker.js')}}"></script>
 <div class="container_12">
 	<div class="grid_12">
 		<div class='admin_title'>{{$nama_kegiatan}}</div>
@@ -133,49 +135,49 @@
 					<td><input type="text" value="" id="datepicker2"> </td>
 				</tr>
 			</table>
-			<button id="updateKegiatan">Ubah</button>
+			<button onClick="updateKegiatan()">Ubah</button>
 		</div>
-		<script>
-			jQuery('#datepicker1').datetimepicker({
-				lang:'en',
-				i18n:{
-			 		en:{
-			   			months:[
-						'January','February','March','April',
-						'May','June','July','August',
-						'September','October','November','December',
-			   			],
-			   			dayOfWeek:[
-						"Sun.", "Mon", "Tue", "Wed", 
-						"Thu", "Fri", "Sa.",
-			   			]
-			  			}
-			 		},
-			 	timepicker:false,
-			 	format:'d.m.Y'
-			});
-			
-			jQuery('#datepicker2').datetimepicker({
-			 	lang:'en',
-			 	i18n:{
-			  		en:{
-			   			months:[
-						'January','February','March','April',
-						'May','June','July','August',
-						'September','October','November','December',
-			   			],
-			   			dayOfWeek:[
-						"Sun.", "Mon", "Tue", "Wed", 
-						"Thu", "Fri", "Sa.",
-			   			]
-			  			}
-			 		},
-			 	timepicker:false,
-			 	format:'d.m.Y'
-			});
-			
-			
-		</script>
+			<script>
+				jQuery('#datepicker1').datetimepicker({
+					lang:'en',
+					i18n:{
+				 		en:{
+				   			months:[
+							'January','February','March','April',
+							'May','June','July','August',
+							'September','October','November','December',
+				   			],
+				   			dayOfWeek:[
+							"Sun.", "Mon", "Tue", "Wed", 
+							"Thu", "Fri", "Sa.",
+				   			]
+				  			}
+				 		},
+				 	timepicker:false,
+				 	format:'d.m.Y'
+				});
+				
+				jQuery('#datepicker2').datetimepicker({
+				 	lang:'en',
+				 	i18n:{
+				  		en:{
+				   			months:[
+							'January','February','March','April',
+							'May','June','July','August',
+							'September','October','November','December',
+				   			],
+				   			dayOfWeek:[
+							"Sun.", "Mon", "Tue", "Wed", 
+							"Thu", "Fri", "Sa.",
+				   			]
+				  			}
+				 		},
+				 	timepicker:false,
+				 	format:'d.m.Y'
+				});
+				
+				
+			</script>
 		<hr />
 		<div>
 			<h3>Registrasi</h3>
@@ -211,3 +213,4 @@
 	</div>
 </div>
 
+@stop

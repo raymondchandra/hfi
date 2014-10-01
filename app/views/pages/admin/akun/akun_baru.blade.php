@@ -133,15 +133,15 @@ $(document).ready(function () {
 			perPage : 10
 		});
 		/* on select change */
-		$("select").change(function(){
+		/*$("select").change(function(){*/
 			/* get new nº of items per page */
-		  var newPerPage = parseInt( $(this).val() );
+		 /* var newPerPage = parseInt( $(this).val() );*/
 		  /* destroy jPages and initiate plugin again */
-		  $("div.holder").jPages("destroy").jPages({
+		 /* $("div.holder").jPages("destroy").jPages({
 				containerID   : "jpage_list_akun",
 				perPage       : newPerPage
-			});
-		});
+			});*/
+		/*});*/
 	});
     }, 500);
 });

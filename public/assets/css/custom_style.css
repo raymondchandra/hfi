@@ -2597,3 +2597,39 @@ select[multiple].input-lg {
 .panel-danger > .panel-footer + .panel-collapse > .panel-body {
   border-bottom-color: #ebccd1;
 }
+
+
+
+
+
+
+
+
+
+.simposium_block {
+	height: 200px; 
+	background-color: #5757AF; 
+	margin-top: 20px; 
+	line-height: 200px; 
+	text-align: center;
+	color: #fff;
+	font-size: 18px;
+}
+.simposium_block:hover {
+	height: 200px; 
+	background-color: #313192; 
+	margin-top: 20px; 
+	line-height: 200px; 
+	text-align: center;
+	color: #fff;
+	font-size: 18px;
+}
+.simposium_block:active {
+	height: 200px; 
+	background-color: #1E1E61; 
+	margin-top: 20px; 
+	line-height: 200px; 
+	text-align: center;
+	color: #fff;
+	font-size: 18px;
+}

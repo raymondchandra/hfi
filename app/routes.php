@@ -320,6 +320,10 @@ Route::get('/test/simposium_peserta', function()
 	{
 		return View::make('pages.simposium.front.simposium_peserta');
 	});
+Route::get('/test/style_simposium', function()
+	{
+		return View::make('pages.simposium.admin.style_simposium');
+	});
 //temporary route for testing end
 
 

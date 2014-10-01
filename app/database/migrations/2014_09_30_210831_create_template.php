@@ -1,9 +1,8 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRate extends Migration {
+class CreateTemplate extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,17 +11,14 @@ class CreateRate extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('rate', function (Blueprint $table) {
+		Schema::table('template', function (Blueprint $table) {
             $table->create();
 			$table->increments('id');
-
 			$table->integer('id_kegiatan')->unsigned();
 			$table->string('tipe');
-			$table->string('desc');
-			
+			$table->longText('text');
 
-			
-			$table->foreign('id_kegiatan')->references('id')->on('kegiatan');
+			$table->foreign('id_kegiatan')->references('id')->on('kegiatan2');
         });
 	}
 
@@ -33,7 +29,7 @@ class CreateRate extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('rate', function (Blueprint $table) {
+		Schema::table('template', function (Blueprint $table) {
             $table->drop();
         });
 	}

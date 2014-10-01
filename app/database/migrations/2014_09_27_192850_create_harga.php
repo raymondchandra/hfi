@@ -16,15 +16,14 @@ class CreateHarga extends Migration {
             $table->create();
 			$table->increments('id');
 			$table->integer('id_kegiatan')->unsigned();
-			$table->integer('id_rate')->unsigned();
+			$table->tinyInteger('early');
 			$table->string('kategori');
 			$table->string('harga');
 			$table->tinyInteger('isHeader');
 			
 
 			
-			$table->foreign('id_kegiatan')->references('id')->on('kegiatan');
-			$table->foreign('id_rate')->references('id')->on('rate');
+			$table->foreign('id_kegiatan')->references('id')->on('kegiatan2');
         });
 	}
 

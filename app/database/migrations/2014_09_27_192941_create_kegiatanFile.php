@@ -18,9 +18,9 @@ class CreateKegiatanFile extends Migration {
 			$table->integer('id_kegiatan')->unsigned();
 
 			$table->string('file_path');
-			$table->string('tipe');
+			$table->string('tipe'); //header, sponsor, other
 			
-			$table->foreign('id_kegiatan')->references('id')->on('kegiatan');
+			$table->foreign('id_kegiatan')->references('id')->on('kegiatan2');
         });
 	}
 

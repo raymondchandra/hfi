@@ -27,12 +27,15 @@ class CreatePeserta extends Migration {
 			$table->string('email');
 			$table->string('alamat');
 
+			$table->string('status');
 			$table->tinyInteger('presentasi');
 			$table->longText('abstract');
 			$table->tinyInteger('status_bayar');
-			$table->string('invitation_letter');
+			$table->string('bukti_bayar');
+			$table->string('paper');
 
-			$table->foreign('id_kegiatan')->references('id')->on('kegiatan');
+
+			$table->foreign('id_kegiatan')->references('id')->on('kegiatan2');
         });
 	}
 

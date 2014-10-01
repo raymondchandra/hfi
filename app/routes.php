@@ -272,6 +272,15 @@ Route::group(array('prefix' => 'simposium/admin', 'before' => ''), function () {
 	Route::get('/konten/header/{id}', ['as' => 'admin.kegiatan2.konten.header', 'uses' => 'Kegiatan2AdminController@view_header']);
 	Route::get('/konten/sponsor/{id}', ['as' => 'admin.kegiatan2.konten.sponsor', 'uses' => 'Kegiatan2AdminController@view_sponsor']);
 	Route::get('/konten/editor/{type}/{id}', ['as' => 'admin.kegiatan2.konten.editor', 'uses' => 'Kegiatan2AdminController@view_editor']);
+
+	Route::put('/updateKegiatan/{id}', ['as' => 'admin.kegiatan2.updateKegiatan', 'uses' => 'Kegiatan2AdminController@edit_kegiatan']);
+	Route::put('/ubahStatus/{id}', ['as' => 'admin.kegiatan2.ubahStatus', 'uses' => 'Kegiatan2AdminController@edit_status']);
+	Route::put('/ubahStatAdmin/{id}', ['as' => 'admin.kegiatan2.ubahStatAdmin', 'uses' => 'Kegiatan2AdminController@edit_stat_admin']);
+
+	//admin post tandatangan
+	//Route::post('/postTandaTangan', ['as' => 'admin.postTandaTangan', 'uses' => 'OrganisasiAdminController@edit_tandatangan']);	
+	//admin cek tandatangan
+	//Route::get('/cekTandaTangan', ['as' => 'admin.cekTandaTangan', 'uses' => 'OrganisasiAdminController@UrlExists']);
 });
 
 //post route

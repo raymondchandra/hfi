@@ -492,6 +492,7 @@
 						</div>
 
 						{{Form::button('Kirim Pesan', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'edit_button'));}}
+						<input type='hidden' class='' />
 					{{ Form::close() }}
 					<style>
 						.row_label {

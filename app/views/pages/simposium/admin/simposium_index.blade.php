@@ -1,17 +1,12 @@
 <script>
 	var id = '{{$id}}';
 
-	function back(){
-		$( ".loader" ).fadeIn( 200, function(){});
-		$('.admin_control_panel').load('admin/kegiatan2/3');
-	}
 </script>
 
 <div class="container_12">
 	<div class="grid_12">
 		<div class='admin_title'>{{$nama_kegiatan}}</div>
-		<a href='javascript:void(0)' onClick='history.back();' >Back</a>
-
+		/
 		<div>
 			<div>
 				<div><a href='general/{{$id}}' id='general_button'>Umum</a></div>

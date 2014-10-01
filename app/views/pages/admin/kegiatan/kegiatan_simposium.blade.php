@@ -100,7 +100,7 @@
 					@else
 						@foreach($kegiatans as $kegiatan)
 							<tr style='padding-top:5px; padding-bottom: 5px;'>
-								<td><a href='simposium/admin/{{$kegiatan->id}}' class='kegiatan_simposium' style='line-height: 36px; margin-right: 10px;' >{{$kegiatan->nama_kegiatan}}</a></td>
+								<td><a href='simposium/admin/{{$kegiatan->id}}' target="_blank" class='kegiatan_simposium' style='line-height: 36px; margin-right: 10px;' >{{$kegiatan->nama_kegiatan}}</a></td>
 								<td><input type='button' value='hapus' class='hapus_regulasi btn btn-danger' onClick='hapus({{$kegiatan->id}})'/></td>
 							</tr>
 						@endforeach

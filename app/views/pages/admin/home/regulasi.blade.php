@@ -115,7 +115,7 @@
 						@foreach($regulasis as $regulasi)
 							<li style='padding-top:5px; padding-bottom: 5px;'>
 								<a href='javascript:void(0)' class='versi_regulasi' style='line-height: 36px; margin-right: 10px; display: inline-block;' value='{{$regulasi->file_path}}'>{{$regulasi->versi}}</a>
-								<input type='button' value='hapus' class='hapus_regulasi btn btn-danger'/><input type='hidden' class='id_regulasi' value='{{$regulasi->id}}'/>
+								<input type='button' value='hapus' class='hapus_regulasi btn btn-danger' style="float: right;"/><input type='hidden' class='id_regulasi' value='{{$regulasi->id}}'/>
 							</li>
 						@endforeach
 					@endif

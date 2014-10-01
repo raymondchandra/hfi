@@ -1,3 +1,5 @@
+@extends('layouts.simposium_admin')
+@section('content')
 <script>
 	var id = '{{$id}}';
 
@@ -7,20 +9,32 @@
 	<div class="grid_12">
 		<div class='admin_title'>{{$nama_kegiatan}}</div>
 		/
-		<div>
-			<div>
-				<div><a href='general/{{$id}}' id='general_button'>Umum</a></div>
-				<div><a href='konten/{{$id}}' id='konten_button'>Konten</a></div>
-				<div><a href='harga/{{$id}}' id='harga_button'>Harga</a></div>
-				<div><a href='peserta/{{$id}}' id='peserta_button'>Peserta</a></div>
-			</div>
-
-			<div >
-				
-				<div><a href='pesan/{{$id}}' id='pesan_button'>Pesan</a></div>
-				<div><a href='berkas/{{$id}}' id='berkas_button'>Berkas</a></div>
-				<div><a href='template/{{$id}}' id='template_button'>Template</a></div>
-			</div>
-		</div>
 	</div>
 </div>
+
+
+<div class="container_12" style="padding-bottom: 20px;">
+	<a href="general/{{$id}}" class="grid_3 simposium_block">
+		Umum
+	</a>
+	<a href="konten/{{$id}}" class="grid_3 simposium_block">
+		Kontent
+	</a>
+	<a href="harga/{{$id}}" class="grid_3 simposium_block">
+		Harga
+	</a>
+	<a href="peserta/{{$id}}" class="grid_3 simposium_block">
+		Peserta
+	</a>
+	<a href="pesan/{{$id}}" class="grid_3 simposium_block">
+		Pesan
+	</a>
+	<a href="berkas/{{$id}}" class="grid_3 simposium_block">
+		Berkas
+	</a>
+	<a href="template/{{$id}}" class="grid_3 simposium_block">
+		Template
+	</a>
+	
+</div>
+@stop

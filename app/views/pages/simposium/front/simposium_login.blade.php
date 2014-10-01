@@ -1,27 +1,5 @@
 @extends('layouts.simposium')
 @section('content')
-<div style="width: 100%; background: #ededed;">
-<div class="container_12" >	
-	<div class="grid_12">
-		<img src="{{ asset('assets/img/simposium_header.jpg') }}" width="940" alt="simpsium hfi"/>
-
-	</div>
-</div>
-</div>
-
-<div class="container_12">
-	<div class="grid_12 s_sponsor_area">
-		<img src="{{ asset('assets/img/sponsor.jpg') }}" width="64" alt="simpsium hfi"/>
-		<img src="{{ asset('assets/img/sponsor.jpg') }}" width="64" alt="simpsium hfi"/>
-		<img src="{{ asset('assets/img/sponsor.jpg') }}" width="64" alt="simpsium hfi"/>
-		<img src="{{ asset('assets/img/sponsor.jpg') }}" width="64" alt="simpsium hfi"/>
-		<img src="{{ asset('assets/img/sponsor.jpg') }}" width="64" alt="simpsium hfi"/>
-		<img src="{{ asset('assets/img/sponsor.jpg') }}" width="64" alt="simpsium hfi"/>
-		<img src="{{ asset('assets/img/sponsor.jpg') }}" width="64" alt="simpsium hfi"/>
-		<img src="{{ asset('assets/img/sponsor.jpg') }}" width="64" alt="simpsium hfi"/>
-
-	</div>
-</div>
 <div class="container_12">
 	<div class="grid_6 push_3">
 			<div class="panel panel-default" style="margin-top: 50px; margin-bottom: 50px;">

@@ -5,21 +5,19 @@
 	<!-- Latest compiled and minified CSS -->
 </head>
 <body>
-		<div class="container_12">
-			<div class="grid_12">
-				<h5 style="text-align: right;">
-					<a href="">
-					Login
-				</a>
-				</h5>
-			</div>	
-		</div>
-			@yield('content')
+	@include('includes.simposium.header')
+	@include('includes.simposium.sponsor')
+	@include('includes.simposium.login')
 
+	
+	@yield('content')
 
+	
 	<footer class="row">
 		@include('includes.footer')
 	</footer>
+	
+	@include('includes.modals.loading')
 
 </body>
 </html>

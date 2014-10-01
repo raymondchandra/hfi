@@ -1,92 +1,10 @@
 @extends('layouts.simposium')
 @section('content')
-<div style="width: 100%; background: #ededed;">
-<div class="container_12" >	
-	<div class="grid_12">
-		<img src="{{ asset('assets/img/simposium_header.jpg') }}" width="940" alt="simpsium hfi"/>
-
-	</div>
-</div>
-</div>
-
-<div class="container_12">
-	<div class="grid_12 s_sponsor_area">
-		<img src="{{ asset('assets/img/sponsor.jpg') }}" width="64" alt="simpsium hfi"/>
-		<img src="{{ asset('assets/img/sponsor.jpg') }}" width="64" alt="simpsium hfi"/>
-		<img src="{{ asset('assets/img/sponsor.jpg') }}" width="64" alt="simpsium hfi"/>
-		<img src="{{ asset('assets/img/sponsor.jpg') }}" width="64" alt="simpsium hfi"/>
-		<img src="{{ asset('assets/img/sponsor.jpg') }}" width="64" alt="simpsium hfi"/>
-		<img src="{{ asset('assets/img/sponsor.jpg') }}" width="64" alt="simpsium hfi"/>
-		<img src="{{ asset('assets/img/sponsor.jpg') }}" width="64" alt="simpsium hfi"/>
-		<img src="{{ asset('assets/img/sponsor.jpg') }}" width="64" alt="simpsium hfi"/>
-
-	</div>
-</div>
 <div class="container_12">
 	<div class="grid_12">
 		<div class="main_content">
-			<div class="side_panel_hfi">
-				<div class="side_panel_hfi_background">
-				<ul>
-					<li>
-						<a href="javascript:void(0)">Pertemuan Lalu</a>
-					</li>
-					<span class="white_space">&nbsp;</span>
-					<li>
-						<a href="">Tanggal Penting</a>
-					</li>
-					<span class="white_space">&nbsp;</span>
-					<li>
-						<a href="">
-							Lokasi
-						</a>
-					</li>
-					<span class="white_space">&nbsp;</span>
-					<li>
-						<a href="">
-							Akomodasi
-						</a>
-					</li>
-					<span class="white_space">&nbsp;</span>
-					<li>
-						<a href="">
-							Program
-						</a>
-					</li>
-					<span class="white_space">&nbsp;</span>
-					<li>
-						<a href="">
-							Registrasi
-						</a>
-					</li>
-					<span class="white_space">&nbsp;</span>
-					<li>
-						<a href="">
-							Peserta
-						</a>
-					</li>
-					<span class="white_space">&nbsp;</span>
-					<li>
-						<a href="">
-							Prosiding
-						</a>
-					</li>
-					<span class="white_space">&nbsp;</span>
-					<li>
-						<a href="">
-							Panitia
-						</a>
-					</li>
-					<span class="white_space">&nbsp;</span>
-					<li>
-						<a href="">
-							Kontak
-						</a>
-					</li>
-				
-				</ul>
-				</div>
-			</div>
+			
+			@include('includes.simposium.sidebar')
 			
 			<div class="content_hfi">
 				

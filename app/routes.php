@@ -297,27 +297,27 @@ Route::put('/changePass', ['as' => 'changePass', 'uses' => 'AccountController@ch
 //temporary route for testing
 Route::get('/test/simposium', function()
 	{
-		return View::make('pages.simposium_main');
+		return View::make('pages.simposium.front.simposium_main');
 	});
 Route::get('/test/simposium_login', function()
 	{
-		return View::make('pages.simposium_login');
+		return View::make('pages.simposium.front.simposium_login');
 	});
 Route::get('/test/simposium_tanggal', function()
 	{
-		return View::make('pages.simposium_tanggal');
+		return View::make('pages.simposium.front.simposium_tanggal');
 	});
 Route::get('/test/simposium_lokasi', function()
 	{
-		return View::make('pages.simposium_lokasi');
+		return View::make('pages.simposium.front.simposium_lokasi');
 	});
 Route::get('/test/simposium_registrasi', function()
 	{
-		return View::make('pages.simposium_registrasi');
+		return View::make('pages.simposium.front.simposium_registrasi');
 	});
 Route::get('/test/simposium_peserta', function()
 	{
-		return View::make('pages.simposium_peserta');
+		return View::make('pages.simposium.front.simposium_peserta');
 	});
 //temporary route for testing end
 

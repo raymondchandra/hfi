@@ -26,6 +26,5 @@
 
 @import 'admin_akun.css';
 
-@import 'bootstrap-modal.css';
-@import 'bootstrap-modal-bs3patch.css';
+@import 'bootstrapmodal.min.css';
 

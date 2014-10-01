@@ -2,6 +2,19 @@
 @section('content')
 <script>
 	var id = '{{$id}}';
+	$(document).ready(function(){
+		if('{{$kegiatan->openRegistration}}' == 0){
+			$('#regisTutup').attr('checked', 'checked');
+		}else{
+			$('#regisBuka').attr('checked', 'checked');
+		}
+
+		if('{{$kegiatan->admin_aktif}}' == 0){
+			$('#admTutup').attr('checked', 'checked');
+		}else{
+			$('#admAktif').attr('checked', 'checked');
+		}
+	});
 	function updateKegiatan(){
 		$.ajax({
 			type: 'PUT',
@@ -14,10 +27,10 @@
 			},
 			success: function(response){
 				if(response == 'success'){
-				alert("Berhasil merubah data");
-			}else{
-				alert(response);
-			}
+					alert("Berhasil merubah data");
+				}else{
+					alert(response);
+				}
 			},
 			error: function(jqXHR, textStatus, errorThrown){
 				alert(errorThrown);
@@ -25,15 +38,14 @@
 		},'json');
 	}
 	
-
-	$('#ubah_status').click(function(){
-		var input = array();
-		if($("#regisBuka").checked()){
+	function ubah_status(){
+		
+		var input;
+		if($("#regisBuka").is(':checked')){
 			input = {status : 1};
-		}else if($("#regisTutup").checked()){
+		}else if($("#regisTutup").is(':checked')){
 			input = {status : 0};
 		}
-
 		$.ajax({
 			type: 'PUT',
 			url: '{{URL::route('admin.kegiatan2.ubahStatus',array($id))}}',
@@ -49,13 +61,12 @@
 				alert(errorThrown);
 			}
 		},'json');
-	});
-
-	$('#ubah_status').click(function(){
-		var input = array();
-		if($("#admAktif").checked()){
+	}
+	function ubah_status_admin(){
+		var input;
+		if($("#admAktif").is(':checked')){
 			input = {status : 1};
-		}else if($("#admTutup").checked()){
+		}else if($("#admTutup").is(':checked')){
 			input = {status : 0};
 		}
 
@@ -74,10 +85,11 @@
 				alert(errorThrown);
 			}
 		},'json');
-	});
+	}
 
-	$('#ubah_status').click(function(){
+	function ubah_pass(){
 		if($("#pass").val() == $("#rePass").val()){
+			
 			$.ajax({
 				type: 'PUT',
 				url: '{{URL::route('admin.kegiatan2.ubahPass',array($id))}}',
@@ -98,16 +110,14 @@
 		}else{
 			alert("Password tidak sama.");
 		}
-
-			
-	});
+	}
 
 </script>
 <link rel="stylesheet" type="text/css" href="{{asset('assets/js/datetimepicker/jquery.datetimepicker.css')}}"/ >
 <script src="{{asset('assets/js/datetimepicker/jquery.datetimepicker.js')}}"></script>
 <div class="container_12">
 	<div class="grid_12">
-		<div class='admin_title'>{{$nama_kegiatan}}</div>
+		<div class='admin_title'>{{$kegiatan->nama}}</div>
 		<div>Umum</div>
 		<a href='javascript:void(0)' onClick='history.back();' >Back</a>
 
@@ -117,22 +127,22 @@
 				<tr>
 					<td>Nama</td>
 					<td>:</td>
-					<td><input type="text" id="namaKegiatan"></td>
+					<td><input type="text" id="namaKegiatan" value="{{$kegiatan->nama}}"></td>
 				</tr>
 				<tr>
 					<td>Tempat</td>
 					<td>:</td>
-					<td><input type="text" id="tempat"></td>
+					<td><input type="text" id="tempat" value="{{$kegiatan->tempat}}"></td>
 				</tr>
 				<tr>
 					<td>Tanggal mulai</td>
 					<td>:</td>
-					<td><input type="text" value="" id="datepicker1"> </td>
+					<td><input type="text" value="{{$tanggal_mulai}}" id="datepicker1"> </td>
 				</tr>
 				<tr>
 					<td>Tanggal selesai</td>
 					<td>:</td>
-					<td><input type="text" value="" id="datepicker2"> </td>
+					<td><input type="text" value="{{$tanggal_selesai}}" id="datepicker2"> </td>
 				</tr>
 			</table>
 			<button onClick="updateKegiatan()">Ubah</button>
@@ -154,7 +164,7 @@
 				  			}
 				 		},
 				 	timepicker:false,
-				 	format:'d.m.Y'
+				 	format:'d-m-Y'
 				});
 				
 				jQuery('#datepicker2').datetimepicker({
@@ -173,7 +183,7 @@
 				  			}
 				 		},
 				 	timepicker:false,
-				 	format:'d.m.Y'
+				 	format:'d-m-Y'
 				});
 				
 				
@@ -182,14 +192,14 @@
 		<div>
 			<h3>Registrasi</h3>
 			<span>Status pendaftaran : </span> <input type="radio" name="regis" id="regisBuka"> Buka <input type="radio" name="regis" id="regisTutup"> Tutup 
-			<br /><button id="ubah_status">Ubah</button>
+			<br /><button onClick="ubah_status()">Ubah</button>
 		</div>
 		<hr />
 		<div>
 			<h3>Admin</h3>
 
 			<span>Status admin : </span> <input type="radio" name="statAdmin" id="admAktif"> Aktif <input type="radio" name="statAdmin" id="admTutup"> Nonaktif 
-			<br /><button>Ubah</button>
+			<br /><button onClick="ubah_status_admin()">Ubah</button>
 
 			<table>
 				<tr>
@@ -208,7 +218,7 @@
 					<td><input type="password" id="rePass"> </td>
 				</tr>
 			</table>
-			<button id="ubahPass">Ubah</button>
+			<button onClick="ubah_pass()">Ubah</button>
 		</div>
 	</div>
 </div>

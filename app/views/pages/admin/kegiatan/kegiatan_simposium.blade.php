@@ -157,7 +157,7 @@
 						  			}
 						 		},
 						 	timepicker:false,
-						 	format:'d.m.Y'
+						 	format:'d-m-Y'
 						});
 						
 						jQuery('#datepicker2').datetimepicker({
@@ -176,7 +176,7 @@
 						  			}
 						 		},
 						 	timepicker:false,
-						 	format:'d.m.Y'
+						 	format:'d-m-Y'
 						});
 						
 						

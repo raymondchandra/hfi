@@ -31,9 +31,9 @@ class Kegiatan2AdminController extends BaseController {
 		$kegiatan = new Kegiatan2();
 		$kegiatan->nama = Input::get('nama_kegiatan');
 		$kegiatan->tempat = Input::get('tempat');
-		$datepiece = explode('.',Input::get('tanggal_mulai'));
+		$datepiece = explode('-',Input::get('tanggal_mulai'));
 		$date_start = $datepiece[2].'-'.$datepiece[1].'-'.$datepiece[0];
-		$datepiece = explode('.',Input::get('tanggal_selesai'));
+		$datepiece = explode('-',Input::get('tanggal_selesai'));
 		$date_finish = $datepiece[2].'-'.$datepiece[1].'-'.$datepiece[0];
 		$kegiatan->waktu_mulai = $date_start;
 		$kegiatan->waktu_selesai = $date_finish;
@@ -62,29 +62,29 @@ class Kegiatan2AdminController extends BaseController {
 	}
 
 	public function edit_kegiatan($id){
-		return 'as';
-		/*$kegiatan = Kegiatan2::find($id);
+		$kegiatan = Kegiatan2::find($id);
 		$kegiatan->nama = Input::get('nama');
 		$kegiatan->tempat = Input::get('tempat');
-		$datepiece = explode('.',Input::get('tanggal_mulai'));
+		$datepiece = explode('-',Input::get('tanggal_mulai'));
 		$date_start = $datepiece[2].'-'.$datepiece[1].'-'.$datepiece[0];
-		$datepiece = explode('.',Input::get('tanggal_selesai'));
+		
+		$datepiece = explode('-',Input::get('tanggal_selesai'));
 		$date_finish = $datepiece[2].'-'.$datepiece[1].'-'.$datepiece[0];
 		$kegiatan->waktu_mulai = $date_start;
 		$kegiatan->waktu_selesai = $date_finish;
-
+		$kegiatan->timestamps = false;
 		try {
 			$kegiatan->save();
 			return 'success';
 		} catch (Exception $e) {
     		return 'Caught exception: '. $e->getMessage(). "\n";
-		}*/
+		}
 	}
 
 	public function edit_status($id){
 		$kegiatan = Kegiatan2::find($id);
 		$kegiatan->openRegistration = Input::get('status');
-
+		$kegiatan->timestamps = false;
 		try {
 			$kegiatan->save();
 			return 'success';
@@ -95,8 +95,9 @@ class Kegiatan2AdminController extends BaseController {
 
 	public function edit_stat_admin($id){
 		$kegiatan = Kegiatan2::find($id);
-		$kegiatan->status_admin = Input::get('status');
+		$kegiatan->admin_aktif = Input::get('status');
 
+		$kegiatan->timestamps = false;
 		try {
 			$kegiatan->save();
 			return 'success';
@@ -110,6 +111,7 @@ class Kegiatan2AdminController extends BaseController {
 		$password = Hash::make(Input::get('pass'));
 		$kegiatan->pass_admin = $password;
 
+		$kegiatan->timestamps = false;
 		try {
 			$kegiatan->save();
 			return 'success';
@@ -128,8 +130,11 @@ class Kegiatan2AdminController extends BaseController {
 	public function view_general($id)
 	{
 		$kegiatan = Kegiatan2::find($id);
-		$nama_kegiatan = $kegiatan->nama;
-		return View::make('pages.simposium.admin.simposium_general',compact('id','nama_kegiatan'));
+		$date= date_create($kegiatan->waktu_mulai);
+		$tanggal_mulai = date_format($date,"d-m-Y");
+		$date= date_create($kegiatan->waktu_selesai);
+		$tanggal_selesai = date_format($date,"d-m-Y");
+		return View::make('pages.simposium.admin.simposium_general',compact('id','kegiatan','tanggal_mulai','tanggal_selesai'));
 	}
 
 	public function view_konten($id)

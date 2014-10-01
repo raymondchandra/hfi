@@ -19,8 +19,6 @@
 			'tempat' : $arrayData[2]['value'],
 			'tanggal_mulai' : $arrayData[3]['value'],
 			'tanggal_selesai' : $arrayData[4]['value'],
-			'waktu_mulai' : $arrayData[5]['value'],
-			'waktu_selesai' : $arrayData[6]['value'],
 			'type' : type
 		};
 		$.post(url,data,function(data){
@@ -100,7 +98,7 @@
 					@else
 						@foreach($kegiatans as $kegiatan)
 							<tr style='padding-top:5px; padding-bottom: 5px;'>
-								<td><a href='simposium/admin/{{$kegiatan->id}}' target="_blank" class='kegiatan_simposium' style='line-height: 36px; margin-right: 10px;' >{{$kegiatan->nama_kegiatan}}</a></td>
+								<td><a href='simposium/admin/{{$kegiatan->id}}' target="_blank" class='kegiatan_simposium' style='line-height: 36px; margin-right: 10px;' >{{$kegiatan->nama}}</a></td>
 								<td><input type='button' value='hapus' class='hapus_regulasi btn btn-danger' onClick='hapus({{$kegiatan->id}})'/></td>
 							</tr>
 						@endforeach
@@ -134,10 +132,6 @@
 							<div class="row_label">
 								<label>Tanggal</label>{{ Form::text('datepicker1', Input::old('datepicker1'),  array('id' => 'datepicker1', 'style' => 'width:80px;')) }}
 								<span>-</span>{{ Form::text('datepicker2', Input::old('datepicker2'),  array('id' => 'datepicker2', 'style' => 'width:80px;')) }}
-							</div>
-							<div class="row_label">
-								<label>Jam</label>{{ Form::text('timepickerstart', Input::old('timepickerstart'),  array('id' => 'timepickerstart', 'style' => 'width:80px;')) }}
-								<span>-</span>{{ Form::text('timepickerend', Input::old('timepickerend'),  array('id' => 'timepickerend', 'style' => 'width:80px;')) }}
 							</div>
 						</div>
 							
@@ -185,14 +179,6 @@
 						 	format:'d.m.Y'
 						});
 						
-						jQuery('#timepickerstart').datetimepicker({
-						  	datepicker:false,
-						  	format:'H:i'
-						});
-						jQuery('#timepickerend').datetimepicker({
-						  	datepicker:false,
-						  	format:'H:i'
-						});
 						
 					</script>
 				</div>			

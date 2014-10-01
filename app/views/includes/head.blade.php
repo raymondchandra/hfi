@@ -14,6 +14,9 @@
 	{{ HTML::style( asset('/assets/js/jquery-ui-1.11.1/jquery-ui.css')) }}
 	{{ HTML::script( asset('/assets/js/jquery-ui-1.11.1/jquery-ui.js')) }}
 	
+	<!-- tambahan fixer pop up modal ala bootstrap-->
+	{{ HTML::script( asset('/assets/js/bootmodal/bootstrap.min.js')) }}
+	
 	
 	<!--<link href="assets/css/all.css" rel="stylesheet">
     <link href="assets/css/carousel.css" rel="stylesheet">

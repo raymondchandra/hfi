@@ -210,7 +210,37 @@
 								<hr></hr>
 
 				<h2>Peserta Baru</h2>
-				Registrasi baru telah ditutup...
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<form role="form">
+						  <div class="form-group">
+							<label for="exampleInputEmail1">Name</label>
+							<input type="email" class="form-control" id="" placeholder="Enter email" style="padding-left: 0px; padding-right: 0px; text-indent: 6px;">
+						  </div>
+						  
+						  <div class="form-group">
+							<label for="exampleInputPassword1">Institution</label>
+							<input type="password" class="form-control" id="" placeholder="Password" style="padding-left: 0px; padding-right: 0px; text-indent: 6px;">
+						  </div>
+						  
+						  <div class="form-group">
+							<label for="exampleInputPassword1">Occupation</label>
+								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+								  <li role="presentation" class="dropdown-header">Dropdown header</li>
+								  ...
+								  <li role="presentation" class="divider"></li>
+								  <li role="presentation" class="dropdown-header">Dropdown header</li>
+								  ...
+								</ul>						 
+							</div>
+						 
+						  <button type="submit" class="btn btn-success">Kirim</button> 
+						  <button type="submit" class="btn btn-danger">Batal</button> 
+						</form>
+					</div>
+				</div>
+				
+				
 								<hr></hr>
 
 				<h2>Pengingat Password</h2>

@@ -45,10 +45,10 @@
 							if(ajaxACK == false){
 								if(data == 'ok')
 								{
-									$("#username-error").text("Anda dapat menggunakan username ini");
+									$("#username-error").text("Anda dapat menggunakan username ini").css('background-color', '#88DB12');
 									usernameOK = 'true';
 								}else{
-									$("#username-error").text("Username ini sudah terpakai");
+									$("#username-error").text("Username ini sudah terpakai").css('background-color', '#ea6153');;
 									usernameOK = 'false';
 								}
 								
@@ -327,7 +327,7 @@
 		#kota-error, #kodepos-error, #negara-error {
 			position: absolute;
 			width: 128px;
-			right: -268px;
+			right: -200px;
 		}
 		
 		#gender-error {
@@ -557,7 +557,7 @@
 		}
 		
 		#username-error {
-			background-color: #88DB12;
+			background-color: #ea6153;
 			float: right;
 			line-height: 28px;
 			border-radius: 5px;

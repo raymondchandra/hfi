@@ -212,6 +212,7 @@
 		$arrayData = $('#form_tambah_kegiatan').serializeArray();
 		var formData = new FormData();
 		
+		formData.append('id_kegiatan',$(this).next().val());
 		formData.append('nama_kegiatan',$arrayData[1]['value']);
 		formData.append('tempat',$arrayData[2]['value']);
 		formData.append('tanggal_mulai',$arrayData[3]['value']);
@@ -219,6 +220,7 @@
 		formData.append('waktu_mulai',$arrayData[5]['value']);
 		formData.append('waktu_selesai',$arrayData[6]['value']);
 		formData.append('deskripsi',$arrayData[7]['value']);
+		formData.append('type',1);
 		
 		formData.append('brosur',$file_brosur);
 		
@@ -492,7 +494,7 @@
 						</div>
 
 						{{Form::button('Kirim Pesan', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'edit_button'));}}
-						<input type='hidden' class='' />
+						<input type='hidden' class='id_edit' />
 					{{ Form::close() }}
 					<style>
 						.row_label {

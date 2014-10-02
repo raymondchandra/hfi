@@ -586,9 +586,7 @@ margin-left: 26px;
 }
 
 .red {
-	color: #f00;position: absolute;
-right: 0;right: -5px;
-top: -3px;
+	color: #f00;
 }
 
 label.error {

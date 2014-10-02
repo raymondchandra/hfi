@@ -9,30 +9,36 @@
 		<div class='admin_title'>{{$nama_kegiatan}}</div>
 		<div>Konten</div>
 		<a href='javascript:void(0)' onClick='history.back();' >Back</a>
-
-		<div>
-			<div>
-				<div><a href='header/{{$id}}' >Header</a></div>
-				<div><a href='sponsor/{{$id}}' >Sponsor</a></div>
-				<div><a href='editor/halaman depan/{{$id}}' >Halaman Depan</a></div>
-				<div><a href='editor/tanggal penting/{{$id}}' >Tanggal Penting</a></div>
-			</div>
-
-			<div >
-				
-				<div><a href='editor/lokasi/{{$id}}'>Lokasi</a></div>
-				<div><a href='editor/akomodasi/{{$id}}'>Akomodasi</a></div>
-				<div><a href='editor/program/{{$id}}'>Program</a></div>
-				<div><a href='editor/registrasi/{{$id}}'>Registrasi</a></div>
-			</div>
-			<div >
-				
-				<div><a href='editor/prosiding/{{$id}}'>Prosiding</a></div>
-				<div><a href='editor/panitia/{{$id}}'>Panitia</a></div>
-				<div><a href='editor/kontak/{{$id}}'>Kontak</a></div>
-			</div>
-		</div>
-		
 	</div>
 </div>
+
+<div class="container_12" style="padding-bottom: 20px;">
+
+				<a href='header/{{$id}}' class="grid_3 simposium_block">
+					Header</a>
+				<a href='sponsor/{{$id}}' class="grid_3 simposium_block">
+					Sponsor</a>
+				<a href='editor/halaman depan/{{$id}}' class="grid_3 simposium_block">
+					Halaman Depan</a>
+				<a href='editor/tanggal penting/{{$id}}' class="grid_3 simposium_block">
+					Tanggal Penting</a>
+			
+				<a href='editor/lokasi/{{$id}}' class="grid_3 simposium_block">
+					Lokasi</a>
+				<a href='editor/akomodasi/{{$id}}' class="grid_3 simposium_block">
+					Akomodasi</a>
+				<a href='editor/program/{{$id}}' class="grid_3 simposium_block">
+					Program</a>
+				<a href='editor/registrasi/{{$id}}' class="grid_3 simposium_block">
+					Registrasi</a>
+			
+				<a href='editor/prosiding/{{$id}}' class="grid_3 simposium_block">
+					Prosiding</a>
+				<a href='editor/panitia/{{$id}}' class="grid_3 simposium_block">
+					Panitia</a>
+				<a href='editor/kontak/{{$id}}' class="grid_3 simposium_block">
+					Kontak</a>
+</div>
+
+		
 @stop

@@ -1,3 +1,5 @@
+@extends('layouts.simposium_admin')
+@section('content')
 <script>
 	var id = '{{$id}}';
 </script>
@@ -18,13 +20,13 @@
 		<script>
 			$('.editor').jqte();
 			
-			/*$('#submit_change').click(function(){
-				//alert($('.editor').val());
+			$('#submit_change').click(function(){
 				$.ajax({
 					type: 'PUT',
-					url: 'admin/editWelcome',
+					url: '{{URL::route('admin.kegiatan2.konten.editEditor',array($id))}}',
 					data: {
-						"updateWelcome": $('.editor').val()
+						type : '{{$type}}',
+						text: $('.editor').val()
 					},
 					success: function(response){
 						alert(response);
@@ -33,7 +35,8 @@
 						alert(errorThrown);
 					}
 				},'json');
-			});*/
+			});
 		</script>
 	</div>
 </div>
+@stop

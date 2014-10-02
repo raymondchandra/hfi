@@ -18,7 +18,7 @@
 		Umum
 	</a>
 	<a href="konten/{{$id}}" class="grid_3 simposium_block">
-		Kontent
+		Konten
 	</a>
 	<a href="harga/{{$id}}" class="grid_3 simposium_block">
 		Harga

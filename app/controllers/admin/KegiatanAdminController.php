@@ -63,53 +63,32 @@ class KegiatanAdminController extends BaseController {
 	{
 		$id_kegiatan = Input::get('id_kegiatan');
 		$kegiatan = Kegiatan::find($id_kegiatan);
-		if($kegiatan->type == 1 || $kegiatan->type == 2){
-			if(Input::hasFile('brosur'))
-			{
-				$img_upload = Input::file('brosur');
-				$file_name = $img_upload->getClientOriginalName();
-				
-				if($kegiatan == NULL)
-				{
-					//error
-					return "Gagal Update Foto";
-				}
-				else
-				{
-					$pathLama = $kegiatan -> brosur_kegiatan;
-					if($pathLama != NULL)
-					{
-						File::delete($pathLama);
-						$destination = 'assets/file_upload/kegiatan/'.$kegiatan->id;
-					}
-					$uploadSuccess   = $img_upload->move($destination, $file_name);
-					$kegiatan->brosur_kegiatan = $destination.$file_name;
-				}
-			}else
-			{
-				//return "Gagal Update Foto";
+		$kegiatan->nama_kegiatan = Input::get('nama_kegiatan');
+		$kegiatan->tempat = Input::get('tempat');
+		$datepiece = explode('.',Input::get('tanggal_mulai'));
+		$date_start = $datepiece[2].'-'.$datepiece[1].'-'.$datepiece[0].' '.Input::get('waktu_mulai').':00';
+		$datepiece = explode('.',Input::get('tanggal_selesai'));
+		$date_finish = $datepiece[2].'-'.$datepiece[1].'-'.$datepiece[0].' '.Input::get('waktu_selesai').':00';
+		$kegiatan->waktu_mulai = $date_start;
+		$kegiatan->waktu_selesai = $date_finish;
+		$kegiatan->deskripsi = Input::get('deskripsi');
+		$kegiatan->uploaded_by = Auth::user()->id;
+		$kegiatan->link = Input::get('link');
+		$kegiatan->type = Input::get('type');
+		$kegiatan->timestamps = false;
+		
+		try {
+			$kegiatan->save();
+			$destination = 'assets/file_upload/kegiatan/'.$kegiatan->id.'/';
+			if(Input::hasFile('brosur')){
+				$photo = Input::file('brosur');
+				$kegiatan->brosur_kegiatan = $destination.$photo->getClientOriginalName();
+				$photo->move($destination, $photo->getClientOriginalName());
 			}
-
-			$kegiatan->nama_kegiatan = Input::get('nama_kegiatan');
-			$kegiatan->tempat = Input::get('tempat');
-			$datepiece = explode('.',Input::get('tanggal_mulai'));
-			$date_start = $datepiece[2].'-'.$datepiece[1].'-'.$datepiece[0].' '.Input::get('waktu_mulai').':00';
-			$datepiece = explode('.',Input::get('tanggal_selesai'));
-			$date_finish = $datepiece[2].'-'.$datepiece[1].'-'.$datepiece[0].' '.Input::get('waktu_selesai').':00';
-			$kegiatan->waktu_mulai = $date_start;
-			$kegiatan->waktu_selesai = $date_finish;
-			$kegiatan->deskripsi = Input::get('deskripsi');
-			$kegiatan->uploaded_by = Auth::user()->id;
-			$kegiatan->link = Input::get('link');
-			$kegiatan->timestamps = false;
-			try {
-				$kegiatan->save();
-				return "Success Update";
-			} catch (Exception $e) {
-	    		return 'Caught exception: '. $e->getMessage(). "\n";
-			}
-		}else{
-			return 'Error Update';
+			$kegiatan->save();
+			return "Berhasil Tambah Kegiatan";
+		} catch (Exception $e) {
+    		return 'Caught exception: '. $e->getMessage(). "\n";
 		}
 	}
 	

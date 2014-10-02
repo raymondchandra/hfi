@@ -285,6 +285,13 @@ Route::group(array('prefix' => 'simposium/admin', 'before' => ''), function () {
 	//Route::post('/postTandaTangan', ['as' => 'admin.postTandaTangan', 'uses' => 'OrganisasiAdminController@edit_tandatangan']);	
 	//admin cek tandatangan
 	//Route::get('/cekTandaTangan', ['as' => 'admin.cekTandaTangan', 'uses' => 'OrganisasiAdminController@UrlExists']);
+
+
+	Route::post('/harga/{id}', ['as' => 'admin.kegiatan2.tambahHarga', 'uses' => 'Kegiatan2AdminController@tambahHarga']);
+	Route::put('/harga/{id}', ['as' => 'admin.kegiatan2.editHarga', 'uses' => 'Kegiatan2AdminController@editHarga']);
+	Route::delete('/harga/{id}', ['as' => 'admin.kegiatan2.hapusHarga', 'uses' => 'Kegiatan2AdminController@hapus_harga']);
+
+	Route::get('/template/{type}/{id}', ['as' => 'admin.kegiatan2.templateDetail', 'uses' => 'Kegiatan2AdminController@view_template_editor']);
 });
 
 //post route

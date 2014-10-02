@@ -32,7 +32,7 @@ textarea.editor, div.editor, span.editor {
 }
 
 button {
-	display:block;
+/*	display:block;
 	margin:20px 0;
 	padding:6px 0 4px;
 	width:154px;
@@ -44,13 +44,13 @@ button {
 	font-weight:bold;
 	border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px;
 	box-shadow:0 0 2px #000, inset 0 1px 1px #99CC00; -webkit-box-shadow:0 0 2px #000, inset 0 1px 1px #99CC00; -moz-box-shadow:0 0 2px #000, inset 0 1px 1px #99CC00;
-	cursor:pointer;
+	cursor:pointer;*/
 }
 button:hover {
-	background:#78A000;
+	/*background:#78A000;
 	border-color:#658700;
 	text-decoration:none !important;
-	cursor:pointer
+	cursor:pointer*/
 }
 
 .jqte {

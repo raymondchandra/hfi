@@ -10,13 +10,13 @@
 						<div class="login_container">
 							<div class="alert_wrong_pass">
 								@if(Session::has('message'))
-									<p class="alert" style="margin: 0px !important;">{{ Session::get('message') }}</p>
+									<p class="alert" style="margin: 0px !important; padding: 0px;">{{ Session::get('message') }}</p>
 								@endif
 							</div>
 							
-							<h1 class="logintitle">
+							<h3 class="logintitle">
 								Login
-							</h1>
+							</h3>
 							<div class="form">
 								{{ Form::open(array('url' => '/signin')) }}
 								<form>
@@ -45,4 +45,8 @@
 			</div>
 		</div>
 	</div>
+
+
+
+	
 @stop

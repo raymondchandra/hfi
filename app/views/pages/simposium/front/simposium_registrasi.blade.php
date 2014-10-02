@@ -13,7 +13,7 @@
 				</h2>
 				<div class="panel panel-default">
 					<div class="panel-body">
-				<table class="table table-bordered table-striped">					
+				<table class="table table-bordered">					
 					<tr>
 						<td width="100">
 							Peserta
@@ -25,7 +25,7 @@
 							Normal Rate
 						</td>
 					</tr>
-					<tr>
+					<tr class="active">
 						<td>
 							SFN XXVII
 						</td>
@@ -106,71 +106,105 @@
 				Pengingat password akan dikirimkan ke surat elektronik yang dipakai saat registrasi. 
 				</p>	
 				
-				<h2>Peserta Teregister</h2>
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<form role="form">
-						  <div class="form-group">
-							<label for="exampleInputEmail1">Username</label>
-							<input type="email" class="form-control" id="" placeholder="Enter email" style="padding-left: 0px; padding-right: 0px; text-indent: 6px;">
-						  </div>
-						  <div class="form-group">
-							<label for="exampleInputPassword1">Password</label>
-							<input type="password" class="form-control" id="" placeholder="Password" style="padding-left: 0px; padding-right: 0px; text-indent: 6px;">
-						  </div>
-						 
-						  <button type="submit" class="btn btn-success">Kirim</button> 
-						  <button type="submit" class="btn btn-danger">Batal</button> 
-						</form>
-					</div>
-				</div>
 				
-								<hr></hr>
-
 				<h2>Peserta Baru</h2>
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<form role="form">
-						  <div class="form-group">
-							<label for="exampleInputEmail1">Name</label>
-							<input type="email" class="form-control" id="" placeholder="Enter email" style="padding-left: 0px; padding-right: 0px; text-indent: 6px;">
-						  </div>
-						  
-						  <div class="form-group">
-							<label for="exampleInputPassword1">Institution</label>
-							<input type="password" class="form-control" id="" placeholder="Password" style="padding-left: 0px; padding-right: 0px; text-indent: 6px;">
-						  </div>
-						  
-						  <div class="form-group">
-							<label for="exampleInputPassword1">Occupation</label>
-								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
-								  <li role="presentation" class="dropdown-header">Dropdown header</li>
-								  ...
-								  <li role="presentation" class="divider"></li>
-								  <li role="presentation" class="dropdown-header">Dropdown header</li>
-								  ...
-								</ul>						 
-							</div>
-						 
-						  <button type="submit" class="btn btn-success">Kirim</button> 
-						  <button type="submit" class="btn btn-danger">Batal</button> 
-						</form>
-					</div>
-				</div>
-				
-				
-								<hr></hr>
+						<form role="form" class="form-horizontal">
 
-				<h2>Pengingat Password</h2>
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<form role="form">
-						  <div class="form-group">
-							<label for="exampleInputEmail1">Username</label>
-							<input type="email" class="form-control" id="" placeholder="Enter email" style="padding-left: 0px; padding-right: 0px; text-indent: 6px;">
-						  </div>
-						 
+							 	<div class="form-group">
+									<label class=" control-label col-sm-3">Nama<span class="red">*</span></label>
+									{{ Form::text('input_nama',Input::old('input_nama'), array('id' => 'input_nama', 'class' => 'form-control col-sm-5')) }}
+							  	</div>
+							  	<div class="form-group">
+									<label class=" control-label col-sm-3">Institusi<span class="red">*</span></label>
+									{{ Form::text('input_institusi',Input::old('input_institusi'), array('id' => 'input_institusi', 'class' => 'form-control col-sm-5')) }}
+							  	</div>
+							  	<div class="form-group">
+								<label class=" control-label col-sm-3">Profesi<span class="red">*</span></label>
+								{{ Form::select('input_profesi',array(
+										'' => 'pilih!',
+										'mahasiswa' => 'mahasiswa',
+										'guru' => 'guru',
+										'dosen' => 'dosen',
+										'peneliti' => 'peneliti',
+										'karyawan' => 'karyawan',
+										'lainlain' => 'lain-lain'), null, array('class' => 'form-control col-sm-5'))
+									}}
+							</div>
+						  	<div class="form-group">
+								<label class=" control-label col-sm-3">Surat Elektronik<span class="red">*</span></label>
+								{{ Form::text('input_email', Input::old('input_email'), array('class' => 'form-control col-sm-5')) }}
+							</div>
+							<div class="form-group">
+								<label class=" control-label col-sm-3">Alamat<span class="red">*</span></label>
+								{{ Form::textarea('input_alamat', Input::old('input_alamat'), array('class' => 'form-control col-sm-5', 'style'=>'height: 100px;')) }}
+							</div>
+
+							<div class="form-group">
+								<label class=" control-label col-sm-3">Password<span class="red">*</span></label>
+								{{ Form::password('input_password',array('id' => 'input_password', 'class' => 'form-control col-sm-5'), Input::old('input_password')) }} 
+							</div>
+							<div class="form-group">
+								<label class=" control-label col-sm-3">Ketik Ulang Password<span class="red">*</span></label>
+								{{ Form::password('input_password_again',array('id' => 'input_password_again', 'class' => 'form-control col-sm-5'), Input::old('input_password_again')) }}
+							</div>
+
+							<hr/>
+							<p class="bg-danger" style="padding: 5px;"><span class="text-danger">PERHATIAN!</span> Lengkapi form dibawah JIKA Anda ingin mempersembahkan paper! </p>
+
+							<div class="form-group">
+								<label class=" control-label col-sm-3">Status</label>
+								<p class="form-control-static col-sm-5">Partisipan</p>
+							</div>
+							<div class="form-group">
+								<label class=" control-label col-sm-3">Presentasi</label>
+								<label class="radio-inline">
+								{{ Form::radio('gender','pria', array('style'=>'float: left;')) }}oral         
+								</label>
+								<label class="radio-inline">
+								{{ Form::radio('gender','wanita', array('style'=>'float: left;')) }}poster     
+								</label>
+
+								{{ Form::select('spesialisasi',array(
+									'' => 'pilih!',
+									'astro' => 'astro',
+									'hayati' => 'hayati',
+									'komputasi' => 'komputasi',
+									'pendidikan' => 'pendidikan',
+									'energi' => 'energi',
+									'lingkungan' => 'lingkungan',
+									'bumi' => 'bumi',
+									'instrumentasi' => 'instrumentasi',
+									'material' => 'material',
+									'matematika' => 'matematika',
+									'medis' => 'medis',
+									'nonlinier' => 'non-linier',
+									'nuklir' => 'nuklir',
+									'parkikel' => 'partikel',
+									'lainlain' => 'lain-lain'), NULL, array('class'=>'form-control col-sm-3', 'style'=>'margin-right:10px;'))
+								}}
+							</div>
+
+
+
+
+						  	<div class="form-group">
+								<label class=" control-label col-sm-3">Judul Paper</label>
+								{{ Form::text('input_judul_paper', Input::old('input_judul_paper'), array('class' => 'form-control col-sm-5')) }}
+							</div>
+
+
+							<div class="form-group">
+								<label class=" control-label col-sm-3">Abstrak</label>
+								{{ Form::textarea('input_abstrak', Input::old('input_abstrak'), array('class' => 'form-control col-sm-5', 'style'=>'height: 100px;')) }}
+							</div>			
+							<p>
+								<span class="red" style="position: relative; right:0; top: 0;">*</span> ) harus diisi!
+							</p>
+
 						  <button type="submit" class="btn btn-success">Kirim</button> 
+						  <button type="submit" class="btn btn-primary">Reset</button> 
 						</form>
 					</div>
 				</div>

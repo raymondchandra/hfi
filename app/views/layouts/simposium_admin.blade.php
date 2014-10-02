@@ -7,6 +7,7 @@
 <body>
 	@include('includes.simposium.header')
 	@include('includes.simposium.sponsor')
+	@include('includes.simposium.login')
 
 	
 	@yield('content')
@@ -18,5 +19,4 @@
 	
 	@include('includes.modals.loading')
 
-</body>
 </html>

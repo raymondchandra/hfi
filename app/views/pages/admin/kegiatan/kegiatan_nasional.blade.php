@@ -122,6 +122,7 @@
 			},
 			success: function(response){
 				//alert(response.nama_kegiatan);
+				$('.id_edit').val($id);
 				$('#preview_edit_brosur').attr('src',response.brosur_kegiatan);
 				$('#edit_nama_kegiatan').val(response.nama_kegiatan);
 				$('#edit_tempat_kegiatan').val(response.tempat);
@@ -212,7 +213,7 @@
 	});
 	
 	$('body').on('click','.edit_button',function(){
-		$arrayData = $('#form_tambah_kegiatan').serializeArray();
+		$arrayData = $('#form_edit_kegiatan').serializeArray();
 		var formData = new FormData();
 		
 		formData.append('id_kegiatan',$(this).next().val());
@@ -229,7 +230,7 @@
 		formData.append('brosur',$file_brosur);
 		
 		$.ajax({
-			type: 'PUT',
+			type: 'POST',
 			url: 'admin/editKegiatan',
 			data: formData,
 			processData:false,
@@ -242,7 +243,6 @@
 				alert(errorThrown);
 			}
 		});
-		
 		
 	});
 	
@@ -518,7 +518,7 @@
 							
 						</div>
 
-						{{Form::button('Kirim Pesan', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'edit_button'));}}
+						{{Form::button('Kirim Pesan', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'edit_button','data-dismiss'=>'modal'));}}
 						<input type='hidden' class='id_edit' />
 					{{ Form::close() }}
 					<style>

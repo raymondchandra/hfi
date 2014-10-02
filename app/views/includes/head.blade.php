@@ -17,6 +17,7 @@
 	
 	<!-- tambahan fixer pop up modal ala bootstrap-->
 	{{ HTML::script( asset('/assets/js/bootstrap.min.js')) }}
+	{{ HTML::script( asset('/assets/js/jquery.easing.min.js')) }}
 	
 	
 	<!--<link href="assets/css/all.css" rel="stylesheet">

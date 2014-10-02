@@ -165,13 +165,73 @@ class Kegiatan2AdminController extends BaseController {
 		$kegiatan = Kegiatan2::find($id);
 		$nama_kegiatan = $kegiatan->nama;
 		$title = ucwords($type);
-		$text = "editor";
-		return View::make('pages.simposium.admin.simposium_editor',compact('id','nama_kegiatan','title','text'));
+		
+		$konten = KegiatanKonten::where('tipe', '=', $type)->first();
+		$text = "";
+		if($konten != null){
+			$text = $konten->konten;
+		}
+		
+		return View::make('pages.simposium.admin.simposium_editor',compact('type','id','nama_kegiatan','title','text'));
+	}
+
+	public function edit_editor($id)
+	{
+		$text = Input::get('text');
+		$type = Input::get('type');
+
+		$konten_id = KegiatanKonten::where('tipe', '=', $type)->first();
+		if(count($konten_id) != 0)
+		{
+			$konten = KegiatanKonten::find($konten_id->id);
+			$konten->konten = $text;
+			$konten->timestamps = false;
+			$konten -> tanggal_edit = Carbon::now();
+
+			$konten->save();
+			return "Success Update";
+		}else
+		{
+			$konten = new KegiatanKonten();
+			$konten -> timestamps = false;
+			$konten -> konten = $text;
+			$konten -> tipe = $type;
+			$konten -> tanggal_edit = Carbon::now();
+			$konten -> id_kegiatan = $id;
+			$konten -> save();
+			
+			return "Success Insert";
+		}
+		return 'asdf';
 	}
 
 	public function view_harga($id)
 	{
-		return View::make('pages.simposium.admin.simposium_harga',compact('id'));
+
+		$kegiatan = Kegiatan2::find($id);
+		$date= date_create($kegiatan->early_start);
+		$tanggal_mulai = date_format($date,"d-m-Y");
+		$date= date_create($kegiatan->early_finish);
+		$tanggal_selesai = date_format($date,"d-m-Y");
+		return View::make('pages.simposium.admin.simposium_harga',compact('id','kegiatan','tanggal_mulai','tanggal_selesai'));
+	}
+
+	public function edit_early($id){
+		$kegiatan = Kegiatan2::find($id);
+		$datepiece = explode('-',Input::get('tanggal_mulai'));
+		$date_start = $datepiece[2].'-'.$datepiece[1].'-'.$datepiece[0];
+		$datepiece = explode('-',Input::get('tanggal_selesai'));
+		$date_finish = $datepiece[2].'-'.$datepiece[1].'-'.$datepiece[0];
+		$kegiatan->early_start = $date_start;
+		$kegiatan->early_finish = $date_finish;
+
+		$kegiatan->timestamps = false;
+		try {
+			$kegiatan->save();
+			return 'success';
+		} catch (Exception $e) {
+    		return 'Caught exception: '. $e->getMessage(). "\n";
+		}
 	}
 
 	public function view_peserta($id)

@@ -224,6 +224,7 @@
 		formData.append('waktu_selesai',$arrayData[6]['value']);
 		formData.append('deskripsi',$arrayData[7]['value']);
 		formData.append('type',1);
+		formData.append('link',"");
 		
 		formData.append('brosur',$file_brosur);
 		
@@ -383,7 +384,7 @@
 						<div class="area_jqte">
 							<textarea name="misi_message" id = 'misi_message' class="editor"></textarea>
 						</div>
-						{{Form::button('Kirim Pesan', array('style' => 'display:block; margin-left: auto; margin-right: auto;','id'=>'ok_tambah_kegiatan', 'class' => 'button'));}}
+						{{Form::button('Kirim Pesan', array('style' => 'display:block; margin-left: auto; margin-right: auto;','id'=>'ok_tambah_kegiatan', 'class' => 'button', 'data-dismiss'=>'modal'));}}
 					{{ Form::close() }}
 					<style>
 						.row_label {

@@ -88,9 +88,9 @@ class KegiatanAdminController extends BaseController {
 		$id_kegiatan = Input::get('id_kegiatan');
 		$kegiatan = Kegiatan::find($id_kegiatan);
 		if($kegiatan->type == 1 || $kegiatan->type == 2){
-			if(Input::hasFile('photo'))
+			if(Input::hasFile('brosur'))
 			{
-				$img_upload = Input::file('photo');
+				$img_upload = Input::file('brosur');
 				$file_name = $img_upload->getClientOriginalName();
 				
 				if($kegiatan == NULL)
@@ -111,7 +111,7 @@ class KegiatanAdminController extends BaseController {
 				}
 			}else
 			{
-				return "Gagal Update Foto";
+				//return "Gagal Update Foto";
 			}
 
 			$kegiatan->nama_kegiatan = Input::get('nama_kegiatan');

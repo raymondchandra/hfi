@@ -18,13 +18,15 @@
 	
 	<hr>
 	
-	{{ Form::open(array('url' => '/regis')) }}
+	{{ Form::open(array('url' => '/regis', 'class'=>'form-horizontal', 'role'=>'form' )) }}
 	
-	<table border="0" class="form_registrasi">		
-		<tr>
-			<td>Username</td>
-			<td>:</td>
-			<td>{{ Form::text('username',Input::old('username'), array('id' => 'input_username', 'class' => 'wl_it')) }} <span id="username-error"></span><span class="red">*</span></td>	
+	<!-- <table border="0" class="form_registrasi"> -->
+		<style>
+			
+		</style>
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Username<span class="red">*</span></label>
+			{{ Form::text('username',Input::old('username'), array('id' => 'input_username', 'class' => 'form-control col-sm-5')) }}
 			<script>
 				var usernameOK = 'false';
 				var ajaxACK = true;
@@ -80,59 +82,45 @@
 					
 
 				});
-			</script>		
-		</tr>		
-		<tr>
-			<td><i>Password</i></td>
-			<td>:</td>
-			<td>{{ Form::password('password',array('id' => 'input_password', 'class' => 'wl_it'), Input::old('password')) }} <span class="red">*</span></td>			
-		</tr>
-		
-		<tr>
-			<td>Ketik Ulang <i>Password</i></td>
-			<td>:</td>
-			<td>{{ Form::password('password_again',array('id' => 'password_again', 'class' => 'wl_it'), Input::old('password_again')) }} <span class="red">*</span></td>
-		</tr>
-		<tr>
-			<td>Nama</td>
-			<td>:</td>
-			<td>{{ Form::text('nama', Input::old('nama'),array('class' => 'wl_it')) }} <span class="red">*</span></td>			
-		</tr>
-		<tr>
-			<td>Registrasi Cabang</td>			
-			<td>:</td>
-			<td>
-				<!-- anggota non-aktif, HFI Cabang 	-->
-				{{ Form::select('hficabang', $arr2, Input::old('hficabang'), array('style' => 'width:200px;', 'class' => 'wl_dd'))}}				
-			</td>			
-		</tr>
-		<tr>
-			<td>Tempat, tanggal lahir</td>
-			<td>:</td>
-			<td style="">
-				<div style="width:600px;">
-				{{ Form::text('tempatlahir', Input::old('tempatlahir'),array('class' => 'wl_tl')) }}<span class="red" style="right: 369px;">*</span>
-			
-				{{ Form::text('tanggallahir', Input::old('tanggallahir'),  array('id' => 'tanggallahir', 'style' => 'width:80px;', 'class' => 'wl_ttl')) }}
-				<span class="red" style="right: 241px;">*</span>
-				</div>
-				</td>			
-		</tr>
-		<tr>
-			<td>Jenis kelamin</td>
-			<td>:</td>
-			<td>{{ Form::radio('gender','pria') }}pria    {{ Form::radio('gender','wanita') }}wanita <span class="red">*</span></td>			
-		</tr>
-		<tr>
-			<td>Tema penelitian	</td>
-			<td>:</td>
-			<td>{{ Form::textarea('temapenelitian', Input::old('temapenelitian')) }} <span class="red">*</span></td>			
-		</tr>		
-		<tr>
-			<td>Spesialisasi</td>
-			<td>:</td>
-			<td>
-				{{ Form::select('spesialisasi',array(
+			</script>	
+		</div>	
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Password<span class="red">*</span></label>
+			{{ Form::password('password',array('id' => 'input_password', 'class' => 'form-control col-sm-5'), Input::old('password')) }} 
+		</div>
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Ketik Ulang Password<span class="red">*</span></label>
+			{{ Form::password('password_again',array('id' => 'password_again', 'class' => 'form-control col-sm-5'), Input::old('password_again')) }}
+		</div>
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Nama<span class="red">*</span></label>
+			{{ Form::text('nama', Input::old('nama'),array('class' => 'form-control col-sm-5')) }}
+		</div>
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Registrasi Cabang</label>
+			{{ Form::select('hficabang', $arr2, Input::old('hficabang'), array('class' => 'form-control col-sm-5'))}}	
+		</div>
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Tempat, tanggal lahir<span class="red">*</span></label>
+			{{ Form::text('tempatlahir', Input::old('tempatlahir'),array('class' => 'form-control col-sm-4')) }}
+			{{ Form::text('tanggallahir', Input::old('tanggallahir'),  array('id' => 'tanggallahir', 'style' => 'width:80px;', 'class' => 'form-control col-sm-2')) }}
+		</div>
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Jenis kelamin<span class="red">*</span></label>
+			<label class="radio-inline">
+			{{ Form::radio('gender','pria') }}pria    
+			</label>
+			<label class="radio-inline">
+			{{ Form::radio('gender','wanita') }}wanita
+			</label>
+		</div>
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Tema Penelitian<span class="red">*</span></label>
+			{{ Form::textarea('temapenelitian', Input::old('temapenelitian'), array('class'=>'form-control col-sm-5')) }}
+		</div>
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Spesialisasi<span class="red">*</span></label>
+			{{ Form::select('spesialisasi',array(
 					'' => 'pilih!',
 					'astro' => 'astro',
 					'hayati' => 'hayati',
@@ -148,20 +136,19 @@
 					'nonlinier' => 'non-linier',
 					'nuklir' => 'nuklir',
 					'parkikel' => 'partikel',
-					'lainlain' => 'lain-lain'), NULL, array('class'=>'wl_dd'))
-				}} <span class="red">*</span></td>				
-		</tr>
+					'lainlain' => 'lain-lain'), NULL, array('class'=>'form-control col-sm-5'))
+				}}
+		</div>
 		
-		<tr>
-			<td>Pendidikan</td>
-			<td>:</td>
-			<td>
-		<script>
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Pendidikan<span class="red">*</span></label>
+			<script>
 				var lastIdx = 2;
 				function addPendidikan(){
 					if(lastIdx <=5)
 					{
-						var newRow = "<div id='divPendidikan"+lastIdx+"' style='margin-top: 5px;' '><select class='selPendidikan ws_dd' name='selPendidikan"+lastIdx+"'>";
+						var newRow = "<div class='clearfix'></div>";
+						newRow += "<div id='divPendidikan"+lastIdx+"' style='margin-top: 5px;' '><select class='selPendidikan form-control col-sm-1 col-sm-push-3' name='selPendidikan"+lastIdx+"'>";
 						newRow +="<option value='SD'>SD</option>";
 						newRow +="<option value='SMP'>SMP</option>";
 						newRow +="<option value='SMA'>SMA</option>";
@@ -174,8 +161,8 @@
 						newRow +="<option value='S3'>S3</option>";
 						newRow +="<option value='lain'>Lainnya</option>";
 						newRow +="</select>";
-						newRow +="<input type='text' id='pendidikan"+lastIdx+"' name='pendidikan"+lastIdx+"' class='texPendidikan' style='margin-left: 20px;'/>";
-						newRow +="<input type='button' value='X' id='delPendidikan"+lastIdx+"' onClick='delPendidikan()' style='padding: 0px;'/><br /></div>";
+						newRow +="<input type='text' id='pendidikan"+lastIdx+"' name='pendidikan"+lastIdx+"' class='texPendidikan form-control col-sm-3 col-sm-push-3' />";
+						newRow +="<span value='' id='delPendidikan"+lastIdx+"' onClick='delPendidikan()' style='padding: 0px; width: 34px; line-height: 34px; margin-left:10px;' class='glyphicon glyphicon-remove form-control col-sm-push-3 btn btn-danger'></span><br /></div>";
 						$('#delPendidikan'+(lastIdx-1)).hide();
 						$('#addPendidikan').append(newRow);
 						if(lastIdx==5){
@@ -196,8 +183,7 @@
 					}
 				}
 			</script>
-			<div>
-				<select class='selPendidikan ws_dd' name='selPendidikan1' style="float: left;">
+				<select class='selPendidikan form-control col-sm-1' name='selPendidikan1'>
 					<option value='SD'>SD</option>
 					<option value='SMP'>SMP</option>
 					<option value='SMA'>SMA</option>
@@ -210,81 +196,73 @@
 					<option value='S3'>S3</option>
 					<option value='lain'>Lainnya</option>
 				</select>
-			<input type="text" id="pendidikan1" name="pendidikan1" class='texPendidikan' style="margin-left: 16px;"/><span class="red">*</span><br />
+				<input type="text" id="pendidikan1" name="pendidikan1" class='texPendidikan form-control col-sm-3' style=""/>
+				
+				<a href="javascript:void(0)" onClick = "addPendidikan();" id="refPendidikan" class="glyphicon glyphicon-plus btn btn-primary" style="padding: 0px;width: 34px; line-height: 34px; margin-left:10px;"></a>
+			
 			<div id="addPendidikan"></div>
-		<a href="javascript:void(0)" onClick = "addPendidikan();" id="refPendidikan">tambah pendidikan</a>
-	</div>
-	<!--{{ Form::textarea('pendidikan', Input::old('pendidikan')) }}--> </td>				
-		</tr>
-		<tr>
-			<td>Profesi</td>
-			<td>:</td>
-			<td>
-				{{ Form::select('profesi',array(
+		</div>		
+		
+		
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Profesi<span class="red">*</span></label>
+			{{ Form::select('profesi',array(
 					'' => 'pilih!',
 					'mahasiswa' => 'mahasiswa',
 					'guru' => 'guru',
 					'dosen' => 'dosen',
 					'peneliti' => 'peneliti',
 					'karyawan' => 'karyawan',
-					'lainlain' => 'lain-lain'), null, array('class' => 'wl_dd'))
-				}} <span class="red">*</span></td>								
-		</tr>
-		<tr>
-			<td>Institusi</td>
-			<td>:</td>
-			<td>{{ Form::text('institusi', Input::old('institusi'), array('class' => 'wl_it')) }} <span class="red">*</span></td>					
-		</tr>
-		<tr>
-			<td>Alamat kontak</td>
-			<td>:</td>
-			<td>{{ Form::textarea('alamatkontak', Input::old('alamatkontak')) }} <span class="red">*</span></td>			
-		</tr>
-		<tr>
-			<td>Kota - kodepos</td>
-			<td>:</td>
-			<td style="">
-				{{ Form::text('kota', Input::old('kota'), array('class' => 'form_kota', 'style' => 'width: 236px;')) }} 
-				{{ Form::text('kodepos', Input::old('kodepos'), array('class' => 'form_kota', 'style' => 'width: 100px;')) }} 
-				
-			</td>
-		</tr>
-		<tr>
-			<td>Negara</td>
-			<td>:</td>
-			<td style="">
-				{{ Form::text('negara', Input::old('negara'), array('class' => 'form_kota wl_it')) }} <span class="red"style="color:red;">*</span>
-				
-			</td>
-		</tr>		
-		<tr>
-			<td>Telepon / fax</td>
-			<td>:</td>
-			<td>{{-- Form::text('telepon', Input::old('telepon'), array('style' => 'width:50px')) --}}<span class="red">*</span>
-			{{ Form::text('telepon2', Input::old('telepon2'), array('style' => 'width: 170px; float: left;')) }} <span style="float: left;">/</span> 
-			{{ Form::text('fax', Input::old('fax'), array('style' => 'width: 164px; float: left;')) }}</td>			
-		</tr>
-		<tr>
-			<td>HP</td>
-			<td>:</td>
-			<td>{{ Form::text('hp', Input::old('hp'), array('class' => 'wl_it')) }}</td>			
-		</tr>
-		<tr>
-			<td>Surat elektronik</td>
-			<td>:</td>
-			<td>{{ Form::text('email', Input::old('email'), array('class' => 'wl_it')) }}<span class="red">*</span></td>				
-		</tr>
-		<tr>
-			<td>Situs</td>
-			<td>:</td>
-			<td>{{ Form::text('situs', Input::old('situs'), array('class' => 'wl_it')) }}</td>				
-		</tr>
-		<tr>
-			<td>Keterangan lain</td>
-			<td>:</td>
-			<td>{{ Form::textarea('keteranganlain', Input::old('keteranganlain')) }}</td>					
-		</tr>	
-	</table>
+					'lainlain' => 'lain-lain'), null, array('class' => 'form-control col-sm-5'))
+				}}
+		</div>
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Institusi<span class="red">*</span></label>
+			{{ Form::text('institusi', Input::old('institusi'), array('class' => 'form-control col-sm-5')) }} 
+		</div>
+		
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Alamat Kontak<span class="red">*</span></label>
+			{{ Form::textarea('alamatkontak', Input::old('alamatkontak'), array('class' => 'form-control col-sm-5')) }}
+		</div>
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Kota - Kodepos<span class="red">*</span></label>
+			{{ Form::text('kota', Input::old('kota'), array('class' => 'form_kota form-control col-sm-3')) }} 
+			{{ Form::text('kodepos', Input::old('kodepos'), array('class' => 'form_kota form-control col-sm-2')) }} 
+		</div>
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Negara<span class="red">*</span></label>
+			{{ Form::text('negara', Input::old('negara'), array('class' => 'form_kota form-control col-sm-5')) }}
+		</div>
+		
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Telepon / Fax<span class="red">*</span></label>
+			{{ Form::text('telepon2', Input::old('telepon2'), array('class'=>'form_kota form-control col-sm-3')) }}
+			{{ Form::text('fax', Input::old('fax'), array('class'=>'form_kota form-control col-sm-2')) }}
+		</div>
+		<div class="form-group">
+			<label class=" control-label col-sm-3">HP</label>
+			{{ Form::text('hp', Input::old('hp'), array('class' => 'form_kota form-control col-sm-5')) }}
+		</div>
+		
+		
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Surat Elektronik<span class="red">*</span></label>
+			{{ Form::text('email', Input::old('email'), array('class' => 'form-control col-sm-5')) }}
+		</div>
+		
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Situs<span class="red">*</span></label>
+			{{ Form::text('situs', Input::old('situs'), array('class' => 'form-control col-sm-5')) }}
+		</div>
+		
+		
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Keterangan Lain<span class="red">*</span></label>
+			{{ Form::textarea('keteranganlain', Input::old('keteranganlain'), array('class'=>'form-control col-sm-5')) }}
+		</div>
+		
+	<!-- </table> -->
 	
 		
 	
@@ -526,8 +504,8 @@
 		
 	</script>
 	<div style="width: 100%; text-align: center;"> <!--class="de_tombol"-->
-		{{ Form::submit('daftar', ['class' => 'regreg']) }}
-		{{ Form::reset('Clear form') }}
+		{{ Form::submit('Daftar', ['class' => 'regreg']) }}
+		{{ Form::reset('Hapus Form') }}
 		<script>
 				$('.regreg').addClass('reg_submit_off');
 				// set hidden form field with selected timeslot
@@ -552,7 +530,7 @@
 	{{ Form::close() }}
 	
 	<style>
-		#tempatlahir-error, #telepon2-error {
+	/*	#tempatlahir-error, #telepon2-error {
 			float: right;
 		}
 		
@@ -565,9 +543,13 @@
 		
 		#kodepos-error, #kota-error, #negara-error{
 			width: auto !important;
-		}
+		}*/
 	</style>
 	
 </div>
 </div>
+
+
+
+
 @stop

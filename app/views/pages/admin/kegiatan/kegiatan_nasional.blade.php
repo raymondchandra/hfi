@@ -35,7 +35,7 @@
 </script>
 	<div class='admin_title'>Kegiatan Nasional</div>
 		<div style='height: 30px;'></div>
-		<div style="width: 100%; display: block; overflow: hidden; margin-bottom: 30px;"><a href="javascript:void(0)" style="text-decoration:none;" id="tambah_kegiatan" class="command_button">Tambah Kegiatan</a></div>
+		<div style="width: 100%; display: block; overflow: hidden; margin-bottom: 30px;"><a href="javascript:void(0)" style="text-decoration:none;" id="tambah_kegiatan" class="command_button" data-toggle="modal" data-target=".tambah_kegiatan_pop">Tambah Kegiatan</a></div>
 		<div class="kegiatan_container" style="margin-left: 20px;">
 			@if($kegiatans == NULL)
 				<span>Kegiatan belum tersedia.</span>
@@ -61,7 +61,10 @@
 								</div>
 							</div>
 							<div class="edit_kegiatan_form">
-								<input type="button" class="edit_kegiatan" value="edit" />
+								   <!-- Large modal 
+												<button class="btn btn-primary" data-toggle="modal" data-target=".edit_kegiatan_pop">Large modal</button>-->
+
+								<input type="button" class="edit_kegiatan" value="edit" data-toggle="modal" data-target=".edit_kegiatan_pop"/>
 								<input type='hidden' value='{{$kegiatan->id}}' />
 								<input type="button" class="hapus_kegiatan" value="hapus" />
 							</div>
@@ -104,13 +107,13 @@
 	});
 
 	$('body').on('click','.edit_kegiatan',function(){
-		$(".loader").fadeIn(100, function(){});
+		//$(".loader").fadeIn(100, function(){});
+		
 		$file_brosur="";
 		document.getElementById("form_edit_kegiatan").reset();
 
 	
 		$id=$(this).next().val();
-		$('.editor_edit_kegiatan_nasional_message').jqte();
 		$.ajax({
 			type: 'GET',
 			url: 'admin/get_kegiatan',
@@ -155,8 +158,8 @@
 				alert(errorThrown);
 			},
 			complete: function(){
-				$( ".edit_kegiatan_pop" ).fadeIn( 277, function(){});
-				$(".loader").fadeOut(200, function(){});
+				//$( ".edit_kegiatan_pop" ).fadeIn( 277, function(){});
+				//$(".loader").fadeOut(200, function(){});
 				jQuery('#datepicker3').datetimepicker({
 					lang:'en',
 					i18n:{
@@ -342,11 +345,14 @@
 <script src="assets/js/datetimepicker/jquery.datetimepicker.js"></script>
 		
 		
-<!--pop up -->
+<!--pop up
 <div class=" pop_up_super_c tambah_kegiatan_pop" style="display: none;">
 	<a class="exit close_56" ></a>
 	<div class="pop_up_tbl">
-		<div class="pop_up_cell">
+		<div class="pop_up_cell"> -->
+<div class="modal fade bs-example-modal-lg tambah_kegiatan_pop" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
 			<div class="container_12">			
 				<div class="grid_12 pop_up_container" style="background: #fff; padding: 20px;">
 					{{ Form::open(array('id'=>'form_tambah_kegiatan','url' => '', 'files' => true)) }}
@@ -455,10 +461,27 @@
 	</div>
 </div>
 
-<div class=" pop_up_super_c edit_kegiatan_pop" style="display: none;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class=" pop_up_super_c edit_kegiatan_pop" style="display: none;">
 	<a class="exit close_56" ></a>
 	<div class="pop_up_tbl">
-		<div class="pop_up_cell">
+		<div class="pop_up_cell"> -->
+		
+<div class="modal fade bs-example-modal-lg edit_kegiatan_pop" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
 			<div class="container_12">			
 					
 				<div class="grid_12 pop_up_container" style="background: #fff; padding: 20px;">
@@ -489,6 +512,7 @@
 						<div class="area_jqte">
 						
 							<textarea name="edit_kegiatan_nasional_message" id = 'edit_kegiatan_nasional_message' class="editor_edit_kegiatan_nasional_message"></textarea>
+							
 						</div>
 
 						{{Form::button('Kirim Pesan', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'edit_button'));}}
@@ -516,7 +540,7 @@
 						}
 					</style>
 					<script>
-						$('.jqte').class('jqte_focused');
+						$('.editor_edit_kegiatan_nasional_message').jqte();
 					</script>
 				</div>
 			

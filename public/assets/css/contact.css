@@ -62,11 +62,6 @@ table tr{
 	width:100px;
 }
 
-input[type='text'],select{
-	width: 250px;
-	height:22px;
-}
-
 textarea{
 	resize:none;
 	width: 350px;

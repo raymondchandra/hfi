@@ -324,6 +324,14 @@ Route::get('/test/style_simposium', function()
 	{
 		return View::make('pages.simposium.admin.style_simposium');
 	});
+Route::get('/test/simposium_user', function()
+	{
+		return View::make('pages.simposium.front.simposium_user');
+	});
+Route::get('/test/tesuto', function()
+	{
+		return View::make('pages.tesuto');
+	});
 //temporary route for testing end
 
 

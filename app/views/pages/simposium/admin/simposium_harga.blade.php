@@ -150,7 +150,7 @@
 <script src="{{asset('assets/js/datetimepicker/jquery.datetimepicker.js')}}"></script>
 <div class="container_12">
 	<div class="grid_12">
-		<div class='admin_title'>Harga</div>
+		<div class='admin_title'>{{$kegiatan->nama}}</div>
 		<a href='javascript:void(0)' onClick='history.back();' >Back</a>
 		
 		<div>

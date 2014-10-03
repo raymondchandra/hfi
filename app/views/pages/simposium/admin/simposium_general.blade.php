@@ -117,35 +117,42 @@
 <script src="{{asset('assets/js/datetimepicker/jquery.datetimepicker.js')}}"></script>
 <div class="container_12">
 	<div class="grid_12">
-		<div class='admin_title'>{{$kegiatan->nama}}</div>
-		<div>Umum</div>
-		<a href='javascript:void(0)' onClick='history.back();' >Back</a>
+		<h1 class=''>{{$kegiatan->nama}}</h1>
+		<style>
+			.breadcrumb li {
+				padding-left: 0px;
+				margin-left: 0px;
+			}
+		</style>
+		<ol class="breadcrumb">
+			<li><a onClick='history.back();' >Dashboard</a></li>
+			<li class="active">Umum</li>
+		</ol>
 
-		<div>
+		<div class="form-horizontal">
 			<h3>Data Kegiatan</h3>
-			<table>
-				<tr>
-					<td>Nama</td>
-					<td>:</td>
-					<td><input type="text" id="namaKegiatan" value="{{$kegiatan->nama}}"></td>
-				</tr>
-				<tr>
-					<td>Tempat</td>
-					<td>:</td>
-					<td><input type="text" id="tempat" value="{{$kegiatan->tempat}}"></td>
-				</tr>
-				<tr>
-					<td>Tanggal mulai</td>
-					<td>:</td>
-					<td><input type="text" value="{{$tanggal_mulai}}" id="datepicker1"> </td>
-				</tr>
-				<tr>
-					<td>Tanggal selesai</td>
-					<td>:</td>
-					<td><input type="text" value="{{$tanggal_selesai}}" id="datepicker2"> </td>
-				</tr>
-			</table>
-			<button onClick="updateKegiatan()">Ubah</button>
+			
+				<div class="form-group">
+					<label class=" control-label col-sm-3">Nama</label>
+					<input type="text" id="namaKegiatan" value="{{$kegiatan->nama}}" class="form-control col-sm-5">
+				</div>
+				<div class="form-group">
+					
+					<label class=" control-label col-sm-3">Tempat</label>
+					<input type="text" id="tempat" value="{{$kegiatan->tempat}}" class="form-control col-sm-5">
+				</div>
+				<div class="form-group">
+					
+					<label class=" control-label col-sm-3">Tanggal Mulai</label>
+					<input type="text" value="{{$tanggal_mulai}}" id="datepicker1" class="form-control col-sm-5">
+				</div>
+				<div class="form-group">
+					
+					<label class=" control-label col-sm-3">Tanggal Akhir</label>
+					<input type="text" value="{{$tanggal_selesai}}" id="datepicker2" class="form-control col-sm-5">
+				</div>
+			<span class="clearfix"></span>
+			<button onClick="updateKegiatan()" class="btn btn-primary">Ubah</button>
 		</div>
 			<script>
 				jQuery('#datepicker1').datetimepicker({
@@ -189,36 +196,50 @@
 				
 			</script>
 		<hr />
-		<div>
+		<div class="form-horizontal">
 			<h3>Registrasi</h3>
-			<span>Status pendaftaran : </span> <input type="radio" name="regis" id="regisBuka"> Buka <input type="radio" name="regis" id="regisTutup"> Tutup 
-			<br /><button onClick="ubah_status()">Ubah</button>
+			<div class="form-group">	
+				<label class=" control-label col-sm-3">Status Pendaftaran</label> 
+				<label class="radio-inline">
+					<input type="radio" name="regis" id="regisBuka"> Buka 
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="regis" id="regisTutup"> Tutup 
+				</label>
+				<span class="clearfix"></span>
+				<button onClick="ubah_status()" class="btn btn-primary">Ubah</button>
+			</div>
 		</div>
 		<hr />
-		<div>
+		<div class="form-horizontal">
 			<h3>Admin</h3>
 
-			<span>Status admin : </span> <input type="radio" name="statAdmin" id="admAktif"> Aktif <input type="radio" name="statAdmin" id="admTutup"> Nonaktif 
-			<br /><button onClick="ubah_status_admin()">Ubah</button>
+			<div class="form-group">
+				<label class=" control-label col-sm-3">Status Admin</label> 
+				<label class="radio-inline">
+					<input type="radio" name="statAdmin" id="admAktif"> Aktif 
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="statAdmin" id="admTutup"> Nonaktif 
+				</label>
+			</div>
+			<span class="clearfix"></span>
+			<button onClick="ubah_status_admin()" class="btn btn-primary">Ubah</button>
 
-			<table>
-				<tr>
-					<td>Username</td>
-					<td>:</td>
-					<td>admin</td>
-				</tr>
-				<tr>
-					<td>Password</td>
-					<td>:</td>
-					<td><input type="password" id="pass"> </td>
-				</tr>
-				<tr>
-					<td>Re type password</td>
-					<td>:</td>
-					<td><input type="password" id="rePass"> </td>
-				</tr>
-			</table>
-			<button onClick="ubah_pass()">Ubah</button>
+			<div class="form-group">
+			<label class=" control-label col-sm-3">Username</label>
+			<p class="form-control-static col-sm-5">admin</p>
+			</div>
+<div class="form-group">
+				<label class=" control-label col-sm-3">Password</label>
+				<input type="password" id="pass" class="form-control col-sm-5"> 
+			</div>
+			<div class="form-group">
+			<label class=" control-label col-sm-3">Re type password</label>
+			<input type="password" id="rePass" class="form-control col-sm-5"> 
+		</div>
+			<span class="clearfix"></span>
+			<button onClick="ubah_pass()" class="btn btn-primary">Ubah</button>
 		</div>
 	</div>
 </div>

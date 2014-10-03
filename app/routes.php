@@ -40,7 +40,9 @@ Route::get('/', ['as' => 'home', 'uses' => 'HomeController@view_index']);
 Route::get('/organisasi', ['as' => 'organisasi', 'uses' => 'OrganisasiController@view_index']);
 	//route ke sidebar
 	Route::get('/cabang', ['as' => 'cabang', 'uses' => 'OrganisasiController@view_cabang']);
-Route::get('/kegiatan', ['as' => 'kegiatan', 'uses' => 'KegiatanController@view_index']);
+	
+Route::get('/kegiatan/{jenis}', ['as' => 'kegiatan', 'uses' => 'KegiatanController@view_index']);
+
 Route::get('/publikasi/{id}', ['as' => 'publikasi', 'uses' => 'PublikasiController@view_index']);
 Route::get('anggota', ['as' => 'anggota', 'uses' => 'AnggotaController@view_index']);
 	//route ke sidebar

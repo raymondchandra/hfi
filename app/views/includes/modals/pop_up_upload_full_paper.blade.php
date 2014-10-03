@@ -11,7 +11,6 @@
 			<div class="modal-body" style="">
 				<div id="uploadttg" style="margin-left: 20px !important;">
 					
-						<img id="gambar_tanda_tangan" src="" alt="tandatangan" width="200" style="min-height:200px; display: block; height: 200px;"/>
 						{{ Form::file('fileTandaTangan', array('name'=>'fileTandaTangan','id'=>'fileTandaTangan', 'accept' => "image/*")) }}
 					
 				</div>

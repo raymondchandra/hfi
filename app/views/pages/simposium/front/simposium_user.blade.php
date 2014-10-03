@@ -8,6 +8,10 @@
 			@include('includes.simposium.sidebar')
 			<div class="content_hfi">
 				<h1 style="">Profile Pengguna</h1>
+				<button data-toggle="modal" data-target=".pop_up_edit_profile" class="btn btn-primary" style="float: right;">
+					Edit Profile
+				</button>
+				<span class="clearfix"></span>
 				<div class="panel panel-default">
 					
 					<div class="panel-body container-fluid">
@@ -62,9 +66,9 @@
 
 
 						 <hr/>
-						  <button  data-toggle="modal" data-target=".pop_up_upload_full_paper" type="submit" class="btn btn-info">Upload Full Paper</button> 
-						  <a type="submit" class="btn btn-info">Upload Bukti Pembayaran</a> 
-						  <a type="submit" class="btn btn-info">Minta Bantuan</a> 
+						  <button data-toggle="modal" data-target=".pop_up_upload_full_paper" type="submit" class="btn btn-info">Upload Full Paper</button> 
+						  <button data-toggle="modal" data-target=".pop_up_upload_bukti_pembayaran" type="submit" class="btn btn-info">Upload Bukti Pembayaran</button> 
+						  <button data-toggle="modal" data-target=".pop_up_minta_bantuan" type="submit" class="btn btn-info">Minta Bantuan</button> 
 						
 					</div>
 
@@ -74,35 +78,10 @@
 	</div>
 </div>
 
-
-<!-- Modal Pop Up Tambah Sponsor -->
-<div class="modal fade pop_up_upload_full_paper" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  	<div class="modal-dialog modal-lg">
-    	<div class="modal-content">
-      		<div class="modal-header">
-        		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        		<h4 class="modal-title" id="myModalLabel">Upload Full Paper</h4>
-      		</div>
-
-			<div class="modal-body" style="">
-				<div id="uploadttg" style="margin-left: 20px !important;">
-					
-						<img id="gambar_tanda_tangan" src="" alt="tandatangan" width="200" style="min-height:200px; display: block; height: 200px;"/>
-						{{ Form::file('fileTandaTangan', array('name'=>'fileTandaTangan','id'=>'fileTandaTangan', 'accept' => "image/*")) }}
-					
-				</div>
-				
-			</div>
-			<div class="modal-footer">
-				<div class="form-group konten_pesan">
-					{{ Form::submit('Unggah Tanda Tangan', array('id'=>'ok_edit_tanda_tangan_button', 'style' => '', 'class'=>'btn btn-success')) }}
-				</div>
-			</div>
-				
-		</div>
-	</div>
-</div>
-
+@include('includes.modals.pop_up_upload_full_paper')
+@include('includes.modals.pop_up_upload_bukti_pembayaran')
+@include('includes.modals.pop_up_minta_bantuan')
+@include('includes.modals.pop_up_edit_profile')
 
 
 @stop

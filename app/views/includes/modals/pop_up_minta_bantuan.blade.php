@@ -1,34 +1,34 @@
 
-<!-- Modal Pop Up -->
-<div class="modal fade pop_up_pesan" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<!-- Modal Pop Up Minta Bantuan-->
+<div class="modal fade pop_up_minta_bantuan" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Nama Pengirim | Subjek Pengirim</h4>
+        <h4 class="modal-title" id="myModalLabel">Minta Bantuan</h4>
       </div>
 
-      
 
-      <div class="modal-body" style="overflow: hidden; ">
-        <button type="button" class="btn btn-info tog" style="width: 100%; margin-left: 10px; margin-bottom: 20px; float: right;">
-          Reply
-          <span class="glyphicon glyphicon-share">
-          </span>
-        </button>
-      </div>
-      <div class="modal-body poi" style="overflow: hidden; display: none;">
-        
+      <div class="modal-body poi" style="overflow: hidden;">
+       
         
         <div class="clearfix"></div>
-        <form>
-        <label class=" control-label col-sm-2">Balas pesan</label>
-        {{ Form::textarea('keteranganlain', Input::old('keteranganlain'), array('class'=>'form-control col-sm-8', 'style'=>'height: 100px;')) }}
-
-        <button type="button" class="btn btn-primary " style="margin-left: 10px; width: 100px;">Kirim</button>
-        <input type="file" class="btn btn-primary " style="float: right;width: 100px;margin-right: 34px;margin-top: 10px;"/>
-        </form>
-      </div>
+        <from class="form-horizontal">
+          <div class="form-group">
+            <label class=" control-label col-sm-2">Subjek</label>
+                  {{ Form::text('input_nama',Input::old('input_nama'), array('id' => 'input_nama', 'class' => 'form-control col-sm-9')) }}
+          </div>
+          <div class="form-group">
+            <label class=" control-label col-sm-2">Deskripsi</label>
+            {{ Form::textarea('keteranganlain', Input::old('keteranganlain'), array('class'=>'form-control col-sm-9', 'style'=>'height: 100px;')) }}
+          </div>
+        <span class="clearfix"></span>
+        
+        
+        <button type="button" class="btn btn-primary" style="margin-left: 150px; width: 100px;">Kirim</button>
+        <input type="file" class="btn btn-primary" style="margin-left: 150px;width: 100px;margin-right: 34px;margin-top: 10px;"/>
+      </from>
+    </div>
 
       <div class="modal-body">
         <div class="form-group konten_pesan">
@@ -53,7 +53,7 @@
 <script>
   $('body').on('click','.tog',function(){
        
-        $('.poi').slideToggle({
+        $('.poi').animate({
           height: '170'
         },500, 'easeInOutExpo');
 

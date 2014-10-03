@@ -235,7 +235,7 @@
 							</p>
 
 						  <button type="submit" class="btn btn-success">Kirim</button> 
-						  <button type="submit" class="btn btn-primary">Reset</button> 
+						  <button type="reset" class="btn btn-primary">Reset</button> 
 						</form>
 					</div>
 				</div>

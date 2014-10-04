@@ -13,9 +13,9 @@
 	@yield('content')
 
 	
-	<footer class="row">
-		@include('includes.footer')
-	</footer>
+	
+	@include('includes.footer')
+	
 	
 	@include('includes.modals.loading')
 

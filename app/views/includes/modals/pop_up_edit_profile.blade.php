@@ -103,7 +103,7 @@
 
 			</div>
 			<div class="modal-footer">
-					<button type="submit" class="btn btn-success">Kirim</button> 
+					<button type="submit" class="btn btn-success" data-dismiss="modal">Kirim</button> 
 					<button type="reset" class="btn btn-primary">Reset</button> 
 				
 			</div>

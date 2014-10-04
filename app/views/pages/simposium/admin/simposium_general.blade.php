@@ -125,7 +125,7 @@
 			}
 		</style>
 		<ol class="breadcrumb">
-			<li><a onClick='history.back();' >Dashboard</a></li>
+			<li><a href="{{ URL::to('simposium/admin', $id) }}"  >Dashboard</a></li>			
 			<li class="active">Umum</li>
 		</ol>
 

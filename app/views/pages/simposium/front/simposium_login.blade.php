@@ -1,22 +1,23 @@
 @extends('layouts.simposium')
 @section('content')
+{{Session::get(message')}}
 <div class="container_12">
 	<div class="grid_6 push_3">
 			<div class="panel panel-default" style="margin-top: 50px; margin-bottom: 50px;">
 					<div class="panel-body">
-						<form role="form">
+						{{ Form::open(array('url' => 'login','method'=>'post')) }}
 						  <div class="form-group">
 							<label for="exampleInputEmail1">Username</label>
-							<input type="email" class="form-control" id="" placeholder="Enter email" style="padding-left: 0px; padding-right: 0px; text-indent: 6px;">
+							<input type="email" name='username' class="form-control" id="" placeholder="Enter email" style="padding-left: 0px; padding-right: 0px; text-indent: 6px;">
 						  </div>
 						  <div class="form-group">
 							<label for="exampleInputPassword1">Password</label>
-							<input type="password" class="form-control" id="" placeholder="Password" style="padding-left: 0px; padding-right: 0px; text-indent: 6px;">
+							<input type="password" name='password' class="form-control" id="" placeholder="Password" style="padding-left: 0px; padding-right: 0px; text-indent: 6px;">
 						  </div>
 						 
 						  <button type="submit" class="btn btn-success">Kirim</button> 
 						  <button type="submit" class="btn btn-danger">Batal</button> 
-						</form>
+						{{ Form::close() }}
 					</div>
 				</div>
 	<!--	<div class="login_content">

@@ -321,7 +321,7 @@ setTimeout(function(){
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 				<h4 class="modal-title" id="myModalLabel">Detail Berkas</h4>
 			</div>	
-			<form class='tambah_berkas_form form-horizontal' role="form" >
+			<form class='tambah_berkas_form form-horizontal'>
 			<div class="modal-body" id="div_form_berkas">
 
 				

@@ -8,7 +8,7 @@
 				<h4 class="modal-title" id="myModalLabel">Detail Abstraksi</h4>
 			</div>
 
-			<form role="form" class="form-horizontal">
+			<form class="form-horizontal">
 
 				<div class="modal-body" style="">
 

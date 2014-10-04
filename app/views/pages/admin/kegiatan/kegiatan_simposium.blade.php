@@ -118,9 +118,10 @@ $('.pop_up_super_c_hapus_regulasi').click(function (e)
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 						<h4> Tambah Kegiatan Simposium </h4>
 					</div>
-					{{ Form::open(array('id'=>'form_tambah_kegiatan','url' => '', 'files' => true, 'class'=>'form-horizontal', 'role'=>'form')) }}
+					{{ Form::open(array('id'=>'form_tambah_kegiatan','url' => '', 'files' => true, 'class'=>'form-horizontal')) }}
 
 					<div class="modal-body">	
 						<div class="form-group">

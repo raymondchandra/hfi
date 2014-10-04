@@ -110,7 +110,7 @@
 			<h2>Peserta Baru</h2>
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<form role="form" class="form-horizontal">
+					<form class="form-horizontal">
 
 						<div class="form-group">
 							<label class=" control-label col-sm-3">Nama<span class="red">*</span></label>

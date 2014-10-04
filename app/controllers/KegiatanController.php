@@ -4,9 +4,9 @@ class KegiatanController extends BaseController {
 	
 	public $restful = true;
 	
-	public function view_index()
+	public function view_index($jenis)
 	{
-		$kegiatans = KegiatanController::get_all_kegiatan(); 
+		$kegiatans = KegiatanController::get_all_kegiatan($jenis); 
 		$arr = $this->setHeader();
 		return View::make('pages.kegiatan', compact('arr','kegiatans'));
 	}

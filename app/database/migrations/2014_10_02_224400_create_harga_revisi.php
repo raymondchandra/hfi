@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKegiatanFile extends Migration {
+class CreateHargaRevisi extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,14 +12,17 @@ class CreateKegiatanFile extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('kegiatanFile', function (Blueprint $table) {
+		Schema::table('harga', function (Blueprint $table) {
+            $table->drop();
             $table->create();
 			$table->increments('id');
 			$table->integer('id_kegiatan')->unsigned();
-			$table->string('nama');
-			$table->dateTime('uploaded');
-			$table->string('file_path');
-			$table->string('tipe'); //header, sponsor, other
+			$table->string('kategori');
+			$table->string('harga_early');
+			$table->string('harga_normal');
+			$table->tinyInteger('isHeader');
+			
+
 			
 			$table->foreign('id_kegiatan')->references('id')->on('kegiatan2');
         });
@@ -32,9 +35,7 @@ class CreateKegiatanFile extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('kegiatanFile', function (Blueprint $table) {
-            $table->drop();
-        });
+		//
 	}
 
 }

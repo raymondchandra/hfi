@@ -34,6 +34,8 @@ class CreatePeserta extends Migration {
 			$table->string('bukti_bayar');
 			$table->string('paper');
 
+			$table->tinyInteger('is_paper');
+
 
 			$table->foreign('id_kegiatan')->references('id')->on('kegiatan2');
         });

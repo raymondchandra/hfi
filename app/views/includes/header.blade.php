@@ -64,7 +64,13 @@
 							</ul>
 						</li>
 						<li>
-							{{HTML::linkRoute('kegiatan','Kegiatan')}}
+							{{HTML::linkRoute('kegiatan','Kegiatan',array(1))}}
+							<ul>
+								<li><a href="{{ URL::route('kegiatan',array(1)) }}">Kegiatan Nasional</a></li>
+								<li><a href="{{ URL::route('kegiatan',array(2)) }}">Kegiatan Internasional</a></li>
+								<li><a href="{{ URL::route('home',array()) }}#visi_hfi">Simposium</a></li>
+								<li><a href="{{ URL::route('home',array()) }}#misi_hfi">Ictap</a></li>
+							</ul>
 						</li>
 						<li>
 							{{HTML::linkRoute('publikasi','Publikasi',array(1))}}

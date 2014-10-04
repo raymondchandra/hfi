@@ -24,9 +24,9 @@
 
 	</div>
 
-	<footer class="row">
+	
 		@include('includes.footer')
-	</footer>
+	
 
 </div>
 </body>

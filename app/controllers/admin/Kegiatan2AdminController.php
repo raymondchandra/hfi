@@ -213,7 +213,8 @@ class Kegiatan2AdminController extends BaseController {
 		$tanggal_mulai = date_format($date,"d-m-Y");
 		$date= date_create($kegiatan->early_finish);
 		$tanggal_selesai = date_format($date,"d-m-Y");
-		return View::make('pages.simposium.admin.simposium_harga',compact('id','kegiatan','tanggal_mulai','tanggal_selesai'));
+		$harga = Harga::where('id_kegiatan','=',$id)->get();
+		return View::make('pages.simposium.admin.simposium_harga',compact('id','kegiatan','tanggal_mulai','tanggal_selesai','harga'));
 	}
 
 	public function edit_early($id){
@@ -231,6 +232,98 @@ class Kegiatan2AdminController extends BaseController {
 			return 'success';
 		} catch (Exception $e) {
     		return 'Caught exception: '. $e->getMessage(). "\n";
+		}
+	}
+
+	public function tambahHarga($id){
+
+
+		$input = array(
+			'kategori' => Input::get('kategori'),
+			'early' => Input::get('early'),
+			'normal' => Input::get('normal'),
+			'header' => Input::get('header')
+		);
+		
+		$rules = array(
+			'kategori' => 'required',
+			'early' => '',
+			'normal' => '',
+			'header' => ''
+		);
+
+		//validate
+		$validator = Validator::make($input, $rules);
+		if ($validator->fails())
+		{
+			return 'Gagal menambah harga';//$validator->messages();
+		}
+		//save
+		try {
+			$harga = new Harga();
+			$harga->id_kegiatan = $id;
+			$harga->kategori = $input['kategori'];
+			$harga->harga_early = $input['early'];
+			$harga->harga_normal = $input['normal'];
+			$harga->isHeader = $input['header'];
+			$harga->timestamps = false;
+
+			$harga->save();
+
+			return 'success';
+		} catch (Exception $e) {
+			return $e;
+		}
+	}
+
+	public function editHarga($id){
+
+		$idBener = Input::get('id');
+		$input = array(
+			'kategori' => Input::get('kategori'),
+			'early' => Input::get('early'),
+			'normal' => Input::get('normal'),
+			'header' => Input::get('header')
+		);
+		
+		$rules = array(
+			'kategori' => 'required',
+			'early' => '',
+			'normal' => '',
+			'header' => ''
+		);
+
+		//validate
+		$validator = Validator::make($input, $rules);
+		if ($validator->fails())
+		{
+			return 'Gagal merubah harga';//$validator->messages();
+		}
+		//save
+		try {
+			$harga = Harga::find($idBener);
+			$harga->kategori = $input['kategori'];
+			$harga->harga_early = $input['early'];
+			$harga->harga_normal = $input['normal'];
+			$harga->isHeader = $input['header'];
+			$harga->timestamps = false;
+
+			$harga->save();
+
+			return 'success';
+		} catch (Exception $e) {
+			return $e;
+		}
+	}
+
+	public function hapus_harga($id){
+		$idBener = Input::get('id');
+		$harga = Harga::find($idBener);
+		try {
+			$harga->delete();
+			return 'success';
+		} catch (Exception $e) {
+			return $e;
 		}
 	}
 
@@ -438,11 +531,89 @@ class Kegiatan2AdminController extends BaseController {
 
 	public function view_berkas($id)
 	{
-		return View::make('pages.simposium.admin.simposium_sponsor',compact('id'));
+		$kegiatan = Kegiatan2::find($id);
+		$nama_kegiatan = $kegiatan->nama;
+		$files = Kegiatanfile::where('id_kegiatan','=',$id)->where('tipe','=','other')->paginate(20);
+		return View::make('pages.simposium.admin.simposium_file',compact('id','nama_kegiatan','files'));
 	}
 
+	public function add_berkas($id){
+		//return 'tes';
+		if(Input::hasFile('fileBerkas'))
+		{
+			$file = Input::file('fileBerkas');
+			$destinationPath = "assets/file_upload/kegiatan/berkas/";
+			$fileName = $file->getClientOriginalName();
+			$berkas = new Kegiatanfile();
+			$berkas -> timestamps = false;
+			$berkas ->id_kegiatan = $id;
+			$berkas -> nama = Input::get("nama_berkas");
+			$berkas -> uploaded = Carbon::now();
+			$berkas -> tipe = 'other';
+			try {
+				$berkas -> save();
+				
+			} catch (Exception $e) {
+				return $e;
+			}
+			
+			
+			$berkas_id = $berkas->id;
+			$destinationPath .= $berkas_id;
+			$destinationPath .= "/";
+			if(!file_exists($destinationPath))
+			{
+				File::makeDirectory($destinationPath, $mode = 0777, true, true);
+				$uploadSuccess = $file->move($destinationPath, $fileName);
+				$berkas -> file_path = $destinationPath.$fileName;
+				
+			}
+			else
+			{
+				$uploadSuccess = $file->move($destinationPath, $fileName);
+				$berkas -> file_path = $destinationPath.$fileName;
+			}
+			try {
+				$berkas -> save();
+				return 'success';
+			} catch (Exception $e) {
+				return $e;
+			}
+		}
+		else
+		{
+			return "Tidak ada berkas";
+		}
+	}
+
+	public function del_berkas($id){
+		$id_berkas = Input::get('id_berkas');
+		$berkas = Kegiatanfile::find($id_berkas);
+		try {
+			$berkas->delete();
+			return 'success';
+		} catch (Exception $e) {
+			return $e;
+		}
+
+	}
 	public function view_template($id)
 	{
-		return View::make('pages.simposium.admin.simposium_sponsor',compact('id'));
+		$kegiatan = Kegiatan2::find($id);
+		$nama_kegiatan = $kegiatan->nama;
+		return View::make('pages.simposium.admin.simposium_template_index',compact('id','nama_kegiatan'));
+	}
+
+	public function view_template_editor($type,$id)
+	{
+		$kegiatan = Kegiatan2::find($id);
+		$nama_kegiatan = $kegiatan->nama;
+		$title = $type;
+		
+		$text = "";
+		
+		
+		return View::make('pages.simposium.admin.simposium_template_editor',compact('type','id','nama_kegiatan','title','text'));
+
 	}
 }

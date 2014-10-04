@@ -5,7 +5,7 @@
 				Daftar
 			</a>
 			|
-			<a href="{{url('simposium/login')}}">
+			<a href="{{url('simposium/login/1')}}">
 				Log In
 			</a>
 		@else

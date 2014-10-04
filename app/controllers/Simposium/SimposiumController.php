@@ -1,7 +1,7 @@
 <?php
 
 class SimposiumController extends BaseController {
-	public function view_index(){
+	public function view_index($id){
 		return View::make('pages.simposium.front.simposium_main');
 	}
 	
@@ -26,8 +26,9 @@ class SimposiumController extends BaseController {
 		return View::make('pages.simposium.front.simposium_lokasi');
 	}
 	
-	public function view_peserta(){
-		return View::make('pages.simposium.front.simposium_peserta');
+	public function view_peserta($id){
+		$pesertas = Peserta::where('id_kegiatan','=',$id)->get();
+		return View::make('pages.simposium.front.simposium_peserta',compact('pesertas'));
 	}
 	
 	public function view_style_simposium(){
@@ -81,7 +82,7 @@ class SimposiumController extends BaseController {
 		}
 	}
 	
-	public function login(){
+	public function login($id){
 		$username = Input::get('username');
 		$password = Input::get('password');
 		
@@ -94,6 +95,7 @@ class SimposiumController extends BaseController {
 				if (Hash::check($password, $peserta[0]['password']))
 				{
 					Session::push('session_user_id',$peserta[0]['id']);
+					Session::push('session_kegiatan',$id);
 					return Redirect::to('simposium/admin/0');
 				}
 				else{
@@ -104,7 +106,8 @@ class SimposiumController extends BaseController {
 				if (Hash::check($password, $peserta[0]['password']))
 				{
 					Session::push('session_user_id',$peserta[0]['id']);
-					return Redirect::to('simposium');
+					Session::push('session_kegiatan',$id);
+					return Redirect::to('simposium/'.$id);
 				}
 				else{
 					return Redirect::to('simposium/login')->with('message','Username atau Password Salah');

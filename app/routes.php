@@ -347,6 +347,11 @@ Route::get('/test/tesuto', function()
 //temporary route for testing end
 
 
+//test registrasi
+
+Route::post('/register', ['as' => 'register', 'uses' => 'SimposiumController@register']);
+Route::post('/login', ['as' => 'register', 'uses' => 'SimposiumController@login']);
+
 
 
 

@@ -186,8 +186,17 @@ $(document).ready(function(){
 <script src="{{asset('assets/js/datetimepicker/jquery.datetimepicker.js')}}"></script>
 <div class="container_12">
 	<div class="grid_12">
-		<div class='admin_title'>{{$kegiatan->nama}}</div>
-		<a href='javascript:void(0)' onClick='history.back();' >Back</a>
+		<h1 class=''>{{$kegiatan->nama}}</h1>
+		<style>
+			.breadcrumb li {
+				padding-left: 0px;
+				margin-left: 0px;
+			}
+		</style>
+		<ol class="breadcrumb">
+			<li><a href="{{ URL::to('simposium/admin', $id) }}"  >Dashboard</a></li>
+			<li class="active">Harga</li>
+		</ol>
 		
 		
 		<h3>Harga</h3>

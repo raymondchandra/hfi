@@ -16,7 +16,16 @@ function back(){
 <div class="container_12">
 	<div class="grid_12">
 		<h1 class=''>Peserta</h1>
-		<a href='javascript:void(0)' onClick='back()' >Back</a>
+		<style>
+			.breadcrumb li {
+				padding-left: 0px;
+				margin-left: 0px;
+			}
+		</style>
+		<ol class="breadcrumb">
+			<li><a href="{{ URL::to('simposium/admin', $id) }}"  >Dashboard</a></li>
+			<li class="active">Peserta</li>
+		</ol>
 
 		<table class="table table-striped table-bordered table-hover">
 			<thead>

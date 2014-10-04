@@ -16,21 +16,21 @@
         <from class="form-horizontal">
           <div class="form-group">
             <label class=" control-label col-sm-2">Subjek</label>
-                  {{ Form::text('input_nama',Input::old('input_nama'), array('id' => 'input_nama', 'class' => 'form-control col-sm-9')) }}
+            {{ Form::text('input_nama',Input::old('input_nama'), array('id' => 'input_nama', 'class' => 'form-control col-sm-9')) }}
           </div>
           <div class="form-group">
             <label class=" control-label col-sm-2">Deskripsi</label>
             {{ Form::textarea('keteranganlain', Input::old('keteranganlain'), array('class'=>'form-control col-sm-9', 'style'=>'height: 100px;')) }}
           </div>
-        <span class="clearfix"></span>
-        
-        
-        <button type="button" class="btn btn-primary" style="margin-left: 150px; width: 100px;">Kirim</button>
-        <input type="file" class="btn btn-primary" style="margin-left: 150px;width: 100px;margin-right: 34px;margin-top: 10px;"/>
-      </from>
-    </div>
+          <span class="clearfix"></span>
+          
+          
+          <button type="button" class="btn btn-primary" style="margin-left: 150px; width: 100px;">Kirim</button>
+          <input type="file" class="btn btn-primary" style="margin-left: 150px;width: 100px;margin-right: 34px;margin-top: 10px;"/>
+        </from>
+      </div>
 
-      <div class="modal-body">
+     <!-- <div class="modal-body">
         <div class="form-group konten_pesan">
 
           <hr/>
@@ -46,16 +46,17 @@
           </p>
 
         </div>
-      </div>
+      </div> -->
+
     </div>
   </div>
 </div>
 <script>
-  $('body').on('click','.tog',function(){
-       
-        $('.poi').animate({
-          height: '170'
-        },500, 'easeInOutExpo');
+$('body').on('click','.tog',function(){
+ 
+  $('.poi').animate({
+    height: '170'
+  },500, 'easeInOutExpo');
 
-    });
+});
 </script>

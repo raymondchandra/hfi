@@ -8,9 +8,25 @@
 
 <div class="container_12">
 	<div class="grid_12">
-		<div class='admin_title'>{{$nama_kegiatan}}</div>
-		<div>Berkas</div>
-		<a href='javascript:void(0)' onClick='history.back();' >Back</a>
+		<h1 class='admin_title'>{{$nama_kegiatan}}</h1>
+		
+		<style>
+			.breadcrumb li {
+				padding-left: 0px;
+				margin-left: 0px;
+			}
+		</style>
+		<ol class="breadcrumb">
+			<li><a href="{{ URL::to('simposium/admin', $id) }}"  >Dashboard</a></li><!-- onClick='history.back();' -->
+			<li class="active">Berkas</li>
+		</ol>
+
+
+		<h3>Berkas</h3>
+
+
+
+
 		<div id='tambah_berkas_link' style='display: block;width: 100%;margin-left: 0px !important;overflow: hidden;'><a href='javascript:void(0)' id='tambah_berkas' class='command_button'>Tambah Berkas Baru</a></div>
 
 

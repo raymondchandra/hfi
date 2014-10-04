@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder {
 		// $this->call('UserTableSeeder');
 		$cabang = new Cabang();
 		$cabang->nama = 'Pusat';
+		$cabang->tipe = 1;
 		$cabang->telp = 123;
 		$cabang->fax = 123;
 		$cabang->email = 'asd@asd.com';

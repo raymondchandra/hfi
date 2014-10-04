@@ -227,6 +227,8 @@
 												'alamat_cabang':$alamat
 											},
 											success: function(data){
+												alert(data);
+												$( ".loader" ).fadeIn( 200, function(){});
 												$( ".pop_up_super_c_tambah_cabang" ).fadeOut( 200, function(){});
 												getCabang();
 											},

@@ -141,9 +141,13 @@ use Carbon\Carbon;
 			$cabang->link = Input::get('link_cabang');
 			$cabang->alamat = Input::get('alamat_cabang');
 			$cabang->timestamps = false;
-				
-			$cabang->save();
-			return "Success Update";
+			try {
+				$cabang->save();
+				return "Berhasil menambah cabang.";
+			} catch (Exception $e) {
+				return $e;
+			}
+			
 		}
 		
 		/*public function tambah_pengurus()

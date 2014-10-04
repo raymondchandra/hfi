@@ -15,6 +15,13 @@
 				$(this).siblings('.show_before').text($(this).text());
 			}
 			
+			$('.pagination a').on('click', function (event) {
+			    event.preventDefault();
+			    if ( $(this).attr('href') != '#' ) {
+			        $("html, body").animate({ scrollTop: 0 }, "fast");
+			        $('.admin_control_panel').load($(this).attr('href'));
+			    }
+			});
 		});
 		$( ".loader" ).fadeOut( 200, function(){});
 	});
@@ -518,7 +525,7 @@
 							
 						</div>
 
-						{{Form::button('Rubah Data Kegiatan', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'edit_button','data-dismiss'=>'modal'));}}
+						{{Form::button('Ubah Data Kegiatan', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'edit_button','data-dismiss'=>'modal'));}}
 						<input type='hidden' class='id_edit' />
 					{{ Form::close() }}
 					<style>

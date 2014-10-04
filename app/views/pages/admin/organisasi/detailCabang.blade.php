@@ -334,24 +334,19 @@ $('body').on('click','.periode_pengurus',function(){
 <div class="modal fade pop_up_super_c_hapus_pengurus" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header bg-danger">
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 				Perhatian!
 			</div>
 			<div class="modal-body">
-				<h4>Anda yakin ingin menghapus pengurus ini?</h4>				
+				<h4 style="text-align: center;">Anda yakin ingin menghapus pengurus ini?</h4>				
 				<div class="form-horizontal">
 					<div class="form-group">
-						<button class="ok_hapus_pengurus btn btn-primary form-control col-sm-2 col-sm-push-4">Ya</button>
-						<button class="batal_hapus_pengurus btn btn-primary  form-control col-sm-2  col-sm-push-4">Tidak</button>
+						<button class="ok_hapus_pengurus btn btn-primary form-control col-sm-2 col-sm-push-3">Ya</button>
+						<button data-dismiss="modal" class="batal_hapus_pengurus btn btn-primary  form-control col-sm-2  col-sm-push-5">Tidak</button>
 					</div>
 				</div>
-
 			</div>
-
-
-
-
 		</div>		
 	</div>
 </div>

@@ -82,12 +82,12 @@
 }
 
 #judul_deskripsi{
-	height:60px;
+/*	height:60px; 
 	padding-top:20px;
 	margin-left:40px;
 	margin-right:40px;
 	text-align:center;
-	overflow:hidden;
+	overflow:hidden;*/
 }
 
 #div_isi_deskripsi, #div_form_berkas{

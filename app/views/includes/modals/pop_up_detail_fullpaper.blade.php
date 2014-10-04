@@ -14,12 +14,12 @@
 
 					<div class="form-group">
 						<label class=" control-label col-sm-3">Judul Penelitian</label>
-						<p class="form-control-static col-sm-8">Pembuatan Lansekap Ala Kevin PL</p>
+						<p class="form-control-static col-sm-8 judul_paper">Pembuatan Lansekap Ala Kevin PL</p>
 					</div>
 
 					<div class="form-group">
 						
-						<object class="col-sm-12" data="https://bitcoin.org/bitcoin.pdf" style="height: 400px;"></object>
+						<object class="col-sm-12 file_paper" data="https://bitcoin.org/bitcoin.pdf" style="height: 400px;"></object>
 					</div>
 
 					<div class="form-group">

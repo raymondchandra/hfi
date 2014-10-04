@@ -486,8 +486,45 @@ class Kegiatan2AdminController extends BaseController {
 
 	public function view_peserta($id)
 	{
-		return View::make('pages.simposium.admin.simposium_peserta',compact('id'));
+		$pesertas = $this->get_peserta_of($id);
+		return View::make('pages.simposium.admin.simposium_peserta',compact('id','pesertas'));
 	}
+
+	
+	public function get_peserta_of($id){
+		$pesertas = Peserta::where('id_kegiatan','=',$id)->get();
+		if(count($pesertas)!=0){
+			return $pesertas;
+		}
+		else{
+			return null;
+		}
+	}
+	
+	public function get_one_peserta($id){
+		$peserta = Peserta::find($id);
+		return $peserta;
+	}
+	
+	public function update_status_pembayaran(){
+		$id = Input::get('id');
+		$status = Input::get('bayar');
+		
+		$peserta = Peserta::find($id);
+		
+		if(count($peserta)==1){
+			$peserta->status_bayar = $status;
+		
+			$peserta->save();
+			
+			return "Berhasil";
+		}
+		else{
+				return "Gagal";
+		}
+	}
+	
+	
 
 	public function view_pesan($id)
 	{

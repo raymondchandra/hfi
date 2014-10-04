@@ -110,8 +110,10 @@
 			<h2>Peserta Baru</h2>
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<form class="form-horizontal">
-
+					<!--<form role="form" >-->
+					{{Session::get('message')}}
+					{{ Form::open(array('url' => '/register','method'=>'post','class'=>'form-horizontal')) }}
+						<input type='hidden' value='{{$id}}' name='input_id' />
 						<div class="form-group">
 							<label class=" control-label col-sm-3">Nama<span class="red">*</span></label>
 							{{ Form::text('input_nama',Input::old('input_nama'), array('id' => 'input_nama', 'class' => 'form-control col-sm-5')) }}
@@ -236,7 +238,8 @@
 
 									<button type="submit" class="btn btn-success">Kirim</button> 
 									<button type="reset" class="btn btn-primary">Reset</button> 
-								</form>
+								{{ Form::close() }}
+								<!--</form>-->
 							</div>
 						</div>
 						

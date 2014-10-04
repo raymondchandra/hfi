@@ -231,7 +231,7 @@ class HomeAdminController extends BaseController {
 	
 	public function get_all_regulasi()
 	{	
-		return Regulasi::paginate(2);
+		return Regulasi::paginate(10);
 	}
 	
 

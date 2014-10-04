@@ -2,16 +2,16 @@
 
 class SimposiumController extends BaseController {
 	public function view_index($id){
-		return View::make('pages.simposium.front.simposium_main');
+		return View::make('pages.simposium.front.simposium_main',compact('id'));
 	}
 	
-	public function view_login(){
-		return View::make('pages.simposium.front.simposium_login');
+	public function view_login($id){
+		return View::make('pages.simposium.front.simposium_login',compact('id'));
 	}
 	
-	public function view_user($id){
-		
-		return View::make('pages.simposium.front.simposium_user');
+	public function view_user($id,$id_peserta){
+		$peserta = Peserta::find($id_peserta);
+		return View::make('pages.simposium.front.simposium_user',compact('id','peserta'));
 	}
 	
 	public function view_registrasi($id){
@@ -74,7 +74,7 @@ class SimposiumController extends BaseController {
 				$peserta->bukti_bayar ="";
 				$peserta->paper =$judul_paper;
 				$peserta->save();
-				return Redirect::to('simposium/login')->with('message','Pendaftaran Berhasil');
+				return Redirect::to('simposium/login'.$id_kegiatan)->with('message','Pendaftaran Berhasil');
 			}
 		}
 		else{
@@ -82,7 +82,8 @@ class SimposiumController extends BaseController {
 		}
 	}
 	
-	public function login($id){
+	public function login(){
+		$id_kegiatan = Input::get('id_kegiatan');
 		$username = Input::get('username');
 		$password = Input::get('password');
 		
@@ -95,35 +96,76 @@ class SimposiumController extends BaseController {
 				if (Hash::check($password, $peserta[0]['password']))
 				{
 					Session::push('session_user_id',$peserta[0]['id']);
-					Session::push('session_kegiatan',$id);
-					return Redirect::to('simposium/admin/0');
+					return Redirect::to('simposium/admin/'.$id_kegiatan);
 				}
 				else{
-					return Redirect::to('simposium/login')->with('message','Username atau Password Salah');
+					return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
 				}
 			}
 			else{
 				if (Hash::check($password, $peserta[0]['password']))
 				{
 					Session::push('session_user_id',$peserta[0]['id']);
-					Session::push('session_kegiatan',$id);
-					return Redirect::to('simposium/'.$id);
+					Session::push('session_kegiatan',$id_kegiatan);
+					return Redirect::to('simposium/'.$id_kegiatan);
 				}
 				else{
-					return Redirect::to('simposium/login')->with('message','Username atau Password Salah');
+					return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
 				}
 			}
-			
 		}
 		else{
-			return Redirect::to('simposium/login')->with('message','Username atau Password Salah');
+			return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
 		}
 		
 	}
 	
-	public function logout(){
+	public function logout($id){
 		Session::flush();
-		return Redirect::to('simposium/login');
+		return Redirect::to('simposium/login/'.$id);
+	}
+	
+	public function edit_profil(){
+		$id_kegiatan = Input::get('id_kegiatan');
+		$id_peserta = Input::get('id_peserta');
+		$name= Input::get('input_nama');
+		$institusi= Input::get('input_institusi');
+		$profesi= Input::get('input_profesi');
+		$email= Input::get('input_email');
+		$alamat= Input::get('input_alamat');
+		$password= Input::get('input_password');
+		$password_again= Input::get('input_password_again');
+		//$is_paper = Input::get('is_paper');
+		$gender = Input::get('gender');
+		$spesialisasi = Input::get('spesialisasi');
+		$judul_paper = Input::get('input_judul_paper');
+		$abstrak_paper = Input::get('input_abstrak');
+		
+		
+		$peserta = Peserta::find($id_peserta);
+		
+		$peserta->username =$email;
+		
+		if(strcmp($password,"")!=0 && strcmp($password,$password_again) == 0){
+			$peserta->password =Hash::make($password);
+		}
+		
+		$peserta->nama =$name;
+		$peserta->institusi =$institusi;
+		$peserta->pekerjaan =$profesi;
+		$peserta->email =$email;
+		$peserta->alamat =$alamat;
+		$peserta->status ='Partisipan';
+		if($peserta->is_paper==1){
+			$peserta->presentasi =$gender;
+			$peserta->abstract =$abstrak_paper;
+			$peserta->paper =$judul_paper;
+		}
+		
+		$peserta->save();
+		
+		return  Redirect::to('simposium/user/'.$id_kegiatan.'/'.$id_peserta)->with('message','Berhasil Merubah Data');
+		
 	}
 
 	

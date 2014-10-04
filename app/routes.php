@@ -276,11 +276,11 @@ Route::group(array('prefix' => 'simposium/admin', 'before' => ''), function () {
 
 	Route::put('/konten/editor/{id}', ['as' => 'admin.kegiatan2.konten.editEditor', 'uses' => 'Kegiatan2AdminController@edit_editor']);
 
-	//admin post tandatangan
-	//Route::post('/postTandaTangan', ['as' => 'admin.postTandaTangan', 'uses' => 'OrganisasiAdminController@edit_tandatangan']);	
-	//admin cek tandatangan
-	//Route::get('/cekTandaTangan', ['as' => 'admin.cekTandaTangan', 'uses' => 'OrganisasiAdminController@UrlExists']);
-
+	Route::post('/header/{id}', ['as' => 'admin.kegiatan2.editHeader', 'uses' => 'Kegiatan2AdminController@update_header']);	
+	Route::post('/sponsor/{id}', ['as' => 'admin.kegiatan2.addSponsor', 'uses' => 'Kegiatan2AdminController@tambah_sponsor']);	
+	Route::post('/edsponsor/{id}', ['as' => 'admin.kegiatan2.editSponsor', 'uses' => 'Kegiatan2AdminController@update_sponsor']);	
+	Route::delete('/sponsor/{id}', ['as' => 'admin.kegiatan2.delSponsor', 'uses' => 'Kegiatan2AdminController@hapus_sponsor']);	
+	
 
 	Route::post('/harga/{id}', ['as' => 'admin.kegiatan2.tambahHarga', 'uses' => 'Kegiatan2AdminController@tambahHarga']);
 	Route::put('/harga/{id}', ['as' => 'admin.kegiatan2.editHarga', 'uses' => 'Kegiatan2AdminController@editHarga']);

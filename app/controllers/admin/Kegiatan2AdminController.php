@@ -150,14 +150,171 @@ class Kegiatan2AdminController extends BaseController {
 	{
 		$kegiatan = Kegiatan2::find($id);
 		$nama_kegiatan = $kegiatan->nama;
-		return View::make('pages.simposium.admin.simposium_header',compact('id','nama_kegiatan'));
+		$header = Kegiatanfile::where('id_kegiatan','=',$id)->where('tipe','=','header')->first();
+		$sponsors = Kegiatanfile::where('id_kegiatan','=',$id)->where('tipe','=','sponsor')->get();
+		return View::make('pages.simposium.admin.simposium_header',compact('id','nama_kegiatan','header','sponsors'));
 	}
 
-	public function view_sponsor($id)
+	public function update_header($id)
+	{	
+		if(Input::hasFile('filePhoto'))
+		{
+			$file = Input::file('filePhoto');
+			$destinationPath = "assets/file_upload/kegiatan/berkas/";
+			$fileName = $file->getClientOriginalName();
+			
+			$berkas = Kegiatanfile::where('id_kegiatan','=',$id)->where('tipe','=','header')->first();
+		
+			if($berkas != NULL){
+				//delete foto lama
+				$pathLama = $berkas -> file_path;
+				File::delete($pathLama);
+			}else{
+				$berkas = new Kegiatanfile();
+			}
+			$berkas -> timestamps = false;
+			$berkas -> id_kegiatan = $id;
+			$berkas -> nama = 'header';
+			$berkas -> uploaded = Carbon::now();
+			$berkas -> tipe = 'header';
+			try {
+				$berkas -> save();
+			} catch (Exception $e) {
+				return $e;
+			}
+			
+			
+			$berkas_id = $berkas->id;
+			$destinationPath .= $berkas_id;
+			$destinationPath .= "/";
+			
+			if(!file_exists($destinationPath))
+			{
+				File::makeDirectory($destinationPath, $mode = 0777, true, true);
+			}
+			$uploadSuccess = $file->move($destinationPath, $fileName);
+			$berkas -> file_path = $destinationPath.$fileName;
+
+			try {
+				$berkas -> save();
+				return 'success';
+			} catch (Exception $e) {
+				return $e;
+			}
+		}else
+		{
+			return 'failed';
+		}
+	}
+
+	public function tambah_sponsor($id)
 	{
-		$kegiatan = Kegiatan2::find($id);
-		$nama_kegiatan = $kegiatan->nama;
-		return View::make('pages.simposium.admin.simposium_sponsor',compact('id','nama_kegiatan'));
+		if(Input::hasFile('filePhoto'))
+		{
+			$file = Input::file('filePhoto');
+			$destinationPath = "assets/file_upload/kegiatan/berkas/";
+			$fileName = $file->getClientOriginalName();
+			
+			
+			$berkas = new Kegiatanfile();
+			$berkas -> timestamps = false;
+			$berkas -> id_kegiatan = $id;
+			$berkas -> nama = 'sponsor';
+			$berkas -> uploaded = Carbon::now();
+			$berkas -> tipe = 'sponsor';
+			try {
+				$berkas -> save();
+			} catch (Exception $e) {
+				return $e;
+			}
+			
+			
+			$berkas_id = $berkas->id;
+			$destinationPath .= $berkas_id;
+			$destinationPath .= "/";
+			
+			if(!file_exists($destinationPath))
+			{
+				File::makeDirectory($destinationPath, $mode = 0777, true, true);
+			}
+			$uploadSuccess = $file->move($destinationPath, $fileName);
+			$berkas -> file_path = $destinationPath.$fileName;
+
+			try {
+				$berkas -> save();
+				return 'success';
+			} catch (Exception $e) {
+				return $e;
+			}
+		}else
+		{
+			return 'failed';
+		}
+	}
+
+	public function hapus_sponsor($id)
+	{
+		$id_sponsor = Input::get('id_sponsor');
+		
+		$berkas = Kegiatanfile::find($id_sponsor);
+		try {
+			$berkas->delete();
+			return 'success';
+		} catch (Exception $e) {
+			return $e;
+		}
+	}
+
+	public function update_sponsor($id)
+	{	
+		if(Input::hasFile('filePhoto'))
+		{
+			$file = Input::file('filePhoto');
+			$destinationPath = "assets/file_upload/kegiatan/berkas/";
+			$fileName = $file->getClientOriginalName();
+			$id_sponsor = Input::get('id_sponsor');
+			$berkas = Kegiatanfile::find($id_sponsor);
+		
+			if($berkas != NULL){
+				//delete foto lama
+				$pathLama = $berkas -> file_path;
+				File::delete($pathLama);
+			}else{
+				return 'Not found';
+			}
+			$berkas -> timestamps = false;
+			$berkas -> id_kegiatan = $id;
+			$berkas -> nama = 'sponsor';
+			$berkas -> uploaded = Carbon::now();
+			$berkas -> tipe = 'sponsor';
+			try {
+				$berkas -> save();
+			} catch (Exception $e) {
+				return $e;
+			}
+			
+			
+			$berkas_id = $berkas->id;
+			$destinationPath .= $berkas_id;
+			$destinationPath .= "/";
+			
+			if(!file_exists($destinationPath))
+			{
+				File::makeDirectory($destinationPath, $mode = 0777, true, true);
+			}
+			$uploadSuccess = $file->move($destinationPath, $fileName);
+			$berkas -> file_path = $destinationPath.$fileName;
+
+			try {
+				$berkas -> save();
+				return 'success';
+			} catch (Exception $e) {
+				return $e;
+			}
+		}else
+		{
+			return 'failed';
+		}
 	}
 
 	public function view_editor($type,$id)

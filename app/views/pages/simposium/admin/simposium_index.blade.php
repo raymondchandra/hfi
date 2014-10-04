@@ -1,7 +1,7 @@
 @extends('layouts.simposium_admin')
 @section('content')
 <script>
-	var id = '{{$id}}';
+var id = '{{$id}}';
 
 </script>
 
@@ -35,7 +35,7 @@
 	<a href="template/{{$id}}" class="grid_3 simposium_block">
 		Template
 	</a>
-	
+
 </div>
 
 

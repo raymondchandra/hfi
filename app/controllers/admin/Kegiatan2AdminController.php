@@ -334,14 +334,269 @@ class Kegiatan2AdminController extends BaseController {
 
 	public function view_pesan($id)
 	{
-		return View::make('pages.simposium.admin.simposium_pesan',compact('id'));
+		$pesan = Pesan::where('id_kegiatan', '=', $id)->get();
+		foreach($pesan as $msg)
+		{
+			$msg['nama'] = $this->getNamaPesertaFromId($msg['id_peserta']);
+		}
+		return View::make('pages.simposium.admin.simposium_pesan',compact('id','pesan'));
 	}
+	
+	public function getNamaPesertaFromId($id)
+	{
+		$nama = Peserta::where('id' ,'=' ,$id)->first();
+		
+		return $nama->nama;
+	}
+	
+	public function getMessageById($id)
+	{
+		$msg = Pesan::find($id);
+		return $msg;
+	}
+	
+	public function getMessageReply($id)
+	{
+		$rep = Reply::where('id_pesan', '=', $id)->get();
+		
+		return $rep;
+	}
+	
+	//pindahin-------
+	public function getRegTemplate($id)
+	{
+		$template = Template::where('id_kegiatan', '=' , $id)->where('type', '=', 'reg')->get();
+		
+		return $template;
+	}
+	
+	public function updateRegTemplate($id, $text)
+	{
+		$template = Template::where('id_kegiatan', '=' , $id)->where('type', '=', 'reg')->get();
+		
+		if($template == null)
+		{
+			$template = new Template();
+			$template->id_kegiatan = $id;
+			$template->tipe = 'reg';
+			$template->text = $text;
+			
+			try
+			{
+				$template->save();
+			}
+			catch(Exception $e)
+			{
+				
+			}
+		}
+		else
+		{
+			$template->text = $text;
+			try
+			{
+				$template->save();
+			}
+			catch(Exception $e)
+			{
+				
+			}
+		}
+	}
+	
+	public function getAbsTemplate($id)
+	{
+		$template = Template::where('id_kegiatan', '=' , $id)->where('type', '=', 'abs')->get();
+		
+		return $template;
+	}
+	
+	public function updateAbsTemplate($id, $text)
+	{
+		$template = Template::where('id_kegiatan', '=' , $id)->where('type', '=', 'abs')->get();
+		
+		if($template == null)
+		{
+			$template = new Template();
+			$template->id_kegiatan = $id;
+			$template->tipe = 'abs';
+			$template->text = $text;
+			
+			try
+			{
+				$template->save();
+			}
+			catch(Exception $e)
+			{
+				
+			}
+		}
+		else
+		{
+			$template->text = $text;
+			try
+			{
+				$template->save();
+			}
+			catch(Exception $e)
+			{
+				
+			}
+		}
+	}
+	
+	public function getPapTemplate($id)
+	{
+		$template = Template::where('id_kegiatan', '=' , $id)->where('type', '=', 'pap')->get();
+		
+		return $template;
+	}
+	
+	public function updatePapTemplate($id, $text)
+	{
+		$template = Template::where('id_kegiatan', '=' , $id)->where('type', '=', 'pap')->get();
+		
+		if($template == null)
+		{
+			$template = new Template();
+			$template->id_kegiatan = $id;
+			$template->tipe = 'pap';
+			$template->text = $text;
+			
+			try
+			{
+				$template->save();
+			}
+			catch(Exception $e)
+			{
+				
+			}
+		}
+		else
+		{
+			$template->text = $text;
+			try
+			{
+				$template->save();
+			}
+			catch(Exception $e)
+			{
+				
+			}
+		}
+	}
+	
+	public function getPdfTemplate($id)
+	{
+		$template = Template::where('id_kegiatan', '=' , $id)->where('type', '=', 'pdf')->get();
+		
+		return $template;
+	}
+	
+	public function updatePdfTemplate($id, $text)
+	{
+		$template = Template::where('id_kegiatan', '=' , $id)->where('type', '=', 'pdf')->get();
+		
+		if($template == null)
+		{
+			$template = new Template();
+			$template->id_kegiatan = $id;
+			$template->tipe = 'pdf';
+			$template->text = $text;
+			
+			try
+			{
+				$template->save();
+			}
+			catch(Exception $e)
+			{
+				
+			}
+		}
+		else
+		{
+			$template->text = $text;
+			try
+			{
+				$template->save();
+			}
+			catch(Exception $e)
+			{
+				
+			}
+		}
+	}
+	
+	//--------
 
 	public function view_berkas($id)
 	{
-		return View::make('pages.simposium.admin.simposium_sponsor',compact('id'));
+		$kegiatan = Kegiatan2::find($id);
+		$nama_kegiatan = $kegiatan->nama;
+		$files = Kegiatanfile::where('id_kegiatan','=',$id)->where('tipe','=','other')->paginate(20);
+		return View::make('pages.simposium.admin.simposium_file',compact('id','nama_kegiatan','files'));
 	}
 
+	public function add_berkas($id){
+		//return 'tes';
+		if(Input::hasFile('fileBerkas'))
+		{
+			$file = Input::file('fileBerkas');
+			$destinationPath = "assets/file_upload/kegiatan/berkas/";
+			$fileName = $file->getClientOriginalName();
+			$berkas = new Kegiatanfile();
+			$berkas -> timestamps = false;
+			$berkas ->id_kegiatan = $id;
+			$berkas -> nama = Input::get("nama_berkas");
+			$berkas -> uploaded = Carbon::now();
+			$berkas -> tipe = 'other';
+			try {
+				$berkas -> save();
+				
+			} catch (Exception $e) {
+				return $e;
+			}
+			
+			
+			$berkas_id = $berkas->id;
+			$destinationPath .= $berkas_id;
+			$destinationPath .= "/";
+			if(!file_exists($destinationPath))
+			{
+				File::makeDirectory($destinationPath, $mode = 0777, true, true);
+				$uploadSuccess = $file->move($destinationPath, $fileName);
+				$berkas -> file_path = $destinationPath.$fileName;
+				
+			}
+			else
+			{
+				$uploadSuccess = $file->move($destinationPath, $fileName);
+				$berkas -> file_path = $destinationPath.$fileName;
+			}
+			try {
+				$berkas -> save();
+				return 'success';
+			} catch (Exception $e) {
+				return $e;
+			}
+		}
+		else
+		{
+			return "Tidak ada berkas";
+		}
+	}
+
+	public function del_berkas($id){
+		$id_berkas = Input::get('id_berkas');
+		$berkas = Kegiatanfile::find($id_berkas);
+		try {
+			$berkas->delete();
+			return 'success';
+		} catch (Exception $e) {
+			return $e;
+		}
+
+	}
 	public function view_template($id)
 	{
 		$kegiatan = Kegiatan2::find($id);

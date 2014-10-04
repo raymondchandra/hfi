@@ -2,14 +2,7 @@
 use Carbon\Carbon;
 
 Route::get('/tes', function(){
-	$lain = new Lain1();
-
-		$lain -> timestamps = false;
-		$lain -> konten = "fff";
-		$lain -> title = "asdf";
-		
-		$lain -> edited_by = '1';
-		$lain->save();
+	
 	/*$destinationPath = "assets/file_upload/berkas/7/";
 	
 	if(!file_exists($destinationPath))
@@ -272,7 +265,7 @@ Route::group(array('prefix' => 'simposium/admin', 'before' => ''), function () {
 	Route::get('/berkas/{id}', ['as' => 'admin.kegiatan2.berkas', 'uses' => 'Kegiatan2AdminController@view_berkas']);
 	Route::get('/template/{id}', ['as' => 'admin.kegiatan2.template', 'uses' => 'Kegiatan2AdminController@view_template']);
 	Route::get('/konten/header/{id}', ['as' => 'admin.kegiatan2.konten.header', 'uses' => 'Kegiatan2AdminController@view_header']);
-	Route::get('/konten/sponsor/{id}', ['as' => 'admin.kegiatan2.konten.sponsor', 'uses' => 'Kegiatan2AdminController@view_sponsor']);
+	//Route::get('/konten/sponsor/{id}', ['as' => 'admin.kegiatan2.konten.sponsor', 'uses' => 'Kegiatan2AdminController@view_sponsor']);
 	Route::get('/konten/editor/{type}/{id}', ['as' => 'admin.kegiatan2.konten.editor', 'uses' => 'Kegiatan2AdminController@view_editor']);
 
 	Route::put('/updateKegiatan/{id}', ['as' => 'admin.kegiatan2.updateKegiatan', 'uses' => 'Kegiatan2AdminController@edit_kegiatan']);
@@ -292,6 +285,10 @@ Route::group(array('prefix' => 'simposium/admin', 'before' => ''), function () {
 	Route::post('/harga/{id}', ['as' => 'admin.kegiatan2.tambahHarga', 'uses' => 'Kegiatan2AdminController@tambahHarga']);
 	Route::put('/harga/{id}', ['as' => 'admin.kegiatan2.editHarga', 'uses' => 'Kegiatan2AdminController@editHarga']);
 	Route::delete('/harga/{id}', ['as' => 'admin.kegiatan2.hapusHarga', 'uses' => 'Kegiatan2AdminController@hapus_harga']);
+
+
+	Route::post('/berkas/{id}', ['as' => 'admin.kegiatan2.tambahBerkas', 'uses' => 'Kegiatan2AdminController@add_berkas']);
+	Route::delete('/berkas/{id}', ['as' => 'admin.kegiatan2.hapusBerkas', 'uses' => 'Kegiatan2AdminController@del_berkas']);
 
 	Route::get('/template/{type}/{id}', ['as' => 'admin.kegiatan2.templateDetail', 'uses' => 'Kegiatan2AdminController@view_template_editor']);
 });

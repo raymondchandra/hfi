@@ -16,7 +16,8 @@ class CreateKegiatanFile extends Migration {
             $table->create();
 			$table->increments('id');
 			$table->integer('id_kegiatan')->unsigned();
-
+			$table->string('nama');
+			$table->dateTime('uploaded');
 			$table->string('file_path');
 			$table->string('tipe'); //header, sponsor, other
 			

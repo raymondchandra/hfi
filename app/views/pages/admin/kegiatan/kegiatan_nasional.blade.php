@@ -7,12 +7,12 @@
 			//alert($(this).text());
 			var length = $(this).text().length;
 			if (length > 200) {
-				$(this).siblings('.show_before').text($('.show_after').text().substr(0,197)); 
+				$(this).siblings('.show_before').text($(this).text().substr(0,197)); 
 				$(this).append("<a href='javascript:void(0)' style='text-decoration:none;' class='hide_description'>[tutup]</a>"); 
 				$(this).siblings('.show_before').append("<a href='javascript:void(0)' class='description_button' style='text-decoration:none;'> [selengkapnya]</a>");
 			}
 			else{
-				$(this).siblings('.show_before').text($('.show_after').text());
+				$(this).siblings('.show_before').text($(this).text());
 			}
 			
 		});
@@ -54,8 +54,8 @@
 										<div class="show_after" style='display:none;margin-bottom: 10px;'>
 											{{$kegiatan->deskripsi}}
 										</div>
-										<div class="show_before">
-										
+										<div class="show_before" style='margin-bottom: 10px;'>
+											
 										</div>
 									</div>
 								</div>
@@ -384,7 +384,7 @@
 						<div class="area_jqte">
 							<textarea name="misi_message" id = 'misi_message' class="editor"></textarea>
 						</div>
-						{{Form::button('Kirim Pesan', array('style' => 'display:block; margin-left: auto; margin-right: auto;','id'=>'ok_tambah_kegiatan', 'class' => 'button', 'data-dismiss'=>'modal'));}}
+						{{Form::button('Tambah Kegiatan', array('style' => 'display:block; margin-left: auto; margin-right: auto;','id'=>'ok_tambah_kegiatan', 'class' => 'button', 'data-dismiss'=>'modal'));}}
 					{{ Form::close() }}
 					<style>
 						.row_label {
@@ -518,7 +518,7 @@
 							
 						</div>
 
-						{{Form::button('Kirim Pesan', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'edit_button','data-dismiss'=>'modal'));}}
+						{{Form::button('Rubah Data Kegiatan', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'edit_button','data-dismiss'=>'modal'));}}
 						<input type='hidden' class='id_edit' />
 					{{ Form::close() }}
 					<style>

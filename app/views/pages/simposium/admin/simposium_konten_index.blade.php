@@ -16,8 +16,6 @@
 
 				<a href='header/{{$id}}' class="grid_3 simposium_block">
 					Header</a>
-				<a href='sponsor/{{$id}}' class="grid_3 simposium_block">
-					Sponsor</a>
 				<a href='editor/halaman depan/{{$id}}' class="grid_3 simposium_block">
 					Halaman Depan</a>
 				<a href='editor/tanggal penting/{{$id}}' class="grid_3 simposium_block">

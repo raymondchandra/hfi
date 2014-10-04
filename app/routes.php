@@ -293,6 +293,10 @@ Route::group(array('prefix' => 'simposium/admin', 'before' => ''), function () {
 	Route::put('/harga/{id}', ['as' => 'admin.kegiatan2.editHarga', 'uses' => 'Kegiatan2AdminController@editHarga']);
 	Route::delete('/harga/{id}', ['as' => 'admin.kegiatan2.hapusHarga', 'uses' => 'Kegiatan2AdminController@hapus_harga']);
 
+
+	Route::post('/berkas/{id}', ['as' => 'admin.kegiatan2.tambahBerkas', 'uses' => 'Kegiatan2AdminController@add_berkas']);
+	Route::delete('/berkas/{id}', ['as' => 'admin.kegiatan2.hapusBerkas', 'uses' => 'Kegiatan2AdminController@del_berkas']);
+
 	Route::get('/template/{type}/{id}', ['as' => 'admin.kegiatan2.templateDetail', 'uses' => 'Kegiatan2AdminController@view_template_editor']);
 });
 

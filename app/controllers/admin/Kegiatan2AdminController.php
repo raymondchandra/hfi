@@ -339,9 +339,72 @@ class Kegiatan2AdminController extends BaseController {
 
 	public function view_berkas($id)
 	{
-		return View::make('pages.simposium.admin.simposium_sponsor',compact('id'));
+		$kegiatan = Kegiatan2::find($id);
+		$nama_kegiatan = $kegiatan->nama;
+		$files = Kegiatanfile::where('id_kegiatan','=',$id)->where('tipe','=','other')->paginate(20);
+		return View::make('pages.simposium.admin.simposium_file',compact('id','nama_kegiatan','files'));
 	}
 
+	public function add_berkas($id){
+		//return 'tes';
+		if(Input::hasFile('fileBerkas'))
+		{
+			$file = Input::file('fileBerkas');
+			$destinationPath = "assets/file_upload/kegiatan/berkas/";
+			$fileName = $file->getClientOriginalName();
+			$berkas = new Kegiatanfile();
+			$berkas -> timestamps = false;
+			$berkas ->id_kegiatan = $id;
+			$berkas -> nama = Input::get("nama_berkas");
+			$berkas -> uploaded = Carbon::now();
+			$berkas -> tipe = 'other';
+			try {
+				$berkas -> save();
+				
+			} catch (Exception $e) {
+				return $e;
+			}
+			
+			
+			$berkas_id = $berkas->id;
+			$destinationPath .= $berkas_id;
+			$destinationPath .= "/";
+			if(!file_exists($destinationPath))
+			{
+				File::makeDirectory($destinationPath, $mode = 0777, true, true);
+				$uploadSuccess = $file->move($destinationPath, $fileName);
+				$berkas -> file_path = $destinationPath.$fileName;
+				
+			}
+			else
+			{
+				$uploadSuccess = $file->move($destinationPath, $fileName);
+				$berkas -> file_path = $destinationPath.$fileName;
+			}
+			try {
+				$berkas -> save();
+				return 'success';
+			} catch (Exception $e) {
+				return $e;
+			}
+		}
+		else
+		{
+			return "Tidak ada berkas";
+		}
+	}
+
+	public function del_berkas($id){
+		$id_berkas = Input::get('id_berkas');
+		$berkas = Kegiatanfile::find($id_berkas);
+		try {
+			$berkas->delete();
+			return 'success';
+		} catch (Exception $e) {
+			return $e;
+		}
+
+	}
 	public function view_template($id)
 	{
 		$kegiatan = Kegiatan2::find($id);

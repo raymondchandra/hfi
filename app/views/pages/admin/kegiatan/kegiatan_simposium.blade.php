@@ -87,7 +87,7 @@
 		<div class='admin_title'>Kegiatan Simposium</div>
 		<div id="kegiatanContent">
 
-			<div id='div_tambah_lain'><a href='javascript:void(0)' id='tambah_lain'  class='command_button f_menu_lain_popuper'>+ Menu Lain</a></div>
+			<div id='div_tambah_lain'><a href='javascript:void(0)' id='tambah_lain'  class='command_button f_menu_lain_popuper'>+ Kegiatan</a></div>
 			<div id="listKegiatan">
 				<table border=0 class="tabel_list_regulasi">
 					@if($kegiatans == NULL)

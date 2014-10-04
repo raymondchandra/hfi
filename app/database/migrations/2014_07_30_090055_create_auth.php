@@ -29,7 +29,7 @@ class CreateAuth extends Migration {
 		Schema::table('profile', function (Blueprint $table) {
             $table->create();
 			$table->increments('id');
-            $table->string('no_anggota')->unique();
+            $table->string('no_anggota');
             $table->string('nama');
 			$table->date('tanggal_lahir');
 			$table->string('tempat_lahir');

@@ -251,7 +251,7 @@
 	});
 	
 	$(document).ready(function() {
-		$(".loader").fadeOut(200, function(){});
+		
 		$("#accordion").accordion();				
 		$("#accordion").accordion({collapsible:true});	
 		$( "#accordion" ).accordion({ animate: 0 });	//set time buat preview awal saja biar preview dari posisi accordion closed
@@ -259,6 +259,7 @@
 		$( "#accordion" ).accordion({ animate: 500 });	//set time ulang delay collapse accordion		
 		
 		getAllDaftarAnggota();		
+		
 	});
 	
 	function getAllDaftarAnggota()
@@ -271,7 +272,6 @@
 					//alert("tidak ada anggota");
 					$(".header_tabel_hasil").html("Database anggota kosong");
 				}else{
-					$(".loader").fadeIn(277,function(){});
 					arrlist = new Array(data.length);								
 					var length = data.length;	
 					var header = "<table style='margin-bottom:10px; margin-top:50px;'><td style='vertical-align:middle !important; width:350px; overflow:hidden;'>Nama Anggota</td><td style='vertical-align:middle !important; width:350px; overflow:hidden;'>Nomor Anggota</td><td style='vertical-align:middle !important; width:100px;'>Lihat Detail</td></table><hr></hr>";
@@ -321,8 +321,8 @@
 					// alert("panjang arrlist[] setelah dimasukin data "+arrlist[0].length);
 					$('.header_tabel_hasil').html(header);
 					$('.tabel_hasil').html(list);
-					$(".loader").fadeOut(200, function(){});
-				}				
+				}
+				$(".loader").fadeOut(200, function(){});				
 			},
 			error: function(errorThrown){
 				alert(errorThrown);

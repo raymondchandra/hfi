@@ -68,7 +68,8 @@
 			}
 		</style>
 		<ol class="breadcrumb">
-			<li><a onClick='history.back();' >Dashboard</a></li>
+			<li><a href="{{ URL::to('simposium/admin', $id) }}"  >Dashboard</a></li><!-- onClick='history.back();' -->
+			<li><a href="{{ URL::to('simposium/admin/konten', $id) }}"  >Konten</a></li><!-- onClick='history.back();' -->
 			<li class="active">Header dan Sponsor</li>
 		</ol>
 

@@ -1,6 +1,6 @@
 @extends('layouts.simposium')
 @section('content')
-{{Session::get('message')}}
+{{Session::get(message')}}
 <div class="container_12">
 	<div class="grid_6 push_3">
 			<div class="panel panel-default" style="margin-top: 50px; margin-bottom: 50px;">

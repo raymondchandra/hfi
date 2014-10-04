@@ -50,25 +50,15 @@ class SimposiumController extends BaseController {
 	public function login(){
 		$username = Input::get('username');
 		$password = Input::get('password');
-		$data = array('username'=>$username, 'password'=>$password);
-		if(Auth::peserta()->attempt($data, false))
-		{
-			if(Auth::peserta()->status_bayar == 1)
-			{
-			
-				return Redirect::to('/user');
-			}
-			else
-			{
-				Auth::peserta()->logout();
-				return Redirect::to('test/simposium_login')->with('message', "Akun ini belum aktif");
-			}
-		}
-		else
-		{
-			return Redirect::to('test/simposium_login')->with('message', 'username dan password tidak tepat.');
-		}
 		
+		$peserta = Peserta::where('username','=',$username)->where('password','=',Hash::make($password))->get();
+		
+		if(count($peserta)==1){
+			return "OK";
+		}
+		else{
+			return Hash::make($password);
+		}
 		
 	}
 

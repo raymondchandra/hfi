@@ -272,7 +272,7 @@ Route::group(array('prefix' => 'simposium/admin', 'before' => ''), function () {
 	Route::get('/berkas/{id}', ['as' => 'admin.kegiatan2.berkas', 'uses' => 'Kegiatan2AdminController@view_berkas']);
 	Route::get('/template/{id}', ['as' => 'admin.kegiatan2.template', 'uses' => 'Kegiatan2AdminController@view_template']);
 	Route::get('/konten/header/{id}', ['as' => 'admin.kegiatan2.konten.header', 'uses' => 'Kegiatan2AdminController@view_header']);
-	Route::get('/konten/sponsor/{id}', ['as' => 'admin.kegiatan2.konten.sponsor', 'uses' => 'Kegiatan2AdminController@view_sponsor']);
+	//Route::get('/konten/sponsor/{id}', ['as' => 'admin.kegiatan2.konten.sponsor', 'uses' => 'Kegiatan2AdminController@view_sponsor']);
 	Route::get('/konten/editor/{type}/{id}', ['as' => 'admin.kegiatan2.konten.editor', 'uses' => 'Kegiatan2AdminController@view_editor']);
 
 	Route::put('/updateKegiatan/{id}', ['as' => 'admin.kegiatan2.updateKegiatan', 'uses' => 'Kegiatan2AdminController@edit_kegiatan']);

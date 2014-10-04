@@ -19,7 +19,7 @@ class SimposiumController extends BaseController {
 		if(strcmp($password,$password_again)==0){
 			$exist = Peserta::where('username','=',$email)->get();
 			if(count($exist)>=1){
-				return "Wrong";
+				return Redirect::to('test/simposium_register')->with('message','E-mail telah terdaftar');
 			}
 			else{
 				$peserta = new Peserta();
@@ -42,7 +42,7 @@ class SimposiumController extends BaseController {
 			}
 		}
 		else{
-			return "Wrong";
+			return Redirect::to('test/simposium_register')->with('message','Password tidak cocok');
 		}
 		
 	}
@@ -51,13 +51,20 @@ class SimposiumController extends BaseController {
 		$username = Input::get('username');
 		$password = Input::get('password');
 		
-		$peserta = Peserta::where('username','=',$username)->where('password','=',Hash::make($password))->get();
+		$peserta = Peserta::where('username','=',$username)->get();
 		
-		if(count($peserta)==1){
-			return "OK";
+		if(count($peserta)>0){
+			if (Hash::check($password, $peserta[0]['password']))
+			{
+				Session::push('session_username',Hash::make($username));
+				return Redirect::to('test/simposium_login');
+			}
+			else{
+				return Redirect::to('test/simposium_login')->with('message','Username atau Password Salah');
+			}
 		}
 		else{
-			return Hash::make($password);
+			return Redirect::to('test/simposium_login')->with('message','Username atau Password Salah');
 		}
 		
 	}

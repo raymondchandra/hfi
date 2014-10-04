@@ -2,14 +2,7 @@
 use Carbon\Carbon;
 
 Route::get('/tes', function(){
-	$lain = new Lain1();
-
-		$lain -> timestamps = false;
-		$lain -> konten = "fff";
-		$lain -> title = "asdf";
-		
-		$lain -> edited_by = '1';
-		$lain->save();
+	
 	/*$destinationPath = "assets/file_upload/berkas/7/";
 	
 	if(!file_exists($destinationPath))

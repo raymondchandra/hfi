@@ -304,38 +304,54 @@ Route::post('/postRegulasi', ['as' => 'postRegulasi', 'uses' => 'HomeAdminContro
 Route::put('/changePass', ['as' => 'changePass', 'uses' => 'AccountController@changePass']);
 
 
+
+Route::group(array('prefix' => 'simposium', 'before' => 'authSimposium'), function () {
+	
+	Route::get('/user', ['as' => 'simposium.user', 'uses' => 'SimposiumController@view_user']);
+});
+
+Route::group(array('prefix' => 'simposium', 'before' => ''), function () {
+	Route::get('/', ['as' => 'simposium.index', 'uses' => 'SimposiumController@view_index']);
+	Route::get('/login', ['as' => 'simposium.login', 'uses' => 'SimposiumController@view_login']);
+	Route::get('/registrasi', ['as' => 'simposium.registrasi', 'uses' => 'SimposiumController@view_registrasi']);
+	Route::get('/tanggal', ['as' => 'simposium.tanggal', 'uses' => 'SimposiumController@view_tanggal']);
+	Route::get('/lokasi', ['as' => 'simposium.lokasi', 'uses' => 'SimposiumController@view_lokasi']);
+	Route::get('/peserta', ['as' => 'simposium.tanggal', 'uses' => 'SimposiumController@view_peserta']);
+});
+
+
 //temporary route for testing
 Route::get('/test/simposium', function()
 	{
-		return View::make('pages.simposium.front.simposium_main');
+		
 	});
 Route::get('/test/simposium_login', function()
 	{
-		return View::make('pages.simposium.front.simposium_login');
+		
 	});
 Route::get('/test/simposium_tanggal', function()
 	{
-		return View::make('pages.simposium.front.simposium_tanggal');
+		
 	});
 Route::get('/test/simposium_lokasi', function()
 	{
-		return View::make('pages.simposium.front.simposium_lokasi');
+		
 	});
 Route::get('/test/simposium_registrasi', function()
 	{
-		return View::make('pages.simposium.front.simposium_registrasi');
+		
 	});
 Route::get('/test/simposium_peserta', function()
 	{
-		return View::make('pages.simposium.front.simposium_peserta');
+		
 	});
 Route::get('/test/style_simposium', function()
 	{
-		return View::make('pages.simposium.admin.style_simposium');
+		
 	});
 Route::get('/test/simposium_user', function()
 	{
-		return View::make('pages.simposium.front.simposium_user');
+		
 	});
 Route::get('/test/tesuto', function()
 	{

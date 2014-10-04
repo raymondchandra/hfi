@@ -5,7 +5,6 @@
 			<div class="panel panel-default" style="margin-top: 50px; margin-bottom: 50px;">
 					<div class="panel-body">
 					{{Session::get('message')}}
-					{{Session::get('session_username')[0]}}
 						{{ Form::open(array('url' => 'login','method'=>'post')) }}
 							
 						  <div class="form-group">

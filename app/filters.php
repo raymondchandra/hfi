@@ -50,6 +50,14 @@ Route::filter('authUser', function()
 	
 });
 
+Route::filter('authSimposium', function($request)
+{
+	if(Session::get('session_user_id') == NULL){
+		return Redirect::to('simposium/login')->with('message','Silahkan Login Terlebih Dahulu');
+	}
+	
+});
+
 Route::filter('checkLogin', function()
 {
 	if(Auth::check())

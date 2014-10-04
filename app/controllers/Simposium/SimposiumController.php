@@ -9,12 +9,13 @@ class SimposiumController extends BaseController {
 		return View::make('pages.simposium.front.simposium_login');
 	}
 	
-	public function view_user(){
+	public function view_user($id){
+		
 		return View::make('pages.simposium.front.simposium_user');
 	}
 	
-	public function view_registrasi(){
-		return View::make('pages.simposium.front.simposium_registrasi');
+	public function view_registrasi($id){
+		return View::make('pages.simposium.front.simposium_registrasi',compact('id'));
 	}
 	
 	public function view_tanggal(){
@@ -35,6 +36,7 @@ class SimposiumController extends BaseController {
 	
 	
 	public function register(){
+		$id_kegiatan = Input::get('input_id');
 		$name= Input::get('input_nama');
 		$institusi= Input::get('input_institusi');
 		$profesi= Input::get('input_profesi');
@@ -51,11 +53,11 @@ class SimposiumController extends BaseController {
 		if(strcmp($password,$password_again)==0){
 			$exist = Peserta::where('username','=',$email)->get();
 			if(count($exist)>=1){
-				return Redirect::to('test/simposium_register')->with('message','E-mail telah terdaftar');
+				return Redirect::to('simposium/registrasi/'.$id_kegiatan)->with('message','E-mail telah terdaftar');
 			}
 			else{
 				$peserta = new Peserta();
-				$peserta->id_kegiatan =1;
+				$peserta->id_kegiatan =$id_kegiatan;
 				$peserta->username =$email;
 				$peserta->password =Hash::make($password);
 				$peserta->nama =$name;
@@ -63,20 +65,20 @@ class SimposiumController extends BaseController {
 				$peserta->pekerjaan =$profesi;
 				$peserta->email =$email;
 				$peserta->alamat =$alamat;
-				$peserta->presentasi =$is_paper;
-				$peserta->abstrak =$abstrak_paper;
+				$peserta->status ='Partisipan';
+				$peserta->is_paper =$is_paper;
+				$peserta->presentasi =$gender;
+				$peserta->abstract =$abstrak_paper;
 				$peserta->status_bayar =0;
-				$peserta->invitation_letter =0;
-				
+				$peserta->bukti_bayar ="";
+				$peserta->paper =$judul_paper;
 				$peserta->save();
-				
 				return Redirect::to('simposium/login')->with('message','Pendaftaran Berhasil');
 			}
 		}
 		else{
-			return Redirect::to('test/simposium_register')->with('message','Password tidak cocok');
+			return Redirect::to('simposium/registrasi/'.$id_kegiatan)->with('message','Password tidak cocok');
 		}
-		
 	}
 	
 	public function login(){
@@ -118,7 +120,7 @@ class SimposiumController extends BaseController {
 	
 	public function logout(){
 		Session::flush();
-		return Redirect::to('test/simposium_login');
+		return Redirect::to('simposium/login');
 	}
 
 	

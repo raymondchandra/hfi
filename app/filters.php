@@ -58,7 +58,7 @@ Route::filter('authSimposium', function($request)
 		return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Silahkan Login Terlebih Dahulu');
 	}
 	
-});
+}); 
 
 Route::filter('checkSimposium', function($request)
 {

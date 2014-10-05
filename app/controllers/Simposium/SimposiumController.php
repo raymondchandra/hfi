@@ -14,7 +14,7 @@ class SimposiumController extends BaseController {
 		}
 	}
 	public function view_index($id){
-
+		Session::push('session_kegiatan',$id);
 		$text = $this->getKonten('halaman depan',$id);
 		return View::make('pages.simposium.front.simposium_main',compact('id','text'));
 	}
@@ -158,7 +158,6 @@ class SimposiumController extends BaseController {
 				if (Hash::check($password, $peserta[0]['password']))
 				{
 					Session::push('session_user_id',$peserta[0]['id']);
-					//Session::push('session_kegiatan',$id_kegiatan);
 					return Redirect::to('simposium/'.$id_kegiatan);
 				}
 				else{

@@ -5,7 +5,7 @@ class SimposiumController extends BaseController {
 
 	public function getKonten($type,$id)
 	{
-		$text = KegiatanKonten::where('id_kegiatan','=',$id)->where('tipe','=','halaman depan')->first();
+		$text = KegiatanKonten::where('id_kegiatan','=',$id)->where('tipe','=',$type)->first();
 		if($text == null){
 			return "";
 		}else

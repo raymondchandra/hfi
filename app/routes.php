@@ -2,13 +2,17 @@
 use Carbon\Carbon;
 
 Route::get('/tes', function(){
-	
-	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	$randomString = '';
-	for ($i = 0; $i < 10; $i++) {
-		$randomString .= $characters[rand(0, strlen($characters) - 1)];
+	$msg = Pesan::find(2);
+	$msg -> read = 1;
+	try
+	{
+		$msg->save();
 	}
-	echo $randomString;
+	catch(Exception $e)
+	{
+		echo $e;
+	}
+	//return $msg;
 });
 
 
@@ -30,6 +34,8 @@ Route::get('/organisasi', ['as' => 'organisasi', 'uses' => 'OrganisasiController
 	Route::get('/cabang', ['as' => 'cabang', 'uses' => 'OrganisasiController@view_cabang']);
 	
 Route::get('/kegiatan/{jenis}', ['as' => 'kegiatan', 'uses' => 'KegiatanController@view_index']);
+Route::get('/simposium', ['as' => 'simposium', 'uses' => 'KegiatanController@view_simposium']);
+Route::get('/ictap', ['as' => 'ictap', 'uses' => 'KegiatanController@view_ictap']);
 
 Route::get('/publikasi/{id}', ['as' => 'publikasi', 'uses' => 'PublikasiController@view_index']);
 Route::get('anggota', ['as' => 'anggota', 'uses' => 'AnggotaController@view_index']);
@@ -40,6 +46,11 @@ Route::get('/lain/{id}', ['as' => 'lain', 'uses' => 'LainController@view_index']
 Route::get('/regulasi', ['as' => 'regulasi.home', 'uses' => 'HomeController@view_regulasi']);
 
 Route::get('/organisasi/detail/{id}', ['as' => 'organisasi.detail', 'uses' => 'OrganisasiController@view_detail']);
+
+
+
+
+
 //account view
 Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login', 'before' => 'checkLogin']);
 Route::get('/registrasi', ['as' => 'registrasi', 'uses' => 'AccountController@view_registrasi','before' => 'checkLogin']);
@@ -327,6 +338,10 @@ Route::group(array('prefix' => 'simposium', 'before' => 'authSimposium'), functi
 	Route::put('/uploadBuktiBayar', ['as' => 'simposium.uploadBuktiBayar', 'uses' => 'SimposiumController@upload_bayar']);
 	
 	Route::put('/uploadPaper', ['as' => 'simposium.uploadPaper', 'uses' => 'SimposiumController@upload_paper']);
+	
+	//minta bantuan
+	Route::post('/bantuan', ['as' => 'simposium.mintaBantuan', 'uses' => 'SimposiumController@createMessage']);
+	//end of minta bantuan
 });
 
 Route::group(array('prefix' => 'simposium', 'before' => ''), function () {
@@ -334,8 +349,7 @@ Route::group(array('prefix' => 'simposium', 'before' => ''), function () {
 	Route::get('/login/{id}', ['as' => 'simposium.login', 'uses' => 'SimposiumController@view_login']);
 	Route::get('/logout/{id}', ['as' => 'simposium.logout', 'uses' => 'SimposiumController@logout']);
 	Route::get('/registrasi/{id}', ['as' => 'simposium.registrasi', 'uses' => 'SimposiumController@view_registrasi']);
-	Route::get('/tanggal', ['as' => 'simposium.tanggal', 'uses' => 'SimposiumController@view_tanggal']);
-	Route::get('/lokasi', ['as' => 'simposium.lokasi', 'uses' => 'SimposiumController@view_lokasi']);
+	Route::get('/konten/{type}/{id}', ['as' => 'simposium.konten', 'uses' => 'SimposiumController@view_konten']);
 	Route::get('/peserta/{id}', ['as' => 'simposium.peserta', 'uses' => 'SimposiumController@view_peserta']);
 	
 	Route::post('/register', ['as' => 'simposium.register', 'uses' => 'SimposiumController@register']);

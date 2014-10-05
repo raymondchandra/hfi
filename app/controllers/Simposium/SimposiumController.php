@@ -351,7 +351,7 @@ class SimposiumController extends BaseController {
 			
 			if($kegiatan != null)
 			{
-				$pdfPath = "assets/file_upload/invitation_pdf/invitation.pdf".$kegiatan->id."-"$peserta->id.;
+				$pdfPath = "assets/file_upload/invitation_pdf/invitation.pdf".$kegiatan->id."-".$peserta->id;
 				if(!file_exists($pdfPath))
 				{
 					$html = "<html><body>";
@@ -374,11 +374,11 @@ class SimposiumController extends BaseController {
 					$pdfContent = str_replace("*kegiatan_selesai*",$kegiatan->waktu_selesai,$pdfContent);
 					$html .= $pdfTemplate."</body></html>";
 					File::put($pdfPath, PDF::load($html, 'A4', 'portrait')->output());
-					$attachment = "assets/file_upload/invitation_pdf/invitation.pdf".$kegiatan->id."-"$peserta->id.;
+					$attachment = $pdfPath;
 				}
 				else
 				{
-					$attachment = "assets/file_upload/invitation_pdf/invitation.pdf".$kegiatan->id."-"$peserta->id.;
+					$attachment = $pdfPath;
 				}
 			}
 			else

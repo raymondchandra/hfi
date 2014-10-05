@@ -268,7 +268,7 @@ $(document).ready(function(){
 					<!-- </tbody> -->
 					@endforeach
 				@else
-				asdf
+				
 				@endif
 
 			</table>

@@ -52,12 +52,12 @@
 						<a href="{{ URL::route('kegiatan',array(2)) }}">Kegiatan Internasional</a>
 					</li>
 					<li>
-						<a href="{{ URL::route('publikasi',array(4)) }}">
+						<a href="{{ URL::route('simposium') }}">
 							Simposium
 						</a>
 					</li>
 					<li>
-						<a href="{{ URL::route('publikasi',array(4)) }}">
+						<a href="{{ URL::route('ictap') }}">
 							Ictap
 						</a>
 					</li>

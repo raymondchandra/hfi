@@ -92,7 +92,7 @@ $('.pop_up_super_c_hapus_regulasi').click(function (e)
 				<table class="tabel_list_regulasi table table-hover" style="">
 					@if($kegiatans == NULL)
 					<tr>
-						<td>Tidak terdapat kegiatan simposiums</td>
+						<td>Tidak terdapat kegiatan simposium</td>
 						<td></td>
 					</tr>
 					@else

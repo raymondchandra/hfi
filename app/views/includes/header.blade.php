@@ -69,7 +69,7 @@
 								<li><a href="{{ URL::route('kegiatan',array(1)) }}">Kegiatan Nasional</a></li>
 								<li><a href="{{ URL::route('kegiatan',array(2)) }}">Kegiatan Internasional</a></li>
 								<li><a href="{{ URL::route('simposium')}}">Simposium</a></li>
-								<li><a href="{{ URL::route('ictap')}}">Ictap</a></li>
+								<li><a href="{{ URL::route('ictap')}}">ICTAP</a></li>
 							</ul>
 						</li>
 						<li>

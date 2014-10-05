@@ -327,7 +327,7 @@ Route::put('/changePass', ['as' => 'changePass', 'uses' => 'AccountController@ch
 
 Route::group(array('prefix' => 'simposium', 'before' => 'authSimposium'), function () {
 	
-	Route::get('/user/{id}/{id_peserta}', ['as' => 'simposium.user', 'uses' => 'SimposiumController@view_user']);
+	Route::get('/user/{id_peserta}/{id}', ['as' => 'simposium.user', 'uses' => 'SimposiumController@view_user']);
 	
 	Route::put('/editProfil', ['as' => 'simposium.editProfil', 'uses' => 'SimposiumController@edit_profil']);
 	

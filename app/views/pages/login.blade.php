@@ -21,13 +21,13 @@
 								{{ Form::open(array('url' => '/signin')) }}
 								<form>
 									<!-- PENTING! Untuk menghilangka notifikasi error cukup tambahkan kelas 'hide' pada element bersangkutan -->
-									{{ Form::text('username', Input::old('username'), array('placeholder'=>'Username')) }} 
+									{{ Form::text('username', Input::old('username'), array( 'style'=>'width: 100%;', 'placeholder'=>'Username')) }} 
 									
 
 									<!-- PENTING! Untuk menghilangka notifikasi error cukup tambahkan kelas 'hide' pada element bersangkutan -->
-									{{ Form::password('password', array('placeholder' => 'password'), Input::old('password')) }}
+									{{ Form::password('password', array('style'=>'width: 100%; margin-top: 10px;','placeholder' => 'password'), Input::old('password')) }}
 									
-									<div style="display: block; position: relative; width: 100$; height: 30px; overflow: hidden;">
+									<div style="display: block; position: relative; width: 100%; margin-top: 10px; height: 30px; overflow: hidden;">
 										{{ Form::submit('Login', array('class' => 'login')) }}
 										{{ Form::checkbox('remember_me', 'yes', null, ['style' => 'margin-top: 8px;']) }}
 										<span style="line-height: 30px; margin-left: 0x; float: right;">Remember Me</span>

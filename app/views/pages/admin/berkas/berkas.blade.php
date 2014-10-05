@@ -240,9 +240,10 @@
 										alert(data);
 										$( ".loader" ).fadeIn( 200, function(){});
 	 									$('.admin_control_panel').load('admin/berkas');
+	 									
 	 									$('.modal-backdrop').removeClass('in');
 										setTimeout(function() {
-											$('.modal-backdrop')..remove();
+											$('.modal-backdrop').remove();
 										}, 500);
 									},
 									error:function(jqXHR, textStatus, errorThrown){							

@@ -17,7 +17,7 @@
 				Log Out
 			</a>
 		@else
-			<a href="{{url('simposium/user/'.$id.'/'.Session::get('session_user_id')[0])}}">
+			<a href="{{url('simposium/user/'.Session::get('session_user_id')[0]).'/'.$id}}">
 				{{Peserta::find(Session::get('session_user_id')[0])->username}}
 			</a>
 			|

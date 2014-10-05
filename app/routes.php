@@ -332,7 +332,7 @@ Route::group(array('prefix' => 'simposium/admin', 'before' => 'authSimposiumAdmi
 
 Route::group(array('prefix' => 'simposium', 'before' => 'authSimposium'), function () {
 	
-	Route::get('/user/{id}/{id_peserta}', ['as' => 'simposium.user', 'uses' => 'SimposiumController@view_user']);
+	Route::get('/user/{id_peserta}/{id}', ['as' => 'simposium.user', 'uses' => 'SimposiumController@view_user']);
 	
 	Route::put('/editProfil', ['as' => 'simposium.editProfil', 'uses' => 'SimposiumController@edit_profil']);
 	
@@ -345,9 +345,11 @@ Route::group(array('prefix' => 'simposium', 'before' => 'authSimposium'), functi
 	//end of minta bantuan
 });
 
+Route::get('simposium/login/{id}', ['as' => 'simposium.login', 'uses' => 'SimposiumController@view_login']);
+
 Route::group(array('prefix' => 'simposium', 'before' => ''), function () {
 	Route::get('/{id}', ['as' => 'simposium.index', 'uses' => 'SimposiumController@view_index']);
-	Route::get('/login/{id}', ['as' => 'simposium.login', 'uses' => 'SimposiumController@view_login']);
+	
 	Route::get('/logout/{id}', ['as' => 'simposium.logout', 'uses' => 'SimposiumController@logout']);
 	Route::get('/registrasi/{id}', ['as' => 'simposium.registrasi', 'uses' => 'SimposiumController@view_registrasi']);
 	Route::get('/konten/{type}/{id}', ['as' => 'simposium.konten', 'uses' => 'SimposiumController@view_konten']);
@@ -424,10 +426,12 @@ Route::group(array('prefix' => 'ictap', 'before' => 'authIctap'), function () {
 	
 	//minta bantuan
 	Route::post('/bantuan', ['as' => 'ictap.mintaBantuan', 'uses' => 'IctapController@createMessage']);
+
 	//end of minta bantuan
 });
 
 Route::group(array('prefix' => 'ictap', 'before' => ''), function () {
+
 	Route::get('/{id}', ['as' => 'ictap.index', 'uses' => 'IctapController@view_index']);
 	Route::get('/login/{id}', ['as' => 'ictap.login', 'uses' => 'IctapController@view_login']);
 	Route::get('/logout/{id}', ['as' => 'ictap.logout', 'uses' => 'IctapController@logout']);
@@ -437,6 +441,7 @@ Route::group(array('prefix' => 'ictap', 'before' => ''), function () {
 	
 	Route::post('/register', ['as' => 'ictap.register', 'uses' => 'IctapController@register']);
 	Route::post('/login', ['as' => 'ictap.login_function', 'uses' => 'IctapController@login']);
+
 	
 });
 

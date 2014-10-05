@@ -52,7 +52,7 @@
 				</div>
 
 				<hr/>
-				@if($peserta->is_paper == 1)
+				@if($peserta[0]->is_paper == 1)
 				<p class="bg-danger" style="padding: 5px;"><span class="text-danger">PERHATIAN!</span> Lengkapi form dibawah JIKA Anda ingin mempersembahkan paper! </p>
 
 				

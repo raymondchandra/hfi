@@ -1,74 +1,74 @@
-@extends('layouts.simposium')
+@extends('layouts.ictap')
 @section('content')
 
 <div class="container_12">
 	<div class="grid_12">
 		<div class="main_content">
 			
-			@include('includes.simposium.sidebar')
+			@include('includes.ictap.sidebar')
 			{{Session::get('message')}}
 			<div class="content_hfi">
 				<h1 style="">Profile Pengguna</h1>
 				<button data-toggle="modal" data-target=".pop_up_edit_profile" class="btn btn-primary edit_profil" style="float: right;">
 					Edit Profile
-				</button><input type='hidden' class='id_prt' value='{{$peserta[0]->id}}' />
+				</button><input type='hidden' class='id_prt' value='{{$peserta->id}}' />
 				<span class="clearfix"></span>
 				<div class="panel panel-default">
 					
 					<div class="panel-body container-fluid">
 						  <div class="form-group row">
 							<label class="col-lg-3">Nama</label>
-							<span class="col-lg-8">{{$peserta[0]->nama}}</span>
+							<span class="col-lg-8">{{$peserta->nama}}</span>
 						  </div>
 						  
 						  <div class="form-group row">
 							<label class="col-lg-3">Institusi</label>
-							<span class="col-lg-8">{{$peserta[0]->institusi}}</span>
+							<span class="col-lg-8">{{$peserta->institusi}}</span>
 						  </div>
 						  
 						  <div class="form-group row">
 							<label class="col-lg-3">Profesi</label>
-							<span class="col-lg-8">{{$peserta[0]->pekerjaan}}</span>
+							<span class="col-lg-8">{{$peserta->pekerjaan}}</span>
 						  </div>
 						  
 						  <div class="form-group row">
 							<label class="col-lg-3">Surat Elektronik</label>
-							<span class="col-lg-8">{{$peserta[0]->email}}</span>
+							<span class="col-lg-8">{{$peserta->email}}</span>
 						  </div>
 						  
 						  <div class="form-group row">
 							<label class="col-lg-3">Alamat</label>
-							<span class="col-lg-8">{{$peserta[0]->alamat}}</span>
+							<span class="col-lg-8">{{$peserta->alamat}}</span>
 						  </div>
-						  @if($peserta[0]->is_paper== 1)
+						  @if($peserta->is_paper == 1)
 						  <p class="bg-success" style="padding: 5px;"><span class="text-success">PERHATIAN!</span> Form dibawah terisi JIKA Anda mempersembahkan paper! </p>
 
 						  <div class="form-group row">
 							<label class="col-lg-3">Status</label>
 							<span class="col-lg-8">
-								{{$peserta[0]->status}}
+								{{$peserta->status}}
 							</span>
 						  </div>
 
 						  <div class="form-group row">
 							<label class="col-lg-3">Bidang Keahlian</label>
-							<span class="col-lg-8">{{$peserta[0]->spesialisasi}}</span>
+							<span class="col-lg-8">{{$peserta->spesialisasi}}</span>
 						  </div>
 
 						  <div class="form-group row">
 							<label class="col-lg-3">Judul Paper</label>
-							<span class="col-lg-8">{{$peserta[0]->paper}}</span>
+							<span class="col-lg-8">{{$peserta->paper}}</span>
 						  </div>
 
 						  <div class="form-group row">
 							<label class="col-lg-3">Abstrak</label>
-							<span class="col-lg-8">{{$peserta[0]->abstract}}</span>
+							<span class="col-lg-8">{{$peserta->abstract}}</span>
 						  </div>
 
 
 						@endif
 						 <hr/>
-						@if($peserta[0]->is_paper == 1)
+						@if($peserta->is_paper == 1)
 						  <button data-toggle="modal" data-target=".pop_up_upload_full_paper" type="submit" class="btn btn-info upload_paper">Upload Full Paper</button> 
 						@endif
 						  <button data-toggle="modal" data-target=".pop_up_upload_bukti_pembayaran" type="submit" class="btn btn-info upload_bayar">Upload Bukti Pembayaran</button> 
@@ -78,7 +78,7 @@
 					<script>
 						$('#bantuanButt').click(function(){
 							$('#id_keg').val('{{$id}}');
-							$('#id_pes').val('{{$peserta[0]->id}}');
+							$('#id_pes').val('{{$peserta->id}}');
 						});
 					</script>
 
@@ -106,7 +106,7 @@
 	
 	$('body').on('click','.edit_profil',function(){
 		$id_profil = $(this).next().val();
-		$.get("{{url('simposium/admin/satu_peserta/')}}/"+$id_profil,function(response){
+		$.get("{{url('ictap/admin/satu_peserta/')}}/"+$id_profil,function(response){
 			$('#id_peserta_edit').val($id_profil);
 			$('.input_nama').val(response.nama);
 			$('#input_institusi').val(response.institusi);

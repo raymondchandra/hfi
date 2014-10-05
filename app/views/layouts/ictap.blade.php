@@ -8,7 +8,7 @@
 <body>
 	@include('includes.simposium.header')
 	@include('includes.simposium.sponsor')
-	@include('includes.simposium.login')
+	@include('includes.ictap.login')
 
 	
 	@yield('content')

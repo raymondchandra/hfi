@@ -73,7 +73,7 @@
 
 								   <input type="button" class="edit_kegiatan" value="edit" data-toggle="modal" data-target=".edit_kegiatan_pop"/>
 								   <input type='hidden' value='{{$kegiatan->id}}' />
-								   <input type="button" class="hapus_kegiatan" value="hapus" />
+								   <input type="button" class="hapus_kegiatan_inter" value="hapus" />
 								</div>
 							</div>
 						</li>
@@ -86,277 +86,7 @@
 				@if($kegiatans != NULL)
 				<?php echo $kegiatans->links(); ?>
 				@endif
-				<script>
-				$file_brosur="";
-				$('body').on('click','#tambah_kegiatan',function(){
-					$( ".tambah_kegiatan_pop" ).fadeIn( 277, function(){});
-					document.getElementById("form_tambah_kegiatan").reset();
-					$file_brosur="";
-				});
-
-
-				$('body').one('click','.hapus_kegiatan',function(){
-					$id = $(this).prev().val();
-					$.ajax({
-						type: 'DELETE',
-						url: 'admin/deleteKegiatan',
-						data: {
-							"id_kegiatan": $id
-						},
-						success: function(response){
-				alert(response);
-			},
-			error: function(jqXHR, textStatus, errorThrown){
-				//alert(errorThrown);
-			},
-			complete:function(){
-				$('#admin_kegiatan_nasional').click();
-			}
-		},'json');
-				});
-
-				$('body').on('click','.edit_kegiatan',function(){
-		//$(".loader").fadeIn(100, function(){});
-		
-		$file_brosur="";
-		document.getElementById("form_edit_kegiatan").reset();
-
-
-		$id=$(this).next().val();
-		$.ajax({
-			type: 'GET',
-			url: 'admin/get_kegiatan',
-			data: {
-				"id_kegiatan": $id
-			},
-			success: function(response){
-				//alert(response.nama_kegiatan);
-				$('.id_edit').val($id);
-				$('#preview_edit_brosur').attr('src',response.brosur_kegiatan);
-				$('#edit_nama_kegiatan').val(response.nama_kegiatan);
-				$('#edit_tempat_kegiatan').val(response.tempat);
-				$tanggalwaktumulai = response.waktu_mulai.split(' ');
-				$tanggalwaktuselesai = response.waktu_selesai.split(' ');
-				$tanggalmulai = $tanggalwaktumulai[0].split('-');
-				$waktumulai = $tanggalwaktumulai[1].split(':');
-				$tanggalselesai = $tanggalwaktuselesai[0].split('-');
-				$waktuselesai = $tanggalwaktuselesai[1].split(':');
 				
-				$tanggal_mulai = $tanggalmulai[2];
-				$bulan_mulai = $tanggalmulai[1];
-				$tahun_mulai = $tanggalmulai[0];
-				$tanggal_selesai = $tanggalselesai[2];
-				$bulan_selesai = $tanggalselesai[1];
-				$tahun_selesai = $tanggalselesai[0];
-				
-				$jam_mulai = $waktumulai[0];
-				$menit_mulai = $waktumulai[1];
-				$jam_selesai = $waktuselesai[0];
-				$menit_selesai = $waktuselesai[1];
-				
-				$temp_tanggal_mulai = $tanggal_mulai +"."+$bulan_mulai+"."+$tahun_mulai;
-				$temp_tanggal_selesai = $tanggal_selesai +"."+$bulan_selesai+"."+$tahun_selesai;
-				
-				$('#datepicker3').val($temp_tanggal_mulai);
-				$('#datepicker4').val($temp_tanggal_selesai);
-				$('#timepickerstart3').val($jam_mulai+":"+$menit_mulai);
-				$('#timepickerend4').val($jam_selesai+":"+$menit_selesai);
-				
-				$('.jqte_editor').text(response.deskripsi);
-			},
-			error: function(jqXHR, textStatus, errorThrown){
-				alert(errorThrown);
-			},
-			complete: function(){
-				//$( ".edit_kegiatan_pop" ).fadeIn( 277, function(){});
-				//$(".loader").fadeOut(200, function(){});
-				jQuery('#datepicker3').datetimepicker({
-					lang:'en',
-					i18n:{
-						en:{
-							months:[
-							'January','February','March','April',
-							'May','June','July','August',
-							'September','October','November','December',
-							],
-							dayOfWeek:[
-							"Sun.", "Mon", "Tue", "Wed", 
-							"Thu", "Fri", "Sa.",
-							]
-						}
-					},
-					timepicker:false,
-					format:'d.m.Y'
-				});
-
-				jQuery('#datepicker4').datetimepicker({
-					lang:'en',
-					i18n:{
-						en:{
-							months:[
-							'January','February','March','April',
-							'May','June','July','August',
-							'September','October','November','December',
-							],
-							dayOfWeek:[
-							"Sun.", "Mon", "Tue", "Wed", 
-							"Thu", "Fri", "Sa.",
-							]
-						}
-					},
-
-					timepicker:false,
-					format:'d.m.Y'
-				});
-
-				jQuery('#timepickerstart3').datetimepicker({
-					datepicker:false,
-					format:'H:i'
-				});
-				jQuery('#timepickerend4').datetimepicker({
-					datepicker:false,
-					format:'H:i'
-				});
-			}
-		},'json');
-});
-
-$('body').on('click','.edit_button',function(){
-	$arrayData = $('#form_edit_kegiatan').serializeArray();
-	var formData = new FormData();
-
-	formData.append('id_kegiatan',$(this).next().val());
-	formData.append('nama_kegiatan',$arrayData[1]['value']);
-	formData.append('tempat',$arrayData[2]['value']);
-	formData.append('tanggal_mulai',$arrayData[3]['value']);
-	formData.append('tanggal_selesai',$arrayData[4]['value']);
-	formData.append('waktu_mulai',$arrayData[5]['value']);
-	formData.append('waktu_selesai',$arrayData[6]['value']);
-	formData.append('link',$arrayData[7]['value']);
-	formData.append('deskripsi',$arrayData[8]['value']);
-	formData.append('type',2);
-	
-
-	formData.append('brosur',$file_brosur);
-
-	$.ajax({
-		type: 'POST',
-		url: 'admin/editKegiatan',
-		data: formData,
-		processData:false,
-		contentType: false,
-		success: function(response){
-				alert(response);
-			},
-			error: function(jqXHR, textStatus, errorThrown){
-				alert(errorThrown);
-			},
-			complete:function(){
-				$('#admin_kegiatan_nasional').click();
-			}
-		});
-
-});
-
-$('body').on('change','#edit_file_upload',function(){
-	var i = 0, len = this.files.length, img, reader, file;
-	for ( ; i < len; i++ ) {
-		file = this.files[i];
-		if (!!file.type.match(/image.*/)) {
-			if ( window.FileReader ) {
-				reader = new FileReader();
-				reader.onloadend = function (e) { 
-						//showUploadedItem(e.target.result, file.fileName);
-						$('#preview_edit_brosur').attr('src',e.target.result);
-					};
-					reader.readAsDataURL(file);
-				}
-				$file_brosur = file;
-			}	
-		}
-	});
-
-
-
-$('.exit').click(function() {
-	$( ".pop_up_super_c" ).fadeOut( 200, function(){});
-});	
-
-$('.pop_up_super_c').click(function (e)
-{
-	var container = $('.pop_up_cell');
-
-		if (container.is(e.target) )// if the target of the click is the container...
-		{
-			$( ".pop_up_super_c" ).fadeOut( 200, function(){});
-			$('html').css('overflow-y', 'auto');
-		}
-	});
-$('body').one('click','#ok_tambah_kegiatan',function(){
-	
-	$arrayData = $('#form_tambah_kegiatan').serializeArray();
-		//alert($file_brosur);
-		/*alert($arrayData[1]['value']);
-		alert($arrayData[2]['value']);
-		alert($arrayData[3]['value']);
-		alert($arrayData[4]['value']);
-		alert($arrayData[5]['value']);
-		alert($arrayData[6]['value']);*/
-		
-		var formData = new FormData();
-		
-		formData.append('nama_kegiatan',$arrayData[1]['value']);
-		formData.append('tempat',$arrayData[2]['value']);
-		formData.append('tanggal_mulai',$arrayData[3]['value']);
-		formData.append('tanggal_selesai',$arrayData[4]['value']);
-		formData.append('waktu_mulai',$arrayData[5]['value']);
-		formData.append('waktu_selesai',$arrayData[6]['value']);
-		formData.append('link',$arrayData[7]['value']);
-		formData.append('deskripsi',$arrayData[8]['value']);
-		formData.append('type',2);
-		
-		formData.append('brosur',$file_brosur);
-		
-		
-		$.ajax({
-			type: 'POST',
-			url: 'admin/kegiatan',
-			data: formData,
-			processData:false,
-			contentType: false,
-			success: function(response){
-				alert(response);
-			},
-			error: function(jqXHR, textStatus, errorThrown){
-				//alert(errorThrown);
-			}
-		}).done(function(){
-			$('#admin_kegiatan_nasional').click();
-		});
-		
-	});
-
-$('body').on('change','#brosur_kegiatan',function(){
-	var i = 0, len = this.files.length, img, reader, file;
-	
-		//document.getElementById("images").disabled = true;
-		for ( ; i < len; i++ ) {
-			file = this.files[i];
-			if (!!file.type.match(/image.*/)) {
-				if ( window.FileReader ) {
-					reader = new FileReader();
-					reader.onloadend = function (e) { 
-						//showUploadedItem(e.target.result, file.fileName);
-						$('#preview_brosur').attr('src',e.target.result);
-					};
-					reader.readAsDataURL(file);
-				}
-				$file_brosur = file;
-			}	
-		}
-	});	
-
-</script>
 
 <link rel="stylesheet" type="text/css" href="assets/js/datetimepicker/jquery.datetimepicker.css"/ >
 <script src="assets/js/datetimepicker/jquery.datetimepicker.js"></script>
@@ -420,7 +150,7 @@ $('body').on('change','#brosur_kegiatan',function(){
 								<div class="area_jqte">
 									<textarea name="misi_message" id = 'misi_message' class="editor"></textarea>
 								</div>
-								{{Form::button('Tambah Kegiatan', array('style' => 'display:block; margin-left: auto; margin-right: auto;','id'=>'ok_tambah_kegiatan', 'class' => 'button', 'data-dismiss'=>'modal'));}}
+								{{Form::button('Tambah Kegiatan', array('style' => 'display:block; margin-left: auto; margin-right: auto;','id'=>'ok_tambah_kegiatan_inter', 'class' => 'button', 'data-dismiss'=>'modal'));}}
 								{{ Form::close() }}
 								<style>
 								.row_label {
@@ -592,3 +322,265 @@ $('body').on('change','#brosur_kegiatan',function(){
 			</div>
 		</div>
 	</div>
+	
+<script>
+	$file_brosur="";
+	$('body').on('click','#tambah_kegiatan',function(){
+		$( ".tambah_kegiatan_pop" ).fadeIn( 277, function(){});
+		document.getElementById("form_tambah_kegiatan").reset();
+		$file_brosur="";
+	});
+
+
+	$('body').one('click','.hapus_kegiatan_inter',function(){
+		$id = $(this).prev().val();
+		$.ajax({
+			type: 'delete',
+			url: 'admin/deleteKegiatan',
+			data: {
+				"id_kegiatan": $id
+			},
+			success: function(response){
+				//alert(response);
+			},
+			error: function(jqXHR, textStatus, errorThrown){
+				//alert(errorThrown);
+			},
+			complete:function(){
+				$('#admin_kegiatan_internasional').click();
+			}
+		});
+	});
+
+	$('body').on('click','.edit_kegiatan',function(){
+		$(".loader").fadeIn(100, function(){});
+		
+		$file_brosur="";
+		document.getElementById("form_edit_kegiatan").reset();
+		$id=$(this).next().val();
+		$.ajax({
+			type: 'GET',
+			url: 'admin/get_kegiatan',
+			data: {
+				"id_kegiatan": $id
+			},
+			success: function(response){
+				$('.id_edit').val($id);
+				$('#preview_edit_brosur').attr('src',response.brosur_kegiatan);
+				$('#edit_nama_kegiatan').val(response.nama_kegiatan);
+				$('#edit_tempat_kegiatan').val(response.tempat);
+				$tanggalwaktumulai = response.waktu_mulai.split(' ');
+				$tanggalwaktuselesai = response.waktu_selesai.split(' ');
+				$tanggalmulai = $tanggalwaktumulai[0].split('-');
+				$waktumulai = $tanggalwaktumulai[1].split(':');
+				$tanggalselesai = $tanggalwaktuselesai[0].split('-');
+				$waktuselesai = $tanggalwaktuselesai[1].split(':');
+				
+				$tanggal_mulai = $tanggalmulai[2];
+				$bulan_mulai = $tanggalmulai[1];
+				$tahun_mulai = $tanggalmulai[0];
+				$tanggal_selesai = $tanggalselesai[2];
+				$bulan_selesai = $tanggalselesai[1];
+				$tahun_selesai = $tanggalselesai[0];
+				
+				$jam_mulai = $waktumulai[0];
+				$menit_mulai = $waktumulai[1];
+				$jam_selesai = $waktuselesai[0];
+				$menit_selesai = $waktuselesai[1];
+				
+				$temp_tanggal_mulai = $tanggal_mulai +"."+$bulan_mulai+"."+$tahun_mulai;
+				$temp_tanggal_selesai = $tanggal_selesai +"."+$bulan_selesai+"."+$tahun_selesai;
+				
+				$('#datepicker3').val($temp_tanggal_mulai);
+				$('#datepicker4').val($temp_tanggal_selesai);
+				$('#timepickerstart3').val($jam_mulai+":"+$menit_mulai);
+				$('#timepickerend4').val($jam_selesai+":"+$menit_selesai);
+				
+				$('.jqte_editor').text(response.deskripsi);
+			},
+			error: function(jqXHR, textStatus, errorThrown){
+				alert(errorThrown);
+			},
+			complete: function(){
+				//$( ".edit_kegiatan_pop" ).fadeIn( 277, function(){});
+				$(".loader").fadeOut(200, function(){});
+				jQuery('#datepicker3').datetimepicker({
+					lang:'en',
+					i18n:{
+						en:{
+							months:[
+							'January','February','March','April',
+							'May','June','July','August',
+							'September','October','November','December',
+							],
+							dayOfWeek:[
+							"Sun.", "Mon", "Tue", "Wed", 
+							"Thu", "Fri", "Sa.",
+							]
+						}
+					},
+					timepicker:false,
+					format:'d.m.Y'
+				});
+
+				jQuery('#datepicker4').datetimepicker({
+					lang:'en',
+					i18n:{
+						en:{
+							months:[
+							'January','February','March','April',
+							'May','June','July','August',
+							'September','October','November','December',
+							],
+							dayOfWeek:[
+							"Sun.", "Mon", "Tue", "Wed", 
+							"Thu", "Fri", "Sa.",
+							]
+						}
+					},
+
+					timepicker:false,
+					format:'d.m.Y'
+				});
+
+				jQuery('#timepickerstart3').datetimepicker({
+					datepicker:false,
+					format:'H:i'
+				});
+				jQuery('#timepickerend4').datetimepicker({
+					datepicker:false,
+					format:'H:i'
+				});
+			}
+		},'json');
+});
+
+$('body').on('click','.edit_button',function(){
+	$arrayData = $('#form_edit_kegiatan').serializeArray();
+	var formData = new FormData();
+
+	formData.append('id_kegiatan',$(this).next().val());
+	formData.append('nama_kegiatan',$arrayData[1]['value']);
+	formData.append('tempat',$arrayData[2]['value']);
+	formData.append('tanggal_mulai',$arrayData[3]['value']);
+	formData.append('tanggal_selesai',$arrayData[4]['value']);
+	formData.append('waktu_mulai',$arrayData[5]['value']);
+	formData.append('waktu_selesai',$arrayData[6]['value']);
+	formData.append('link',$arrayData[7]['value']);
+	formData.append('deskripsi',$arrayData[8]['value']);
+	formData.append('type',2);
+	
+
+	formData.append('brosur',$file_brosur);
+
+	$.ajax({
+		type: 'POST',
+		url: 'admin/editKegiatan',
+		data: formData,
+		processData:false,
+		contentType: false,
+		success: function(response){
+				alert(response);
+			},
+			error: function(jqXHR, textStatus, errorThrown){
+				alert(errorThrown);
+			},
+			complete:function(){
+				$('#admin_kegiatan_internasional').click();
+			}
+		});
+
+});
+
+$('body').on('change','#edit_file_upload',function(){
+	var i = 0, len = this.files.length, img, reader, file;
+	for ( ; i < len; i++ ) {
+		file = this.files[i];
+		if (!!file.type.match(/image.*/)) {
+			if ( window.FileReader ) {
+				reader = new FileReader();
+				reader.onloadend = function (e) { 
+						//showUploadedItem(e.target.result, file.fileName);
+						$('#preview_edit_brosur').attr('src',e.target.result);
+					};
+					reader.readAsDataURL(file);
+				}
+				$file_brosur = file;
+			}	
+		}
+	});
+
+
+
+$('.exit').click(function() {
+	$( ".pop_up_super_c" ).fadeOut( 200, function(){});
+});	
+
+$('.pop_up_super_c').click(function (e)
+{
+	var container = $('.pop_up_cell');
+
+		if (container.is(e.target) )// if the target of the click is the container...
+		{
+			$( ".pop_up_super_c" ).fadeOut( 200, function(){});
+			$('html').css('overflow-y', 'auto');
+		}
+	});
+$('body').one('click','#ok_tambah_kegiatan_inter',function(){
+	
+	$arrayData = $('#form_tambah_kegiatan').serializeArray();
+		
+	var formData = new FormData();
+	
+	formData.append('nama_kegiatan',$arrayData[1]['value']);
+	formData.append('tempat',$arrayData[2]['value']);
+	formData.append('tanggal_mulai',$arrayData[3]['value']);
+	formData.append('tanggal_selesai',$arrayData[4]['value']);
+	formData.append('waktu_mulai',$arrayData[5]['value']);
+	formData.append('waktu_selesai',$arrayData[6]['value']);
+	formData.append('link',$arrayData[7]['value']);
+	formData.append('deskripsi',$arrayData[8]['value']);
+	formData.append('type',2);
+	
+	formData.append('brosur',$file_brosur);
+	
+	$.ajax({
+		type: 'post',
+		url: 'admin/kegiatan',
+		data: formData,
+		processData:false,
+		contentType: false,
+		success: function(response){
+			//alert(response);
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			//alert(errorThrown);
+		},
+		complete:function(){
+			$('#admin_kegiatan_internasional').click();
+		}
+	});
+		
+});
+
+$('body').on('change','#brosur_kegiatan',function(){
+	var i = 0, len = this.files.length, img, reader, file;
+	
+		//document.getElementById("images").disabled = true;
+		for ( ; i < len; i++ ) {
+			file = this.files[i];
+			if (!!file.type.match(/image.*/)) {
+				if ( window.FileReader ) {
+					reader = new FileReader();
+					reader.onloadend = function (e) { 
+						//showUploadedItem(e.target.result, file.fileName);
+						$('#preview_brosur').attr('src',e.target.result);
+					};
+					reader.readAsDataURL(file);
+				}
+				$file_brosur = file;
+			}	
+		}
+	});	
+
+</script>

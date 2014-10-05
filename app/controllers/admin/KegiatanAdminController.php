@@ -97,7 +97,7 @@ class KegiatanAdminController extends BaseController {
 		$id_kegiatan = Input::get('id_kegiatan');
 		$kegiatan = Kegiatan::find($id_kegiatan);
 		if(count($kegiatan)!=1){
-			return "Gagal Hapus Kegiatan";
+			return "";
 		}
 		if($kegiatan->type == 1 || $kegiatan->type == 2){
 			try {

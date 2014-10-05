@@ -72,6 +72,7 @@ class AnggotaAdminController extends BaseController {
 			$konten->timestamps = false;
 			$konten -> tanggal_edit = Carbon::now();
 			$konten -> edited_by = $id;
+			$konten->save();
 			return "Success Update";
 		}
 	}
@@ -102,6 +103,7 @@ class AnggotaAdminController extends BaseController {
 			$konten->timestamps = false;
 			$konten -> tanggal_edit = Carbon::now();
 			$konten -> edited_by = $id;
+			$konten->save();
 			return "Success Update";
 		}
 

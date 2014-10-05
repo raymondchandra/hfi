@@ -84,7 +84,7 @@ $('.pop_up_super_c_hapus_regulasi').click(function (e)
 <div class="container_12">
 	<div class="grid_12">
 
-		<div class='admin_title'>Kegiatan Simposium</div>
+		<div class='admin_title'>Kegiatan ICTAP</div>
 		<div id="kegiatanContent">
 
 			<div id='div_tambah_lain'><a data-toggle="modal" data-target=".menu_lain_pop" href='javascript:void(0)' id='tambah_lain' class='command_button f_menu_lain_popuper'>+ Kegiatan</a></div>
@@ -92,13 +92,13 @@ $('.pop_up_super_c_hapus_regulasi').click(function (e)
 				<table class="tabel_list_regulasi table table-hover" style="">
 					@if($kegiatans == NULL)
 					<tr>
-						<td>Tidak terdapat kegiatan simposium</td>
+						<td>Tidak terdapat kegiatan ICTAP</td>
 						<td></td>
 					</tr>
 					@else
 					@foreach($kegiatans as $kegiatan)
 					<tr style='padding-top:5px; padding-bottom: 5px;'>
-						<td><a href='simposium/admin/{{$kegiatan->id}}' target="_blank" class='kegiatan_simposium' style='line-height: 36px; margin-right: 10px;' >{{$kegiatan->nama}}</a></td>
+						<td><a href='ictap/admin/{{$kegiatan->id}}' target="_blank" class='kegiatan_simposium' style='line-height: 36px; margin-right: 10px;' >{{$kegiatan->nama}}</a></td>
 						<td><input type='button' value='hapus' class='hapus_regulasi btn btn-danger' onClick='hapus({{$kegiatan->id}})'/></td>
 					</tr>
 					@endforeach
@@ -119,7 +119,7 @@ $('.pop_up_super_c_hapus_regulasi').click(function (e)
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-						<h4> Tambah Kegiatan Simposium </h4>
+						<h4> Tambah Kegiatan ICTAP </h4>
 					</div>
 					{{ Form::open(array('id'=>'form_tambah_kegiatan','url' => '', 'files' => true, 'class'=>'form-horizontal')) }}
 

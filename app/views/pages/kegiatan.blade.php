@@ -82,6 +82,9 @@
 							<div class="waktu_kegiatan">{{$kegiatan->waktu_mulai}} - {{$kegiatan->waktu_selesai}}</div>
 							<div class="nama_kegiatan">{{$kegiatan->nama_kegiatan}}</div>
 							<div class="place_kegiatan">{{$kegiatan->tempat}}</div>
+							@if($kegiatan->link != NULL)
+								<div class="website_kegiatan"><a href='{{$kegiatan->link}}'>lihat website</a></div>
+							@endif
 							<div class="box">
 								<div class="deskripsi_kegiatan">
 									<div class="show_after" style='display:none;margin-bottom: 10px;'>

@@ -1,5 +1,10 @@
 @extends('layouts.default')
 @section('content')
+<style>
+	.poster_kegiatan {
+		cursor: pointer;
+	}
+</style>
 <script>
 	$(document).ready(function(){
 	
@@ -70,7 +75,7 @@
 				@foreach($kegiatans as $kegiatan)
 					<li>
 						<div>
-						{{ HTML::image($kegiatan->brosur_kegiatan,'Image',array('class'=>'poster_kegiatan')) }}
+						{{ HTML::image($kegiatan->brosur_kegiatan,'Image',array('class'=>'poster_kegiatan', 'data-toggle'=>'modal', 'data-target'=>'.pop_up_detail_kegiatan')) }}
 						
 						<div class="info_kegiatan">
 							<div class="waktu_kegiatan">{{$kegiatan->waktu_mulai}} - {{$kegiatan->waktu_selesai}}</div>
@@ -102,5 +107,39 @@
 		</div>
 	</div>
 </div>
+
+
+
+
+<!-- Modal Pop Up Detail Kegiatan -->
+<div class="modal fade pop_up_detail_kegiatan" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel">Detail Kegiatan</h4>
+			</div>
+
+			<form class="form-horizontal">
+
+				<div class="modal-body" style="">
+					<div class="form-group" style="text-align: center;">
+						<!-- Put you image below -->
+						<img src="" width="400" />
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" data-dismiss="modal" class="btn btn-success">
+						Perbaharui Status Abstraksi
+					</button>
+					
+				</div>
+
+			</form>
+
+		</div>
+	</div>
+</div>
+
 
 @stop

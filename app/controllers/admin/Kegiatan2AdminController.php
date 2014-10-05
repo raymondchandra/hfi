@@ -15,7 +15,7 @@ class Kegiatan2AdminController extends BaseController {
 	
 	public function get_all_kegiatan($jenis)
 	{
-		$kegiatan = Kegiatan2::where('tipe','=',$jenis)->orderBy('waktu_mulai')->paginate(10);
+		$kegiatan = Kegiatan2::where('tipe','=',$jenis)->orderBy('waktu_mulai','DESC')->paginate(10);
 		if(count($kegiatan) == 0)
 		{
 			return NULL;

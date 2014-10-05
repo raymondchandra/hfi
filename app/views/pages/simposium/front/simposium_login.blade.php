@@ -5,7 +5,7 @@
 			<div class="panel panel-default" style="margin-top: 50px; margin-bottom: 50px;">
 					<div class="panel-body">
 					{{Session::get('message')}}
-						{{ Form::open(array('url' => 'login','method'=>'post')) }}
+						{{ Form::open(array('url' => 'simposium/login','method'=>'post')) }}
 							<input type='hidden' name='id_kegiatan' value='{{$id}}'>
 						  <div class="form-group">
 							<label for="exampleInputEmail1">Username</label>

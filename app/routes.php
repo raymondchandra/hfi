@@ -329,6 +329,10 @@ Route::group(array('prefix' => 'simposium', 'before' => ''), function () {
 	Route::get('/tanggal', ['as' => 'simposium.tanggal', 'uses' => 'SimposiumController@view_tanggal']);
 	Route::get('/lokasi', ['as' => 'simposium.lokasi', 'uses' => 'SimposiumController@view_lokasi']);
 	Route::get('/peserta/{id}', ['as' => 'simposium.peserta', 'uses' => 'SimposiumController@view_peserta']);
+	
+	Route::post('/register', ['as' => 'simposium.register', 'uses' => 'SimposiumController@register']);
+	Route::post('/login', ['as' => 'simposium.login_function', 'uses' => 'SimposiumController@login']);
+	
 });
 
 Route::get('/test/tesuto', function()

@@ -41,12 +41,18 @@
 	/*width: 110% !important;*/
 }
 
-
+.div_hapus_cabang{
+	width:500px;
+	height:150px;
+	margin-left:auto;
+	margin-right:auto;
+}
 
 /*redundan popup di halaman admin cabang*/
 
-.pop_up_super_c_tambah_cabang, .pop_up_super_c_show_pengurus,
-.pop_up_super_c_tambah_pengurus {
+.pop_up_super_c_tambah_cabang, 
+.pop_up_cell_edit_cabang, .pop_up_cell_hapus_cabang,
+.pop_up_super_c_show_pengurus, .pop_up_super_c_tambah_pengurus {
 	width: 100%;
 	height: 100%;
 	position: fixed;
@@ -56,8 +62,9 @@
 	left: 0px;
 	overflow: auto;
 }
-.pop_up_tbl_tambah_cabang, .pop_up_tbl_show_pengurus,
-.pop_up_tbl_tambah_pengurus {
+.pop_up_tbl_tambah_cabang, 
+.pop_up_tbl_edit_cabang, .pop_up_tbl_hapus_cabang,
+.pop_up_tbl_show_pengurus, .pop_up_tbl_tambah_pengurus {
 	width: 100%;
 	height: 100%;
 	display: table;
@@ -65,13 +72,15 @@
 	overflow-y: hidden;
 	vertical-align: middle;
 }
-.pop_up_cell_tambah_cabang, .pop_up_cell_show_pengurus,
-.pop_up_cell_tambah_pengurus {
+.pop_up_cell_tambah_cabang, 
+.pop_up_cell_edit_cabang, .pop_up_cell_hapus_cabang,
+.pop_up_cell_show_pengurus, .pop_up_cell_tambah_pengurus {
 	display: table-cell;
 	vertical-align: middle;
 }
-.close_56_tambah_cabang, .close_56_show_pengurus,
-.close_56_tambah_pengurus {
+.close_56_tambah_cabang, 
+.close_56_edit_cabang, .close_56_hapus_cabang,
+.close_56_show_pengurus, .close_56_tambah_pengurus {
 	background: url('../img/close56.png') no-repeat;
 	width: 56px;
 	height: 69px;

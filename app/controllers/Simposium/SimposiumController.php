@@ -31,8 +31,10 @@ class SimposiumController extends BaseController {
 	public function view_registrasi($id){
 
 		$kegiatan = Kegiatan2::find($id);
+		if($kegiatan->openRegistration == 0){
+			return Redirect::to('simposium/'.$id)->with('message','Pendaftaran Sudah Ditutup');
+		}
 		$text = $this->getKonten('registrasi',$id);
-
 		$date= date_create($kegiatan->early_start);
 		$early_start = date_format($date,"d-m-Y");
 		$date= date_create($kegiatan->early_finish);
@@ -86,6 +88,8 @@ class SimposiumController extends BaseController {
 		$judul_paper = Input::get('input_judul_paper');
 		$abstrak_paper = Input::get('input_abstrak');
 		
+		
+		
 		if(strcmp($password,$password_again)==0){
 			$exist = Peserta::where('username','=',$email)->get();
 			if(count($exist)>=1){
@@ -130,6 +134,7 @@ class SimposiumController extends BaseController {
 				if (Hash::check($password, $kegiatan->pass_admin))
 				{
 					Session::push('session_admin_id',$kegiatan[0]['id']);
+					Session::push('session_kegiatan',$id_kegiatan);
 					return Redirect::to('simposium/admin/'.$id_kegiatan);
 				}	
 				else{

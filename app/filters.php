@@ -71,7 +71,7 @@ Route::filter('authSimposiumAdmin', function($request)
 		}
 	}
 
-	if(Session::get('session_admin_id') == NULL){
+	if(Session::get('session_admin_id') == NULL && Session::get('session_kegiatan') != $path[count($path)-1]){
 		
 		return Redirect::to('simposium/login/'.$path[count($path)-1])->with('message','Silahkan Login Terlebih Dahulu');
 	}

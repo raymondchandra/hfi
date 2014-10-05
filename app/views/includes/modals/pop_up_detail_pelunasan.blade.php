@@ -21,9 +21,8 @@
 						<label class=" control-label col-sm-3">Biaya</label>
 						<p class="form-control-static col-sm-5 biaya_bayar">IDR 2.500.000</p>
 					</div>
-
-					<div class="form-group">
-						<label class=" control-label col-sm-3">Status Pembayaran</label>
+					<div class="form-group lunas_belum">
+						<label class=" control-label col-sm-3 ">Status Pembayaran</label>
 						<label class="radio-inline">
 							{{ Form::radio('is_paper','1', array('style'=>'float: left;')) }} Lunas         
 						</label>
@@ -32,16 +31,15 @@
 						</label>
 
 					</div>
-
+					
 
 				</div>
-				<div class="modal-footer">
+				<div class="modal-footer lunas_belum">
 					<button type="button" data-dismiss="modal" class="btn btn-success update_bayar">
 						Perbaharui Status Pelunasan
 					</button>
-					<input type='hidden' class='id_peserta' />
+					<input type='hidden' class='id_peserta_biaya' />
 				</div>
-
 			</form>
 
 		</div>
@@ -51,7 +49,7 @@
 <script>
 	$('body').on('click','.update_bayar',function(){
 		$change=$("input[name='is_paper']:checked").val();
-		$id_peserta = $('.id_peserta').val();
+		$id_peserta = $('.id_peserta_biaya').val();
 		$.ajax({
 			type: 'PUT',
 			url: "{{url('simposium/admin/ubahStatusBayar')}}",

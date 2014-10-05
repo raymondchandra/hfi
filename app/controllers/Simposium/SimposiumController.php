@@ -90,21 +90,21 @@ class SimposiumController extends BaseController {
 		$password = Input::get('password');
 		
 		Session::flush();
-		
-		$peserta = Peserta::where('username','=',$username)->get();
-		
-		if(count($peserta)>0){
-			if(strcmp($username,'admin')==0){
-				if (Hash::check($password, $peserta[0]['password']))
-				{
-					Session::push('session_user_id',$peserta[0]['id']);
-					return Redirect::to('simposium/admin/'.$id_kegiatan);
-				}
-				else{
-					return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
-				}
-			}
+		if(strcmp($username,'admin')==0){
+			$kegiatan = Kegiatan2::find($id_kegiatan);
+			if (Hash::check($password, $kegiatan->pass_admin))
+			{
+				Session::push('session_admin_id',$kegiatan[0]['id']);
+				return Redirect::to('simposium/admin/'.$id_kegiatan);
+			}	
 			else{
+				return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
+			}
+		}
+		else{
+			$peserta = Peserta::where('username','=',$username)->get();
+		
+			if(count($peserta)>0){
 				if (Hash::check($password, $peserta[0]['password']))
 				{
 					Session::push('session_user_id',$peserta[0]['id']);
@@ -115,9 +115,6 @@ class SimposiumController extends BaseController {
 					return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
 				}
 			}
-		}
-		else{
-			return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
 		}
 		
 	}

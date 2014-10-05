@@ -252,7 +252,7 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	//end of simposium dan ictap
 });
 
-Route::group(array('prefix' => 'simposium/admin', 'before' => ''), function () {
+Route::group(array('prefix' => 'simposium/admin', 'before' => 'authSimposiumAdmin'), function () {
 	Route::get('/{id}', ['as' => 'admin.kegiatan2.index', 'uses' => 'Kegiatan2AdminController@view_detail']);
 	Route::get('/general/{id}', ['as' => 'admin.kegiatan2.general', 'uses' => 'Kegiatan2AdminController@view_general']);
 	Route::get('/konten/{id}', ['as' => 'admin.kegiatan2.konten', 'uses' => 'Kegiatan2AdminController@view_konten']);

@@ -86,7 +86,7 @@ class KegiatanAdminController extends BaseController {
 				$photo->move($destination, $photo->getClientOriginalName());
 			}
 			$kegiatan->save();
-			return "Berhasil Tambah Kegiatan";
+			return "Berhasil Rubah Data Kegiatan";
 		} catch (Exception $e) {
     		return 'Caught exception: '. $e->getMessage(). "\n";
 		}
@@ -96,10 +96,13 @@ class KegiatanAdminController extends BaseController {
 	{
 		$id_kegiatan = Input::get('id_kegiatan');
 		$kegiatan = Kegiatan::find($id_kegiatan);
+		if(count($kegiatan)!=1){
+			return "Gagal Hapus Kegiatan";
+		}
 		if($kegiatan->type == 1 || $kegiatan->type == 2){
 			try {
 				$kegiatan->delete();
-				return "Success Delete";
+				return "Berhasil Hapus Kegiatan";
 			} catch (Exception $e) {
 	    		return 'Caught exception: '. $e->getMessage(). "\n";
 			}

@@ -92,19 +92,21 @@
 					$( ".tambah_kegiatan_pop" ).fadeIn( 277, function(){});
 					document.getElementById("form_tambah_kegiatan").reset();
 					$file_brosur="";
+					
+					$('#preview_brosur').attr('src',"");
 				});
 
 
-				$('body').on('click','.hapus_kegiatan',function(){
-					$id = $(this).prev().val();
-					$.ajax({
-						type: 'DELETE',
-						url: 'admin/deleteKegiatan',
-						data: {
-							"id_kegiatan": $id
-						},
-						success: function(response){
-				//alert(response);
+	$('body').one('click','.hapus_kegiatan',function(){
+		$id = $(this).prev().val();
+		$.ajax({
+			type: 'DELETE',
+				url: 'admin/deleteKegiatan',
+				data: {
+					"id_kegiatan": $id
+				},
+			success: function(response){
+			//alert(response);
 			},
 			error: function(jqXHR, textStatus, errorThrown){
 				//alert(errorThrown);
@@ -112,13 +114,14 @@
 			complete:function(){
 				$('#admin_kegiatan_nasional').click();
 			}
-		},'json');
-				});
+		});
+	});
 
-				$('body').on('click','.edit_kegiatan',function(){
+	$('body').on('click','.edit_kegiatan',function(){
 		//$(".loader").fadeIn(100, function(){});
 		
 		$file_brosur="";
+		$('#preview_brosur').attr('src',"");
 		document.getElementById("form_edit_kegiatan").reset();
 
 
@@ -161,6 +164,11 @@
 				$('#datepicker4').val($temp_tanggal_selesai);
 				$('#timepickerstart3').val($jam_mulai+":"+$menit_mulai);
 				$('#timepickerend4').val($jam_selesai+":"+$menit_selesai);
+				
+				
+				$('#edit_website_kegiatan').val(response.link);
+				
+				
 				
 				$('.jqte_editor').text(response.deskripsi);
 			},
@@ -232,9 +240,10 @@ $('body').on('click','.edit_button',function(){
 	formData.append('tanggal_selesai',$arrayData[4]['value']);
 	formData.append('waktu_mulai',$arrayData[5]['value']);
 	formData.append('waktu_selesai',$arrayData[6]['value']);
-	formData.append('deskripsi',$arrayData[7]['value']);
+	formData.append('link',$arrayData[7]['value']);
+	formData.append('deskripsi',$arrayData[8]['value']);
 	formData.append('type',1);
-	formData.append('link',"");
+	
 
 	formData.append('brosur',$file_brosur);
 
@@ -255,7 +264,7 @@ $('body').on('click','.edit_button',function(){
 			}
 		});
 
-});
+	});
 
 $('body').on('change','#edit_file_upload',function(){
 	var i = 0, len = this.files.length, img, reader, file;
@@ -291,19 +300,9 @@ $('.pop_up_super_c').click(function (e)
 			$('html').css('overflow-y', 'auto');
 		}
 	});
-$('body').on('click','#ok_tambah_kegiatan',function(){
-	
-	$(this).attr('disable',true);
-
+$('body').one('click','#ok_tambah_kegiatan',function(){
+	$('#ok_tambah_kegiatan').css('display','none');
 	$arrayData = $('#form_tambah_kegiatan').serializeArray();
-		//alert($file_brosur);
-		/*alert($arrayData[1]['value']);
-		alert($arrayData[2]['value']);
-		alert($arrayData[3]['value']);
-		alert($arrayData[4]['value']);
-		alert($arrayData[5]['value']);
-		alert($arrayData[6]['value']);*/
-		
 		var formData = new FormData();
 		
 		formData.append('nama_kegiatan',$arrayData[1]['value']);
@@ -312,12 +311,11 @@ $('body').on('click','#ok_tambah_kegiatan',function(){
 		formData.append('tanggal_selesai',$arrayData[4]['value']);
 		formData.append('waktu_mulai',$arrayData[5]['value']);
 		formData.append('waktu_selesai',$arrayData[6]['value']);
-		formData.append('deskripsi',$arrayData[7]['value']);
+		formData.append('link',$arrayData[7]['value']);
+		formData.append('deskripsi',$arrayData[8]['value']);
 		formData.append('type',1);
 		
 		formData.append('brosur',$file_brosur);
-		
-		
 		$.ajax({
 			type: 'POST',
 			url: 'admin/kegiatan',
@@ -325,16 +323,15 @@ $('body').on('click','#ok_tambah_kegiatan',function(){
 			processData:false,
 			contentType: false,
 			success: function(response){
-				//alert(response);
+				alert(response);
 			},
 			error: function(jqXHR, textStatus, errorThrown){
 				//alert(errorThrown);
+			},
+			complete: function(){
+				$('#admin_kegiatan_nasional').click();
 			}
-		}).done(function(){
-			location.reload();
-			$('#admin_kegiatan_nasional').click();
 		});
-		
 	});
 
 $('body').on('change','#brosur_kegiatan',function(){
@@ -404,6 +401,10 @@ $('body').on('change','#brosur_kegiatan',function(){
 												{{ Form::text('timepickerstart', Input::old('timepickerstart'),  array('id' => 'timepickerstart', 'class'=>'form-control col-sm-4')) }}
 												<label class=" control-label col-sm-1">-</label>
 												{{ Form::text('timepickerend', Input::old('timepickerend'),  array('id' => 'timepickerend', 'class'=>'form-control col-sm-4')) }}
+											</div>
+											<div class="form-group">
+												<label class=" control-label col-sm-2">Website</label>
+												{{ Form::text('website', Input::old('website'), array('class'=>'form-control col-sm-9')) }}										
 											</div>
 										</div>
 
@@ -541,6 +542,9 @@ $('body').on('change','#brosur_kegiatan',function(){
 									<div class="row_label">
 										<label>Jam</label>{{ Form::text('timepickerstart3', Input::old('timepickerstart3'),  array('id' => 'timepickerstart3', 'style' => 'width:80px;')) }}
 										<span>-</span>{{ Form::text('timepickerend4', Input::old('timepickerend4'),  array('id' => 'timepickerend4', 'style' => 'width:80px;')) }}
+									</div>
+									<div class="row_label">
+										<label>Website</label>{{ Form::text('website', Input::old('website'),array('id'=>'edit_website_kegiatan')) }}
 									</div>
 								</div>
 

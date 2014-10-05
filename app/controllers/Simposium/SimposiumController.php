@@ -122,7 +122,7 @@ class SimposiumController extends BaseController {
 				$peserta->abstract_read = 0;
 				$peserta->paper_read = 0;
 				$peserta->save();
-				$this->createEmail("Registrasi", $peserta->id, $id_kegiatan);
+				$this->createEmail("Registrasi", $id_kegiatan,  $peserta->id);
 				return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Pendaftaran Berhasil');
 			}
 		}

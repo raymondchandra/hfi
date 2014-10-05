@@ -20,20 +20,40 @@
 								Lupa Password
 							</h1>
 							<div class="form">
-								{{ Form::open(array('url' => '/signin')) }}
 								<form>
 									<!--<input type="text"  placeholder="Username"/>-->
-									{{ Form::text('username', Input::old('username'), array('placeholder'=>'Username')) }}
+									{{ Form::text('username', Input::old('username'), array('id'=>'usrnm','placeholder'=>'Username')) }}
 									<!--<input type="password" placeholder="Password"/>-->
-									{{ Form::text('email', Input::old('email'), array('placeholder'=>'email')) }}
+									{{ Form::text('email', Input::old('email'), array('id'=>'eml','placeholder'=>'email')) }}
 									<!--<input type="button" value="Log In" class="login"/>-->
 									<div style="display: block; position: relative; width: 100$; height: 30px; overflow: hidden;">
-										{{ Form::submit('Kirim Email', array('class' => 'login')) }}
+										{{ Form::button('Kirim Email', array('id'=>'sendButton','class' => 'lupaPass')) }}
 									</div>
 								</form>								 
-								{{ Form::token() }}
-								{{ Form::close() }}
 							</div>
+							<script>
+								$('#sendButton').click(function(){
+									$username = $('#usrnm').val();
+									$email = $('#eml').val();
+									var data = new FormData();
+									data.append('email', $email);
+									data.append('username', $username);
+									$.ajax({
+										type: 'POST',
+										url: '{{URL::route('user.lupaPass')}}',
+										data: data,
+										processData : false,
+										contentType : false,
+										success: function(response){
+											alert(response);
+										},
+										error: function(jqXHR, textStatus, errorThrown){
+											alert(errorThrown);
+										}
+									},'json');
+
+								});
+							</script>
 						</div>
 					</div>
 				</div>

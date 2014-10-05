@@ -16,16 +16,16 @@ class IctapController extends BaseController {
 	public function view_index($id){
 
 		$text = $this->getKonten('halaman depan',$id);
-		return View::make('pages.simposium.front.simposium_main',compact('id','text'));
+		return View::make('pages.ictap.front.simposium_main',compact('id','text'));
 	}
 	
 	public function view_login($id){
-		return View::make('pages.simposium.front.simposium_login',compact('id'));
+		return View::make('pages.ictap.front.simposium_login',compact('id'));
 	}
 	
 	public function view_user($id,$id_peserta){
 		$peserta = Peserta::find($id_peserta);
-		return View::make('pages.simposium.front.simposium_user',compact('id','peserta'));
+		return View::make('pages.ictap.front.simposium_user',compact('id','peserta'));
 	}
 	
 	public function view_registrasi($id){
@@ -38,22 +38,38 @@ class IctapController extends BaseController {
 		$date= date_create($kegiatan->early_finish);
 		$early_finish = date_format($date,"d-m-Y");
 		$harga = Harga::where('id_kegiatan','=',$id)->get();
-		return View::make('pages.simposium.front.simposium_registrasi',compact('id','text','early_start','early_finish','harga'));
+		return View::make('pages.ictap.front.simposium_registrasi',compact('id','text','early_start','early_finish','harga'));
 	}
 	
 	public function view_konten($type,$id){
 		$text = $this->getKonten($type,$id);
-		$title = ucwords($type);
-		return View::make('pages.simposium.front.simposium_konten',compact('type','title','text','id'));
+		if($type == "tanggal penting"){
+			$title = "Important Dates";
+		}else if($type == "lokasi"){
+			$title = "Location";
+		}else if($type == "akomodasi"){
+			$title = "Accomodation";
+		}else if($type == "program"){
+			$title = "Program";
+		}else if($type == "prosiding"){
+			$title = "Proceeding";
+		}else if($type == "panitia"){
+			$title = "Organizer";
+		}else if($type == "kontak"){
+			$title = "Contact";
+		}
+			
+
+		return View::make('pages.ictap.front.simposium_konten',compact('type','title','text','id'));
 	}
 	
 	public function view_peserta($id){
 		$pesertas = Peserta::where('id_kegiatan','=',$id)->get();
-		return View::make('pages.simposium.front.simposium_peserta',compact('id','pesertas'));
+		return View::make('pages.ictap.front.simposium_peserta',compact('id','pesertas'));
 	}
 	
 	public function view_style_simposium(){
-		return View::make('pages.simposium.admin.style_simposium');
+		return View::make('pages.ictap.admin.style_simposium');
 	}
 	
 	public static function getHeader($id){
@@ -89,7 +105,7 @@ class IctapController extends BaseController {
 		if(strcmp($password,$password_again)==0){
 			$exist = Peserta::where('username','=',$email)->get();
 			if(count($exist)>=1){
-				return Redirect::to('simposium/registrasi/'.$id_kegiatan)->with('message','E-mail telah terdaftar');
+				return Redirect::to('ictap/registrasi/'.$id_kegiatan)->with('message','E-mail telah terdaftar');
 			}
 			else{
 				$peserta = new Peserta();
@@ -110,11 +126,11 @@ class IctapController extends BaseController {
 				$peserta->bukti_bayar ="";
 				$peserta->paper =$judul_paper;
 				$peserta->save();
-				return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Pendaftaran Berhasil');
+				return Redirect::to('ictap/login/'.$id_kegiatan)->with('message','Pendaftaran Berhasil');
 			}
 		}
 		else{
-			return Redirect::to('simposium/registrasi/'.$id_kegiatan)->with('message','Password tidak cocok');
+			return Redirect::to('ictap/registrasi/'.$id_kegiatan)->with('message','Password tidak cocok');
 		}
 	}
 	
@@ -130,14 +146,14 @@ class IctapController extends BaseController {
 				if (Hash::check($password, $kegiatan->pass_admin))
 				{
 					Session::push('session_admin_id',$kegiatan[0]['id']);
-					return Redirect::to('simposium/admin/'.$id_kegiatan);
+					return Redirect::to('ictap/admin/'.$id_kegiatan);
 				}	
 				else{
-					return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
+					return Redirect::to('ictap/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
 				}
 			}
 			else{
-				return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username ini tidak aktif');
+				return Redirect::to('ictap/login/'.$id_kegiatan)->with('message','Username ini tidak aktif');
 			}
 		}
 		else{
@@ -148,10 +164,10 @@ class IctapController extends BaseController {
 				{
 					Session::push('session_user_id',$peserta[0]['id']);
 					Session::push('session_kegiatan',$id_kegiatan);
-					return Redirect::to('simposium/'.$id_kegiatan);
+					return Redirect::to('ictap/'.$id_kegiatan);
 				}
 				else{
-					return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
+					return Redirect::to('ictap/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
 				}
 			}
 		}
@@ -159,7 +175,7 @@ class IctapController extends BaseController {
 	
 	public function logout($id){
 		Session::flush();
-		return Redirect::to('simposium/login/'.$id);
+		return Redirect::to('ictap/login/'.$id);
 	}
 	
 	public function edit_profil(){
@@ -201,7 +217,7 @@ class IctapController extends BaseController {
 		
 		$peserta->save();
 		
-		return  Redirect::to('simposium/user/'.$id_kegiatan.'/'.$id_peserta)->with('message','Berhasil Merubah Data');
+		return  Redirect::to('ictap/user/'.$id_kegiatan.'/'.$id_peserta)->with('message','Berhasil Merubah Data');
 		
 	}
 	
@@ -213,7 +229,7 @@ class IctapController extends BaseController {
 			 
 			$file = Input::file('filePaper');
 			
-			$destination ='assets/file_upload/simposium/'.$id.'/'.$id_peserta.'/';
+			$destination ='assets/file_upload/ictap/'.$id.'/'.$id_peserta.'/';
 			
 			$peserta = Peserta::find($id_peserta);
 			
@@ -223,21 +239,21 @@ class IctapController extends BaseController {
 					File::delete($peserta->path_paper);
 				}
 				catch(Exception $e){
-					return Redirect::to('simposium/user/'.$id.'/'.$id_peserta)->with('message','Gagal Mengunggah Paper');
+					return Redirect::to('ictap/user/'.$id.'/'.$id_peserta)->with('message','Gagal Mengunggah Paper');
 				}
 			}
 			$peserta->path_paper = $destination . $file->getClientOriginalName();
 			try{
 				$peserta->save();
 				$file->move($destination,$file->getClientOriginalName());
-				return Redirect::to('simposium/user/'.$id.'/'.$id_peserta)->with('message','Berhasil Mengunggah Paper');
+				return Redirect::to('ictap/user/'.$id.'/'.$id_peserta)->with('message','Berhasil Mengunggah Paper');
 			}
 			catch(Exception $e){
-				return Redirect::to('simposium/user/'.$id.'/'.$id_peserta)->with('message','Gagal Mengunggah Paper');
+				return Redirect::to('ictap/user/'.$id.'/'.$id_peserta)->with('message','Gagal Mengunggah Paper');
 			}
 		}
 		else{
-			return Redirect::to('simposium/user/'.$id.'/'.$id_peserta);
+			return Redirect::to('ictap/user/'.$id.'/'.$id_peserta);
 		}
 	}
 	
@@ -248,7 +264,7 @@ class IctapController extends BaseController {
 			
 			$file = Input::file('file_bukti_bayar');
 			
-			$destination ='assets/file_upload/simposium/'.$id.'/'.$id_peserta.'/';
+			$destination ='assets/file_upload/ictap/'.$id.'/'.$id_peserta.'/';
 			
 			$peserta = Peserta::find($id_peserta);
 			$peserta->bukti_bayar = $destination . 'bukti_bayar.jpg';
@@ -256,14 +272,14 @@ class IctapController extends BaseController {
 			try{
 				$peserta->save();
 				$file->move($destination,'bukti_bayar.jpg');
-				return Redirect::to('simposium/user/'.$id.'/'.$id_peserta)->with('message','Berhasil Mengunggah Bukti Bayar');
+				return Redirect::to('ictap/user/'.$id.'/'.$id_peserta)->with('message','Berhasil Mengunggah Bukti Bayar');
 			}
 			catch(Exception $e){
-				return Redirect::to('simposium/user/'.$id.'/'.$id_peserta)->with('message','Gagal Mengunggah Bukti Bayar');
+				return Redirect::to('ictap/user/'.$id.'/'.$id_peserta)->with('message','Gagal Mengunggah Bukti Bayar');
 			}
 		}
 		else{
-			return Redirect::to('simposium/user/'.$id.'/'.$id_peserta);
+			return Redirect::to('ictap/user/'.$id.'/'.$id_peserta);
 		}
 	
 	}

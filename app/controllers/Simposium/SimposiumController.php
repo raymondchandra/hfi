@@ -28,7 +28,7 @@ class SimposiumController extends BaseController {
 	
 	public function view_peserta($id){
 		$pesertas = Peserta::where('id_kegiatan','=',$id)->get();
-		return View::make('pages.simposium.front.simposium_peserta',compact('pesertas'));
+		return View::make('pages.simposium.front.simposium_peserta',compact('id','pesertas'));
 	}
 	
 	public function view_style_simposium(){

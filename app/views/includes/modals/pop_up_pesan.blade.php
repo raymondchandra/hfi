@@ -23,27 +23,75 @@
         <div class="clearfix"></div>
         <form>
         <label class=" control-label col-sm-2">Balas pesan</label>
-        {{ Form::textarea('keteranganlain', Input::old('keteranganlain'), array('class'=>'form-control col-sm-8', 'style'=>'height: 100px;')) }}
-
-        <button type="button" class="btn btn-primary " style="margin-left: 10px; width: 100px;">Kirim</button>
-        <input type="file" class="btn btn-primary " style="float: right;width: 100px;margin-right: 34px;margin-top: 10px;"/>
+        {{ Form::textarea('keteranganlain', Input::old('keteranganlain'), array('class'=>'form-control col-sm-8 editor', 'style'=>'height: 100px;')) }}
+        <span class="cleafix"></span>
+        
+		<span class="clearfix"></span>
+		<button type="button" id="replyButton" class="btn btn-primary " style="margin-top: 10px; float: left; margin-left: 145px;">Kirim</button>
+		<input id="id_pesan" type="hidden" />
+		{{ Form::file('fileAttachment', array('name'=>'fileAttachment', 'id'=>'fileAttachment', 'style' => 'margin-top: 10px; margin-left: 10px;float: left;' , 'accept'=>'.pdf'))}}
         </form>
       </div>
+	  
+	  <script>
+		$('#replyButton').click(function(){
+			$id_pesan = $(this).next().val();
+			var data = new FormData();
+			data.append('id_pesan', $id);
+			data.append('attachment', $('#fileAttachment')[0].files[0]);
+			data.append('text', $('.editor').val());
+			$.ajax({
+				type: 'POST',
+				url: '{{URL::route('admin.kegiatan2.put_reply')}}',
+				data: data,
+				processData : false,
+				contentType : false,
+				success: function(response){
+					if(response === "Gagal membalas pesan")
+					{
+						alert(response);
+					}
+					else
+					{
+						
+						$isi = "<h4>Pesan Kirim - ";
+						$isi = $isi + response.created_at + "</h4></p>";
+						$isi = $isi + response.message + "</p><p>lampiran : ";
+						if(response.attachment == "" || response.attachment == "-")
+						{
+							$isi = $isi + " -</p>";
+						}
+						else
+						{
+							$isi = $isi + "<a target='_blank' href='{{asset('assets/file_upload/reply_attachment/" + response.id + "/" + response.attachment + "')}}'>" + response.attachment + "</a></p>";
+						}
+						
+						$('#kirim_konten').prepend($isi);
+						alert("Berhasil membalas pesan");
+					}
+					
+					
+				},
+				error: function(jqXHR, textStatus, errorThrown){
+					alert(errorThrown);
+				}
+			},'json');
+
+		});
+	  </script>
 
       <div class="modal-body">
         <div class="form-group konten_pesan">
-
-          <hr/>
-          <h4>Pesan Kirim</h4>
-          <p>
-            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. 
-          </p>
-          
-          <hr/>
-          <h4>Pesan Datang</h4>
-          <p>
-            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. 
-          </p>
+			<hr/>
+			<div id="kirim_konten">
+				<img src="{{ asset('assets/img/728.gif')}}"/>
+			</div>
+			<hr/>
+			<h4 id="datang_header">Pesan Datang</h4>
+			<p id="datang_konten">
+				<img src="{{ asset('assets/img/728.gif')}}"/>
+			</p>
+			<p  id="datang_lampiran"></p>
 
         </div>
       </div>

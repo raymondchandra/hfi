@@ -29,15 +29,17 @@ var id = '{{$id}}';
 		</div>
 		
 		<script>
-		$('.editor').jqte();
-		
-		$('#submit_change').click(function(){
-				/*$.ajax({
+			$('.editor').jqte();
+			
+			$('#submit_change').click(function(){
+			
+				$.ajax({
 					type: 'PUT',
-					url: '{{URL::route('admin.kegiatan2.konten.editEditor',array($id))}}',
+					url: '{{URL::route('admin.kegiatan2.update_template')}}',
 					data: {
 						type : '{{$type}}',
-						text: $('.editor').val()
+						text : $('.editor').val(),
+						id : '{{$id}}'
 					},
 					success: function(response){
 						alert(response);
@@ -45,8 +47,9 @@ var id = '{{$id}}';
 					error: function(jqXHR, textStatus, errorThrown){
 						alert(errorThrown);
 					}
-				},'json');*/
-	});
+				},'json');
+
+			});
 		</script>
 	</div>
 </div>

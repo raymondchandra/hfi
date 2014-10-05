@@ -26,7 +26,8 @@
           
           
           <button type="button" class="btn btn-primary" style="margin-left: 150px; width: 100px;">Kirim</button>
-          <input type="file" class="btn btn-primary" style="margin-left: 150px;width: 100px;margin-right: 34px;margin-top: 10px;"/>
+          <span class="clearfix"></span>
+          <input type="file" class="btn btn-primary" style="margin-left: 150px;margin-right: 34px;margin-top: 10px;"/>
         </from>
       </div>
 

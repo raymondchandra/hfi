@@ -123,7 +123,14 @@ class Kegiatan2AdminController extends BaseController {
 	public function view_detail($id)
 	{
 		$kegiatan = Kegiatan2::find($id);
-		$nama_kegiatan = $kegiatan->nama;
+		if($kegiatan != null)
+		{
+			$nama_kegiatan = $kegiatan->nama;
+		}
+		else
+		{
+			$nama_kegiatan = "kosong";
+		}
 		return View::make('pages.simposium.admin.simposium_index',compact('id','nama_kegiatan'));
 	}
 
@@ -545,31 +552,122 @@ class Kegiatan2AdminController extends BaseController {
 		return $nama->nama;
 	}
 	
-	public function getMessageById($id)
+	public function getMessageById()
 	{
+		$id = Input::get('id_pesan');
 		$msg = Pesan::find($id);
+		$msg['nama'] = $this->getNamaPesertaFromId($msg['id_peserta']);
 		return $msg;
 	}
 	
-	public function getMessageReply($id)
+	public function getMessageReply()
 	{
-		$rep = Reply::where('id_pesan', '=', $id)->get();
-		
+		$id = Input::get('id_pesan');
+		$rep = Reply::where('pesan_id', '=', $id)->orderBy('created_at', 'DESC')->get();
 		return $rep;
 	}
 	
+	public function replyMessage()
+	{
+		if(Input::hasFile('attachment'))
+		{
+			$rep = new Reply();
+			$rep -> timestamps = false;
+			
+			$file = Input::file('attachment');
+			$fileName = $file->getClientOriginalName();
+			$destinationPath = "assets/file_upload/reply_attachment/";
+			
+			$rep -> pesan_id = Input::get('id_pesan');
+			$rep -> message = Input::get('text');
+			$rep -> attachment = $fileName;
+			$rep -> created_at = Carbon::now();
+		
+			try
+			{
+				$rep -> save();
+				$id = $rep->id;
+				$destinationPath .= $id."/";
+				if(!file_exists($destinationPath))
+				{
+					File::makeDirectory($destinationPath, $mode = 0777, true, true);
+					$uploadSuccess = $file->move($destinationPath, $fileName);
+				}
+				else
+				{
+					$uploadSuccess = $file->move($destinationPath, $fileName);
+				}
+				
+				return $rep;
+			}
+			catch(Exception $e)
+			{
+				return "Gagal membalas pesan";
+			}
+		}
+		else
+		{
+			$rep = new Reply();
+			$rep -> timestamps = false;
+			
+			
+			$rep -> pesan_id = Input::get('id_pesan');
+			$rep -> message = Input::get('text');
+			$rep -> attachment = "-";
+			$rep -> created_at = Carbon::now();
+		
+			try
+			{
+				$rep -> save();
+				return $rep;
+			}
+			catch(Exception $e)
+			{
+				return "Gagal membalas pesan ".$e;
+			}
+		}
+	}
+	
 	//pindahin-------
+	public function updateTemplate()
+	{
+		$type = Input::get('type');
+		$id = Input::get('id');
+		$text = Input::get('text');
+		if($type === "Registrasi")
+		{
+			return $this->updateRegTemplate($id,$text);
+		}
+		else if($type === "Penerimaan Abstrak")
+		{
+			return $this->updateAbsTemplate($id,$text);
+		}
+		else if($type === "Surat Undangan")
+		{
+			return $this->updateInvTemplate($id,$text);
+		}
+		else if($type === "Penerimaan Paper Lengkap")
+		{
+			return $this->updatePapTemplate($id,$text);
+		}
+		else
+		{
+			
+		}
+	}
+	
 	public function getRegTemplate($id)
 	{
-		$template = Template::where('id_kegiatan', '=' , $id)->where('type', '=', 'reg')->get();
+		$template = Template::where('id_kegiatan', '=' , $id)->where('tipe', '=', 'reg')->first();
 		
 		return $template;
 	}
 	
 	public function updateRegTemplate($id, $text)
-	{
-		$template = Template::where('id_kegiatan', '=' , $id)->where('type', '=', 'reg')->get();
-		
+	{ 
+		$template = Template::where('id_kegiatan', '=' , $id)->where('tipe', '=', 'reg')->first();
+		$template->timestamps = false;
+			
 		if($template == null)
 		{
 			$template = new Template();
@@ -579,11 +677,11 @@ class Kegiatan2AdminController extends BaseController {
 			
 			try
 			{
-				$template->save();
+				$template->save();return "berhasil update";
 			}
 			catch(Exception $e)
 			{
-				
+				return "gagal update";
 			}
 		}
 		else
@@ -591,26 +689,27 @@ class Kegiatan2AdminController extends BaseController {
 			$template->text = $text;
 			try
 			{
-				$template->save();
+				$template->save();return "berhasil update";
 			}
 			catch(Exception $e)
 			{
-				
+				return "gagal update";
 			}
 		}
 	}
 	
 	public function getAbsTemplate($id)
 	{
-		$template = Template::where('id_kegiatan', '=' , $id)->where('type', '=', 'abs')->get();
+		$template = Template::where('id_kegiatan', '=' , $id)->where('tipe', '=', 'abs')->first();
 		
 		return $template;
 	}
 	
 	public function updateAbsTemplate($id, $text)
 	{
-		$template = Template::where('id_kegiatan', '=' , $id)->where('type', '=', 'abs')->get();
-		
+		$template = Template::where('id_kegiatan', '=' , $id)->where('tipe', '=', 'abs')->first();
+		$template->timestamps = false;
+			
 		if($template == null)
 		{
 			$template = new Template();
@@ -620,11 +719,11 @@ class Kegiatan2AdminController extends BaseController {
 			
 			try
 			{
-				$template->save();
+				$template->save();return "berhasil update";
 			}
 			catch(Exception $e)
 			{
-				
+				return "gagal update";
 			}
 		}
 		else
@@ -632,29 +731,29 @@ class Kegiatan2AdminController extends BaseController {
 			$template->text = $text;
 			try
 			{
-				$template->save();
+				$template->save();return "berhasil update";
 			}
 			catch(Exception $e)
 			{
-				
+				return "gagal update";
 			}
 		}
 	}
 	
 	public function getPapTemplate($id)
 	{
-		$template = Template::where('id_kegiatan', '=' , $id)->where('type', '=', 'pap')->get();
+		$template = Template::where('id_kegiatan', '=' , $id)->where('tipe', '=', 'pap')->first();
 		
 		return $template;
 	}
 	
 	public function updatePapTemplate($id, $text)
 	{
-		$template = Template::where('id_kegiatan', '=' , $id)->where('type', '=', 'pap')->get();
-		
+		$template = Template::where('id_kegiatan', '=' , $id)->where('tipe', '=', 'pap')->first();
+		$template->timestamps = false;
 		if($template == null)
 		{
-			$template = new Template();
+			$template = new Template();			
 			$template->id_kegiatan = $id;
 			$template->tipe = 'pap';
 			$template->text = $text;
@@ -662,10 +761,11 @@ class Kegiatan2AdminController extends BaseController {
 			try
 			{
 				$template->save();
+				return "berhasil update";
 			}
 			catch(Exception $e)
 			{
-				
+				return "gagal update";
 			}
 		}
 		else
@@ -674,39 +774,42 @@ class Kegiatan2AdminController extends BaseController {
 			try
 			{
 				$template->save();
+				return "berhasil update";
 			}
 			catch(Exception $e)
 			{
-				
+				return "gagal update";
 			}
 		}
 	}
 	
-	public function getPdfTemplate($id)
+	public function getInvTemplate($id)
 	{
-		$template = Template::where('id_kegiatan', '=' , $id)->where('type', '=', 'pdf')->get();
+		$template = Template::where('id_kegiatan', '=' , $id)->where('tipe', '=', 'inv')->first();
 		
 		return $template;
 	}
 	
-	public function updatePdfTemplate($id, $text)
+	public function updateInvTemplate($id, $text)
 	{
-		$template = Template::where('id_kegiatan', '=' , $id)->where('type', '=', 'pdf')->get();
+		$template = Template::where('id_kegiatan', '=' , $id)->where('tipe', '=', 'inv')->first();
+		$template->timestamps = false;
 		
 		if($template == null)
 		{
 			$template = new Template();
 			$template->id_kegiatan = $id;
-			$template->tipe = 'pdf';
+			$template->tipe = 'inv';
 			$template->text = $text;
 			
 			try
 			{
 				$template->save();
+				return "berhasil update";
 			}
 			catch(Exception $e)
 			{
-				
+				return "gagal update";
 			}
 		}
 		else
@@ -715,10 +818,11 @@ class Kegiatan2AdminController extends BaseController {
 			try
 			{
 				$template->save();
+				return "berhasil update";
 			}
 			catch(Exception $e)
 			{
-				
+				return "gagal update";
 			}
 		}
 	}
@@ -806,8 +910,58 @@ class Kegiatan2AdminController extends BaseController {
 		$nama_kegiatan = $kegiatan->nama;
 		$title = $type;
 		
-		$text = "";
-		
+		if($type === "Registrasi")
+		{
+			$template = $this->getRegTemplate($id);
+			if(count($template) == 0)
+			{
+				$text = "";
+			}
+			else
+			{
+				$text = $template->text;
+			}
+		}
+		else if($type === "Penerimaan Abstrak")
+		{
+			$template = $this->getAbsTemplate($id);
+			if(count($template) == 0)
+			{
+				$text = "";
+			}
+			else
+			{
+				$text = $template->text;
+			}
+		}
+		else if($type === "Surat Undangan")
+		{
+			$template = $this->getInvTemplate($id);
+			if(count($template) == 0)
+			{
+				$text = "";
+			}
+			else
+			{
+				$text = $template->text;
+			}
+		}
+		else if($type === "Penerimaan Paper Lengkap")
+		{
+			$template = $this->getPapTemplate($id);
+			if(count($template) == 0)
+			{
+				$text = "";
+			}
+			else
+			{
+				$text = $template->text;
+			}
+		}
+		else
+		{
+			$text = "";
+		}
 		
 		return View::make('pages.simposium.admin.simposium_template_editor',compact('type','id','nama_kegiatan','title','text'));
 

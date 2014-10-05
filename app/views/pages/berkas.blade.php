@@ -24,35 +24,39 @@
 			<!-- css nya pake yang di file admin_berkas.css -->
 			<div class="content_hfi" id="contentfield">
 				<h3>Berkas</h3>
-				<table class="table_preview" style="margin-bottom:0px; margin-top:30px;" border=0>				
-					<tr>
-						<!--<td class="nama_berkas">Nama Berkas</td>
-						<td class="pengunggah_berkas">Pengunggah Berkas</td>
-						<td class="deskripsi_berkas">Deskripsi Berkas</td>
-						<td class="download_berkas">&nbsp;</td>-->
-						<td class="userview_nama_berkas">Nama Berkas</td>
-						<td class="userview_besar_file">Besar File</td>
-						<td class="userview_deskripsi_berkas">Deskripsi Berkas</td>
-						<td class="userview_download_berkas">&nbsp;</td>
-					</tr>
-				</table>
-				<hr>
-				<table class="table_preview" style="margin-top:20px;" border=0>										
-					<?php $length = sizeof($listberkas); ?>
-					<?php if($length>0) { ?>
-					<?php for($i=0; $i<$length; $i++) {//foreach($listberkas as $berkas){ ?>				
-					<tr>						
-						<td class="userview_nama_berkas"> <?php echo $listberkas[$i]['nama_file']; //echo $berkas['nama_file']?></td>
-						<td class="userview_besar_file"> <?php echo intval(filesize($listberkas[$i]['path_file'])* .0009765625)//echo $arrPengunggah[$i]; //echo $berkas['uploaded_by']?> KB</td>
-						<td class="userview_deskripsi_berkas"> <input type="hidden" value="<?php echo $listberkas[$i]['deskripsi']; //echo $berkas['deskripsi']?>"/><button style="width:120px; margin-top:0px;" class="button_show_deskripsi" type="submit">Lihat Deskripsi</button></td>
-						<td> 
-							<?php $path = "../".$listberkas[$i]['path_file']?>						
-							<!--<form method="get" action="" value="<?php echo $path?>">-->
-								<button value="<?php echo $path?>" class="userview_download_berkas" type="submit" style="width:60px; margin-top:0px; margin-left:40px;">Unduh</button>							
- 						</td>
-					</tr>
-					<?php }} ?>
-				</table>																
+				
+				@if(count($listberkas) == 0)
+					Tidak terdapat berkas di dalam database
+				@else
+					<table class="table_preview" style="margin-bottom:0px; margin-top:30px;" border=0>				
+						<tr>
+							<!--<td class="nama_berkas">Nama Berkas</td>
+							<td class="pengunggah_berkas">Pengunggah Berkas</td>
+							<td class="deskripsi_berkas">Deskripsi Berkas</td>
+							<td class="download_berkas">&nbsp;</td>-->
+							<td class="userview_nama_berkas">Nama Berkas</td>
+							<td class="userview_besar_file">Besar File</td>
+							<td class="userview_deskripsi_berkas">Deskripsi Berkas</td>
+							<td class="userview_download_berkas">&nbsp;</td>
+						</tr>
+					</table>
+					<hr>
+					<table class="table_preview" style="margin-top:20px;" border=0>
+						@foreach($listberkas as $file)
+							<tr>
+								<td class="userview_nama_berkas">{{$file->nama_file}}</td>
+								<td class="userview_besar_file"> <?php echo intval(filesize($file->path_file)* .0009765625)//echo $arrPengunggah[$i]; //echo $berkas['uploaded_by']?> KB</td>
+								<td class="userview_deskripsi_berkas"> <input type="hidden" value="{{$file->deskripsi}}"/><button style="width:120px; margin-top:0px;" class="button_show_deskripsi" type="submit">Lihat Deskripsi</button></td>
+								<td> 
+									<?php $path = "../".$file->path_file?>						
+									<!--<form method="get" action="" value="<?php echo $path?>">-->
+										<button value="<?php echo $path?>" class="userview_download_berkas" type="submit" style="width:60px; margin-top:0px; margin-left:40px;">Unduh</button>							
+		 						</td>
+							</tr>
+						@endforeach
+					</table>
+					<?php echo $listberkas->links();?>
+				@endif												
 			</div>			
 			
 		</div>

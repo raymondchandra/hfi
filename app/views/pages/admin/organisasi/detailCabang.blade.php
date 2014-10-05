@@ -68,7 +68,7 @@ $(document).ready(function(){
 						<td>{{$urus->tanggal_upload}}</td>
 						<td>
 							<p style='display:none;'>{{$urus->file_path}}</p>
-							<input data-toggle="modal" data-target=".pop_up_super_c_hapus_pengurus" type='button' value='x' class='hapus_pengurus btn btn-danger'/>
+							<input data-toggle="modal" data-target=".pop_up_super_c_hapus_pengurus" type='button' value='Delete' class='hapus_pengurus btn btn-danger'/>
 							<input type='hidden' class='id_pengurus' value='{{$urus->id}}'/>
 						</td>
 					</tr>
@@ -234,15 +234,15 @@ $('body').on('click','.periode_pengurus',function(){
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-sm-3">Unggah</label>
-						{{ Form::file('filePeng', array('name'=>'filePeng','id'=>'filePeng')) }}
+						{{ Form::file('filePeng', array('name'=>'filePeng','id'=>'filePeng', 'class' => 'col-sm-3',)) }}
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-3">Periode</label>
-						{{ Form::text('periode', Input::old('periode'), array('class' => 'form-control col-sm-2', 'id'=>'periode')) }}
+						{{ Form::text('periode', Input::old('periode'), array('class' => 'form-control col-sm-3', 'id'=>'periode')) }}
 					</div>
 				</div>
 				<div class="modal-footer">
-					<li>{{ Form::submit('Unggah') }}</li>
+					<li>{{ Form::submit('Unggah', array('class' => 'btn btn-success')) }}</li>
 				</div>
 				<script>
 				$(".tambah_pengurus_form").validate({

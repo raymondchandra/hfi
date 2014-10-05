@@ -134,7 +134,13 @@ use Carbon\Carbon;
 		public function tambah_cabang()
 		{
 			$cabang = new Cabang();
-			$cabang->nama = Input::get('nama_cabang');
+			$cabang->nama = Input::get('nama_cabang');			
+				//cek duplikast nama cabang
+				$tempnama = Input::get('nama_cabang');			
+				$tempcabang = Cabang::where('nama','=',$tempnama)->get();
+				if(count($tempcabang) != 0){
+					return "Gagal menambah cabang, nama cabang sudah terdaftar";
+				}
 			$cabang->telp = Input::get('telp_cabang');
 			$cabang->fax = Input::get('fax_cabang');
 			$cabang->email = Input::get('email_cabang');

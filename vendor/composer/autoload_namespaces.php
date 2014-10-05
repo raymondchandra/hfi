@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Whoops' => array($vendorDir . '/filp/whoops/src'),
+    'Thujohn\\Pdf' => array($vendorDir . '/thujohn/pdf/src'),
     'Symfony\\Component\\Translation\\' => array($vendorDir . '/symfony/translation'),
     'Symfony\\Component\\Routing\\' => array($vendorDir . '/symfony/routing'),
     'Symfony\\Component\\Process\\' => array($vendorDir . '/symfony/process'),
@@ -25,7 +26,6 @@ return array(
     'Patchwork' => array($vendorDir . '/patchwork/utf8/class'),
     'PasswordLib' => array($vendorDir . '/passwordlib/passwordlib/lib'),
     'PHPParser' => array($vendorDir . '/nikic/php-parser/lib'),
-    'Ollieread\\Multiauth' => array($vendorDir . '/ollieread/multiauth/src'),
     'Normalizer' => array($vendorDir . '/patchwork/utf8/class'),
     'Jeremeamia\\SuperClosure' => array($vendorDir . '/jeremeamia/SuperClosure/src'),
     'Illuminate' => array($vendorDir . '/laravel/framework/src'),

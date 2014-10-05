@@ -313,6 +313,12 @@ Route::put('/changePass', ['as' => 'changePass', 'uses' => 'AccountController@ch
 Route::group(array('prefix' => 'simposium', 'before' => 'authSimposium'), function () {
 	
 	Route::get('/user/{id}/{id_peserta}', ['as' => 'simposium.user', 'uses' => 'SimposiumController@view_user']);
+	
+	Route::put('/editProfil', ['as' => 'simposium.editProfil', 'uses' => 'SimposiumController@edit_profil']);
+	
+	Route::put('/uploadBuktiBayar', ['as' => 'simposium.uploadBuktiBayar', 'uses' => 'SimposiumController@upload_bayar']);
+	
+	Route::put('/uploadPaper', ['as' => 'simposium.uploadPaper', 'uses' => 'SimposiumController@upload_paper']);
 });
 
 Route::group(array('prefix' => 'simposium', 'before' => ''), function () {
@@ -323,8 +329,6 @@ Route::group(array('prefix' => 'simposium', 'before' => ''), function () {
 	Route::get('/tanggal', ['as' => 'simposium.tanggal', 'uses' => 'SimposiumController@view_tanggal']);
 	Route::get('/lokasi', ['as' => 'simposium.lokasi', 'uses' => 'SimposiumController@view_lokasi']);
 	Route::get('/peserta/{id}', ['as' => 'simposium.peserta', 'uses' => 'SimposiumController@view_peserta']);
-	
-	Route::put('/editProfil', ['as' => 'simposium.editProfil', 'uses' => 'SimposiumController@edit_profil']);
 });
 
 Route::get('/test/tesuto', function()
@@ -336,8 +340,7 @@ Route::get('/test/tesuto', function()
 
 //test registrasi
 
-Route::post('/register', ['as' => 'register', 'uses' => 'SimposiumController@register']);
-Route::post('/login', ['as' => 'login', 'uses' => 'SimposiumController@login']);
+
 
 
 

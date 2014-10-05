@@ -104,11 +104,13 @@
 				"id_kegiatan": $id
 			},
 			success: function(response){
-				alert(response);
-				$('#admin_kegiatan_nasional').click();
+				//alert(response);
 			},
 			error: function(jqXHR, textStatus, errorThrown){
-				alert(errorThrown);
+				//alert(errorThrown);
+			},
+			complete:function(){
+				$('#admin_kegiatan_nasional').click();
 			}
 		},'json');
 	});
@@ -243,11 +245,13 @@
 			processData:false,
 			contentType: false,
 			success: function(response){
-				alert(response);
-				$('#admin_kegiatan_nasional').click();
+				//alert(response);
 			},
 				error: function(jqXHR, textStatus, errorThrown){
 				alert(errorThrown);
+			},
+			complete:function(){
+				$('#admin_kegiatan_nasional').click();
 			}
 		});
 		
@@ -288,6 +292,8 @@
 		}
 	});
 	$('body').on('click','#ok_tambah_kegiatan',function(){
+	
+		$(this).attr('disable',true);
 		
 		$arrayData = $('#form_tambah_kegiatan').serializeArray();
 		//alert($file_brosur);
@@ -319,12 +325,14 @@
 			processData:false,
 			contentType: false,
 			success: function(response){
-				alert(response);
-				$('#admin_kegiatan_nasional').click();
+				//alert(response);
 			},
-				error: function(jqXHR, textStatus, errorThrown){
-				alert(errorThrown);
+			error: function(jqXHR, textStatus, errorThrown){
+				//alert(errorThrown);
 			}
+		}).done(function(){
+			location.reload();
+			$('#admin_kegiatan_nasional').click();
 		});
 		
 	});

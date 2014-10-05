@@ -524,6 +524,8 @@ class Kegiatan2AdminController extends BaseController {
 		}
 	}
 	
+
+	
 	
 
 	public function view_pesan($id)

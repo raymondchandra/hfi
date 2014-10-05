@@ -70,11 +70,12 @@ class SimposiumController extends BaseController {
 				$peserta->is_paper =$is_paper;
 				$peserta->presentasi =$gender;
 				$peserta->abstract =$abstrak_paper;
+				$peserta->spesialisasi = $spesialisasi;
 				$peserta->status_bayar =0;
 				$peserta->bukti_bayar ="";
 				$peserta->paper =$judul_paper;
 				$peserta->save();
-				return Redirect::to('simposium/login'.$id_kegiatan)->with('message','Pendaftaran Berhasil');
+				return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Pendaftaran Berhasil');
 			}
 		}
 		else{
@@ -166,6 +167,69 @@ class SimposiumController extends BaseController {
 		
 		return  Redirect::to('simposium/user/'.$id_kegiatan.'/'.$id_peserta)->with('message','Berhasil Merubah Data');
 		
+	}
+	
+	
+	public function upload_paper(){
+		$id = Input::get('id_kegiatan'); 
+		$id_peserta = Input::get('id_peserta');
+		if(Input::hasFile('filePaper')){
+			 
+			$file = Input::file('filePaper');
+			
+			$destination ='assets/file_upload/simposium/'.$id.'/'.$id_peserta.'/';
+			
+			$peserta = Peserta::find($id_peserta);
+			
+			
+			if($peserta->path_paper != ""){
+				try{
+					File::delete($peserta->path_paper);
+				}
+				catch(Exception $e){
+					return Redirect::to('simposium/user/'.$id.'/'.$id_peserta)->with('message','Gagal Mengunggah Paper');
+				}
+			}
+			$peserta->path_paper = $destination . $file->getClientOriginalName();
+			try{
+				$peserta->save();
+				$file->move($destination,$file->getClientOriginalName());
+				return Redirect::to('simposium/user/'.$id.'/'.$id_peserta)->with('message','Berhasil Mengunggah Paper');
+			}
+			catch(Exception $e){
+				return Redirect::to('simposium/user/'.$id.'/'.$id_peserta)->with('message','Gagal Mengunggah Paper');
+			}
+		}
+		else{
+			return Redirect::to('simposium/user/'.$id.'/'.$id_peserta);
+		}
+	}
+	
+	public function upload_bayar(){
+		$id = Input::get('id_kegiatan');
+		$id_peserta = Input::get('id_peserta');
+		if(Input::hasFile('file_bukti_bayar')){
+			
+			$file = Input::file('file_bukti_bayar');
+			
+			$destination ='assets/file_upload/simposium/'.$id.'/'.$id_peserta.'/';
+			
+			$peserta = Peserta::find($id_peserta);
+			$peserta->bukti_bayar = $destination . 'bukti_bayar.jpg';
+			
+			try{
+				$peserta->save();
+				$file->move($destination,'bukti_bayar.jpg');
+				return Redirect::to('simposium/user/'.$id.'/'.$id_peserta)->with('message','Berhasil Mengunggah Bukti Bayar');
+			}
+			catch(Exception $e){
+				return Redirect::to('simposium/user/'.$id.'/'.$id_peserta)->with('message','Gagal Mengunggah Bukti Bayar');
+			}
+		}
+		else{
+			return Redirect::to('simposium/user/'.$id.'/'.$id_peserta);
+		}
+	
 	}
 
 	

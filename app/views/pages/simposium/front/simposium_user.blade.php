@@ -11,7 +11,7 @@
 				<h1 style="">Profile Pengguna</h1>
 				<button data-toggle="modal" data-target=".pop_up_edit_profile" class="btn btn-primary edit_profil" style="float: right;">
 					Edit Profile
-				</button><input type='hidden' value='{{$peserta->id}}' />
+				</button><input type='hidden' class='id_prt' value='{{$peserta->id}}' />
 				<span class="clearfix"></span>
 				<div class="panel panel-default">
 					
@@ -52,7 +52,7 @@
 
 						  <div class="form-group row">
 							<label class="col-lg-3">Bidang Keahlian</label>
-							<span class="col-lg-8">-</span>
+							<span class="col-lg-8">{{$peserta->spesialisasi}}</span>
 						  </div>
 
 						  <div class="form-group row">
@@ -68,8 +68,8 @@
 
 
 						 <hr/>
-						  <button data-toggle="modal" data-target=".pop_up_upload_full_paper" type="submit" class="btn btn-info">Upload Full Paper</button> 
-						  <button data-toggle="modal" data-target=".pop_up_upload_bukti_pembayaran" type="submit" class="btn btn-info">Upload Bukti Pembayaran</button> 
+						  <button data-toggle="modal" data-target=".pop_up_upload_full_paper" type="submit" class="btn btn-info upload_paper">Upload Full Paper</button> 
+						  <button data-toggle="modal" data-target=".pop_up_upload_bukti_pembayaran" type="submit" class="btn btn-info upload_bayar">Upload Bukti Pembayaran</button> 
 						  <button data-toggle="modal" data-target=".pop_up_minta_bantuan" type="submit" class="btn btn-info">Minta Bantuan</button> 
 						 @else
 						 
@@ -88,6 +88,16 @@
 @include('includes.modals.pop_up_edit_profile')
 
 <script>
+	$('body').on('click','.upload_paper',function(){
+		$('.id_kegiatan').val({{$id}});
+		$('.id_peserta').val($('.id_prt').val());
+	})
+	
+	$('body').on('click','.upload_bayar',function(){
+		$('.id_kegiatan').val({{$id}});
+		$('.id_peserta').val($('.id_prt').val());
+	})
+	
 	$('body').on('click','.edit_profil',function(){
 		$id_profil = $(this).next().val();
 		$.get("{{url('simposium/admin/satu_peserta/')}}/"+$id_profil,function(response){

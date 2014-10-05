@@ -129,6 +129,7 @@
 						<script>			
 							$( ".poster_kegiatan" ).click(function() {
 								var src = $(this).attr('src');
+								$( "#img_placer" ).empty();
 								$( "#img_placer" ).append( "<img src="+ src + " width='400' />" );
 							});
 						</script>

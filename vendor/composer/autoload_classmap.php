@@ -726,6 +726,7 @@ return array(
     'Monolog\\Processor\\WebProcessor' => $vendorDir . '/monolog/monolog/src/Monolog/Processor/WebProcessor.php',
     'Monolog\\Registry' => $vendorDir . '/monolog/monolog/src/Monolog/Registry.php',
     'Normalizer' => $vendorDir . '/patchwork/utf8/class/Normalizer.php',
+    'Ollieread\\Multiauth\\MultiauthServiceProvider' => $vendorDir . '/ollieread/multiauth/src/Ollieread/Multiauth/MultiauthServiceProvider.php',
     'OrganisasiAdminController' => $baseDir . '/app/controllers/admin/OrganisasiAdminController.php',
     'OrganisasiController' => $baseDir . '/app/controllers/OrganisasiController.php',
     'PHPParser_Autoloader' => $vendorDir . '/nikic/php-parser/lib/PHPParser/Autoloader.php',

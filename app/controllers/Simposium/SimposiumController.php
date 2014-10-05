@@ -28,7 +28,7 @@ class SimposiumController extends BaseController {
 	
 	public function view_peserta($id){
 		$pesertas = Peserta::where('id_kegiatan','=',$id)->get();
-		return View::make('pages.simposium.front.simposium_peserta',compact('pesertas'));
+		return View::make('pages.simposium.front.simposium_peserta',compact('id','pesertas'));
 	}
 	
 	public function view_style_simposium(){
@@ -38,6 +38,7 @@ class SimposiumController extends BaseController {
 	
 	public function register(){
 		$id_kegiatan = Input::get('input_id');
+		$username = Input::get('input_user');
 		$name= Input::get('input_nama');
 		$institusi= Input::get('input_institusi');
 		$profesi= Input::get('input_profesi');
@@ -59,7 +60,7 @@ class SimposiumController extends BaseController {
 			else{
 				$peserta = new Peserta();
 				$peserta->id_kegiatan =$id_kegiatan;
-				$peserta->username =$email;
+				$peserta->username =$username;
 				$peserta->password =Hash::make($password);
 				$peserta->nama =$name;
 				$peserta->institusi =$institusi;

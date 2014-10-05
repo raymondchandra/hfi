@@ -19,7 +19,7 @@
 
 					<div class="form-group">
 						
-						<object class="col-sm-12 file_paper" data="https://bitcoin.org/bitcoin.pdf" style="height: 400px;"></object>
+						<object class="col-sm-12 file_paper" data="" style="height: 400px;"></object>
 					</div>
 
 					<div class="form-group">

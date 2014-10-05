@@ -155,7 +155,7 @@ function back(){
 		$id_profil = $(this).parent().siblings('.id_peserta').val();
 		$.get("{{url('simposium/admin/satu_peserta/')}}/"+$id_profil,function(response){
 			$('.judul_paper').text(response.paper);
-			//$('.file_paper').attr('data','datanya');
+			$('.file_paper').attr('data',"../../../"+response.path_paper);
 		});
 	})
 </script>

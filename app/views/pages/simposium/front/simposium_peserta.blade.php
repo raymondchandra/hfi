@@ -11,7 +11,7 @@
 					Peserta
 				</h2>
 			
-					Total Registrasi: 20<br/>
+					Total Registrasi: {{count($pesertas)}}<br/>
 				<table class="table table-bordered table-striped" style="font-size: 12px;">					
 					<tr>
 						<td>
@@ -43,16 +43,21 @@
 							{{$pesertas[$i]->institusi}}
 						</td>
 						<td>
-							@if($pesertas[$i]->paper =="")
-								-
+							@if($pesertas[$i]->is_paper == 0)
+								Partisipan
 							@else
 								{{$pesertas[$i]->paper}}
 							@endif
 						</td>
 						<td>
-							<span style="display: block; font-size: 11px;">• surat undangan</span>
-							<span style="display: block; font-size: 11px;">• abstrak</span>
-							<span style="display: block; font-size: 11px;">• kwitansi</span>
+							<!--<span style="display: block; font-size: 11px;">• surat undangan</span>-->
+							@if($pesertas[$i]->is_paper == 0)
+								-
+							@else
+								<span style="display: block; font-size: 12px;">Abstrak</span>
+							@endif
+							
+							<!--<span style="display: block; font-size: 11px;">• kwitansi</span>-->
 						</td>
 					</tr>
 					@endfor

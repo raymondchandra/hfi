@@ -112,8 +112,12 @@
 				<div class="panel-body">
 					<!--<form role="form" >-->
 					{{Session::get('message')}}
-					{{ Form::open(array('url' => '/register','method'=>'post','class'=>'form-horizontal')) }}
+					{{ Form::open(array('url' => 'simposium/register','method'=>'post','class'=>'form-horizontal')) }}
 						<input type='hidden' value='{{$id}}' name='input_id' />
+						<div class="form-group">
+							<label class=" control-label col-sm-3">Username<span class="red">*</span></label>
+							{{ Form::text('input_user',Input::old('input_user'), array('id' => 'input_user', 'class' => 'form-control col-sm-5')) }}
+						</div>
 						<div class="form-group">
 							<label class=" control-label col-sm-3">Nama<span class="red">*</span></label>
 							{{ Form::text('input_nama',Input::old('input_nama'), array('id' => 'input_nama', 'class' => 'form-control col-sm-5')) }}

@@ -5,11 +5,11 @@
 			<div class="panel panel-default" style="margin-top: 50px; margin-bottom: 50px;">
 					<div class="panel-body">
 					{{Session::get('message')}}
-						{{ Form::open(array('url' => 'login','method'=>'post')) }}
+						{{ Form::open(array('url' => 'simposium/login','method'=>'post')) }}
 							<input type='hidden' name='id_kegiatan' value='{{$id}}'>
 						  <div class="form-group">
 							<label for="exampleInputEmail1">Username</label>
-							<input type="email" name='username' class="form-control" id="" placeholder="Enter email" style="padding-left: 0px; padding-right: 0px; text-indent: 6px;">
+							<input type="text" name='username' class="form-control" id="" placeholder="Enter username" style="padding-left: 0px; padding-right: 0px; text-indent: 6px;">
 						  </div>
 						  <div class="form-group">
 							<label for="exampleInputPassword1">Password</label>

@@ -72,8 +72,15 @@
 						  <button data-toggle="modal" data-target=".pop_up_upload_full_paper" type="submit" class="btn btn-info upload_paper">Upload Full Paper</button> 
 						@endif
 						  <button data-toggle="modal" data-target=".pop_up_upload_bukti_pembayaran" type="submit" class="btn btn-info upload_bayar">Upload Bukti Pembayaran</button> 
-						  <button data-toggle="modal" data-target=".pop_up_minta_bantuan" type="submit" class="btn btn-info">Minta Bantuan</button> 
+						  <button data-toggle="modal" data-target=".pop_up_minta_bantuan" type="submit" class="btn btn-info" id="bantuanButt">Minta Bantuan</button> 
 					</div>
+					
+					<script>
+						$('#bantuanButt').click(function(){
+							$('#id_keg').val('{{$id}}');
+							$('#id_pes').val('{{$peserta->id}}');
+						});
+					</script>
 
 				</div>
 			</div>

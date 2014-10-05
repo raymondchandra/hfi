@@ -556,6 +556,16 @@ class Kegiatan2AdminController extends BaseController {
 	{
 		$id = Input::get('id_pesan');
 		$msg = Pesan::find($id);
+		$msg -> timestamps = false;
+		$msg -> read = 1;
+		try
+		{
+			$msg->save();
+		}
+		catch(Exception $e)
+		{
+		
+		}
 		$msg['nama'] = $this->getNamaPesertaFromId($msg['id_peserta']);
 		return $msg;
 	}
@@ -566,6 +576,8 @@ class Kegiatan2AdminController extends BaseController {
 		$rep = Reply::where('pesan_id', '=', $id)->orderBy('created_at', 'DESC')->get();
 		return $rep;
 	}
+		
+	
 	
 	public function replyMessage()
 	{

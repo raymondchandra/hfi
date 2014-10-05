@@ -24,6 +24,19 @@ class KegiatanController extends BaseController {
 		}
 	}
 	
+	public function view_simposium()
+	{
+		$kegiatans = Kegiatan2::where('tipe','=',3)->orderBy('waktu_mulai')->paginate(5);
+		$arr = $this->setHeader();
+		return View::make('pages.simposium', compact('arr','kegiatans'));
+	}
+
+	public function view_ictap()
+	{
+		$kegiatans = Kegiatan2::where('tipe','=',4)->orderBy('waktu_mulai')->paginate(5);
+		$arr = $this->setHeader();
+		return View::make('pages.ictap', compact('arr','kegiatans'));
+	}
 }
 
 ?>

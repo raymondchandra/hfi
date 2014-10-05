@@ -31,8 +31,6 @@ var id = '{{$id}}';
 		<script>
 			$('.editor').jqte();
 			
-				
-		
 			$('#submit_change').click(function(){
 			
 				$.ajax({

@@ -43,7 +43,7 @@
 						<th width="80">Terbaca</th>
 						<th>Dari</th>
 						<th>Subjek</th>
-						<th>Lihat</th>
+						<th style="width: 100px;"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -52,7 +52,7 @@
 							@if($msg->read == 0)
 								<td></td>
 							@else
-								<td align="center"><span class="glyphicon glyphicon-ok pesan_read"></span></td>
+								<td align="center" style="text-align: center;"><span class="glyphicon glyphicon-ok pesan_read"></span></td>
 							@endif
 							<td>{{$msg->nama}}</td>
 							<td>{{$msg->subject}}</td>
@@ -88,13 +88,14 @@
 				$('#datang_konten').html(response.message);
 				$('#datang_header').html("Pesan Datang - " + response.created_at);
 				$('#myModalLabel').html("Dari : " + response.nama + " | Subjek : " + response.subject);
+				$('#id_kegiatan_hidden').val(response.id);
 				if(response.attachment == "" || response.attachment == "-")
 				{
 					$('#datang_lampiran').html("lampiran : -");
 				}
 				else
 				{
-					$('#datang_lampiran').html("lampiran : " + "<a href='google.com'>" + response.attachment);
+					$('#datang_lampiran').html("lampiran : " + "<a target='_blank' href='{{asset('assets/file_upload/pesan_attachment/" + response.id + "/" + response.attachment + "')}}'>" + response.attachment);
 				}
 				$.ajax({
 					type: 'GET',
@@ -114,7 +115,7 @@
 							}
 							else
 							{
-								$isi = $isi + "<a href='google.com'>" + resp.attachment + "</a></p>";
+								$isi = $isi + "<a target='_blank' href='{{asset('assets/file_upload/reply_attachment/" + resp.id + "/" + resp.attachment + "')}}'>" + resp.attachment + "</a></p>";
 							}
 							$('#kirim_konten').append($isi);
 						});

@@ -23,12 +23,61 @@
         <div class="clearfix"></div>
         <form>
         <label class=" control-label col-sm-2">Balas pesan</label>
-        {{ Form::textarea('keteranganlain', Input::old('keteranganlain'), array('class'=>'form-control col-sm-8', 'style'=>'height: 100px;')) }}
+        {{ Form::textarea('keteranganlain', Input::old('keteranganlain'), array('class'=>'form-control col-sm-8 editor', 'style'=>'height: 100px;')) }}
         <span class="cleafix"></span>
-        <button type="button" class="btn btn-primary " style="width: 100px;">Kirim</button>
-        <input type="file" class="btn btn-primary " style="margin-left: 10px;"/>
+        
+		<span class="clearfix"></span>
+		<button type="button" id="replyButton" class="btn btn-primary " style="margin-top: 10px; float: left; margin-left: 145px;">Kirim</button>
+		<input id="id_pesan" type="hidden" />
+		{{ Form::file('fileAttachment', array('name'=>'fileAttachment', 'id'=>'fileAttachment', 'style' => 'margin-top: 10px; margin-left: 10px;float: left;' , 'accept'=>'.pdf'))}}
         </form>
       </div>
+	  
+	  <script>
+		$('#replyButton').click(function(){
+			$id_pesan = $(this).next().val();
+			var data = new FormData();
+			data.append('id_pesan', $id);
+			data.append('attachment', $('#fileAttachment')[0].files[0]);
+			data.append('text', $('.editor').val());
+			$.ajax({
+				type: 'POST',
+				url: '{{URL::route('admin.kegiatan2.put_reply')}}',
+				data: data,
+				processData : false,
+				contentType : false,
+				success: function(response){
+					if(response === "Gagal membalas pesan")
+					{
+						alert(response);
+					}
+					else
+					{
+						$isi = "<h4>Pesan Kirim - ";
+						$isi = $isi + response.created_at + "</h4></p>";
+						$isi = $isi + response.message + "</p><p>lampiran : ";
+						if(response.attachment == "" || response.attachment == "-")
+						{
+							$isi = $isi + " -</p>";
+						}
+						else
+						{
+							$isi = $isi + "<a target='_blank' href='{{asset('assets/file_upload/reply_attachment/" + response.id + "/" + response.attachment + "')}}'>" + resp.attachment + "</a></p>";
+						}
+						
+						$('#kirim_konten').prepend($isi);
+						alert("Berhasil membalas pesan");
+					}
+					
+					
+				},
+				error: function(jqXHR, textStatus, errorThrown){
+					alert(errorThrown);
+				}
+			},'json');
+
+		});
+	  </script>
 
       <div class="modal-body">
         <div class="form-group konten_pesan">

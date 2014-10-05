@@ -327,6 +327,113 @@ class SimposiumController extends BaseController {
 			}
 		}
 	}
+	
+	public function createEmail($type, $id_keg, $id_peserta)
+	{
+		//dapetin peserta
+		$peserta = Peserta::where('id','=',$id_peserta)->first();
+		//dapetin kegiatan;
+		$kegiatan = Kegiatan2::where('id','=',$id_keg)->first();
+		//replace isi template;
+		if($type === "Registrasi")
+		{
+			//dapetin template Reg;
+			$template = Template::where('id_kegiatan','=',$id_keg)->where('tipe','=','reg')->first();
+			$attachment = "";
+		}
+		else if($type === "Penerimaan Abstrak")
+		{
+			//dapetin template Abstrak;
+			$template = Template::where('id_kegiatan','=',$id_keg)->where('tipe','=','abs')->first();
+			
+			//dapetin template surat undangan
+			
+			if($kegiatan != null)
+			{
+				$pdfPath = "assets/file_upload/invitation_pdf/invitation.pdf".$kegiatan->id."-"$peserta->id.;
+				if(!file_exists($pdfPath))
+				{
+					$html = "<html><body>";
+					$pdfTemplate = Template::where('id_kegiatan','=',$id_keg)->where('tipe','=','inv')->first();
+					$pdfContent = $pdfTemplate->text;
+					$pdfContent = str_replace("*nama*",$peserta->nama,$pdfContent);
+					$pdfContent = str_replace("*email*",$peserta->email,$pdfContent);
+					$pdfContent = str_replace("*username*",$peserta->username,$pdfContent);
+					$pdfContent = str_replace("*institusi*",$peserta->institusi,$pdfContent);
+					$pdfContent = str_replace("*pekerjaan*",$peserta->pekerjaan,$pdfContent);
+					$pdfContent = str_replace("*alamat*",$peserta->alamat,$pdfContent);
+					$pdfContent = str_replace("*status*",$peserta->status,$pdfContent);
+					$pdfContent = str_replace("*abstrak*",$peserta->abstrak,$pdfContent);
+					$pdfContent = str_replace("*spesialisasi*",$peserta->spesialisasi,$pdfContent);
+					$pdfContent = str_replace("*paper*",$peserta->paper,$pdfContent);
+					
+					$pdfContent = str_replace("*nama_kegiatan*",$kegiatan->nama,$pdfContent);
+					$pdfContent = str_replace("*tempat_kegiatan*",$kegiatan->tempat,$pdfContent);
+					$pdfContent = str_replace("*kegiatan_mulai*",$kegiatan->waktu_mulai,$pdfContent);
+					$pdfContent = str_replace("*kegiatan_selesai*",$kegiatan->waktu_selesai,$pdfContent);
+					$html .= $pdfTemplate."</body></html>";
+					File::put($pdfPath, PDF::load($html, 'A4', 'portrait')->output());
+					$attachment = "assets/file_upload/invitation_pdf/invitation.pdf".$kegiatan->id."-"$peserta->id.;
+				}
+				else
+				{
+					$attachment = "assets/file_upload/invitation_pdf/invitation.pdf".$kegiatan->id."-"$peserta->id.;
+				}
+			}
+			else
+			{
+				return false;
+			}
+			
+		}
+		else if($type === "Penerimaan Paper Lengkap")
+		{
+			//dapetin template paper
+			$template = Template::where('id_kegiatan','=',$id_keg)->where('tipe','=','pap')->first();
+			$attachment = "";
+		}
+		else
+		{
+			
+		}	
+		if($template != null && ($peserta != null && $kegiatan !=null))
+		{
+			$templateContext = $template->text;
+			$templateContext = str_replace("*nama*",$peserta->nama,$templateContext);
+			$templateContext = str_replace("*email*",$peserta->email,$templateContext);
+			$templateContext = str_replace("*username*",$peserta->username,$templateContext);
+			$templateContext = str_replace("*institusi*",$peserta->institusi,$templateContext);
+			$templateContext = str_replace("*pekerjaan*",$peserta->pekerjaan,$templateContext);
+			$templateContext = str_replace("*alamat*",$peserta->alamat,$templateContext);
+			$templateContext = str_replace("*status*",$peserta->status,$templateContext);
+			$templateContext = str_replace("*abstrak*",$peserta->abstrak,$templateContext);
+			$templateContext = str_replace("*spesialisasi*",$peserta->spesialisasi,$templateContext);
+			$templateContext = str_replace("*paper*",$peserta->paper,$templateContext);
+			
+			$templateContext = str_replace("*nama_kegiatan*",$kegiatan->nama,$templateContext);
+			$templateContext = str_replace("*tempat_kegiatan*",$kegiatan->tempat,$templateContext);
+			$templateContext = str_replace("*kegiatan_mulai*",$kegiatan->waktu_mulai,$templateContext);
+			$templateContext = str_replace("*kegiatan_selesai*",$kegiatan->waktu_selesai,$templateContext);
+			
+			
+			$data = array(
+				'text'=>$templateContext
+			);
+			Mail::queue('emails.simposium', $data, function($message)
+			{
+				$message->to($peserta->email)->subject($type." ".$kegiatan->nama);
+				if($attachment == "")
+				{
+				
+				}
+				else
+				{
+					$message->attach($attachment);
+				}
+			});
+		}
+			
+	}
 
 	
 }

@@ -10,11 +10,11 @@
 
 					<span class="white_space">&nbsp;</span>
 					<li>
-						<a href="{{URL::route('ictap.index',array($id))}}">Front page</a>
+						<a href="{{URL::route('ictap.index',array($id))}}">Front Page</a>
 					</li>
 					<span class="white_space">&nbsp;</span>
 					<li>
-						<a href="{{URL::route('ictap.konten',array('tanggal penting',$id))}}">Important dates</a>
+						<a href="{{URL::route('ictap.konten',array('tanggal penting',$id))}}">Important Dates</a>
 					</li>
 					<span class="white_space">&nbsp;</span>
 					<li>

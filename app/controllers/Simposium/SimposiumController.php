@@ -126,14 +126,20 @@ class SimposiumController extends BaseController {
 		Session::flush();
 		if(strcmp($username,'admin')==0){
 			$kegiatan = Kegiatan2::find($id_kegiatan);
-			if (Hash::check($password, $kegiatan->pass_admin))
-			{
-				Session::push('session_admin_id',$kegiatan[0]['id']);
-				return Redirect::to('simposium/admin/'.$id_kegiatan);
-			}	
-			else{
-				return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
+			if($kegiatan->admin_aktif!=0){
+				if (Hash::check($password, $kegiatan->pass_admin))
+				{
+					Session::push('session_admin_id',$kegiatan[0]['id']);
+					return Redirect::to('simposium/admin/'.$id_kegiatan);
+				}	
+				else{
+					return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
+				}
 			}
+			else{
+				return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username ini tidak aktif');
+			}
+			
 		}
 		else{
 			$peserta = Peserta::where('username','=',$username)->get();

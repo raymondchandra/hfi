@@ -101,8 +101,11 @@
 			{{ Form::select('hficabang', $arr2, Input::old('hficabang'), array('class' => 'form-control col-sm-5'))}}	
 		</div>
 		<div class="form-group">
-			<label class=" control-label col-sm-3">Tempat, tanggal lahir<span class="red">*</span></label>
-			{{ Form::text('tempatlahir', Input::old('tempatlahir'),array('class' => 'form-control col-sm-4')) }}
+			<label class=" control-label col-sm-3">Tempat Lahir<span class="red">*</span></label>
+			{{ Form::text('tempatlahir', Input::old('tempatlahir'),array('class' => 'form-control col-sm-5')) }}
+		</div>
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Tanggal Lahir<span class="red">*</span></label>
 			{{ Form::text('tanggallahir', Input::old('tanggallahir'),  array('id' => 'tanggallahir', 'style' => 'width:80px;', 'class' => 'form-control col-sm-2')) }}
 		</div>
 		<div class="form-group">
@@ -226,9 +229,12 @@
 			{{ Form::textarea('alamatkontak', Input::old('alamatkontak'), array('class' => 'form-control col-sm-5')) }}
 		</div>
 		<div class="form-group">
-			<label class=" control-label col-sm-3">Kota - Kodepos<span class="red">*</span></label>
-			{{ Form::text('kota', Input::old('kota'), array('class' => 'form_kota form-control col-sm-3')) }} 
-			{{ Form::text('kodepos', Input::old('kodepos'), array('class' => 'form_kota form-control col-sm-2')) }} 
+			<label class=" control-label col-sm-3">Kota<span class="red">*</span></label>
+			{{ Form::text('kota', Input::old('kota'), array('class' => 'form_kota form-control col-sm-5')) }} 
+		</div>
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Kodepos<span class="red">*</span></label>
+			{{ Form::text('kodepos', Input::old('kodepos'), array('class' => 'form_kota form-control col-sm-5')) }} 
 		</div>
 		<div class="form-group">
 			<label class=" control-label col-sm-3">Negara<span class="red">*</span></label>
@@ -236,9 +242,12 @@
 		</div>
 		
 		<div class="form-group">
-			<label class=" control-label col-sm-3">Telepon / Fax<span class="red">*</span></label>
-			{{ Form::text('telepon2', Input::old('telepon2'), array('class'=>'form_kota form-control col-sm-3')) }}
-			{{ Form::text('fax', Input::old('fax'), array('class'=>'form_kota form-control col-sm-2')) }}
+			<label class=" control-label col-sm-3">Telepon<span class="red">*</span></label>
+			{{ Form::text('telepon2', Input::old('telepon2'), array('class'=>'form_kota form-control col-sm-5')) }}
+		</div>
+		<div class="form-group">
+			<label class=" control-label col-sm-3">Fax</label>
+			{{ Form::text('fax', Input::old('fax'), array('class'=>'form_kota form-control col-sm-5')) }}
 		</div>
 		<div class="form-group">
 			<label class=" control-label col-sm-3">HP</label>
@@ -252,7 +261,7 @@
 		</div>
 		
 		<div class="form-group">
-			<label class=" control-label col-sm-3">Situs<span class="red">*</span></label>
+			<label class=" control-label col-sm-3">Situs</label>
 			{{ Form::text('situs', Input::old('situs'), array('class' => 'form-control col-sm-5')) }}
 		</div>
 		
@@ -289,30 +298,7 @@
 	-->	
 	
 	<style>
-		#tanggallahir-error, #tahunlahir-error, #bulanlahir-error {
-			position:absolute;
-			right:100px;
-			/*margin-top: 10px;*/
-		}
-		
-		#pendidikan1-error {
-		background: #ea6153;
-		color: #fff;
-		border-radius: 5px;
-		float: right;
-		}
-		
-		#kota-error, #kodepos-error, #negara-error {
-			position: absolute;
-			width: 128px;
-			right: -200px;
-		}
-		
-		#gender-error {
-			position: absolute;
-			width: 128px;
-			right: -138px;
-		}
+	
 	</style>
 	
 	

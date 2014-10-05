@@ -53,7 +53,27 @@ Route::filter('authUser', function()
 Route::filter('authSimposium', function($request)
 {
 	if(Session::get('session_user_id') == NULL){
-		return Redirect::to('simposium/login')->with('message','Silahkan Login Terlebih Dahulu');
+		return Redirect::to('simposium/login/1')->with('message','Silahkan Login Terlebih Dahulu');
+	}
+	
+});
+
+Route::filter('authSimposiumAdmin', function($request)
+{
+	$path = explode('/',Request::path());
+	if(!Auth::guest()){
+		if(Auth::user()->role != 1)
+		{
+			return Redirect::to('simposium/login/'.$path[count($path)-1])->with('message','Silahkan Login Terlebih Dahulu');
+		}else{
+			Session::push('session_admin_id','super_admin');
+			
+		}
+	}
+
+	if(Session::get('session_admin_id') == NULL){
+		
+		return Redirect::to('simposium/login/'.$path[count($path)-1])->with('message','Silahkan Login Terlebih Dahulu');
 	}
 	
 });

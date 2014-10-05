@@ -65,7 +65,7 @@ function back(){
 								@endif
 							</td>
 							<td>
-								@if($peserta->is_paper == 1)
+								@if($peserta->is_paper == 1 && $peserta->paper != "")
 									<button class="btn btn-primary detail_paper" data-toggle="modal" data-target=".pop_up_detail_fullpaper">Detail Paper</button>
 								@else
 									-
@@ -104,6 +104,7 @@ function back(){
 @include('includes.modals.pop_up_detail_fullpaper')
 <script>
 	$('body').on('click','.detail_profile',function(){
+		$( ".loader" ).fadeIn( 200, function(){});
 		$id_profil = $(this).parent().siblings('.id_peserta').val();
 		$.get("{{url('simposium/admin/satu_peserta/')}}/"+$id_profil,function(response){
 			$('.nama_peserta').text(response.nama);
@@ -122,10 +123,12 @@ function back(){
 				$('.paper_peserta').text('-');
 				$('.abstrak_peserta').text('-');
 			}
+			$( ".loader" ).fadeOut( 200, function(){});
 		});
-	})
+	});
 	
 	$('body').on('click','.detail_bayar',function(){
+		$( ".loader" ).fadeIn( 200, function(){});
 		$id_profil = $(this).parent().siblings('.id_peserta').val();
 		$.get("{{url('simposium/admin/satu_peserta/')}}/"+$id_profil,function(response){
 			if(response.is_paper == 1){
@@ -135,28 +138,40 @@ function back(){
 				$('.jenis_bayar').text(response.status);
 			}
 			$('.biaya_bayar').text();
-			$("input[name=is_paper]").checked=true;
-
+			
 			var $radios = $('input:radio[name=is_paper]');
 			$radios.filter('[value='+response.status_bayar+']').prop('checked', true);		
-			$('.id_peserta').val($id_profil);
+			
+			if(response.status_bayar == 1){
+				$('.lunas_belum').css('display','none');
+			}
+			else{
+				$('.lunas_belum').css('display','block');
+			}
+			
+			$('.id_peserta_biaya').val($id_profil);
+			$( ".loader" ).fadeOut( 200, function(){});
 		});
-	})
+	});
 	
 	$('body').on('click','.detail_abstraksi',function(){
+		$( ".loader" ).fadeIn( 200, function(){});
 		$id_profil = $(this).parent().siblings('.id_peserta').val();
 		$.get("{{url('simposium/admin/satu_peserta/')}}/"+$id_profil,function(response){
 			$('.judul_paper').text(response.paper);
 			$('.abstrak_paper').text(response.abstract);
+			$( ".loader" ).fadeOut( 200, function(){});
 		});
 	})
 	
 	$('body').on('click','.detail_paper',function(){
+		$( ".loader" ).fadeIn( 200, function(){});
 		$id_profil = $(this).parent().siblings('.id_peserta').val();
 		$.get("{{url('simposium/admin/satu_peserta/')}}/"+$id_profil,function(response){
 			$('.judul_paper').text(response.paper);
 			$('.file_paper').attr('data',"../../../"+response.path_paper);
+			$( ".loader" ).fadeOut( 200, function(){});
 		});
-	})
+	});
 </script>
 @stop

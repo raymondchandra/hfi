@@ -5,7 +5,7 @@ class SimposiumController extends BaseController {
 
 	public function getKonten($type,$id)
 	{
-		$text = KegiatanKonten::where('id_kegiatan','=',$id)->where('tipe','=','halaman depan')->first();
+		$text = KegiatanKonten::where('id_kegiatan','=',$id)->where('tipe','=',$type)->first();
 		if($text == null){
 			return "";
 		}else
@@ -74,7 +74,7 @@ class SimposiumController extends BaseController {
 		$id_kegiatan = Input::get('input_id');
 		$username = Input::get('input_user');
 		$name= Input::get('input_nama');
-		$institusi= Input::get('input_institusi');
+		$institusi= Input::get('input_institusi'); 
 		$profesi= Input::get('input_profesi');
 		$email= Input::get('input_email');
 		$alamat= Input::get('input_alamat');
@@ -124,21 +124,26 @@ class SimposiumController extends BaseController {
 		$password = Input::get('password');
 		
 		Session::flush();
-		
-		$peserta = Peserta::where('username','=',$username)->get();
-		
-		if(count($peserta)>0){
-			if(strcmp($username,'admin')==0){
-				if (Hash::check($password, $peserta[0]['password']))
+		if(strcmp($username,'admin')==0){
+			$kegiatan = Kegiatan2::find($id_kegiatan);
+			if($kegiatan->admin_aktif!=0){
+				if (Hash::check($password, $kegiatan->pass_admin))
 				{
-					Session::push('session_user_id',$peserta[0]['id']);
+					Session::push('session_admin_id',$kegiatan[0]['id']);
 					return Redirect::to('simposium/admin/'.$id_kegiatan);
-				}
+				}	
 				else{
 					return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
 				}
 			}
 			else{
+				return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username ini tidak aktif');
+			}
+		}
+		else{
+			$peserta = Peserta::where('username','=',$username)->get();
+		
+			if(count($peserta)>0){
 				if (Hash::check($password, $peserta[0]['password']))
 				{
 					Session::push('session_user_id',$peserta[0]['id']);
@@ -150,10 +155,6 @@ class SimposiumController extends BaseController {
 				}
 			}
 		}
-		else{
-			return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
-		}
-		
 	}
 	
 	public function logout($id){

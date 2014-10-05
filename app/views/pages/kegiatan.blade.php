@@ -77,6 +77,7 @@
 						<div>
 						{{ HTML::image($kegiatan->brosur_kegiatan,'Image',array('class'=>'poster_kegiatan', 'data-toggle'=>'modal', 'data-target'=>'.pop_up_detail_kegiatan')) }}
 						
+						
 						<div class="info_kegiatan">
 							<div class="waktu_kegiatan">{{$kegiatan->waktu_mulai}} - {{$kegiatan->waktu_selesai}}</div>
 							<div class="nama_kegiatan">{{$kegiatan->nama_kegiatan}}</div>
@@ -117,22 +118,23 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h4 class="modal-title" id="myModalLabel">Detail Kegiatan</h4>
+				<h4 class="modal-title" id="myModalLabel">Gambar Kegiatan</h4>
 			</div>
 
 			<form class="form-horizontal">
 
 				<div class="modal-body" style="">
-					<div class="form-group" style="text-align: center;">
+					<div class="form-group" style="text-align: center;" id="img_placer">
 						<!-- Put you image below -->
-						<img src="" width="400" />
+						<script>			
+							$( ".poster_kegiatan" ).click(function() {
+								var src = $(this).attr('src');
+								$( "#img_placer" ).empty();
+								$( "#img_placer" ).append( "<img src="+ src + " width='400' />" );
+							});
+						</script>
+						
 					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" data-dismiss="modal" class="btn btn-success">
-						Perbaharui Status Abstraksi
-					</button>
-					
 				</div>
 
 			</form>

@@ -34,6 +34,8 @@ Route::get('/organisasi', ['as' => 'organisasi', 'uses' => 'OrganisasiController
 	Route::get('/cabang', ['as' => 'cabang', 'uses' => 'OrganisasiController@view_cabang']);
 	
 Route::get('/kegiatan/{jenis}', ['as' => 'kegiatan', 'uses' => 'KegiatanController@view_index']);
+Route::get('/simposium', ['as' => 'simposium', 'uses' => 'KegiatanController@view_simposium']);
+Route::get('/ictap', ['as' => 'ictap', 'uses' => 'KegiatanController@view_ictap']);
 
 Route::get('/publikasi/{id}', ['as' => 'publikasi', 'uses' => 'PublikasiController@view_index']);
 Route::get('anggota', ['as' => 'anggota', 'uses' => 'AnggotaController@view_index']);
@@ -44,6 +46,11 @@ Route::get('/lain/{id}', ['as' => 'lain', 'uses' => 'LainController@view_index']
 Route::get('/regulasi', ['as' => 'regulasi.home', 'uses' => 'HomeController@view_regulasi']);
 
 Route::get('/organisasi/detail/{id}', ['as' => 'organisasi.detail', 'uses' => 'OrganisasiController@view_detail']);
+
+
+
+
+
 //account view
 Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login', 'before' => 'checkLogin']);
 Route::get('/registrasi', ['as' => 'registrasi', 'uses' => 'AccountController@view_registrasi','before' => 'checkLogin']);
@@ -342,8 +349,7 @@ Route::group(array('prefix' => 'simposium', 'before' => ''), function () {
 	Route::get('/login/{id}', ['as' => 'simposium.login', 'uses' => 'SimposiumController@view_login']);
 	Route::get('/logout/{id}', ['as' => 'simposium.logout', 'uses' => 'SimposiumController@logout']);
 	Route::get('/registrasi/{id}', ['as' => 'simposium.registrasi', 'uses' => 'SimposiumController@view_registrasi']);
-	Route::get('/tanggal', ['as' => 'simposium.tanggal', 'uses' => 'SimposiumController@view_tanggal']);
-	Route::get('/lokasi', ['as' => 'simposium.lokasi', 'uses' => 'SimposiumController@view_lokasi']);
+	Route::get('/konten/{type}/{id}', ['as' => 'simposium.konten', 'uses' => 'SimposiumController@view_konten']);
 	Route::get('/peserta/{id}', ['as' => 'simposium.peserta', 'uses' => 'SimposiumController@view_peserta']);
 	
 	Route::post('/register', ['as' => 'simposium.register', 'uses' => 'SimposiumController@register']);

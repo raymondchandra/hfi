@@ -4,7 +4,7 @@
 		<?php
 			$headerPic = SimposiumController::getHeader($id);
 		?>
-		<img src="{{ asset($headerPic) }}" width="940" height="320" alt="simpsium hfi"/>
+		<img src="{{ asset($headerPic) }}" width="940" alt="simpsium hfi"/>
 
 	</div>
 </div>

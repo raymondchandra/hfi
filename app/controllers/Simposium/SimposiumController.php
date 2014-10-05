@@ -38,6 +38,7 @@ class SimposiumController extends BaseController {
 	
 	public function register(){
 		$id_kegiatan = Input::get('input_id');
+		$username = Input::get('input_user');
 		$name= Input::get('input_nama');
 		$institusi= Input::get('input_institusi');
 		$profesi= Input::get('input_profesi');
@@ -59,7 +60,7 @@ class SimposiumController extends BaseController {
 			else{
 				$peserta = new Peserta();
 				$peserta->id_kegiatan =$id_kegiatan;
-				$peserta->username =$email;
+				$peserta->username =$username;
 				$peserta->password =Hash::make($password);
 				$peserta->nama =$name;
 				$peserta->institusi =$institusi;

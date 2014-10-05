@@ -60,6 +60,18 @@ Route::filter('authSimposium', function($request)
 	
 });
 
+Route::filter('checkSimposium', function($request)
+{
+	$path = explode('/',Request::path());
+	$id_kegiatan =  $path[count($path)-1];
+	if(Session::get('session_kegiatan')[0] != $id_kegiatan){
+		Session::flush();
+		return Redirect::to('simposium/'.$id_kegiatan);
+
+	}
+	
+});
+
 Route::filter('authSimposiumAdmin', function($request)
 {
 	$path = explode('/',Request::path());

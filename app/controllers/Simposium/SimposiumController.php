@@ -140,7 +140,7 @@ class SimposiumController extends BaseController {
 				if (Hash::check($password, $kegiatan->pass_admin))
 				{
 					Session::push('session_admin_id',$kegiatan[0]['id']);
-					Session::push('session_kegiatan',$id_kegiatan);
+					//Session::push('session_kegiatan',$id_kegiatan);
 					return Redirect::to('simposium/admin/'.$id_kegiatan);
 				}	
 				else{
@@ -158,7 +158,7 @@ class SimposiumController extends BaseController {
 				if (Hash::check($password, $peserta[0]['password']))
 				{
 					Session::push('session_user_id',$peserta[0]['id']);
-					Session::push('session_kegiatan',$id_kegiatan);
+					//Session::push('session_kegiatan',$id_kegiatan);
 					return Redirect::to('simposium/'.$id_kegiatan);
 				}
 				else{

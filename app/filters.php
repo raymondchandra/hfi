@@ -60,8 +60,17 @@ Route::filter('authSimposium', function($request)
 
 Route::filter('authSimposiumAdmin', function($request)
 {
+	$path = explode('/',Request::path());
+	if(!Auth::guest()){
+		if(Auth::user()->role == 1)
+		{
+			Session::push('session_admin_id','super_admin');
+			return Redirect::to('simposium/admin/'.$path[count($path)-1]);
+		}
+	}
+
 	if(Session::get('session_admin_id') == NULL){
-		$path = explode('/',Request::path());
+		
 		return Redirect::to('simposium/login/'.$path[count($path)-1])->with('message','Silahkan Login Terlebih Dahulu');
 	}
 	

@@ -139,7 +139,6 @@ class SimposiumController extends BaseController {
 			else{
 				return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username ini tidak aktif');
 			}
-			
 		}
 		else{
 			$peserta = Peserta::where('username','=',$username)->get();
@@ -156,7 +155,6 @@ class SimposiumController extends BaseController {
 				}
 			}
 		}
-		
 	}
 	
 	public function logout($id){

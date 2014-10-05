@@ -566,6 +566,65 @@ class Kegiatan2AdminController extends BaseController {
 		$rep = Reply::where('pesan_id', '=', $id)->orderBy('created_at', 'DESC')->get();
 		return $rep;
 	}
+		
+	public function createMessage()
+	{
+		$psn = new Pesan();
+		$psn->timestamps = false;
+		if(Input::hasFile('attachment'))
+		{
+			$file = Input::file('attachment');
+			$fileName = $file->getClientOriginalName();
+			$destinationPath = "assets/file_upload/pesan_attachment/";
+			
+			$psn -> id_kegiatan = Input::get('id_kegiatan');
+			$psn -> id_peserta = Input::get('id_peserta');
+			$psn -> message = Input::get('text');
+			$psn -> subject = Input::get('subject');
+			$psn -> created_at = Carbon::now();
+			
+			try
+			{
+				$psn -> save();
+				$id = $psn->id;
+				$destinationPath .= $id."/";
+				if(!file_exists($destinationPath))
+				{
+					File::makeDirectory($destinationPath, $mode = 0777, true, true);
+					$uploadSuccess = $file->move($destinationPath, $fileName);
+				}
+				else
+				{
+					$uploadSuccess = $file->move($destinationPath, $fileName);
+				}
+				
+				return $rep;
+			}
+			catch(Exception $e)
+			{
+				return "Gagal mengirim pesan";
+			}
+		}
+		else
+		{
+			$psn -> id_kegiatan = Input::get('id_kegiatan');
+			$psn -> id_peserta = Input::get('id_peserta');
+			$psn -> message = Input::get('text');
+			$psn -> subject = Input::get('subject');
+			$psn -> created_at = Carbon::now();
+			$psn -> attachment = "-";
+			
+			try
+			{
+				$psn -> save();
+				return $psn;
+			}
+			catch(Exception $e)
+			{
+				return "Gagal mengirim pesan";
+			}
+		}
+	}
 	
 	public function replyMessage()
 	{

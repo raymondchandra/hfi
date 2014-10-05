@@ -50,9 +50,9 @@
 					@foreach($pesan as $msg)
 						<tr>
 							@if($msg->read == 0)
-								<td></td>
+								<td align="center" style="text-align: center;" class="row{{$msg->id}}"></td>
 							@else
-								<td align="center" style="text-align: center;"><span class="glyphicon glyphicon-ok pesan_read"></span></td>
+								<td align="center" style="text-align: center;" class="row{{$msg->id}}"><span class="glyphicon glyphicon-ok pesan_read "></span></td>
 							@endif
 							<td>{{$msg->nama}}</td>
 							<td>{{$msg->subject}}</td>
@@ -78,6 +78,10 @@
 
 	
 		$id=$(this).next().val();
+		$('.row'+$id).html('<span class="glyphicon glyphicon-ok pesan_read row{{$msg->id}}"></span>');
+		$('#datang_konten').html("<img src='{{ asset('assets/img/728.gif')}}'/>");
+		$('#kirim_konten').html("<img src='{{ asset('assets/img/728.gif')}}'/>");
+		$('#datang_lampiran').html("");
 		$.ajax({
 			type: 'GET',
 			url: '{{URL::route('admin.kegiatan2.get_pesan')}}',

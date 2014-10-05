@@ -21,8 +21,35 @@ class KontakController extends BaseController {
 		$subjek_pesan = Input::get('subjek');
 		$isi_pesan = Input::get('isi_pesan');
 		$captcha = Input::get('captcha');
-		
-		return Redirect::to('/kontak')->with('message', 'Terima kasih, e-[mail anda telah terkirim silahkan menunggu balasan');
+		//
+		if($captcha == $_SESSION['phrase'])
+		{
+			
+			$data = array(
+				'text' => $isi_pesan,
+				'nama' => $nama,
+				'profesi' => $profesi,
+				'institusi' => $institusi
+			);
+			
+			$address = array(
+				'email' => $email,
+				'subject' => $subjek_pesan,
+				'nama' => $nama
+			);
+			//return $nama." ".$email." ".$profesi." ".$institusi;
+			Mail::queue('emails.lupaPass', $data, function($message) use($address)
+			{
+				$message->from($address['email'], $address['nama']);
+				$message->to("admin@hfi.com")->subject($address['subject']);
+			});
+			
+			return "Email Anda sudah terkirim, pihak HFI akan segera membalas email Anda. Terimakasih";
+		}
+		else
+		{
+			return "Harap masukkan data dengan benar.";
+		}
 		
 	}
 	

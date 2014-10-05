@@ -37,7 +37,7 @@ Route::get('/regulasi', ['as' => 'regulasi.home', 'uses' => 'HomeController@view
 
 Route::get('/organisasi/detail/{id}', ['as' => 'organisasi.detail', 'uses' => 'OrganisasiController@view_detail']);
 
-
+Route::post('/post_kontak', ['as' => 'post_kontak', 'uses' => 'KontakController@kirim_email_kontak']);
 //lupaPass
 Route::post('/putLupaPass', ['as' => 'user.lupaPass', 'uses' => 'AccountController@lupaPassword']);
 

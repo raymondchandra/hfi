@@ -48,35 +48,33 @@
 		<div id='contact_form_container'>
 			<div id='contact_form_header'>Formulir Pengiriman Pesan</div>
 			<div id='contact_form_content'>
-			{{ Form::open(array('url' => 'try')) }}
 				<table>
 					<tr>
 						<td class='table_head'>Nama*</td>
-						<td style="position: relative;">{{ Form::text('nama', Input::old('nama')) }}</td>
+						<td style="position: relative;">{{ Form::text('nama', Input::old('nama'),array('id'=>'inputNama')) }}</td>
 					</tr>
 					<tr>
 						<td class='table_head'>e-mail*</td>
-						<td style="position: relative;">{{ Form::text('email', Input::old('email')) }}</td>
+						<td style="position: relative;">{{ Form::text('email', Input::old('email'),array('id'=>'inputEmail')) }}</td>
 					</tr>
 					<tr>
 						<td class='table_head'>Profesi</td>
 						<td>{{ Form::select('profesi',array(
-							'' => 'pilih!',
 							'mahasiswa' => 'mahasiswa',
 							'guru' => 'guru',
 							'dosen' => 'dosen',
 							'peneliti' => 'peneliti',
 							'karyawan' => 'karyawan',
-							'lainlain' => 'lain-lain'))
+							'lainlain' => 'lain-lain'),Input::old('inputProfesi'),array('id'=>'inputProfesi'))
 						}}</td>
 					</tr>
 					<tr>
 						<td class='table_head'>Institusi</td>
-						<td>{{ Form::text('institusi', Input::old('institusi')) }}</td>
+						<td>{{ Form::text('institusi', Input::old('institusi'),array('id'=>'inputInstitusi')) }}</td>
 					</tr>
 					<tr>
 						<td class='table_head'>Subjek Pesan</td>
-						<td>{{ Form::text('subjek', Input::old('subjek')) }}</td>
+						<td>{{ Form::text('subjek', Input::old('subjek'),array('id'=>'inputSubjek')) }}</td>
 					</tr>
 					<tr>
 						<td class='table_head'>Isi Pesan*</td>
@@ -84,7 +82,7 @@
 					
 					<tr>
 						<td>&nbsp;</td>
-						<td style="display:block; margin-left:-80px;"><div style='width:200px;;display:block;'>{{ Form::textarea('isi_pesan', Input::old('isi_pesan')) }}</div></td>
+						<td style="display:block; margin-left:-80px;"><div style='width:200px;;display:block;'>{{ Form::textarea('isi_pesan', Input::old('isi_pesan'),array('id'=>'inputPesan')) }}</div></td>
 					</tr>
 					<tr>
 						<td class='table_head'>Captcha</td>
@@ -95,7 +93,7 @@
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
-						<td style="display:block; margin-left:-80px;"><div style='width:200px;;display:block;'>{{Form::text('captcha',Input::old('captcha'))}}</div></td>
+						<td style="display:block; margin-left:-80px;"><div style='width:200px;;display:block;'>{{Form::text('captcha',Input::old('captcha'),array('id'=>'inputCaptcha'))}}</div></td>
 					</tr>
 				</table>
 				<div id='contact_note'>* : harus diisi</div>
@@ -138,16 +136,42 @@
 							},
 							isi_pesan: {
 							  required: "Mohon masukkan email Anda",
-								email: "Mohon tulis format dengan benar"
 							}
 							
 						  }
 						});
 					</script>
 
-				{{Form::submit('Kirim Pesan');}}
-				{{ Form::close() }}
+				{{Form::button('Kirim Pesan',array('id'=>'inputButton'))}}
 			</div>
+			<script>
+				$('#inputButton').click(function(){
+					$nama = $('#usrnm').val();
+					$email = $('#eml').val();
+					var data = new FormData();
+					data.append('nama', $('#inputNama').val());
+					data.append('email', $('#inputEmail').val());
+					data.append('profesi', $('#inputProfesi').val());
+					data.append('institusi', $('#inputInstitusi').val());
+					data.append('subjek_pesan', $('#inputSubjek').val());
+					data.append('isi_pesan', $('#inputPesan').val());
+					data.append('captcha', $('#inputCaptcha').val());
+					$.ajax({
+						type: 'POST',
+						url: '{{URL::route('post_kontak')}}',
+						data: data,
+						processData : false,
+						contentType : false,
+						success: function(response){
+							alert(response);
+						},
+						error: function(jqXHR, textStatus, errorThrown){
+							alert(errorThrown);
+						}
+					},'json');
+
+				});
+			</script>
 		</div>
 	</div>
 </div>

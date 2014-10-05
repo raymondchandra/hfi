@@ -563,17 +563,69 @@ class Kegiatan2AdminController extends BaseController {
 	public function getMessageReply()
 	{
 		$id = Input::get('id_pesan');
-		$rep = Reply::where('pesan_id', '=', $id)->get();
+		$rep = Reply::where('pesan_id', '=', $id)->orderBy('created_at', 'DESC')->get();
 		return $rep;
 	}
 	
 	public function replyMessage()
 	{
-		$rep = new Reply();
+		if(Input::hasFile('attachment'))
+		{
+			$rep = new Reply();
+			$rep -> timestamps = false;
+			
+			$file = Input::file('attachment');
+			$fileName = $file->getClientOriginalName();
+			$destinationPath = "assets/file_upload/reply_attachment/";
+			
+			$rep -> pesan_id = Input::get('id_pesan');
+			$rep -> message = Input::get('text');
+			$rep -> attachment = $fileName;
+			$rep -> created_at = Carbon::now();
 		
-		$rep -> pesan_id = Input::get('id_pesan');
-		$rep -> message = Input::get('text');
-		 
+			try
+			{
+				$rep -> save();
+				$id = $rep->id;
+				$destinationPath .= $id."/";
+				if(!file_exists($destinationPath))
+				{
+					File::makeDirectory($destinationPath, $mode = 0777, true, true);
+					$uploadSuccess = $file->move($destinationPath, $fileName);
+				}
+				else
+				{
+					$uploadSuccess = $file->move($destinationPath, $fileName);
+				}
+				
+				return $rep;
+			}
+			catch(Exception $e)
+			{
+				return "Gagal membalas pesan";
+			}
+		}
+		else
+		{
+			$rep = new Reply();
+			$rep -> timestamps = false;
+			
+			
+			$rep -> pesan_id = Input::get('id_pesan');
+			$rep -> message = Input::get('text');
+			$rep -> attachment = "-";
+			$rep -> created_at = Carbon::now();
+		
+			try
+			{
+				$rep -> save();
+				return $rep;
+			}
+			catch(Exception $e)
+			{
+				return "Gagal membalas pesan ".$e;
+			}
+		}
 	}
 	
 	//pindahin-------

@@ -27,7 +27,7 @@ function edit(id){
 
 function hapus(id){
 	popupId = id;
-	$(".pop_up_super_c_hapus_regulasi").fadeIn(277, function(){});
+	//$(".pop_up_super_c_hapus_regulasi").fadeIn(277, function(){});
 	
 }
 </script>
@@ -42,32 +42,44 @@ $('body').on('click','.ok_hapus_regulasi',function(){
 			type: 'DELETE',
 			url: 'admin/lain/'+popupId,
 			success: function(response){
-				$(".pop_up_super_c_hapus_regulasi").fadeOut(200, function(){});
+				//$(".pop_up_super_c_hapus_regulasi").fadeOut(200, function(){});
 				if(response == "success"){
 
 					alert("Sukses menghapus data.");
 					$( ".loader" ).fadeIn( 200, function(){});
 					$('.admin_control_panel').load('admin/lain');
+					$('.modal-backdrop').removeClass('in');
+					setTimeout(function() {
+						$('.modal-backdrop').remove();
+					}, 500);
 				}
 				else{
 					alert(response);
+					$('.modal-backdrop').removeClass('in');
+					setTimeout(function() {
+						$('.modal-backdrop').remove();
+					}, 500);
 				}
 				ajaxOnce = true;
 			},
 			error: function(jqXHR, textStatus, errorThrown){
 				alert(errorThrown);
+				$('.modal-backdrop').removeClass('in');
+				setTimeout(function() {
+					$('.modal-backdrop').remove();
+				}, 500);
 			}
 		},'json');
 	};
 
 });							
 $('body').on('click','.batal_hapus_regulasi',function(){
-	$(".pop_up_super_c_hapus_regulasi").fadeOut(200, function(){});
+	//$(".pop_up_super_c_hapus_regulasi").fadeOut(200, function(){});
 });
 
-$('exit').click(function() {$(".pop_up_super_c_hapus_regulasi").fadeOut(200, function(){});});
+//$('exit').click(function() {$(".pop_up_super_c_hapus_regulasi").fadeOut(200, function(){});});
 
-$('.pop_up_super_c_hapus_regulasi').click(function (e)
+/*$('.pop_up_super_c_hapus_regulasi').click(function (e)
 {
 	var container = $('.pop_up_cell_hapus_regulasi');
 		if (container.is(e.target) )// if the target of the click is the container...
@@ -75,7 +87,7 @@ $('.pop_up_super_c_hapus_regulasi').click(function (e)
 			$( ".pop_up_super_c_hapus_regulasi" ).fadeOut( 200, function(){});
 			$('html').css('overflow-y', 'auto');
 		}
-	});
+	});*/
 </script>	
 
 <div class="container_12">
@@ -99,7 +111,10 @@ $('.pop_up_super_c_hapus_regulasi').click(function (e)
 					<tr>
 						<td style='vertical-align:middle !important; width:350px; overflow:hidden; margin-right:30px;'>{{$lain->title}}</td>
 						<td style='vertical-align:middle !important; width:350px;'>{{$lain->tanggal_edit}}</td>
-						<td style='vertical-align:middle !important; width:100px;'><input data-toggle="modal" data-target=".menu_lain_pop" type='button' value='v' class='editLain' onClick='edit({{$lain->id}})'/><input type='button' value='x' class='hapusLain' onClick='hapus({{$lain->id}})'/></td>
+						<td style='vertical-align:middle !important; width:100px;'>
+							<input data-toggle='modal' data-target='.menu_lain_pop' type='button' value='v' class='editLain' onClick='edit({{$lain->id}})'/>
+							<input data-toggle='modal' data-target='.pop_up_super_c_hapus_regulasi' type='button' value='x' class='hapusLain' onClick='hapus({{$lain->id}})'/>
+						</td>
 					</tr>
 					@endforeach
 				</table>
@@ -107,6 +122,7 @@ $('.pop_up_super_c_hapus_regulasi').click(function (e)
 				
 			</div>
 		</div>
+	</div>
 	</div>
 	
 	
@@ -140,24 +156,27 @@ $('.pop_up_super_c_hapus_regulasi').click(function (e)
 				</div>		
 			</div>
 		</div>
+		</div>
 
-		<!-- pop up hapus regulasi -->
-		<div class=" pop_up_super_c_hapus_regulasi" style="display: none;">
-			<a class="exit close_56_hapus_regulasi" ></a>
-			<div class="pop_up_tbl_hapus_regulasi">
-				<div class="pop_up_cell_hapus_regulasi">
-					<div class="container_12">			
-						<div class="div_hapus_regulasi" style="background: #fff; width:600px !important; padding-top:40px;">
+		<!-- pop up hapus regulasi  pop_up_super_c_hapus_regulasi-->
+	<div class="modal fade pop_up_super_c_hapus_regulasi" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4>Tambah Menu Lain</h4>
+				</div>
+
+
 							<h2 style="text-align:center;">Anda yakin ingin menghapus berkas ini?</h2>							
 							<table border="0" style="margin-left:auto; margin-right:auto;">
 								<tr>
 									<td><button class="ok_hapus_regulasi">Ya</button></td>
 									<td>&nbsp;</td>
-									<td><button class="batal_hapus_regulasi">Tidak</button></td>
+									<td><button data-dismiss="modal" class="batal_hapus_regulasi">Tidak</button></td>
 								</tr>
 							</table>
-						</div>
-					</div>			
+								
 				</div>		
 			</div>
 		</div>
@@ -248,4 +267,4 @@ $('body').on('click','.f_menu_lain_popuper',function(){
 </script>
 <!--pop up end-->
 
-</div>
+

@@ -66,14 +66,13 @@
 						  </div>
 
 
-
+						@endif
 						 <hr/>
+						@if($peserta->is_paper == 1)
 						  <button data-toggle="modal" data-target=".pop_up_upload_full_paper" type="submit" class="btn btn-info upload_paper">Upload Full Paper</button> 
+						@endif
 						  <button data-toggle="modal" data-target=".pop_up_upload_bukti_pembayaran" type="submit" class="btn btn-info upload_bayar">Upload Bukti Pembayaran</button> 
 						  <button data-toggle="modal" data-target=".pop_up_minta_bantuan" type="submit" class="btn btn-info">Minta Bantuan</button> 
-						 @else
-						 
-						 @endif
 					</div>
 
 				</div>

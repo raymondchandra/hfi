@@ -288,6 +288,8 @@ Route::group(array('prefix' => 'simposium/admin', 'before' => 'authSimposiumAdmi
 	Route::put('/ubahEarly/{id}', ['as' => 'admin.kegiatan2.ubahEarly', 'uses' => 'Kegiatan2AdminController@edit_early']);
 	
 	Route::put('/ubahStatusBayar', ['as' => 'admin.kegiatan2.ubahStatusbayar', 'uses' => 'Kegiatan2AdminController@update_status_pembayaran']);
+	Route::put('/ubahStatusAbstrak', ['as' => 'admin.kegiatan2.ubahStatusabstrak', 'uses' => 'Kegiatan2AdminController@update_status_abstrak']);
+	Route::put('/ubahStatusPaper', ['as' => 'admin.kegiatan2.ubahStatuspaper', 'uses' => 'Kegiatan2AdminController@update_status_paper']);
 
 	Route::put('/konten/editor/{id}', ['as' => 'admin.kegiatan2.konten.editEditor', 'uses' => 'Kegiatan2AdminController@edit_editor']);
 

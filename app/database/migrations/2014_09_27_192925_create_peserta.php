@@ -32,9 +32,13 @@ class CreatePeserta extends Migration {
 			$table->tinyInteger('presentasi');
 			$table->longText('abstract');
 			$table->tinyInteger('status_bayar');
+			
 			$table->string('bukti_bayar');
 			$table->string('paper');
 			$table->string('path_paper');
+			
+			$table->tinyInteger('abstract_read');
+			$table->tinyInteger('paper_read');
 
 			$table->tinyInteger('is_paper');
 

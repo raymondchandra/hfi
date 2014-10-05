@@ -160,6 +160,9 @@ function back(){
 		$.get("{{url('simposium/admin/satu_peserta/')}}/"+$id_profil,function(response){
 			$('.judul_paper').text(response.paper);
 			$('.abstrak_paper').text(response.abstract);
+			$('.id_peserta_abstract').val($id_profil);
+			var $radios = $('input:radio[name=is_abstrak]');
+			$radios.filter('[value='+response.abstract_read+']').prop('checked', true);	
 			$( ".loader" ).fadeOut( 200, function(){});
 		});
 	})
@@ -170,6 +173,9 @@ function back(){
 		$.get("{{url('simposium/admin/satu_peserta/')}}/"+$id_profil,function(response){
 			$('.judul_paper').text(response.paper);
 			$('.file_paper').attr('data',"../../../"+response.path_paper);
+			$('.id_peserta_paper').val($id_profil);
+			var $radios = $('input:radio[name=is_paper2]');
+			$radios.filter('[value='+response.abstract_read+']').prop('checked', true);	
 			$( ".loader" ).fadeOut( 200, function(){});
 		});
 	});

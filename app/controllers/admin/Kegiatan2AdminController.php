@@ -536,6 +536,42 @@ class Kegiatan2AdminController extends BaseController {
 		}
 	}
 	
+	public function update_status_abstrak(){
+		$id = Input::get('id');
+		$status = Input::get('bayar');
+		
+		$peserta = Peserta::find($id);
+		
+		if(count($peserta)==1){
+			$peserta->abstract_read = $status;
+		
+			$peserta->save();
+			
+			return "Berhasil";
+		}
+		else{
+			return "Gagal";
+		}
+	}
+	
+	public function update_status_paper(){
+		$id = Input::get('id');
+		$status = Input::get('bayar');
+		
+		$peserta = Peserta::find($id);
+		
+		if(count($peserta)==1){
+			$peserta->paper_read = $status;
+		
+			$peserta->save();
+			
+			return "Berhasil";
+		}
+		else{
+			return "Gagal";
+		}
+	}
+	
 
 	
 	

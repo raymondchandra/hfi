@@ -24,9 +24,9 @@
         <form>
         <label class=" control-label col-sm-2">Balas pesan</label>
         {{ Form::textarea('keteranganlain', Input::old('keteranganlain'), array('class'=>'form-control col-sm-8', 'style'=>'height: 100px;')) }}
-
-        <button type="button" class="btn btn-primary " style="margin-left: 10px; width: 100px;">Kirim</button>
-        <input type="file" class="btn btn-primary " style="float: right;width: 100px;margin-right: 34px;margin-top: 10px;"/>
+        <span class="cleafix"></span>
+        <button type="button" class="btn btn-primary " style="width: 100px;">Kirim</button>
+        <input type="file" class="btn btn-primary " style="margin-left: 10px;"/>
         </form>
       </div>
 

@@ -1,4 +1,5 @@
 <?php
+use Carbon\Carbon;
 
 class SimposiumController extends BaseController {
 
@@ -264,6 +265,67 @@ class SimposiumController extends BaseController {
 			return Redirect::to('simposium/user/'.$id.'/'.$id_peserta);
 		}
 	
+	}
+	
+	public function createMessage()
+	{
+		$psn = new Pesan();
+		$psn -> timestamps = false;
+		$psn -> read = 0;
+		if(Input::hasFile('attachment'))
+		{
+			$file = Input::file('attachment');
+			$fileName = $file->getClientOriginalName();
+			$destinationPath = "assets/file_upload/pesan_attachment/";
+			
+			$psn -> id_kegiatan = Input::get('id_kegiatan');
+			$psn -> id_peserta = Input::get('id_peserta');
+			$psn -> message = Input::get('text');
+			$psn -> subject = Input::get('subject');
+			$psn -> created_at = Carbon::now();
+			$psn -> attachment = $fileName;
+			
+			try
+			{
+				$psn -> save();
+				$id = $psn->id;
+				$destinationPath .= $id."/";
+				if(!file_exists($destinationPath))
+				{
+					File::makeDirectory($destinationPath, $mode = 0777, true, true);
+					$uploadSuccess = $file->move($destinationPath, $fileName);
+				}
+				else
+				{
+					$uploadSuccess = $file->move($destinationPath, $fileName);
+				}
+				
+				return $psn;
+			}
+			catch(Exception $e)
+			{
+				return "Gagal mengirim pesan ".$e;
+			}
+		}
+		else
+		{
+			$psn -> id_kegiatan = Input::get('id_kegiatan');
+			$psn -> id_peserta = Input::get('id_peserta');
+			$psn -> message = Input::get('text');
+			$psn -> subject = Input::get('subject');
+			$psn -> created_at = Carbon::now();
+			$psn -> attachment = "-";
+			
+			try
+			{
+				$psn -> save();
+				return $psn;
+			}
+			catch(Exception $e)
+			{
+				return "Gagal mengirim pesan ".$e;
+			}
+		}
 	}
 
 	

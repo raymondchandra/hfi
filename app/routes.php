@@ -2,13 +2,17 @@
 use Carbon\Carbon;
 
 Route::get('/tes', function(){
-	
-	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	$randomString = '';
-	for ($i = 0; $i < 10; $i++) {
-		$randomString .= $characters[rand(0, strlen($characters) - 1)];
+	$msg = Pesan::find(2);
+	$msg -> read = 1;
+	try
+	{
+		$msg->save();
 	}
-	echo $randomString;
+	catch(Exception $e)
+	{
+		echo $e;
+	}
+	//return $msg;
 });
 
 
@@ -334,6 +338,10 @@ Route::group(array('prefix' => 'simposium', 'before' => 'authSimposium'), functi
 	Route::put('/uploadBuktiBayar', ['as' => 'simposium.uploadBuktiBayar', 'uses' => 'SimposiumController@upload_bayar']);
 	
 	Route::put('/uploadPaper', ['as' => 'simposium.uploadPaper', 'uses' => 'SimposiumController@upload_paper']);
+	
+	//minta bantuan
+	Route::post('/bantuan', ['as' => 'simposium.mintaBantuan', 'uses' => 'SimposiumController@createMessage']);
+	//end of minta bantuan
 });
 
 Route::group(array('prefix' => 'simposium', 'before' => ''), function () {

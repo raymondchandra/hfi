@@ -74,7 +74,7 @@ class SimposiumController extends BaseController {
 		$id_kegiatan = Input::get('input_id');
 		$username = Input::get('input_user');
 		$name= Input::get('input_nama');
-		$institusi= Input::get('input_institusi');
+		$institusi= Input::get('input_institusi'); 
 		$profesi= Input::get('input_profesi');
 		$email= Input::get('input_email');
 		$alamat= Input::get('input_alamat');

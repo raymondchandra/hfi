@@ -8,10 +8,17 @@
 		<hr style="margin-top: 30px; margin-left: 20px;"/>
 		<div id="uploadttg" style="margin-left: 20px !important;">
 			<h3>Gambar Tanda Tangan Ketua HFI</h3>
-			<form id="form_edit_tanda_tangan">
-				<img id="gambar_tanda_tangan" src="" alt="tandatangan" width="118" height="63"/>
-				{{ Form::file('fileTandaTangan', array('name'=>'fileTandaTangan','id'=>'fileTandaTangan', 'accept' => "image/*")) }}
-				{{ Form::submit('Unggah Tanda Tangan', array('id'=>'ok_edit_tanda_tangan_button', 'style' => 'display: block; margin-left: 100px; margin-top: 20px;')) }}
+			<form id="form_edit_tanda_tangan" class="form-horizontal">
+				<div class="form-group">
+					<img id="gambar_tanda_tangan" src="" alt="tandatangan" width="118" height="63"/>	
+				</div>
+				<div class="form-group" style="height: 34px; overflow: hidden;">
+				{{ Form::file('fileTandaTangan', array('name'=>'fileTandaTangan','class'=>'col-sm-3','id'=>'fileTandaTangan','style'=>'height: 34px; float: left; display: block;', 'accept' => "image/*")) }}
+				</div>
+				
+				<div class="form-group">
+				{{ Form::submit('Unggah Tanda Tangan', array('id'=>'ok_edit_tanda_tangan_button','class'=>'btn btn-success' ,'style' => 'display: block; margin-left: 100px; margin-top: 20px;')) }}
+				</div>
 			</form>	
 		</div>		
 		<script>

@@ -171,9 +171,9 @@ $('body').on('click','.batal_hapus_regulasi',function(){
 							<h2 style="text-align:center;">Anda yakin ingin menghapus berkas ini?</h2>							
 							<table border="0" style="margin-left:auto; margin-right:auto;">
 								<tr>
-									<td><button class="ok_hapus_regulasi">Ya</button></td>
+									<td><button class="ok_hapus_regulasi btn btn-primary">Ya</button></td>
 									<td>&nbsp;</td>
-									<td><button data-dismiss="modal" class="batal_hapus_regulasi">Tidak</button></td>
+									<td><button data-dismiss="modal" class="batal_hapus_regulasi  btn btn-primary">Tidak</button></td>
 								</tr>
 							</table>
 								

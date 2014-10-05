@@ -411,11 +411,11 @@ color: #fff;
 }
 
 .login_container input[type="text"], .login_container input[type="password"]{
-	display: block;
+/*	display: block;
 	width: 100%;
 	margin-bottom: 10px;
 	line-height: 22px;
-	text-indent:10px;
+	text-indent:10px;*/
 }
 
 .lupa_pass {

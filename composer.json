@@ -2,7 +2,8 @@
 	"require": {
 		"laravel/framework": "4.0.*",
 		"PasswordLib/PasswordLib": "*",
-		"gregwar/captcha": "dev-master"
+		"gregwar/captcha": "dev-master",
+		"thujohn/pdf": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

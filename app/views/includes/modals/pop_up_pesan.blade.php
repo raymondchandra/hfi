@@ -53,6 +53,7 @@
 					}
 					else
 					{
+						
 						$isi = "<h4>Pesan Kirim - ";
 						$isi = $isi + response.created_at + "</h4></p>";
 						$isi = $isi + response.message + "</p><p>lampiran : ";
@@ -62,7 +63,7 @@
 						}
 						else
 						{
-							$isi = $isi + "<a target='_blank' href='{{asset('assets/file_upload/reply_attachment/" + response.id + "/" + response.attachment + "')}}'>" + resp.attachment + "</a></p>";
+							$isi = $isi + "<a target='_blank' href='{{asset('assets/file_upload/reply_attachment/" + response.id + "/" + response.attachment + "')}}'>" + response.attachment + "</a></p>";
 						}
 						
 						$('#kirim_konten').prepend($isi);

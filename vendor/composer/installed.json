@@ -2000,5 +2000,50 @@
             "captcha",
             "spam"
         ]
+    },
+    {
+        "name": "thujohn/pdf",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/thujohn/pdf-l4.git",
+            "reference": "978ce113cf907c99c5d647607a302dc5b5ba2071"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/thujohn/pdf-l4/zipball/978ce113cf907c99c5d647607a302dc5b5ba2071",
+            "reference": "978ce113cf907c99c5d647607a302dc5b5ba2071",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": "4.x",
+            "php": ">=5.3.0"
+        },
+        "time": "2014-09-17 15:59:51",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Thujohn\\Pdf": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "thujohn",
+                "email": "jonathan.thuau@gmail.com"
+            }
+        ],
+        "description": "dompdf for Laravel 4",
+        "keywords": [
+            "dompdf",
+            "laravel",
+            "laravel4",
+            "pdf"
+        ]
     }
 ]

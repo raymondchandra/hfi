@@ -297,7 +297,10 @@ Route::group(array('prefix' => 'simposium/admin', 'before' => ''), function () {
 	//pesan
 	Route::get('/message/get', ['as' => 'admin.kegiatan2.get_pesan', 'uses' => 'Kegiatan2AdminController@getMessageById']);
 	Route::get('/reply/get', ['as' => 'admin.kegiatan2.get_reply', 'uses' => 'Kegiatan2AdminController@getMessageReply']);
+	Route::post('/reply/get', ['as' => 'admin.kegiatan2.put_reply', 'uses' => 'Kegiatan2AdminController@replyMessage']);
 	//end of pesan
+	
+	
 	
 	//template
 	Route::put('/template/update', ['as' => 'admin.kegiatan2.update_template', 'uses' => 'Kegiatan2AdminController@updateTemplate']);

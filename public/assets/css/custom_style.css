@@ -1131,8 +1131,6 @@ padding-left: 0px;
 /*error and notification*/
 label.error {
 margin-left: 10px;
-}
-.error {
 /*height: 28px;*/ 
 /*float: left; */
 background-color: #ea6153;

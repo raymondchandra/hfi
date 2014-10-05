@@ -106,7 +106,7 @@
 		</div>
 		<div class="form-group">
 			<label class=" control-label col-sm-3">Tanggal Lahir<span class="red">*</span></label>
-			{{ Form::text('tanggallahir', Input::old('tanggallahir'),  array('id' => 'tanggallahir', 'style' => 'width:80px;', 'class' => 'form-control col-sm-2')) }}
+			{{ Form::text('tanggallahir', Input::old('tanggallahir'),  array('id' => 'tanggallahir', 'class' => 'form-control col-sm-2')) }}
 		</div>
 		<div class="form-group">
 			<label class=" control-label col-sm-3">Jenis kelamin<span class="red">*</span></label>

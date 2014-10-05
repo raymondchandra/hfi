@@ -3,17 +3,12 @@ use Carbon\Carbon;
 
 Route::get('/tes', function(){
 	
-	/*$destinationPath = "assets/file_upload/berkas/7/";
-	
-	if(!file_exists($destinationPath))
-	{
-		echo $destinationPath." GA ADA";
-		File::makeDirectory($destinationPath, $mode = 0777, true, true);
+	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$randomString = '';
+	for ($i = 0; $i < 10; $i++) {
+		$randomString .= $characters[rand(0, strlen($characters) - 1)];
 	}
-	else
-	{
-		echo $destinationPath." ADA";
-	}*/
+	echo $randomString;
 });
 
 
@@ -137,6 +132,8 @@ Route::group(['prefix' => 'admin', 'before' => 'authAdmin'], function () {
 	//ubahpassword
 	Route::get('/ubahpassword', ['as' => 'admin.ubahpassword', 'uses' => 'UbahpasswordAdminController@view_index']);
 	//end of ubahpassword
+	
+
 	
 	
 	//admin get route
@@ -291,6 +288,14 @@ Route::group(array('prefix' => 'simposium/admin', 'before' => ''), function () {
 	Route::delete('/berkas/{id}', ['as' => 'admin.kegiatan2.hapusBerkas', 'uses' => 'Kegiatan2AdminController@del_berkas']);
 
 	Route::get('/template/{type}/{id}', ['as' => 'admin.kegiatan2.templateDetail', 'uses' => 'Kegiatan2AdminController@view_template_editor']);
+	
+	//pesan
+	Route::get('/message/get', ['as' => 'admin.kegiatan2.get_pesan', 'uses' => 'Kegiatan2AdminController@getMessageById']);
+	Route::get('/reply/get', ['as' => 'admin.kegiatan2.get_reply', 'uses' => 'Kegiatan2AdminController@getMessageReply']);
+	//end of pesan
+	
+	//template
+	Route::put('/template/update', ['as' => 'admin.kegiatan2.update_template', 'uses' => 'Kegiatan2AdminController@updateTemplate']);
 });
 
 //post route

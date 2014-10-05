@@ -228,6 +228,21 @@ class AccountController extends BaseController {
 		
 	}
 	
+	public function generateRandomString($length = 10) 
+	{
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$randomString = '';
+		for ($i = 0; $i < $length; $i++) {
+			$randomString .= $characters[rand(0, strlen($characters) - 1)];
+		}
+		return $randomString;
+	}
+	
+	public function lupaPassword()
+	{
+		
+	}
+	
 	public function view_login()
 	{
 		$arr = $this->setHeader();

@@ -32,18 +32,16 @@
 
       <div class="modal-body">
         <div class="form-group konten_pesan">
-
-          <hr/>
-          <h4>Pesan Kirim</h4>
-          <p>
-            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. 
-          </p>
-          
-          <hr/>
-          <h4>Pesan Datang</h4>
-          <p>
-            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. 
-          </p>
+			<hr/>
+			<div id="kirim_konten">
+				<img src="{{ asset('assets/img/728.gif')}}"/>
+			</div>
+			<hr/>
+			<h4 id="datang_header">Pesan Datang</h4>
+			<p id="datang_konten">
+				<img src="{{ asset('assets/img/728.gif')}}"/>
+			</p>
+			<p  id="datang_lampiran"></p>
 
         </div>
       </div>

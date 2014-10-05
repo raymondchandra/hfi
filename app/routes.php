@@ -2,13 +2,7 @@
 use Carbon\Carbon;
 
 Route::get('/tes', function(){
-	 $html = '<html><body>'
-            . '<p>Put your html here, or generate it with your favourite '
-            . 'templating system.</p>'
-            . '</body></html>';
-	$pdfPath = "assets/file_upload/coba.pdf";
-	File::put($pdfPath, PDF::load($html, 'A4', 'portrait')->output());
-    //return PDF::load($html, 'A4', 'portrait')->download('my_pdf');
+	echo Hash::make('abc');
 });
 
 
@@ -44,8 +38,8 @@ Route::get('/regulasi', ['as' => 'regulasi.home', 'uses' => 'HomeController@view
 Route::get('/organisasi/detail/{id}', ['as' => 'organisasi.detail', 'uses' => 'OrganisasiController@view_detail']);
 
 
-
-
+//lupaPass
+Route::post('/putLupaPass', ['as' => 'user.lupaPass', 'uses' => 'AccountController@lupaPassword']);
 
 //account view
 Route::get('/login', ['as' => 'login', 'uses' => 'AccountController@view_login', 'before' => 'checkLogin']);

@@ -4,12 +4,12 @@
 		<meta charset="utf-8">
 	</head>
 	<body>
-		<h2>Welcome to my site</h2>
+		<h2>Password untuk akun HFI anda telah diperbaharui</h2>
 
-		<div>
-			Your sign up details are below:
-		</div>
-		<div>{{ $detail }}</div>
-		<div>{{ $name}} </div>
+		<p>
+			Berikut adalah password baru untuk akun HFI anda :
+		</p>
+		<p>{{ $text }}</p>
+		<p>Setelah login menggunakan password baru, harap segera mengganti password. Terima kasih</p>
 	</body>
 </html>

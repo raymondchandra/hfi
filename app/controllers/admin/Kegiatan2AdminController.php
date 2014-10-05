@@ -650,6 +650,18 @@ class Kegiatan2AdminController extends BaseController {
 				{
 					$uploadSuccess = $file->move($destinationPath, $fileName);
 				}
+				//dapetin pesan
+				$psn = Pesan::where('id','=',$pesan_id)->first();
+				//dapetin peserta
+				$psrt = Peserta::where('id','=',$psn->id_peserta)->first();
+				$data = array(
+					'text'=>$templateContext
+				);
+				Mail::queue('emails.simposiumPesan', $data, function($message)
+				{
+					$message->to($psrt->email)->subject("Re-".$psn->subject);
+					$message->attach($destinationPath.$fileName);
+				});
 				
 				return $rep;
 			}
@@ -672,6 +684,17 @@ class Kegiatan2AdminController extends BaseController {
 			try
 			{
 				$rep -> save();
+				//dapetin pesan
+				$psn = Pesan::where('id','=',$pesan_id)->first();
+				//dapetin peserta
+				$psrt = Peserta::where('id','=',$psn->id_peserta)->first();
+				$data = array(
+					'text'=>$templateContext
+				);
+				Mail::queue('emails.simposiumPesan', $data, function($message)
+				{
+					$message->to($psrt->email)->subject("Re-".$psn->subject);
+				});
 				return $rep;
 			}
 			catch(Exception $e)

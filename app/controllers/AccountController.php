@@ -240,7 +240,35 @@ class AccountController extends BaseController {
 	
 	public function lupaPassword()
 	{
-		
+		$email = Input::get('email');
+		$username = Input::get('username');
+		$newPass = $this->generateRandomString();
+		$auth = Account::where('username','=',$username)->first();
+		$auth->password = Hash::make($newPass);
+		$auth->timestamps = false;
+		try
+		{
+			$auth->save();
+			
+			$data = array(
+				'text' => $newPass,
+				
+			);
+			
+			$address = array(
+				'email' => $email
+			);
+			Mail::queue('emails.lupaPass', $data, function($message) use($address)
+			{
+				$message->to($address['email'])->subject("Pergantian password untuk akun HFI");
+			});
+			
+			return "password baru telah dikirimkan ke email yang Anda masukkan";
+		}
+		catch(Exception $e)
+		{
+			return "terjadi kesalahan, pastikan username dan email yang Anda masukkan telah tepat".$e;
+		}
 	}
 	
 	public function view_login()
@@ -255,7 +283,8 @@ class AccountController extends BaseController {
 	public function view_forgotpassword(){
 		$arr = $this->setHeader();
 		return View::make('pages.forgotpassword', compact('arr'));
-	} 
+	}
+	
 	
 	//tes
 	public function view_changepassword(){

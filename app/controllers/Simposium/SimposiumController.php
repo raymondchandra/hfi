@@ -122,6 +122,7 @@ class SimposiumController extends BaseController {
 				$peserta->abstract_read = 0;
 				$peserta->paper_read = 0;
 				$peserta->save();
+				$this->createEmail("Registrasi", $peserta->id, $id_kegiatan);
 				return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Pendaftaran Berhasil');
 			}
 		}
@@ -419,7 +420,7 @@ class SimposiumController extends BaseController {
 			$templateContext = str_replace("*pekerjaan*",$peserta->pekerjaan,$templateContext);
 			$templateContext = str_replace("*alamat*",$peserta->alamat,$templateContext);
 			$templateContext = str_replace("*status*",$peserta->status,$templateContext);
-			$templateContext = str_replace("*abstrak*",$peserta->abstrak,$templateContext);
+			$templateContext = str_replace("*abstrak*",$peserta->abstract,$templateContext);
 			$templateContext = str_replace("*spesialisasi*",$peserta->spesialisasi,$templateContext);
 			$templateContext = str_replace("*paper*",$peserta->paper,$templateContext);
 			
@@ -432,9 +433,13 @@ class SimposiumController extends BaseController {
 			$data = array(
 				'text'=>$templateContext
 			);
-			Mail::queue('emails.simposium', $data, function($message)
+			
+			$address = array(
+				'email'=>$peserta->email
+			);
+			Mail::queue('emails.simposium', $data, function($message) use($address)
 			{
-				$message->to($peserta->email)->subject($type." ".$kegiatan->nama);
+				$message->to($address['email'])->subject($type." ".$kegiatan->nama);
 				if($attachment == "")
 				{
 				

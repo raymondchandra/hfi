@@ -3,7 +3,12 @@ use Carbon\Carbon;
 
 Route::get('/tes', function(){
 	
-	echo Hash::make('ketua');
+	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$randomString = '';
+	for ($i = 0; $i < 10; $i++) {
+		$randomString .= $characters[rand(0, strlen($characters) - 1)];
+	}
+	echo $randomString;
 });
 
 
@@ -253,6 +258,9 @@ Route::group(array('prefix' => 'simposium/admin', 'before' => ''), function () {
 	Route::get('/konten/{id}', ['as' => 'admin.kegiatan2.konten', 'uses' => 'Kegiatan2AdminController@view_konten']);
 	Route::get('/harga/{id}', ['as' => 'admin.kegiatan2.harga', 'uses' => 'Kegiatan2AdminController@view_harga']);
 	Route::get('/peserta/{id}', ['as' => 'admin.kegiatan2.peserta', 'uses' => 'Kegiatan2AdminController@view_peserta']);
+	Route::get('/satu_peserta/{id}', ['as' => 'admin.kegiatan2.satu_peserta', 'uses' => 'Kegiatan2AdminController@get_one_peserta']);
+	
+	
 	Route::get('/pesan/{id}', ['as' => 'admin.kegiatan2.pesan', 'uses' => 'Kegiatan2AdminController@view_pesan']);
 	Route::get('/berkas/{id}', ['as' => 'admin.kegiatan2.berkas', 'uses' => 'Kegiatan2AdminController@view_berkas']);
 	Route::get('/template/{id}', ['as' => 'admin.kegiatan2.template', 'uses' => 'Kegiatan2AdminController@view_template']);
@@ -265,14 +273,16 @@ Route::group(array('prefix' => 'simposium/admin', 'before' => ''), function () {
 	Route::put('/ubahStatAdmin/{id}', ['as' => 'admin.kegiatan2.ubahStatAdmin', 'uses' => 'Kegiatan2AdminController@edit_stat_admin']);
 	Route::put('/ubahPass/{id}', ['as' => 'admin.kegiatan2.ubahPass', 'uses' => 'Kegiatan2AdminController@edit_pass_admin']);
 	Route::put('/ubahEarly/{id}', ['as' => 'admin.kegiatan2.ubahEarly', 'uses' => 'Kegiatan2AdminController@edit_early']);
+	
+	Route::put('/ubahStatusBayar', ['as' => 'admin.kegiatan2.ubahStatusbayar', 'uses' => 'Kegiatan2AdminController@update_status_pembayaran']);
 
 	Route::put('/konten/editor/{id}', ['as' => 'admin.kegiatan2.konten.editEditor', 'uses' => 'Kegiatan2AdminController@edit_editor']);
 
-	//admin post tandatangan
-	//Route::post('/postTandaTangan', ['as' => 'admin.postTandaTangan', 'uses' => 'OrganisasiAdminController@edit_tandatangan']);	
-	//admin cek tandatangan
-	//Route::get('/cekTandaTangan', ['as' => 'admin.cekTandaTangan', 'uses' => 'OrganisasiAdminController@UrlExists']);
-
+	Route::post('/header/{id}', ['as' => 'admin.kegiatan2.editHeader', 'uses' => 'Kegiatan2AdminController@update_header']);	
+	Route::post('/sponsor/{id}', ['as' => 'admin.kegiatan2.addSponsor', 'uses' => 'Kegiatan2AdminController@tambah_sponsor']);	
+	Route::post('/edsponsor/{id}', ['as' => 'admin.kegiatan2.editSponsor', 'uses' => 'Kegiatan2AdminController@update_sponsor']);	
+	Route::delete('/sponsor/{id}', ['as' => 'admin.kegiatan2.delSponsor', 'uses' => 'Kegiatan2AdminController@hapus_sponsor']);	
+	
 
 	Route::post('/harga/{id}', ['as' => 'admin.kegiatan2.tambahHarga', 'uses' => 'Kegiatan2AdminController@tambahHarga']);
 	Route::put('/harga/{id}', ['as' => 'admin.kegiatan2.editHarga', 'uses' => 'Kegiatan2AdminController@editHarga']);
@@ -287,7 +297,6 @@ Route::group(array('prefix' => 'simposium/admin', 'before' => ''), function () {
 	//pesan
 	Route::get('/message/get', ['as' => 'admin.kegiatan2.get_pesan', 'uses' => 'Kegiatan2AdminController@getMessageById']);
 	Route::get('/reply/get', ['as' => 'admin.kegiatan2.get_reply', 'uses' => 'Kegiatan2AdminController@getMessageReply']);
-	Route::post('/reply/put', ['as' => 'admin.kegiatan2.put_reply', 'uses' => 'Kegiatan2AdminController@replyMessage']);
 	//end of pesan
 	
 	//template
@@ -305,44 +314,37 @@ Route::post('/postRegulasi', ['as' => 'postRegulasi', 'uses' => 'HomeAdminContro
 Route::put('/changePass', ['as' => 'changePass', 'uses' => 'AccountController@changePass']);
 
 
-//temporary route for testing
-Route::get('/test/simposium', function()
-	{
-		return View::make('pages.simposium.front.simposium_main');
-	});
-Route::get('/test/simposium_login', function()
-	{
-		return View::make('pages.simposium.front.simposium_login');
-	});
-Route::get('/test/simposium_tanggal', function()
-	{
-		return View::make('pages.simposium.front.simposium_tanggal');
-	});
-Route::get('/test/simposium_lokasi', function()
-	{
-		return View::make('pages.simposium.front.simposium_lokasi');
-	});
-Route::get('/test/simposium_registrasi', function()
-	{
-		return View::make('pages.simposium.front.simposium_registrasi');
-	});
-Route::get('/test/simposium_peserta', function()
-	{
-		return View::make('pages.simposium.front.simposium_peserta');
-	});
-Route::get('/test/style_simposium', function()
-	{
-		return View::make('pages.simposium.admin.style_simposium');
-	});
-Route::get('/test/simposium_user', function()
-	{
-		return View::make('pages.simposium.front.simposium_user');
-	});
+
+Route::group(array('prefix' => 'simposium', 'before' => 'authSimposium'), function () {
+	
+	Route::get('/user/{id}/{id_peserta}', ['as' => 'simposium.user', 'uses' => 'SimposiumController@view_user']);
+	
+	Route::put('/editProfil', ['as' => 'simposium.editProfil', 'uses' => 'SimposiumController@edit_profil']);
+	
+	Route::put('/uploadBuktiBayar', ['as' => 'simposium.uploadBuktiBayar', 'uses' => 'SimposiumController@upload_bayar']);
+	
+	Route::put('/uploadPaper', ['as' => 'simposium.uploadPaper', 'uses' => 'SimposiumController@upload_paper']);
+});
+
+Route::group(array('prefix' => 'simposium', 'before' => ''), function () {
+	Route::get('/{id}', ['as' => 'simposium.index', 'uses' => 'SimposiumController@view_index']);
+	Route::get('/login/{id}', ['as' => 'simposium.login', 'uses' => 'SimposiumController@view_login']);
+	Route::get('/logout/{id}', ['as' => 'simposium.logout', 'uses' => 'SimposiumController@logout']);
+	Route::get('/registrasi/{id}', ['as' => 'simposium.registrasi', 'uses' => 'SimposiumController@view_registrasi']);
+	Route::get('/tanggal', ['as' => 'simposium.tanggal', 'uses' => 'SimposiumController@view_tanggal']);
+	Route::get('/lokasi', ['as' => 'simposium.lokasi', 'uses' => 'SimposiumController@view_lokasi']);
+	Route::get('/peserta/{id}', ['as' => 'simposium.peserta', 'uses' => 'SimposiumController@view_peserta']);
+});
+
 Route::get('/test/tesuto', function()
 	{
 		return View::make('pages.tesuto');
 	});
 //temporary route for testing end
+
+
+//test registrasi
+
 
 
 

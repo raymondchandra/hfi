@@ -25,7 +25,6 @@ return array(
     'Patchwork' => array($vendorDir . '/patchwork/utf8/class'),
     'PasswordLib' => array($vendorDir . '/passwordlib/passwordlib/lib'),
     'PHPParser' => array($vendorDir . '/nikic/php-parser/lib'),
-    'Ollieread\\Multiauth' => array($vendorDir . '/ollieread/multiauth/src'),
     'Normalizer' => array($vendorDir . '/patchwork/utf8/class'),
     'Jeremeamia\\SuperClosure' => array($vendorDir . '/jeremeamia/SuperClosure/src'),
     'Illuminate' => array($vendorDir . '/laravel/framework/src'),

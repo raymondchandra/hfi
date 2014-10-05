@@ -22,7 +22,8 @@ class BerkasAdminController extends BaseController {
 			// }					
 		// return View::make('pages.admin.berkas.berkas', compact('arr', 'arrPengunggah'));
 		//return View::make('pages.admin.berkas.berkas', compact('arr'));
-		return View::make('pages.admin.berkas.berkas');
+		$berkas = $this->get_all_berkas();
+		return View::make('pages.admin.berkas.berkas',compact('berkas'));
 	}		
 	
 	public function tambah_berkas()
@@ -112,7 +113,7 @@ class BerkasAdminController extends BaseController {
 	
 	public function get_all_berkas()
 	{
-		$count = Berkas::all();
+		$count = Berkas::paginate(10);
 		//echo $count;
 		if(count($count) != 0)
 		{

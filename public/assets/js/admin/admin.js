@@ -83,13 +83,15 @@ $('body').on('click','#akun_admin',function(){
 //sidebar kegiatan
 
 $('body').on('click','#admin_kegiatan_nasional',function(){
+	$('.admin_control_panel').html("");
 	$( ".loader" ).fadeIn( 200, function(){});
-	 $('.admin_control_panel').load('admin/kegiatan/1');
+	$('.admin_control_panel').load('admin/kegiatan/1');
 });
 
 $('body').on('click','#admin_kegiatan_internasional',function(){
+	$('.admin_control_panel').html("");
 	$( ".loader" ).fadeIn( 200, function(){});
-	 $('.admin_control_panel').load('admin/kegiatan/2');
+	$('.admin_control_panel').load('admin/kegiatan/2');
 });
 
 $('body').on('click','#admin_kegiatan_simposium',function(){

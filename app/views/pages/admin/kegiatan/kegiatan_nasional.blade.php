@@ -99,6 +99,7 @@
 
 	$('body').one('click','.hapus_kegiatan',function(){
 		$id = $(this).prev().val();
+		$('.admin_control_panel').html("");
 		$.ajax({
 			type: 'DELETE',
 				url: 'admin/deleteKegiatan',

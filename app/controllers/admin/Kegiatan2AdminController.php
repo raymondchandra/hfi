@@ -9,7 +9,12 @@ class Kegiatan2AdminController extends BaseController {
 	public function view_index($type)
 	{
 		$kegiatans = $this->get_all_kegiatan($type);
-		return View::make('pages.admin.kegiatan.kegiatan_simposium',compact('kegiatans','type'));
+		if($type==3){
+			return View::make('pages.admin.kegiatan.kegiatan_simposium',compact('kegiatans','type'));
+		}else{
+			return View::make('pages.admin.kegiatan.kegiatan_ictap',compact('kegiatans','type'));
+		}
+		
 		
 	}
 	

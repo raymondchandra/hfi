@@ -16,8 +16,17 @@
 
 <div class="container_12">
 	<div class="grid_12">
-		<div class='admin_title'>Pesan</div>
-		<a href='javascript:void(0)' onClick='back()' >Back</a>
+		<h1 class=''>Pesan</h1>
+		<style>
+			.breadcrumb li {
+				padding-left: 0px;
+				margin-left: 0px;
+			}
+		</style>
+		<ol class="breadcrumb">
+			<li><a href="{{ URL::to('simposium/admin', $id) }}"  >Dashboard</a></li>
+			<li class="active">Pesan</li>
+		</ol>
 
 	</div>
 </div>

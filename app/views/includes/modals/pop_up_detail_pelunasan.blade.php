@@ -8,18 +8,18 @@
 				<h4 class="modal-title" id="myModalLabel">Detail Pelunasan</h4>
 			</div>
 
-			<form role="form" class="form-horizontal">
+			<form class="form-horizontal">
 
 				<div class="modal-body" style="">
-
+					
 					<div class="form-group">
 						<label class=" control-label col-sm-3">Jenis Partisipan</label>
-						<p class="form-control-static col-sm-5">International | With Paper</p>
+						<p class="form-control-static col-sm-5 jenis_bayar">International | With Paper</p>
 					</div>
 
 					<div class="form-group">
 						<label class=" control-label col-sm-3">Biaya</label>
-						<p class="form-control-static col-sm-5">IDR 2.500.000</p>
+						<p class="form-control-static col-sm-5 biaya_bayar">IDR 2.500.000</p>
 					</div>
 
 					<div class="form-group">
@@ -36,10 +36,10 @@
 
 				</div>
 				<div class="modal-footer">
-					<button type="button" data-dismiss="modal" class="btn btn-success">
+					<button type="button" data-dismiss="modal" class="btn btn-success update_bayar">
 						Perbaharui Status Pelunasan
 					</button>
-					
+					<input type='hidden' class='id_peserta' />
 				</div>
 
 			</form>
@@ -47,3 +47,25 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	$('body').on('click','.update_bayar',function(){
+		$change=$("input[name='is_paper']:checked").val();
+		$id_peserta = $('.id_peserta').val();
+		$.ajax({
+			type: 'PUT',
+			url: "{{url('simposium/admin/ubahStatusBayar')}}",
+			data: {
+				"bayar": $change,
+				"id" : $id_peserta
+			},
+			success: function(response){
+				alert(response);
+				location.reload();
+			},
+			error: function(jqXHR, textStatus, errorThrown){
+				alert(errorThrown);
+			}
+		},'json');
+	})
+</script>

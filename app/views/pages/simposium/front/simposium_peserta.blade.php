@@ -30,23 +30,24 @@
 							Catatan
 						</td>
 					</tr>
-					<?php
-						for($i = 1; $i < 21; $i++){
-					?>
+					@for($i = 0; $i < count($pesertas) ; $i++)
 					<tr>
 						<td>
-							<?php echo($i); ?>
+							{{$i+1}}
 						</td>
 						<td>
-							<span style="display: block">Abdul Halim</span>
+							<span style="display: block">{{$pesertas[$i]->nama}}</span>
 							<span>1408519438</span>
 						</td>
 						<td>
-							Universitas Negeri Makassar
+							{{$pesertas[$i]->institusi}}
 						</td>
 						<td>
-							PERANCANGAN DAN PEMBUATAN PROTOTIPE CHAMBER UJI KELEMBABAN UDARA SENSOR SERAT OPTIK
-					
+							@if($pesertas[$i]->paper =="")
+								-
+							@else
+								{{$pesertas[$i]->paper}}
+							@endif
 						</td>
 						<td>
 							<span style="display: block; font-size: 11px;">• surat undangan</span>
@@ -54,9 +55,7 @@
 							<span style="display: block; font-size: 11px;">• kwitansi</span>
 						</td>
 					</tr>
-					<?php
-						}
-					?>
+					@endfor
 					<hr>
 					</hr>
 				</table>

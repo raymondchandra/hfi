@@ -99,10 +99,7 @@
 			<div id='list_regulasi'>	
 			
 			
-				<!-- add jPages plugin -->
-				<link rel="stylesheet" href="{{ asset('assets/js/jpages/css/jPages.css') }}">
-				<script src="{{ asset('assets/js/jpages/js/jPages.min.js') }}"></script>
-
+				
 			
 				<div class="holder"></div>
 				<ul border=0 class="tabel_list_regulasi" id="tabel_list_regulasi">
@@ -126,21 +123,7 @@
 				$(document).ready(function () {
 					setTimeout(function(){
 					$(function() {
-						/* initiate plugin */
-						$("div.holder").jPages({
-							containerID : "tabel_list_regulasi",
-							perPage : 10
-						});
-						/* on select change */
-						/*$("select").change(function(){*/
-							/* get new nº of items per page */
-						 /* var newPerPage = parseInt( $(this).val() );*/
-						  /* destroy jPages and initiate plugin again */
-						 /* $("div.holder").jPages("destroy").jPages({
-								containerID   : "jpage_list_akun",
-								perPage       : newPerPage
-							});*/
-						/*});*/
+						
 					});
 					}, 500);
 				});

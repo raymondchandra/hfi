@@ -3,11 +3,11 @@
 }
 
 .cabang_list{
-	margin-left: 100px;
+	/*margin-left: 100px;*/
 }
 
 .list_cabang{
-	font-size: 14px;
+	/*font-size: 14px;*/
 }
 
 .telepon_cabang,.fax_cabang{
@@ -16,15 +16,15 @@
 }
 
 .detail_cabang, .detail_pengurus{
-	width: 125px;
+	/*width: 125px;*/
 }
 
 .email_cabang,.website_cabang{
-	width: 150px;
+	/*width: 150px;*/
 }
 
 .list_cabang tr td input[type='text']{
-	width: 90% !important;
+	/*width: 90% !important;*/
 }
 
 #tambah_cabang_link {
@@ -38,7 +38,7 @@
 }
 
 .table_cabang input[type='text']{
-	width: 110% !important;
+	/*width: 110% !important;*/
 }
 
 

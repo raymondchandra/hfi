@@ -7,12 +7,15 @@
         		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         		<h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
       		</div>
-			<form role="form" class="form-horizontal">
+			<!--<form role="form" class="form-horizontal">-->
+			{{ Form::open(array('url' => '/simposium/editProfil','method'=>'put','class'=>'form-horizontal')) }}
+			<input type='hidden' value='{{$id}}' name='id_kegiatan' />
+			<input type='hidden' value='' id='id_peserta_edit' name='id_peserta' />
 			<div class="modal-body" style="">
 				
 			 	<div class="form-group">
 					<label class=" control-label col-sm-3">Nama<span class="red">*</span></label>
-					{{ Form::text('input_nama',Input::old('input_nama'), array('id' => 'input_nama', 'class' => 'form-control col-sm-5')) }}
+					{{ Form::text('input_nama',Input::old('input_nama'), array('id' => 'input_nama', 'class' => 'form-control col-sm-5 input_nama')) }}
 			  	</div>
 			  	<div class="form-group">
 					<label class=" control-label col-sm-3">Institusi<span class="red">*</span></label>
@@ -27,28 +30,29 @@
 						'dosen' => 'dosen',
 						'peneliti' => 'peneliti',
 						'karyawan' => 'karyawan',
-						'lainlain' => 'lain-lain'), null, array('class' => 'form-control col-sm-5'))
+						'lainlain' => 'lain-lain'), null, array('class' => 'form-control col-sm-5 input_profesi'))
 					}}
 				</div>
 			  	<div class="form-group">
 					<label class=" control-label col-sm-3">Surat Elektronik<span class="red">*</span></label>
-					{{ Form::text('input_email', Input::old('input_email'), array('class' => 'form-control col-sm-5')) }}
+					{{ Form::text('input_email', Input::old('input_email'), array('class' => 'form-control col-sm-5 input_email')) }}
 				</div>
 				<div class="form-group">
 					<label class=" control-label col-sm-3">Alamat<span class="red">*</span></label>
-					{{ Form::textarea('input_alamat', Input::old('input_alamat'), array('class' => 'form-control col-sm-5', 'style'=>'height: 100px;')) }}
+					{{ Form::textarea('input_alamat', Input::old('input_alamat'), array('class' => 'form-control col-sm-5 input_alamat', 'style'=>'height: 100px;')) }}
 				</div>
 
 				<div class="form-group">
-					<label class=" control-label col-sm-3">Password<span class="red">*</span></label>
+					<label class=" control-label col-sm-3">Password</label>
 					{{ Form::password('input_password',array('id' => 'input_password', 'class' => 'form-control col-sm-5'), Input::old('input_password')) }} 
 				</div>
 				<div class="form-group">
-					<label class=" control-label col-sm-3">Ketik Ulang Password<span class="red">*</span></label>
+					<label class=" control-label col-sm-3">Ketik Ulang Password</label>
 					{{ Form::password('input_password_again',array('id' => 'input_password_again', 'class' => 'form-control col-sm-5'), Input::old('input_password_again')) }}
 				</div>
 
 				<hr/>
+				@if($peserta->is_paper == 1)
 				<p class="bg-danger" style="padding: 5px;"><span class="text-danger">PERHATIAN!</span> Lengkapi form dibawah JIKA Anda ingin mempersembahkan paper! </p>
 
 				
@@ -59,10 +63,10 @@
 					<div class="form-group">
 						<label class=" control-label col-sm-3">Bidang Keahlian</label>
 						<label class="radio-inline">
-						{{ Form::radio('gender','pria', array('style'=>'float: left;')) }}oral         
+						{{ Form::radio('gender',1, array('style'=>'float: left;')) }}oral         
 						</label>
 						<label class="radio-inline">
-						{{ Form::radio('gender','wanita', array('style'=>'float: left;')) }}poster     
+						{{ Form::radio('gender',0, array('style'=>'float: left;')) }}poster     
 						</label>
 
 						{{ Form::select('spesialisasi',array(
@@ -89,25 +93,26 @@
 
 				  	<div class="form-group">
 						<label class=" control-label col-sm-3">Judul Paper</label>
-						{{ Form::text('input_judul_paper', Input::old('input_judul_paper'), array('class' => 'form-control col-sm-5')) }}
+						{{ Form::text('input_judul_paper', Input::old('input_judul_paper'), array('class' => 'form-control col-sm-5 judul_paper')) }}
 					</div>
 
 
 					<div class="form-group">
 						<label class=" control-label col-sm-3">Abstrak</label>
-						{{ Form::textarea('input_abstrak', Input::old('input_abstrak'), array('class' => 'form-control col-sm-5', 'style'=>'height: 100px;')) }}
+						{{ Form::textarea('input_abstrak', Input::old('input_abstrak'), array('class' => 'form-control col-sm-5 abstrak_paper', 'style'=>'height: 100px;')) }}
 					</div>	
 				<p>
 					<span class="red" style="position: relative; right:0; top: 0;">*</span> ) harus diisi!
 				</p>
-
+				@endif
 			</div>
 			<div class="modal-footer">
-					<button type="submit" class="btn btn-success">Kirim</button> 
+					<input type="submit" class="btn btn-success" value='Kirim' /> 
 					<button type="reset" class="btn btn-primary">Reset</button> 
 				
 			</div>
-			</form>	
+			{{ Form::close() }}
+			<!--</form>	-->
 		</div>
 	</div>
 </div>

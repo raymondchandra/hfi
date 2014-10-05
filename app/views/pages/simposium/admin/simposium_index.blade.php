@@ -7,8 +7,16 @@ var id = '{{$id}}';
 
 <div class="container_12">
 	<div class="grid_12">
-		<div class='admin_title'>{{$nama_kegiatan}}</div>
-
+		<h1 class=''>{{$nama_kegiatan}}</h1>
+		<style>
+		.breadcrumb li {
+			padding-left: 0px;
+			margin-left: 0px;
+		}
+		</style>
+		<ol class="breadcrumb">
+			<li class="active">Dashboard</li>
+		</ol>
 	</div>
 </div>
 

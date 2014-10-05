@@ -15,6 +15,13 @@
 				$(this).siblings('.show_before').text($(this).text());
 			}
 			
+			$('.pagination a').on('click', function (event) {
+			    event.preventDefault();
+			    if ( $(this).attr('href') != '#' ) {
+			        $("html, body").animate({ scrollTop: 0 }, "fast");
+			        $('.admin_control_panel').load($(this).attr('href'));
+			    }
+			});
 		});
 		$( ".loader" ).fadeOut( 200, function(){});
 	});
@@ -97,11 +104,13 @@
 				"id_kegiatan": $id
 			},
 			success: function(response){
-				alert(response);
-				$('#admin_kegiatan_nasional').click();
+				//alert(response);
 			},
 			error: function(jqXHR, textStatus, errorThrown){
-				alert(errorThrown);
+				//alert(errorThrown);
+			},
+			complete:function(){
+				$('#admin_kegiatan_nasional').click();
 			}
 		},'json');
 	});
@@ -236,11 +245,13 @@
 			processData:false,
 			contentType: false,
 			success: function(response){
-				alert(response);
-				$('#admin_kegiatan_nasional').click();
+				//alert(response);
 			},
 				error: function(jqXHR, textStatus, errorThrown){
 				alert(errorThrown);
+			},
+			complete:function(){
+				$('#admin_kegiatan_nasional').click();
 			}
 		});
 		
@@ -281,6 +292,8 @@
 		}
 	});
 	$('body').on('click','#ok_tambah_kegiatan',function(){
+	
+		$(this).attr('disable',true);
 		
 		$arrayData = $('#form_tambah_kegiatan').serializeArray();
 		//alert($file_brosur);
@@ -312,12 +325,14 @@
 			processData:false,
 			contentType: false,
 			success: function(response){
-				alert(response);
-				$('#admin_kegiatan_nasional').click();
+				//alert(response);
 			},
-				error: function(jqXHR, textStatus, errorThrown){
-				alert(errorThrown);
+			error: function(jqXHR, textStatus, errorThrown){
+				//alert(errorThrown);
 			}
+		}).done(function(){
+			location.reload();
+			$('#admin_kegiatan_nasional').click();
 		});
 		
 	});
@@ -518,7 +533,7 @@
 							
 						</div>
 
-						{{Form::button('Rubah Data Kegiatan', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'edit_button','data-dismiss'=>'modal'));}}
+						{{Form::button('Ubah Data Kegiatan', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'edit_button','data-dismiss'=>'modal'));}}
 						<input type='hidden' class='id_edit' />
 					{{ Form::close() }}
 					<style>

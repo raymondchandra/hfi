@@ -6,10 +6,21 @@
 
 <div class="container_12">
 	<div class="grid_12">
-		<div class='admin_title'>{{$nama_kegiatan}}</div>
-		<div>{{$title}}</div>
-		<a href='javascript:void(0)' onClick='history.back();' >Back</a>
+		<h1 class=''>{{$nama_kegiatan}}</h1>
+		<!-- <div>{{$title}}</div> -->
+		<style>
+			.breadcrumb li {
+				padding-left: 0px;
+				margin-left: 0px;
+			}
+		</style>
+		<ol class="breadcrumb">
+			<li><a href="{{ URL::to('simposium/admin', $id) }}"  >Dashboard</a></li><!-- onClick='history.back();' -->
+			<li><a href="{{ URL::to('simposium/admin/konten', $id) }}"  >Konten</a></li><!-- onClick='history.back();' -->
+			<li class="active">{{$title}}</li>
+		</ol>
 
+		<h3>{{$title}}</h3> 
 		<div class='editor_container'>
 			<textarea name="textarea" id = 'jqteText' class="editor">
 				{{$text}}

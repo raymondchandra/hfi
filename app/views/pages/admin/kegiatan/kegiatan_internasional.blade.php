@@ -15,6 +15,14 @@
 				$(this).siblings('.show_before').text($('.show_after').text());
 			}
 			
+
+			$('.pagination a').on('click', function (event) {
+			    event.preventDefault();
+			    if ( $(this).attr('href') != '#' ) {
+			        $("html, body").animate({ scrollTop: 0 }, "fast");
+			        $('.admin_control_panel').load($(this).attr('href'));
+			    }
+			});
 		});
 		$( ".loader" ).fadeOut( 200, function(){});
 	});
@@ -97,11 +105,13 @@
 				"id_kegiatan": $id
 			},
 			success: function(response){
-				alert(response);
-				$('#admin_kegiatan_internasional').click();
+
 			},
 			error: function(jqXHR, textStatus, errorThrown){
-				alert(errorThrown);
+				//alert(errorThrown);
+			},
+			complete:function(){
+				$('#admin_kegiatan_internasional').click();
 			}
 		},'json');
 	});
@@ -236,11 +246,13 @@
 			processData:false,
 			contentType: false,
 			success: function(response){
-				alert(response);
-				$('#admin_kegiatan_internasional').click();
+			
 			},
-				error: function(jqXHR, textStatus, errorThrown){
-				alert(errorThrown);
+			error: function(jqXHR, textStatus, errorThrown){
+				//alert(errorThrown);
+			},
+			complete:function(){
+				$('#admin_kegiatan_internasional').click();
 			}
 		});
 		
@@ -280,16 +292,9 @@
 			$('html').css('overflow-y', 'auto');
 		}
 	});
+	
 	$('body').on('click','#ok_tambah_kegiatan',function(){
-		
 		$arrayData = $('#form_tambah_kegiatan').serializeArray();
-		//alert($file_brosur);
-		/*alert($arrayData[1]['value']);
-		alert($arrayData[2]['value']);
-		alert($arrayData[3]['value']);
-		alert($arrayData[4]['value']);
-		alert($arrayData[5]['value']);
-		alert($arrayData[6]['value']);*/
 		
 		var formData = new FormData();
 		
@@ -312,12 +317,14 @@
 			processData:false,
 			contentType: false,
 			success: function(response){
-				alert(response);
-				$('#admin_kegiatan_internasional').click();
+				//alert(response);
 			},
 				error: function(jqXHR, textStatus, errorThrown){
 				alert(errorThrown);
 			}
+		}).done(function(){
+			location.reload();
+			$('#admin_kegiatan_internasional').click();
 		});
 		
 	});
@@ -518,7 +525,7 @@
 							
 						</div>
 
-						{{Form::button('Rubah Data Kegiatan', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'edit_button','data-dismiss'=>'modal'));}}
+						{{Form::button('Ubah Data Kegiatan', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'edit_button','data-dismiss'=>'modal'));}}
 						<input type='hidden' class='id_edit' />
 					{{ Form::close() }}
 					<style>

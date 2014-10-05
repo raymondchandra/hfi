@@ -1,8 +1,21 @@
 <?php
 
 class SimposiumController extends BaseController {
+
+	public function getKonten($type,$id)
+	{
+		$text = KegiatanKonten::where('id_kegiatan','=',$id)->where('tipe','=','halaman depan')->first();
+		if($text == null){
+			return "";
+		}else
+		{
+			return $text->konten;
+		}
+	}
 	public function view_index($id){
-		return View::make('pages.simposium.front.simposium_main',compact('id'));
+
+		$text = $this->getKonten('halaman depan',$id);
+		return View::make('pages.simposium.front.simposium_main',compact('id','text'));
 	}
 	
 	public function view_login($id){
@@ -15,15 +28,22 @@ class SimposiumController extends BaseController {
 	}
 	
 	public function view_registrasi($id){
-		return View::make('pages.simposium.front.simposium_registrasi',compact('id'));
+
+		$kegiatan = Kegiatan2::find($id);
+		$text = $this->getKonten('registrasi',$id);
+
+		$date= date_create($kegiatan->early_start);
+		$early_start = date_format($date,"d-m-Y");
+		$date= date_create($kegiatan->early_finish);
+		$early_finish = date_format($date,"d-m-Y");
+		$harga = Harga::where('id_kegiatan','=',$id)->get();
+		return View::make('pages.simposium.front.simposium_registrasi',compact('id','text','early_start','early_finish','harga'));
 	}
 	
-	public function view_tanggal(){
-		return View::make('pages.simposium.front.simposium_tanggal');
-	}
-	
-	public function view_lokasi(){
-		return View::make('pages.simposium.front.simposium_lokasi');
+	public function view_konten($type,$id){
+		$text = $this->getKonten($type,$id);
+		$title = ucwords($type);
+		return View::make('pages.simposium.front.simposium_konten',compact('type','title','text','id'));
 	}
 	
 	public function view_peserta($id){
@@ -35,7 +55,20 @@ class SimposiumController extends BaseController {
 		return View::make('pages.simposium.admin.style_simposium');
 	}
 	
-	
+	public static function getHeader($id){
+		$file = Kegiatanfile::where('id_kegiatan','=',$id)->where('tipe','=','header')->first();
+		if($file == null)
+			return '';
+		else
+			return $file->file_path;
+	}
+
+	public static function getSponsor($id){
+		$files = Kegiatanfile::where('id_kegiatan','=',$id)->where('tipe','=','sponsor')->get();
+		
+		return $files;
+	}
+
 	public function register(){
 		$id_kegiatan = Input::get('input_id');
 		$username = Input::get('input_user');

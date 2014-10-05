@@ -11,100 +11,46 @@
 				<h2>
 					Registrasi
 				</h2>
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<table class="table table-bordered">					
-							<tr>
-								<td width="100">
-									Peserta
+				<div class="panel-body">
+					<table class="table table-bordered">					
+						<tr>
+							<td width="100">
+								Kategori
+							</td>
+							<td width="150">
+								Early Bird Rate<br />
+								{{$early_start}} - {{$early_finish}}
+							</td>
+							<td width="150">
+								Normal Rate<br />
+								Setelah {{$early_finish}}
+							</td>
+						</tr>
+						@if($harga!=null)
+						@foreach($harga as $harg)
+							@if($harg->isHeader == 1)
+							<tr class="hargaTabel header info">
+							@else
+							<tr class="hargaTabel nonHeader" >
+							@endif
+								<td>
+									<span class="showAll lblKategori">{{$harg->kategori}}</span>
 								</td>
-								<td width="150">
-									Early Bird Rate
+								<td>
+									<span class="showAll lblEarly">{{$harg->harga_early}}</span>
 								</td>
-								<td width="150">
-									Normal Rate
+								<td>
+									<span class="showAll lblNormal">{{$harg->harga_normal}}</span>
 								</td>
 							</tr>
-							<tr class="active">
-								<td>
-									SFN XXVII
-								</td>
-								<td>
-									
-								</td>
-								<td>
-									
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Pemakalahan/umum
-								</td>
-								<td>
-									Rp 550.000*
-								</td>
-								<td>
-									Rp 650.000*
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Pemakalahan/mahasiswa
-								</td>
-								<td>
-									Rp 550.000*
-								</td>
-								<td>
-									Rp 700.000*
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Prosiding Hard Copy
-								</td>
-								<td>
-									Rp 550.000*
-								</td>
-								<td>
-									Rp 700.000*
-								</td>
-							</tr>
-							
-						</table>
-						Note:*) Discount Rp 50,000 khusus untuk anggota aktif HFI
-					</div>
+							@endforeach
+						@endif
+					</table>
 				</div>
-				<hr>
-			</hr>
-			
-			<h2>Syarat dan ketentuan</h2>
+				
 			<p>
-				• Peserta yang telah melakukan registrasi dan membatalkan, biaya registrasi tidak bisa dibayarkan kembali.<br/>
-				• Biaya transfer bank ditanggung peserta<br/>
-				• Registrasi mencakup : Seminar Kit, Konsumsi, Sertifikat<br/>
-				• Pemakalah yang belum membayar penuh sampai dengan 1 Oktober 2014 tidak akan dijadwalkan dan abstraknya tidak akan dicetak pada buku kumpulan abstrak, kecuali ada pemberitahuan sebelumnya.
+				{{$text}}
 			</p>
-			
-			<hr>
-		</hr>	
-		
-		<h2>Metode pembayaran</h2>
-		<p>
-			Pembayaran dilakukan dengan mentrasfer melalui bank dengan alamat sebagai berikut :
-
-			• Account Name : HFI CABANG BALI<br/>
-			• Account Number : 0328549426<br/>
-			• Swift code : BNINIDJARNN<br/>
-			• Bank Name : BNI Cabang Renon<br/>
-			• Bank Address : Jalan Raya By Pass Ngurah Rai No. 2003, Denpasar,80361, INDONESIA
-			<br></br>
-			Setelah melakukan pembayaran, harap mengkonfirmasikan bukti pembayaran ke panitian melalui email : hfi_bali@yahoo.com
-			
-			<hr></hr>
-			<p>
-				Seluruh proses registrasi harus dilakukan secara online melalui melalui situs ini. Status dari registrasi bisa diakses melalui halaman daftar peserta. Username adalah sama dengan nomor registrasi Anda.
-				Pengingat password akan dikirimkan ke surat elektronik yang dipakai saat registrasi. 
-			</p>	
 			
 			
 			<h2>Peserta Baru</h2>

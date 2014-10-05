@@ -2,17 +2,13 @@
 use Carbon\Carbon;
 
 Route::get('/tes', function(){
-	$msg = Pesan::find(2);
-	$msg -> read = 1;
-	try
-	{
-		$msg->save();
-	}
-	catch(Exception $e)
-	{
-		echo $e;
-	}
-	//return $msg;
+	 $html = '<html><body>'
+            . '<p>Put your html here, or generate it with your favourite '
+            . 'templating system.</p>'
+            . '</body></html>';
+	$pdfPath = "assets/file_upload/coba.pdf";
+	File::put($pdfPath, PDF::load($html, 'A4', 'portrait')->output());
+    //return PDF::load($html, 'A4', 'portrait')->download('my_pdf');
 });
 
 

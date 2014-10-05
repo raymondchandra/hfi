@@ -194,7 +194,7 @@ class UserController extends BaseController {
 	
 	public function get_all_berkas()
 	{	
-		$count = Berkas::all();
+		$count = Berkas::paginate(10);
 		if(count($count) != 0)
 		{
 			return $count;

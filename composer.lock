@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8d212ad6940ebc9d660269b9dd1fefba",
+    "hash": "5d823718f21414f12b8581dbef47e87b",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -988,6 +988,45 @@
                 "php"
             ],
             "time": "2014-07-23 18:24:17"
+        },
+        {
+            "name": "ollieread/multiauth",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ollieread/multiauth.git",
+                "reference": "e685a6f060326de551138f957ac8d2566b4ce692"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ollieread/multiauth/zipball/e685a6f060326de551138f957ac8d2566b4ce692",
+                "reference": "e685a6f060326de551138f957ac8d2566b4ce692",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~4",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Ollieread\\Multiauth": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Ollie Read",
+                    "email": "labs@ollieread.com"
+                }
+            ],
+            "description": "Multiple auth driver for Laravel",
+            "keywords": [
+                "auth",
+                "laravel",
+                "multi"
+            ],
+            "time": "2013-12-12 15:33:30"
         },
         {
             "name": "passwordlib/passwordlib",

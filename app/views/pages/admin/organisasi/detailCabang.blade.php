@@ -25,20 +25,44 @@ $(document).ready(function(){
 });
 </script>
 <div id="organisasi_detail_content">
-	<div id="datacabang"> 
-		<div><span class='detail_cell'>Nama Cabang</span>: {{$cabang->nama}}</div>
-		<span class='clear'>&nbsp;</span>
-		<div><span class='detail_cell'>Alamat Kantor</span>:  {{$cabang->alamat}}</div>
-		<span class='clear'>&nbsp;</span>
-		<div><span class='detail_cell'>Telepon</span>: {{$cabang->telp}} </div>
-		<span class='clear'>&nbsp;</span>
-		<div><span class='detail_cell'>Fax</span>: {{$cabang->fax}}</div>
-		<span class='clear'>&nbsp;</span>
-		<div><span class='detail_cell'>E-mail</span>:  {{$cabang->email}}</div>
+	<div id="datacabang" class="form-horizontal"> 
+		<div class="form-group">
+			<label class='control-label col-sm-2'>Nama Cabang</label>
+			<p class="form-control-static col-sm-8">{{$cabang->nama}}</p>
+		</div>
 
-		<div><span class='detail_cell'>URL</span>:<a href='http://{{$cabang->link}}'> {{$cabang->link}}</a></div>
+		<div class="form-group">
+			<label class='control-label col-sm-2'>Alamat Kantor</label>
+			<p class="form-control-static col-sm-8">{{$cabang->alamat}}</p>
+		</div>
+
+		<div class="form-group">
+			<label class='control-label col-sm-2'>Telepon</label>
+			<p class="form-control-static col-sm-8">{{$cabang->telp}}</p>
+		</div>
+
+		<div class="form-group">
+			<label class='control-label col-sm-2'>Fax</label>
+			<p class="form-control-static col-sm-8">{{$cabang->fax}}</p>
+		</div>
+
+		<div class="form-group">
+			<label class='control-label col-sm-2'>E-mail</label>
+			<p class="form-control-static col-sm-8">{{$cabang->email}}</p>
+		</div>
+
+		<div class="form-group">
+			<label class='control-label col-sm-2'>URL</label>
+			<a href='http://{{$cabang->link}}' class="form-control-static col-sm-8"> {{$cabang->link}}</a>
+		</div>
 		@if($id!=1)																													
-		<div></div><a href='javascript:void(0)' class='go_back_but' style='margin-left:790px;'>Kembali</a></div>
+		<div class="form-group">
+			<div class='control-label col-sm-2'>
+				<a href='javascript:void(0)' class='go_back_but btn btn-primary' style=''>
+					<span class="glyphicon glyphicon-chevron-left"></span> Kembali
+				</a>
+			</div>
+		</div>
 		@endif
 		<span class='clear'>&nbsp;</span>	
 	</div>
@@ -46,7 +70,9 @@ $(document).ready(function(){
 	<div id="pengurus">
 		<h3>Daftar Pengurus Pada Cabang ini</h3>
 		<!--<div id='tambah_pengurus_link'>-->
-		<button data-toggle="modal" data-target=".pop_up_super_c_tambah_pengurus" href='javascript:void(0)' id='tambah_pengurus'  class='btn btn-success pull-right'>+ Pengurus Baru</button>
+		<button data-toggle="modal" data-target=".pop_up_super_c_tambah_pengurus" href='javascript:void(0)' id='tambah_pengurus'  class='btn btn-success pull-right'>
+			<span class="glyphicon glyphicon-plus"></span> Pengurus Baru
+		</button>
 		<!--</div>-->
 		<span class="clearfix"></span>
 		<div id="listPengurus">
@@ -84,7 +110,7 @@ $(document).ready(function(){
 <script>
 var id_hapus_pengurus;
 // $('body').one("click",'.hapus_pengurus',function(){
-$('.hapus_pengurus').one("click",function(){
+	$('.hapus_pengurus').one("click",function(){
 	//$(".pop_up_super_c_hapus_pengurus").fadeIn(277, function(){});
 		//var id_pengurus = $(this).next().val();
 		$id_pengurus = $(this).next().val();
@@ -93,7 +119,7 @@ $('.hapus_pengurus').one("click",function(){
 		id_hapus_pengurus = $id_pengurus;
 	});			
 // $('body').one("click",'.ok_hapus_pengurus',function(){
-$('.ok_hapus_pengurus').one("click",function(){
+	$('.ok_hapus_pengurus').one("click",function(){
 	//$( ".loader" ).fadeIn( 200, function(){});
 		//ajax delete
 		$.ajax({
@@ -132,7 +158,7 @@ $('.ok_hapus_pengurus').one("click",function(){
 				}, 500);
 			}
 		});
-	});	
+});	
 $('body').on('click','.batal_hapus_pengurus',function(){
 	//$(".pop_up_super_c_hapus_pengurus").fadeOut(200, function(){});
 });
@@ -326,9 +352,9 @@ $('body').on('click','.periode_pengurus',function(){
 			<div class="modal-body">
 				<h3 style="padding-top: 5px;padding-left: 20px; margin-bottom: 5px !important; text-align: center;" id="title_pdf_viewer"></h3>					
 
-			<!--<object data="assets/img/Chapter_4.pdf" type="application/pdf" width="100%" class="pdf_viewer"></object>-->
-			<object style="height:590px !important;" data="" type="application/pdf" width="100%" id="pdf_viewer"></object>
-			
+				<!--<object data="assets/img/Chapter_4.pdf" type="application/pdf" width="100%" class="pdf_viewer"></object>-->
+				<object style="height:590px !important;" data="" type="application/pdf" width="100%" id="pdf_viewer"></object>
+
 			</div>
 		</div>
 	</div>

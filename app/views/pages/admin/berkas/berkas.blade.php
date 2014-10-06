@@ -30,9 +30,8 @@
 					<table class='list_berkas table'>
 						<thead><tr>
 							<th class='nama_berkas'>Nama Berkas</th>
-							<th class='pengunggah_berkas'>Pengunggah Berkas</th>
 							<th class='tanggal_unggah_berkas'>Tanggal Unggah</th>
-							<th class='deskripsi_berkas'>Deskripsi Berkas</th>
+							<th class='deskripsi_berkas'>&nbsp;</th>
 							<th class='edit_berkas'>&nbsp;</th>
 							<th class='delete_berkas'>&nbsp;</th>
 						</tr></thead>
@@ -41,9 +40,18 @@
 								<tr>
 									<td class='nama_berkas'>{{$file->nama_file}}</td>
 									<td class='tanggal_unggah_berkas'>{{$file->uploaded_date}}</td>
-									<td class='deskripsi_berkas'> <input type='hidden' value='{{$file->deskripsi}}'/> <button data-toggle='modal' data-target='.pop_up_super_c_deskripsi_berkas' style='margin-top: 4px;' class='button_show_deskripsi btn btn-primary' type='submit'>Lihat Deskripsi</button> </td>						
-									<td class='edit_berkas'> <input data-toggle='modal' data-target='.pop_up_super_c_edit_berkas' type='button' value='edit' class='edit_info_berkas btn btn-warning' /><input type='hidden' class='id_berkas' value='{{$file->id}}' /></td>
-									<td class='delete_berkas'><input data-toggle='modal' data-target='.pop_up_super_c_hapus_berkas' type='button' value='x' class='hapus_berkas btn btn-danger' /><input type='hidden' class='id_berkas' value='{{$file->id}}' /></td>
+									<td class='deskripsi_berkas'> 
+										<input type='hidden' value='{{$file->deskripsi}}'/> 
+										<button data-toggle='modal' data-target='.pop_up_super_c_deskripsi_berkas' style='margin-top: 4px;' class='button_show_deskripsi btn btn-primary' type='submit'>
+											Lihat Deskripsi
+										</button> 
+									</td>						
+									<td class='edit_berkas'> <input data-toggle='modal' data-target='.pop_up_super_c_edit_berkas' type='button' value='Edit' class='edit_info_berkas btn btn-warning' />
+										<input type='hidden' class='id_berkas' value='{{$file->id}}' />
+									</td>
+									<td class='delete_berkas'><input data-toggle='modal' data-target='.pop_up_super_c_hapus_berkas' type='button' value='Delete' class='hapus_berkas btn btn-danger' />
+										<input type='hidden' class='id_berkas' value='{{$file->id}}' />
+									</td>
 								</tr>
 							@endforeach
 						</tbody>

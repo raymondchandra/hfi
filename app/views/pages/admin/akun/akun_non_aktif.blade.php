@@ -12,14 +12,14 @@
 			var temp = "";
 			var obj = JSON.parse(data);
 			$.each(obj,function(index, value){
-				temp += '<div class="nomor_anggota">'+value.no_anggota+'</div>';
-				temp += '<li><div class="username_akun">'+value.username+'</div>';
-				temp += '<div class="name_akun">'+value.nama+'</div>';
-				temp += '<div class="cabang_akun">'+value.cabang+'</div>';
-				temp += '<div class="tanggal_akun">'+value.batas_aktif+'</div>';
-				temp += '<div class="command">';
+				temp += '<tr><td class="nomor_anggota">'+value.no_anggota+'</td>';
+				temp += '<td class="username_akun">'+value.username+'</td>';
+				temp += '<td class="name_akun">'+value.nama+'</td>';
+				temp += '<td class="cabang_akun">'+value.cabang+'</td>';
+				temp += '<td class="tanggal_akun">'+value.batas_aktif+'</td>';
+				temp += '<td class="command">';
 				temp += '<a href="javascript:void(0)" class="akun_baru_aktivasi_trigger" onClick="openPopup('+index+');">Aktivasi</a>';
-				temp += '</div></li>';
+				temp += '</td></tr>';
 			});
 			$(".list_akun").html(temp);
 			$( ".loader" ).fadeOut( 200, function(){});
@@ -34,14 +34,14 @@
 				var obj = JSON.parse(data);
 				if(obj.token == token){
 					$.each(obj.data,function(index, value){
-						temp += '<div class="nomor_anggota">'+value.no_anggota+'</div>';
-						temp += '<li><div class="username_akun">'+value.username+'</div>';
-						temp += '<div class="name_akun">'+value.nama+'</div>';
-						temp += '<div class="cabang_akun">'+value.cabang+'</div>';
-						temp += '<div class="tanggal_akun">'+value.batas_akhir+'</div>';
-						temp += '<div class="command">';
+						temp += '<tr><div class="nomor_anggota">'+value.no_anggota+'</td>';
+						temp += '<td class="username_akun">'+value.username+'</td>';
+						temp += '<td class="name_akun">'+value.nama+'</td>';
+						temp += '<td class="cabang_akun">'+value.cabang+'</td>';
+						temp += '<td class="tanggal_akun">'+value.batas_akhir+'</td>';
+						temp += '<td class="command">';
 						temp += '<a href="javascript:void(0)" class="akun_baru_aktivasi_trigger" onClick="openPopup('+index+');">Aktivasi</a>';
-						temp += '</div></li>';
+						temp += '</td></tr>';
 					});
 					$(".list_akun").html(temp);
 					$( ".loader" ).fadeOut( 200, function(){});
@@ -94,34 +94,37 @@
 <script src="{{ asset('assets/js/jpages/js/jPages.min.js') }}"></script>
 
 <div class="holder"></div>
-<div class='list_legend_akun'>
-	<ul>
-		<li class="nomor_anggota">
+<table class="table">
+<thead class='list_legend_akun'>
+	<tr>
+		<th class="nomor_anggota">
 			Nomor Anggota
-		</li>
-		<li class="username_akun">
+		</th>
+		<th class="username_akun">
 			Username
-		</li>
-		<li class="name_akun">
+		</th>
+		<th class="name_akun">
 			Nama
-		</li>
-		<li class="cabang_akun">
+		</th>
+		<th class="cabang_akun">
 			Nama Cabang
-		</li>
-		<li class="tanggal_akun">
+		</th>
+		<th class="tanggal_akun">
 			Tanggal berakhir
-		</li>
-		<li class="command">
+		</th>
+		<th class="command">
 			
-		</li>
-	</ul> 
-</div>
+		</th>
+	</tr> 
+</thead>
 
-<div class="admin_akun_list">
-	<ul class="list_akun" id="jpage_list_akun"> 
+<!--<div class="admin_akun_list">-->
+	<tbody class="list_akun" id="jpage_list_akun"> 
 		
-	</ul>
-</div>
+	</tbody>
+<!--</div>-->
+
+<table class="table">
 
 <div class="holder"></div>
 <script>

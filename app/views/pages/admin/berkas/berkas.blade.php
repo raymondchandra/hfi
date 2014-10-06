@@ -130,12 +130,12 @@
 									processData: false,
 									contentType: false,
 									success: function(as){
-										alert('Berhasil menambah berkas ini ajax');
+										alert('Berhasil menambah berkas');
 										$( ".loader" ).fadeIn( 200, function(){});
 	 									$('.admin_control_panel').load('admin/berkas');
 	 									$('.modal-backdrop').removeClass('in');
 										setTimeout(function() {
-											$('.modal-backdrop')..remove();
+											$('.modal-backdrop').remove();
 										}, 500);
 									}
 								});
@@ -280,9 +280,9 @@
 					</div>
 				</div>
 				<script>
-					$('body').on('click','.hapus_berkas',function(){					
-						$id = $(this).next().val();
-						id_hapus_berkas = $id;						
+					$('body').on('click','.hapus_berkas',function(){							
+						$id = $(this).next().val();						
+						id_hapus_berkas = $id;									
 					});
 					$('body').on('click','.ok_hapus_berkas',function(){
 						//ajax delete
@@ -299,7 +299,7 @@
 	 							$('.admin_control_panel').load('admin/berkas');	
 	 							$('.modal-backdrop').removeClass('in');
 								setTimeout(function() {
-									$('.modal-backdrop')..remove();
+									$('.modal-backdrop').remove();
 								}, 500);			
 							},
 							error:function(jqXHR, textStatus, errorThrown){

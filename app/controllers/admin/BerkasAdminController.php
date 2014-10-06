@@ -66,12 +66,14 @@ class BerkasAdminController extends BaseController {
 			}
 			
 			//return Redirect::to('/admin')->with('message', "berhasil menambah file berkas");
-			return "Berhasil menambah berkas di controller";
+			// return "Berhasil menambah berkas di controller";
+			return "Berhasil menambah berkas";
 		}
 		else
 		{
 			//return Redirect::to('/admin/carianggota')->with('message', "gagal menambah file berkas");
-			return "Gagal menambah berkas di controller";
+			// return "Gagal menambah berkas di controller";
+			return "Gagal menambah berkas";
 		}
 	}
 	

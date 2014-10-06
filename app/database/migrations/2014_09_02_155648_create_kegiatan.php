@@ -19,7 +19,7 @@ class CreateKegiatan extends Migration {
 			$table->string('tempat');
 			$table->dateTime('waktu_mulai');
 			$table->dateTime('waktu_selesai');
-			$table->string('deskripsi');
+			$table->longText('deskripsi');
 			$table->string('brosur_kegiatan');
 			$table->integer('uploaded_by')->unsigned();
 			$table->tinyInteger('type');

@@ -27,7 +27,7 @@
 			},
 			success: function(response){
 				if(response == 'success'){
-					alert("Berhasil merubah data");
+					alert("@if($simpIct == 3) Berhasil mengubah data @else @if($simpIct == 4) Success editing data @endif @endif ");
 				}else{
 					alert(response);
 				}
@@ -52,7 +52,7 @@
 			data: input,
 			success: function(response){
 				if(response == 'success'){
-				alert("Berhasil merubah data");
+					alert("@if($simpIct == 3) Berhasil mengubah data @else @if($simpIct == 4) Success editing data @endif @endif ");
 			}else{
 				alert(response);
 			}
@@ -76,7 +76,7 @@
 			data: input,
 			success: function(response){
 				if(response == 'success'){
-				alert("Berhasil merubah data");
+					alert("@if($simpIct == 3) Berhasil mengubah data @else @if($simpIct == 4) Success editing data @endif @endif ");
 			}else{
 				alert(response);
 			}
@@ -98,7 +98,7 @@
 				},
 				success: function(response){
 					if(response == 'success'){
-					alert("Berhasil merubah data");
+					alert("@if($simpIct == 3) Berhasil mengubah data @else @if($simpIct == 4) Success editing data @endif @endif ");
 				}else{
 					alert(response);
 				}
@@ -108,7 +108,7 @@
 				}
 			},'json');
 		}else{
-			alert("Password tidak sama.");
+			alert("@if($simpIct == 3) Password tidak sama @else @if($simpIct == 4) Password does not match @endif @endif ");
 		}
 	}
 
@@ -125,34 +125,34 @@
 			}
 		</style>
 		<ol class="breadcrumb">
-			<li><a href="{{ URL::to('simposium/admin', $id) }}"  >Dashboard</a></li>			
-			<li class="active">Umum</li>
+			<li><a href="{{ URL::to('event/admin', $id) }}"  >@if($simpIct == 3) Beranda @else @if($simpIct == 4) Dashboard @endif @endif </a></li>			
+			<li class="active">@if($simpIct == 3) Umum @else @if($simpIct == 4) General @endif @endif </li>
 		</ol>
 
 		<div class="form-horizontal">
-			<h3>Data Kegiatan</h3>
+			<h3>@if($simpIct == 3) Data Kegiatan @else @if($simpIct == 4) Event Data @endif @endif </h3>
 			
 				<div class="form-group">
-					<label class=" control-label col-sm-3">Nama</label>
+					<label class=" control-label col-sm-3">@if($simpIct == 3) Nama @else @if($simpIct == 4) Name @endif @endif </label>
 					<input type="text" id="namaKegiatan" value="{{$kegiatan->nama}}" class="form-control col-sm-5">
 				</div>
 				<div class="form-group">
 					
-					<label class=" control-label col-sm-3">Tempat</label>
+					<label class=" control-label col-sm-3">@if($simpIct == 3) Tempat @else @if($simpIct == 4) Place @endif @endif </label>
 					<input type="text" id="tempat" value="{{$kegiatan->tempat}}" class="form-control col-sm-5">
 				</div>
 				<div class="form-group">
 					
-					<label class=" control-label col-sm-3">Tanggal Mulai</label>
+					<label class=" control-label col-sm-3">@if($simpIct == 3) Tanggal Mulai @else @if($simpIct == 4) Start Date @endif @endif </label>
 					<input type="text" value="{{$tanggal_mulai}}" id="datepicker1" class="form-control col-sm-5">
 				</div>
 				<div class="form-group">
 					
-					<label class=" control-label col-sm-3">Tanggal Akhir</label>
+					<label class=" control-label col-sm-3">@if($simpIct == 3) Tanggal Akhir @else @if($simpIct == 4) End Date @endif @endif </label>
 					<input type="text" value="{{$tanggal_selesai}}" id="datepicker2" class="form-control col-sm-5">
 				</div>
 			<span class="clearfix"></span>
-			<button onClick="updateKegiatan()" class="btn btn-primary">Ubah</button>
+			<button onClick="updateKegiatan()" class="btn btn-primary">@if($simpIct == 3) Ubah @else @if($simpIct == 4) Edit @endif @endif </button>
 		</div>
 			<script>
 				jQuery('#datepicker1').datetimepicker({
@@ -197,17 +197,17 @@
 			</script>
 		<hr />
 		<div class="form-horizontal">
-			<h3>Registrasi</h3>
+			<h3>@if($simpIct == 3) Registrasi @else @if($simpIct == 4) Registration @endif @endif</h3>
 			<div class="form-group">	
-				<label class=" control-label col-sm-3">Status Pendaftaran</label> 
+				<label class=" control-label col-sm-3">@if($simpIct == 3) Status Pendaftaran @else @if($simpIct == 4) Registration Status @endif @endif </label> 
 				<label class="radio-inline">
-					<input type="radio" name="regis" id="regisBuka"> Buka 
+					<input type="radio" name="regis" id="regisBuka"> @if($simpIct == 3) Buka @else @if($simpIct == 4) Open @endif @endif 
 				</label>
 				<label class="radio-inline">
-					<input type="radio" name="regis" id="regisTutup"> Tutup 
+					<input type="radio" name="regis" id="regisTutup"> @if($simpIct == 3) Tutup @else @if($simpIct == 4) Close @endif @endif 
 				</label>
 				<span class="clearfix"></span>
-				<button onClick="ubah_status()" class="btn btn-primary">Ubah</button>
+				<button onClick="ubah_status()" class="btn btn-primary">@if($simpIct == 3) Ubah @else @if($simpIct == 4) Edit @endif @endif </button>
 			</div>
 		</div>
 		<hr />
@@ -215,16 +215,16 @@
 			<h3>Admin</h3>
 
 			<div class="form-group">
-				<label class=" control-label col-sm-3">Status Admin</label> 
+				<label class=" control-label col-sm-3">@if($simpIct == 3) Status Admin @else @if($simpIct == 4) Admin Status @endif @endif </label> 
 				<label class="radio-inline">
-					<input type="radio" name="statAdmin" id="admAktif"> Aktif 
+					<input type="radio" name="statAdmin" id="admAktif"> @if($simpIct == 3) Aktif @else @if($simpIct == 4) Active @endif @endif  
 				</label>
 				<label class="radio-inline">
-					<input type="radio" name="statAdmin" id="admTutup"> Nonaktif 
+					<input type="radio" name="statAdmin" id="admTutup"> @if($simpIct == 3) Nonaktif @else @if($simpIct == 4) Nonactive @endif @endif  
 				</label>
 			</div>
 			<span class="clearfix"></span>
-			<button onClick="ubah_status_admin()" class="btn btn-primary">Ubah</button>
+			<button onClick="ubah_status_admin()" class="btn btn-primary">@if($simpIct == 3) Ubah @else @if($simpIct == 4) Edit @endif @endif </button>
 
 			<div class="form-group">
 			<label class=" control-label col-sm-3">Username</label>
@@ -235,11 +235,11 @@
 				<input type="password" id="pass" class="form-control col-sm-5"> 
 			</div>
 			<div class="form-group">
-			<label class=" control-label col-sm-3">Re type password</label>
+			<label class=" control-label col-sm-3">@if($simpIct == 3) Ketik ulang password @else @if($simpIct == 4) Re-type password @endif @endif </label>
 			<input type="password" id="rePass" class="form-control col-sm-5"> 
 		</div>
 			<span class="clearfix"></span>
-			<button onClick="ubah_pass()" class="btn btn-primary">Ubah</button>
+			<button onClick="ubah_pass()" class="btn btn-primary">@if($simpIct == 3) Ubah @else @if($simpIct == 4) Edit @endif @endif </button>
 		</div>
 	</div>
 </div>

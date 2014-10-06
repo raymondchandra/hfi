@@ -265,7 +265,7 @@ Route::post('/postRegulasi', ['as' => 'postRegulasi', 'uses' => 'HomeAdminContro
 Route::put('/changePass', ['as' => 'changePass', 'uses' => 'AccountController@changePass']);
 
 
-Route::group(array('prefix' => 'simposium/admin', 'before' => 'authSimposiumAdmin'), function () {
+Route::group(array('prefix' => 'event/admin', 'before' => 'authSimposiumAdmin'), function () {
 	Route::get('/{id}', ['as' => 'admin.kegiatan2.index', 'uses' => 'Kegiatan2AdminController@view_detail']);
 	Route::get('/general/{id}', ['as' => 'admin.kegiatan2.general', 'uses' => 'Kegiatan2AdminController@view_general']);
 	Route::get('/konten/{id}', ['as' => 'admin.kegiatan2.konten', 'uses' => 'Kegiatan2AdminController@view_konten']);
@@ -326,7 +326,7 @@ Route::group(array('prefix' => 'simposium/admin', 'before' => 'authSimposiumAdmi
 
 
 
-Route::group(array('prefix' => 'simposium', 'before' => 'authSimposium'), function () {
+Route::group(array('prefix' => 'event', 'before' => 'authSimposium'), function () {
 	
 	Route::get('/user/{id_peserta}/{id}', ['as' => 'simposium.user', 'uses' => 'SimposiumController@view_user']);
 	
@@ -341,7 +341,7 @@ Route::group(array('prefix' => 'simposium', 'before' => 'authSimposium'), functi
 	//end of minta bantuan
 });
 
-Route::group(array('prefix' => 'simposium', 'before' => ''), function () {
+Route::group(array('prefix' => 'event', 'before' => ''), function () {
 
 Route::get('/login/{id}', ['as' => 'simposium.login', 'uses' => 'SimposiumController@view_login']);
 Route::get('/{id}', ['as' => 'simposium.index', 'uses' => 'SimposiumController@view_index']);
@@ -351,7 +351,7 @@ Route::post('/login', ['as' => 'simposium.login_function', 'uses' => 'SimposiumC
 
 });
 
-Route::group(array('prefix' => 'simposium', 'before' => 'checkSimposium'), function () {
+Route::group(array('prefix' => 'event', 'before' => 'checkSimposium'), function () {
 	
 	Route::get('/{id}', ['as' => 'simposium.index2', 'uses' => 'SimposiumController@view_index']);
 	Route::get('/logout/{id}', ['as' => 'simposium.logout', 'uses' => 'SimposiumController@logout']);
@@ -363,90 +363,7 @@ Route::group(array('prefix' => 'simposium', 'before' => 'checkSimposium'), funct
 	
 });
 
-Route::group(array('prefix' => 'ictap/admin', 'before' => 'authIctapAdmin'), function () {
-	Route::get('/{id}', ['as' => 'admin.kegiatan2i.index', 'uses' => 'Kegiatan2AdminController@view_detail']);
-	Route::get('/general/{id}', ['as' => 'admin.kegiatan2i.general', 'uses' => 'Kegiatan2AdminController@view_general']);
-	Route::get('/konten/{id}', ['as' => 'admin.kegiatan2i.konten', 'uses' => 'Kegiatan2AdminController@view_konten']);
-	Route::get('/harga/{id}', ['as' => 'admin.kegiatan2i.harga', 'uses' => 'Kegiatan2AdminController@view_harga']);
-	Route::get('/peserta/{id}', ['as' => 'admin.kegiatan2i.peserta', 'uses' => 'Kegiatan2AdminController@view_peserta']);
-	Route::get('/satu_peserta/{id}', ['as' => 'admin.kegiatan2i.satu_peserta', 'uses' => 'Kegiatan2AdminController@get_one_peserta']);
-	
-	
-	Route::get('/pesan/{id}', ['as' => 'admin.kegiatan2i.pesan', 'uses' => 'Kegiatan2AdminController@view_pesan']);
-	Route::get('/berkas/{id}', ['as' => 'admin.kegiatan2i.berkas', 'uses' => 'Kegiatan2AdminController@view_berkas']);
-	Route::get('/template/{id}', ['as' => 'admin.kegiatan2i.template', 'uses' => 'Kegiatan2AdminController@view_template']);
-	Route::get('/konten/header/{id}', ['as' => 'admin.kegiatan2i.konten.header', 'uses' => 'Kegiatan2AdminController@view_header']);
-	//Route::get('/konten/sponsor/{id}', ['as' => 'admin.kegiatan2.konten.sponsor', 'uses' => 'Kegiatan2AdminController@view_sponsor']);
-	Route::get('/konten/editor/{type}/{id}', ['as' => 'admin.kegiatan2i.konten.editor', 'uses' => 'Kegiatan2AdminController@view_editor']);
 
-	Route::put('/updateKegiatan/{id}', ['as' => 'admin.kegiatan2i.updateKegiatan', 'uses' => 'Kegiatan2AdminController@edit_kegiatan']);
-	Route::put('/ubahStatus/{id}', ['as' => 'admin.kegiatan2i.ubahStatus', 'uses' => 'Kegiatan2AdminController@edit_status']);
-	Route::put('/ubahStatAdmin/{id}', ['as' => 'admin.kegiatan2i.ubahStatAdmin', 'uses' => 'Kegiatan2AdminController@edit_stat_admin']);
-	Route::put('/ubahPass/{id}', ['as' => 'admin.kegiatan2i.ubahPass', 'uses' => 'Kegiatan2AdminController@edit_pass_admin']);
-	Route::put('/ubahEarly/{id}', ['as' => 'admin.kegiatan2i.ubahEarly', 'uses' => 'Kegiatan2AdminController@edit_early']);
-	
-	Route::put('/ubahStatusBayar', ['as' => 'admin.kegiatan2i.ubahStatusbayar', 'uses' => 'Kegiatan2AdminController@update_status_pembayaran']);
-
-	Route::put('/konten/editor/{id}', ['as' => 'admin.kegiatan2i.konten.editEditor', 'uses' => 'Kegiatan2AdminController@edit_editor']);
-
-	Route::post('/header/{id}', ['as' => 'admin.kegiatan2i.editHeader', 'uses' => 'Kegiatan2AdminController@update_header']);	
-	Route::post('/sponsor/{id}', ['as' => 'admin.kegiatan2i.addSponsor', 'uses' => 'Kegiatan2AdminController@tambah_sponsor']);	
-	Route::post('/edsponsor/{id}', ['as' => 'admin.kegiatan2i.editSponsor', 'uses' => 'Kegiatan2AdminController@update_sponsor']);	
-	Route::delete('/sponsor/{id}', ['as' => 'admin.kegiatan2i.delSponsor', 'uses' => 'Kegiatan2AdminController@hapus_sponsor']);	
-	
-
-	Route::post('/harga/{id}', ['as' => 'admin.kegiatan2i.tambahHarga', 'uses' => 'Kegiatan2AdminController@tambahHarga']);
-	Route::put('/harga/{id}', ['as' => 'admin.kegiatan2i.editHarga', 'uses' => 'Kegiatan2AdminController@editHarga']);
-	Route::delete('/harga/{id}', ['as' => 'admin.kegiatan2i.hapusHarga', 'uses' => 'Kegiatan2AdminController@hapus_harga']);
-
-
-	Route::post('/berkas/{id}', ['as' => 'admin.kegiatan2i.tambahBerkas', 'uses' => 'Kegiatan2AdminController@add_berkas']);
-	Route::delete('/berkas/{id}', ['as' => 'admin.kegiatan2i.hapusBerkas', 'uses' => 'Kegiatan2AdminController@del_berkas']);
-
-	Route::get('/template/{type}/{id}', ['as' => 'admin.kegiatan2i.templateDetail', 'uses' => 'Kegiatan2AdminController@view_template_editor']);
-	
-	//pesan
-	Route::get('/message/get', ['as' => 'admin.kegiatan2i.get_pesan', 'uses' => 'Kegiatan2AdminController@getMessageById']);
-	Route::get('/reply/get', ['as' => 'admin.kegiatan2i.get_reply', 'uses' => 'Kegiatan2AdminController@getMessageReply']);
-	Route::post('/reply/get', ['as' => 'admin.kegiatan2i.put_reply', 'uses' => 'Kegiatan2AdminController@replyMessage']);
-	//end of pesan
-	
-	
-	
-	//template
-	Route::put('/template/update', ['as' => 'admin.kegiatan2i.update_template', 'uses' => 'Kegiatan2AdminController@updateTemplate']);
-});
-
-Route::group(array('prefix' => 'ictap', 'before' => 'authIctap'), function () {
-	
-	Route::get('/user/{id}/{id_peserta}', ['as' => 'ictap.user', 'uses' => 'IctapController@view_user']);
-	
-	Route::put('/editProfil', ['as' => 'ictap.editProfil', 'uses' => 'IctapController@edit_profil']);
-	
-	Route::put('/uploadBuktiBayar', ['as' => 'ictap.uploadBuktiBayar', 'uses' => 'IctapController@upload_bayar']);
-	
-	Route::put('/uploadPaper', ['as' => 'ictap.uploadPaper', 'uses' => 'IctapController@upload_paper']);
-	
-	//minta bantuan
-	Route::post('/bantuan', ['as' => 'ictap.mintaBantuan', 'uses' => 'IctapController@createMessage']);
-
-	//end of minta bantuan
-});
-
-Route::group(array('prefix' => 'ictap', 'before' => ''), function () {
-
-	Route::get('/{id}', ['as' => 'ictap.index', 'uses' => 'IctapController@view_index']);
-	Route::get('/login/{id}', ['as' => 'ictap.login', 'uses' => 'IctapController@view_login']);
-	Route::get('/logout/{id}', ['as' => 'ictap.logout', 'uses' => 'IctapController@logout']);
-	Route::get('/registrasi/{id}', ['as' => 'ictap.registrasi', 'uses' => 'IctapController@view_registrasi']);
-	Route::get('/konten/{type}/{id}', ['as' => 'ictap.konten', 'uses' => 'IctapController@view_konten']);
-	Route::get('/peserta/{id}', ['as' => 'ictap.peserta', 'uses' => 'IctapController@view_peserta']);
-	
-	Route::post('/register', ['as' => 'ictap.register', 'uses' => 'IctapController@register']);
-	Route::post('/login', ['as' => 'ictap.login_function', 'uses' => 'IctapController@login']);
-
-	
-});
 
 Route::get('/test/tesuto', function()
 	{

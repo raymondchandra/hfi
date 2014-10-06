@@ -15,8 +15,8 @@
 			}
 		</style>
 		<ol class="breadcrumb">
-			<li><a href="{{ URL::to('simposium/admin', $id) }}"  >Dashboard</a></li><!-- onClick='history.back();' -->
-			<li><a href="{{ URL::to('simposium/admin/konten', $id) }}"  >Konten</a></li><!-- onClick='history.back();' -->
+			<li><a href="{{ URL::to('event/admin', $id) }}"  >@if($simpIct == 3) Beranda @else @if($simpIct == 4) Dashboard @endif @endif </a></li><!-- onClick='history.back();' -->
+			<li><a href="{{ URL::to('event/admin/konten', $id) }}"  >@if($simpIct == 3) Konten @else @if($simpIct == 4) Content @endif @endif </a></li><!-- onClick='history.back();' -->
 			<li class="active">{{$title}}</li>
 		</ol>
 
@@ -25,7 +25,7 @@
 			<textarea name="textarea" id = 'jqteText' class="editor">
 				{{$text}}
 			</textarea>
-			<input type='button' id='submit_change' value='Ubah' class="button btn btn-success" style="margin-left: auto; margin-right: auto; display: block "></input>
+			<input type='button' id='submit_change' value='@if($simpIct == 3) Ubah @else @if($simpIct == 4) Edit @endif @endif ' class="button btn btn-success" style="margin-left: auto; margin-right: auto; display: block "></input>
 		</div>
 		
 		<script>
@@ -40,7 +40,20 @@
 						text: $('.editor').val()
 					},
 					success: function(response){
-						alert(response);
+						if(response=="Success Update"){
+							@if($simpIct == 3) 
+								alert('Berhasil mengubah teks');
+							@else @if($simpIct == 4)  
+								alert('Success changing text');
+							@endif @endif 
+						}
+						else if(response=="Success Insert"){
+							@if($simpIct == 3) 
+								alert('Berhasil menambah teks');
+							@else @if($simpIct == 4)  
+								alert('Success adding text');
+							@endif @endif 
+						}
 					},
 					error: function(jqXHR, textStatus, errorThrown){
 						alert(errorThrown);

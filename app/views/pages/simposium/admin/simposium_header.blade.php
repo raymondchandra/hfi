@@ -29,10 +29,10 @@
 		@if(count($header) != 0)
 			<img id="img_header" src="{{ asset($header->file_path) }}" width="940" alt="simpsium hfi"/>
 		@else
-			<img id="img_header" src="{{asset('asdf')}}" width="940" alt="simpsium hfi"/>
+			<img id="img_header" src="{{asset('asdf')}}" width="940" height='320' alt="simpsium hfi"/>
 		@endif
 		<button id="headerBtn" data-toggle="modal" data-target=".pop_up_ubah_header" style="position: absolute; top:20px; right: 20px;" class="btn btn-success">
-			Ubah Header
+			@if($simpIct == 3) Ubah Header @else @if($simpIct == 4) Edit Header @endif @endif 
 		</button>
 	</div>
 </div>
@@ -60,16 +60,7 @@
 		}
 	</style>
 </div>
-	<div class="container_12">
-	<div class="grid_12 s_sponsor_area">
-		<a href="#">
-			Sign In
-		</a>
-		|
-		<a href="#">
-			Log In
-		</a>
-	</div>
+	@include('includes.simposium.login')
 </div>
 
 	
@@ -87,8 +78,8 @@
 			}
 		</style>
 		<ol class="breadcrumb">
-			<li><a href="{{ URL::to('simposium/admin', $id) }}"  >Dashboard</a></li><!-- onClick='history.back();' -->
-			<li><a href="{{ URL::to('simposium/admin/konten', $id) }}"  >Konten</a></li><!-- onClick='history.back();' -->
+			<li><a href="{{ URL::to('event/admin', $id) }}"  >@if($simpIct == 3) Beranda  @else @if($simpIct == 4) Dashboard @endif @endif </a></li><!-- onClick='history.back();' -->
+			<li><a href="{{ URL::to('event/admin/konten', $id) }}"  >@if($simpIct == 3) Konten @else @if($simpIct == 4) Content @endif @endif </a></li><!-- onClick='history.back();' -->
 			<li class="active">Header dan Sponsor</li>
 		</ol>
 
@@ -104,7 +95,7 @@
     	<div class="modal-content">
       		<div class="modal-header">
         		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        		<h4 class="modal-title" id="myModalLabel">Ubah Header</h4>
+        		<h4 class="modal-title" id="myModalLabel">@if($simpIct == 3) Ubah Header @else @if($simpIct == 4) Edit Header @endif @endif </h4>
       		</div>
 			
 			<form id="form_edit_tanda_tangan">
@@ -119,7 +110,13 @@
 				</div>
 				<div class="modal-footer">
 					<div class="form-group konten_pesan">
-						{{ Form::submit('Ubah Gambar', array('id'=>'ok_edit_tanda_tangan_button', 'style' => '', 'class'=>'btn btn-success')) }}
+						@if($simpIct == 3) 
+							{{ Form::submit('Ubah Gambar', array('id'=>'ok_edit_tanda_tangan_button', 'style' => '', 'class'=>'btn btn-success')) }}
+						@else @if($simpIct == 4) 
+							{{ Form::submit('Edit Image', array('id'=>'ok_edit_tanda_tangan_button', 'style' => '', 'class'=>'btn btn-success')) }}
+						
+						@endif @endif 
+						
 					</div>
 				</div>
 			</form>	
@@ -136,7 +133,8 @@
 							}
 						}, messages : {
 							fileHeader : {
-								required : "Mohon isi file "
+								@if($simpIct == 3) required : "Mohon isi file" @else @if($simpIct == 4) required : "Please include file" @endif @endif 
+							
 							}
 						},
 						submitHandler:function(form){		
@@ -152,7 +150,12 @@
 								contentType: false,					
 								success: function(as){			
 									if(as == 'success'){
-										alert("Berhasil mengubah header");
+										@if($simpIct == 3) 
+											alert("Berhasil mengubah header");
+										 @else @if($simpIct == 4) 
+										 	alert("Success editing header");
+										  @endif @endif 
+										
 										location.reload();
 									}	else{
 										alert(as);
@@ -195,7 +198,7 @@
     	<div class="modal-content">
       		<div class="modal-header">
         		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        		<h4 class="modal-title" id="myModalLabel">Tambah Sponsor</h4>
+        		<h4 class="modal-title" id="myModalLabel">@if($simpIct == 3) Tambah Sponsor @else @if($simpIct == 4) Add Sponsor @endif @endif </h4>
       		</div>
 
 			<form id="form_tambah_sponsor">
@@ -210,7 +213,13 @@
 			</div>
 			<div class="modal-footer">
 				<div class="form-group konten_pesan">
-					{{ Form::submit('Ubah Gambar', array('id'=>'ok_edit_tanda_tangan_button', 'style' => '', 'class'=>'btn btn-success')) }}
+					@if($simpIct == 3) 
+						{{ Form::submit('Ubah Gambar', array('id'=>'ok_edit_tanda_tangan_button', 'style' => '', 'class'=>'btn btn-success')) }}
+						@else @if($simpIct == 4) 
+							{{ Form::submit('Edit Image', array('id'=>'ok_edit_tanda_tangan_button', 'style' => '', 'class'=>'btn btn-success')) }}
+						
+						@endif @endif 
+
 				</div>
 			</div>
 			</form>	
@@ -229,7 +238,7 @@
 							}
 						}, messages : {
 							fileTambahSponsor : {
-								required : "Mohon isi file"
+								@if($simpIct == 3) required : "Mohon isi file" @else @if($simpIct == 4) required : "Please include file" @endif @endif 
 							}
 						},
 						submitHandler:function(form){		
@@ -245,7 +254,11 @@
 								contentType: false,					
 								success: function(as){			
 									if(as == 'success'){
-										alert("Berhasil menambah sponsor");
+										@if($simpIct == 3) 
+											alert("Berhasil menambah sponsor");
+										 @else @if($simpIct == 4) 
+										 	alert("Success adding sponsor");
+										  @endif @endif 
 										location.reload();
 									}			else{
 										alert(as);
@@ -292,7 +305,7 @@
     	<div class="modal-content">
       		<div class="modal-header">
         		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        		<h4 class="modal-title" id="myModalLabel">Ubah Sponsor</h4>
+        		<h4 class="modal-title" id="myModalLabel">@if($simpIct == 3) Ubah Sponsor @else @if($simpIct == 4) Edit Sponsor @endif @endif </h4>
       		</div>
 
 			<form id="form_ubah_sponsor">
@@ -308,8 +321,14 @@
 			<div class="modal-footer">
 
 				<div class="form-group konten_pesan">
-					<button id="delButton">Delete</button>
-					{{ Form::submit('Unggah Gambar', array('id'=>'ok_edit_tanda_tangan_button', 'style' => '', 'class'=>'btn btn-success')) }}
+					<button class="btn btn-danger" id="delButton">@if($simpIct == 3) Hapus @else @if($simpIct == 4) Delete @endif @endif </button>
+					@if($simpIct == 3) 
+						{{ Form::submit('Ubah Gambar', array('id'=>'ok_edit_tanda_tangan_button', 'style' => '', 'class'=>'btn btn-success')) }}
+					 @else @if($simpIct == 4)  
+
+						{{ Form::submit('Edit Image', array('id'=>'ok_edit_tanda_tangan_button', 'style' => '', 'class'=>'btn btn-success')) }}
+					 @endif @endif 
+					
 				</div>
 			</div>
 			</form>	
@@ -327,7 +346,11 @@
 							success: function(data){
 								if(data == "success")
 								{
-									alert("Berhasil menghapus sponsor");
+									@if($simpIct == 3) 
+											alert("Berhasil menghapus sponsor");
+										 @else @if($simpIct == 4) 
+										 	alert("Success deleting sponsor");
+										  @endif @endif 
 									location.reload();
 								}else{
 									alert(data);
@@ -350,7 +373,8 @@
 							}
 						}, messages : {
 							file_ubah_sponsor : {
-								required : "Mohon isi file"
+								@if($simpIct == 3) required : "Mohon isi file" @else @if($simpIct == 4) required : "Please include file" @endif @endif 
+							
 							}
 						},
 						submitHandler:function(form){		
@@ -367,7 +391,11 @@
 								contentType: false,					
 								success: function(as){			
 									if(as == 'success'){
-										alert("Berhasil mengubah sponsor");
+										@if($simpIct == 3) 
+											alert("Berhasil mengubah sponsor");
+										 @else @if($simpIct == 4) 
+										 	alert("Success editing sponsor");
+										  @endif @endif 
 										location.reload();
 									}			else{
 										alert(as);

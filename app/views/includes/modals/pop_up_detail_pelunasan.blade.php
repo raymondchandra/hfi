@@ -19,7 +19,9 @@
 
 					<div class="form-group">
 						<label class=" control-label col-sm-3">Biaya</label>
-						<p class="form-control-static col-sm-5 biaya_bayar">IDR 2.500.000</p>
+						<p class="form-control-static col-sm-5 biaya_bayar">
+							{{ HTML::image('','Image',array('class'=>'bukti_bayar_image')) }}
+						</p>
 					</div>
 					<div class="form-group lunas_belum">
 						<label class=" control-label col-sm-3 ">Status Pembayaran</label>

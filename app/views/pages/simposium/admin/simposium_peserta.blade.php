@@ -143,7 +143,7 @@ $(document).ready(function(){
 			else{
 				$('.jenis_bayar').text(response.status);
 			}
-			$('.biaya_bayar').text();
+			$('.bukti_bayar_image').attr('src',response.bukti_bayar);
 			
 			var $radios = $('input:radio[name=is_paper]');
 			$radios.filter('[value='+response.status_bayar+']').prop('checked', true);		

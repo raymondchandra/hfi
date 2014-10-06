@@ -819,6 +819,7 @@ class Kegiatan2AdminController extends BaseController {
 		$type = Input::get('type');
 		$id = Input::get('id');
 		$text = Input::get('text');
+		
 		if($type === "Registrasi")
 		{
 			return $this->updateRegTemplate($id,$text);
@@ -837,7 +838,7 @@ class Kegiatan2AdminController extends BaseController {
 		}
 		else
 		{
-			
+			return "Tipe Tidak Dikenali";
 		}
 	}
 	
@@ -851,11 +852,13 @@ class Kegiatan2AdminController extends BaseController {
 	public function updateRegTemplate($id, $text)
 	{ 
 		$template = Template::where('id_kegiatan', '=' , $id)->where('tipe', '=', 'reg')->first();
-		$template->timestamps = false;
+		
 			
 		if($template == null)
 		{
+			
 			$template = new Template();
+			$template->timestamps = false;
 			$template->id_kegiatan = $id;
 			$template->tipe = 'reg';
 			$template->text = $text;
@@ -871,6 +874,7 @@ class Kegiatan2AdminController extends BaseController {
 		}
 		else
 		{
+			$template->timestamps = false;
 			$template->text = $text;
 			try
 			{
@@ -893,11 +897,13 @@ class Kegiatan2AdminController extends BaseController {
 	public function updateAbsTemplate($id, $text)
 	{
 		$template = Template::where('id_kegiatan', '=' , $id)->where('tipe', '=', 'abs')->first();
-		$template->timestamps = false;
+		
 			
 		if($template == null)
 		{
+		
 			$template = new Template();
+			$template->timestamps = false;
 			$template->id_kegiatan = $id;
 			$template->tipe = 'abs';
 			$template->text = $text;
@@ -913,6 +919,7 @@ class Kegiatan2AdminController extends BaseController {
 		}
 		else
 		{
+			$template->timestamps = false;
 			$template->text = $text;
 			try
 			{
@@ -935,10 +942,11 @@ class Kegiatan2AdminController extends BaseController {
 	public function updatePapTemplate($id, $text)
 	{
 		$template = Template::where('id_kegiatan', '=' , $id)->where('tipe', '=', 'pap')->first();
-		$template->timestamps = false;
+		
 		if($template == null)
 		{
-			$template = new Template();			
+			$template = new Template();
+			$template->timestamps = false;			
 			$template->id_kegiatan = $id;
 			$template->tipe = 'pap';
 			$template->text = $text;
@@ -955,6 +963,7 @@ class Kegiatan2AdminController extends BaseController {
 		}
 		else
 		{
+			$template->timestamps = false;
 			$template->text = $text;
 			try
 			{
@@ -978,11 +987,12 @@ class Kegiatan2AdminController extends BaseController {
 	public function updateInvTemplate($id, $text)
 	{
 		$template = Template::where('id_kegiatan', '=' , $id)->where('tipe', '=', 'inv')->first();
-		$template->timestamps = false;
+		
 		
 		if($template == null)
 		{
 			$template = new Template();
+			$template->timestamps = false;
 			$template->id_kegiatan = $id;
 			$template->tipe = 'inv';
 			$template->text = $text;
@@ -999,6 +1009,7 @@ class Kegiatan2AdminController extends BaseController {
 		}
 		else
 		{
+			$template->timestamps = false;
 			$template->text = $text;
 			try
 			{

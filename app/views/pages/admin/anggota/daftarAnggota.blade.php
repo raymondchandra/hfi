@@ -343,10 +343,10 @@
 
 <div class="container_12">
 	<div class="grid_12">
-		<div class='admin_title'>Cari Anggota</div>
+		<div class='admin_title'>Daftar Anggota</div>
 		<!--ISI CONTENT-->	
 		<div class="div_tabel_cari" id="accordion">	
-			<h3 id="head_accordion">Cari Anggota</h3>
+			<h3 id="head_accordion">Daftar Anggota</h3>
 			<div>
 				<table class="tabel_cari" border="0" style="margin-top:30px;">
 					<tr>

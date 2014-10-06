@@ -112,7 +112,7 @@
 						@foreach($regulasis as $regulasi)
 							<li style='padding-top:5px; padding-bottom: 5px;'>
 								<a href='javascript:void(0)' class='versi_regulasi' style='line-height: 36px; margin-right: 10px; display: inline-block;' value='{{$regulasi->file_path}}'>{{$regulasi->versi}}</a>
-								<input type='button' value='hapus' class='hapus_regulasi btn btn-danger' style="float: right;"/><input type='hidden' class='id_regulasi' value='{{$regulasi->id}}'/>
+								<input data-toggle='modal' data-target='.pop_up_super_c_hapus_regulasi' type='button' value='hapus' class='hapus_regulasi btn btn-danger' style="float: right;"/><input type='hidden' class='id_regulasi' value='{{$regulasi->id}}'/>
 							</li>
 						@endforeach
 					@endif
@@ -143,31 +143,31 @@
 	
 	
 	<!-- pop up hapus regulasi -->
-	<div class=" pop_up_super_c_hapus_regulasi" style="display: none;">
-		<a class="exit close_56_hapus_regulasi" ></a>
-		<div class="pop_up_tbl_hapus_regulasi">
-			<div class="pop_up_cell_hapus_regulasi">
-				<div class="container_12">			
-					<div class="div_hapus_regulasi" style="background: #fff; width:600px !important; padding-top:40px;">
-						<h2 style="text-align:center;">Anda yakin ingin menghapus berkas ini?</h2>							
-						<table border="0" style="margin-left:auto; margin-right:auto;">
-							<tr>
-								<td><button class="ok_hapus_regulasi">Ya</button></td>
-								<td>&nbsp;</td>
-								<td><button class="batal_hapus_regulasi">Tidak</button></td>
-							</tr>
-						</table>
+		<div class="modal fade pop_up_super_c_hapus_regulasi" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header bg-danger">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						Perhatian!
 					</div>
-				</div>			
-			</div>		
+					<div class="modal-body">
+						<h4 style="text-align: center;">Anda yakin ingin menghapus berkas ini?</h4>				
+						<div class="form-horizontal">
+							<div class="form-group">
+								<button class="ok_hapus_regulasi btn btn-primary form-control col-sm-2 col-sm-push-3">Ya</button>
+								<button  data-dismiss="modal" class="batal_hapus_regulasi btn btn-primary  form-control col-sm-2  col-sm-push-5">Tidak</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
 
 	<script>
 		var id_hapus_regulasi;
 
 		$('body').on('click','.hapus_regulasi',function(){
-			$(".pop_up_super_c_hapus_regulasi").fadeIn(277, function(){});
+			//$(".pop_up_super_c_hapus_regulasi").fadeIn(277, function(){});
 			$id = $(this).next().val();
 			
 			//ambil id regulasi buat ok_hapus_regulasi
@@ -191,17 +191,25 @@
 						if(data == "Success Delete"){
 							alert("Sukses menghapus data.");
 						}
-						$(".pop_up_super_c_hapus_regulasi").fadeOut(200, function(){});
-						$(".loader").fadeIn( 277, function(){});						
+						//$(".pop_up_super_c_hapus_regulasi").fadeOut(200, function(){});
+						//$(".loader").fadeIn( 277, function(){});						
 						
 						if(count == 1) page--;
 						$('.admin_control_panel').load('admin/home/regulasi?page='+page); 	
 						//$('.admin_control_panel').load('admin/home/regulasi'); 	
 						ajaxOnce = true;
+	 							$('.modal-backdrop').removeClass('in');
+								setTimeout(function() {
+									$('.modal-backdrop').remove();
+								}, 500);	
 					},
 					error: function(jqXHR, textStatus, errorThrown){
 						alert(errorThrown);
 						ajaxOnce = true;
+	 							$('.modal-backdrop').removeClass('in');
+								setTimeout(function() {
+									$('.modal-backdrop').remove();
+								}, 500);	
 					}
 				});
 
@@ -209,12 +217,12 @@
 			
 		});							
 		$('body').on('click','.batal_hapus_regulasi',function(){
-			$(".pop_up_super_c_hapus_regulasi").fadeOut(200, function(){});
+			//$(".pop_up_super_c_hapus_regulasi").fadeOut(200, function(){});
 		});
 		
-		$('.exit').click(function() {$(".pop_up_super_c_hapus_regulasi").fadeOut(200, function(){});});
+		//$('.exit').click(function() {$(".pop_up_super_c_hapus_regulasi").fadeOut(200, function(){});});
 		
-		$('.pop_up_super_c_hapus_regulasi').click(function (e)
+		/*$('.pop_up_super_c_hapus_regulasi').click(function (e)
 		{
 			var container = $('.pop_up_cell_hapus_regulasi');
 			if (container.is(e.target) )// if the target of the click is the container...
@@ -222,7 +230,7 @@
 				$( ".pop_up_super_c_hapus_regulasi" ).fadeOut( 200, function(){});
 				$('html').css('overflow-y', 'auto');
 			}
-		});
+		});*/
 	</script>	
 		
 </div>

@@ -13,7 +13,7 @@
 							var list ="<table class='list_cabang table'><thead><tr><th class='nama_cabang'>Kantor</th>";
 							list+="<th class='alamat_cabang'>Alamat Cabang</th>";
 							list+="<th class='telepon_cabang'>Telepon</th>";
-							list+="<th class='detail_cabang'>Lihat Detail</th>";
+							list+="<th class='detail_cabang' style='width:260px;'>Lihat Detail</th>";
 							list+="</tr></thead>";
 							list+="<tbody><tr><td class='nama_cabang'>-</td>";
 							list+="<td class='alamat_cabang'>-</td>";
@@ -28,7 +28,7 @@
 							var list ="<table class='list_cabang table'><thead><tr><th class='nama_cabang'>Nama Cabang</th>";
 							list+="<th class='alamat_cabang'>Alamat Cabang</th>";
 							list+="<th class='telepon_cabang'>Telepon</th>";								
-							list+="<th class='detail_cabang'>Lihat Detail</th>";
+							list+="<th class='detail_cabang' style='width:260px;'>Lihat Detail</th>";
 							list+="</tr></thead>";
 							list+="<tbody>";
 							arrIDCabang = [];
@@ -84,7 +84,9 @@ $(document).ready(function() {
 
 <div class="cabang_list_container">
 	<!-- <div id='tambah_cabang_link'>-->
-	<button data-toggle="modal" data-target=".pop_up_super_c_tambah_cabang" id='tambah_cabang' class="btn btn-success pull-right">+ Kantor Cabang Baru</button>
+	<button data-toggle="modal" data-target=".pop_up_super_c_tambah_cabang" id='tambah_cabang' class="btn btn-success pull-right">
+		<span class="glyphicon glyphicon-plus"></span> Kantor Cabang Baru
+	</button>
 	<span class="clearfix"></span>
 	<!--</div>-->
 	<div class="cabang_list" style="margin-left: 20px !important; ">

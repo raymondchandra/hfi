@@ -42,17 +42,23 @@
 		</script>
 		<div class='admin_title'>Kegiatan Internasional</div>
 		<div style='height: 30px;'></div>
-		<div style="width: 100%; display: block; overflow: hidden; margin-bottom: 30px;"><a href="javascript:void(0)" style="text-decoration:none;" id="tambah_kegiatan" class="command_button" data-toggle="modal" data-target=".tambah_kegiatan_pop">Tambah Kegiatan</a></div>
+		<div style="width: 100%; display: block; overflow: hidden; margin-bottom: 30px;">
+			<a href="javascript:void(0)" style="text-decoration:none;" id="tambah_kegiatan" class="command_button" data-toggle="modal" data-target=".tambah_kegiatan_pop">
+				<span class="glyphicon glyphicon-plus"></span>
+				Tambah Kegiatan
+			</a>
+		</div>
 		<div class="kegiatan_container" style="margin-left: 20px;">
 			@if($kegiatans == NULL)
 			<span>Kegiatan belum tersedia.</span>
 			@else
-			<ul>
-				@foreach($kegiatans as $kegiatan)
-				<li>
-					<div>
-						<img class="poster_kegiatan" src="{{$kegiatan->brosur_kegiatan}}" />
-						<div class="info_kegiatan">
+			<table class="table">
+				<tbody>
+					@foreach($kegiatans as $kegiatan)
+					<tr>
+						
+						<td><img class="poster_kegiatan" src="{{$kegiatan->brosur_kegiatan}}" /></td>
+						<td><div class="info_kegiatan">
 							<div class="waktu_kegiatan">{{$kegiatan->waktu_mulai}} - {{$kegiatan->waktu_selesai}}</div>
 							<div class="nama_kegiatan">{{$kegiatan->nama_kegiatan}}</div>
 							<div class="place_kegiatan">{{$kegiatan->tempat}}</div>
@@ -66,30 +72,30 @@
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="edit_kegiatan_form">
-								   <!-- Large modal 
-								   <button class="btn btn-primary" data-toggle="modal" data-target=".edit_kegiatan_pop">Large modal</button>-->
+						</div></td>
+						<td><div class="edit_kegiatan_form">
+							   <!-- Large modal 
+							   <button class="btn btn-primary" data-toggle="modal" data-target=".edit_kegiatan_pop">Large modal</button>-->
 
-								   <input type="button" class="edit_kegiatan" value="edit" data-toggle="modal" data-target=".edit_kegiatan_pop"/>
-								   <input type='hidden' value='{{$kegiatan->id}}' />
-								   <input type="button" class="hapus_kegiatan_inter" value="hapus" />
-								</div>
+							   <input type="button" class="edit_kegiatan btn btn-warning" value="edit" data-toggle="modal" data-target=".edit_kegiatan_pop"/>
+							   <input type='hidden' value='{{$kegiatan->id}}' />
+							   <input data-toggle='modal' data-target='.pop_up_super_c_hapus_kegiatan' type="button" class="hapus_kegiatan_inter btn btn-danger" value="Hapus" />
 							</div>
-						</li>
-						<span class='clear'>&nbsp;</span>
-						<span class='clear'>&nbsp;</span>
-						@endforeach
-					</ul>
-					@endif
-				</div>
-				@if($kegiatans != NULL)
-				<?php echo $kegiatans->links(); ?>
-				@endif
-				
+						</td>
+						
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
+			@endif
+		</div>
+		@if($kegiatans != NULL)
+		<?php echo $kegiatans->links(); ?>
+		@endif
+		
 
-<link rel="stylesheet" type="text/css" href="assets/js/datetimepicker/jquery.datetimepicker.css"/ >
-<script src="assets/js/datetimepicker/jquery.datetimepicker.js"></script>
+		<link rel="stylesheet" type="text/css" href="assets/js/datetimepicker/jquery.datetimepicker.css"/ >
+		<script src="assets/js/datetimepicker/jquery.datetimepicker.js"></script>
 
 
 <!--pop up
@@ -251,15 +257,15 @@
 			<div class="modal fade bs-example-modal-lg edit_kegiatan_pop" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
-						<div class="container_12">			
+						<div class="container-fluid">			
 
-							<div class="grid_12 pop_up_container" style="background: #fff; padding: 20px;">
+							<div class="col-lg-12 pop_up_container" style="background: #fff; padding: 20px;">
 								{{ Form::open(array('url' => '','id'=>'form_edit_kegiatan', 'files' => true)) }}
-								<div class="grid_5">
+								<div class="col-lg-4">
 									<img src="" id='preview_edit_brosur' width="150" height="180"/>
 									{{ Form::file('gambar',array('id'=>'edit_file_upload'), Input::old('gambar')) }}
 								</div>
-								<div class="grid_5">
+								<div class="col-lg-7">
 									<div class="row_label">
 										<label>Nama</label>{{ Form::text('nama', Input::old('nama'),array('id'=>'edit_nama_kegiatan', 'onclick'=>'this.focus();this.select()', 'autofocus')) }}
 
@@ -320,10 +326,93 @@
 					</div>		
 				</div>
 			</div>
+
+
+
+
+
+
+
+
+
+
+			<!-- pop up hapus kegiatan -->
+			<div class="modal fade pop_up_super_c_hapus_kegiatan" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header bg-danger">
+							<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+							Perhatian!
+						</div>
+						<div class="modal-body">
+							<h4 style="text-align: center;">Anda yakin ingin menghapus kegiatan ini?</h4>				
+							<div class="form-horizontal">
+								<div class="form-group">
+									<button data-dismiss="modal" class="ok_hapus_berkas btn btn-primary form-control col-sm-2 col-sm-push-3">Ya</button>
+									<button  data-dismiss="modal" class="batal_hapus_berkas btn btn-primary  form-control col-sm-2  col-sm-push-5">Tidak</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<script>
+					$('body').on('click','.hapus_kegiatan_inter',function(){							
+						$id = $(this).prev().val();		
+						id_hapus_berkas = $id;									
+					});
+					$('body').one('click','.ok_hapus_berkas',function(){
+						$.ajax({
+							type: 'delete',
+							url: 'admin/deleteKegiatan',
+							data: {
+								"id_kegiatan": id_hapus_berkas
+							},
+							success: function(response){
+								//alert(response);
+							},
+							error: function(jqXHR, textStatus, errorThrown){
+								//alert(errorThrown);
+							},
+							complete:function(){
+								$('#admin_kegiatan_internasional').click();
+							}
+						});
+					});
+
+					</script>	
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		</div>
 	</div>
 	
-<script>
+	<script>
 	$file_brosur="";
 	$('body').on('click','#tambah_kegiatan',function(){
 		$( ".tambah_kegiatan_pop" ).fadeIn( 277, function(){});
@@ -332,25 +421,7 @@
 	});
 
 
-	$('body').one('click','.hapus_kegiatan_inter',function(){
-		$id = $(this).prev().val();
-		$.ajax({
-			type: 'delete',
-			url: 'admin/deleteKegiatan',
-			data: {
-				"id_kegiatan": $id
-			},
-			success: function(response){
-				//alert(response);
-			},
-			error: function(jqXHR, textStatus, errorThrown){
-				//alert(errorThrown);
-			},
-			complete:function(){
-				$('#admin_kegiatan_internasional').click();
-			}
-		});
-	});
+	
 
 	$('body').on('click','.edit_kegiatan',function(){
 		$(".loader").fadeIn(100, function(){});
@@ -480,15 +551,15 @@ $('body').on('click','.edit_button',function(){
 		processData:false,
 		contentType: false,
 		success: function(response){
-				alert(response);
-			},
-			error: function(jqXHR, textStatus, errorThrown){
-				alert(errorThrown);
-			},
-			complete:function(){
-				$('#admin_kegiatan_internasional').click();
-			}
-		});
+			alert(response);
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			alert(errorThrown);
+		},
+		complete:function(){
+			$('#admin_kegiatan_internasional').click();
+		}
+	});
 
 });
 
@@ -529,7 +600,7 @@ $('.pop_up_super_c').click(function (e)
 $('body').one('click','#ok_tambah_kegiatan_inter',function(){
 	
 	$arrayData = $('#form_tambah_kegiatan').serializeArray();
-		
+
 	var formData = new FormData();
 	
 	formData.append('nama_kegiatan',$arrayData[1]['value']);
@@ -560,7 +631,7 @@ $('body').one('click','#ok_tambah_kegiatan_inter',function(){
 			$('#admin_kegiatan_internasional').click();
 		}
 	});
-		
+
 });
 
 $('body').on('change','#brosur_kegiatan',function(){

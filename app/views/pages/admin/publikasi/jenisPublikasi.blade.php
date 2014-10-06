@@ -11,7 +11,7 @@ $(document).ready(function(){
 <textarea name="pub_jenis" id = 'pub_jenis' class="editor"> 
 {{$pub_jenis}}
 </textarea>
-<input type='button' id='submit_change' value='Ubah' style="margin-left: auto; margin-right: auto; " class="button"></input>
+<input type='button' id='submit_change' value='Ubah' style="margin-left: auto; margin-right: auto; " class="button btn btn-success center-block"></input>
 </div>
 
 <script>

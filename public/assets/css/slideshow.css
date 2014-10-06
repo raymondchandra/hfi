@@ -132,7 +132,7 @@
 	text-indent: 0px;
 	bottom: -14px;
 	opacity: 0;
-
+	top: 5px;
 }
 
 .slide_container a.edit_pp:hover p{

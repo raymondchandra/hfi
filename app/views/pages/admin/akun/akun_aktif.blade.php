@@ -1,231 +1,237 @@
 <script>
-	var token = 0;
-	var activeId = -1;
-	function openPopup(id){
-		activeId = id;
-	}
-	
-	$(document).ready(function(){
-		
-		var url = '{{URL::route('admin.akun.getAktif')}}';
-		$.get(url,function(data){
+var token = 0;
+var activeId = -1;
+function openPopup(id){
+	activeId = id;
+}
+
+$(document).ready(function(){
+
+	var url = '{{URL::route('admin.akun.getAktif')}}';
+	$.get(url,function(data){
+		var temp = "";
+		var obj = JSON.parse(data);
+		$.each(obj,function(index, value){
+				//temp += '<li><div class="nomor_anggota">'+value.no_anggota+'</div>';
+				temp += '<tr>';
+				temp += '<td class="nomor_anggota">'+value.no_anggota+'</td>';
+				temp += '<td class="username_akun">'+value.username+'</td>';
+				temp += '<td class="name_akun">'+value.nama+'</td>';
+				temp += '<td class="cabang_akun">'+value.cabang+'</td>';
+				temp += '<td class="tanggal_akun">'+value.batas_aktif+'</td>';
+				temp += '<td class="command">';
+				temp += '<a href="javascript:void(0)" class="akun_aktif_ubahpass_trigger btn btn-warning" onClick="openPopup('+index+');">Reset Password</a>';
+				temp += '<a href="javascript:void(0)" class="akun_baru_aktivasi_trigger btn btn-primary" onClick="openPopup('+index+');" style="margin-left: 10px;">Perpanjang Masa Aktif</a>';
+				temp += '</td>';
+				temp += '</tr>';
+			});
+		$(".list_akun").html(temp);
+		$( ".loader" ).fadeOut( 200, function(){});
+	});
+	$( ".search_box_input" ).keyup(function() {
+		$( ".loader" ).fadeIn( 200, function(){});
+		var url = "{{ URL::route('admin.akun.findUsername', ['1']) }}";
+		var username = $(".search_box_input").val();
+		token++;
+		$.get(url+'?username='+username+'&token='+token,function(data){
 			var temp = "";
 			var obj = JSON.parse(data);
-			$.each(obj,function(index, value){
-				//temp += '<li><div class="nomor_anggota">'+value.no_anggota+'</div>';
-				temp += '<li><div class="nomor_anggota">'+value.no_anggota+'</div>';
-				temp += '<div class="username_akun">'+value.username+'</div>';
-				temp += '<div class="name_akun">'+value.nama+'</div>';
-				temp += '<div class="cabang_akun">'+value.cabang+'</div>';
-				temp += '<div class="tanggal_akun">'+value.batas_aktif+'</div>';
-				temp += '<div class="command">';
-				temp += '<a href="javascript:void(0)" class="akun_aktif_ubahpass_trigger" onClick="openPopup('+index+');">Reset Password</a>';
-				temp += '<a href="javascript:void(0)" class="akun_baru_aktivasi_trigger" onClick="openPopup('+index+');">Perpanjang Masa Aktif</a>';
-				temp += '</div></li>';
-			});
-			$(".list_akun").html(temp);
-			$( ".loader" ).fadeOut( 200, function(){});
-		});
-		$( ".search_box_input" ).keyup(function() {
-			$( ".loader" ).fadeIn( 200, function(){});
-			var url = "{{ URL::route('admin.akun.findUsername', ['1']) }}";
-			var username = $(".search_box_input").val();
-			token++;
-			$.get(url+'?username='+username+'&token='+token,function(data){
-				var temp = "";
-				var obj = JSON.parse(data);
-				if(obj.token == token){
-					$.each(obj.data,function(index, value){
+			if(obj.token == token){
+				$.each(obj.data,function(index, value){
 						//temp += '<li><div class="nomor_anggota">'+value.no_anggota+'</div>';
-						temp += '<li><div class="nomor_anggota">'+value.no_anggota+'</div>';
-						temp += '<div class="username_akun">'+value.username+'</div>';
-						temp += '<div class="name_akun">'+value.nama+'</div>';
-						temp += '<div class="cabang_akun">'+value.cabang+'</div>';
-						temp += '<div class="tanggal_akun">'+value.batas_aktif+'</div>';
-						temp += '<div class="command">';
-						temp += '<a href="javascript:void(0)" class="akun_aktif_ubahpass_trigger" onClick="openPopup('+index+');">Reset Password</a>';
-						temp += '<a href="javascript:void(0)" class="akun_baru_aktivasi_trigger" onClick="openPopup('+index+');">Perpanjang Masa Aktif</a>';
-						temp += '</div></li>';
+						temp += '<li>';
+						temp += '<td class="nomor_anggota">'+value.no_anggota+'</td>';
+						temp += '<td class="username_akun">'+value.username+'</td>';
+						temp += '<td class="name_akun">'+value.nama+'</td>';
+						temp += '<td class="cabang_akun">'+value.cabang+'</td>';
+						temp += '<td class="tanggal_akun">'+value.batas_aktif+'</td>';
+						temp += '<td class="command">';
+						temp += '<button href="javascript:void(0)" class="akun_aktif_ubahpass_trigger btn btn-warning" onClick="openPopup('+index+');">Reset Password</button>';
+						temp += '<button href="javascript:void(0)" class="akun_baru_aktivasi_trigger btn btn-primary" onClick="openPopup('+index+');" style="margin-left: 10px;">Perpanjang Masa Aktif</button>';
+						temp += '</td>';
+						temp += '</li>';
 					});
-					$(".list_akun").html(temp);
-					$( ".loader" ).fadeOut( 200, function(){});
-				}
-				
-			});
-			
-			
-		});
-	
-		$("#activateButton").click(function(){
-			var input = {
-				id : activeId,
-				length : $("#lama_aktivasi").val()
-			};
-			if(!input.length){
-				alert('Masukan lama aktivasi.');
-			}else{
-				$.ajax({
-					type: 'PUT',
-					url: '{{URL::route('admin.extendAccount')}}',
-					data: input,
-					success: function(data) {
-						if(data == 'success'){
-							alert("Akun berhasil diperpanjang.");
-							$( ".loader" ).fadeIn( 200, function(){});
-	 						$('.admin_control_panel').load('admin/akun/aktif');
-						}else{
-							alert(data);
-						}
-					}
-				});
+				$(".list_akun").html(temp);
+				$( ".loader" ).fadeOut( 200, function(){});
 			}
-			
-			
+
 		});
-		
-		$("#btnChangePassword").click(function(){
-			var input = {
-				id : activeId,
-				newPass : $("#newPass").val(),
-				reNewPass : $("#reNewPass").val()
-			};
-			$.ajax({
-				type: 'PUT',
-				url: '{{URL::route('admin.resetPassword')}}',
-				data: input,
-				success: function(data) {
-					if(data == 'success'){
-						alert("Berhasil mengubah password.");
-						$( ".loader" ).fadeIn( 200, function(){});
- 						$('.admin_control_panel').load('admin/akun/aktif');
-					}else if(data == 0){
-						$("#errNewPass").show();
-					}else if(data == '1'){
-						$("#errReNewPass").show();
-					}
+
+
+});
+
+$("#activateButton").click(function(){
+	var input = {
+		id : activeId,
+		length : $("#lama_aktivasi").val()
+	};
+	if(!input.length){
+		alert('Masukan lama aktivasi.');
+	}else{
+		$.ajax({
+			type: 'PUT',
+			url: '{{URL::route('admin.extendAccount')}}',
+			data: input,
+			success: function(data) {
+				if(data == 'success'){
+					alert("Akun berhasil diperpanjang.");
+					$( ".loader" ).fadeIn( 200, function(){});
+					$('.admin_control_panel').load('admin/akun/aktif');
+				}else{
+					alert(data);
 				}
-			});
-			
-			
+			}
 		});
+	}
+
+
+});
+
+$("#btnChangePassword").click(function(){
+	var input = {
+		id : activeId,
+		newPass : $("#newPass").val(),
+		reNewPass : $("#reNewPass").val()
+	};
+	$.ajax({
+		type: 'PUT',
+		url: '{{URL::route('admin.resetPassword')}}',
+		data: input,
+		success: function(data) {
+			if(data == 'success'){
+				alert("Berhasil mengubah password.");
+				$( ".loader" ).fadeIn( 200, function(){});
+				$('.admin_control_panel').load('admin/akun/aktif');
+			}else if(data == 0){
+				$("#errNewPass").show();
+			}else if(data == '1'){
+				$("#errReNewPass").show();
+			}
+		}
 	});
-	
+
+
+});
+});
+
 </script>
 <div class='container_12'>
-<div class='grid_12'>
-<div class='admin_title'>Akun Aktif</div>
-<div class='search_box'>
-		<input type='text' placeholder='Cari Username' class='search_box_input' />
-		<a href="javascript:void(0)" class="x_mark" style="display: none;">
-		</a>
-</div>
+	<div class='grid_12'>
+		<div class='admin_title'>Akun Aktif</div>
+		<div class='search_box'>
+			<input type='text' placeholder='Cari Username' class='search_box_input' />
+			<a href="javascript:void(0)" class="x_mark" style="display: none;">
+			</a>
+		</div>
 
-<!-- add jPages plugin -->
-<link rel="stylesheet" href="{{ asset('assets/js/jpages/css/jPages.css') }}">
-<script src="{{ asset('assets/js/jpages/js/jPages.min.js') }}"></script>
+		<!-- add jPages plugin -->
+		<link rel="stylesheet" href="{{ asset('assets/js/jpages/css/jPages.css') }}">
+		<script src="{{ asset('assets/js/jpages/js/jPages.min.js') }}"></script>
 
-<div class="holder"></div>
-<div class='list_legend_akun'>
-	<ul>
-		<li class="nomor_anggota">
-			Nomor Anggota
-		</li>
-		<li class="username_akun">
-			Username
-		</li>
-		<li class="name_akun">
-			Nama
-		</li>
-		<li class="cabang_akun">
-			Nama Cabang
-		</li>
-		<li class="tanggal_akun">
-			Batas Aktif
-		</li>
-		<li class="command">
-			
-		</li>
-	</ul> 
-</div>
+		<div class="holder"></div>
 
-<div class="admin_akun_list">
-	<ul class="list_akun" id="jpage_list_akun"> <!-- list_akun -->
-		
-	</ul>
-</div>
-<div class="holder"></div>
+		<table class="table">
+			<thead class='list_legend_akun'>
+				<tr>
+					<th class="nomor_anggota">
+						Nomor Anggota
+					</th>
+					<th class="username_akun">
+						Username
+					</th>
+					<th class="name_akun">
+						Nama
+					</th>
+					<th class="cabang_akun">
+						Nama Cabang
+					</th>
+					<th class="tanggal_akun">
+						Batas Aktif
+					</th>
+					<th class="command">
 
-<script>
-$(document).ready(function () {
-    setTimeout(function(){
-	$(function() {
-		/* initiate plugin */
-		$("div.holder").jPages({
-			containerID : "jpage_list_akun",
-			perPage : 10
+					</th>
+				</tr> 
+			</thead>
+			<!--<div class="admin_akun_list">-->
+			<tbody class="list_akun" id="jpage_list_akun"> <!-- list_akun -->
+
+			</tbody>
+			<!--</div>-->
+		</table>
+		<div class="holder"></div>
+
+		<script>
+		$(document).ready(function () {
+			setTimeout(function(){
+				$(function() {
+					/* initiate plugin */
+					$("div.holder").jPages({
+						containerID : "jpage_list_akun",
+						perPage : 10
+					});
+					/* on select change */
+					$("select").change(function(){
+						/* get new nº of items per page */
+						var newPerPage = parseInt( $(this).val() );
+						/* destroy jPages and initiate plugin again */
+						$("div.holder").jPages("destroy").jPages({
+							containerID   : "jpage_list_akun",
+							perPage       : newPerPage
+						});
+					});
+				});
+			}, 500);
 		});
-		/* on select change */
-		$("select").change(function(){
-			/* get new nº of items per page */
-		  var newPerPage = parseInt( $(this).val() );
-		  /* destroy jPages and initiate plugin again */
-		  $("div.holder").jPages("destroy").jPages({
-				containerID   : "jpage_list_akun",
-				perPage       : newPerPage
-			});
-		});
-	});
-    }, 500);
-});
-</script>
+		</script>
 
-<!--pop up reset password-->
-<div class=" pop_up_super_c akun_aktif_ubahpass_pop" style="display: none;">
-	<a class="exit close_56" ></a>
-	<div class="pop_up_tbl">
-		<div class="pop_up_cell">
-			<div class="container_12">			
-				<div class="grid_8 push_2 pop_up_container" style="background: #fff; padding: 20px;">
-					<h3 style="width: 100%; text-align: center;">
-						Ubah Password
-					</h3>
-						<span class="clear"></span>
+		<!--pop up reset password-->
+		<div class=" pop_up_super_c akun_aktif_ubahpass_pop" style="display: none;">
+			<a class="exit close_56" ></a>
+			<div class="pop_up_tbl">
+				<div class="pop_up_cell">
+					<div class="container_12">			
+						<div class="grid_8 push_2 pop_up_container" style="background: #fff; padding: 20px;">
+							<h3 style="width: 100%; text-align: center;">
+								Ubah Password
+							</h3>
+							<span class="clear"></span>
 							{{ Form::password('newpassword', array('placeholder' => 'Ketik password baru','id' => 'newPass', 'style' => 'width: 300px; float: left;line-height: 22px;'), Input::old('newpassword')) }}
-						<!-- PENTING! Untuk menghilangka notifikasi error cukup tambahkan kelas 'hide' pada element bersangkutan -->
-						<span class="error" id="errNewPass">
-							Panjang password minimal 8 karakter
-						</span>
-						
-						<span class="clear"></span>
-						{{ Form::password('retypenewpassword', array('placeholder' => 'Ketik ulang password baru','id' => 'reNewPass', 'style' => 'width: 300px; float: left;line-height: 22px;'), Input::old('retypenewpassword')) }}
-						<!-- PENTING! Untuk menghilangka notifikasi error cukup tambahkan kelas 'hide' pada element bersangkutan -->
-						<span class="error" id="errReNewPass">
-							Password Anda tidak sama!
-						</span>
-						
-						<span class="clear"></span>
-						<div style="display: block; position: relative;overflow: hidden;">
-							{{ Form::button('Ubah Password', array('id' => 'btnChangePassword')) }}
-						</div>
-				</div>
-			</div>			
-		</div>		
-	</div>
-</div>
+							<!-- PENTING! Untuk menghilangka notifikasi error cukup tambahkan kelas 'hide' pada element bersangkutan -->
+							<span class="error" id="errNewPass">
+								Panjang password minimal 8 karakter
+							</span>
 
-<!--pop up perpanjang aktivasi-->
-<div class=" pop_up_super_c akun_baru_aktivasi_pop" style="display: none;">
-	<a class="exit close_56" ></a>
-	<div class="pop_up_tbl">
-		<div class="pop_up_cell">
-			<div class="container_12">			
-				<div class="grid_4 push_4 pop_up_container" style="background: #fff; padding: 20px;">
+							<span class="clear"></span>
+							{{ Form::password('retypenewpassword', array('placeholder' => 'Ketik ulang password baru','id' => 'reNewPass', 'style' => 'width: 300px; float: left;line-height: 22px;'), Input::old('retypenewpassword')) }}
+							<!-- PENTING! Untuk menghilangka notifikasi error cukup tambahkan kelas 'hide' pada element bersangkutan -->
+							<span class="error" id="errReNewPass">
+								Password Anda tidak sama!
+							</span>
+
+							<span class="clear"></span>
+							<div style="display: block; position: relative;overflow: hidden;">
+								{{ Form::button('Ubah Password', array('id' => 'btnChangePassword')) }}
+							</div>
+						</div>
+					</div>			
+				</div>		
+			</div>
+		</div>
+
+		<!--pop up perpanjang aktivasi-->
+		<div class=" pop_up_super_c akun_baru_aktivasi_pop" style="display: none;">
+			<a class="exit close_56" ></a>
+			<div class="pop_up_tbl">
+				<div class="pop_up_cell">
+					<div class="container_12">			
+						<div class="grid_4 push_4 pop_up_container" style="background: #fff; padding: 20px;">
 							<h3 style="width: 100%; text-align: center;">
 								Masukkan Lama Waktu Aktivasi
 							</h3>
 							<div class="row_label">
-							
-							{{ Form::select('lama_aktivasi',array(
+
+								{{ Form::select('lama_aktivasi',array(
 								'' => 'pilih!',
 								'1' => '1 tahun',
 								'2' => '2 tahun',
@@ -233,11 +239,11 @@ $(document).ready(function () {
 								'4' => '4 tahun',
 								'5' => '5 tahun'), NULL, array('style'=>'width: 200px; margin-left: auto; margin-right: auto; display: block;','id'=>'lama_aktivasi'))
 							}}
-							</div>
+						</div>
 						<div class="row_label">
 							{{Form::button('Perpanjang', array('style' => 'display:block; margin-left: auto; margin-right: auto;', 'class' => 'button', 'id' => 'activateButton'));}}
 						</div>
-					<style>
+						<style>
 						.row_label {
 							display: block;
 							margin-bottom: 10px;
@@ -257,15 +263,15 @@ $(document).ready(function () {
 							top: 0px;
 							width: 100%;
 						}
-					</style>
-					
-				</div>
-			</div>			
-		</div>		
-	</div>
-</div>
+						</style>
 
-<script>
+					</div>
+				</div>			
+			</div>		
+		</div>
+	</div>
+
+	<script>
 	/*Script yang digunakan untuk LOADING ANIMATION*/
 	$('body').on('click','.akun_baru_aktivasi_trigger',function(){
 		
@@ -275,10 +281,10 @@ $(document).ready(function () {
 	/*external container area exit trigger*/
 	$('.exit').click(function() {$( ".pop_up_super_c" ).fadeOut( 200, function(){});});	
 
-	 
+
 	$('body').on('click','.akun_aktif_ubahpass_trigger',function(){
 		
-	
+
 		$( ".akun_aktif_ubahpass_pop" ).fadeIn( 277, function(){});
 		$("#errNewPass").hide();
 		$("#errReNewPass").hide();
@@ -297,9 +303,9 @@ $(document).ready(function () {
 			$('html').css('overflow-y', 'auto');
 		}
 	});
-								
-</script>
-<script>
+
+	</script>
+	<script>
 
 	$('.search_box_input').on('input', function() {
 		// do something
@@ -317,7 +323,7 @@ $(document).ready(function () {
 	});
 	
 
-</script>
+	</script>
 
 
 

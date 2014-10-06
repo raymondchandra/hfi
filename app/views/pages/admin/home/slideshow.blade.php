@@ -170,7 +170,7 @@
 								<form class="update_foto_slideshow">
 									{{ Form::file('filePhoto',array('name'=>'photo','id'=>'filePhoto','class'=>'upload_photo','accept'=>"image/*" ,'style' => 'margin-top: 20px; display: block; margin-left: auto; margin-right: auto;')) }}
 									<input type='hidden' class='photo_id' name='id_photo' />
-									{{ Form::submit('Unggah Gambar', array('class' => 'button', 'id'=> 'button_upload_foto', 'style' => 'display: block; margin-left: auto; margin-right: auto; margin-top: 20px;')) }}								
+									{{ Form::submit('Unggah Gambar', array('class' => 'btn btn-success', 'id'=> 'button_upload_foto', 'style' => 'display: block; margin-left: auto; margin-right: auto; margin-top: 20px;')) }}								
 								</form>
 								<!--<input type='file' class='upload_photo' multiple="false" style="margin-top: '20px'; display: 'block'; margin-left: 'auto'; margin-right: 'auto';" />
 								<input type='button' class='button_upload_foto' value='Unggah Gambar' style="display: 'block'; margin-left: 'auto'; margin-right: 'auto'; margin-top: '20px';">-->

@@ -87,7 +87,13 @@ $('.pop_up_super_c_hapus_regulasi').click(function (e)
 		<div class='admin_title'>Kegiatan Simposium</div>
 		<div id="kegiatanContent">
 
-			<div id='div_tambah_lain'><a data-toggle="modal" data-target=".menu_lain_pop" href='javascript:void(0)' id='tambah_lain' class='command_button f_menu_lain_popuper'>+ Kegiatan</a></div>
+			<div id='div_tambah_lain'>
+				<a data-toggle="modal" data-target=".menu_lain_pop" href='javascript:void(0)' id='tambah_lain' class='command_button f_menu_lain_popuper'>
+					<span class="glyphicon glyphicon-plus"></span>
+					Tambah Kegiatan
+				</a>
+			</div>
+			<span class="clearfix"></span>
 			<div id="listKegiatan">
 				<table class="tabel_list_regulasi table table-hover" style="">
 					@if($kegiatans == NULL)
@@ -98,7 +104,7 @@ $('.pop_up_super_c_hapus_regulasi').click(function (e)
 					@else
 					@foreach($kegiatans as $kegiatan)
 					<tr style='padding-top:5px; padding-bottom: 5px;'>
-						<td><a href='event/admin/{{$kegiatan->id}}' target="_blank" class='kegiatan_simposium' style='line-height: 36px; margin-right: 10px;' >{{$kegiatan->nama}}</a></td>
+						<td><a href='simposium/admin/{{$kegiatan->id}}' target="_blank" class='kegiatan_simposium' style='line-height: 36px; margin-right: 10px;' >{{$kegiatan->nama}}</a></td>
 						<td><input type='button' value='hapus' class='hapus_regulasi btn btn-danger' onClick='hapus({{$kegiatan->id}})'/></td>
 					</tr>
 					@endforeach

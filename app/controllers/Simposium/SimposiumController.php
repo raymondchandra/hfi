@@ -205,7 +205,6 @@ class SimposiumController extends BaseController {
 				if (Hash::check($password, $kegiatan->pass_admin))
 				{
 					Session::push('session_admin_id',$kegiatan[0]['id']);
-					//Session::push('session_kegiatan',$id_kegiatan);
 					return Redirect::to('event/admin/'.$id_kegiatan);
 				}	
 				else{

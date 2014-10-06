@@ -556,10 +556,10 @@ class Kegiatan2AdminController extends BaseController {
 		
 			$peserta->save();
 			
-			return "Berhasil";
+			return "success";
 		}
 		else{
-				return "Gagal";
+				return "failed";
 		}
 	}
 	
@@ -574,10 +574,10 @@ class Kegiatan2AdminController extends BaseController {
 		
 			$peserta->save();
 			$this->createEmail("Penerimaan Abstrak",$peserta->id_kegiatan, $id );
-			return "Berhasil";
+			return "success";
 		}
 		else{
-			return "Gagal";
+			return "failed";
 		}
 	}
 	
@@ -592,10 +592,10 @@ class Kegiatan2AdminController extends BaseController {
 		
 			$peserta->save();
 			$this->createEmail("Penerimaan Paper Lengkap",$peserta->id_kegiatan, $id );
-			return "Berhasil";
+			return "success";
 		}
 		else{
-			return "Gagal";
+			return "failed";
 		}
 	}
 	

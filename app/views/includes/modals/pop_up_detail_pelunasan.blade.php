@@ -52,13 +52,26 @@
 		$id_peserta = $('.id_peserta_biaya').val();
 		$.ajax({
 			type: 'PUT',
-			url: "{{url('simposium/admin/ubahStatusBayar')}}",
+			url: "{{url('event/admin/ubahStatusBayar')}}",
 			data: {
 				"bayar": $change,
 				"id" : $id_peserta
 			},
 			success: function(response){
-				alert(response);
+				if(response == "success")
+			{
+@if($simpIct == 3) 
+	alert('Berhasil mengubah status');
+@else @if($simpIct == 4)  
+	alert('Success changing status');
+@endif @endif 
+			}else if(response == "failed"){
+@if($simpIct == 3) 
+	alert('Gagal mengubah status');
+@else @if($simpIct == 4)  
+	alert('Failed changing status');
+@endif @endif 
+			}
 				location.reload();
 			},
 			error: function(jqXHR, textStatus, errorThrown){

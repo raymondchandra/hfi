@@ -34,17 +34,16 @@
 							<span class="col-lg-8 alamat_peserta"></span>
 						  </div>
 						  
-						  <p class="bg-success" style="padding: 5px;"><span class="text-success">PERHATIAN!</span> Form dibawah terisi JIKA Anda mempersembahkan paper! </p>
-
+					
 						  <div class="form-group row">
 							<label class="col-lg-3">Status</label>
 							<span class="col-lg-8 status_peserta">-</span>
 						  </div>
 
-						  <div class="form-group row">
+						  <!--<div class="form-group row">
 							<label class="col-lg-3">Bidang Keahlian</label>
 							<span class="col-lg-8 keahlian_peserta">-</span>
-						  </div>
+						  </div>-->
 
 						  <div class="form-group row">
 							<label class="col-lg-3">Judul Paper</label>

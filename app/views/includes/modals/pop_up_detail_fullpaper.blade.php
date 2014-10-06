@@ -4,8 +4,8 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h4 class="modal-title" id="myModalLabel">Detail Paper</h4>
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@if($simpIct == 3) Tutup @else @if($simpIct == 4) Close @endif @endif </span></button>
+				<h4 class="modal-title" id="myModalLabel">@if($simpIct == 3) Detail Paper @else @if($simpIct == 4) Paper Detail @endif @endif </h4>
 			</div>
 
 			<form class="form-horizontal">
@@ -13,8 +13,8 @@
 				<div class="modal-body" style="">
 
 					<div class="form-group">
-						<label class=" control-label col-sm-3">Judul Penelitian</label>
-						<p class="form-control-static col-sm-8 judul_paper">Pembuatan Lansekap Ala Kevin PL</p>
+						<label class=" control-label col-sm-3">@if($simpIct == 3) Judul Paper @else @if($simpIct == 4) Paper Title @endif @endif </label>
+						<p class="form-control-static col-sm-8 judul_paper"></p>
 					</div>
 
 					<div class="form-group">
@@ -23,12 +23,12 @@
 					</div>
 
 					<div class="form-group">
-						<label class=" control-label col-sm-3">Kirim Email</label>
+						<label class=" control-label col-sm-3">@if($simpIct == 3) Kirim Email @else @if($simpIct == 4) Sent Email @endif @endif </label>
 						<label class="radio-inline">
-							{{ Form::radio('is_paper2','1', array('style'=>'float: left;')) }} Bagus         
+							{{ Form::radio('is_paper2','1', array('style'=>'float: left;')) }} @if($simpIct == 3) Bagus @else @if($simpIct == 4) Good @endif @endif          
 						</label>
 						<label class="radio-inline">
-							{{ Form::radio('is_paper2','0', array('style'=>'float: left;')) }} Kurang Bagus    
+							{{ Form::radio('is_paper2','0', array('style'=>'float: left;')) }} @if($simpIct == 3) Kurang Bagus @else @if($simpIct == 4) Not Good @endif @endif     
 						</label>
 
 					</div>
@@ -37,7 +37,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" data-dismiss="modal" class="btn btn-success update_paper">
-						Perbaharui Status Abstraksi
+						@if($simpIct == 3) Perbarui Status Paper  @else @if($simpIct == 4) Update Paper Status @endif @endif 
 					</button>
 					<input type='hidden' class='id_peserta_paper' />
 					
@@ -54,13 +54,26 @@ $('body').on('click','.update_paper',function(){
 	$id_peserta = $('.id_peserta_paper').val();
 	$.ajax({
 		type: 'PUT',
-		url: "{{url('simposium/admin/ubahStatusPaper')}}",
+		url: "{{url('event/admin/ubahStatusPaper')}}",
 		data: {
 			"bayar": $change,
 			"id" : $id_peserta
 		},
 		success: function(response){
-			alert(response);
+			if(response == "success")
+			{
+@if($simpIct == 3) 
+	alert('Berhasil mengubah status');
+@else @if($simpIct == 4)  
+	alert('Success changing status');
+@endif @endif 
+			}else if(response == "failed"){
+@if($simpIct == 3) 
+	alert('Gagal mengubah status');
+@else @if($simpIct == 4)  
+	alert('Failed changing status');
+@endif @endif 
+			}
 			location.reload();
 		},
 		error: function(jqXHR, textStatus, errorThrown){

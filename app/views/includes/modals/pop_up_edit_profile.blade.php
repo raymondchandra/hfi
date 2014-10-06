@@ -8,7 +8,7 @@
         		<h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
       		</div>
 			<!--<form role="form" class="form-horizontal">-->
-			{{ Form::open(array('url' => '/simposium/editProfil','method'=>'put','class'=>'form-horizontal')) }}
+			{{ Form::open(array('url' => 'event/editProfil','method'=>'put','class'=>'form-horizontal')) }}
 			<input type='hidden' value='{{$id}}' name='id_kegiatan' />
 			<input type='hidden' value='' id='id_peserta_edit' name='id_peserta' />
 			<div class="modal-body" style="">

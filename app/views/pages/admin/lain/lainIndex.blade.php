@@ -97,26 +97,29 @@ $('body').on('click','.batal_hapus_regulasi',function(){
 		<div id="Laincontent">
 
 			<div id='div_tambah_lain'><a data-toggle="modal" data-target=".menu_lain_pop"  href='javascript:void(0)' id='tambah_lain'  class='command_button f_menu_lain_popuper'>+ Menu Lain</a></div>
+			<sapn class="clearfix"></span>
 			<div id="listLain">
 				@if($lains == NULL)
 				<span>Tidak terdapat menu lain-lain yang diunggah</span>
 				@else
-				<table border=0 style='width:800px;'>
-					<tr>
-						<td><h6>Menu</h6></td>
-						<td><h6>Tanggal Edit</h6></td>
-						<td>&nbsp;</td>
-					</tr>
+				<table class="table">
+					<thead><tr>
+						<th>Menu</th>
+						<th>Tanggal Edit</th>
+						<th>&nbsp;</th>
+					</tr></thead>
+					<tbody>
 					@foreach($lains as $lain)
 					<tr>
 						<td style='vertical-align:middle !important; width:350px; overflow:hidden; margin-right:30px;'>{{$lain->title}}</td>
 						<td style='vertical-align:middle !important; width:350px;'>{{$lain->tanggal_edit}}</td>
-						<td style='vertical-align:middle !important; width:100px;'>
-							<input data-toggle='modal' data-target='.menu_lain_pop' type='button' value='v' class='editLain' onClick='edit({{$lain->id}})'/>
-							<input data-toggle='modal' data-target='.pop_up_super_c_hapus_regulasi' type='button' value='x' class='hapusLain' onClick='hapus({{$lain->id}})'/>
+						<td style='vertical-align:middle !important;'>
+							<input data-toggle='modal' data-target='.menu_lain_pop' type='button' value='Edit' class='editLain btn btn-waring' onClick='edit({{$lain->id}})'/>
+							<input data-toggle='modal' data-target='.pop_up_super_c_hapus_regulasi' type='button' value='Hapus' class='hapusLain btn btn-danger' onClick='hapus({{$lain->id}})'/>
 						</td>
 					</tr>
 					@endforeach
+				</tbody>
 				</table>
 				@endif
 				

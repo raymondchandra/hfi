@@ -16,7 +16,7 @@
 
 <div class="container_12">
 	<div class="grid_12">
-		<h1 class=''>Pesan</h1>
+		<h1 class=''>@if($simpIct == 3) Pesan @else @if($simpIct == 4) Message @endif @endif </h1>
 		<style>
 			.breadcrumb li {
 				padding-left: 0px;
@@ -24,8 +24,8 @@
 			}
 		</style>
 		<ol class="breadcrumb">
-			<li><a href="{{ URL::to('simposium/admin', $id) }}"  >Dashboard</a></li>
-			<li class="active">Pesan</li>
+			<li><a href="{{ URL::to('event/admin', $id) }}"  >@if($simpIct == 3) Beranda  @else @if($simpIct == 4) Dashboard @endif @endif</a></li>
+			<li class="active">@if($simpIct == 3) Pesan @else @if($simpIct == 4) Message @endif @endif </li>
 		</ol>
 
 	</div>
@@ -35,14 +35,21 @@
 		<table class="table table-bordered">
 			@if(count($pesan)==0)
 				<tr>
-					<td> Tidak ada pesan masuk </td>
+					<td> @if($simpIct == 3) Tidak ada pesan masuk @else @if($simpIct == 4) There is no incoming message @endif @endif  </td>
 				</tr>
 			@else
 				<thead>
 					<tr>
-						<th width="80">Terbaca</th>
+						@if($simpIct == 3) 
+	<th width="80">Terbaca</th>
 						<th>Dari</th>
 						<th>Subjek</th>
+@else @if($simpIct == 4)  
+<th width="80">Read</th>
+						<th>From</th>
+						<th>Subject</th>
+@endif @endif 
+						
 						<th style="width: 100px;"></th>
 					</tr>
 				</thead>
@@ -56,7 +63,7 @@
 							@endif
 							<td>{{$msg->nama}}</td>
 							<td>{{$msg->subject}}</td>
-							<td><button class="btn btn-primary readPesan" data-toggle="modal" data-target=".pop_up_pesan">Lihat Pesan</button><input type="hidden" value="{{$msg->id}}"></input></td>
+							<td><button class="btn btn-primary readPesan" data-toggle="modal" data-target=".pop_up_pesan">@if($simpIct == 3) Lihat Pesan @else @if($simpIct == 4) See Message @endif @endif </button><input type="hidden" value="{{$msg->id}}"></input></td>
 						</tr>
 					@endforeach				
 				</tbody>
@@ -91,17 +98,34 @@
 			},
 			success: function(response){	
 				$('#datang_konten').html(response.message);
-				$('#datang_header').html("Pesan Datang - " + response.created_at);
+				@if($simpIct == 3) 
+	$('#datang_header').html("Pesan Datang - " + response.created_at);
 				$('#myModalLabel').html("Dari : " + response.nama + " | Subjek : " + response.subject);
+@else @if($simpIct == 4)  
+$('#datang_header').html("Incoming Message - " + response.created_at);
+				$('#myModalLabel').html("From : " + response.nama + " | Subject : " + response.subject);
+@endif @endif 
+				
 				$('#id_kegiatan_hidden').val(response.id);
 				if(response.attachment == "" || response.attachment == "-")
 				{
-					$('#datang_lampiran').html("lampiran : -");
+					@if($simpIct == 3) 
+	$('#datang_lampiran').html("lampiran : -");
+@else @if($simpIct == 4)  
+$('#datang_lampiran').html("attachment : -");
+@endif @endif 
+					
 				}
 				else
 				{
-					$('#datang_lampiran').html("lampiran : " + "<a target='_blank' href='{{asset('assets/file_upload/pesan_attachment/" + response.id + "/" + response.attachment + "')}}'>" + response.attachment);
-				}
+					@if($simpIct == 3) 
+$('#datang_lampiran').html("lampiran : " + "<a target='_blank' href='{{asset('assets/file_upload/pesan_attachment/" + response.id + "/" + response.attachment + "')}}'>" + response.attachment);
+				
+@else @if($simpIct == 4)  
+$('#datang_lampiran').html("attachment : " + "<a target='_blank' href='{{asset('assets/file_upload/pesan_attachment/" + response.id + "/" + response.attachment + "')}}'>" + response.attachment);
+			
+@endif @endif 
+	}
 				$.ajax({
 					type: 'GET',
 					url: '{{URL::route('admin.kegiatan2.get_reply')}}',
@@ -111,9 +135,16 @@
 					success: function(response){
 						$('#kirim_konten').html("");
 						$.each( response, function( i, resp ) {
-							$isi = "<h4>Pesan Kirim - ";
+							@if($simpIct == 3) 
+	$isi = "<h4>Pesan Kirim - ";
 							$isi = $isi + resp.created_at + "</h4></p>";
 							$isi = $isi + resp.message + "</p><p>lampiran : ";
+@else @if($simpIct == 4)  
+$isi = "<h4>Sent Message - ";
+							$isi = $isi + resp.created_at + "</h4></p>";
+							$isi = $isi + resp.message + "</p><p>attachment : ";
+@endif @endif 
+							
 							if(resp.attachment == "" || resp.attachment == "-")
 							{
 								$isi = $isi + " -</p>";

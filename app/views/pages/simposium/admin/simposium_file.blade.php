@@ -17,12 +17,12 @@
 			}
 		</style>
 		<ol class="breadcrumb">
-			<li><a href="{{ URL::to('simposium/admin', $id) }}"  >Dashboard</a></li><!-- onClick='history.back();' -->
-			<li class="active">Berkas</li>
+			<li><a href="{{ URL::to('simposium/admin', $id) }}"  >@if($simpIct == 3) Beranda  @else @if($simpIct == 4) Dashboard @endif @endif</a></li><!-- onClick='history.back();' -->
+			<li class="active">@if($simpIct == 3) Berkas @else @if($simpIct == 4) File @endif @endif</li>
 		</ol>
 
 
-		<h3>Berkas</h3>
+		<h3>@if($simpIct == 3) Berkas @else @if($simpIct == 4) File @endif @endif</h3>
 
 
 

@@ -6,16 +6,13 @@ $(document).ready(function(){
 	$( ".loader" ).fadeOut( 200, function(){});
 });
 
-function back(){
-	$( ".loader" ).fadeIn( 200, function(){});
-	$('.admin_control_panel').load('admin/kegiatan2detail/'+id);
-}
+
 
 </script>
 
 <div class="container_12">
 	<div class="grid_12">
-		<h1 class=''>Peserta</h1>
+		<h1 class=''>@if($simpIct == 3) Peserta @else @if($simpIct == 4) Participant @endif @endif </h1>
 		<style>
 			.breadcrumb li {
 				padding-left: 0px;
@@ -23,19 +20,28 @@ function back(){
 			}
 		</style>
 		<ol class="breadcrumb">
-			<li><a href="{{ URL::to('simposium/admin', $id) }}"  >Dashboard</a></li>
-			<li class="active">Peserta</li>
+			<li><a href="{{ URL::to('event/admin', $id) }}"  >@if($simpIct == 3) Beranda @else @if($simpIct == 4) Dashboard @endif @endif </a></li>
+			<li class="active">@if($simpIct == 3) Peserta @else @if($simpIct == 4) Participant @endif @endif </li>
 		</ol>
 
 		<table class="table table-striped table-bordered table-hover">
 			<thead>
 				<tr>
-					<th>Nama</th>
+					@if($simpIct == 3) 
+	<th>Nama</th>
 					<th>Surat Elektronik</th>
-					<th>Detail Profile</th>
+					<th>Detail Profil</th>
 					<th>Detail Pelunasan</th>
 					<th>Abstraksi</th>
+					<th>Paper Lengkap</th>
+					@else @if($simpIct == 4)  
+<th>Name</th>
+					<th>Email</th>
+					<th>Profile Detail</th>
+					<th>Payment Detail</th>
+					<th>Abstract</th>
 					<th>Full Paper</th>
+					@endif @endif 
 				</tr>
 			</thead>
 			<tbody>
@@ -46,27 +52,27 @@ function back(){
 							<td>{{$peserta->email}}</td>
 							<input type='hidden' class='id_peserta' value='{{$peserta->id}}'>
 							<td>
-								<button class="btn btn-primary detail_profile" data-toggle="modal" data-target=".pop_up_detail_profile">Detail Profile</button>
+								<button class="btn btn-primary detail_profile" data-toggle="modal" data-target=".pop_up_detail_profile">@if($simpIct == 3) Detail Profil @else @if($simpIct == 4) Profile Detail @endif @endif </button>
 							</td>
 							<td>						
 								<button class="btn btn-success detail_bayar" data-toggle="modal" data-target=".pop_up_detail_pelunasan">
 									@if($peserta->status_bayar == 1)
-										Lunas
+										@if($simpIct == 3) Lunas @else @if($simpIct == 4) Paid @endif @endif 
 									@else
-										Belum lunas
+										@if($simpIct == 3) Belum Lunas @else @if($simpIct == 4) Unpaid @endif @endif 
 									@endif
 								</button>
 							</td>
 							<td>
 								@if($peserta->is_paper == 1)
-									<button class="btn btn-primary detail_abstraksi" data-toggle="modal" data-target=".pop_up_detail_abstraksi">Detail Abstraksi</button>
+									<button class="btn btn-primary detail_abstraksi" data-toggle="modal" data-target=".pop_up_detail_abstraksi">@if($simpIct == 3) Detail Abstraksi @else @if($simpIct == 4) Abstract Detail  @endif @endif </button>
 								@else
 									-
 								@endif
 							</td>
 							<td>
 								@if($peserta->is_paper == 1 && $peserta->paper != "")
-									<button class="btn btn-primary detail_paper" data-toggle="modal" data-target=".pop_up_detail_fullpaper">Detail Paper</button>
+									<button class="btn btn-primary detail_paper" data-toggle="modal" data-target=".pop_up_detail_fullpaper">@if($simpIct == 3) Detail Paper  @else @if($simpIct == 4) Paper Detail @endif @endif </button>
 								@else
 									-
 								@endif
@@ -106,7 +112,7 @@ function back(){
 	$('body').on('click','.detail_profile',function(){
 		$( ".loader" ).fadeIn( 200, function(){});
 		$id_profil = $(this).parent().siblings('.id_peserta').val();
-		$.get("{{url('simposium/admin/satu_peserta/')}}/"+$id_profil,function(response){
+		$.get("{{url('event/admin/satu_peserta/')}}/"+$id_profil,function(response){
 			$('.nama_peserta').text(response.nama);
 			$('.institusi_peserta').text(response.institusi);
 			$('.email_peserta').text(response.email);
@@ -130,7 +136,7 @@ function back(){
 	$('body').on('click','.detail_bayar',function(){
 		$( ".loader" ).fadeIn( 200, function(){});
 		$id_profil = $(this).parent().siblings('.id_peserta').val();
-		$.get("{{url('simposium/admin/satu_peserta/')}}/"+$id_profil,function(response){
+		$.get("{{url('event/admin/satu_peserta/')}}/"+$id_profil,function(response){
 			if(response.is_paper == 1){
 				$('.jenis_bayar').text(response.status+' | With Paper');
 			}
@@ -157,7 +163,7 @@ function back(){
 	$('body').on('click','.detail_abstraksi',function(){
 		$( ".loader" ).fadeIn( 200, function(){});
 		$id_profil = $(this).parent().siblings('.id_peserta').val();
-		$.get("{{url('simposium/admin/satu_peserta/')}}/"+$id_profil,function(response){
+		$.get("{{url('event/admin/satu_peserta/')}}/"+$id_profil,function(response){
 			$('.judul_paper').text(response.paper);
 			$('.abstrak_paper').text(response.abstract);
 			$('.id_peserta_abstract').val($id_profil);
@@ -170,7 +176,7 @@ function back(){
 	$('body').on('click','.detail_paper',function(){
 		$( ".loader" ).fadeIn( 200, function(){});
 		$id_profil = $(this).parent().siblings('.id_peserta').val();
-		$.get("{{url('simposium/admin/satu_peserta/')}}/"+$id_profil,function(response){
+		$.get("{{url('event/admin/satu_peserta/')}}/"+$id_profil,function(response){
 			$('.judul_paper').text(response.paper);
 			$('.file_paper').attr('data',"../../../"+response.path_paper);
 			$('.id_peserta_paper').val($id_profil);

@@ -47,7 +47,7 @@
 		@endif
 		<span class="clearfix"></span>
 		<button  data-toggle="modal" data-target=".pop_up_tambah_sponsor" style="margin-top: 10px;" class="btn btn-success">
-			Tambah Sponsor
+			@if($simpIct == 3) Tambah Sponsor @else @if($simpIct == 4) Add Sponsor  @endif @endif 
 		</button>
 	</div>
 	<style>

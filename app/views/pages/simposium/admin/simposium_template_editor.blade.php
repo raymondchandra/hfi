@@ -15,8 +15,8 @@ var id = '{{$id}}';
 		}
 		</style>
 		<ol class="breadcrumb">
-			<li><a href="{{ URL::to('simposium/admin', $id) }}"  >Dashboard</a></li><!-- onClick='history.back();' -->
-			<li><a href="{{ URL::to('simposium/admin/template', $id) }}"  >Template Surat Elektronik</a></li><!-- onClick='history.back();' -->
+			<li><a href="{{ URL::to('event/admin', $id) }}"  >@if($simpIct == 3) Beranda  @else @if($simpIct == 4) Dashboard @endif @endif</a></li><!-- onClick='history.back();' -->
+			<li><a href="{{ URL::to('event/admin/template', $id) }}"  >@if($simpIct == 3) Template Surat Elektronik @else @if($simpIct == 4) Template Email @endif @endif</a></li><!-- onClick='history.back();' -->
 			<li class="active">Template {{$title}}</li>
 		</ol>
 
@@ -25,7 +25,7 @@ var id = '{{$id}}';
 			<textarea name="textarea" id = 'jqteText' class="editor">
 				{{$text}}
 			</textarea>
-			<input type='button' id='submit_change' value='Ubah' class="button btn btn-success" style="margin-left: auto; margin-right: auto; display: block "></input>
+			<input type='button' id='submit_change' value='@if($simpIct == 3) Ubah @else @if($simpIct == 4) Edit @endif @endif ' class="button btn btn-success" style="margin-left: auto; margin-right: auto; display: block "></input>
 		</div>
 		
 		<script>
@@ -42,7 +42,20 @@ var id = '{{$id}}';
 						id : '{{$id}}'
 					},
 					success: function(response){
-						alert(response);
+						if(response == "gagal update")
+						{
+							@if($simpIct == 3) 
+	alert('Gagal mengubah data');
+@else @if($simpIct == 4)  
+	alert('Failed to change data');
+@endif @endif 
+						}else if(response == "berhasil update"){
+@if($simpIct == 3) 
+	alert('Berhasil mengubah data');
+@else @if($simpIct == 4)  
+	alert('Success changing data');
+@endif @endif 
+						}
 					},
 					error: function(jqXHR, textStatus, errorThrown){
 						alert(errorThrown);

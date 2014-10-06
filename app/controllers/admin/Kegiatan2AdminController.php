@@ -407,7 +407,8 @@ class Kegiatan2AdminController extends BaseController {
 		$date= date_create($kegiatan->early_finish);
 		$tanggal_selesai = date_format($date,"d-m-Y");
 		$harga = Harga::where('id_kegiatan','=',$id)->get();
-		return View::make('pages.simposium.admin.simposium_harga',compact('id','kegiatan','tanggal_mulai','tanggal_selesai','harga'));
+		$simpIct = $kegiatan->tipe;
+		return View::make('pages.simposium.admin.simposium_harga',compact('id','kegiatan','tanggal_mulai','tanggal_selesai','harga','simpIct'));
 	}
 
 	public function edit_early($id){
@@ -522,8 +523,10 @@ class Kegiatan2AdminController extends BaseController {
 
 	public function view_peserta($id)
 	{
+		$kegiatan = Kegiatan2::find($id);
 		$pesertas = $this->get_peserta_of($id);
-		return View::make('pages.simposium.admin.simposium_peserta',compact('id','pesertas'));
+		$simpIct = $kegiatan->tipe;
+		return View::make('pages.simposium.admin.simposium_peserta',compact('id','pesertas','simpIct'));
 	}
 
 	
@@ -711,12 +714,14 @@ class Kegiatan2AdminController extends BaseController {
 
 	public function view_pesan($id)
 	{
+		$kegiatan = Kegiatan2::find($id);
 		$pesan = Pesan::where('id_kegiatan', '=', $id)->get();
 		foreach($pesan as $msg)
 		{
 			$msg['nama'] = $this->getNamaPesertaFromId($msg['id_peserta']);
 		}
-		return View::make('pages.simposium.admin.simposium_pesan',compact('id','pesan'));
+		$simpIct = $kegiatan->tipe;
+		return View::make('pages.simposium.admin.simposium_pesan',compact('id','pesan','simpIct'));
 	}
 	
 	public function getNamaPesertaFromId($id)
@@ -862,7 +867,7 @@ class Kegiatan2AdminController extends BaseController {
 		}
 		else
 		{
-			return "Tipe Tidak Dikenali";
+			return "Error";
 		}
 	}
 	
@@ -1054,6 +1059,7 @@ class Kegiatan2AdminController extends BaseController {
 		$kegiatan = Kegiatan2::find($id);
 		$nama_kegiatan = $kegiatan->nama;
 		$files = Kegiatanfile::where('id_kegiatan','=',$id)->where('tipe','=','other')->paginate(20);
+		$simpIct = $kegiatan->tipe;
 		return View::make('pages.simposium.admin.simposium_file',compact('id','nama_kegiatan','files'));
 	}
 
@@ -1121,7 +1127,8 @@ class Kegiatan2AdminController extends BaseController {
 	{
 		$kegiatan = Kegiatan2::find($id);
 		$nama_kegiatan = $kegiatan->nama;
-		return View::make('pages.simposium.admin.simposium_template_index',compact('id','nama_kegiatan'));
+		$simpIct = $kegiatan->tipe;
+		return View::make('pages.simposium.admin.simposium_template_index',compact('id','nama_kegiatan','simpIct'));
 	}
 
 	public function view_template_editor($type,$id)
@@ -1129,7 +1136,7 @@ class Kegiatan2AdminController extends BaseController {
 		$kegiatan = Kegiatan2::find($id);
 		$nama_kegiatan = $kegiatan->nama;
 		$title = $type;
-		
+		$simpIct = $kegiatan->tipe;
 		if($type === "Registrasi")
 		{
 			$template = $this->getRegTemplate($id);
@@ -1140,6 +1147,9 @@ class Kegiatan2AdminController extends BaseController {
 			else
 			{
 				$text = $template->text;
+			}
+			if($simpIct == 4){
+				$title = "Registration";
 			}
 		}
 		else if($type === "Penerimaan Abstrak")
@@ -1153,6 +1163,9 @@ class Kegiatan2AdminController extends BaseController {
 			{
 				$text = $template->text;
 			}
+			if($simpIct == 4){
+				$title = "Abstract Acceptance";
+			}
 		}
 		else if($type === "Surat Undangan")
 		{
@@ -1164,6 +1177,9 @@ class Kegiatan2AdminController extends BaseController {
 			else
 			{
 				$text = $template->text;
+			}
+			if($simpIct == 4){
+				$title = "Invitation Letter";
 			}
 		}
 		else if($type === "Penerimaan Paper Lengkap")
@@ -1177,13 +1193,16 @@ class Kegiatan2AdminController extends BaseController {
 			{
 				$text = $template->text;
 			}
+			if($simpIct == 4){
+				$title = "Full Paper Acceptance";
+			}
 		}
 		else
 		{
 			$text = "";
 		}
 		
-		return View::make('pages.simposium.admin.simposium_template_editor',compact('type','id','nama_kegiatan','title','text'));
+		return View::make('pages.simposium.admin.simposium_template_editor',compact('type','id','nama_kegiatan','title','text','simpIct'));
 
 	}
 }

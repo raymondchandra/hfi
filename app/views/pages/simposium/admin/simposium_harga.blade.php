@@ -13,7 +13,11 @@ function edit_early(){
 		},
 		success: function(response){
 			if(response == 'success'){
-				alert("Berhasil merubah data");
+				@if($simpIct == 3) 
+	alert('Berhasil mengubah data');
+@else @if($simpIct == 4)  
+	alert('Success changing data');
+@endif @endif 
 			}else{
 				alert(response);
 			}
@@ -37,10 +41,19 @@ function tambahHarga(){
 var text =' <table class="table table-bordered"> ';
 text +='<thead>';
 text +='	<tr>';
+@if($simpIct == 3) 
 text +='		<th>Kategori</th>';
 text +='		<th>Harga Early Bird</th>';
 text +='		<th>Harga Normal</th>';
 text +='		<th>Header</th>';
+@else @if($simpIct == 4)  
+text +='		<th>Category</th>';
+text +='		<th>Early Bird Rate</th>';
+text +='		<th>Normal Rate</th>';
+text +='		<th>Header</th>';
+@endif @endif 
+
+
 text +='		<th></th>';
 text +='	</tr>';
 text +='</thead>';
@@ -60,7 +73,13 @@ text +='			<input type="checkbox" id="chkHeader"/>';
 text +='		</td>';
 text +='		<td>';
 text +='			<input id="yesButton" type="button" value="OK" class="btn btn-success btn-sm" style="margin-right: 10px;"/>';
-text +='			<input id="noButton" type="button" value="cancel" class="btn btn-danger btn-sm" />';
+
+@if($simpIct == 3) 
+text +='			<input id="noButton" type="button" value="Batal" class="btn btn-danger btn-sm" />';	
+@else @if($simpIct == 4)  
+text +='			<input id="noButton" type="button" value="Cancel" class="btn btn-danger btn-sm" />';
+@endif @endif 
+
 text +='		</td>';
 text +='	</ul>';
 text +='	</tr>';
@@ -88,7 +107,11 @@ text +='</table>';
 		};
 		$.post(url,input,function(data){
 			if(data=="success"){
-				alert('Success menambah data');
+				@if($simpIct == 3) 
+	alert('Berhasil menambah data');
+@else @if($simpIct == 4)  
+	alert('Success adding data');
+@endif @endif 
 
 				location.reload();
 			}else{
@@ -127,7 +150,11 @@ $(document).ready(function(){
 			data: {id : id},
 			success: function(response){
 				if(response == 'success'){
-					alert("Berhasil menghapus data");
+					@if($simpIct == 3) 
+	alert('Berhasil menghapus data');
+@else @if($simpIct == 4)  
+	alert('Success deleting data');
+@endif @endif 
 					location.reload();
 				}else{
 					alert(response);
@@ -167,8 +194,12 @@ $(document).ready(function(){
 			data: input,
 			success: function(response){
 				if(response == 'success'){
-					alert("Berhasil merubah data");
-					location.reload();
+					@if($simpIct == 3) 
+	alert('Berhasil mengubah data');
+@else @if($simpIct == 4)  
+	alert('Success changing data');
+@endif @endif 
+location.reload();
 				}else{
 					alert(response);
 				}
@@ -194,7 +225,7 @@ $(document).ready(function(){
 			}
 		</style>
 		<ol class="breadcrumb">
-			<li><a href="{{ URL::to('simposium/admin', $id) }}"  >Dashboard</a></li>
+			<li><a href="{{ URL::to('event/admin', $id) }}"  >Dashboard</a></li>
 			<li class="active">Harga</li>
 		</ol>
 		
@@ -217,9 +248,16 @@ $(document).ready(function(){
 
 			<thead>
 				<tr class="hargaTabel">
-					<th>Kategori</th>
+					@if($simpIct == 3) 
+	<th>Kategori</th>
 					<th>Harga Early Bird</th>
 					<th>Harga Normal</th>
+@else @if($simpIct == 4)  
+<th>Category</th>
+					<th>Early Bird Rate</th>
+					<th>Normal Rate</th>
+@endif @endif 
+					
 					<th width="70">Header</th>
 					<th width="140"></th>
 				</tr>
@@ -257,9 +295,16 @@ $(document).ready(function(){
 								<span class="hideAll"><input type="checkbox" class ="bckChkHeader"/></span>
 							</td>
 							<td>
-								<span class="showAll"><input type="hidden" value="{{$harg->id}}"><input type="button" value="Edit" class="editButton btn btn-warning btn-sm" style="margin-right: 10px;"/><input type="button" value="Delete" class="delButton btn btn-danger btn-sm" /></span>
-								<span class="hideAll"><input type="hidden" value="{{$harg->id}}"><input type="button" value="OK" class="okButton btn btn-success btn-sm" style="margin-right: 10px;"/><input type="button" value="cancel" class="cancelButton btn btn-danger btn-sm" /></span>
-							</td>
+								@if($simpIct == 3) 
+	<span class="showAll"><input type="hidden" value="{{$harg->id}}"><input type="button" value="Ubah" class="editButton btn btn-warning btn-sm" style="margin-right: 10px;"/><input type="button" value="Hapus" class="delButton btn btn-danger btn-sm" /></span>
+								<span class="hideAll"><input type="hidden" value="{{$harg->id}}"><input type="button" value="OK" class="okButton btn btn-success btn-sm" style="margin-right: 10px;"/><input type="button" value="Batal" class="cancelButton btn btn-danger btn-sm" /></span>
+							
+@else @if($simpIct == 4)  
+<span class="showAll"><input type="hidden" value="{{$harg->id}}"><input type="button" value="Edit" class="editButton btn btn-warning btn-sm" style="margin-right: 10px;"/><input type="button" value="Delete" class="delButton btn btn-danger btn-sm" /></span>
+								<span class="hideAll"><input type="hidden" value="{{$harg->id}}"><input type="button" value="OK" class="okButton btn btn-success btn-sm" style="margin-right: 10px;"/><input type="button" value="Cancel" class="cancelButton btn btn-danger btn-sm" /></span>
+							
+@endif @endif 
+								</td>
 							<style>.hideAll{display: none;}</style>
 							
 						<!--</ul>-->
@@ -275,7 +320,7 @@ $(document).ready(function(){
 
 			<div id="editRow"></div>
 
-			<button onClick="tambahHarga()" id="plusButton" class="btn btn-primary">Tambah Harga</button>
+			<button onClick="tambahHarga()" id="plusButton" class="btn btn-primary">@if($simpIct == 3) Tambah Harga @else @if($simpIct == 4) Add Price @endif @endif </button>
 
 
 
@@ -293,15 +338,15 @@ $(document).ready(function(){
 				<h3>Early Bird</h3>
 				<table class="table table-bordered" style="width:400px;">
 					<tr>
-						<td>Tanggal mulai</td>
+						<td>@if($simpIct == 3) Tanggal Mulai  @else @if($simpIct == 4) Start Date @endif @endif </td>
 						<td><input type="text" value="{{$tanggal_mulai}}" id="datepicker1" class="form-control"> </td>
 					</tr>
 					<tr>
-						<td>Tanggal selesai</td>
+						<td>@if($simpIct == 3) Tanggal Selesai @else @if($simpIct == 4) End Date @endif @endif </td>
 						<td><input type="text" value="{{$tanggal_selesai}}" id="datepicker2" class="form-control"> </td>
 					</tr>
 				</table>
-				<button onClick="edit_early()" class="btn btn-primary">Ubah</button>
+				<button onClick="edit_early()" class="btn btn-primary">@if($simpIct == 3) Ubah @else @if($simpIct == 4) Edit @endif @endif </button>
 			</div>
 			<script>
 			$('#datepicker1').datetimepicker({

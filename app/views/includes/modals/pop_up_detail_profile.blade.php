@@ -11,27 +11,27 @@
 			<div class="modal-body" style="">
 						  <div class="form-group row">
 							<label class="col-lg-3">Nama</label>
-							<span class="col-lg-8 nama_peserta">Muhammad Naufal Ashidiq Wangsaatmadja</span>
+							<span class="col-lg-8 nama_peserta"></span>
 						  </div>
 						  
 						  <div class="form-group row">
 							<label class="col-lg-3">Institusi</label>
-							<span class="col-lg-8 institusi_peserta">Wangsaatmadja Corp.</span>
+							<span class="col-lg-8 institusi_peserta"></span>
 						  </div>
 						  
 						  <div class="form-group row">
 							<label class="col-lg-3">Profesi</label>
-							<span class="col-lg-8 profesi_peserta">Leader of The World</span>
+							<span class="col-lg-8 profesi_peserta"></span>
 						  </div>
 						  
 						  <div class="form-group row">
 							<label class="col-lg-3">Surat Elektronik</label>
-							<span class="col-lg-8 email_peserta">muhammad@wangsaatmadja.co.id</span>
+							<span class="col-lg-8 email_peserta"></span>
 						  </div>
 						  
 						  <div class="form-group row">
 							<label class="col-lg-3">Alamat</label>
-							<span class="col-lg-8 alamat_peserta">Jl. Naufal Ashidiq Wangsaatmadja No. 9</span>
+							<span class="col-lg-8 alamat_peserta"></span>
 						  </div>
 						  
 						  <p class="bg-success" style="padding: 5px;"><span class="text-success">PERHATIAN!</span> Form dibawah terisi JIKA Anda mempersembahkan paper! </p>

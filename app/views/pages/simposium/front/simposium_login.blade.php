@@ -16,8 +16,8 @@
 							<input type="password" name='password' class="form-control" id="" placeholder="Password" style="padding-left: 0px; padding-right: 0px; text-indent: 6px;">
 						  </div>
 						 
-						  <button type="submit" class="btn btn-success">Log In</button> 
-						  <button type="submit" class="btn btn-danger">Batal</button> 
+						  <button type="submit" class="btn btn-success">@if($simpIct == 3) Masuk @else @if($simpIct == 4) Log In @endif @endif </button> 
+						  <button type="submit" class="btn btn-danger">@if($simpIct == 3) Batal @else @if($simpIct == 4) Cancel @endif @endif </button> 
 						{{ Form::close() }}
 					</div>
 				</div>

@@ -8,7 +8,7 @@
 			<div class="content_hfi">
 				
 				<h2>
-					Peserta
+					@if($simpIct == 3) Peserta @else @if($simpIct == 4) Participant @endif @endif
 				</h2>
 			
 					Total Registrasi: {{count($pesertas)}}<br/>
@@ -27,7 +27,7 @@
 							Status Registrasi
 						</td>
 						<td>
-							Catatan
+							Abstrak
 						</td>
 					</tr>
 					@for($i = 0; $i < count($pesertas) ; $i++)

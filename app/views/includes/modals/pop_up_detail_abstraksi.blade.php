@@ -14,12 +14,12 @@
 
 					<div class="form-group">
 						<label class=" control-label col-sm-3">Judul Penelitian</label>
-						<p class="form-control-static col-sm-8 judul_paper">Pembuatan Lansekap Ala Kevin PL</p>
+						<p class="form-control-static col-sm-8 judul_paper"></p>
 					</div>
 
 					<div class="form-group">
 						<label class=" control-label col-sm-3">Abstrak</label>
-						<p class="form-control-static col-sm-8 abstrak_paper">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+						<p class="form-control-static col-sm-8 abstrak_paper"></p>
 					</div>
 
 					<div class="form-group">

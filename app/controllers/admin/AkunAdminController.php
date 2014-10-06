@@ -125,8 +125,11 @@ class AkunAdminController extends BaseController {
 			UserController::addNomerAnggota($id);
 		}
 		
-		$akun = Account::find($id);
-		$akun->batas_aktif = Carbon::now()->addYears($length);
+		$akun = Account::find($id);		
+			$new_batas_aktif = new DateTime();
+			$new_batas_aktif->setDate(Carbon::now->year, 12, 31);
+		$akun->batas_akif = Carbon::createFromFormat('Y-m-d', $new_batas_aktif);
+				
 		$akun->status_aktif = 1;
 		try{
 			$akun->save();
@@ -142,7 +145,10 @@ class AkunAdminController extends BaseController {
 		$id = Input::get('id');
 		$length = Input::get('length');
 		$akun = Account::find($id);
-		$akun->batas_aktif = Carbon::createFromFormat('Y-m-d', $akun->batas_aktif)->addYears($length);
+			$new_batas_aktif = new DateTime();
+			$new_batas_aktif->setDate(Carbon::now->year, 12, 31);			
+		// $akun->batas_aktif = Carbon::createFromFormat('Y-m-d', $akun->batas_aktif)->addYears($length);
+			$akun->batas_aktif = Carbon::createFromFormat('Y-m-d', $new_batas_aktif);
 		try{
 			$akun->save();
 			return 'success';

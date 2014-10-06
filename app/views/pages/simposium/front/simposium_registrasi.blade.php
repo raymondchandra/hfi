@@ -138,7 +138,7 @@
 								<p class="form-control-static col-sm-5">@if($simpIct == 3) Partisipan @else @if($simpIct == 4) Participant @endif @endif </p>
 							</div>
 							<div class="form-group">
-								<label class=" control-label col-sm-3">Bidang Keahlian</label>
+								<label class=" control-label col-sm-3">Presentasi</label>
 								<label class="radio-inline">
 									{{ Form::radio('gender','pria', array('style'=>'float: left;')) }} Oral         
 								</label>

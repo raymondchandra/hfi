@@ -4,8 +4,8 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Nama Pengirim | Subjek Pengirim</h4>
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@if($simpIct == 3) Tutup @else @if($simpIct == 4) Close @endif @endif</span></button>
+        <h4 class="modal-title" id="myModalLabel">@if($simpIct == 3)Nama Pengirim | Subjek @else @if($simpIct == 4) Sender Name | Subject @endif @endif </h4>
       </div>
 
       
@@ -22,12 +22,12 @@
         
         <div class="clearfix"></div>
         <form>
-        <label class=" control-label col-sm-2">Balas pesan</label>
+        <label class=" control-label col-sm-2">@if($simpIct == 3) Balas Pesan @else @if($simpIct == 4) Reply @endif @endif </label>
         {{ Form::textarea('keteranganlain', Input::old('keteranganlain'), array('class'=>'form-control col-sm-8 editor', 'style'=>'height: 100px;')) }}
         <span class="cleafix"></span>
         
 		<span class="clearfix"></span>
-		<button type="button" id="replyButton" class="btn btn-primary " style="margin-top: 10px; float: left; margin-left: 145px;">Kirim</button>
+		<button type="button" id="replyButton" class="btn btn-primary " style="margin-top: 10px; float: left; margin-left: 145px;">@if($simpIct == 3) Kirim @else @if($simpIct == 4) Send @endif @endif </button>
 		<input id="id_pesan" type="hidden" />
 		{{ Form::file('fileAttachment', array('name'=>'fileAttachment', 'id'=>'fileAttachment', 'style' => 'margin-top: 10px; margin-left: 10px;float: left;' , 'accept'=>'.pdf'))}}
         </form>
@@ -53,10 +53,16 @@
 					}
 					else
 					{
-						
-						$isi = "<h4>Pesan Kirim - ";
+						@if($simpIct == 3) 
+							$isi = "<h4>Pesan Kirim - ";
 						$isi = $isi + response.created_at + "</h4></p>";
 						$isi = $isi + response.message + "</p><p>lampiran : ";
+@else @if($simpIct == 4)  
+$isi = "<h4>Sent message - ";
+						$isi = $isi + response.created_at + "</h4></p>";
+						$isi = $isi + response.message + "</p><p>attachment : ";
+@endif @endif 
+						
 						if(response.attachment == "" || response.attachment == "-")
 						{
 							$isi = $isi + " -</p>";
@@ -67,7 +73,11 @@
 						}
 						
 						$('#kirim_konten').prepend($isi);
-						alert("Berhasil membalas pesan");
+						@if($simpIct == 3) 
+	alert("Berhasil membalas pesan");
+@else @if($simpIct == 4)  
+	alert("Success reply message");
+@endif @endif 
 					}
 					
 					

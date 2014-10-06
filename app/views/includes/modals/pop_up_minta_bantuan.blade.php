@@ -4,8 +4,8 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Minta Bantuan</h4>
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@if($simpIct == 3) Tutup @else @if($simpIct == 4) Close @endif @endif </span></button>
+        <h4 class="modal-title" id="myModalLabel">@if($simpIct == 3) Minta Bantuan @else @if($simpIct == 4) Get Help @endif @endif </h4>
       </div>
 
 
@@ -15,17 +15,17 @@
         <div class="clearfix"></div>
         <form class="form-horizontal">
           <div class="form-group">
-            <label class=" control-label col-sm-2">Subjek</label>
+            <label class=" control-label col-sm-2">@if($simpIct == 3) Subjek @else @if($simpIct == 4) Subject @endif @endif </label>
             {{ Form::text('input_nama',Input::old('input_nama'), array('id' => 'input_nama', 'class' => 'form-control col-sm-9 subjectEditor')) }}
           </div>
           <div class="form-group">
-            <label class=" control-label col-sm-2">Deskripsi</label>
+            <label class=" control-label col-sm-2">@if($simpIct == 3) Deskripsi @else @if($simpIct == 4) Description @endif @endif </label>
             {{ Form::textarea('keteranganlain', Input::old('keteranganlain'), array('id'=>'editor', 'class'=>'form-control col-sm-9 editor', 'style'=>'height: 100px;')) }}
           </div>
           <span class="clearfix"></span>
           
           
-          <button type="button" class="btn btn-primary" style="margin-left: 150px; width: 100px;" id="sendBantuan">Kirim</button>
+          <button type="button" class="btn btn-primary" style="margin-left: 150px; width: 100px;" id="sendBantuan">@if($simpIct == 3) Kirim @else @if($simpIct == 4) Send @endif @endif </button>
 		  <input type="hidden" id="id_keg"/>
 		  <input type="hidden" id="id_pes"/>
           <span class="clearfix"></span>
@@ -86,7 +86,11 @@
 				}
 				else
 				{
-					alert("Berhasil mengirim pesan");
+					@if($simpIct == 3) 
+	alert('Berhasil mengirim pesan');
+@else @if($simpIct == 4)  
+	alert('Success sending message');
+@endif @endif 
 				}	
 			},
 			error: function(jqXHR, textStatus, errorThrown){

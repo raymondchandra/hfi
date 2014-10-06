@@ -78,7 +78,8 @@
 
 	
 		$id=$(this).next().val();
-		$('.row'+$id).html('<span class="glyphicon glyphicon-ok pesan_read row{{$msg->id}}"></span>');
+
+		$('.row'+$id).html('<span class="glyphicon glyphicon-ok pesan_read row'+$id'+"></span>');
 		$('#datang_konten').html("<img src='{{ asset('assets/img/728.gif')}}'/>");
 		$('#kirim_konten').html("<img src='{{ asset('assets/img/728.gif')}}'/>");
 		$('#datang_lampiran').html("");

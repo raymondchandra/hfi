@@ -32,13 +32,20 @@
 
 		<div class="berkas_list_container">
 			@if($files == null)
-				Tidak ada berkas yang diunggah.
+				@if($simpIct == 3) Tidak ada berkas yang diunggah  @else @if($simpIct == 4) There are no uploaded files @endif @endif
 			@else
 			<table class='list_berkas'>
 				<tr>
-					<td class='nama_berkas'>Nama Berkas</td>
+					@if($simpIct == 3) 
+	<td class='nama_berkas'>Nama Berkas</td>
 					<td class='url'>URL lengkap</td>
 					<td class='tanggal_unggah_berkas'>Tanggal Unggah</td>
+@else @if($simpIct == 4)  
+<td class='nama_berkas'>File Name</td>
+					<td class='url'>Full URL</td>
+					<td class='tanggal_unggah_berkas'>Upload date</td>
+@endif @endif 
+					
 					<td class='delete_berkas'>&nbsp;</td>
 				</tr>
 				@foreach($files as $file)
@@ -60,24 +67,28 @@
 				<div class="pop_up_cell_tambah_berkas">
 					<div class="container_12">			
 					<div class="div_detail_berkas" style="background: #fff; width:600px !important;">
-						<h2>Detail Berkas</h2>
+						<h2>@if($simpIct == 3) Detail Berkas  @else @if($simpIct == 4) File detail @endif @endif </h2>
 						<div id="div_form_berkas">
 							<!-- postBerkas-->		
 							<form class='tambah_berkas_form'>
 								<table class="table_berkas">
 									<tr>
-										<td style="width:150px !important;">Nama Berkas</td>
+										<td style="width:150px !important;">@if($simpIct == 3) Nama Berkas @else @if($simpIct == 4) File Name @endif @endif </td>
 										<td><pre>:   </pre></td>
 										<td>{{ Form::text('nama_berkas', Input::old('nama_berkas'), array('id' => 'new_nama', 'style' => 'width:350px !important;')) }}</td>
 									</tr>
 									<tr>
-										<td>File Berkas</td>
+										<td>@if($simpIct == 3) Berkas @else @if($simpIct == 4) Files @endif @endif </td>
 										<td><pre>:   </pre></td>
 										<td>{{ Form::file('fileBerkas', array('name'=>'fileBerkas', 'id'=>'fileBerkas'))}}</td>
 									</tr>
 									<tr>
 										<!--<td><input type='button' value='Tambah' id="tambah_cabang_button"/></td>-->							
-										<td colspan="3">{{ Form::submit('Tambah Berkas', array('class' => 'button'))}}</td>
+										@if($simpIct == 3) 
+	<td colspan="3">{{ Form::submit('Tambah Berkas', array('class' => 'button'))}}</td>
+@else @if($simpIct == 4)  
+<td colspan="3">{{ Form::submit('Add File', array('class' => 'button'))}}</td>
+@endif @endif 
 									</tr>					
 								</table>	
 							</form>
@@ -97,12 +108,22 @@
 										}
 									},
 									messages:{
-										nama_berkas: {
+										@if($simpIct == 3) 
+	nama_berkas: {
 											required: "Mohon isi nama berkas"
 										},
 										fileBerkas: {
 											required: "Mohon file diisi"
 										}
+@else @if($simpIct == 4)  
+nama_berkas: {
+											required: "Please fill the file name"
+										},
+										fileBerkas: {
+											required: "Please add the file"
+										}
+@endif @endif 
+
 									},
 									submitHandler:function(form){
 										var url = '{{URL::route('admin.kegiatan2.tambahBerkas',array($id))}}';
@@ -119,14 +140,23 @@
 											contentType: false,
 											success: function(as){
 												if(as == "success"){
-													alert('Berhasil mengunggah berkas');
+													@if($simpIct == 3) 
+	alert('Berhasil mengunggah berkas');
+@else @if($simpIct == 4)  
+	alert('Success uploading file');
+@endif @endif 
 													location.reload();
 												}else{
 													alert(as);
 												}
 											},
 											error:function(errorThrown){
-												alert('Gagal mengunggah berkas');
+												@if($simpIct == 3) 
+	
+alert('Gagal mengunggah berkas');
+@else @if($simpIct == 4)  
+	alert('Failed to upload file');
+@endif @endif 
 											}
 										});
 									}
@@ -149,9 +179,16 @@
 							<h2 style="text-align:center;">Anda yakin ingin menghapus berkas ini?</h2>							
 							<table border="0" style="margin-left:auto; margin-right:auto;">
 								<tr>
-									<td><button class="ok_hapus_berkas">Ya</button></td>
+									@if($simpIct == 3) 
+	<td><button class="ok_hapus_berkas">Ya</button></td>
 									<td>&nbsp;</td>
 									<td><button class="batal_hapus_berkas">Tidak</button></td>
+@else @if($simpIct == 4)  
+<td><button class="ok_hapus_berkas">Yes</button></td>
+									<td>&nbsp;</td>
+									<td><button class="batal_hapus_berkas">No</button></td>
+@endif @endif 
+									
 								</tr>
 							</table>
 						</div>
@@ -194,7 +231,12 @@
 			success: function(data){
 				if(data == "success")
 				{
-					alert("Berhasil menghapus berkas");
+					@if($simpIct == 3) 
+	alert("Berhasil menghapus berkas");
+@else @if($simpIct == 4)  
+	alert('Success deleting file');
+@endif @endif 
+					
 					location.reload();
 				}else{
 					alert(data);

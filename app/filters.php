@@ -55,7 +55,7 @@ Route::filter('authSimposium', function($request)
 	$path = explode('/',Request::path());
 	$id_kegiatan =  $path[count($path)-1];
 	if(Session::get('session_user_id') == NULL  && Session::get('session_kegiatan')[0] != $id_kegiatan){
-		return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Silahkan Login Terlebih Dahulu');
+		return Redirect::to('event/login/'.$id_kegiatan)->with('message','Silahkan Login Terlebih Dahulu');
 	}
 	
 }); 
@@ -66,7 +66,7 @@ Route::filter('checkSimposium', function($request)
 	$id_kegiatan =  $path[count($path)-1];
 	if(Session::get('session_kegiatan')[0] != $id_kegiatan){
 		Session::flush();
-		return Redirect::to('simposium/'.$id_kegiatan);
+		return Redirect::to('event/'.$id_kegiatan);
 
 	}
 	
@@ -78,7 +78,7 @@ Route::filter('authSimposiumAdmin', function($request)
 	if(!Auth::guest()){
 		if(Auth::user()->role != 1)
 		{
-			return Redirect::to('simposium/login/'.$path[count($path)-1])->with('message','Silahkan Login Terlebih Dahulu');
+			return Redirect::to('event/login/'.$path[count($path)-1])->with('message','Silahkan Login Terlebih Dahulu');
 		}else{
 			Session::push('session_admin_id','super_admin');
 			
@@ -87,7 +87,7 @@ Route::filter('authSimposiumAdmin', function($request)
 
 	if(Session::get('session_admin_id') == NULL && Session::get('session_kegiatan')[0] != $path[count($path)-1]){
 		
-		return Redirect::to('simposium/login/'.$path[count($path)-1])->with('message','Silahkan Login Terlebih Dahulu');
+		return Redirect::to('event/login/'.$path[count($path)-1])->with('message','Silahkan Login Terlebih Dahulu');
 	}
 	
 });

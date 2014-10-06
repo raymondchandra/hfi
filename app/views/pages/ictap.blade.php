@@ -41,7 +41,7 @@
 					<li>
 						
 						<div class="info_kegiatan">
-							<div class="nama_kegiatan"><a href="{{URL::route('ictap.index',array($kegiatan->id))}}" >{{$kegiatan->nama}}</a></div>
+							<div class="nama_kegiatan"><a href="{{URL::route('simposium.index',array($kegiatan->id))}}" >{{$kegiatan->nama}}</a></div>
 							<div class="waktu_kegiatan">{{$kegiatan->waktu_mulai}} - {{$kegiatan->waktu_selesai}}</div>
 							<div class="place_kegiatan">{{$kegiatan->tempat}}</div>
 						</div>

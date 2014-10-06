@@ -16,11 +16,16 @@ class SimposiumController extends BaseController {
 	public function view_index($id){
 		Session::push('session_kegiatan',$id);
 		$text = $this->getKonten('halaman depan',$id);
-		return View::make('pages.simposium.front.simposium_main',compact('id','text'));
+
+		$kegiatan = Kegiatan2::find($id);
+		$simpIct = $kegiatan->tipe;
+		return View::make('pages.simposium.front.simposium_main',compact('id','text','simpIct'));
 	}
 	
 	public function view_login($id){
-		return View::make('pages.simposium.front.simposium_login',compact('id'));
+		$kegiatan = Kegiatan2::find($id);
+		$simpIct = $kegiatan->tipe;
+		return View::make('pages.simposium.front.simposium_login',compact('id','simpIct'));
 	}
 	
 	public function view_user($id_peserta,$id){
@@ -38,7 +43,7 @@ class SimposiumController extends BaseController {
 
 		$kegiatan = Kegiatan2::find($id);
 		if($kegiatan->openRegistration == 0){
-			return Redirect::to('simposium/'.$id)->with('message','Pendaftaran Sudah Ditutup');
+			return Redirect::to('event/'.$id)->with('message','Pendaftaran Sudah Ditutup');
 		}
 		$text = $this->getKonten('registrasi',$id);
 		$date= date_create($kegiatan->early_start);
@@ -46,18 +51,42 @@ class SimposiumController extends BaseController {
 		$date= date_create($kegiatan->early_finish);
 		$early_finish = date_format($date,"d-m-Y");
 		$harga = Harga::where('id_kegiatan','=',$id)->get();
-		return View::make('pages.simposium.front.simposium_registrasi',compact('id','text','early_start','early_finish','harga'));
+		$simpIct = $kegiatan->tipe;
+		return View::make('pages.simposium.front.simposium_registrasi',compact('id','text','early_start','early_finish','harga','simpIct'));
 	}
 	
 	public function view_konten($type,$id){
 		$text = $this->getKonten($type,$id);
-		$title = ucwords($type);
-		return View::make('pages.simposium.front.simposium_konten',compact('type','title','text','id'));
+		$kegiatan = Kegiatan2::find($id);
+		$simpIct = $kegiatan->tipe;
+
+		if($simpIct == 3){
+			$title = ucwords($type);
+		}else{
+			if($type == "tanggal penting"){
+				$title = "Important Dates";
+			}else if($type == "lokasi"){
+				$title = "Location";
+			}else if($type == "akomodasi"){
+				$title = "Accomodation";
+			}else if($type == "program"){
+				$title = "Program";
+			}else if($type == "prosiding"){
+				$title = "Proceeding";
+			}else if($type == "panitia"){
+				$title = "Organizer";
+			}else if($type == "kontak"){
+				$title = "Contact";
+			}
+		}
+		return View::make('pages.simposium.front.simposium_konten',compact('type','title','text','id','simpIct'));
 	}
 	
 	public function view_peserta($id){
 		$pesertas = Peserta::where('id_kegiatan','=',$id)->get();
-		return View::make('pages.simposium.front.simposium_peserta',compact('id','pesertas'));
+		$kegiatan = Kegiatan2::find($id);
+		$simpIct = $kegiatan->tipe;
+		return View::make('pages.simposium.front.simposium_peserta',compact('id','pesertas','simpIct'));
 	}
 	
 	public function view_style_simposium(){
@@ -99,7 +128,7 @@ class SimposiumController extends BaseController {
 		if(strcmp($password,$password_again)==0){
 			$exist = Peserta::where('username','=',$email)->get();
 			if(count($exist)>=1){
-				return Redirect::to('simposium/registrasi/'.$id_kegiatan)->with('message','E-mail telah terdaftar');
+				return Redirect::to('event/registrasi/'.$id_kegiatan)->with('message','E-mail telah terdaftar');
 			}
 			else{
 				$peserta = new Peserta();
@@ -123,11 +152,11 @@ class SimposiumController extends BaseController {
 				$peserta->paper_read = 0;
 				$peserta->save();
 				$this->createEmail("Registrasi", $id_kegiatan,  $peserta->id);
-				return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Pendaftaran Berhasil');
+				return Redirect::to('event/login/'.$id_kegiatan)->with('message','Pendaftaran Berhasil');
 			}
 		}
 		else{
-			return Redirect::to('simposium/registrasi/'.$id_kegiatan)->with('message','Password tidak cocok');
+			return Redirect::to('event/registrasi/'.$id_kegiatan)->with('message','Password tidak cocok');
 		}
 	}
 	
@@ -144,14 +173,14 @@ class SimposiumController extends BaseController {
 				{
 					Session::push('session_admin_id',$kegiatan[0]['id']);
 					//Session::push('session_kegiatan',$id_kegiatan);
-					return Redirect::to('simposium/admin/'.$id_kegiatan);
+					return Redirect::to('event/admin/'.$id_kegiatan);
 				}	
 				else{
-					return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
+					return Redirect::to('event/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
 				}
 			}
 			else{
-				return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username ini tidak aktif');
+				return Redirect::to('event/login/'.$id_kegiatan)->with('message','Username ini tidak aktif');
 			}
 		}
 		else{
@@ -161,10 +190,10 @@ class SimposiumController extends BaseController {
 				if (Hash::check($password, $peserta[0]['password']))
 				{
 					Session::push('session_user_id',$peserta[0]['id']);
-					return Redirect::to('simposium/'.$id_kegiatan);
+					return Redirect::to('event/'.$id_kegiatan);
 				}
 				else{
-					return Redirect::to('simposium/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
+					return Redirect::to('event/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
 				}
 			}
 		}
@@ -172,7 +201,7 @@ class SimposiumController extends BaseController {
 	
 	public function logout($id){
 		Session::flush();
-		return Redirect::to('simposium/login/'.$id);
+		return Redirect::to('event/login/'.$id);
 	}
 	
 	public function edit_profil(){
@@ -214,7 +243,7 @@ class SimposiumController extends BaseController {
 		
 		$peserta->save();
 		
-		return  Redirect::to('simposium/user/'.$id_kegiatan.'/'.$id_peserta)->with('message','Berhasil Merubah Data');
+		return  Redirect::to('event/user/'.$id_kegiatan.'/'.$id_peserta)->with('message','Berhasil Merubah Data');
 		
 	}
 	
@@ -236,21 +265,21 @@ class SimposiumController extends BaseController {
 					File::delete($peserta->path_paper);
 				}
 				catch(Exception $e){
-					return Redirect::to('simposium/user/'.$id.'/'.$id_peserta)->with('message','Gagal Mengunggah Paper');
+					return Redirect::to('event/user/'.$id.'/'.$id_peserta)->with('message','Gagal Mengunggah Paper');
 				}
 			}
 			$peserta->path_paper = $destination . $file->getClientOriginalName();
 			try{
 				$peserta->save();
 				$file->move($destination,$file->getClientOriginalName());
-				return Redirect::to('simposium/user/'.$id.'/'.$id_peserta)->with('message','Berhasil Mengunggah Paper');
+				return Redirect::to('event/user/'.$id.'/'.$id_peserta)->with('message','Berhasil Mengunggah Paper');
 			}
 			catch(Exception $e){
-				return Redirect::to('simposium/user/'.$id.'/'.$id_peserta)->with('message','Gagal Mengunggah Paper');
+				return Redirect::to('event/user/'.$id.'/'.$id_peserta)->with('message','Gagal Mengunggah Paper');
 			}
 		}
 		else{
-			return Redirect::to('simposium/user/'.$id.'/'.$id_peserta);
+			return Redirect::to('event/user/'.$id.'/'.$id_peserta);
 		}
 	}
 	
@@ -269,14 +298,14 @@ class SimposiumController extends BaseController {
 			try{
 				$peserta->save();
 				$file->move($destination,'bukti_bayar.jpg');
-				return Redirect::to('simposium/user/'.$id.'/'.$id_peserta)->with('message','Berhasil Mengunggah Bukti Bayar');
+				return Redirect::to('event/user/'.$id.'/'.$id_peserta)->with('message','Berhasil Mengunggah Bukti Bayar');
 			}
 			catch(Exception $e){
-				return Redirect::to('simposium/user/'.$id.'/'.$id_peserta)->with('message','Gagal Mengunggah Bukti Bayar');
+				return Redirect::to('event/user/'.$id.'/'.$id_peserta)->with('message','Gagal Mengunggah Bukti Bayar');
 			}
 		}
 		else{
-			return Redirect::to('simposium/user/'.$id.'/'.$id_peserta);
+			return Redirect::to('event/user/'.$id.'/'.$id_peserta);
 		}
 	
 	}

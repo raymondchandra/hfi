@@ -57,7 +57,7 @@
 					</li>
 					<span class="white_space">&nbsp;</span>
 					<li>
-						<a href="{{URL::route('simposium.konten',array('konten',$id))}}">
+						<a href="{{URL::route('simposium.konten',array('kontak',$id))}}">
 							Kontak
 						</a>
 					</li>
@@ -67,7 +67,7 @@
 				@if($simpIct == 4)
 				<ul>
 					<li>
-						<a href="{{URL::route('simposium')}}">Previous Meeting</a>
+						<a href="{{URL::route('ictap')}}">Previous Meeting</a>
 					</li>
 
 					<span class="white_space">&nbsp;</span>
@@ -117,7 +117,7 @@
 					</li>
 					<span class="white_space">&nbsp;</span>
 					<li>
-						<a href="{{URL::route('simposium.konten',array('konten',$id))}}">
+						<a href="{{URL::route('simposium.konten',array('kontak',$id))}}">
 							Contact
 						</a>
 					</li>

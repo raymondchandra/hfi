@@ -11,23 +11,23 @@
 					@if($simpIct == 3) Peserta @else @if($simpIct == 4) Participant @endif @endif
 				</h2>
 			
-					Total Registrasi: {{count($pesertas)}}<br/>
+					@if($simpIct == 3) Total Registrasi @else @if($simpIct == 4) Registration Total @endif @endif : {{count($pesertas)}}<br/>
 				<table class="table table-bordered table-striped" style="font-size: 12px;">					
 					<tr>
 						<td>
 							No.
 						</td>
 						<td>
-							Nama
+							@if($simpIct == 3) Nama @else @if($simpIct == 4) Name @endif @endif 
 						</td>
 						<td>
-							Institusi
+							@if($simpIct == 3) Institusi @else @if($simpIct == 4) Institution  @endif @endif 
 						</td>
 						<td>
-							Status Registrasi
+							@if($simpIct == 3) Status peserta @else @if($simpIct == 4) Participant Status @endif @endif 
 						</td>
 						<td>
-							Abstrak
+							@if($simpIct == 3) Abstrak @else @if($simpIct == 4) Abstract @endif @endif 
 						</td>
 					</tr>
 					@for($i = 0; $i < count($pesertas) ; $i++)
@@ -44,7 +44,7 @@
 						</td>
 						<td>
 							@if($pesertas[$i]->is_paper == 0)
-								Partisipan
+								@if($simpIct == 3) Partisipan @else @if($simpIct == 4) Participant @endif @endif 
 							@else
 								{{$pesertas[$i]->paper}}
 							@endif

@@ -2,6 +2,7 @@
 @section('content')
 <script>
 var id = '{{$id}}';
+var simpIct = '{{$simpIct}}';
 
 </script>
 
@@ -15,13 +16,20 @@ var id = '{{$id}}';
 		}
 		</style>
 		<ol class="breadcrumb">
-			<li class="active">Dashboard</li>
+			@if($simpIct == 3)
+				<li class="active">Beranda</li>
+			@else 
+			@if($simpIct == 4)
+				<li class="active">Dashboard</li>
+			@endif
+			@endif
 		</ol>
 	</div>
 </div>
 
 
 <div class="container_12" style="padding-bottom: 20px;">
+	@if($simpIct == 3)
 	<a href="general/{{$id}}" class="grid_3 simposium_block">
 		Umum
 	</a>
@@ -42,7 +50,32 @@ var id = '{{$id}}';
 	</a>
 	<a href="template/{{$id}}" class="grid_3 simposium_block">
 		Template
+	</a>	
+	@else 
+	@if($simpIct == 4)
+	<a href="general/{{$id}}" class="grid_3 simposium_block">
+		General
 	</a>
+	<a href="konten/{{$id}}" class="grid_3 simposium_block">
+		Content
+	</a>
+	<a href="harga/{{$id}}" class="grid_3 simposium_block">
+		Price
+	</a>
+	<a href="peserta/{{$id}}" class="grid_3 simposium_block">
+		Participant
+	</a>
+	<a href="pesan/{{$id}}" class="grid_3 simposium_block">
+		Message
+	</a>
+	<a href="berkas/{{$id}}" class="grid_3 simposium_block">
+		File
+	</a>
+	<a href="template/{{$id}}" class="grid_3 simposium_block">
+		Template
+	</a>	
+	@endif
+	@endif
 
 </div>
 

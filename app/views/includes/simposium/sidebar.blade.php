@@ -2,6 +2,8 @@
 				<div class="side_panel_hfi_background">
 
 
+				@if($simpIct == 3)
+				
 				
 				<ul>
 					<li>
@@ -61,5 +63,68 @@
 					</li>
 				
 				</ul>
+				@else 
+				@if($simpIct == 4)
+				<ul>
+					<li>
+						<a href="{{URL::route('simposium')}}">Previous Meeting</a>
+					</li>
+
+					<span class="white_space">&nbsp;</span>
+					<li>
+						<a href="{{URL::route('simposium.index',array($id))}}">Front Page</a>
+					</li>
+					<span class="white_space">&nbsp;</span>
+					<li>
+						<a href="{{URL::route('simposium.konten',array('tanggal penting',$id))}}">Important Dates</a>
+					</li>
+					<span class="white_space">&nbsp;</span>
+					<li>
+						<a href="{{URL::route('simposium.konten',array('lokasi',$id))}}">
+							Location
+						</a>
+					</li>
+					<span class="white_space">&nbsp;</span>
+					<li>
+						<a href="{{URL::route('simposium.konten',array('akomodasi',$id))}}">
+							Accomodation
+						</a>
+					</li>
+					<span class="white_space">&nbsp;</span>
+					<li>
+						<a href="{{URL::route('simposium.konten',array('program',$id))}}">
+							Program
+						</a>
+					</li>
+					
+					<span class="white_space">&nbsp;</span>
+					<li>
+						<a href="{{URL::route('simposium.peserta',array($id))}}">
+							Participant
+						</a>
+					</li>
+					<span class="white_space">&nbsp;</span>
+					<li>
+						<a href="{{URL::route('simposium.konten',array('prosiding',$id))}}">
+							Prosiding
+						</a>
+					</li>
+					<span class="white_space">&nbsp;</span>
+					<li>
+						<a href="{{URL::route('simposium.konten',array('panitia',$id))}}">
+							Organizer
+						</a>
+					</li>
+					<span class="white_space">&nbsp;</span>
+					<li>
+						<a href="{{URL::route('simposium.konten',array('konten',$id))}}">
+							Contact
+						</a>
+					</li>
+				
+				</ul>	
+				@endif
+				@endif
+				
 				</div>
 			</div>

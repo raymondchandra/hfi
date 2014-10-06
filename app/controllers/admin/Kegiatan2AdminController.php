@@ -136,7 +136,8 @@ class Kegiatan2AdminController extends BaseController {
 		{
 			$nama_kegiatan = "kosong";
 		}
-		return View::make('pages.simposium.admin.simposium_index',compact('id','nama_kegiatan'));
+		$simpIct = $kegiatan->tipe;
+		return View::make('pages.simposium.admin.simposium_index',compact('id','nama_kegiatan','simpIct'));
 	}
 
 	public function view_general($id)
@@ -146,14 +147,16 @@ class Kegiatan2AdminController extends BaseController {
 		$tanggal_mulai = date_format($date,"d-m-Y");
 		$date= date_create($kegiatan->waktu_selesai);
 		$tanggal_selesai = date_format($date,"d-m-Y");
-		return View::make('pages.simposium.admin.simposium_general',compact('id','kegiatan','tanggal_mulai','tanggal_selesai'));
+		$simpIct = $kegiatan->tipe;
+		return View::make('pages.simposium.admin.simposium_general',compact('id','kegiatan','tanggal_mulai','tanggal_selesai','simpIct'));
 	}
 
 	public function view_konten($id)
 	{
 		$kegiatan = Kegiatan2::find($id);
 		$nama_kegiatan = $kegiatan->nama;
-		return View::make('pages.simposium.admin.simposium_konten_index',compact('id','nama_kegiatan'));
+		$simpIct = $kegiatan->tipe;
+		return View::make('pages.simposium.admin.simposium_konten_index',compact('id','nama_kegiatan','simpIct'));
 	}
 
 	
@@ -164,7 +167,8 @@ class Kegiatan2AdminController extends BaseController {
 		$nama_kegiatan = $kegiatan->nama;
 		$header = Kegiatanfile::where('id_kegiatan','=',$id)->where('tipe','=','header')->first();
 		$sponsors = Kegiatanfile::where('id_kegiatan','=',$id)->where('tipe','=','sponsor')->get();
-		return View::make('pages.simposium.admin.simposium_header',compact('id','nama_kegiatan','header','sponsors'));
+		$simpIct = $kegiatan->tipe;
+		return View::make('pages.simposium.admin.simposium_header',compact('id','nama_kegiatan','header','sponsors','simpIct'));
 	}
 
 	public function update_header($id)
@@ -333,7 +337,28 @@ class Kegiatan2AdminController extends BaseController {
 	{
 		$kegiatan = Kegiatan2::find($id);
 		$nama_kegiatan = $kegiatan->nama;
-		$title = ucwords($type);
+		$simpIct = $kegiatan->tipe;
+		if($simpIct == 3){
+			$title = ucwords($type);
+		}else{
+			if($type == "tanggal penting"){
+				$title = "Important Dates";
+			}else if($type == "lokasi"){
+				$title = "Location";
+			}else if($type == "akomodasi"){
+				$title = "Accomodation";
+			}else if($type == "program"){
+				$title = "Program";
+			}else if($type == "registrasi"){
+				$title = "Registration";
+			}else if($type == "prosiding"){
+				$title = "Proceeding";
+			}else if($type == "panitia"){
+				$title = "Organizer";
+			}else if($type == "kontak"){
+				$title = "Contact";
+			}
+		}
 		
 		$konten = KegiatanKonten::where('tipe', '=', $type)->first();
 		$text = "";
@@ -341,7 +366,7 @@ class Kegiatan2AdminController extends BaseController {
 			$text = $konten->konten;
 		}
 		
-		return View::make('pages.simposium.admin.simposium_editor',compact('type','id','nama_kegiatan','title','text'));
+		return View::make('pages.simposium.admin.simposium_editor',compact('type','id','nama_kegiatan','title','text','simpIct'));
 	}
 
 	public function edit_editor($id)
@@ -371,7 +396,6 @@ class Kegiatan2AdminController extends BaseController {
 			
 			return "Success Insert";
 		}
-		return 'asdf';
 	}
 
 	public function view_harga($id)

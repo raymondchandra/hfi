@@ -119,7 +119,7 @@ class SimposiumController extends BaseController {
 		$password_again= Input::get('input_password_again');
 		$is_paper = Input::get('is_paper');
 		$gender = Input::get('gender');
-		$spesialisasi = Input::get('spesialisasi');
+		//$spesialisasi = Input::get('spesialisasi');
 		$judul_paper = Input::get('input_judul_paper');
 		$abstrak_paper = Input::get('input_abstrak');
 		
@@ -144,7 +144,7 @@ class SimposiumController extends BaseController {
 				$peserta->is_paper =$is_paper;
 				$peserta->presentasi =$gender;
 				$peserta->abstract =$abstrak_paper;
-				$peserta->spesialisasi = $spesialisasi;
+				//$peserta->spesialisasi = $spesialisasi;
 				$peserta->status_bayar =0;
 				$peserta->bukti_bayar ="";
 				$peserta->paper =$judul_paper;
@@ -216,7 +216,7 @@ class SimposiumController extends BaseController {
 		$password_again= Input::get('input_password_again');
 		//$is_paper = Input::get('is_paper');
 		$gender = Input::get('gender');
-		$spesialisasi = Input::get('spesialisasi');
+		//$spesialisasi = Input::get('spesialisasi');
 		$judul_paper = Input::get('input_judul_paper');
 		$abstrak_paper = Input::get('input_abstrak');
 		
@@ -407,7 +407,7 @@ class SimposiumController extends BaseController {
 					$pdfContent = str_replace("*alamat*",$peserta->alamat,$pdfContent);
 					$pdfContent = str_replace("*status*",$peserta->status,$pdfContent);
 					$pdfContent = str_replace("*abstrak*",$peserta->abstrak,$pdfContent);
-					$pdfContent = str_replace("*spesialisasi*",$peserta->spesialisasi,$pdfContent);
+					//$pdfContent = str_replace("*spesialisasi*",$peserta->spesialisasi,$pdfContent);
 					$pdfContent = str_replace("*paper*",$peserta->paper,$pdfContent);
 					
 					$pdfContent = str_replace("*nama_kegiatan*",$kegiatan->nama,$pdfContent);
@@ -450,7 +450,7 @@ class SimposiumController extends BaseController {
 			$templateContext = str_replace("*alamat*",$peserta->alamat,$templateContext);
 			$templateContext = str_replace("*status*",$peserta->status,$templateContext);
 			$templateContext = str_replace("*abstrak*",$peserta->abstract,$templateContext);
-			$templateContext = str_replace("*spesialisasi*",$peserta->spesialisasi,$templateContext);
+			//$templateContext = str_replace("*spesialisasi*",$peserta->spesialisasi,$templateContext);
 			$templateContext = str_replace("*paper*",$peserta->paper,$templateContext);
 			
 			$templateContext = str_replace("*nama_kegiatan*",$kegiatan->nama,$templateContext);

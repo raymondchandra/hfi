@@ -146,7 +146,7 @@
 									{{ Form::radio('gender','wanita', array('style'=>'float: left;')) }} Poster     
 								</label>
 
-								{{ Form::select('spesialisasi',array(
+								<!--{{ Form::select('spesialisasi',array(
 								'' => 'pilih!',
 								'astro' => 'astro',
 								'hayati' => 'hayati',
@@ -162,7 +162,7 @@
 								'nonlinier' => 'non-linier',
 								'nuklir' => 'nuklir',
 								'parkikel' => 'partikel',
-								'lainlain' => 'lain-lain'), NULL, array('class'=>'form-control col-sm-3', 'style'=>'margin-right:10px;'))
+								'lainlain' => 'lain-lain'), NULL, array('class'=>'form-control col-sm-3', 'style'=>'margin-right:10px;'))-->
 							}}
 						</div>
 

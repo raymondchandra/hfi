@@ -8,40 +8,44 @@
 			@include('includes.simposium.sidebar')
 			{{Session::get('message')}}
 			<div class="content_hfi">
-				<h1 style="">Profile Pengguna</h1>
+				<h1 style="">@if($simpIct == 3) Profil Pengguna @else @if($simpIct == 4) User Profile @endif @endif </h1>
 				<button data-toggle="modal" data-target=".pop_up_edit_profile" class="btn btn-primary edit_profil" style="float: right;">
-					Edit Profile
+					@if($simpIct == 3) Ubah Profil @else @if($simpIct == 4) Edit Profile @endif @endif 
 				</button><input type='hidden' class='id_prt' value='{{$peserta[0]->id}}' />
 				<span class="clearfix"></span>
 				<div class="panel panel-default">
 					
 					<div class="panel-body container-fluid">
 						  <div class="form-group row">
-							<label class="col-lg-3">Nama</label>
+							<label class="col-lg-3">@if($simpIct == 3) Nama @else @if($simpIct == 4) Name @endif @endif </label>
 							<span class="col-lg-8">{{$peserta[0]->nama}}</span>
 						  </div>
 						  
 						  <div class="form-group row">
-							<label class="col-lg-3">Institusi</label>
+							<label class="col-lg-3">@if($simpIct == 3) Institusi @else @if($simpIct == 4) Institution @endif @endif</label>
 							<span class="col-lg-8">{{$peserta[0]->institusi}}</span>
 						  </div>
 						  
 						  <div class="form-group row">
-							<label class="col-lg-3">Profesi</label>
+							<label class="col-lg-3">@if($simpIct == 3) Profesi @else @if($simpIct == 4) Occupation @endif @endif</label>
 							<span class="col-lg-8">{{$peserta[0]->pekerjaan}}</span>
 						  </div>
 						  
 						  <div class="form-group row">
-							<label class="col-lg-3">Surat Elektronik</label>
+							<label class="col-lg-3">@if($simpIct == 3) Surat Elektronik @else @if($simpIct == 4) Email @endif @endif</label>
 							<span class="col-lg-8">{{$peserta[0]->email}}</span>
 						  </div>
 						  
 						  <div class="form-group row">
-							<label class="col-lg-3">Alamat</label>
+							<label class="col-lg-3">@if($simpIct == 3) Alamat @else @if($simpIct == 4) Address @endif @endif </label>
 							<span class="col-lg-8">{{$peserta[0]->alamat}}</span>
 						  </div>
 						  @if($peserta[0]->is_paper== 1)
-						  <p class="bg-success" style="padding: 5px;"><span class="text-success">PERHATIAN!</span> Form dibawah terisi JIKA Anda mempersembahkan paper! </p>
+						  							@if($simpIct == 3) 
+	<p class="bg-success" style="padding: 5px;"><span class="text-success">PERHATIAN!</span> Form dibawah terisi JIKA Anda mempersembahkan paper! </p>
+@else @if($simpIct == 4)  
+<p class="bg-success" style="padding: 5px;"><span class="text-success">ATTENTION!</span> Complete the items below ONLY if you wish to present a paper ! </p>
+@endif @endif 
 
 						  <div class="form-group row">
 							<label class="col-lg-3">Status</label>
@@ -50,18 +54,18 @@
 							</span>
 						  </div>
 
-						  <div class="form-group row">
+						 <!-- <div class="form-group row">
 							<label class="col-lg-3">Bidang Keahlian</label>
-							<span class="col-lg-8">{{$peserta[0]->spesialisasi}}</span>
-						  </div>
+							<span class="col-lg-8"></span>
+						  </div>-->
 
 						  <div class="form-group row">
-							<label class="col-lg-3">Judul Paper</label>
+							<label class="col-lg-3">@if($simpIct == 3) Judul Paper @else @if($simpIct == 4) Paper Title @endif @endif</label>
 							<span class="col-lg-8">{{$peserta[0]->paper}}</span>
 						  </div>
 
 						  <div class="form-group row">
-							<label class="col-lg-3">Abstrak</label>
+							<label class="col-lg-3">@if($simpIct == 3) Abstrak @else @if($simpIct == 4) Abstract @endif @endif</label>
 							<span class="col-lg-8">{{$peserta[0]->abstract}}</span>
 						  </div>
 
@@ -69,10 +73,10 @@
 						@endif
 						 <hr/>
 						@if($peserta[0]->is_paper == 1)
-						  <button data-toggle="modal" data-target=".pop_up_upload_full_paper" type="submit" class="btn btn-info upload_paper">Upload Full Paper</button> 
+						  <button data-toggle="modal" data-target=".pop_up_upload_full_paper" type="submit" class="btn btn-info upload_paper">@if($simpIct == 3) Unggah Paper Lengkap @else @if($simpIct == 4) Upload Full Paper @endif @endif </button> 
 						@endif
-						  <button data-toggle="modal" data-target=".pop_up_upload_bukti_pembayaran" type="submit" class="btn btn-info upload_bayar">Upload Bukti Pembayaran</button> 
-						  <button data-toggle="modal" data-target=".pop_up_minta_bantuan" type="submit" class="btn btn-info" id="bantuanButt">Minta Bantuan</button> 
+						  <button data-toggle="modal" data-target=".pop_up_upload_bukti_pembayaran" type="submit" class="btn btn-info upload_bayar">@if($simpIct == 3) Unggah Bukti Pembayaran  @else @if($simpIct == 4) Upload Proof of Payment @endif @endif </button> 
+						  <button data-toggle="modal" data-target=".pop_up_minta_bantuan" type="submit" class="btn btn-info" id="bantuanButt">@if($simpIct == 3) Minta Bantuan @else @if($simpIct == 4) Get Help @endif @endif </button> 
 					</div>
 					
 					<script>
@@ -106,7 +110,7 @@
 	
 	$('body').on('click','.edit_profil',function(){
 		$id_profil = $(this).next().val();
-		$.get("{{url('simposium/admin/satu_peserta/')}}/"+$id_profil,function(response){
+		$.get("{{url('event/admin/satu_peserta/')}}/"+$id_profil,function(response){
 			$('#id_peserta_edit').val($id_profil);
 			$('.input_nama').val(response.nama);
 			$('#input_institusi').val(response.institusi);

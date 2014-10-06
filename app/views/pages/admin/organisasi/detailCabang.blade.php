@@ -83,7 +83,8 @@ $(document).ready(function(){
 </div>
 <script>
 var id_hapus_pengurus;
-$('body').on('click','.hapus_pengurus',function(){
+// $('body').one("click",'.hapus_pengurus',function(){
+$('.hapus_pengurus').one("click",function(){
 	//$(".pop_up_super_c_hapus_pengurus").fadeIn(277, function(){});
 		//var id_pengurus = $(this).next().val();
 		$id_pengurus = $(this).next().val();
@@ -91,7 +92,8 @@ $('body').on('click','.hapus_pengurus',function(){
 		//ambil id pengurus buat ok_hapus_pengurus
 		id_hapus_pengurus = $id_pengurus;
 	});			
-$('body').on('click','.ok_hapus_pengurus',function(){
+// $('body').one("click",'.ok_hapus_pengurus',function(){
+$('.ok_hapus_pengurus').one("click",function(){
 	//$( ".loader" ).fadeIn( 200, function(){});
 		//ajax delete
 		$.ajax({
@@ -105,6 +107,7 @@ $('body').on('click','.ok_hapus_pengurus',function(){
 				//$(".pop_up_super_c_hapus_pengurus").fadeOut(200, function(){});	
 				if(data=="success"){
 					alert("Berhasil menghapus pengurus");
+					$('.loader').fadeIn(277, function(){});
 					$('.modal-backdrop').removeClass('in');
 					setTimeout(function() {
 						$('.modal-backdrop').fadeOut( 300, function(){});
@@ -112,6 +115,7 @@ $('body').on('click','.ok_hapus_pengurus',function(){
 
 				}else{
 					alert("Gagal menghapus pengurus");
+					$('.loader').fadeIn(277, function(){});
 					$('.modal-backdrop').removeClass('in');
 					setTimeout(function() {
 						$('.modal-backdrop').remove();

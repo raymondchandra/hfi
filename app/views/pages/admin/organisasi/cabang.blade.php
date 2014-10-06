@@ -96,7 +96,8 @@ $(document).ready(function() {
 					$('body').on('click','.hapus_cabang',function(){
 						$( ".pop_up_super_c_hapus_cabang" ).fadeIn( 277, function(){});						
 						// $( ".loader" ).fadeIn( 200, function(){});						
-						id_delete_cabang = $(this).parent().parent().prev().prev().prev().prev().prev().prev().prev().children().val();
+						// id_delete_cabang = $(this).parent().parent().prev().prev().prev().prev().prev().prev().prev().children().val();
+						id_delete_cabang = $(this).parent().siblings('#h_id').children().val();	
 						// alert(id_delete_cabang);
 						// alert("masuk ke fungsi");
 						//ajax delete
@@ -127,6 +128,7 @@ $(document).ready(function() {
 							success: function(data){
 								alert("berhasil menghapus");
 								$( ".pop_up_super_c_hapus_cabang" ).fadeOut( 277, function(){});	
+								// $('.admin_control_panel').load('admin/organisasi/cabang');	 
 								getCabang();								
 								//$( ".loader" ).fadeOut( 200, function(){});
 							},
@@ -393,20 +395,20 @@ $('body').on('click','#tambah_cabang_button',function(){
 								</div>
 								<div class="form-group">
 									<label class="control-label col-sm-3">Website</label>
-									<input type='text' id='edit_new_website' class="form-control col-sm-5"/>
+									<input type='text' name='edit_new_website' id='edit_new_website' class="form-control col-sm-5"/>
 								</div>				
 							</div>
 
 
 							<div class="modal-footer">
 								<input type='submit' value='Edit' id="edit_cabang_button" class="btn btn-success"/>
-							</div>			a
+							</div>			
 						</form>
 						<script>								
 						$( ".edit_cabang_form" ).validate({
 							rules: {
 								edit_new_nama : {
-									ired: true
+									required: true
 								},
 								edit_new_alamat:{
 									required:true
@@ -416,7 +418,7 @@ $('body').on('click','#tambah_cabang_button',function(){
 								}										
 							}, messages: {
 								edit_new_nama: {
-									uired: "Mohon isi Nama Cabang"
+									required: "Mohon isi Nama Cabang"
 								},
 								edit_new_alamat: {
 									required: "Mohon isi Nama Cabang"
@@ -436,7 +438,7 @@ $('body').on('click','#tambah_cabang_button',function(){
 									url: 'admin/organisasi/editcabang',
 									type: 'PUT',
 									data: {
-										'id_cabang':$id_edit_cabang,
+										'id_cabang':id_edit_cabang,
 										'nama_cabang':$nama,
 										'telp_cabang':$telepon,
 										'fax_cabang':$fax,
@@ -446,9 +448,9 @@ $('body').on('click','#tambah_cabang_button',function(){
 									},
 									success: function(data){
 										alert(data);
-									//$( ".loader" ).fadeIn( 200, function(){});
-									//$( ".pop_up_super_c_edit_cabang" ).fadeOut( 200, function(){});
-									getCabang();
+										$( ".loader" ).fadeIn( 200, function(){});
+										$( ".pop_up_super_c_edit_cabang" ).fadeOut( 200, function(){});
+										getCabang();
 
 									$('.modal-backdrop').removeClass('in');
 									setTimeout(function() {

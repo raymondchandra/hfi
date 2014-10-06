@@ -19,7 +19,7 @@ class CreatePeserta extends Migration {
 
 			$table->string('username');
 			$table->string('password');
-
+			$table->string('nomor_peserta');
 
 			$table->string('nama');
 			$table->string('institusi');

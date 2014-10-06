@@ -133,6 +133,7 @@ class SimposiumController extends BaseController {
 			else{
 				$peserta = new Peserta();
 				$peserta->id_kegiatan =$id_kegiatan;
+				
 				$peserta->username =$username;
 				$peserta->password =Hash::make($password);
 				$peserta->nama =$name;
@@ -150,6 +151,21 @@ class SimposiumController extends BaseController {
 				$peserta->paper =$judul_paper;
 				$peserta->abstract_read = 0;
 				$peserta->paper_read = 0;
+				$peserta->save();
+				
+				$format1 = '%s';
+				$format2 = '%1$02d';
+				$format3 = '%1$03d';
+				$tahun = date('Y');
+				$nomor_kegiatan=$id_kegiatan;
+				$list_peserta = Peserta::where('id_kegiatan','=','$id_kegiatan');
+				$nomor_peserta=count($list_peserta);
+				$tahun_kegiatan =  sprintf($format1,$tahun);
+				$nomor_keg =  sprintf($format2,$nomor_kegiatan);
+				$nomor_pes = sprintf($format3,$nomor_peserta);
+				$nomorAnggota = $tahun_kegiatan.$nomor_keg.$nomor_pes;
+				$peserta->nomor_peserta = $nomorAnggota;
+				
 				$peserta->save();
 				$this->createEmail("Registrasi", $id_kegiatan,  $peserta->id);
 				return Redirect::to('event/login/'.$id_kegiatan)->with('message','Pendaftaran Berhasil');

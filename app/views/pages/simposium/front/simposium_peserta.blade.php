@@ -37,7 +37,7 @@
 						</td>
 						<td>
 							<span style="display: block">{{$pesertas[$i]->nama}}</span>
-							<span>1408519438</span>
+							<span>{{$pesertas[$i]->nomor_peserta}}</span>
 						</td>
 						<td>
 							{{$pesertas[$i]->institusi}}

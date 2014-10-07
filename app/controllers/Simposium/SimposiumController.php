@@ -42,8 +42,14 @@ class SimposiumController extends BaseController {
 	public function view_registrasi($id){
 
 		$kegiatan = Kegiatan2::find($id);
+		$simpIct = $kegiatan->tipe;
 		if($kegiatan->openRegistration == 0){
-			return Redirect::to('event/'.$id)->with('message','Pendaftaran Sudah Ditutup');
+			if($simpIct == 3)
+			{
+				return Redirect::to('event/'.$id)->with('message','Pendaftaran sudah ditutup');
+			}else if($simpIct == 4){
+				return Redirect::to('event/'.$id)->with('message','Registration is closed');
+			}
 		}
 		$text = $this->getKonten('registrasi',$id);
 		$date= date_create($kegiatan->early_start);
@@ -51,7 +57,7 @@ class SimposiumController extends BaseController {
 		$date= date_create($kegiatan->early_finish);
 		$early_finish = date_format($date,"d-m-Y");
 		$harga = Harga::where('id_kegiatan','=',$id)->get();
-		$simpIct = $kegiatan->tipe;
+		
 		return View::make('pages.simposium.front.simposium_registrasi',compact('id','text','early_start','early_finish','harga','simpIct'));
 	}
 	
@@ -109,6 +115,7 @@ class SimposiumController extends BaseController {
 
 	public function register(){
 		$id_kegiatan = Input::get('input_id');
+		$kegiatan = Kegiatan2::find($id_kegiatan);
 		$username = Input::get('input_user');
 		$name= Input::get('input_nama');
 		$institusi= Input::get('input_institusi'); 
@@ -168,11 +175,21 @@ class SimposiumController extends BaseController {
 				
 				$peserta->save();
 				$this->createEmail("Registrasi", $id_kegiatan,  $peserta->id);
-				return Redirect::to('event/login/'.$id_kegiatan)->with('message','Pendaftaran Berhasil');
+				
+				if($kegiatan->tipe == 3){
+					return Redirect::to('event/login/'.$id_kegiatan)->with('message','Pendaftaran Berhasil');
+					}else if($kegiatan->tipe == 4){
+					return Redirect::to('event/login/'.$id_kegiatan)->with('message','Registration Success');
+					}
 			}
 		}
 		else{
+			if($kegiatan->tipe == 3){
 			return Redirect::to('event/registrasi/'.$id_kegiatan)->with('message','Password tidak cocok');
+					}else if($kegiatan->tipe == 4){
+					return Redirect::to('event/registrasi/'.$id_kegiatan)->with('message','Password does not match');
+					}
+					
 		}
 	}
 	
@@ -191,16 +208,27 @@ class SimposiumController extends BaseController {
 					return Redirect::to('event/admin/'.$id_kegiatan);
 				}	
 				else{
+					if($kegiatan->tipe == 3){
+					
 					return Redirect::to('event/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
+					}else if($kegiatan->tipe == 4){
+					
+					return Redirect::to('event/login/'.$id_kegiatan)->with('message','Username or Password is not Correct');
+					}
 				}
 			}
 			else{
-				return Redirect::to('event/login/'.$id_kegiatan)->with('message','Username ini tidak aktif');
+				if($kegiatan->tipe == 3){
+					return Redirect::to('event/login/'.$id_kegiatan)->with('message','Username ini tidak aktif');
+					}else if($kegiatan->tipe == 4){
+					return Redirect::to('event/login/'.$id_kegiatan)->with('message','This username is not active');
+					}
+					
 			}
 		}
 		else{
 			$peserta = Peserta::where('username','=',$username)->get();
-		
+			$kegiatan = Kegiatan2::find($id_kegiatan);
 			if(count($peserta)>0){
 				if (Hash::check($password, $peserta[0]['password']))
 				{
@@ -208,7 +236,13 @@ class SimposiumController extends BaseController {
 					return Redirect::to('event/'.$id_kegiatan);
 				}
 				else{
+					if($kegiatan->tipe == 3){
+					
 					return Redirect::to('event/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
+					}else if($kegiatan->tipe == 4){
+					
+					return Redirect::to('event/login/'.$id_kegiatan)->with('message','Username or Password is not Correct');
+					}
 				}
 			}
 		}
@@ -258,8 +292,12 @@ class SimposiumController extends BaseController {
 		}
 		
 		$peserta->save();
-		
-		return  Redirect::to('event/user/'.$id_kegiatan.'/'.$id_peserta)->with('message','Berhasil Merubah Data');
+		$kegiatan = Kegiatan2::find($id_kegiatan);
+		if($kegiatan->tipe == 3){
+		return  Redirect::to('event/user/'.$id_kegiatan.'/'.$id_peserta)->with('message','Berhasil Mengubah Data');
+					}else if($kegiatan->tipe == 4){
+						return Redirect::to('event/user/'.$id.'/'.$id_peserta)->with('message','Failed Changing Data');
+					}
 		
 	}
 	
@@ -275,23 +313,36 @@ class SimposiumController extends BaseController {
 			
 			$peserta = Peserta::find($id_peserta);
 			
-			
+			$kegiatan = Kegiatan2::find($id);
 			if($peserta->path_paper != ""){
 				try{
 					File::delete($peserta->path_paper);
 				}
 				catch(Exception $e){
+					if($kegiatan->tipe == 3){
 					return Redirect::to('event/user/'.$id.'/'.$id_peserta)->with('message','Gagal Mengunggah Paper');
+					}else if($kegiatan->tipe == 4){
+						return Redirect::to('event/user/'.$id.'/'.$id_peserta)->with('message','Failed Uploading Paper');
+					}
 				}
 			}
 			$peserta->path_paper = $destination . $file->getClientOriginalName();
+			
 			try{
 				$peserta->save();
 				$file->move($destination,$file->getClientOriginalName());
+				if($kegiatan->tipe == 3){
 				return Redirect::to('event/user/'.$id.'/'.$id_peserta)->with('message','Berhasil Mengunggah Paper');
+				}else if($kegiatan->tipe == 4){
+					return Redirect::to('event/user/'.$id.'/'.$id_peserta)->with('message','Success Uploading Paper');
+				}
 			}
 			catch(Exception $e){
+				if($kegiatan->tipe == 3){
 				return Redirect::to('event/user/'.$id.'/'.$id_peserta)->with('message','Gagal Mengunggah Paper');
+				}else if($kegiatan->tipe == 4){
+					return Redirect::to('event/user/'.$id.'/'.$id_peserta)->with('message','Failed Uploading Paper');
+				}
 			}
 		}
 		else{
@@ -310,14 +361,22 @@ class SimposiumController extends BaseController {
 			
 			$peserta = Peserta::find($id_peserta);
 			$peserta->bukti_bayar = $destination . 'bukti_bayar.jpg';
-			
+			$kegiatan = Kegiatan2::find($id);
 			try{
 				$peserta->save();
 				$file->move($destination,'bukti_bayar.jpg');
-				return Redirect::to('event/user/'.$id.'/'.$id_peserta)->with('message','Berhasil Mengunggah Bukti Bayar');
+				if($kegiatan->tipe == 3){
+					return Redirect::to('event/user/'.$id.'/'.$id_peserta)->with('message','Berhasil Mengunggah Bukti Bayar');
+				}else if($kegiatan->tipe == 4){
+					return Redirect::to('event/user/'.$id.'/'.$id_peserta)->with('message','Success Uploading Proof of Payment');
+				}
 			}
 			catch(Exception $e){
-				return Redirect::to('event/user/'.$id.'/'.$id_peserta)->with('message','Gagal Mengunggah Bukti Bayar');
+				if($kegiatan->tipe == 3){
+					return Redirect::to('event/user/'.$id.'/'.$id_peserta)->with('message','Gagal Mengunggah Bukti Bayar');
+				}else if($kegiatan->tipe == 4){
+					return Redirect::to('event/user/'.$id.'/'.$id_peserta)->with('message','Failed Uploading Proof of Payment');
+				}
 			}
 		}
 		else{

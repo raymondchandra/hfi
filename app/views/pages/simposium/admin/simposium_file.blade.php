@@ -27,7 +27,7 @@
 
 
 
-		<div id='tambah_berkas_link' style='display: block;width: 100%;margin-left: 0px !important;overflow: hidden;'><a href='javascript:void(0)' id='tambah_berkas' class='command_button'>Tambah Berkas Baru</a></div>
+		<div id='tambah_berkas_link' style='display: block;width: 100%;margin-left: 0px !important;overflow: hidden;'><a href='javascript:void(0)' id='tambah_berkas' class='command_button'>Add New File</a></div>
 
 
 		<div class="berkas_list_container">

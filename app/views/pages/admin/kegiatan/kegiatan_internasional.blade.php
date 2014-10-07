@@ -526,7 +526,7 @@
 		},'json');
 });
 
-$('body').on('click','.edit_button',function(){
+$('body').one('click','.edit_button',function(){
 	$arrayData = $('#form_edit_kegiatan').serializeArray();
 	var formData = new FormData();
 

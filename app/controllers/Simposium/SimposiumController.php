@@ -210,30 +210,40 @@ class SimposiumController extends BaseController {
 		Session::forget('session_user_id');
 		if(strcmp($username,'admin')==0){
 			$kegiatan = Kegiatan2::find($id_kegiatan);
-			if($kegiatan->admin_aktif!=0){
-				if (Hash::check($password, $kegiatan->pass_admin))
-				{
-					Session::push('session_admin_id',$kegiatan[0]['id']);
-					return Redirect::to('event/admin/'.$id_kegiatan);
-				}	
+			if(count($kegiatan)==1){
+				if($kegiatan->admin_aktif!=0){
+					if (Hash::check($password, $kegiatan->pass_admin))
+					{
+						Session::push('session_admin_id',$kegiatan[0]['id']);
+						return Redirect::to('event/admin/'.$id_kegiatan);
+					}	
+					else{
+						if($kegiatan->tipe == 3){
+						
+						return Redirect::to('event/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
+						}else if($kegiatan->tipe == 4){
+						
+						return Redirect::to('event/login/'.$id_kegiatan)->with('message','Username or Password is not Correct');
+						}
+					}
+				}
 				else{
 					if($kegiatan->tipe == 3){
-					
-					return Redirect::to('event/login/'.$id_kegiatan)->with('message','Username atau Password Salah');
-					}else if($kegiatan->tipe == 4){
-					
-					return Redirect::to('event/login/'.$id_kegiatan)->with('message','Username or Password is not Correct');
-					}
+						return Redirect::to('event/login/'.$id_kegiatan)->with('message','Username ini tidak aktif');
+						}else if($kegiatan->tipe == 4){
+						return Redirect::to('event/login/'.$id_kegiatan)->with('message','This username is not active');
+						}
+						
 				}
 			}
 			else{
 				if($kegiatan->tipe == 3){
-					return Redirect::to('event/login/'.$id_kegiatan)->with('message','Username ini tidak aktif');
-					}else if($kegiatan->tipe == 4){
+						return Redirect::to('event/login/'.$id_kegiatan)->with('message','Username ini tidak aktif');
+				}else if($kegiatan->tipe == 4){
 					return Redirect::to('event/login/'.$id_kegiatan)->with('message','This username is not active');
-					}
-					
+				}
 			}
+			
 		}
 		else{
 			$peserta = Peserta::where('username','=',$username)->get();

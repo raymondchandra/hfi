@@ -84,13 +84,14 @@ Route::filter('authSimposiumAdmin', function($request)
 		{
 			Session::push('session_admin_id','super_admin');
 		}
+		else if(Session::get('session_kegiatan')[0] != $id_kegiatan){
+			return Redirect::to('event/login/'.$id_kegiatan)->with('message','Silahkan Login Terlebih Dahulu');
+		}
 		else{
 			return Redirect::to('event/login/'.$id_kegiatan)->with('message','Silahkan Login Terlebih Dahulu');
 		}
 		
-		if(Session::get('session_kegiatan')[0] != $id_kegiatan){
-			return Redirect::to('event/login/'.$id_kegiatan)->with('message','Silahkan Login Terlebih Dahulu');
-		}
+		
 	}
 	else{
 		if(Session::get('session_admin_id') == NULL){

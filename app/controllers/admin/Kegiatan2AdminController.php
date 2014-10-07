@@ -8,6 +8,7 @@ class Kegiatan2AdminController extends BaseController {
 	
 	public function view_index($type)
 	{
+		Session::push('session_kegiatan',$id);
 		$kegiatans = $this->get_all_kegiatan($type);
 		if($type==3){
 			return View::make('pages.admin.kegiatan.kegiatan_simposium',compact('kegiatans','type'));

@@ -74,7 +74,8 @@ Route::filter('checkSimposium', function($request)
 
 Route::filter('authSimposiumAdmin', function($request)
 {
-	$path = explode('/',Request::path());
+	$req_path = Request::path();
+	$path = explode('/',$req_path);
 	$id_kegiatan =  $path[count($path)-1];
 		if(Auth::user()->role != 1)
 		{
@@ -82,7 +83,7 @@ Route::filter('authSimposiumAdmin', function($request)
 		}else{
 		
 			Session::push('session_admin_id','super_admin');
-			return Redirect::to(Request::path());
+			return Redirect::to($req_path);
 		}
 
 	if((Session::get('session_admin_id') == NULL ||Session::get('session_kegiatan')[0] != $id_kegiatan ) && Session::get('session_kegiatan')[0] != $id_kegiatan){

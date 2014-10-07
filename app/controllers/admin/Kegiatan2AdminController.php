@@ -342,7 +342,7 @@ class Kegiatan2AdminController extends BaseController {
 		$simpIct = $kegiatan->tipe;
 		if($simpIct == 3){
 			$title = ucwords($type);
-		}else{
+		}else{			
 			if($type == "tanggal penting"){
 				$title = "Important Dates";
 			}else if($type == "lokasi"){
@@ -359,6 +359,8 @@ class Kegiatan2AdminController extends BaseController {
 				$title = "Organizer";
 			}else if($type == "kontak"){
 				$title = "Contact";
+			}else if($type == "halaman depan"){
+				$title = "Front Page";
 			}
 		}
 		
@@ -1062,7 +1064,7 @@ class Kegiatan2AdminController extends BaseController {
 		$nama_kegiatan = $kegiatan->nama;
 		$files = Kegiatanfile::where('id_kegiatan','=',$id)->where('tipe','=','other')->paginate(20);
 		$simpIct = $kegiatan->tipe;
-		return View::make('pages.simposium.admin.simposium_file',compact('id','nama_kegiatan','files'));
+		return View::make('pages.simposium.admin.simposium_file',compact('id','nama_kegiatan','files','simpIct'));
 	}
 
 	public function add_berkas($id){

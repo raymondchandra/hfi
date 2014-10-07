@@ -14,6 +14,7 @@ class SimposiumController extends BaseController {
 		}
 	}
 	public function view_index($id){
+		Session::forget('session_kegiatan');
 		Session::push('session_kegiatan',$id);
 		$text = $this->getKonten('halaman depan',$id);
 

@@ -24,6 +24,8 @@ class SimposiumController extends BaseController {
 	}
 	
 	public function view_login($id){
+		Session::forget('session_kegiatan');
+		Session::push('session_kegiatan',$id);
 		$kegiatan = Kegiatan2::find($id);
 		if(count($kegiatan)==1){
 			$simpIct = $kegiatan->tipe;
@@ -48,7 +50,8 @@ class SimposiumController extends BaseController {
 	}
 	
 	public function view_registrasi($id){
-
+		Session::forget('session_kegiatan');
+		Session::push('session_kegiatan',$id);
 		$kegiatan = Kegiatan2::find($id);
 		$simpIct = $kegiatan->tipe;
 		if($kegiatan->openRegistration == 0){
@@ -70,6 +73,8 @@ class SimposiumController extends BaseController {
 	}
 	
 	public function view_konten($type,$id){
+		Session::forget('session_kegiatan');
+		Session::push('session_kegiatan',$id);
 		$text = $this->getKonten($type,$id);
 		$kegiatan = Kegiatan2::find($id);
 		$simpIct = $kegiatan->tipe;
@@ -97,6 +102,8 @@ class SimposiumController extends BaseController {
 	}
 	
 	public function view_peserta($id){
+		Session::forget('session_kegiatan');
+		Session::push('session_kegiatan',$id);
 		$pesertas = Peserta::where('id_kegiatan','=',$id)->get();
 		$kegiatan = Kegiatan2::find($id);
 		$simpIct = $kegiatan->tipe;

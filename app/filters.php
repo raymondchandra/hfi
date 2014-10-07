@@ -83,7 +83,6 @@ Route::filter('authSimposiumAdmin', function($request)
 		}else{
 		
 			Session::push('session_admin_id','super_admin');
-			return Redirect::to($req_path);
 		}
 
 	if((Session::get('session_admin_id') == NULL ||Session::get('session_kegiatan')[0] != $id_kegiatan ) && Session::get('session_kegiatan')[0] != $id_kegiatan){

@@ -89,11 +89,14 @@ Route::filter('authSimposiumAdmin', function($request)
 		}
 	}
 	else{
-		
+		//return Session::get('session_kegiatan')[0].'-'. $id_kegiatan;
+		//if(Session::get('session_kegiatan')[0] != $id_kegiatan){
+		//	return 'a';
+		//}
 		if(Session::get('session_admin_id') == NULL && Session::get('session_kegiatan')[0] != $id_kegiatan){
 			return Redirect::to('event/login/'.$id_kegiatan)->with('message','Silahkan Login Terlebih Dahulu');
 		}else{
-			return 'false';
+			return 'error';
 		}
 	}
 

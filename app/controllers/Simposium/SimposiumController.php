@@ -25,8 +25,15 @@ class SimposiumController extends BaseController {
 	
 	public function view_login($id){
 		$kegiatan = Kegiatan2::find($id);
-		$simpIct = $kegiatan->tipe;
-		return View::make('pages.simposium.front.simposium_login',compact('id','simpIct'));
+		if(count($kegiatan)==1){
+			$simpIct = $kegiatan->tipe;
+			return View::make('pages.simposium.front.simposium_login',compact('id','simpIct'));
+		}
+		else{
+			$simpIct = 1;
+			return View::make('pages.simposium.front.simposium_login',compact('id','simpIct'));
+		}
+		
 	}
 	
 	public function view_user($id_peserta,$id){

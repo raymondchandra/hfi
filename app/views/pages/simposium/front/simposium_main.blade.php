@@ -7,6 +7,7 @@
 			@include('includes.simposium.sidebar')
 			<div class="content_hfi">
 				<p>
+					{{$message}}
 					{{$text}}
 				</p>
 			</div>

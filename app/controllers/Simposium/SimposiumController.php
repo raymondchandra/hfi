@@ -198,7 +198,8 @@ class SimposiumController extends BaseController {
 		$username = Input::get('username');
 		$password = Input::get('password');
 		
-		Session::flush();
+		Session::forget('session_admin_id');
+		Session::forget('session_user_id');
 		if(strcmp($username,'admin')==0){
 			$kegiatan = Kegiatan2::find($id_kegiatan);
 			if($kegiatan->admin_aktif!=0){

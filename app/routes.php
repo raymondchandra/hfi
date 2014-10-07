@@ -348,13 +348,13 @@ Route::get('/{id}', ['as' => 'simposium.index', 'uses' => 'SimposiumController@v
 
 Route::post('/register', ['as' => 'simposium.register', 'uses' => 'SimposiumController@register']);
 Route::post('/login', ['as' => 'simposium.login_function', 'uses' => 'SimposiumController@login']);
-
+Route::get('/logout/{id}', ['as' => 'simposium.logout', 'uses' => 'SimposiumController@logout']);
 });
 
 Route::group(array('prefix' => 'event', 'before' => 'checkSimposium'), function () {
 	
 	Route::get('/{id}', ['as' => 'simposium.index2', 'uses' => 'SimposiumController@view_index']);
-	Route::get('/logout/{id}', ['as' => 'simposium.logout', 'uses' => 'SimposiumController@logout']);
+	
 	Route::get('/registrasi/{id}', ['as' => 'simposium.registrasi', 'uses' => 'SimposiumController@view_registrasi']);
 	Route::get('/konten/{type}/{id}', ['as' => 'simposium.konten', 'uses' => 'SimposiumController@view_konten']);
 	Route::get('/peserta/{id}', ['as' => 'simposium.peserta', 'uses' => 'SimposiumController@view_peserta']);

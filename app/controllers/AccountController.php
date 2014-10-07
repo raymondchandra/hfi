@@ -76,6 +76,7 @@ class AccountController extends BaseController {
 	public function postLogout()
 	{
 		Auth::logout();
+		Session::flush();
 		return Redirect::to('/login')->with('message', 'Anda telah keluar.');
 	}
 	

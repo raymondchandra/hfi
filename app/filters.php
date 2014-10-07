@@ -64,33 +64,46 @@ Route::filter('checkSimposium', function($request)
 {
 	$path = explode('/',Request::path());
 	$id_kegiatan =  $path[count($path)-1];
-	if(Session::get('session_kegiatan')[0] != $id_kegiatan){
-		Session::flush();
-		return Redirect::to('event/'.$id_kegiatan);
 
+	if(Session::get('session_kegiatan')[0] != $id_kegiatan){
+		Session::forget('session_admin_id');
+		Session::forget('session_user_id');
+		return Redirect::to('event/'.$id_kegiatan);
+		//return 'a';
 	}
-	
 });
 
 Route::filter('authSimposiumAdmin', function($request)
 {
-	$path = explode('/',Request::path());
+	$req_path = Request::path();
+	$path = explode('/',$req_path);
 	$id_kegiatan =  $path[count($path)-1];
-	if(!Auth::guest()){
-		if(Auth::user()->role != 1)
+	if(Auth::check())
+	{
+		if(Auth::user()->role == 1)
 		{
-			return Redirect::to('event/login/'.$path[count($path)-1])->with('message','Silahkan Login Terlebih Dahulu');
-		}else{
 			Session::push('session_admin_id','super_admin');
-			
+		}
+		else if(Session::get('session_kegiatan')[0] != $id_kegiatan){
+			return Redirect::to('event/login/'.$id_kegiatan)->with('message','Silahkan Login Terlebih Dahulu');
+		}
+		else{
+			return Redirect::to('event/login/'.$id_kegiatan)->with('message','Silahkan Login Terlebih Dahulu');
+		}
+		
+		
+	}
+	else{
+		if(Session::get('session_admin_id') == NULL){
+			return Redirect::to('event/login/'.$id_kegiatan)->with('message','Silahkan Login Terlebih Dahulu');
+		}
+		else if(Session::get('session_kegiatan')[0] !== $id_kegiatan){
+			return Redirect::to('event/login/'.$id_kegiatan)->with('message','Silahkan Login Terlebih Dahulu');
+		}else{
+
 		}
 	}
 
-	if((Session::get('session_admin_id') == NULL ||Session::get('session_kegiatan')[0] != $id_kegiatan ) && Session::get('session_kegiatan')[0] != $id_kegiatan){
-		
-		return Redirect::to('event/login/'.$path[count($path)-1])->with('message','Silahkan Login Terlebih Dahulu');
-	}
-	
 });
 
 Route::filter('checkLogin', function()

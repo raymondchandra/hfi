@@ -164,7 +164,7 @@
 						newRow +="<option value='S3'>S3</option>";
 						newRow +="<option value='lain'>Lainnya</option>";
 						newRow +="</select>";
-						newRow +="<input type='text' id='pendidikan"+lastIdx+"' name='pendidikan"+lastIdx+"' class='texPendidikan form-control col-sm-3 col-sm-push-3' />";
+						newRow +="<input type='text' placeholder='(tempat pendidikan)' id='pendidikan"+lastIdx+"' name='pendidikan"+lastIdx+"' class='texPendidikan form-control col-sm-3 col-sm-push-3' />";
 						newRow +="<span value='' id='delPendidikan"+lastIdx+"' onClick='delPendidikan()' style='padding: 0px; width: 34px; line-height: 34px; margin-left:10px;' class='glyphicon glyphicon-remove form-control col-sm-push-3 btn btn-danger'></span><br /></div>";
 						$('#delPendidikan'+(lastIdx-1)).hide();
 						$('#addPendidikan').append(newRow);
@@ -199,7 +199,7 @@
 					<option value='S3'>S3</option>
 					<option value='lain'>Lainnya</option>
 				</select>
-				<input type="text" id="pendidikan1" name="pendidikan1" class='texPendidikan form-control col-sm-3' style=""/>
+				<input type="text" placeholder="(tempat pendidikan)" id="pendidikan1" name="pendidikan1" class='texPendidikan form-control col-sm-3' style="" />
 				
 				<a href="javascript:void(0)" onClick = "addPendidikan();" id="refPendidikan" class="glyphicon glyphicon-plus btn btn-primary" style="padding: 0px;width: 34px; line-height: 34px; margin-left:10px;"></a>
 			

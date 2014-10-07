@@ -162,8 +162,8 @@
 								'nonlinier' => 'non-linier',
 								'nuklir' => 'nuklir',
 								'parkikel' => 'partikel',
-								'lainlain' => 'lain-lain'), NULL, array('class'=>'form-control col-sm-3', 'style'=>'margin-right:10px;'))-->
-							}}
+								'lainlain' => 'lain-lain'), NULL, array('class'=>'form-control col-sm-3', 'style'=>'margin-right:10px;'))}}-->
+							
 						</div>
 
 

@@ -128,6 +128,7 @@ class Kegiatan2AdminController extends BaseController {
 
 	public function view_detail($id)
 	{
+		Session::forget('session_kegiatan');
 		Session::push('session_kegiatan',$id);
 		$kegiatan = Kegiatan2::find($id);
 		if($kegiatan != null)

@@ -176,9 +176,11 @@
 						},
 						error: function(jqXHR, textStatus, errorThrown){
 							alert(errorThrown);
+						},
+						complete: function(){
+							location.reload();
 						}
 					},'json');
-
 				});
 			</script>
 		</div>

@@ -41,11 +41,6 @@
 							<span class="col-lg-8">{{$peserta[0]->alamat}}</span>
 						  </div>
 						  @if($peserta[0]->is_paper== 1)
-						  							@if($simpIct == 3) 
-	<p class="bg-success" style="padding: 5px;"><span class="text-success">PERHATIAN!</span> Form dibawah terisi JIKA Anda mempersembahkan paper! </p>
-@else @if($simpIct == 4)  
-<p class="bg-success" style="padding: 5px;"><span class="text-success">ATTENTION!</span> Complete the items below ONLY if you wish to present a paper ! </p>
-@endif @endif 
 
 						  <div class="form-group row">
 							<label class="col-lg-3">Status</label>

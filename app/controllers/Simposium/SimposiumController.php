@@ -193,7 +193,7 @@ class SimposiumController extends BaseController {
 				$peserta->nomor_peserta = $nomorAnggota;
 				
 				$peserta->save();
-				//$this->createEmail("Registrasi", $id_kegiatan,  $peserta->id);
+				$this->createEmail("Registrasi", $id_kegiatan,  $peserta->id);
 				
 				if($kegiatan->tipe == 3){
 					return Redirect::to('event/login/'.$id_kegiatan)->with('message','Pendaftaran Berhasil');

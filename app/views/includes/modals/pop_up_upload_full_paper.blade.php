@@ -20,7 +20,7 @@
 				
 			</div>
 			<div class="modal-footer">
-				<div class="form-group konten_pesan">
+				<div class="konten_pesan">
 					@if($simpIct == 3) 
 	{{ Form::submit('Unggah File', array('id'=>'ok_edit_tanda_tangan_button', 'style' => '', 'class'=>'btn btn-success')) }}
 @else @if($simpIct == 4)  

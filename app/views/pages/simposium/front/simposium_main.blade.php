@@ -7,7 +7,7 @@
 			@include('includes.simposium.sidebar')
 			<div class="content_hfi">
 				<p>
-					@if(!empty(Session::get('message')))
+					@if(Session::get('message') != null)
 						{{Session::get('message')}}
 					@endif
 					{{$text}}

@@ -74,7 +74,7 @@ var id = '{{$id}}';
 					</ul>
 				</p>
 				<p>
-					*Harap diperhatikan unsur penulisan kode, kesalahan penulisan kode menyebabkan kode tidak dapat diterjemahkan oleh sistem.
+					*Please note the elements of writing code, error inwriting code causing code can not be translated by the system.
 				</p>
 			@endif
 		@endif

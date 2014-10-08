@@ -225,8 +225,8 @@ location.reload();
 			}
 		</style>
 		<ol class="breadcrumb">
-			<li><a href="{{ URL::to('event/admin', $id) }}"  >Dashboard</a></li>
-			<li class="active">Harga</li>
+			<li><a href="{{ URL::to('event/admin', $id) }}"  >@if($simpIct == 3) Beranda @else @if($simpIct == 4) Dashboard @endif @endif</a></li>
+			<li class="active">@if($simpIct == 3) Harga @else @if($simpIct == 4) Price @endif @endif</li>
 		</ol>
 		
 		

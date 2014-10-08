@@ -39,9 +39,11 @@ class SimposiumController extends BaseController {
 	}
 	
 	public function view_user($id_peserta,$id){
+		$kegiatan = Kegiatan2::find($id);
+		$simpIct = $kegiatan->tipe;
 		$peserta = Peserta::where('id','=',$id_peserta)->where('id_kegiatan','=',$id)->get();
 		if(count($peserta)==1){
-			return View::make('pages.simposium.front.simposium_user',compact('id','peserta'));
+			return View::make('pages.simposium.front.simposium_user',compact('id','peserta','simpIct'));
 		}
 		else{
 			return $this->logout($id);
@@ -179,26 +181,29 @@ class SimposiumController extends BaseController {
 				$format2 = '%1$02d';
 				$format3 = '%1$03d';
 				$tahun = date('Y');
+
 				$nomor_kegiatan=$id_kegiatan;
 				$list_peserta = Peserta::where('id_kegiatan','=','$id_kegiatan');
 				$nomor_peserta=count($list_peserta);
 				$tahun_kegiatan =  sprintf($format1,$tahun);
 				$nomor_keg =  sprintf($format2,$nomor_kegiatan);
 				$nomor_pes = sprintf($format3,$nomor_peserta);
+
 				$nomorAnggota = $tahun_kegiatan.$nomor_keg.$nomor_pes;
 				$peserta->nomor_peserta = $nomorAnggota;
 				
 				$peserta->save();
-				$this->createEmail("Registrasi", $id_kegiatan,  $peserta->id);
+				//$this->createEmail("Registrasi", $id_kegiatan,  $peserta->id);
 				
 				if($kegiatan->tipe == 3){
 					return Redirect::to('event/login/'.$id_kegiatan)->with('message','Pendaftaran Berhasil');
-					}else if($kegiatan->tipe == 4){
+				}else if($kegiatan->tipe == 4){
 					return Redirect::to('event/login/'.$id_kegiatan)->with('message','Registration Success');
 					}
 			}
 		}
 		else{
+			return 'bssdf';
 			if($kegiatan->tipe == 3){
 			return Redirect::to('event/registrasi/'.$id_kegiatan)->with('message','Password tidak cocok');
 					}else if($kegiatan->tipe == 4){
@@ -206,6 +211,7 @@ class SimposiumController extends BaseController {
 					}
 					
 		}
+		
 	}
 	
 	public function login(){

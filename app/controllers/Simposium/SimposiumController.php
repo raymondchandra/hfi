@@ -203,7 +203,6 @@ class SimposiumController extends BaseController {
 			}
 		}
 		else{
-			return 'bssdf';
 			if($kegiatan->tipe == 3){
 			return Redirect::to('event/registrasi/'.$id_kegiatan)->with('message','Password tidak cocok');
 					}else if($kegiatan->tipe == 4){
@@ -569,22 +568,25 @@ class SimposiumController extends BaseController {
 			$data = array(
 				'text'=>$templateContext
 			);
-			
 			$address = array(
-				'email'=>$peserta->email
+				'email'=>$peserta->email,
+				'subject'=>$type." ".$kegiatan->nama,
+				'attachment'=>$attachment
 			);
+			//return $nama." ".$email." ".$profesi." ".$institusi;
 			Mail::queue('emails.simposium', $data, function($message) use($address)
 			{
-				$message->to($address['email'])->subject($type." ".$kegiatan->nama);
-				if($attachment === "empty")
+				$message->to($address['email'])->subject($address['subject']);
+				if($address['attachment'] === "empty")
 				{
-				
+					
 				}
 				else
 				{
-					$message->attach($attachment);
+					$message->attach($address['attachment'] );
 				}
 			});
+			
 		}
 			
 	}

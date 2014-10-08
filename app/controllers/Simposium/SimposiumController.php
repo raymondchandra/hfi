@@ -489,7 +489,7 @@ class SimposiumController extends BaseController {
 		{
 			//dapetin template Reg;
 			$template = Template::where('id_kegiatan','=',$id_keg)->where('tipe','=','reg')->first();
-			$attachment = "";
+			$attachment = "empty";
 		}
 		else if($type === "Penerimaan Abstrak")
 		{
@@ -540,7 +540,7 @@ class SimposiumController extends BaseController {
 		{
 			//dapetin template paper
 			$template = Template::where('id_kegiatan','=',$id_keg)->where('tipe','=','pap')->first();
-			$attachment = "";
+			$attachment = "empty";
 		}
 		else
 		{
@@ -576,7 +576,7 @@ class SimposiumController extends BaseController {
 			Mail::queue('emails.simposium', $data, function($message) use($address)
 			{
 				$message->to($address['email'])->subject($type." ".$kegiatan->nama);
-				if($attachment == "")
+				if($attachment === "empty")
 				{
 				
 				}

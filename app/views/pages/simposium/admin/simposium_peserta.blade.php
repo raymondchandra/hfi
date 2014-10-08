@@ -110,6 +110,13 @@ $(document).ready(function(){
 @include('includes.modals.pop_up_detail_fullpaper')
 <script>
 	$('body').on('click','.detail_profile',function(){
+		$('.nama_peserta').text('-');
+		$('.institusi_peserta').text('-');
+		$('.email_peserta').text('-');
+		$('.profesi_peserta').text('-');
+		$('.alamat_peserta').text('-');
+		//$('.status_peserta').text('-');
+		$('.keahlian_peserta').text('-');
 		$( ".loader" ).fadeIn( 200, function(){});
 		$id_profil = $(this).parent().siblings('.id_peserta').val();
 		$.get("{{url('event/admin/satu_peserta/')}}/"+$id_profil+"/"+{{$id}},function(response){
@@ -118,23 +125,25 @@ $(document).ready(function(){
 			$('.email_peserta').text(response.email);
 			$('.profesi_peserta').text(response.pekerjaan);
 			$('.alamat_peserta').text(response.alamat);
-			$('.status_peserta').text(response.status);
+			//$('.status_peserta').text(response.status);
 			if(response.is_paper ==1){
 				$('.keahlian_peserta').text(response.alamat);
-				$('.paper_peserta').text(response.paper);
-				$('.abstrak_peserta').text(response.abstract);
 			}
 			else{
 				$('.keahlian_peserta').text('-');
-				$('.paper_peserta').text('-');
-				$('.abstrak_peserta').text('-');
 			}
 			$( ".loader" ).fadeOut( 200, function(){});
 		});
 	});
 	
 	$('body').on('click','.detail_bayar',function(){
+		$('.jenis_bayar').text('-');
+		$('.bukti_bayar_image').attr('src','');
+		$('.id_peserta_biaya').val(-1);
+	
 		$( ".loader" ).fadeIn( 200, function(){});
+		
+		
 		$id_profil = $(this).parent().siblings('.id_peserta').val();
 		$.get("{{url('event/admin/satu_peserta/')}}/"+$id_profil+"/"+{{$id}},function(response){
 			if(response.is_paper == 1){
@@ -143,7 +152,7 @@ $(document).ready(function(){
 			else{
 				$('.jenis_bayar').text(response.status);
 			}
-			$('.bukti_bayar_image').attr('src',response.bukti_bayar);
+			$('.bukti_bayar_image').attr('src','../../../'+response.bukti_bayar);
 			
 			var $radios = $('input:radio[name=is_paper]');
 			$radios.filter('[value='+response.status_bayar+']').prop('checked', true);		
@@ -161,6 +170,9 @@ $(document).ready(function(){
 	});
 	
 	$('body').on('click','.detail_abstraksi',function(){
+		$('.judul_paper').text('-');
+		$('.abstrak_paper').text('-');
+		$('.id_peserta_abstract').val('-');
 		$( ".loader" ).fadeIn( 200, function(){});
 		$id_profil = $(this).parent().siblings('.id_peserta').val();
 		$.get("{{url('event/admin/satu_peserta/')}}/"+$id_profil+"/"+{{$id}},function(response){
@@ -174,11 +186,20 @@ $(document).ready(function(){
 	})
 	
 	$('body').on('click','.detail_paper',function(){
+		$('.judul_paper').text("-");
+		$('.file_paper').attr('data',"");
+		$('.id_peserta_paper').val(-1);
 		$( ".loader" ).fadeIn( 200, function(){});
 		$id_profil = $(this).parent().siblings('.id_peserta').val();
 		$.get("{{url('event/admin/satu_peserta/')}}/"+$id_profil+"/"+{{$id}},function(response){
 			$('.judul_paper').text(response.paper);
-			$('.file_paper').attr('data',"../../../"+response.path_paper);
+			if(response.path_paper == ""){
+			
+			}
+			else{
+				$('.file_paper').attr('data',"../../../"+response.path_paper );
+			}
+			
 			$('.id_peserta_paper').val($id_profil);
 			var $radios = $('input:radio[name=is_paper2]');
 			$radios.filter('[value='+response.abstract_read+']').prop('checked', true);	

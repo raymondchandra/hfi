@@ -268,7 +268,7 @@ $('body').on('click','.periode_pengurus',function(){
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-3">Periode</label>
-						{{ Form::text('periode', Input::old('periode'), array('class' => 'form-control col-sm-3', 'id'=>'periode')) }}
+						{{ Form::text('periode', Input::old('periode'), array('class' => 'form-control col-sm-3', 'id'=>'periode', 'OnClick'=>'this.focus();')) }}
 					</div>
 				</div>
 				<div class="modal-footer">

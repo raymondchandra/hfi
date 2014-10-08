@@ -453,7 +453,7 @@ class SimposiumController extends BaseController {
 			}
 			catch(Exception $e)
 			{
-				return "Gagal mengirim pesan ".$e;
+				return "Gagal mengirim pesan";
 			}
 		}
 		else
@@ -472,7 +472,7 @@ class SimposiumController extends BaseController {
 			}
 			catch(Exception $e)
 			{
-				return "Gagal mengirim pesan ".$e;
+				return "Gagal mengirim pesan";
 			}
 		}
 	}

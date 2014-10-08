@@ -75,12 +75,25 @@
 		
 		$.ajax({
 			type: 'POST',
-			url: '{{URL::route('simposium.mintaBantuan')}}',
+			url: '{{URL::route('simposium.mintaBantuan',array($id))}}',
 			data: data,
 			processData : false,
 			contentType : false,
 			success: function(response){
-				alert(response);	
+				if(response === "Gagal mengirim pesan")
+        {
+          alert(response);
+        }
+        else
+        {
+          @if($simpIct == 3)
+            alert("Sukses mengirim pesan");
+          @else 
+            @if($simpIct == 4)
+              alert("Success sending message");
+            @endif
+          @endif
+        }
 			},
 			error: function(jqXHR, textStatus, errorThrown){
 				alert(errorThrown);

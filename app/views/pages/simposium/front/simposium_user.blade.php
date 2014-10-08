@@ -1,12 +1,19 @@
 @extends('layouts.simposium')
 @section('content')
+<script type="text/javascript">
+	$(document).ready(function(){
+		@if(Session::get('message') != NULL)
+			alert('{{Session::get('message')}}');
+		@endif
 
+	});
+</script>
 <div class="container_12">
 	<div class="grid_12">
 		<div class="main_content">
 			
 			@include('includes.simposium.sidebar')
-			{{Session::get('message')}}
+			
 			<div class="content_hfi">
 				<h1 style="">@if($simpIct == 3) Profil Pengguna @else @if($simpIct == 4) User Profile @endif @endif </h1>
 				<button data-toggle="modal" data-target=".pop_up_edit_profile" class="btn btn-primary edit_profil" style="float: right;">

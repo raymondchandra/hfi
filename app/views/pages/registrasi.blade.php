@@ -283,7 +283,7 @@
 	<p>
 		Dengan melakukan registrasi secara <i>online</i> ini saya
 		menyatakan bahwa saya telah membaca dan memahami
-		{{HTML::linkRoute('ketentuan','ketentuan dan perjanjian untuk anggota')}}
+		{{HTML::linkRoute('ketentuan','ketentuan dan perjanjian untuk anggota', array(), array('target'=>'blank'))}}
 		<!--<a href="ketentuan" alt="ketentuan dan perjanjian anggota">
 		ketentuan dan perjanjian untuk anggota</a>-->
 		,serta bersedia menyetujui segala isi dan konsekuensinya :				

@@ -89,7 +89,7 @@
 					</tr>
 					<tr style='height: 50px;'>
 						<td>&nbsp;</td>
-						<td style="display:block; margin-left:-80px;"><div style='width:200px;;display:block;'><img src="<?php echo $builder->inline(); ?>" /></div></td>
+						<td style="display:block; margin-left:-80px;"><div style='width:200px;;display:block;'><img src="<?php echo $builder->inline(); ?>" class='captcha_image' /></div></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -164,6 +164,15 @@
 						contentType : false,
 						success: function(response){
 							alert(response);
+								//clear form pesan
+								$('#inputNama').val("");
+								$('#inputEmail').val("");
+								$('#inputProfesi').val("");
+								$('#inputInstitusi').val("");
+								$('#inputSubjek').val("");
+								$('#inputPesan').val("");
+								$('#inputCaptcha').val("");
+							
 						},
 						error: function(jqXHR, textStatus, errorThrown){
 							alert(errorThrown);

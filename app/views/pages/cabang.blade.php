@@ -4,7 +4,7 @@
 	var arrIDCabang = "";
 	function getCabang(){
 		$.ajax({
-			url: 'admin/organisasi/daftarcabang',
+			url: 'organisasi/daftarcabang',
 			type: 'GET',
 			success: function(data){
 				if(data==""){

@@ -7,7 +7,7 @@
         		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@if($simpIct == 3) Tutup @else @if($simpIct == 4) Close @endif @endif</span></button>
         		<h4 class="modal-title" id="myModalLabel">@if($simpIct == 3) Unggah Bukti Pembayaran @else @if($simpIct == 4) Upload Proof of Payment @endif @endif</h4>
       		</div>
-			{{ Form::open(array('url' => 'event/uploadBuktiBayar','method'=>'put','class'=>'form-horizontal','files'=>'true')) }}
+			{{ Form::open(array('url' => 'event/uploadBuktiBayar/'.$id,'method'=>'put','class'=>'form-horizontal','files'=>'true')) }}
 			<input type='hidden' class='id_peserta' name='id_peserta'/>
 			<input type='hidden' class='id_kegiatan' name='id_kegiatan'/>
 			<div class="modal-body" style="">

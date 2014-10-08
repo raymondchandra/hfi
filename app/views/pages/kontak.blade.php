@@ -164,6 +164,15 @@
 						contentType : false,
 						success: function(response){
 							alert(response);
+								//clear form pesan
+								$('#inputNama').val("");
+								$('#inputEmail').val("");
+								$('#inputProfesi').val("");
+								$('#inputInstitusi').val("");
+								$('#inputSubjek').val("");
+								$('#inputPesan').val("");
+								$('#inputCaptcha').val("");
+							
 						},
 						error: function(jqXHR, textStatus, errorThrown){
 							alert(errorThrown);

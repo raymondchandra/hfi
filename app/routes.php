@@ -22,6 +22,8 @@ Route::get('/', ['as' => 'home', 'uses' => 'HomeController@view_index']);
 Route::get('/organisasi', ['as' => 'organisasi', 'uses' => 'OrganisasiController@view_index']);
 	//route ke sidebar
 	Route::get('/cabang', ['as' => 'cabang', 'uses' => 'OrganisasiController@view_cabang']);
+	//get daftar cabang
+	Route::get('organisasi/daftarcabang', ['as' => 'organisai.daftarcabang', 'uses' => 'OrganisasiController@get_semua_cabang']);
 	
 Route::get('/kegiatan/{jenis}', ['as' => 'kegiatan', 'uses' => 'KegiatanController@view_index']);
 Route::get('/simposium', ['as' => 'simposium', 'uses' => 'KegiatanController@view_simposium']);

@@ -9,18 +9,19 @@
 			success: function(data){
 				if(data==""){
 					//alert("Kosong");
-					var list ="<h3>Cabang</h3>";
-					list+="<table class='list_cabang table'><thead><tr><td class='nama_cabang'>Kantor</td>";
-					list+="<td class='alamat_cabang'>Alamat Cabang</td>";
+					// var list ="<h3>Cabang</h3>";
+					var list = "Tidak terdapat daftar cabang";
+					// list+="<table class='list_cabang table'><thead><tr><td class='nama_cabang'>Kantor</td>";
+					// list+="<td class='alamat_cabang'>Alamat Cabang</td>";
 					//list+="<td class='telepon_cabang'>Telepon</td>";
-					list+="<td class='detail_cabang'>Lihat Detail</td>";
-					list+="</tr></thead>";
-					list+="<tbody><tr><td class='nama_cabang'>-</td>";
-					list+="<td class='alamat_cabang'>-</td>";
+					// list+="<td class='detail_cabang'>Lihat Detail</td>";
+					// list+="</tr></thead>";
+					// list+="<tbody><tr><td class='nama_cabang'>-</td>";
+					// list+="<td class='alamat_cabang'>-</td>";
 					//list+="<td class='telepon_cabang'>-</td>";
-					list+="<td class='detail_cabang'>-</td>";
-					list+="</tr></tbody></table>";
-					$('.cabang_list').html(list);
+					// list+="<td class='detail_cabang'>-</td>";
+					// list+="</tr></tbody></table>";
+					$('.cabang_list').html(list);					
 				}
 				else{
 					//atur

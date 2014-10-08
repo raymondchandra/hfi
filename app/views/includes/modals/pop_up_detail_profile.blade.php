@@ -35,25 +35,17 @@
 						  </div>
 						  
 					
-						  <div class="form-group row">
+						  <!--<div class="form-group row">
 							<label class="col-lg-3">Status</label>
 							<span class="col-lg-8 status_peserta">-</span>
-						  </div>
+						  </div>-->
 
 						  <!--<div class="form-group row">
 							<label class="col-lg-3">Bidang Keahlian</label>
 							<span class="col-lg-8 keahlian_peserta">-</span>
 						  </div>-->
 
-						  <div class="form-group row">
-							<label class="col-lg-3">@if($simpIct == 3) Judul Paper @else @if($simpIct == 4) Paper Title @endif @endif</label>
-							<span class="col-lg-8 paper_peserta">-</span>
-						  </div>
 
-						  <div class="form-group row">
-							<label class="col-lg-3">@if($simpIct == 3) Abstrak @else @if($simpIct == 4) Abstract @endif @endif</label>
-							<span class="col-lg-8 abstrak_peserta">-</span>
-						  </div>
 			</div>
 				
 		</div>

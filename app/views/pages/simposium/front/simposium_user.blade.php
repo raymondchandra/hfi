@@ -105,7 +105,7 @@
 	
 	$('body').on('click','.edit_profil',function(){
 		$id_profil = $(this).next().val();
-		$.get("{{url('event/admin/satu_peserta/')}}/"+$id_profil,function(response){
+		$.get("{{url('event/admin/satu_peserta/')}}/"+$id_profil+"/"+{{$id}},function(response){
 			$('#id_peserta_edit').val($id_profil);
 			$('.input_nama').val(response.nama);
 			$('#input_institusi').val(response.institusi);

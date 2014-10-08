@@ -54,8 +54,11 @@ Route::filter('authSimposium', function($request)
 {
 	$path = explode('/',Request::path());
 	$id_kegiatan =  $path[count($path)-1];
-	if(Session::get('session_user_id') == NULL  || Session::get('session_kegiatan')[0] != $id_kegiatan){
-		//return 'aaa';
+
+	if(Session::get('session_user_id') == NULL){
+		return Redirect::to('event/login/'.$id_kegiatan)->with('message','Silahkan Login Terlebih Dahulu');
+	}
+	else if(Session::get('session_kegiatan')[0] != $id_kegiatan){
 		return Redirect::to('event/login/'.$id_kegiatan)->with('message','Silahkan Login Terlebih Dahulu');
 	}
 	

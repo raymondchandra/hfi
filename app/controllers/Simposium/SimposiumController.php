@@ -334,7 +334,7 @@ class SimposiumController extends BaseController {
 	}
 	
 	
-	public function upload_paper(){
+	public function upload_paper($id){
 		$id = Input::get('id_kegiatan'); 
 		$id_peserta = Input::get('id_peserta');
 		if(Input::hasFile('filePaper')){
@@ -382,7 +382,7 @@ class SimposiumController extends BaseController {
 		}
 	}
 	
-	public function upload_bayar(){
+	public function upload_bayar($id){
 		$id = Input::get('id_kegiatan');
 		$id_peserta = Input::get('id_peserta');
 		if(Input::hasFile('file_bukti_bayar')){
@@ -417,7 +417,7 @@ class SimposiumController extends BaseController {
 	
 	}
 	
-	public function createMessage()
+	public function createMessage($id)
 	{
 		$psn = new Pesan();
 		$psn -> timestamps = false;

@@ -271,7 +271,7 @@ Route::group(array('prefix' => 'event/admin', 'before' => 'authSimposiumAdmin'),
 	Route::get('/konten/{id}', ['as' => 'admin.kegiatan2.konten', 'uses' => 'Kegiatan2AdminController@view_konten']);
 	Route::get('/harga/{id}', ['as' => 'admin.kegiatan2.harga', 'uses' => 'Kegiatan2AdminController@view_harga']);
 	Route::get('/peserta/{id}', ['as' => 'admin.kegiatan2.peserta', 'uses' => 'Kegiatan2AdminController@view_peserta']);
-	Route::get('/satu_peserta/{id}', ['as' => 'admin.kegiatan2.satu_peserta', 'uses' => 'Kegiatan2AdminController@get_one_peserta']);
+	Route::get('/satu_peserta/{id_peserta}/{id}', ['as' => 'admin.kegiatan2.satu_peserta', 'uses' => 'Kegiatan2AdminController@get_one_peserta']);
 	
 	
 	Route::get('/pesan/{id}', ['as' => 'admin.kegiatan2.pesan', 'uses' => 'Kegiatan2AdminController@view_pesan']);
@@ -332,12 +332,12 @@ Route::group(array('prefix' => 'event', 'before' => 'authSimposium'), function (
 	
 	Route::put('/editProfil', ['as' => 'simposium.editProfil', 'uses' => 'SimposiumController@edit_profil']);
 	
-	Route::put('/uploadBuktiBayar', ['as' => 'simposium.uploadBuktiBayar', 'uses' => 'SimposiumController@upload_bayar']);
+	Route::put('/uploadBuktiBayar/{id}', ['as' => 'simposium.uploadBuktiBayar', 'uses' => 'SimposiumController@upload_bayar']);
 	
-	Route::put('/uploadPaper', ['as' => 'simposium.uploadPaper', 'uses' => 'SimposiumController@upload_paper']);
+	Route::put('/uploadPaper/{id}', ['as' => 'simposium.uploadPaper', 'uses' => 'SimposiumController@upload_paper']);
 	
 	//minta bantuan
-	Route::post('/bantuan', ['as' => 'simposium.mintaBantuan', 'uses' => 'SimposiumController@createMessage']);
+	Route::post('/bantuan/{id}', ['as' => 'simposium.mintaBantuan', 'uses' => 'SimposiumController@createMessage']);
 	//end of minta bantuan
 });
 

@@ -8,7 +8,7 @@
         		<h4 class="modal-title" id="myModalLabel">@if($simpIct == 3) Unggah Paper Lengkap @else @if($simpIct == 4) Upload Full Paper @endif @endif </h4>
       		</div>
 			
-			{{ Form::open(array('url' => 'event/uploadPaper','method'=>'put','class'=>'form-horizontal','files'=>'true')) }}
+			{{ Form::open(array('url' => 'event/uploadPaper/'.$id,'method'=>'put','class'=>'form-horizontal','files'=>'true')) }}
 			<div class="modal-body" style="">
 				<input type='hidden' class='id_peserta' name='id_peserta'/>
 				<input type='hidden' class='id_kegiatan' name='id_kegiatan'/>

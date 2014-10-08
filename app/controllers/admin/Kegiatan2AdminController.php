@@ -545,8 +545,8 @@ class Kegiatan2AdminController extends BaseController {
 		}
 	}
 	
-	public function get_one_peserta($id){
-		$peserta = Peserta::find($id);
+	public function get_one_peserta($id_peserta,$id){
+		$peserta = Peserta::find($id_peserta);
 		return $peserta;
 	}
 	

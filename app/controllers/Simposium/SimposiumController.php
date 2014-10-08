@@ -193,7 +193,7 @@ class SimposiumController extends BaseController {
 				$peserta->nomor_peserta = $nomorAnggota;
 				
 				$peserta->save();
-				//$this->createEmail("Registrasi", $id_kegiatan,  $peserta->id);
+				$this->createEmail("Registrasi", $id_kegiatan,  $peserta->id);
 				
 				if($kegiatan->tipe == 3){
 					return Redirect::to('event/login/'.$id_kegiatan)->with('message','Pendaftaran Berhasil');
@@ -334,7 +334,7 @@ class SimposiumController extends BaseController {
 	}
 	
 	
-	public function upload_paper(){
+	public function upload_paper($id){
 		$id = Input::get('id_kegiatan'); 
 		$id_peserta = Input::get('id_peserta');
 		if(Input::hasFile('filePaper')){
@@ -382,7 +382,7 @@ class SimposiumController extends BaseController {
 		}
 	}
 	
-	public function upload_bayar(){
+	public function upload_bayar($id){
 		$id = Input::get('id_kegiatan');
 		$id_peserta = Input::get('id_peserta');
 		if(Input::hasFile('file_bukti_bayar')){
@@ -417,7 +417,7 @@ class SimposiumController extends BaseController {
 	
 	}
 	
-	public function createMessage()
+	public function createMessage($id)
 	{
 		$psn = new Pesan();
 		$psn -> timestamps = false;
@@ -489,7 +489,7 @@ class SimposiumController extends BaseController {
 		{
 			//dapetin template Reg;
 			$template = Template::where('id_kegiatan','=',$id_keg)->where('tipe','=','reg')->first();
-			$attachment = "";
+			$attachment = "empty";
 		}
 		else if($type === "Penerimaan Abstrak")
 		{
@@ -540,7 +540,7 @@ class SimposiumController extends BaseController {
 		{
 			//dapetin template paper
 			$template = Template::where('id_kegiatan','=',$id_keg)->where('tipe','=','pap')->first();
-			$attachment = "";
+			$attachment = "empty";
 		}
 		else
 		{
@@ -576,7 +576,7 @@ class SimposiumController extends BaseController {
 			Mail::queue('emails.simposium', $data, function($message) use($address)
 			{
 				$message->to($address['email'])->subject($type." ".$kegiatan->nama);
-				if($attachment == "")
+				if($attachment === "empty")
 				{
 				
 				}

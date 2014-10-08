@@ -24,12 +24,12 @@
           </div>
           <span class="clearfix"></span>
           
-          
-          <button type="button" class="btn btn-primary" style="margin-left: 150px; width: 100px;" id="sendBantuan">@if($simpIct == 3) Kirim @else @if($simpIct == 4) Send @endif @endif </button>
+          <input type="file" class="" style="margin-left: 150px;margin-right: 34px;" id="fileAttachment"/>
+          <button type="button" class="btn btn-primary" style="margin-left: 150px; width: 100px;margin-top: 10px;" id="sendBantuan">@if($simpIct == 3) Kirim @else @if($simpIct == 4) Send @endif @endif </button>
 		  <input type="hidden" id="id_keg"/>
 		  <input type="hidden" id="id_pes"/>
           <span class="clearfix"></span>
-          <input type="file" class="btn btn-primary" style="margin-left: 150px;margin-right: 34px;margin-top: 10px;" id="fileAttachment"/>
+          
         </form>
       </div>
 
@@ -80,18 +80,7 @@
 			processData : false,
 			contentType : false,
 			success: function(response){
-				if(response === "Gagal mengirim pesan")
-				{
-					alert(response);
-				}
-				else
-				{
-					@if($simpIct == 3) 
-	alert('Berhasil mengirim pesan');
-@else @if($simpIct == 4)  
-	alert('Success sending message');
-@endif @endif 
-				}	
+				alert(response);	
 			},
 			error: function(jqXHR, textStatus, errorThrown){
 				alert(errorThrown);

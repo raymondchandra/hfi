@@ -112,7 +112,7 @@ $(document).ready(function(){
 	$('body').on('click','.detail_profile',function(){
 		$( ".loader" ).fadeIn( 200, function(){});
 		$id_profil = $(this).parent().siblings('.id_peserta').val();
-		$.get("{{url('event/admin/satu_peserta/')}}/"+$id_profil,function(response){
+		$.get("{{url('event/admin/satu_peserta/')}}/"+$id_profil+"/"+{{$id}},function(response){
 			$('.nama_peserta').text(response.nama);
 			$('.institusi_peserta').text(response.institusi);
 			$('.email_peserta').text(response.email);
@@ -136,7 +136,7 @@ $(document).ready(function(){
 	$('body').on('click','.detail_bayar',function(){
 		$( ".loader" ).fadeIn( 200, function(){});
 		$id_profil = $(this).parent().siblings('.id_peserta').val();
-		$.get("{{url('event/admin/satu_peserta/')}}/"+$id_profil,function(response){
+		$.get("{{url('event/admin/satu_peserta/')}}/"+$id_profil+"/"+{{$id}},function(response){
 			if(response.is_paper == 1){
 				$('.jenis_bayar').text(response.status+' | With Paper');
 			}
@@ -163,7 +163,7 @@ $(document).ready(function(){
 	$('body').on('click','.detail_abstraksi',function(){
 		$( ".loader" ).fadeIn( 200, function(){});
 		$id_profil = $(this).parent().siblings('.id_peserta').val();
-		$.get("{{url('event/admin/satu_peserta/')}}/"+$id_profil,function(response){
+		$.get("{{url('event/admin/satu_peserta/')}}/"+$id_profil+"/"+{{$id}},function(response){
 			$('.judul_paper').text(response.paper);
 			$('.abstrak_paper').text(response.abstract);
 			$('.id_peserta_abstract').val($id_profil);
@@ -176,7 +176,7 @@ $(document).ready(function(){
 	$('body').on('click','.detail_paper',function(){
 		$( ".loader" ).fadeIn( 200, function(){});
 		$id_profil = $(this).parent().siblings('.id_peserta').val();
-		$.get("{{url('event/admin/satu_peserta/')}}/"+$id_profil,function(response){
+		$.get("{{url('event/admin/satu_peserta/')}}/"+$id_profil+"/"+{{$id}},function(response){
 			$('.judul_paper').text(response.paper);
 			$('.file_paper').attr('data',"../../../"+response.path_paper);
 			$('.id_peserta_paper').val($id_profil);

@@ -48,7 +48,7 @@ class KontakController extends BaseController {
 		}
 		else
 		{
-			return "Harap masukkan data dengan benar.";
+			return "Harap masukkan data dengan benar";
 		}
 		
 	}

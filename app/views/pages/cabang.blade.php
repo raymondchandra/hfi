@@ -10,27 +10,28 @@
 				if(data==""){
 					//alert("Kosong");
 					var list ="<h3>Cabang</h3>";
-					list+="<table class='list_cabang'><tr><td class='nama_cabang'>Kantor</td>";
+					list+="<table class='list_cabang table'><thead><tr><td class='nama_cabang'>Kantor</td>";
 					list+="<td class='alamat_cabang'>Alamat Cabang</td>";
 					//list+="<td class='telepon_cabang'>Telepon</td>";
 					list+="<td class='detail_cabang'>Lihat Detail</td>";
-					list+="</tr>";
-					list+="<tr><td class='nama_cabang'>-</td>";
+					list+="</tr></thead>";
+					list+="<tbody><tr><td class='nama_cabang'>-</td>";
 					list+="<td class='alamat_cabang'>-</td>";
 					//list+="<td class='telepon_cabang'>-</td>";
 					list+="<td class='detail_cabang'>-</td>";
-					list+="</tr></table>";
+					list+="</tr></tbody></table>";
 					$('.cabang_list').html(list);
 				}
 				else{
 					//atur
 					var length = data.length;
 					var list ="<h3>Cabang</h3>";
-					list+="<table class='list_cabang'><tr><td class='nama_cabang'>Nama Cabang</td>";
+					list+="<table class='list_cabang table'><thead><tr><td class='nama_cabang'>Nama Cabang</td>";
 					list+="<td class='alamat_cabang'>Alamat Cabang</td>";
 					//list+="<td class='telepon_cabang'>Telepon</td>";
 					list+="<td class='detail_cabang'>Lihat Detail</td>";
-					list+="</tr>";
+					list+="</tr></thead>";
+					list+="<tbody>";
 					arrIDCabang = [];
 					for($i = 0; $i<length;$i++){
 						arrIDCabang[$i] = data[$i]['id'];
@@ -48,6 +49,7 @@
 						list+="<td class='detail_cabang'><a href='javascript:void(0)' class='lihat_detail detail_row'>Lihat Detail</a><input type='hidden' value='"+$i+"' /></td>";
 						list+="</tr>";
 					}
+					list+="</tbody>";
 					list+="</table>";
 					$('.cabang_list').html(list);
 					$( ".loader" ).fadeOut( 200, function(){});

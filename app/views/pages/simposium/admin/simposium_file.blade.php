@@ -27,7 +27,12 @@ var id_hapus_berkas = -1;
 
 
 
-		<div id='tambah_berkas_link' style='display: block;width: 100%;margin-left: 0px !important;overflow: hidden;'><a data-toggle="modal" data-target=".pop_up_super_c_tambah_berkas"  href='javascript:void(0)' id='tambah_berkas' class='command_button'>Add New File</a></div>
+		<div id='tambah_berkas_link' style='display: block;width: 100%;margin-left: 0px !important;overflow: hidden;'>
+			<a data-toggle="modal" data-target=".pop_up_super_c_tambah_berkas"  href='javascript:void(0)' id='tambah_berkas' class='command_button'>
+				<span class="glyphicon glyphicon-plus"></span>
+				Tambah File Baru
+			</a>
+		</div>
 
 
 		<div class="berkas_list_container">
@@ -74,110 +79,110 @@ var id_hapus_berkas = -1;
 									<h4>@if($simpIct == 3) Detail Berkas  @else @if($simpIct == 4) File detail @endif @endif </h4>
 								</div>
 								
-									<!-- postBerkas-->		
-									<form class='tambah_berkas_form form-horizontal'>
-										<div class="modal-body">
-											<div class="form-group">
-												<label class=" control-label col-sm-3">@if($simpIct == 3) Nama Berkas @else @if($simpIct == 4) File Name @endif @endif </label>
+								<!-- postBerkas-->		
+								<form class='tambah_berkas_form form-horizontal'>
+									<div class="modal-body">
+										<div class="form-group">
+											<label class=" control-label col-sm-3">@if($simpIct == 3) Nama Berkas @else @if($simpIct == 4) File Name @endif @endif </label>
 
-												{{ Form::text('nama_berkas', Input::old('nama_berkas'), array('id' => 'new_nama', 'class' => 'form-control col-sm-5')) }}
-											</div>
-											<div class="form-group">
-												<label class=" control-label col-sm-3">@if($simpIct == 3) Berkas @else @if($simpIct == 4) Files @endif @endif </label>
+											{{ Form::text('nama_berkas', Input::old('nama_berkas'), array('id' => 'new_nama', 'class' => 'form-control col-sm-5')) }}
+										</div>
+										<div class="form-group">
+											<label class=" control-label col-sm-3">@if($simpIct == 3) Berkas @else @if($simpIct == 4) Files @endif @endif </label>
 
-												{{ Form::file('fileBerkas', array('name'=>'fileBerkas', 'id'=>'fileBerkas', 'class'=>'col-sm-5'))}}
-											</div>
-											
-												
-											</div>
-<div class="modal-footer">
-													<!--<td><input type='button' value='Tambah' id="tambah_cabang_button"/></td>-->							
-												@if($simpIct == 3) 
-												{{ Form::submit('Tambah Berkas', array('class' => 'btn btn-success'))}}
-												@else @if($simpIct == 4)  
-												{{ Form::submit('Add File', array('class' => 'btn btn-success'))}}
-												@endif @endif 
-											</div>
-									</form>
+											{{ Form::file('fileBerkas', array('name'=>'fileBerkas', 'id'=>'fileBerkas', 'class'=>'col-sm-5'))}}
+										</div>
 
-									<script>
-									jQuery.validator.setDefaults({
-										debug: true,
-										success: "valid"
-									});
-									$(".tambah_berkas_form").validate({
-										rules:{
-											nama_berkas: {
-												required: true
-											},
-											fileBerkas: {
-												required: true
-											}
+
+									</div>
+									<div class="modal-footer">
+										<!--<td><input type='button' value='Tambah' id="tambah_cabang_button"/></td>-->							
+										@if($simpIct == 3) 
+										{{ Form::submit('Tambah Berkas', array('class' => 'btn btn-success'))}}
+										@else @if($simpIct == 4)  
+										{{ Form::submit('Add File', array('class' => 'btn btn-success'))}}
+										@endif @endif 
+									</div>
+								</form>
+
+								<script>
+								jQuery.validator.setDefaults({
+									debug: true,
+									success: "valid"
+								});
+								$(".tambah_berkas_form").validate({
+									rules:{
+										nama_berkas: {
+											required: true
 										},
-										messages:{
-											@if($simpIct == 3) 
-											nama_berkas: {
-												required: "Mohon isi nama berkas"
-											},
-											fileBerkas: {
-												required: "Mohon file diisi"
-											}
-											@else @if($simpIct == 4)  
-											nama_berkas: {
-												required: "Please fill the file name"
-											},
-											fileBerkas: {
-												required: "Please add the file"
-											}
-											@endif @endif 
-
+										fileBerkas: {
+											required: true
+										}
+									},
+									messages:{
+										@if($simpIct == 3) 
+										nama_berkas: {
+											required: "Mohon isi nama berkas"
 										},
-										submitHandler:function(form){
-											var url = '{{URL::route('admin.kegiatan2.tambahBerkas',array($id))}}';
-											var data, xhr;
-											data = new FormData();
-											data.append('nama_berkas', $('#new_nama').val());			
-											data.append('deskripsi_berkas', $('#new_deskripsi').val());
-											data.append('fileBerkas', $('#fileBerkas')[0].files[0]);
-											$.ajax({
-												url: url,
-												type: 'POST',
-												data: data,
-												processData: false,
-												contentType: false,
-												success: function(as){
-													if(as == "success"){
-														@if($simpIct == 3) 
-														alert('Berhasil mengunggah berkas');
-														@else @if($simpIct == 4)  
-														alert('Success uploading file');
-														@endif @endif 
-														location.reload();
-														$('.modal-backdrop').removeClass('in');
-														setTimeout(function() {
-															$('.modal-backdrop').remove();
-														}, 500);	
-													}else{
-														alert(as);
-														$('.modal-backdrop').removeClass('in');
-														setTimeout(function() {
-															$('.modal-backdrop').remove();
-														}, 500);	
-													}
-												},
-												error:function(errorThrown){
+										fileBerkas: {
+											required: "Mohon file diisi"
+										}
+										@else @if($simpIct == 4)  
+										nama_berkas: {
+											required: "Please fill the file name"
+										},
+										fileBerkas: {
+											required: "Please add the file"
+										}
+										@endif @endif 
+
+									},
+									submitHandler:function(form){
+										var url = '{{URL::route('admin.kegiatan2.tambahBerkas',array($id))}}';
+										var data, xhr;
+										data = new FormData();
+										data.append('nama_berkas', $('#new_nama').val());			
+										data.append('deskripsi_berkas', $('#new_deskripsi').val());
+										data.append('fileBerkas', $('#fileBerkas')[0].files[0]);
+										$.ajax({
+											url: url,
+											type: 'POST',
+											data: data,
+											processData: false,
+											contentType: false,
+											success: function(as){
+												if(as == "success"){
 													@if($simpIct == 3) 
-
-													alert('Gagal mengunggah berkas');
+													alert('Berhasil mengunggah berkas');
 													@else @if($simpIct == 4)  
-													alert('Failed to upload file');
+													alert('Success uploading file');
 													@endif @endif 
+													location.reload();
+													$('.modal-backdrop').removeClass('in');
+													setTimeout(function() {
+														$('.modal-backdrop').remove();
+													}, 500);	
+												}else{
+													alert(as);
 													$('.modal-backdrop').removeClass('in');
 													setTimeout(function() {
 														$('.modal-backdrop').remove();
 													}, 500);	
 												}
-											});
+											},
+											error:function(errorThrown){
+												@if($simpIct == 3) 
+
+												alert('Gagal mengunggah berkas');
+												@else @if($simpIct == 4)  
+												alert('Failed to upload file');
+												@endif @endif 
+												$('.modal-backdrop').removeClass('in');
+												setTimeout(function() {
+													$('.modal-backdrop').remove();
+												}, 500);	
+											}
+										});
 }
 });
 </script>
@@ -199,9 +204,8 @@ var id_hapus_berkas = -1;
 							<h4>Perhatian!</h4>
 						</div>
 
-						<div class="container_12">			
-							<div class="div_hapus_berkas" style="background: #fff; width:600px !important; padding-top:40px;">
-								<h2 style="text-align:center;">Anda yakin ingin menghapus berkas ini?</h2>							
+						
+								<h3 style="text-align:center;">Anda yakin ingin menghapus berkas ini?</h3>							
 								<table border="0" style="margin-left:auto; margin-right:auto;">
 									<tr>
 										@if($simpIct == 3) 
@@ -216,8 +220,7 @@ var id_hapus_berkas = -1;
 
 									</tr>
 								</table>
-							</div>
-						</div>			
+									
 					</div>		
 				</div>
 			</div>

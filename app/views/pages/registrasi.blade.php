@@ -490,8 +490,8 @@
 		
 	</script>
 	<div style="width: 100%; text-align: center;"> <!--class="de_tombol"-->
-		{{ Form::submit('Daftar', ['class' => 'regreg']) }}
-		{{ Form::reset('Hapus Form') }}
+		{{ Form::submit('Daftar', ['class' => 'regreg btn btn-success']) }}
+		{{ Form::reset('Hapus Form', ['class' => 'regreg btn btn-warning']) }}
 		<script>
 				$('.regreg').addClass('reg_submit_off');
 				// set hidden form field with selected timeslot
@@ -516,20 +516,10 @@
 	{{ Form::close() }}
 	
 	<style>
-	/*	#tempatlahir-error, #telepon2-error {
-			float: right;
-		}
-		
-		#username-error {
-			background-color: #ea6153;
-			float: right;
-			line-height: 28px;
-			border-radius: 5px;
-		}
-		
-		#kodepos-error, #kota-error, #negara-error{
-			width: auto !important;
-		}*/
+	#pendidikan1-error {
+		float: right;
+		margin-right: 148px;
+	}
 	</style>
 	
 </div>

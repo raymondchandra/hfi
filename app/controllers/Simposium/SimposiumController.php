@@ -276,6 +276,9 @@ class SimposiumController extends BaseController {
 					}
 				}
 			}
+			else{
+				return Redirect::to('event/login/'.$id_kegiatan)->with('message','Username tidak terdaftar');
+			}
 		}
 	}
 	

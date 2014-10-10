@@ -258,7 +258,7 @@ class SimposiumController extends BaseController {
 			
 		}
 		else{
-			$peserta = Peserta::where('username','=',$username)->get();
+			$peserta = Peserta::where('id_kegiatan','=',$id_kegiatan)->where('username','=',$username)->get();
 			$kegiatan = Kegiatan2::find($id_kegiatan);
 			if(count($peserta)>0){
 				if (Hash::check($password, $peserta[0]['password']))

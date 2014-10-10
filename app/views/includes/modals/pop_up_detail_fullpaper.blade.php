@@ -17,10 +17,10 @@
 						<p class="form-control-static col-sm-8 judul_paper"></p>
 					</div>
 
-					<div class="form-group">
+					<!--<div class="form-group">
 						
 						<object class="col-sm-12 file_paper" data="" style="height: 400px;"></object>
-					</div>
+					</div>-->
 
 					<div class="form-group">
 						<label class=" control-label col-sm-3">@if($simpIct == 3) Kirim Email @else @if($simpIct == 4) Sent Email @endif @endif </label>

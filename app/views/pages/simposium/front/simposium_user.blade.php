@@ -74,9 +74,9 @@
 
 						@endif
 						 <hr/>
-						@if($peserta[0]->is_paper == 1)
+						<!--@if($peserta[0]->is_paper == 1)
 						  <button data-toggle="modal" data-target=".pop_up_upload_full_paper" type="submit" class="btn btn-info upload_paper">@if($simpIct == 3) Unggah Paper Lengkap @else @if($simpIct == 4) Upload Full Paper @endif @endif </button> 
-						@endif
+						@endif-->
 						  <button data-toggle="modal" data-target=".pop_up_upload_bukti_pembayaran" type="submit" class="btn btn-info upload_bayar">@if($simpIct == 3) Unggah Bukti Pembayaran  @else @if($simpIct == 4) Upload Proof of Payment @endif @endif </button> 
 						  <button data-toggle="modal" data-target=".pop_up_minta_bantuan" type="submit" class="btn btn-info" id="bantuanButt">@if($simpIct == 3) Minta Bantuan @else @if($simpIct == 4) Get Help @endif @endif </button> 
 					</div>

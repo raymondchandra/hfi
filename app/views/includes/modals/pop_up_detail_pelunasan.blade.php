@@ -12,10 +12,10 @@
 
 				<div class="modal-body" style="">
 					
-					<div class="form-group">
+					<!--<div class="form-group">
 						<label class=" control-label col-sm-3">Jenis Partisipan</label>
 						<p class="form-control-static col-sm-5 jenis_bayar">International | With Paper</p>
-					</div>
+					</div>-->
 
 					<div class="form-group">
 						<label class=" control-label col-sm-3">Biaya</label>
